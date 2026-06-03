@@ -1,0 +1,23 @@
+/target/
+/runs/
+/reports/generated/
+/.zkfr/
+/.zkfdo/
+
+# Circom and zk toolchain build artifacts
+*.r1cs
+*.sym
+*.wasm
+*.wtns
+*.zkey
+*.ptau
+*.json.zst
+
+# Local editor and OS noise
+.DS_Store
+*.swp
+*.swo
+
+# Local environment files
+.env
+.env.*

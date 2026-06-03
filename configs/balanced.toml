@@ -1,0 +1,9 @@
+[profile]
+name = "balanced"
+total_budget_seconds = 1800
+smoke_budget_seconds = 60
+max_targets = 30
+
+[zkfuzz]
+binary = "zkfuzz"
+extra_args = []

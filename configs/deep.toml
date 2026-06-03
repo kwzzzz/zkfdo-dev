@@ -1,0 +1,9 @@
+[profile]
+name = "deep"
+total_budget_seconds = 7200
+smoke_budget_seconds = 120
+max_targets = 100
+
+[zkfuzz]
+binary = "zkfuzz"
+extra_args = []

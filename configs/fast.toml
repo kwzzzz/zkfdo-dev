@@ -1,0 +1,9 @@
+[profile]
+name = "fast"
+total_budget_seconds = 600
+smoke_budget_seconds = 30
+max_targets = 10
+
+[zkfuzz]
+binary = "zkfuzz"
+extra_args = []

@@ -1,0 +1,5 @@
+{
+  "name": "dev10",
+  "description": "Small development manifest placeholder for up to 10 Circom targets.",
+  "targets": []
+}
