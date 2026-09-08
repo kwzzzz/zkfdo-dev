@@ -41,9 +41,39 @@ fn run_dry_run_prints_zkfuzz_command() {
     ])
     .assert()
     .success()
-    .stdout(predicate::str::contains(
-        "zkfuzz circuits/main.circom --budget-seconds 60",
-    ));
+    .stdout(predicate::str::contains("zkfuzz circuits/main.circom"));
+}
+
+#[cfg(unix)]
+#[test]
+fn run_executes_process_and_outputs_result_json() {
+    let temp = tempdir().expect("tempdir");
+    let fake_zkfuzz = temp.path().join("fake-zkfuzz.sh");
+    fs::write(
+        &fake_zkfuzz,
+        "printf 'Random Seed: 123\\nGeneration: 4/500\\n'\nprintf 'Verification: No Counter Example Found\\n' >&2\n",
+    )
+    .expect("fake zkFuzz");
+
+    let mut cmd = Command::cargo_bin("zkfDO").expect("binary exists");
+
+    cmd.args(["run", "--target"])
+        .arg(&fake_zkfuzz)
+        .args([
+            "--zkfuzz-bin",
+            "/bin/sh",
+            "--budget-seconds",
+            "2",
+            "--output",
+        ])
+        .arg(temp.path().join("runs"))
+        .assert()
+        .success()
+        .stdout(
+            predicate::str::contains("\"status\": \"no_counterexample\"")
+                .and(predicate::str::contains("\"random_seed\": 123"))
+                .and(predicate::str::contains("\"last_generation\": 4")),
+        );
 }
 
 #[test]

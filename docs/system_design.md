@@ -32,7 +32,7 @@ Builds budget-aware fuzzing schedules. This module decides which targets receive
 
 ### `runner.rs`
 
-Builds zkFuzz commands, executes subprocesses, handles timeouts, and captures stdout and stderr. The current implementation starts with command building and dry-run behavior.
+Builds zkFuzz commands, executes subprocesses, enforces per-target timeouts, captures stdout and stderr, and stores structured JSON results. Later versions may add process-group termination and version-specific output adapters.
 
 ### `report.rs`
 

@@ -107,7 +107,7 @@ The constant `1` prevents division by zero and keeps tiny files stable.
 
 After this milestone works, the next useful milestones are:
 
-1. Add budget-aware scheduling from ranked targets.
-2. Add real zkFuzz subprocess execution with timeout handling.
+1. Add real zkFuzz subprocess execution with timeout handling.
+2. Add uniform budget scheduling from ranked targets.
 3. Persist ranking and run results as CSV or SQLite.
 4. Compare ranking strategies against random, small-first, and large-first baselines.

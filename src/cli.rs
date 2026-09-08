@@ -10,7 +10,7 @@ use crate::{features, ranker, runner, scanner};
     name = "zkfDO",
     version,
     about = "Rank and schedule zkFuzz targets for large Circom projects",
-    long_about = "zkfDO helps scan Circom projects, rank fuzzing targets, schedule work under a limited budget, and prepare zkFuzz subprocess commands."
+    long_about = "zkfDO helps scan Circom projects, rank fuzzing targets, and execute zkFuzz subprocesses under a limited budget."
 )]
 pub struct Cli {
     #[command(subcommand)]
@@ -31,7 +31,7 @@ pub enum Commands {
     /// Build a budget-aware fuzzing schedule.
     Schedule(ScheduleArgs),
 
-    /// Build or dry-run a zkFuzz command for a target.
+    /// Execute or dry-run zkFuzz for one target.
     Run(RunArgs),
 
     /// Generate reports from stored run results.
@@ -62,13 +62,17 @@ pub struct RunArgs {
     #[arg(short, long)]
     pub target: PathBuf,
 
-    /// Existing zkFuzz binary to invoke later.
+    /// Existing zkFuzz binary to invoke.
     #[arg(long, default_value = "zkfuzz")]
     pub zkfuzz_bin: PathBuf,
 
     /// Per-target fuzzing budget in seconds.
-    #[arg(short, long)]
-    pub budget_seconds: Option<u64>,
+    #[arg(short, long, default_value_t = 60)]
+    pub budget_seconds: u64,
+
+    /// Root directory for run results and raw logs.
+    #[arg(short, long, default_value = "runs")]
+    pub output: PathBuf,
 
     /// Print the zkFuzz command without executing it.
     #[arg(long)]
@@ -120,15 +124,18 @@ pub fn handle(cli: Cli) -> Result<()> {
             );
         }
         Commands::Run(args) => {
-            let dry_run =
-                runner::build_dry_run(&args.zkfuzz_bin, &args.target, args.budget_seconds);
-
             if args.dry_run {
+                let dry_run =
+                    runner::build_dry_run(&args.zkfuzz_bin, &args.target, args.budget_seconds);
                 println!("{}", dry_run.command.as_shell_words().join(" "));
             } else {
-                println!(
-                    "runner placeholder: add --dry-run to print the zkFuzz command without executing it"
-                );
+                let result = runner::run_zkfuzz(
+                    &args.zkfuzz_bin,
+                    &args.target,
+                    args.budget_seconds,
+                    &args.output,
+                )?;
+                println!("{}", serde_json::to_string_pretty(&result)?);
             }
         }
         Commands::Report(args) => {
