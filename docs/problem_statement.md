@@ -76,3 +76,11 @@ Given a large Circom project and a limited fuzzing budget, how can we decide whi
 A simple wrapper would only expose a convenient command for launching zkFuzz. zkfDO instead adds a project-level decision layer around zkFuzz. It asks which targets should be fuzzed, in what order, for how long, and how the initial plan should change after short smoke runs.
 
 This makes zkfDO a helper system for efficient fuzzing, not merely a command alias.
+
+## Differentiation From zkFuzz And zkCraft
+
+zkFuzz is treated as the core fuzzing engine and theoretical baseline. Its contribution is TCCT and mutation-based detection of trace-constraint inconsistencies inside ZK circuits.
+
+zkCraft is treated as related work at the fuzzing-engine layer. It improves TCCT-powered fuzzing with ZK-native localization, proof-bearing search, and LLM-guided mutation templates.
+
+zkfDO should not claim to replace either system. The intended research gap is above the fuzzer engine: large-project target selection, budget allocation, run scheduling, result collection, and reproducible evaluation. In other words, zkfDO studies how to apply existing ZK fuzzers effectively across many candidate targets when fuzzing time is limited.

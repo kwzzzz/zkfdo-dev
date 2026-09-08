@@ -15,7 +15,10 @@ Implemented now:
 - `zkfDO --help`
 - subcommand help output
 - dry-run zkFuzz command construction
-- placeholder modules for scanner, feature extraction, ranker, scheduler, reports, and database storage
+- Circom file scanning
+- lexical static feature extraction
+- heuristic target ranking
+- placeholder modules for scheduler, reports, and database storage
 
 Not implemented yet:
 

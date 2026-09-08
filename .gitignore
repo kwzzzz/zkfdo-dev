@@ -21,3 +21,6 @@
 # Local environment files
 .env
 .env.*
+
+# Local third-party checkouts and tooling
+.external/

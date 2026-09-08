@@ -3,7 +3,7 @@ use std::path::PathBuf;
 use anyhow::Result;
 use clap::{Args, Parser, Subcommand};
 
-use crate::runner;
+use crate::{features, ranker, runner, scanner};
 
 #[derive(Debug, Parser)]
 #[command(
@@ -100,13 +100,17 @@ pub fn run() -> Result<()> {
 pub fn handle(cli: Cli) -> Result<()> {
     match cli.command {
         Commands::Scan(args) => {
-            println!("scan placeholder: {}", args.project.display());
+            let targets = scanner::scan_project(&args.project)?;
+            println!("{}", serde_json::to_string_pretty(&targets)?);
         }
         Commands::Features(args) => {
-            println!("features placeholder: {}", args.project.display());
+            let features = features::extract_project_features(&args.project)?;
+            println!("{}", serde_json::to_string_pretty(&features)?);
         }
         Commands::Rank(args) => {
-            println!("rank placeholder: {}", args.project.display());
+            let features = features::extract_project_features(&args.project)?;
+            let ranked = ranker::rank_targets(&features);
+            println!("{}", serde_json::to_string_pretty(&ranked)?);
         }
         Commands::Schedule(args) => {
             println!(
