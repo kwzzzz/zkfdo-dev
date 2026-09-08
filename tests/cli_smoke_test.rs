@@ -76,6 +76,59 @@ fn run_executes_process_and_outputs_result_json() {
         );
 }
 
+#[cfg(unix)]
+#[test]
+fn schedule_runs_discovered_targets_and_writes_summary() {
+    let temp = tempdir().expect("tempdir");
+    let project = temp.path().join("project");
+    let output = temp.path().join("experiments");
+    fs::create_dir_all(&project).expect("project directory");
+    fs::write(
+        project.join("a.circom"),
+        "printf 'Random Seed: 101\\nGeneration: 1/500\\n'\nprintf 'Verification: No Counter Example Found\\n' >&2\n",
+    )
+    .expect("first target");
+    fs::write(
+        project.join("b.circom"),
+        "printf 'fake target error\\n' >&2\nexit 9\n",
+    )
+    .expect("second target");
+
+    let mut cmd = Command::cargo_bin("zkfDO").expect("binary exists");
+    cmd.args(["schedule", "--project"])
+        .arg(&project)
+        .args([
+            "--zkfuzz-bin",
+            "/bin/sh",
+            "--budget-seconds",
+            "2",
+            "--output",
+        ])
+        .arg(&output)
+        .assert()
+        .success()
+        .stdout(
+            predicate::str::contains("\"scheduler\": \"uniform\"")
+                .and(predicate::str::contains("\"target_count\": 2"))
+                .and(predicate::str::contains("\"run_count\": 2"))
+                .and(predicate::str::contains("\"status\": \"runtime_error\"")),
+        );
+
+    let experiment_dirs = fs::read_dir(&output)
+        .expect("output directory")
+        .collect::<Result<Vec<_>, _>>()
+        .expect("experiment entries");
+    assert_eq!(experiment_dirs.len(), 1);
+
+    let experiment_dir = experiment_dirs[0].path();
+    assert!(experiment_dir.join("summary.json").exists());
+    let target_runs = fs::read_dir(experiment_dir.join("runs"))
+        .expect("target runs directory")
+        .collect::<Result<Vec<_>, _>>()
+        .expect("target run entries");
+    assert_eq!(target_runs.len(), 2);
+}
+
 #[test]
 fn scan_outputs_discovered_circom_targets() {
     let temp = tempdir().expect("tempdir");

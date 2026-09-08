@@ -3,7 +3,7 @@ use std::path::PathBuf;
 use anyhow::Result;
 use clap::{Args, Parser, Subcommand};
 
-use crate::{features, ranker, runner, scanner};
+use crate::{features, ranker, runner, scanner, scheduler};
 
 #[derive(Debug, Parser)]
 #[command(
@@ -28,7 +28,7 @@ pub enum Commands {
     /// Rank targets by estimated vulnerability risk and execution cost.
     Rank(ProjectPathArgs),
 
-    /// Build a budget-aware fuzzing schedule.
+    /// Run every discovered target with the same fuzzing budget.
     Schedule(ScheduleArgs),
 
     /// Execute or dry-run zkFuzz for one target.
@@ -51,9 +51,17 @@ pub struct ScheduleArgs {
     #[arg(short, long, default_value = ".")]
     pub project: PathBuf,
 
-    /// Total fuzzing budget in seconds.
-    #[arg(short, long, default_value_t = 600)]
+    /// Fuzzing budget per target in seconds.
+    #[arg(short, long, default_value_t = 60)]
     pub budget_seconds: u64,
+
+    /// Existing zkFuzz binary to invoke.
+    #[arg(long, default_value = "zkfuzz")]
+    pub zkfuzz_bin: PathBuf,
+
+    /// Root directory for experiment results and raw logs.
+    #[arg(short, long, default_value = "runs")]
+    pub output: PathBuf,
 }
 
 #[derive(Debug, Args)]
@@ -117,11 +125,17 @@ pub fn handle(cli: Cli) -> Result<()> {
             println!("{}", serde_json::to_string_pretty(&ranked)?);
         }
         Commands::Schedule(args) => {
-            println!(
-                "schedule placeholder: project={}, budget_seconds={}",
-                args.project.display(),
-                args.budget_seconds
-            );
+            let targets = scanner::scan_project(&args.project)?
+                .into_iter()
+                .map(|target| target.path)
+                .collect::<Vec<_>>();
+            let summary = scheduler::run_uniform_experiment(
+                &targets,
+                args.budget_seconds,
+                &args.zkfuzz_bin,
+                &args.output,
+            )?;
+            println!("{}", serde_json::to_string_pretty(&summary)?);
         }
         Commands::Run(args) => {
             if args.dry_run {

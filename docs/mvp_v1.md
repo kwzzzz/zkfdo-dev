@@ -103,11 +103,11 @@ The constant `1` prevents division by zero and keeps tiny files stable.
 - Unit or integration tests cover scanner, feature extraction, ranking, and CLI smoke behavior.
 - `cargo fmt`, `cargo clippy --all-targets --all-features -- -D warnings`, and `cargo test` pass.
 
-## Next Milestones
+## Post-Milestone Progress
 
-After this milestone works, the next useful milestones are:
+Completed after this milestone:
 
-1. Add real zkFuzz subprocess execution with timeout handling.
-2. Add uniform budget scheduling from ranked targets.
-3. Persist ranking and run results as CSV or SQLite.
-4. Compare ranking strategies against random, small-first, and large-first baselines.
+1. Real zkFuzz subprocess execution with timeout handling.
+2. Uniform per-target budget scheduling and experiment summaries.
+
+The next useful milestones are persistent experiment datasets and comparisons against random, small-first, and static-rank baselines.

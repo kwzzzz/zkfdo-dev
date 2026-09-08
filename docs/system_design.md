@@ -28,7 +28,7 @@ Implements ranking strategies and priority scoring, including static-risk, cost-
 
 ### `scheduler.rs`
 
-Builds budget-aware fuzzing schedules. This module decides which targets receive smoke fuzzing, deep fuzzing, retries, or no budget.
+Builds and executes budget-aware fuzzing schedules. The current baseline assigns every discovered target the same per-target budget and stores an experiment summary. Later versions will decide which targets receive smoke fuzzing, deep fuzzing, retries, or no budget.
 
 ### `runner.rs`
 
@@ -65,20 +65,18 @@ The initial scaffold does not implement all of these commands yet. They describe
 ## Run Directory Structure
 
 ```text
-runs/<run_id>/
-  metadata.json
-  targets.json
-  features.csv
-  ranking.csv
-  results.csv
-  target-<id>/
+runs/<single-run-id>/
+  result.json
+  stdout.log
+  stderr.log
+
+runs/<experiment-id>/
+  summary.json
+  runs/<target-run-id>/
+    result.json
     stdout.log
     stderr.log
-    result.json
-    generated_settings.json
 ```
-
-`generated_settings.json` is optional and should be used only when zkfDO generates a wrapper, config, or target-specific settings file.
 
 ## Result Schema
 
@@ -90,6 +88,7 @@ runs/<run_id>/
 - `CompileError`
 - `RuntimeError`
 - `ParseError`
+- `SpawnError`
 - `Unknown`
 
 ### RunResult
@@ -134,13 +133,13 @@ Extracts static and cost features.
 
 Ranks targets according to the selected strategy.
 
-### `zkfDO fuzz-one`
+### `zkfDO run`
 
 Runs or dry-runs zkFuzz on one target.
 
-### `zkfDO fuzz`
+### `zkfDO schedule`
 
-Executes project-level scheduled fuzzing.
+Executes every discovered project target with a uniform per-target budget and stores an experiment summary.
 
 ### `zkfDO report`
 
