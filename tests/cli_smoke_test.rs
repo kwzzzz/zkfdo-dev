@@ -16,7 +16,9 @@ fn top_level_help_mentions_zkfdo() {
 
 #[test]
 fn subcommand_help_is_available() {
-    for subcommand in ["scan", "features", "rank", "schedule", "run", "report"] {
+    for subcommand in [
+        "scan", "targets", "features", "rank", "schedule", "run", "report",
+    ] {
         let mut cmd = Command::cargo_bin("zkfDO").expect("binary exists");
 
         cmd.arg(subcommand)
@@ -25,6 +27,28 @@ fn subcommand_help_is_available() {
             .success()
             .stdout(predicate::str::contains("Usage:"));
     }
+}
+
+#[test]
+fn targets_discovers_concrete_instantiations_without_compiling() {
+    let temp = tempdir().expect("tempdir");
+    let fixture =
+        std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/target_discovery");
+
+    let mut cmd = Command::cargo_bin("zkfDO").expect("binary exists");
+    cmd.args(["targets", "--project"])
+        .arg(fixture)
+        .args(["--output"])
+        .arg(temp.path())
+        .arg("--no-validate")
+        .assert()
+        .success()
+        .stdout(
+            predicate::str::contains("\"entrypoint_status\": \"found\"")
+                .and(predicate::str::contains("\"template_name\": \"RSA\""))
+                .and(predicate::str::contains("\"concrete_parameters\": ["))
+                .and(predicate::str::contains("\"generated_wrapper_count\": 7")),
+        );
 }
 
 #[test]

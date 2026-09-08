@@ -16,7 +16,13 @@ Defines project config, zkFuzz config, and fuzzing profile config structures. La
 
 ### `scanner.rs`
 
-Implements Circom project scanning and target discovery. The first version should discover `.circom` files and identify entrypoint candidates.
+Recursively discovers `.circom` files. It deliberately remains a filesystem scanner and does not claim that every file is a runnable fuzz target.
+
+### `targets.rs`
+
+Implements the semantic target-discovery MVP. It finds a unique top-level `component main`, follows project-local includes, evaluates a supported subset of compile-time parameter expressions, walks reachable scalar component instantiations, generates standalone wrappers, and optionally validates each wrapper with `circom --inspect`.
+
+Unsupported syntax is stored explicitly in the discovery report instead of producing guessed targets. Component arrays, instantiation in control flow, anonymous components, dynamic/unknown parameter expressions, and include dependencies outside the scanned project are not expanded in this MVP.
 
 ### `features.rs`
 
@@ -123,7 +129,11 @@ Creates `.zkfdo/config.toml` with default project settings.
 
 ### `zkfDO scan`
 
-Discovers `.circom` files and target candidates.
+Discovers `.circom` files.
+
+### `zkfDO targets`
+
+Discovers concrete template-instantiation candidates reachable from a unique project entrypoint, generates isolated wrappers, and records compile-validation results.
 
 ### `zkfDO features`
 
@@ -140,6 +150,8 @@ Runs or dry-runs zkFuzz on one target.
 ### `zkfDO schedule`
 
 Executes every discovered project target with a uniform per-target budget and stores an experiment summary.
+
+The current scheduler still consumes the file scanner output. Connecting validated semantic wrappers to scheduling is intentionally a later step.
 
 ### `zkfDO report`
 

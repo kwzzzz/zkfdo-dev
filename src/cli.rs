@@ -3,7 +3,7 @@ use std::path::PathBuf;
 use anyhow::Result;
 use clap::{Args, Parser, Subcommand};
 
-use crate::{features, ranker, runner, scanner, scheduler};
+use crate::{features, ranker, runner, scanner, scheduler, targets};
 
 #[derive(Debug, Parser)]
 #[command(
@@ -21,6 +21,9 @@ pub struct Cli {
 pub enum Commands {
     /// Discover Circom files in a project.
     Scan(ProjectPathArgs),
+
+    /// Discover concrete, reachable template instantiations and generate wrappers.
+    Targets(TargetDiscoveryArgs),
 
     /// Extract static features from Circom targets.
     Features(ProjectPathArgs),
@@ -62,6 +65,25 @@ pub struct ScheduleArgs {
     /// Root directory for experiment results and raw logs.
     #[arg(short, long, default_value = "runs")]
     pub output: PathBuf,
+}
+
+#[derive(Debug, Args)]
+pub struct TargetDiscoveryArgs {
+    /// Circom project root.
+    #[arg(short, long, default_value = ".")]
+    pub project: PathBuf,
+
+    /// Root directory for discovery reports and generated wrappers.
+    #[arg(short, long, default_value = ".zkfdo/targets")]
+    pub output: PathBuf,
+
+    /// Circom compiler used to validate generated wrappers.
+    #[arg(long, default_value = "circom")]
+    pub circom_bin: PathBuf,
+
+    /// Generate wrappers without invoking the Circom compiler.
+    #[arg(long)]
+    pub no_validate: bool,
 }
 
 #[derive(Debug, Args)]
@@ -114,6 +136,12 @@ pub fn handle(cli: Cli) -> Result<()> {
         Commands::Scan(args) => {
             let targets = scanner::scan_project(&args.project)?;
             println!("{}", serde_json::to_string_pretty(&targets)?);
+        }
+        Commands::Targets(args) => {
+            let circom_bin = (!args.no_validate).then_some(args.circom_bin.as_path());
+            let report =
+                targets::discover_project_targets(&args.project, &args.output, circom_bin)?;
+            println!("{}", serde_json::to_string_pretty(&report)?);
         }
         Commands::Features(args) => {
             let features = features::extract_project_features(&args.project)?;

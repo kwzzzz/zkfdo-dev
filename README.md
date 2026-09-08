@@ -8,7 +8,7 @@ The project does not reimplement zkFuzz. It scans Circom projects, extracts targ
 
 ## Status
 
-This repository has a working static-ranking pipeline, a minimal single-target runner, and a uniform scheduling baseline.
+This repository has a working static-ranking pipeline, a minimal single-target runner, a uniform scheduling baseline, and an MVP for semantic fuzz-target discovery.
 
 Implemented now:
 
@@ -16,6 +16,8 @@ Implemented now:
 - subcommand help output
 - dry-run zkFuzz command construction
 - Circom file scanning
+- reachable concrete template-instantiation discovery for a documented Circom subset
+- standalone wrapper generation and optional Circom compile validation
 - lexical static feature extraction
 - heuristic target ranking
 - real zkFuzz subprocess execution with a per-target timeout
@@ -25,7 +27,8 @@ Implemented now:
 
 Not implemented yet:
 
-- recursive Circom parsing
+- complete Circom syntax/semantic analysis
+- scheduling the generated semantic targets (the current uniform scheduler is still file-based)
 - rank-aware and adaptive scheduling
 - SQLite persistence
 - CSV/JSON/HTML report generation
@@ -35,6 +38,7 @@ Not implemented yet:
 
 ```sh
 cargo run --bin zkfDO -- --help
+cargo run --bin zkfDO -- targets --project examples --output .zkfdo/targets
 cargo run --bin zkfDO -- run --target examples/main.circom --dry-run
 cargo run --bin zkfDO -- run --target examples/main.circom --budget-seconds 10
 cargo run --bin zkfDO -- schedule --project examples --budget-seconds 10
@@ -42,10 +46,12 @@ cargo run --bin zkfDO -- schedule --project examples --budget-seconds 10
 
 Completed runs are stored under `runs/<run-id>/` as `result.json`, `stdout.log`, and `stderr.log`.
 Uniform experiments are stored under `runs/<experiment-id>/` with a `summary.json` and nested target runs.
+Target discovery output is stored under `.zkfdo/targets/<discovery-id>/` as `discovery.json` plus one directory per generated wrapper. Pass `--no-validate` to generate wrappers without invoking `circom`.
 
 ## Commands
 
 - `scan`: discover Circom files in a project
+- `targets`: find concrete template instantiations reachable from `component main`, generate wrappers, and validate them with Circom
 - `features`: extract static features from Circom targets
 - `rank`: rank fuzzing targets by risk and cost
 - `schedule`: execute all discovered targets with a uniform per-target budget

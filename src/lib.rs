@@ -8,3 +8,4 @@ pub mod report;
 pub mod runner;
 pub mod scanner;
 pub mod scheduler;
+pub mod targets;

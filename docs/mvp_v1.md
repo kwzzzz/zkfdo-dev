@@ -109,5 +109,7 @@ Completed after this milestone:
 
 1. Real zkFuzz subprocess execution with timeout handling.
 2. Uniform per-target budget scheduling and experiment summaries.
+3. Semantic discovery of concrete, reachable template instantiations for a supported Circom subset.
+4. Standalone wrapper generation and optional `circom --inspect` validation.
 
-The next useful milestones are persistent experiment datasets and comparisons against random, small-first, and static-rank baselines.
+The current scheduler still consumes file-level scan results. The next integration milestone is to feed successfully validated wrappers into runner/scheduler experiments before comparing random, small-first, static-rank, and adaptive allocation strategies.
