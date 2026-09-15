@@ -82,6 +82,11 @@ pub struct RunResult {
     pub finished_at: DateTime<Utc>,
     pub wall_time_seconds: f64,
     pub budget_seconds: u64,
+    #[serde(default)]
+    pub execution_limit_seconds: f64,
+    /// Offset from execute entry to the successful spawn call (not an OS exec timestamp).
+    #[serde(default)]
+    pub process_start_offset_seconds: Option<f64>,
     pub timed_out: bool,
     pub exit_code: Option<i32>,
     pub status: RunStatus,
@@ -135,9 +140,20 @@ pub fn run_zkfuzz(
 }
 
 pub fn execute(request: RunRequest) -> Result<RunResult> {
-    if request.budget_seconds == 0 {
-        bail!("budget_seconds must be greater than zero");
+    let limit = Duration::from_secs(request.budget_seconds);
+    execute_with_limit(request, limit)
+}
+
+pub fn execute_with_limit(request: RunRequest, limit: Duration) -> Result<RunResult> {
+    if request.budget_seconds == 0 || limit.is_zero() {
+        bail!("budget_seconds and execution limit must be greater than zero");
     }
+    let started_at = Utc::now();
+    let timer = Instant::now();
+    let limit = limit.min(Duration::from_secs(request.budget_seconds));
+    let deadline = timer
+        .checked_add(limit)
+        .context("execution deadline exceeds clock range")?;
 
     let run_id = Uuid::new_v4().to_string();
     let run_dir = request.output_root.join(&run_id);
@@ -151,23 +167,32 @@ pub fn execute(request: RunRequest) -> Result<RunResult> {
     let mut stderr_file = File::create(&stderr_path)
         .with_context(|| format!("failed to create stderr log: {}", stderr_path.display()))?;
 
-    let started_at = Utc::now();
-    let timer = Instant::now();
-    let spawn_result = Command::new(&request.command.binary)
+    let mut command = Command::new(&request.command.binary);
+    command
         .args(&request.command.args)
         .stdout(Stdio::from(stdout_file))
-        .stderr(Stdio::from(stderr_file.try_clone()?))
-        .spawn();
+        .stderr(Stdio::from(stderr_file.try_clone()?));
+    #[cfg(unix)]
+    {
+        use std::os::unix::process::CommandExt;
+        command.process_group(0);
+    }
 
-    let (exit_status, timed_out, spawn_error) = match spawn_result {
-        Ok(mut child) => {
-            let deadline = Duration::from_secs(request.budget_seconds);
-            let (exit_status, timed_out) = wait_with_timeout(&mut child, deadline)?;
-            (Some(exit_status), timed_out, None)
-        }
-        Err(error) => {
-            writeln!(stderr_file, "failed to start zkFuzz: {error}")?;
-            (None, false, Some(error.to_string()))
+    let mut process_start_offset_seconds = None;
+    let (exit_status, timed_out, spawn_error) = if timer.elapsed() >= limit {
+        (None, true, None)
+    } else {
+        let spawn_offset = timer.elapsed().as_secs_f64();
+        match command.spawn() {
+            Ok(mut child) => {
+                process_start_offset_seconds = Some(spawn_offset);
+                let (exit_status, timed_out) = wait_with_timeout(&mut child, deadline)?;
+                (Some(exit_status), timed_out, None)
+            }
+            Err(error) => {
+                writeln!(stderr_file, "failed to start zkFuzz: {error}")?;
+                (None, false, Some(error.to_string()))
+            }
         }
     };
 
@@ -193,6 +218,8 @@ pub fn execute(request: RunRequest) -> Result<RunResult> {
         finished_at,
         wall_time_seconds,
         budget_seconds: request.budget_seconds,
+        execution_limit_seconds: limit.as_secs_f64(),
+        process_start_offset_seconds,
         timed_out,
         exit_code: exit_status.as_ref().and_then(ExitStatus::code),
         status,
@@ -209,27 +236,51 @@ pub fn execute(request: RunRequest) -> Result<RunResult> {
 
 fn wait_with_timeout(
     child: &mut std::process::Child,
-    timeout: Duration,
+    deadline: Instant,
 ) -> Result<(ExitStatus, bool)> {
-    let started = Instant::now();
-
     loop {
-        if let Some(status) = child.try_wait().context("failed to poll zkFuzz process")? {
-            return Ok((status, false));
+        match child.try_wait() {
+            Ok(Some(status)) => return Ok((status, false)),
+            Ok(None) => {}
+            Err(error) => {
+                let _ = kill_process_tree(child);
+                let _ = child.wait();
+                return Err(error).context("failed to poll zkFuzz process");
+            }
         }
 
-        if started.elapsed() >= timeout {
-            child
-                .kill()
-                .context("failed to kill timed-out zkFuzz process")?;
+        let remaining = deadline.saturating_duration_since(Instant::now());
+        if remaining.is_zero() {
+            let killed = kill_process_tree(child);
             let status = child
                 .wait()
                 .context("failed to reap timed-out zkFuzz process")?;
+            killed?;
             return Ok((status, true));
         }
-
-        thread::sleep(Duration::from_millis(25));
+        thread::sleep(Duration::from_millis(25).min(remaining));
     }
+}
+
+fn kill_process_tree(child: &mut std::process::Child) -> Result<()> {
+    #[cfg(unix)]
+    {
+        let group = i32::try_from(child.id()).context("child process ID exceeds pid_t")?;
+        // Every command is spawned in its own process group. Negative pid addresses that group.
+        let result = unsafe { libc::kill(-group, libc::SIGKILL) };
+        if result == -1 {
+            let error = std::io::Error::last_os_error();
+            if error.raw_os_error() != Some(libc::ESRCH) {
+                let _ = child.kill();
+                return Err(error).context("failed to kill timed-out zkFuzz process group");
+            }
+        }
+        Ok(())
+    }
+    #[cfg(not(unix))]
+    child
+        .kill()
+        .context("failed to kill timed-out zkFuzz process")
 }
 
 fn classify_status(
@@ -249,14 +300,6 @@ fn classify_status(
 
     let combined = strip_ansi_codes(&format!("{stdout}\n{stderr}"));
 
-    if combined.contains("NOT SAFE") {
-        return RunStatus::BugFound;
-    }
-
-    if combined.contains("No Counter Example Found") {
-        return RunStatus::NoCounterexample;
-    }
-
     if exit_status.is_some_and(|status| !status.success()) {
         let lowercase = combined.to_ascii_lowercase();
 
@@ -269,6 +312,14 @@ fn classify_status(
         }
 
         return RunStatus::RuntimeError;
+    }
+
+    if combined.contains("NOT SAFE") {
+        return RunStatus::BugFound;
+    }
+
+    if combined.contains("No Counter Example Found") {
+        return RunStatus::NoCounterexample;
     }
 
     RunStatus::Unknown

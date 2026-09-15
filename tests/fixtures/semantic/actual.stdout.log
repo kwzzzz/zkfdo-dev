@@ -1,0 +1,300 @@
+circomspect: analyzing template 'LessThan'
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ __FIXTURE_ROOT__/cases.circom:89:31
+   │
+89 │     component bits = Num2Bits(n + 1);
+   │                               ^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ __FIXTURE_ROOT__/cases.circom:90:17
+   │
+90 │     bits.in <== in[0] + (2 ** n) - in[1];
+   │                 ^^^^^^^^^^^^^^^^^^^^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ __FIXTURE_ROOT__/cases.circom:91:13
+   │
+91 │     out <== 1 - bits.out[n];
+   │             ^^^^^^^^^^^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+warning[CS0010]: Using `Num2Bits` to convert field elements to bits may lead to aliasing issues.
+   ┌─ __FIXTURE_ROOT__/cases.circom:89:22
+   │
+89 │     component bits = Num2Bits(n + 1);
+   │                      ^^^^^^^^^^^^^^^ Circomlib template `Num2Bits` instantiated here.
+   │
+   = Consider using `Num2Bits_strict` if the input size may be >= than the prime size.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#non-strict-binary-conversion.
+   = To ignore this type of result, use `--allow CS0010`.
+
+circomspect: analyzing template 'Comparison'
+warning[CS0014]: Inputs to `LessThan` need to be constrained to ensure that they are non-negative
+   ┌─ __FIXTURE_ROOT__/cases.circom:99:18
+   │
+99 │     lt.in[0] <== a;
+   │                  ^ `a` needs to be constrained to ensure that it is <= p/2.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unconstrained-less-than.
+   = To ignore this type of result, use `--allow CS0014`.
+
+warning[CS0014]: Inputs to `LessThan` need to be constrained to ensure that they are non-negative
+    ┌─ __FIXTURE_ROOT__/cases.circom:100:18
+    │
+100 │     lt.in[1] <== b;
+    │                  ^ `b` needs to be constrained to ensure that it is <= p/2.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unconstrained-less-than.
+    = To ignore this type of result, use `--allow CS0014`.
+
+circomspect: analyzing template 'UnusedOutput'
+warning[CS0018]: The output signal `out` defined by the template `Plain` is not constrained in `UnusedOutput`.
+   ┌─ __FIXTURE_ROOT__/cases.circom:55:23
+   │
+55 │     component child = Plain();
+   │                       ^^^^^^^ The template `Plain` is instantiated here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unused-output-signal.
+   = To ignore this type of result, use `--allow CS0018`.
+
+circomspect: analyzing template 'Num2Bits'
+warning[CS0005]: Using the signal assignment operator `<--` does not constrain the assigned signal.
+   ┌─ __FIXTURE_ROOT__/cases.circom:79:9
+   │
+79 │         out[i] <-- (in >> i) & 1;
+   │         ^^^^^^^^^^^^^^^^^^^^^^^^ The assigned signal `out[i]` is not constrained here.
+80 │         out[i] * (out[i] - 1) === 0;
+   │         ---------------------------- The signal `out[i]` is constrained here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+   = To ignore this type of result, use `--allow CS0005`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ __FIXTURE_ROOT__/cases.circom:79:21
+   │
+79 │         out[i] <-- (in >> i) & 1;
+   │                     ^^^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ __FIXTURE_ROOT__/cases.circom:80:9
+   │
+80 │         out[i] * (out[i] - 1) === 0;
+   │         ^^^^^^^^^^^^^^^^^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ __FIXTURE_ROOT__/cases.circom:81:9
+   │
+81 │         sum += out[i] * (2 ** i);
+   │         ^^^^^^^^^^^^^^^^^^^^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ __FIXTURE_ROOT__/cases.circom:78:28
+   │
+78 │     for (var i = 0; i < n; i++) {
+   │                            ^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0003]: Comparisons with field elements greater than `p/2` may produce unexpected results.
+   ┌─ __FIXTURE_ROOT__/cases.circom:78:21
+   │
+78 │     for (var i = 0; i < n; i++) {
+   │                     ^^^^^ Field element comparison here.
+   │
+   = Field elements are always normalized to the interval `(-p/2, p/2]` before they are compared.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-comparison.
+   = To ignore this type of result, use `--allow CS0003`.
+
+circomspect: analyzing template 'Plain'
+circomspect: analyzing template 'SignalAssertion'
+circomspect: analyzing template 'ParameterAssertion'
+note[CS0003]: Comparisons with field elements greater than `p/2` may produce unexpected results.
+   ┌─ __FIXTURE_ROOT__/cases.circom:61:12
+   │
+61 │     assert(n > 0);
+   │            ^^^^^ Field element comparison here.
+   │
+   = Field elements are always normalized to the interval `(-p/2, p/2]` before they are compared.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-comparison.
+   = To ignore this type of result, use `--allow CS0003`.
+
+circomspect: analyzing template 'IsZero'
+warning[CS0005]: Using the signal assignment operator `<--` does not constrain the assigned signal.
+   ┌─ __FIXTURE_ROOT__/cases.circom:36:5
+   │
+36 │     inv <-- in != 0 ? 1 / in : 0;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The assigned signal `inv` is not constrained here.
+37 │     out <== 1 - in * inv;
+   │     -------------------- The signal `inv` is constrained here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+   = To ignore this type of result, use `--allow CS0005`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ __FIXTURE_ROOT__/cases.circom:36:23
+   │
+36 │     inv <-- in != 0 ? 1 / in : 0;
+   │                       ^^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ __FIXTURE_ROOT__/cases.circom:37:13
+   │
+37 │     out <== 1 - in * inv;
+   │             ^^^^^^^^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ __FIXTURE_ROOT__/cases.circom:38:5
+   │
+38 │     in * out === 0;
+   │     ^^^^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+circomspect: analyzing template 'WeakIntermediate'
+warning[CS0013]: Using the signal assignment operator `<--` is not necessary here.
+   ┌─ __FIXTURE_ROOT__/cases.circom:20:5
+   │
+20 │     intermediate <-- a;
+   │     ^^^^^^^^^^^^^^^^^^ The expression assigned to `intermediate` is quadratic.
+   │
+   = Consider rewriting the statement using the constraint assignment operator `<==`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unnecessary-signal-assignment.
+   = To ignore this type of result, use `--allow CS0013`.
+
+warning[CS0017]: Intermediate signals should typically occur in at least two separate constraints.
+   ┌─ __FIXTURE_ROOT__/cases.circom:18:5
+   │
+18 │     signal intermediate;
+   │     ^^^^^^^^^^^^^^^^^^^ The intermediate signal `intermediate` is declared here.
+   ·
+21 │     out <== intermediate;
+   │     -------------------- The intermediate signal `intermediate` is constrained here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#under-constrained-signal.
+   = To ignore this type of result, use `--allow CS0017`.
+
+circomspect: analyzing template 'Assignment'
+warning[CS0013]: Using the signal assignment operator `<--` is not necessary here.
+   ┌─ __FIXTURE_ROOT__/cases.circom:13:5
+   │
+13 │     out <-- a;
+   │     ^^^^^^^^^ The expression assigned to `out` is quadratic.
+   │
+   = Consider rewriting the statement using the constraint assignment operator `<==`.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unnecessary-signal-assignment.
+   = To ignore this type of result, use `--allow CS0013`.
+
+warning[CS0006]: The variable `out` is assigned a value, but this value is never read.
+   ┌─ __FIXTURE_ROOT__/cases.circom:13:5
+   │
+13 │     out <-- a;
+   │     ^^^^^^^^^ The value assigned to `out` here is never read.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unused-variable-or-parameter.
+   = To ignore this type of result, use `--allow CS0006`.
+
+warning[CA01]: The signal `a` is not constrained by the template.
+   ┌─ __FIXTURE_ROOT__/cases.circom:11:5
+   │
+11 │     signal input a;
+   │     ^^^^^^^^^^^^^^ This signal does not occur in a constraint.
+   │
+   = To ignore this type of result, use `--allow CA01`.
+
+circomspect: analyzing template 'Division'
+warning[CS0005]: Using the signal assignment operator `<--` does not constrain the assigned signal.
+   ┌─ __FIXTURE_ROOT__/cases.circom:28:5
+   │
+28 │     out <-- a / b;
+   │     ^^^^^^^^^^^^^ The assigned signal `out` is not constrained here.
+29 │     out * b === a;
+   │     -------------- The signal `out` is constrained here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+   = To ignore this type of result, use `--allow CS0005`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ __FIXTURE_ROOT__/cases.circom:28:13
+   │
+28 │     out <-- a / b;
+   │             ^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ __FIXTURE_ROOT__/cases.circom:29:5
+   │
+29 │     out * b === a;
+   │     ^^^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+warning[CS0015]: In signal assignments containing division, the divisor needs to be constrained to be non-zero
+   ┌─ __FIXTURE_ROOT__/cases.circom:28:17
+   │
+28 │     out <-- a / b;
+   │                 ^ The divisor `b` must be constrained to be non-zero.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unconstrained-division.
+   = To ignore this type of result, use `--allow CS0015`.
+
+circomspect: analyzing template 'ProtectedComparison'
+circomspect: analyzing template 'ProtectedDivision'
+warning[CS0005]: Using the signal assignment operator `<--` does not constrain the assigned signal.
+   ┌─ __FIXTURE_ROOT__/cases.circom:48:5
+   │
+48 │     out <-- a / b;
+   │     ^^^^^^^^^^^^^ The assigned signal `out` is not constrained here.
+49 │     out * b === a;
+   │     -------------- The signal `out` is constrained here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+   = To ignore this type of result, use `--allow CS0005`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ __FIXTURE_ROOT__/cases.circom:48:13
+   │
+48 │     out <-- a / b;
+   │             ^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ __FIXTURE_ROOT__/cases.circom:49:5
+   │
+49 │     out * b === a;
+   │     ^^^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+circomspect: Result written to `__FIXTURE_ROOT__/actual.sarif`.
+circomspect: 30 issues found.

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "complexity_groups": {
+    "metric": "root_ast_if_plus_while",
+    "upper_bounds": [
+      0
+    ],
+    "group_order": [
+      0,
+      1
+    ],
+    "provenance": "Frozen before fuzzing from datasets/manifest.dev10.json on 2026-09-15: all three complete root-template profiles measured 0; group 0 is exactly 0 and group 1 is the reserved positive-complexity overflow bin. This tiny development set does not validate the boundary."
+  }
+}

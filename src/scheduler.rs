@@ -1,10 +1,11 @@
 use std::{
+    collections::BTreeSet,
     fs,
     path::{Path, PathBuf},
-    time::Instant,
+    time::{Duration, Instant},
 };
 
-use anyhow::{bail, Context, Result};
+use anyhow::{bail, ensure, Context, Result};
 use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
@@ -178,7 +179,170 @@ pub fn run_uniform_experiment(
     Ok(summary)
 }
 
-fn write_summary_json(experiment_dir: &Path, summary: &ExperimentSummary) -> Result<()> {
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq)]
+pub struct OrderedTarget {
+    pub target_id: String,
+    pub target: PathBuf,
+    pub command: runner::ZkFuzzCommand,
+}
+
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+pub struct OrderedRunEntry {
+    pub target_id: String,
+    /// Zero-based index in the supplied plan, including failed spawn attempts.
+    pub index: usize,
+    /// Monotonic offset to successful spawn-call entry, not an OS exec timestamp.
+    pub process_start_offset_seconds: Option<f64>,
+    /// Monotonic offset after runner completion and result persistence.
+    pub completion_offset_seconds: f64,
+    pub execution_limit_seconds: f64,
+    pub result: RunResult,
+}
+
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+pub struct OrderedRunFailure {
+    pub target_id: String,
+    pub index: usize,
+    pub error: String,
+    pub completion_offset_seconds: f64,
+}
+
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq)]
+pub struct OrderedSkippedTarget {
+    pub target_id: String,
+    pub index: usize,
+    pub reason: String,
+}
+
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+pub struct OrderedExperimentSummary {
+    pub experiment_id: String,
+    pub scheduler: String,
+    pub budget_seconds_per_target: u64,
+    pub total_budget_seconds: u64,
+    pub planned_target_ids: Vec<String>,
+    pub started_at: DateTime<Utc>,
+    pub finished_at: DateTime<Utc>,
+    /// After input validation through all runner returns; final summary serialization is excluded.
+    pub elapsed_seconds: f64,
+    pub runs: Vec<OrderedRunEntry>,
+    /// Runner infrastructure errors. Process failures remain in runs with their RunStatus.
+    pub failures: Vec<OrderedRunFailure>,
+    pub skipped: Vec<OrderedSkippedTarget>,
+    pub summary_path: PathBuf,
+}
+
+pub fn run_ordered_experiment(
+    targets: &[OrderedTarget],
+    budget_seconds_per_target: u64,
+    total_budget_seconds: u64,
+    output_root: impl AsRef<Path>,
+) -> Result<OrderedExperimentSummary> {
+    ensure!(
+        budget_seconds_per_target > 0,
+        "budget_seconds_per_target must be greater than zero"
+    );
+    ensure!(
+        total_budget_seconds > 0,
+        "total_budget_seconds must be greater than zero"
+    );
+    let mut ids = BTreeSet::new();
+    for target in targets {
+        ensure!(
+            !target.target_id.trim().is_empty(),
+            "target ID must not be empty"
+        );
+        ensure!(
+            ids.insert(&target.target_id),
+            "duplicate target ID: {}",
+            target.target_id
+        );
+    }
+
+    let started_at = Utc::now();
+    let timer = Instant::now();
+    let total_limit = Duration::from_secs(total_budget_seconds);
+    let target_limit = Duration::from_secs(budget_seconds_per_target);
+    let experiment_id = Uuid::new_v4().to_string();
+    let experiment_dir = output_root.as_ref().join(&experiment_id);
+    let target_runs_dir = experiment_dir.join("runs");
+    fs::create_dir_all(&target_runs_dir).with_context(|| {
+        format!(
+            "failed to create experiment run directory: {}",
+            target_runs_dir.display()
+        )
+    })?;
+
+    let mut runs = Vec::with_capacity(targets.len());
+    let mut failures = Vec::new();
+    let mut skipped = Vec::new();
+    for (index, target) in targets.iter().enumerate() {
+        let request = runner::RunRequest {
+            target: target.target.clone(),
+            command: target.command.clone(),
+            budget_seconds: budget_seconds_per_target,
+            output_root: target_runs_dir.clone(),
+        };
+        let remaining = total_limit.saturating_sub(timer.elapsed());
+        if remaining.is_zero() {
+            skipped.extend(targets[index..].iter().enumerate().map(|(offset, target)| {
+                OrderedSkippedTarget {
+                    target_id: target.target_id.clone(),
+                    index: index + offset,
+                    reason: "total_budget_exhausted".to_owned(),
+                }
+            }));
+            break;
+        }
+        let limit = target_limit.min(remaining);
+        let attempt_offset = timer.elapsed().as_secs_f64();
+        match runner::execute_with_limit(request, limit) {
+            Ok(result) => {
+                let process_start_offset_seconds = result
+                    .process_start_offset_seconds
+                    .map(|offset| attempt_offset + offset);
+                runs.push(OrderedRunEntry {
+                    target_id: target.target_id.clone(),
+                    index,
+                    process_start_offset_seconds,
+                    completion_offset_seconds: timer.elapsed().as_secs_f64(),
+                    execution_limit_seconds: result.execution_limit_seconds,
+                    result,
+                });
+            }
+            Err(error) => failures.push(OrderedRunFailure {
+                target_id: target.target_id.clone(),
+                index,
+                error: format!("{error:#}"),
+                completion_offset_seconds: timer.elapsed().as_secs_f64(),
+            }),
+        }
+    }
+
+    let summary = OrderedExperimentSummary {
+        experiment_id,
+        scheduler: "uniform-ordered".to_owned(),
+        budget_seconds_per_target,
+        total_budget_seconds,
+        planned_target_ids: targets
+            .iter()
+            .map(|target| target.target_id.clone())
+            .collect(),
+        started_at,
+        finished_at: Utc::now(),
+        elapsed_seconds: timer.elapsed().as_secs_f64(),
+        runs,
+        failures,
+        skipped,
+        summary_path: experiment_dir.join("summary.json"),
+    };
+    write_summary_json(&experiment_dir, &summary)?;
+    // Return the exact persisted representation so callers and the evidence artifact agree even
+    // for floating-point offsets whose shortest JSON decimal lies on a rounding boundary.
+    Ok(serde_json::from_slice(&fs::read(&summary.summary_path)?)?)
+}
+
+fn write_summary_json(experiment_dir: &Path, summary: &impl Serialize) -> Result<()> {
     let summary_path = experiment_dir.join("summary.json");
     let temporary_path = experiment_dir.join("summary.json.tmp");
     let mut json = serde_json::to_vec_pretty(summary)?;

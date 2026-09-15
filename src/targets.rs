@@ -84,6 +84,33 @@ pub struct TargetDiscoveryReport {
     pub unsupported: Vec<UnsupportedCase>,
 }
 
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq)]
+pub struct TemplateSourceScope {
+    pub path: PathBuf,
+    pub template_name: String,
+    pub start_line: usize,
+    pub end_line: usize,
+}
+
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq)]
+pub struct InspectedTemplateInstance {
+    pub path: PathBuf,
+    pub template_name: String,
+    pub concrete_parameters: Vec<String>,
+}
+
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq)]
+pub struct EntrypointInspection {
+    pub entrypoint: PathBuf,
+    pub project_root: PathBuf,
+    pub root: Option<InspectedTemplateInstance>,
+    pub instances: Vec<InspectedTemplateInstance>,
+    pub scopes: Vec<TemplateSourceScope>,
+    pub dependency_paths: Vec<PathBuf>,
+    pub complete: bool,
+    pub unsupported: Vec<UnsupportedCase>,
+}
+
 #[derive(Debug, Clone)]
 struct IncludeDirective {
     path: String,
@@ -110,6 +137,8 @@ struct ParsedMain {
 struct TemplateDefinition {
     source_path: PathBuf,
     name: String,
+    start_line: usize,
+    end_line: usize,
     parameters: Vec<String>,
     body: Vec<BodyItem>,
 }
@@ -152,6 +181,355 @@ enum TokenKind {
     StringLiteral(String),
     Symbol(char),
     Operator(String),
+}
+
+/// Inspect one existing entrypoint using the same supported syntax as target discovery.
+/// The selected file may be an external wrapper; every included dependency must be in project_root.
+pub fn inspect_entrypoint(entrypoint: &Path, project_root: &Path) -> Result<EntrypointInspection> {
+    let entrypoint = fs::canonicalize(entrypoint)
+        .with_context(|| format!("resolve selected entrypoint {}", entrypoint.display()))?;
+    let project_root = fs::canonicalize(project_root)
+        .with_context(|| format!("resolve project root {}", project_root.display()))?;
+    anyhow::ensure!(
+        project_root.is_dir(),
+        "inspection project root must be a directory"
+    );
+    let mut parsed_files = HashMap::new();
+    let mut visited = HashSet::new();
+    let mut unsupported = Vec::new();
+    load_inspection_files(
+        &entrypoint,
+        &project_root,
+        &mut parsed_files,
+        &mut visited,
+        &mut unsupported,
+    );
+    let mut root_instance = None;
+    let mut instances = Vec::new();
+    let mut scopes = Vec::new();
+    // Unreferenced unsupported definitions do not affect the resolved call closure.
+    let template_index = build_template_index(&visited, &parsed_files, &mut Vec::new());
+    if let Some(file) = parsed_files.get(&entrypoint) {
+        if file.mains.len() != 1 {
+            unsupported.push(UnsupportedCase {
+                source_path: entrypoint.clone(),
+                line: None,
+                construct: "selected entrypoint".into(),
+                reason: format!(
+                    "selected file must declare exactly one main, found {}",
+                    file.mains.len()
+                ),
+            });
+        } else {
+            let main = &file.mains[0];
+            if let Some(reason) = &main.failure_reason {
+                unsupported.push(UnsupportedCase {
+                    source_path: entrypoint.clone(),
+                    line: Some(main.line),
+                    construct: "component main".into(),
+                    reason: reason.clone(),
+                });
+            } else if let Some(call) = &main.call {
+                match evaluate_arguments(&call.arguments, &HashMap::new()) {
+                    Err(reason) => unsupported.push(UnsupportedCase {
+                        source_path: entrypoint.clone(),
+                        line: Some(main.line),
+                        construct: format_source_call(call),
+                        reason: format!("main template parameters are not concrete: {reason}"),
+                    }),
+                    Ok(parameters) => {
+                        if let Some(root) = resolve_template(
+                            call,
+                            &parameters,
+                            &entrypoint,
+                            main.line,
+                            &template_index,
+                            &mut unsupported,
+                        ) {
+                            let instance = InspectedTemplateInstance {
+                                path: root.source_path.clone(),
+                                template_name: root.name.clone(),
+                                concrete_parameters: parameters
+                                    .iter()
+                                    .map(ToString::to_string)
+                                    .collect(),
+                            };
+                            root_instance = Some(instance.clone());
+                            instances.push(instance);
+                            let mut children = Vec::new();
+                            let mut stack = vec![(root.name.clone(), parameters.clone())];
+                            expand_template(
+                                root,
+                                &parameters,
+                                &template_index,
+                                &mut stack,
+                                &mut children,
+                                &mut unsupported,
+                                0,
+                            );
+                            for target in children {
+                                let instance = InspectedTemplateInstance {
+                                    path: target.source_path,
+                                    template_name: target.template_name,
+                                    concrete_parameters: target.concrete_parameters,
+                                };
+                                if !instances.contains(&instance) {
+                                    instances.push(instance);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    let mut binding_issues = Vec::new();
+    let mut checked_definitions = HashSet::new();
+    for instance in &instances {
+        if checked_definitions.insert((instance.path.clone(), instance.template_name.clone())) {
+            let definition = template_index[&instance.template_name]
+                .iter()
+                .find(|definition| definition.source_path == instance.path)
+                .expect("expanded instance refers to a resolved definition");
+            binding_issues.extend(inspect_binding_changes(definition)?);
+        }
+    }
+    if !binding_issues.is_empty() {
+        unsupported.extend(binding_issues);
+        // Children may have been expanded with stale bindings; do not publish guessed instances.
+        instances.retain(|instance| root_instance.as_ref() == Some(instance));
+    }
+    for instance in &instances {
+        let definition = template_index[&instance.template_name]
+            .iter()
+            .find(|definition| definition.source_path == instance.path)
+            .expect("expanded instance refers to a resolved definition");
+        let scope = TemplateSourceScope {
+            path: definition.source_path.clone(),
+            template_name: definition.name.clone(),
+            start_line: definition.start_line,
+            end_line: definition.end_line,
+        };
+        if !scopes.contains(&scope) {
+            scopes.push(scope);
+        }
+    }
+    scopes.sort_by(|a, b| {
+        a.path
+            .cmp(&b.path)
+            .then_with(|| a.start_line.cmp(&b.start_line))
+    });
+    for scope in &scopes {
+        if let Some(file) = parsed_files.get(&scope.path) {
+            for other in &file.templates {
+                if other.name != scope.template_name
+                    && scope.start_line <= other.end_line
+                    && other.start_line <= scope.end_line
+                {
+                    unsupported.push(UnsupportedCase {
+                        source_path: scope.path.clone(), line: Some(scope.start_line),
+                        construct: format!("template {}", scope.template_name),
+                        reason: "template source lines overlap another definition; line-based warning attribution is ambiguous".into(),
+                    });
+                }
+            }
+        }
+    }
+    instances.sort_by(|a, b| {
+        a.path
+            .cmp(&b.path)
+            .then_with(|| a.template_name.cmp(&b.template_name))
+            .then_with(|| a.concrete_parameters.cmp(&b.concrete_parameters))
+    });
+    let mut dependency_paths = visited.into_iter().collect::<Vec<_>>();
+    dependency_paths.sort();
+    unsupported.sort_by(|a, b| {
+        a.source_path
+            .cmp(&b.source_path)
+            .then_with(|| a.line.cmp(&b.line))
+            .then_with(|| a.reason.cmp(&b.reason))
+    });
+    unsupported.dedup();
+    Ok(EntrypointInspection {
+        entrypoint,
+        project_root,
+        root: root_instance,
+        instances,
+        scopes,
+        dependency_paths,
+        complete: unsupported.is_empty(),
+        unsupported,
+    })
+}
+
+fn inspect_binding_changes(definition: &TemplateDefinition) -> Result<Vec<UnsupportedCase>> {
+    let mut needed = definition
+        .body
+        .iter()
+        .filter_map(|item| match item {
+            BodyItem::Instantiation { call, .. } => Some(&call.arguments),
+            _ => None,
+        })
+        .flatten()
+        .flatten()
+        .filter_map(token_identifier)
+        .map(str::to_string)
+        .collect::<HashSet<_>>();
+    loop {
+        let before = needed.len();
+        for item in &definition.body {
+            if let BodyItem::Variable {
+                name, expression, ..
+            } = item
+            {
+                if needed.contains(name) {
+                    needed.extend(
+                        expression
+                            .iter()
+                            .filter_map(token_identifier)
+                            .map(str::to_string),
+                    );
+                }
+            }
+        }
+        if before == needed.len() {
+            break;
+        }
+    }
+    let components = definition
+        .body
+        .iter()
+        .filter_map(|item| match item {
+            BodyItem::Instantiation { component_name, .. } => Some(component_name.clone()),
+            _ => None,
+        })
+        .collect::<HashSet<_>>();
+    let source = fs::read_to_string(&definition.source_path)?;
+    let tokens = lex(&source)
+        .expect("inspection source was already lexed")
+        .into_iter()
+        .filter(|token| token.line >= definition.start_line && token.line <= definition.end_line)
+        .collect::<Vec<_>>();
+    let mut declared = definition
+        .parameters
+        .iter()
+        .cloned()
+        .collect::<HashSet<_>>();
+    let mut initialized_components = HashSet::new();
+    let mut issues = Vec::new();
+    for (index, token) in tokens.iter().enumerate() {
+        let Some(name) = token_identifier(token) else {
+            continue;
+        };
+        if !needed.contains(name) && !components.contains(name) {
+            continue;
+        }
+        let next = tokens.get(index + 1);
+        let previous = index.checked_sub(1).and_then(|i| tokens.get(i));
+        let direct_assignment = next.is_some_and(|t| token_is_symbol(t, '='));
+        let increment = next.is_some_and(
+            |t| matches!(&t.kind, TokenKind::Operator(op) if op == "++" || op == "--"),
+        ) || previous.is_some_and(
+            |t| matches!(&t.kind, TokenKind::Operator(op) if op == "++" || op == "--"),
+        );
+        let compound_assignment = next.is_some_and(|t| {
+            matches!(
+                t.kind,
+                TokenKind::Symbol('+' | '-' | '*' | '/' | '%' | '&' | '|' | '^')
+            ) || matches!(&t.kind, TokenKind::Operator(op) if op == "<<" || op == ">>" || op == "**")
+        }) && tokens
+            .get(index + 2)
+            .is_some_and(|t| token_is_symbol(t, '='));
+        if !direct_assignment && !increment && !compound_assignment {
+            continue;
+        }
+        if direct_assignment && components.contains(name) {
+            let parsed_assignment = definition.body.iter().any(|item| {
+                matches!(item, BodyItem::Instantiation { component_name, line, .. }
+                    if component_name == name && *line == token.line)
+            });
+            if parsed_assignment && initialized_components.insert(name.to_string()) {
+                continue;
+            }
+        }
+        let declaration = previous.is_some_and(|t| token_is_identifier(t, "var"));
+        if direct_assignment && declaration && declared.insert(name.to_string()) {
+            continue;
+        }
+        // The existing expansion evaluates declarations only, never subsequent mutations.
+        issues.push(UnsupportedCase {
+            source_path: definition.source_path.clone(), line: Some(token.line),
+            construct: name.to_string(),
+            reason: "binding/component reassignment affecting target resolution is unsupported by inspection".into(),
+        });
+    }
+    Ok(issues)
+}
+
+fn load_inspection_files(
+    path: &Path,
+    project_root: &Path,
+    parsed_files: &mut HashMap<PathBuf, ParsedFile>,
+    visited: &mut HashSet<PathBuf>,
+    unsupported: &mut Vec<UnsupportedCase>,
+) {
+    if !visited.insert(path.to_path_buf()) {
+        return;
+    }
+    let source = match fs::read_to_string(path) {
+        Ok(source) => source,
+        Err(error) => {
+            unsupported.push(UnsupportedCase {
+                source_path: path.into(),
+                line: None,
+                construct: "source file".into(),
+                reason: format!("source could not be read: {error}"),
+            });
+            return;
+        }
+    };
+    let file = match parse_file(path, &source) {
+        Ok(file) => file,
+        Err(issue) => {
+            unsupported.push(issue);
+            return;
+        }
+    };
+    unsupported.extend(
+        file.issues
+            .iter()
+            .filter(|issue| issue.construct != "template definition")
+            .cloned(),
+    );
+    let includes = file.includes.clone();
+    parsed_files.insert(path.into(), file);
+    for include in includes {
+        let candidates = [
+            path.parent().unwrap_or(project_root).join(&include.path),
+            project_root.join(&include.path),
+        ];
+        let existing = candidates
+            .into_iter()
+            .filter_map(|p| fs::canonicalize(p).ok())
+            .collect::<Vec<_>>();
+        if let Some(included) = existing
+            .iter()
+            .find(|candidate| candidate.starts_with(project_root))
+        {
+            load_inspection_files(included, project_root, parsed_files, visited, unsupported);
+        } else {
+            unsupported.push(UnsupportedCase {
+                source_path: path.into(),
+                line: Some(include.line),
+                construct: format!("include \"{}\"", include.path),
+                reason: if existing.is_empty() {
+                    "include could not be resolved inside the inspection project".into()
+                } else {
+                    "include resolves outside the inspection project root".into()
+                },
+            });
+        }
+    }
 }
 
 pub fn discover_project_targets(
@@ -856,6 +1234,8 @@ fn parse_template_definition(
         TemplateDefinition {
             source_path: path.to_path_buf(),
             name,
+            start_line: line,
+            end_line: tokens[close_body].line,
             parameters,
             body,
         },

@@ -1,0 +1,3055 @@
+{
+  "schema_version": 1,
+  "result_kind": "dev3_repeated_backend_candidate_order_pilot",
+  "raw_root": "runs/dev3-ranking-pilot-2026-09-15",
+  "protocol": {
+    "strategies": [
+      "path-order",
+      "random",
+      "small-first",
+      "legacy",
+      "warning-first",
+      "risk-only",
+      "risk-grouped"
+    ],
+    "repetitions": 7,
+    "matrix_cell_count": 49,
+    "paired_backend_seeds": [
+      2026091501,
+      2026091502,
+      2026091503,
+      2026091504,
+      2026091505,
+      2026091506,
+      2026091507
+    ],
+    "random_ranking_seeds": [
+      2026092501,
+      2026092502,
+      2026092503,
+      2026092504,
+      2026092505,
+      2026092506,
+      2026092507
+    ],
+    "budget_seconds_per_target": 3,
+    "total_budget_seconds": 10,
+    "strategy_execution_order": "cyclic rotation; every strategy occupies each execution slot once",
+    "execution_mode": "ranking-separated"
+  },
+  "integrity": {
+    "status": "passed",
+    "outcome_count": 49,
+    "evaluation_count": 49,
+    "common_target_count": 3,
+    "common_target_ids": [
+      "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d"
+    ],
+    "same_backend_sha256": "ac2d9d16fd97ff803b121b7994aef804b4e191636f3f78660ff6ecd6c9ae4edd",
+    "same_prepared_sha256": "001056ea35a687233e520624f60f439f99a84600f83da64f697d0bb0f563b952",
+    "same_ranking_config_sha256": "8fed87764b001245d600307f7ba7d8453e88e3b977afda656014eac83ea32d26",
+    "comparison_target_set": "common-complete-feature-set",
+    "all_stdout_matches_persisted_reports": true,
+    "all_planned_orders_match_actual_process_start_orders": true,
+    "all_targets_started": true,
+    "runner_failure_count": 0,
+    "not_started_count": 0,
+    "unique_outcome_id_count": 49,
+    "unique_scheduler_experiment_id_count": 49,
+    "unique_backend_run_id_count": 147,
+    "verified_scheduler_summary_count": 49,
+    "verified_run_log_count": 294,
+    "verified_preserved_candidate_count": 119,
+    "reviewed_confirmation_count": 0,
+    "aggregate_status_counts": {
+      "bug_found": 119,
+      "timeout": 28
+    },
+    "target_status_counts": {
+      "reclaim Add32Bits direct": {
+        "bug_found": 49
+      },
+      "reclaim RotateLeft32Bits(3) direct": {
+        "bug_found": 21,
+        "timeout": 28
+      },
+      "reclaim XorWords direct": {
+        "bug_found": 49
+      }
+    }
+  },
+  "metric_definitions": {
+    "first_backend_candidate_observed_by_seconds": "Earliest scheduler completion offset among bug_found backend runs; a completion upper bound, not exact discovery time.",
+    "backend_bug_candidate_count": "Backend NOT SAFE results. Candidates are not confirmed project defects.",
+    "confirmed_project_defect_count": "Only explicitly reviewed project-scope root causes; deduplicated by root-cause ID.",
+    "recall_at_k": "Target-level ranking recall over three manifest-reported-positive targets; all targets are positive in this development set."
+  },
+  "strategy_summaries": {
+    "path-order": {
+      "repetitions": 7,
+      "ranking_seeds": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "execution_slots": [
+        1,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2
+      ],
+      "distinct_planned_orders": [
+        "reclaim Add32Bits direct -> reclaim XorWords direct -> reclaim RotateLeft32Bits(3) direct"
+      ],
+      "scheduler_elapsed_seconds": {
+        "n": 7,
+        "mean": 2.054032869142857,
+        "median": 3.075111333,
+        "min": 0.478080208,
+        "max": 3.089236917,
+        "values": [
+          3.089236917,
+          0.652970209,
+          3.081712333,
+          0.921971084,
+          3.079148,
+          0.478080208,
+          3.075111333
+        ]
+      },
+      "backend_bug_candidate_count": {
+        "n": 7,
+        "mean": 2.4285714285714284,
+        "median": 2,
+        "min": 2,
+        "max": 3,
+        "values": [
+          2,
+          3,
+          2,
+          3,
+          2,
+          3,
+          2
+        ]
+      },
+      "first_backend_candidate_observed_by_seconds": {
+        "n": 7,
+        "mean": 0.03691546428571429,
+        "median": 0.036124542,
+        "min": 0.0317705,
+        "max": 0.044734208,
+        "values": [
+          0.044734208,
+          0.036124542,
+          0.037738667,
+          0.036179959,
+          0.035945041,
+          0.035915333,
+          0.0317705
+        ]
+      },
+      "mean_backend_candidate_curve": {
+        "0.05": 1.0,
+        "0.1": 2.0,
+        "0.5": 2.142857142857143,
+        "1.0": 2.4285714285714284,
+        "3.0": 2.4285714285714284,
+        "10.0": 2.4285714285714284
+      },
+      "aggregate_status_counts": {
+        "bug_found": 17,
+        "timeout": 4
+      },
+      "confirmed_project_defect_counts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "first_confirmed_defect_observed_by_seconds": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    "random": {
+      "repetitions": 7,
+      "ranking_seeds": [
+        2026092501,
+        2026092502,
+        2026092503,
+        2026092504,
+        2026092505,
+        2026092506,
+        2026092507
+      ],
+      "execution_slots": [
+        2,
+        1,
+        7,
+        6,
+        5,
+        4,
+        3
+      ],
+      "distinct_planned_orders": [
+        "reclaim Add32Bits direct -> reclaim RotateLeft32Bits(3) direct -> reclaim XorWords direct",
+        "reclaim Add32Bits direct -> reclaim XorWords direct -> reclaim RotateLeft32Bits(3) direct",
+        "reclaim RotateLeft32Bits(3) direct -> reclaim XorWords direct -> reclaim Add32Bits direct",
+        "reclaim XorWords direct -> reclaim Add32Bits direct -> reclaim RotateLeft32Bits(3) direct"
+      ],
+      "scheduler_elapsed_seconds": {
+        "n": 7,
+        "mean": 2.0757057380000004,
+        "median": 3.079323334,
+        "min": 0.478405166,
+        "max": 3.080943083,
+        "values": [
+          3.079323334,
+          0.785430708,
+          3.080120208,
+          0.945307542,
+          3.080410125,
+          0.478405166,
+          3.080943083
+        ]
+      },
+      "backend_bug_candidate_count": {
+        "n": 7,
+        "mean": 2.4285714285714284,
+        "median": 2,
+        "min": 2,
+        "max": 3,
+        "values": [
+          2,
+          3,
+          2,
+          3,
+          2,
+          3,
+          2
+        ]
+      },
+      "first_backend_candidate_observed_by_seconds": {
+        "n": 7,
+        "mean": 0.6397912438571429,
+        "median": 0.037329625,
+        "min": 0.03463775,
+        "max": 3.045443333,
+        "values": [
+          0.03463775,
+          0.035679917,
+          0.035997958,
+          0.879845083,
+          0.037329625,
+          0.409605041,
+          3.045443333
+        ]
+      },
+      "mean_backend_candidate_curve": {
+        "0.05": 0.5714285714285714,
+        "0.1": 0.8571428571428571,
+        "0.5": 1.2857142857142858,
+        "1.0": 1.8571428571428572,
+        "3.0": 1.8571428571428572,
+        "10.0": 2.4285714285714284
+      },
+      "aggregate_status_counts": {
+        "bug_found": 17,
+        "timeout": 4
+      },
+      "confirmed_project_defect_counts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "first_confirmed_defect_observed_by_seconds": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    "small-first": {
+      "repetitions": 7,
+      "ranking_seeds": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "execution_slots": [
+        3,
+        2,
+        1,
+        7,
+        6,
+        5,
+        4
+      ],
+      "distinct_planned_orders": [
+        "reclaim Add32Bits direct -> reclaim RotateLeft32Bits(3) direct -> reclaim XorWords direct"
+      ],
+      "scheduler_elapsed_seconds": {
+        "n": 7,
+        "mean": 2.052113083142857,
+        "median": 3.074839291,
+        "min": 0.45905575,
+        "max": 3.085093416,
+        "values": [
+          3.074839291,
+          0.622727125,
+          3.081445208,
+          0.957797792,
+          3.085093416,
+          0.45905575,
+          3.083833
+        ]
+      },
+      "backend_bug_candidate_count": {
+        "n": 7,
+        "mean": 2.4285714285714284,
+        "median": 2,
+        "min": 2,
+        "max": 3,
+        "values": [
+          2,
+          3,
+          2,
+          3,
+          2,
+          3,
+          2
+        ]
+      },
+      "first_backend_candidate_observed_by_seconds": {
+        "n": 7,
+        "mean": 0.03518731528571429,
+        "median": 0.034845666,
+        "min": 0.032698583,
+        "max": 0.037519708,
+        "values": [
+          0.032698583,
+          0.036746208,
+          0.034845666,
+          0.034027875,
+          0.037519708,
+          0.034506042,
+          0.035967125
+        ]
+      },
+      "mean_backend_candidate_curve": {
+        "0.05": 1.0,
+        "0.1": 1.0,
+        "0.5": 1.2857142857142858,
+        "1.0": 1.8571428571428572,
+        "3.0": 1.8571428571428572,
+        "10.0": 2.4285714285714284
+      },
+      "aggregate_status_counts": {
+        "bug_found": 17,
+        "timeout": 4
+      },
+      "confirmed_project_defect_counts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "first_confirmed_defect_observed_by_seconds": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    "legacy": {
+      "repetitions": 7,
+      "ranking_seeds": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "execution_slots": [
+        4,
+        3,
+        2,
+        1,
+        7,
+        6,
+        5
+      ],
+      "distinct_planned_orders": [
+        "reclaim XorWords direct -> reclaim RotateLeft32Bits(3) direct -> reclaim Add32Bits direct"
+      ],
+      "scheduler_elapsed_seconds": {
+        "n": 7,
+        "mean": 2.059007767857143,
+        "median": 3.071357,
+        "min": 0.486482334,
+        "max": 3.083909041,
+        "values": [
+          3.07821625,
+          0.645685291,
+          3.083909041,
+          0.96702575,
+          3.071357,
+          0.486482334,
+          3.080378709
+        ]
+      },
+      "backend_bug_candidate_count": {
+        "n": 7,
+        "mean": 2.4285714285714284,
+        "median": 2,
+        "min": 2,
+        "max": 3,
+        "values": [
+          2,
+          3,
+          2,
+          3,
+          2,
+          3,
+          2
+        ]
+      },
+      "first_backend_candidate_observed_by_seconds": {
+        "n": 7,
+        "mean": 0.034689154714285714,
+        "median": 0.035531167,
+        "min": 0.032344625,
+        "max": 0.037035416,
+        "values": [
+          0.035531167,
+          0.036263458,
+          0.037035416,
+          0.03353175,
+          0.032354125,
+          0.032344625,
+          0.035763542
+        ]
+      },
+      "mean_backend_candidate_curve": {
+        "0.05": 1.0,
+        "0.1": 1.0,
+        "0.5": 1.2857142857142858,
+        "1.0": 1.8571428571428572,
+        "3.0": 1.8571428571428572,
+        "10.0": 2.4285714285714284
+      },
+      "aggregate_status_counts": {
+        "bug_found": 17,
+        "timeout": 4
+      },
+      "confirmed_project_defect_counts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "first_confirmed_defect_observed_by_seconds": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    "warning-first": {
+      "repetitions": 7,
+      "ranking_seeds": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "execution_slots": [
+        5,
+        4,
+        3,
+        2,
+        1,
+        7,
+        6
+      ],
+      "distinct_planned_orders": [
+        "reclaim Add32Bits direct -> reclaim RotateLeft32Bits(3) direct -> reclaim XorWords direct"
+      ],
+      "scheduler_elapsed_seconds": {
+        "n": 7,
+        "mean": 2.053504357285714,
+        "median": 3.075179375,
+        "min": 0.477391375,
+        "max": 3.082849084,
+        "values": [
+          3.082028041,
+          0.631196375,
+          3.079862667,
+          0.946023584,
+          3.075179375,
+          0.477391375,
+          3.082849084
+        ]
+      },
+      "backend_bug_candidate_count": {
+        "n": 7,
+        "mean": 2.4285714285714284,
+        "median": 2,
+        "min": 2,
+        "max": 3,
+        "values": [
+          2,
+          3,
+          2,
+          3,
+          2,
+          3,
+          2
+        ]
+      },
+      "first_backend_candidate_observed_by_seconds": {
+        "n": 7,
+        "mean": 0.035454506000000004,
+        "median": 0.036328084,
+        "min": 0.031553583,
+        "max": 0.038254041,
+        "values": [
+          0.038254041,
+          0.034962042,
+          0.031553583,
+          0.036328084,
+          0.033756375,
+          0.036450792,
+          0.036876625
+        ]
+      },
+      "mean_backend_candidate_curve": {
+        "0.05": 1.0,
+        "0.1": 1.0,
+        "0.5": 1.2857142857142858,
+        "1.0": 1.8571428571428572,
+        "3.0": 1.8571428571428572,
+        "10.0": 2.4285714285714284
+      },
+      "aggregate_status_counts": {
+        "bug_found": 17,
+        "timeout": 4
+      },
+      "confirmed_project_defect_counts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "first_confirmed_defect_observed_by_seconds": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    "risk-only": {
+      "repetitions": 7,
+      "ranking_seeds": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "execution_slots": [
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        7
+      ],
+      "distinct_planned_orders": [
+        "reclaim Add32Bits direct -> reclaim RotateLeft32Bits(3) direct -> reclaim XorWords direct"
+      ],
+      "scheduler_elapsed_seconds": {
+        "n": 7,
+        "mean": 2.0642149107142855,
+        "median": 3.076198791,
+        "min": 0.482281417,
+        "max": 3.085667958,
+        "values": [
+          3.077662709,
+          0.701279,
+          3.085667958,
+          0.943667042,
+          3.076198791,
+          0.482281417,
+          3.082747458
+        ]
+      },
+      "backend_bug_candidate_count": {
+        "n": 7,
+        "mean": 2.4285714285714284,
+        "median": 2,
+        "min": 2,
+        "max": 3,
+        "values": [
+          2,
+          3,
+          2,
+          3,
+          2,
+          3,
+          2
+        ]
+      },
+      "first_backend_candidate_observed_by_seconds": {
+        "n": 7,
+        "mean": 0.03688804757142857,
+        "median": 0.035513334,
+        "min": 0.032928916,
+        "max": 0.047421708,
+        "values": [
+          0.036641084,
+          0.032928916,
+          0.047421708,
+          0.03601675,
+          0.034858958,
+          0.035513334,
+          0.034835583
+        ]
+      },
+      "mean_backend_candidate_curve": {
+        "0.05": 1.0,
+        "0.1": 1.0,
+        "0.5": 1.2857142857142858,
+        "1.0": 1.8571428571428572,
+        "3.0": 1.8571428571428572,
+        "10.0": 2.4285714285714284
+      },
+      "aggregate_status_counts": {
+        "bug_found": 17,
+        "timeout": 4
+      },
+      "confirmed_project_defect_counts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "first_confirmed_defect_observed_by_seconds": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    "risk-grouped": {
+      "repetitions": 7,
+      "ranking_seeds": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "execution_slots": [
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "distinct_planned_orders": [
+        "reclaim Add32Bits direct -> reclaim RotateLeft32Bits(3) direct -> reclaim XorWords direct"
+      ],
+      "scheduler_elapsed_seconds": {
+        "n": 7,
+        "mean": 2.050412273857143,
+        "median": 3.075292667,
+        "min": 0.46740675,
+        "max": 3.082169542,
+        "values": [
+          3.081676125,
+          0.62026175,
+          3.082169542,
+          0.948195375,
+          3.075292667,
+          0.46740675,
+          3.077883708
+        ]
+      },
+      "backend_bug_candidate_count": {
+        "n": 7,
+        "mean": 2.4285714285714284,
+        "median": 2,
+        "min": 2,
+        "max": 3,
+        "values": [
+          2,
+          3,
+          2,
+          3,
+          2,
+          3,
+          2
+        ]
+      },
+      "first_backend_candidate_observed_by_seconds": {
+        "n": 7,
+        "mean": 0.03429413714285714,
+        "median": 0.034887,
+        "min": 0.031730625,
+        "max": 0.036705709,
+        "values": [
+          0.036705709,
+          0.031730625,
+          0.036612667,
+          0.032028792,
+          0.035310334,
+          0.034887,
+          0.032783833
+        ]
+      },
+      "mean_backend_candidate_curve": {
+        "0.05": 1.0,
+        "0.1": 1.0,
+        "0.5": 1.2857142857142858,
+        "1.0": 1.8571428571428572,
+        "3.0": 1.8571428571428572,
+        "10.0": 2.4285714285714284
+      },
+      "aggregate_status_counts": {
+        "bug_found": 17,
+        "timeout": 4
+      },
+      "confirmed_project_defect_counts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "first_confirmed_defect_observed_by_seconds": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    }
+  },
+  "runs": [
+    {
+      "repetition": 1,
+      "backend_seed": 2026091501,
+      "strategy": "path-order",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:10:29.501062Z",
+      "plan": "runs/dev10-plans/path-order.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-01-seed-2026091501/path-order/executions/execution-d825de18-7f45-4afc-8a35-a76e952cf867/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-01-seed-2026091501/path-order/evaluation.json",
+      "planned_order": [
+        "reclaim Add32Bits direct",
+        "reclaim XorWords direct",
+        "reclaim RotateLeft32Bits(3) direct"
+      ],
+      "planned_order_ids": [
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616"
+      ],
+      "scheduler_elapsed_seconds": 3.089236917,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 2,
+        "timeout": 1
+      },
+      "target_statuses": {
+        "reclaim Add32Bits direct": "bug_found",
+        "reclaim XorWords direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "timeout"
+      },
+      "backend_bug_candidate_count": 2,
+      "preserved_counterexample_count": 2,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.044734208,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 2,
+        "0.5": 2,
+        "1.0": 2,
+        "3.0": 2,
+        "10.0": 2
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 1
+    },
+    {
+      "repetition": 1,
+      "backend_seed": 2026091501,
+      "strategy": "random",
+      "ranking_seed": 2026092501,
+      "started_at": "2026-09-15T07:10:33.299823Z",
+      "plan": "runs/dev3-ranking-pilot-2026-09-15/plans/random-rep-01.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-01-seed-2026091501/random/executions/execution-b6d07a3b-994b-4f8f-b208-ada8da60cc93/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-01-seed-2026091501/random/evaluation.json",
+      "planned_order": [
+        "reclaim Add32Bits direct",
+        "reclaim XorWords direct",
+        "reclaim RotateLeft32Bits(3) direct"
+      ],
+      "planned_order_ids": [
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616"
+      ],
+      "scheduler_elapsed_seconds": 3.079323334,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 2,
+        "timeout": 1
+      },
+      "target_statuses": {
+        "reclaim Add32Bits direct": "bug_found",
+        "reclaim XorWords direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "timeout"
+      },
+      "backend_bug_candidate_count": 2,
+      "preserved_counterexample_count": 2,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.03463775,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 2,
+        "0.5": 2,
+        "1.0": 2,
+        "3.0": 2,
+        "10.0": 2
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 2
+    },
+    {
+      "repetition": 1,
+      "backend_seed": 2026091501,
+      "strategy": "small-first",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:10:37.042170Z",
+      "plan": "runs/dev10-plans/small-first.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-01-seed-2026091501/small-first/executions/execution-6a27feb8-9975-40f4-aa73-f70e55938ed7/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-01-seed-2026091501/small-first/evaluation.json",
+      "planned_order": [
+        "reclaim Add32Bits direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim XorWords direct"
+      ],
+      "planned_order_ids": [
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d"
+      ],
+      "scheduler_elapsed_seconds": 3.074839291,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 2,
+        "timeout": 1
+      },
+      "target_statuses": {
+        "reclaim Add32Bits direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "timeout",
+        "reclaim XorWords direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 2,
+      "preserved_counterexample_count": 2,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.032698583,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 1,
+        "0.5": 1,
+        "1.0": 1,
+        "3.0": 1,
+        "10.0": 2
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 3
+    },
+    {
+      "repetition": 1,
+      "backend_seed": 2026091501,
+      "strategy": "legacy",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:10:40.812493Z",
+      "plan": "runs/dev10-plans/legacy.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-01-seed-2026091501/legacy/executions/execution-c81af446-e628-401c-8392-5b6f36e33277/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-01-seed-2026091501/legacy/evaluation.json",
+      "planned_order": [
+        "reclaim XorWords direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim Add32Bits direct"
+      ],
+      "planned_order_ids": [
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff"
+      ],
+      "scheduler_elapsed_seconds": 3.07821625,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 2,
+        "timeout": 1
+      },
+      "target_statuses": {
+        "reclaim XorWords direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "timeout",
+        "reclaim Add32Bits direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 2,
+      "preserved_counterexample_count": 2,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.035531167,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 1,
+        "0.5": 1,
+        "1.0": 1,
+        "3.0": 1,
+        "10.0": 2
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 4
+    },
+    {
+      "repetition": 1,
+      "backend_seed": 2026091501,
+      "strategy": "warning-first",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:10:44.568366Z",
+      "plan": "runs/dev10-plans/warning-first.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-01-seed-2026091501/warning-first/executions/execution-dd811938-1d36-4614-9a0e-0dc0e00b874c/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-01-seed-2026091501/warning-first/evaluation.json",
+      "planned_order": [
+        "reclaim Add32Bits direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim XorWords direct"
+      ],
+      "planned_order_ids": [
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d"
+      ],
+      "scheduler_elapsed_seconds": 3.082028041,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 2,
+        "timeout": 1
+      },
+      "target_statuses": {
+        "reclaim Add32Bits direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "timeout",
+        "reclaim XorWords direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 2,
+      "preserved_counterexample_count": 2,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.038254041,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 1,
+        "0.5": 1,
+        "1.0": 1,
+        "3.0": 1,
+        "10.0": 2
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 5
+    },
+    {
+      "repetition": 1,
+      "backend_seed": 2026091501,
+      "strategy": "risk-only",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:10:48.411173Z",
+      "plan": "runs/dev10-plans/risk-only.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-01-seed-2026091501/risk-only/executions/execution-cb836742-ac5f-41d3-94f4-d1c78e5a412c/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-01-seed-2026091501/risk-only/evaluation.json",
+      "planned_order": [
+        "reclaim Add32Bits direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim XorWords direct"
+      ],
+      "planned_order_ids": [
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d"
+      ],
+      "scheduler_elapsed_seconds": 3.077662709,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 2,
+        "timeout": 1
+      },
+      "target_statuses": {
+        "reclaim Add32Bits direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "timeout",
+        "reclaim XorWords direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 2,
+      "preserved_counterexample_count": 2,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.036641084,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 1,
+        "0.5": 1,
+        "1.0": 1,
+        "3.0": 1,
+        "10.0": 2
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 6
+    },
+    {
+      "repetition": 1,
+      "backend_seed": 2026091501,
+      "strategy": "risk-grouped",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:10:52.160493Z",
+      "plan": "runs/dev10-plans/risk-grouped.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-01-seed-2026091501/risk-grouped/executions/execution-d9f38785-d8ed-49b7-bc5a-3b7202873267/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-01-seed-2026091501/risk-grouped/evaluation.json",
+      "planned_order": [
+        "reclaim Add32Bits direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim XorWords direct"
+      ],
+      "planned_order_ids": [
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d"
+      ],
+      "scheduler_elapsed_seconds": 3.081676125,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 2,
+        "timeout": 1
+      },
+      "target_statuses": {
+        "reclaim Add32Bits direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "timeout",
+        "reclaim XorWords direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 2,
+      "preserved_counterexample_count": 2,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.036705709,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 1,
+        "0.5": 1,
+        "1.0": 1,
+        "3.0": 1,
+        "10.0": 2
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 7
+    },
+    {
+      "repetition": 2,
+      "backend_seed": 2026091502,
+      "strategy": "random",
+      "ranking_seed": 2026092502,
+      "started_at": "2026-09-15T07:10:55.916622Z",
+      "plan": "runs/dev3-ranking-pilot-2026-09-15/plans/random-rep-02.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/random/executions/execution-69fe44a5-430c-4640-81c6-14daf4f16247/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/random/evaluation.json",
+      "planned_order": [
+        "reclaim XorWords direct",
+        "reclaim Add32Bits direct",
+        "reclaim RotateLeft32Bits(3) direct"
+      ],
+      "planned_order_ids": [
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d",
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616"
+      ],
+      "scheduler_elapsed_seconds": 0.785430708,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 3
+      },
+      "target_statuses": {
+        "reclaim XorWords direct": "bug_found",
+        "reclaim Add32Bits direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 3,
+      "preserved_counterexample_count": 3,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.035679917,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 2,
+        "0.5": 2,
+        "1.0": 3,
+        "3.0": 3,
+        "10.0": 3
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 1
+    },
+    {
+      "repetition": 2,
+      "backend_seed": 2026091502,
+      "strategy": "small-first",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:10:57.450806Z",
+      "plan": "runs/dev10-plans/small-first.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/small-first/executions/execution-498c9c6a-e096-4620-8d2c-4e3536527ce8/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/small-first/evaluation.json",
+      "planned_order": [
+        "reclaim Add32Bits direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim XorWords direct"
+      ],
+      "planned_order_ids": [
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d"
+      ],
+      "scheduler_elapsed_seconds": 0.622727125,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 3
+      },
+      "target_statuses": {
+        "reclaim Add32Bits direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "bug_found",
+        "reclaim XorWords direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 3,
+      "preserved_counterexample_count": 3,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.036746208,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 1,
+        "0.5": 1,
+        "1.0": 3,
+        "3.0": 3,
+        "10.0": 3
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 2
+    },
+    {
+      "repetition": 2,
+      "backend_seed": 2026091502,
+      "strategy": "legacy",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:10:58.745256Z",
+      "plan": "runs/dev10-plans/legacy.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/legacy/executions/execution-3787a3bf-8509-45c0-a484-ab0ec47b3c50/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/legacy/evaluation.json",
+      "planned_order": [
+        "reclaim XorWords direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim Add32Bits direct"
+      ],
+      "planned_order_ids": [
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff"
+      ],
+      "scheduler_elapsed_seconds": 0.645685291,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 3
+      },
+      "target_statuses": {
+        "reclaim XorWords direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "bug_found",
+        "reclaim Add32Bits direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 3,
+      "preserved_counterexample_count": 3,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.036263458,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 1,
+        "0.5": 1,
+        "1.0": 3,
+        "3.0": 3,
+        "10.0": 3
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 3
+    },
+    {
+      "repetition": 2,
+      "backend_seed": 2026091502,
+      "strategy": "warning-first",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:11:00.080202Z",
+      "plan": "runs/dev10-plans/warning-first.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/warning-first/executions/execution-b5a4fd07-f05c-4a31-a437-bce6e81ce423/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/warning-first/evaluation.json",
+      "planned_order": [
+        "reclaim Add32Bits direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim XorWords direct"
+      ],
+      "planned_order_ids": [
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d"
+      ],
+      "scheduler_elapsed_seconds": 0.631196375,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 3
+      },
+      "target_statuses": {
+        "reclaim Add32Bits direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "bug_found",
+        "reclaim XorWords direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 3,
+      "preserved_counterexample_count": 3,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.034962042,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 1,
+        "0.5": 1,
+        "1.0": 3,
+        "3.0": 3,
+        "10.0": 3
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 4
+    },
+    {
+      "repetition": 2,
+      "backend_seed": 2026091502,
+      "strategy": "risk-only",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:11:01.409853Z",
+      "plan": "runs/dev10-plans/risk-only.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/risk-only/executions/execution-dd73234f-ba9d-4029-afa8-342237146c36/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/risk-only/evaluation.json",
+      "planned_order": [
+        "reclaim Add32Bits direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim XorWords direct"
+      ],
+      "planned_order_ids": [
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d"
+      ],
+      "scheduler_elapsed_seconds": 0.701279,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 3
+      },
+      "target_statuses": {
+        "reclaim Add32Bits direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "bug_found",
+        "reclaim XorWords direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 3,
+      "preserved_counterexample_count": 3,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.032928916,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 1,
+        "0.5": 1,
+        "1.0": 3,
+        "3.0": 3,
+        "10.0": 3
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 5
+    },
+    {
+      "repetition": 2,
+      "backend_seed": 2026091502,
+      "strategy": "risk-grouped",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:11:02.818919Z",
+      "plan": "runs/dev10-plans/risk-grouped.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/risk-grouped/executions/execution-2acb9fc0-11f5-4c87-85a5-51b84796bfa0/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/risk-grouped/evaluation.json",
+      "planned_order": [
+        "reclaim Add32Bits direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim XorWords direct"
+      ],
+      "planned_order_ids": [
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d"
+      ],
+      "scheduler_elapsed_seconds": 0.62026175,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 3
+      },
+      "target_statuses": {
+        "reclaim Add32Bits direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "bug_found",
+        "reclaim XorWords direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 3,
+      "preserved_counterexample_count": 3,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.031730625,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 1,
+        "0.5": 1,
+        "1.0": 3,
+        "3.0": 3,
+        "10.0": 3
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 6
+    },
+    {
+      "repetition": 2,
+      "backend_seed": 2026091502,
+      "strategy": "path-order",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:11:04.111537Z",
+      "plan": "runs/dev10-plans/path-order.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/path-order/executions/execution-b6c6e2d8-a270-42c4-90bc-fbb61fb2653e/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/path-order/evaluation.json",
+      "planned_order": [
+        "reclaim Add32Bits direct",
+        "reclaim XorWords direct",
+        "reclaim RotateLeft32Bits(3) direct"
+      ],
+      "planned_order_ids": [
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616"
+      ],
+      "scheduler_elapsed_seconds": 0.652970209,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 3
+      },
+      "target_statuses": {
+        "reclaim Add32Bits direct": "bug_found",
+        "reclaim XorWords direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 3,
+      "preserved_counterexample_count": 3,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.036124542,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 2,
+        "0.5": 2,
+        "1.0": 3,
+        "3.0": 3,
+        "10.0": 3
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 7
+    },
+    {
+      "repetition": 3,
+      "backend_seed": 2026091503,
+      "strategy": "small-first",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:11:05.434615Z",
+      "plan": "runs/dev10-plans/small-first.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-03-seed-2026091503/small-first/executions/execution-e56957f4-f80f-42cc-b14e-f411a89d3d8b/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-03-seed-2026091503/small-first/evaluation.json",
+      "planned_order": [
+        "reclaim Add32Bits direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim XorWords direct"
+      ],
+      "planned_order_ids": [
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d"
+      ],
+      "scheduler_elapsed_seconds": 3.081445208,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 2,
+        "timeout": 1
+      },
+      "target_statuses": {
+        "reclaim Add32Bits direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "timeout",
+        "reclaim XorWords direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 2,
+      "preserved_counterexample_count": 2,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.034845666,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 1,
+        "0.5": 1,
+        "1.0": 1,
+        "3.0": 1,
+        "10.0": 2
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 1
+    },
+    {
+      "repetition": 3,
+      "backend_seed": 2026091503,
+      "strategy": "legacy",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:11:09.191183Z",
+      "plan": "runs/dev10-plans/legacy.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-03-seed-2026091503/legacy/executions/execution-c025ef91-9833-491e-8405-f94120febae6/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-03-seed-2026091503/legacy/evaluation.json",
+      "planned_order": [
+        "reclaim XorWords direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim Add32Bits direct"
+      ],
+      "planned_order_ids": [
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff"
+      ],
+      "scheduler_elapsed_seconds": 3.083909041,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 2,
+        "timeout": 1
+      },
+      "target_statuses": {
+        "reclaim XorWords direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "timeout",
+        "reclaim Add32Bits direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 2,
+      "preserved_counterexample_count": 2,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.037035416,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 1,
+        "0.5": 1,
+        "1.0": 1,
+        "3.0": 1,
+        "10.0": 2
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 2
+    },
+    {
+      "repetition": 3,
+      "backend_seed": 2026091503,
+      "strategy": "warning-first",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:11:12.932972Z",
+      "plan": "runs/dev10-plans/warning-first.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-03-seed-2026091503/warning-first/executions/execution-212b599b-8bc4-4551-9b17-82e8151f67d3/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-03-seed-2026091503/warning-first/evaluation.json",
+      "planned_order": [
+        "reclaim Add32Bits direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim XorWords direct"
+      ],
+      "planned_order_ids": [
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d"
+      ],
+      "scheduler_elapsed_seconds": 3.079862667,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 2,
+        "timeout": 1
+      },
+      "target_statuses": {
+        "reclaim Add32Bits direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "timeout",
+        "reclaim XorWords direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 2,
+      "preserved_counterexample_count": 2,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.031553583,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 1,
+        "0.5": 1,
+        "1.0": 1,
+        "3.0": 1,
+        "10.0": 2
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 3
+    },
+    {
+      "repetition": 3,
+      "backend_seed": 2026091503,
+      "strategy": "risk-only",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:11:16.691273Z",
+      "plan": "runs/dev10-plans/risk-only.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-03-seed-2026091503/risk-only/executions/execution-d245eaaa-65d9-4663-9a2c-f082604fbb59/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-03-seed-2026091503/risk-only/evaluation.json",
+      "planned_order": [
+        "reclaim Add32Bits direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim XorWords direct"
+      ],
+      "planned_order_ids": [
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d"
+      ],
+      "scheduler_elapsed_seconds": 3.085667958,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 2,
+        "timeout": 1
+      },
+      "target_statuses": {
+        "reclaim Add32Bits direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "timeout",
+        "reclaim XorWords direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 2,
+      "preserved_counterexample_count": 2,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.047421708,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 1,
+        "0.5": 1,
+        "1.0": 1,
+        "3.0": 1,
+        "10.0": 2
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 4
+    },
+    {
+      "repetition": 3,
+      "backend_seed": 2026091503,
+      "strategy": "risk-grouped",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:11:20.449801Z",
+      "plan": "runs/dev10-plans/risk-grouped.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-03-seed-2026091503/risk-grouped/executions/execution-b95ddedc-38ca-4f6c-897d-9719448a185d/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-03-seed-2026091503/risk-grouped/evaluation.json",
+      "planned_order": [
+        "reclaim Add32Bits direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim XorWords direct"
+      ],
+      "planned_order_ids": [
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d"
+      ],
+      "scheduler_elapsed_seconds": 3.082169542,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 2,
+        "timeout": 1
+      },
+      "target_statuses": {
+        "reclaim Add32Bits direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "timeout",
+        "reclaim XorWords direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 2,
+      "preserved_counterexample_count": 2,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.036612667,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 1,
+        "0.5": 1,
+        "1.0": 1,
+        "3.0": 1,
+        "10.0": 2
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 5
+    },
+    {
+      "repetition": 3,
+      "backend_seed": 2026091503,
+      "strategy": "path-order",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:11:24.185691Z",
+      "plan": "runs/dev10-plans/path-order.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-03-seed-2026091503/path-order/executions/execution-e0cafc7d-7432-4ac2-badc-4c4c44f919bc/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-03-seed-2026091503/path-order/evaluation.json",
+      "planned_order": [
+        "reclaim Add32Bits direct",
+        "reclaim XorWords direct",
+        "reclaim RotateLeft32Bits(3) direct"
+      ],
+      "planned_order_ids": [
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616"
+      ],
+      "scheduler_elapsed_seconds": 3.081712333,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 2,
+        "timeout": 1
+      },
+      "target_statuses": {
+        "reclaim Add32Bits direct": "bug_found",
+        "reclaim XorWords direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "timeout"
+      },
+      "backend_bug_candidate_count": 2,
+      "preserved_counterexample_count": 2,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.037738667,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 2,
+        "0.5": 2,
+        "1.0": 2,
+        "3.0": 2,
+        "10.0": 2
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 6
+    },
+    {
+      "repetition": 3,
+      "backend_seed": 2026091503,
+      "strategy": "random",
+      "ranking_seed": 2026092503,
+      "started_at": "2026-09-15T07:11:27.948684Z",
+      "plan": "runs/dev3-ranking-pilot-2026-09-15/plans/random-rep-03.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-03-seed-2026091503/random/executions/execution-84990d75-79f8-41b6-a065-ac567ae2d8f8/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-03-seed-2026091503/random/evaluation.json",
+      "planned_order": [
+        "reclaim Add32Bits direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim XorWords direct"
+      ],
+      "planned_order_ids": [
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d"
+      ],
+      "scheduler_elapsed_seconds": 3.080120208,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 2,
+        "timeout": 1
+      },
+      "target_statuses": {
+        "reclaim Add32Bits direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "timeout",
+        "reclaim XorWords direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 2,
+      "preserved_counterexample_count": 2,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.035997958,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 1,
+        "0.5": 1,
+        "1.0": 1,
+        "3.0": 1,
+        "10.0": 2
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 7
+    },
+    {
+      "repetition": 4,
+      "backend_seed": 2026091504,
+      "strategy": "legacy",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:11:31.693522Z",
+      "plan": "runs/dev10-plans/legacy.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/legacy/executions/execution-fc29c1a2-6389-4397-b4ce-e4dadd38159a/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/legacy/evaluation.json",
+      "planned_order": [
+        "reclaim XorWords direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim Add32Bits direct"
+      ],
+      "planned_order_ids": [
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff"
+      ],
+      "scheduler_elapsed_seconds": 0.96702575,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 3
+      },
+      "target_statuses": {
+        "reclaim XorWords direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "bug_found",
+        "reclaim Add32Bits direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 3,
+      "preserved_counterexample_count": 3,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.03353175,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 1,
+        "0.5": 1,
+        "1.0": 3,
+        "3.0": 3,
+        "10.0": 3
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 1
+    },
+    {
+      "repetition": 4,
+      "backend_seed": 2026091504,
+      "strategy": "warning-first",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:11:33.392811Z",
+      "plan": "runs/dev10-plans/warning-first.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/warning-first/executions/execution-0d135342-0509-4bd0-884d-8c41d440fb0b/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/warning-first/evaluation.json",
+      "planned_order": [
+        "reclaim Add32Bits direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim XorWords direct"
+      ],
+      "planned_order_ids": [
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d"
+      ],
+      "scheduler_elapsed_seconds": 0.946023584,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 3
+      },
+      "target_statuses": {
+        "reclaim Add32Bits direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "bug_found",
+        "reclaim XorWords direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 3,
+      "preserved_counterexample_count": 3,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.036328084,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 1,
+        "0.5": 1,
+        "1.0": 3,
+        "3.0": 3,
+        "10.0": 3
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 2
+    },
+    {
+      "repetition": 4,
+      "backend_seed": 2026091504,
+      "strategy": "risk-only",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:11:34.996360Z",
+      "plan": "runs/dev10-plans/risk-only.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/risk-only/executions/execution-ded6d045-7bc5-4637-afa4-4d49fdf61dc8/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/risk-only/evaluation.json",
+      "planned_order": [
+        "reclaim Add32Bits direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim XorWords direct"
+      ],
+      "planned_order_ids": [
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d"
+      ],
+      "scheduler_elapsed_seconds": 0.943667042,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 3
+      },
+      "target_statuses": {
+        "reclaim Add32Bits direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "bug_found",
+        "reclaim XorWords direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 3,
+      "preserved_counterexample_count": 3,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.03601675,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 1,
+        "0.5": 1,
+        "1.0": 3,
+        "3.0": 3,
+        "10.0": 3
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 3
+    },
+    {
+      "repetition": 4,
+      "backend_seed": 2026091504,
+      "strategy": "risk-grouped",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:11:36.608730Z",
+      "plan": "runs/dev10-plans/risk-grouped.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/risk-grouped/executions/execution-f241172f-2ef1-434d-940d-e948c478a60e/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/risk-grouped/evaluation.json",
+      "planned_order": [
+        "reclaim Add32Bits direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim XorWords direct"
+      ],
+      "planned_order_ids": [
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d"
+      ],
+      "scheduler_elapsed_seconds": 0.948195375,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 3
+      },
+      "target_statuses": {
+        "reclaim Add32Bits direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "bug_found",
+        "reclaim XorWords direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 3,
+      "preserved_counterexample_count": 3,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.032028792,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 1,
+        "0.5": 1,
+        "1.0": 3,
+        "3.0": 3,
+        "10.0": 3
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 4
+    },
+    {
+      "repetition": 4,
+      "backend_seed": 2026091504,
+      "strategy": "path-order",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:11:38.271008Z",
+      "plan": "runs/dev10-plans/path-order.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/path-order/executions/execution-b7ec69b8-aa02-4bff-8515-a39018d6a5fd/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/path-order/evaluation.json",
+      "planned_order": [
+        "reclaim Add32Bits direct",
+        "reclaim XorWords direct",
+        "reclaim RotateLeft32Bits(3) direct"
+      ],
+      "planned_order_ids": [
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616"
+      ],
+      "scheduler_elapsed_seconds": 0.921971084,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 3
+      },
+      "target_statuses": {
+        "reclaim Add32Bits direct": "bug_found",
+        "reclaim XorWords direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 3,
+      "preserved_counterexample_count": 3,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.036179959,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 2,
+        "0.5": 2,
+        "1.0": 3,
+        "3.0": 3,
+        "10.0": 3
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 5
+    },
+    {
+      "repetition": 4,
+      "backend_seed": 2026091504,
+      "strategy": "random",
+      "ranking_seed": 2026092504,
+      "started_at": "2026-09-15T07:11:39.860716Z",
+      "plan": "runs/dev3-ranking-pilot-2026-09-15/plans/random-rep-04.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/random/executions/execution-ad1f82d5-f092-416b-bd3b-0cba4e60f41f/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/random/evaluation.json",
+      "planned_order": [
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim XorWords direct",
+        "reclaim Add32Bits direct"
+      ],
+      "planned_order_ids": [
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d",
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff"
+      ],
+      "scheduler_elapsed_seconds": 0.945307542,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 3
+      },
+      "target_statuses": {
+        "reclaim RotateLeft32Bits(3) direct": "bug_found",
+        "reclaim XorWords direct": "bug_found",
+        "reclaim Add32Bits direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 3,
+      "preserved_counterexample_count": 3,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.879845083,
+      "backend_candidate_curve": {
+        "0.05": 0,
+        "0.1": 0,
+        "0.5": 0,
+        "1.0": 3,
+        "3.0": 3,
+        "10.0": 3
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 6
+    },
+    {
+      "repetition": 4,
+      "backend_seed": 2026091504,
+      "strategy": "small-first",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:11:41.462977Z",
+      "plan": "runs/dev10-plans/small-first.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/small-first/executions/execution-68f52d8a-bd97-44a9-a8b4-cfc1adb0414c/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/small-first/evaluation.json",
+      "planned_order": [
+        "reclaim Add32Bits direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim XorWords direct"
+      ],
+      "planned_order_ids": [
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d"
+      ],
+      "scheduler_elapsed_seconds": 0.957797792,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 3
+      },
+      "target_statuses": {
+        "reclaim Add32Bits direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "bug_found",
+        "reclaim XorWords direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 3,
+      "preserved_counterexample_count": 3,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.034027875,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 1,
+        "0.5": 1,
+        "1.0": 3,
+        "3.0": 3,
+        "10.0": 3
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 7
+    },
+    {
+      "repetition": 5,
+      "backend_seed": 2026091505,
+      "strategy": "warning-first",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:11:43.086688Z",
+      "plan": "runs/dev10-plans/warning-first.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-05-seed-2026091505/warning-first/executions/execution-403062b7-921e-4f09-81e4-b1fe7fd2ae50/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-05-seed-2026091505/warning-first/evaluation.json",
+      "planned_order": [
+        "reclaim Add32Bits direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim XorWords direct"
+      ],
+      "planned_order_ids": [
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d"
+      ],
+      "scheduler_elapsed_seconds": 3.075179375,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 2,
+        "timeout": 1
+      },
+      "target_statuses": {
+        "reclaim Add32Bits direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "timeout",
+        "reclaim XorWords direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 2,
+      "preserved_counterexample_count": 2,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.033756375,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 1,
+        "0.5": 1,
+        "1.0": 1,
+        "3.0": 1,
+        "10.0": 2
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 1
+    },
+    {
+      "repetition": 5,
+      "backend_seed": 2026091505,
+      "strategy": "risk-only",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:11:46.900176Z",
+      "plan": "runs/dev10-plans/risk-only.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-05-seed-2026091505/risk-only/executions/execution-ee8805d3-10f9-4007-8111-e3fa4d5bc0f6/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-05-seed-2026091505/risk-only/evaluation.json",
+      "planned_order": [
+        "reclaim Add32Bits direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim XorWords direct"
+      ],
+      "planned_order_ids": [
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d"
+      ],
+      "scheduler_elapsed_seconds": 3.076198791,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 2,
+        "timeout": 1
+      },
+      "target_statuses": {
+        "reclaim Add32Bits direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "timeout",
+        "reclaim XorWords direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 2,
+      "preserved_counterexample_count": 2,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.034858958,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 1,
+        "0.5": 1,
+        "1.0": 1,
+        "3.0": 1,
+        "10.0": 2
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 2
+    },
+    {
+      "repetition": 5,
+      "backend_seed": 2026091505,
+      "strategy": "risk-grouped",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:11:50.784214Z",
+      "plan": "runs/dev10-plans/risk-grouped.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-05-seed-2026091505/risk-grouped/executions/execution-b2a8f64f-bdda-4c08-aae6-b0488debb4dc/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-05-seed-2026091505/risk-grouped/evaluation.json",
+      "planned_order": [
+        "reclaim Add32Bits direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim XorWords direct"
+      ],
+      "planned_order_ids": [
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d"
+      ],
+      "scheduler_elapsed_seconds": 3.075292667,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 2,
+        "timeout": 1
+      },
+      "target_statuses": {
+        "reclaim Add32Bits direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "timeout",
+        "reclaim XorWords direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 2,
+      "preserved_counterexample_count": 2,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.035310334,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 1,
+        "0.5": 1,
+        "1.0": 1,
+        "3.0": 1,
+        "10.0": 2
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 3
+    },
+    {
+      "repetition": 5,
+      "backend_seed": 2026091505,
+      "strategy": "path-order",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:11:54.534243Z",
+      "plan": "runs/dev10-plans/path-order.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-05-seed-2026091505/path-order/executions/execution-095f676b-5eda-4b6e-814b-37a7478c818f/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-05-seed-2026091505/path-order/evaluation.json",
+      "planned_order": [
+        "reclaim Add32Bits direct",
+        "reclaim XorWords direct",
+        "reclaim RotateLeft32Bits(3) direct"
+      ],
+      "planned_order_ids": [
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616"
+      ],
+      "scheduler_elapsed_seconds": 3.079148,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 2,
+        "timeout": 1
+      },
+      "target_statuses": {
+        "reclaim Add32Bits direct": "bug_found",
+        "reclaim XorWords direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "timeout"
+      },
+      "backend_bug_candidate_count": 2,
+      "preserved_counterexample_count": 2,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.035945041,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 2,
+        "0.5": 2,
+        "1.0": 2,
+        "3.0": 2,
+        "10.0": 2
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 4
+    },
+    {
+      "repetition": 5,
+      "backend_seed": 2026091505,
+      "strategy": "random",
+      "ranking_seed": 2026092505,
+      "started_at": "2026-09-15T07:11:58.292714Z",
+      "plan": "runs/dev3-ranking-pilot-2026-09-15/plans/random-rep-05.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-05-seed-2026091505/random/executions/execution-17a916c2-5c66-4a58-a8e2-a47347b2d133/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-05-seed-2026091505/random/evaluation.json",
+      "planned_order": [
+        "reclaim Add32Bits direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim XorWords direct"
+      ],
+      "planned_order_ids": [
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d"
+      ],
+      "scheduler_elapsed_seconds": 3.080410125,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 2,
+        "timeout": 1
+      },
+      "target_statuses": {
+        "reclaim Add32Bits direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "timeout",
+        "reclaim XorWords direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 2,
+      "preserved_counterexample_count": 2,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.037329625,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 1,
+        "0.5": 1,
+        "1.0": 1,
+        "3.0": 1,
+        "10.0": 2
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 5
+    },
+    {
+      "repetition": 5,
+      "backend_seed": 2026091505,
+      "strategy": "small-first",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:12:02.054491Z",
+      "plan": "runs/dev10-plans/small-first.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-05-seed-2026091505/small-first/executions/execution-71593677-4f12-41de-9355-dbc8dad877b4/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-05-seed-2026091505/small-first/evaluation.json",
+      "planned_order": [
+        "reclaim Add32Bits direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim XorWords direct"
+      ],
+      "planned_order_ids": [
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d"
+      ],
+      "scheduler_elapsed_seconds": 3.085093416,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 2,
+        "timeout": 1
+      },
+      "target_statuses": {
+        "reclaim Add32Bits direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "timeout",
+        "reclaim XorWords direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 2,
+      "preserved_counterexample_count": 2,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.037519708,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 1,
+        "0.5": 1,
+        "1.0": 1,
+        "3.0": 1,
+        "10.0": 2
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 6
+    },
+    {
+      "repetition": 5,
+      "backend_seed": 2026091505,
+      "strategy": "legacy",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:12:05.870567Z",
+      "plan": "runs/dev10-plans/legacy.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-05-seed-2026091505/legacy/executions/execution-303c294c-0617-4118-aab1-a6c777597c89/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-05-seed-2026091505/legacy/evaluation.json",
+      "planned_order": [
+        "reclaim XorWords direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim Add32Bits direct"
+      ],
+      "planned_order_ids": [
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff"
+      ],
+      "scheduler_elapsed_seconds": 3.071357,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 2,
+        "timeout": 1
+      },
+      "target_statuses": {
+        "reclaim XorWords direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "timeout",
+        "reclaim Add32Bits direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 2,
+      "preserved_counterexample_count": 2,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.032354125,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 1,
+        "0.5": 1,
+        "1.0": 1,
+        "3.0": 1,
+        "10.0": 2
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 7
+    },
+    {
+      "repetition": 6,
+      "backend_seed": 2026091506,
+      "strategy": "risk-only",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:12:09.600432Z",
+      "plan": "runs/dev10-plans/risk-only.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/risk-only/executions/execution-aea04fa5-dd8b-41b6-911d-85735de13aa4/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/risk-only/evaluation.json",
+      "planned_order": [
+        "reclaim Add32Bits direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim XorWords direct"
+      ],
+      "planned_order_ids": [
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d"
+      ],
+      "scheduler_elapsed_seconds": 0.482281417,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 3
+      },
+      "target_statuses": {
+        "reclaim Add32Bits direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "bug_found",
+        "reclaim XorWords direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 3,
+      "preserved_counterexample_count": 3,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.035513334,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 1,
+        "0.5": 3,
+        "1.0": 3,
+        "3.0": 3,
+        "10.0": 3
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 1
+    },
+    {
+      "repetition": 6,
+      "backend_seed": 2026091506,
+      "strategy": "risk-grouped",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:12:10.782137Z",
+      "plan": "runs/dev10-plans/risk-grouped.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/risk-grouped/executions/execution-8cb39e52-6427-4680-b1f0-96fc8a785b7f/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/risk-grouped/evaluation.json",
+      "planned_order": [
+        "reclaim Add32Bits direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim XorWords direct"
+      ],
+      "planned_order_ids": [
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d"
+      ],
+      "scheduler_elapsed_seconds": 0.46740675,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 3
+      },
+      "target_statuses": {
+        "reclaim Add32Bits direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "bug_found",
+        "reclaim XorWords direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 3,
+      "preserved_counterexample_count": 3,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.034887,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 1,
+        "0.5": 3,
+        "1.0": 3,
+        "3.0": 3,
+        "10.0": 3
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 2
+    },
+    {
+      "repetition": 6,
+      "backend_seed": 2026091506,
+      "strategy": "path-order",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:12:11.911989Z",
+      "plan": "runs/dev10-plans/path-order.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/path-order/executions/execution-b39a7e61-3647-4406-87c7-1dcef6dfc13c/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/path-order/evaluation.json",
+      "planned_order": [
+        "reclaim Add32Bits direct",
+        "reclaim XorWords direct",
+        "reclaim RotateLeft32Bits(3) direct"
+      ],
+      "planned_order_ids": [
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616"
+      ],
+      "scheduler_elapsed_seconds": 0.478080208,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 3
+      },
+      "target_statuses": {
+        "reclaim Add32Bits direct": "bug_found",
+        "reclaim XorWords direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 3,
+      "preserved_counterexample_count": 3,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.035915333,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 2,
+        "0.5": 3,
+        "1.0": 3,
+        "3.0": 3,
+        "10.0": 3
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 3
+    },
+    {
+      "repetition": 6,
+      "backend_seed": 2026091506,
+      "strategy": "random",
+      "ranking_seed": 2026092506,
+      "started_at": "2026-09-15T07:12:13.046411Z",
+      "plan": "runs/dev3-ranking-pilot-2026-09-15/plans/random-rep-06.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/random/executions/execution-db49174a-d2d3-4366-b042-4e311c60d9c1/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/random/evaluation.json",
+      "planned_order": [
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim XorWords direct",
+        "reclaim Add32Bits direct"
+      ],
+      "planned_order_ids": [
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d",
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff"
+      ],
+      "scheduler_elapsed_seconds": 0.478405166,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 3
+      },
+      "target_statuses": {
+        "reclaim RotateLeft32Bits(3) direct": "bug_found",
+        "reclaim XorWords direct": "bug_found",
+        "reclaim Add32Bits direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 3,
+      "preserved_counterexample_count": 3,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.409605041,
+      "backend_candidate_curve": {
+        "0.05": 0,
+        "0.1": 0,
+        "0.5": 3,
+        "1.0": 3,
+        "3.0": 3,
+        "10.0": 3
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 4
+    },
+    {
+      "repetition": 6,
+      "backend_seed": 2026091506,
+      "strategy": "small-first",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:12:14.230416Z",
+      "plan": "runs/dev10-plans/small-first.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/small-first/executions/execution-de6cd5da-2390-4802-b201-59a2c6573f9f/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/small-first/evaluation.json",
+      "planned_order": [
+        "reclaim Add32Bits direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim XorWords direct"
+      ],
+      "planned_order_ids": [
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d"
+      ],
+      "scheduler_elapsed_seconds": 0.45905575,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 3
+      },
+      "target_statuses": {
+        "reclaim Add32Bits direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "bug_found",
+        "reclaim XorWords direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 3,
+      "preserved_counterexample_count": 3,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.034506042,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 1,
+        "0.5": 3,
+        "1.0": 3,
+        "3.0": 3,
+        "10.0": 3
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 5
+    },
+    {
+      "repetition": 6,
+      "backend_seed": 2026091506,
+      "strategy": "legacy",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:12:15.348169Z",
+      "plan": "runs/dev10-plans/legacy.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/legacy/executions/execution-4599b932-0093-4ab5-aba1-0fd882939432/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/legacy/evaluation.json",
+      "planned_order": [
+        "reclaim XorWords direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim Add32Bits direct"
+      ],
+      "planned_order_ids": [
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff"
+      ],
+      "scheduler_elapsed_seconds": 0.486482334,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 3
+      },
+      "target_statuses": {
+        "reclaim XorWords direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "bug_found",
+        "reclaim Add32Bits direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 3,
+      "preserved_counterexample_count": 3,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.032344625,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 1,
+        "0.5": 3,
+        "1.0": 3,
+        "3.0": 3,
+        "10.0": 3
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 6
+    },
+    {
+      "repetition": 6,
+      "backend_seed": 2026091506,
+      "strategy": "warning-first",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:12:16.494778Z",
+      "plan": "runs/dev10-plans/warning-first.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/warning-first/executions/execution-ae71c50f-7253-4a7d-be56-f7f7dcd1f1e7/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/warning-first/evaluation.json",
+      "planned_order": [
+        "reclaim Add32Bits direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim XorWords direct"
+      ],
+      "planned_order_ids": [
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d"
+      ],
+      "scheduler_elapsed_seconds": 0.477391375,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 3
+      },
+      "target_statuses": {
+        "reclaim Add32Bits direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "bug_found",
+        "reclaim XorWords direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 3,
+      "preserved_counterexample_count": 3,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.036450792,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 1,
+        "0.5": 3,
+        "1.0": 3,
+        "3.0": 3,
+        "10.0": 3
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 7
+    },
+    {
+      "repetition": 7,
+      "backend_seed": 2026091507,
+      "strategy": "risk-grouped",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:12:17.646982Z",
+      "plan": "runs/dev10-plans/risk-grouped.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-07-seed-2026091507/risk-grouped/executions/execution-b0986753-13dd-47dd-a078-6ff5a1ea2828/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-07-seed-2026091507/risk-grouped/evaluation.json",
+      "planned_order": [
+        "reclaim Add32Bits direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim XorWords direct"
+      ],
+      "planned_order_ids": [
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d"
+      ],
+      "scheduler_elapsed_seconds": 3.077883708,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 2,
+        "timeout": 1
+      },
+      "target_statuses": {
+        "reclaim Add32Bits direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "timeout",
+        "reclaim XorWords direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 2,
+      "preserved_counterexample_count": 2,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.032783833,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 1,
+        "0.5": 1,
+        "1.0": 1,
+        "3.0": 1,
+        "10.0": 2
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 1
+    },
+    {
+      "repetition": 7,
+      "backend_seed": 2026091507,
+      "strategy": "path-order",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:12:21.392369Z",
+      "plan": "runs/dev10-plans/path-order.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-07-seed-2026091507/path-order/executions/execution-720be2bb-a96e-495c-87d1-9811d2dc9f1a/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-07-seed-2026091507/path-order/evaluation.json",
+      "planned_order": [
+        "reclaim Add32Bits direct",
+        "reclaim XorWords direct",
+        "reclaim RotateLeft32Bits(3) direct"
+      ],
+      "planned_order_ids": [
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616"
+      ],
+      "scheduler_elapsed_seconds": 3.075111333,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 2,
+        "timeout": 1
+      },
+      "target_statuses": {
+        "reclaim Add32Bits direct": "bug_found",
+        "reclaim XorWords direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "timeout"
+      },
+      "backend_bug_candidate_count": 2,
+      "preserved_counterexample_count": 2,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.0317705,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 2,
+        "0.5": 2,
+        "1.0": 2,
+        "3.0": 2,
+        "10.0": 2
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 2
+    },
+    {
+      "repetition": 7,
+      "backend_seed": 2026091507,
+      "strategy": "random",
+      "ranking_seed": 2026092507,
+      "started_at": "2026-09-15T07:12:25.125137Z",
+      "plan": "runs/dev3-ranking-pilot-2026-09-15/plans/random-rep-07.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-07-seed-2026091507/random/executions/execution-1a5e024d-41ec-4111-b09e-0c15c8ce4da2/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-07-seed-2026091507/random/evaluation.json",
+      "planned_order": [
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim XorWords direct",
+        "reclaim Add32Bits direct"
+      ],
+      "planned_order_ids": [
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d",
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff"
+      ],
+      "scheduler_elapsed_seconds": 3.080943083,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 2,
+        "timeout": 1
+      },
+      "target_statuses": {
+        "reclaim RotateLeft32Bits(3) direct": "timeout",
+        "reclaim XorWords direct": "bug_found",
+        "reclaim Add32Bits direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 2,
+      "preserved_counterexample_count": 2,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 3.045443333,
+      "backend_candidate_curve": {
+        "0.05": 0,
+        "0.1": 0,
+        "0.5": 0,
+        "1.0": 0,
+        "3.0": 0,
+        "10.0": 2
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 3
+    },
+    {
+      "repetition": 7,
+      "backend_seed": 2026091507,
+      "strategy": "small-first",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:12:28.911355Z",
+      "plan": "runs/dev10-plans/small-first.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-07-seed-2026091507/small-first/executions/execution-ef1b1859-392d-453f-9d2d-485d52e8ec1b/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-07-seed-2026091507/small-first/evaluation.json",
+      "planned_order": [
+        "reclaim Add32Bits direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim XorWords direct"
+      ],
+      "planned_order_ids": [
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d"
+      ],
+      "scheduler_elapsed_seconds": 3.083833,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 2,
+        "timeout": 1
+      },
+      "target_statuses": {
+        "reclaim Add32Bits direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "timeout",
+        "reclaim XorWords direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 2,
+      "preserved_counterexample_count": 2,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.035967125,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 1,
+        "0.5": 1,
+        "1.0": 1,
+        "3.0": 1,
+        "10.0": 2
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 4
+    },
+    {
+      "repetition": 7,
+      "backend_seed": 2026091507,
+      "strategy": "legacy",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:12:32.668589Z",
+      "plan": "runs/dev10-plans/legacy.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-07-seed-2026091507/legacy/executions/execution-335bfe96-dc75-4ae2-a288-1ee6f8784a1b/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-07-seed-2026091507/legacy/evaluation.json",
+      "planned_order": [
+        "reclaim XorWords direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim Add32Bits direct"
+      ],
+      "planned_order_ids": [
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff"
+      ],
+      "scheduler_elapsed_seconds": 3.080378709,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 2,
+        "timeout": 1
+      },
+      "target_statuses": {
+        "reclaim XorWords direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "timeout",
+        "reclaim Add32Bits direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 2,
+      "preserved_counterexample_count": 2,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.035763542,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 1,
+        "0.5": 1,
+        "1.0": 1,
+        "3.0": 1,
+        "10.0": 2
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 5
+    },
+    {
+      "repetition": 7,
+      "backend_seed": 2026091507,
+      "strategy": "warning-first",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:12:36.409137Z",
+      "plan": "runs/dev10-plans/warning-first.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-07-seed-2026091507/warning-first/executions/execution-62467746-57ca-4d29-8bfc-111b1a903d02/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-07-seed-2026091507/warning-first/evaluation.json",
+      "planned_order": [
+        "reclaim Add32Bits direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim XorWords direct"
+      ],
+      "planned_order_ids": [
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d"
+      ],
+      "scheduler_elapsed_seconds": 3.082849084,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 2,
+        "timeout": 1
+      },
+      "target_statuses": {
+        "reclaim Add32Bits direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "timeout",
+        "reclaim XorWords direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 2,
+      "preserved_counterexample_count": 2,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.036876625,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 1,
+        "0.5": 1,
+        "1.0": 1,
+        "3.0": 1,
+        "10.0": 2
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 6
+    },
+    {
+      "repetition": 7,
+      "backend_seed": 2026091507,
+      "strategy": "risk-only",
+      "ranking_seed": null,
+      "started_at": "2026-09-15T07:12:40.184237Z",
+      "plan": "runs/dev10-plans/risk-only.json",
+      "outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-07-seed-2026091507/risk-only/executions/execution-9410d14a-ab16-49c1-bf97-ba45e0eb12e5/outcome.json",
+      "evaluation": "runs/dev3-ranking-pilot-2026-09-15/rep-07-seed-2026091507/risk-only/evaluation.json",
+      "planned_order": [
+        "reclaim Add32Bits direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim XorWords direct"
+      ],
+      "planned_order_ids": [
+        "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+        "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+        "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d"
+      ],
+      "scheduler_elapsed_seconds": 3.082747458,
+      "started_target_count": 3,
+      "status_counts": {
+        "bug_found": 2,
+        "timeout": 1
+      },
+      "target_statuses": {
+        "reclaim Add32Bits direct": "bug_found",
+        "reclaim RotateLeft32Bits(3) direct": "timeout",
+        "reclaim XorWords direct": "bug_found"
+      },
+      "backend_bug_candidate_count": 2,
+      "preserved_counterexample_count": 2,
+      "reviewed_confirmation_count": 0,
+      "first_backend_candidate_observed_by_seconds": 0.034835583,
+      "backend_candidate_curve": {
+        "0.05": 1,
+        "0.1": 1,
+        "0.5": 1,
+        "1.0": 1,
+        "3.0": 1,
+        "10.0": 2
+      },
+      "confirmed_project_defect_count": 0,
+      "first_confirmed_defect_observed_by_seconds": null,
+      "strategy_execution_slot": 7
+    }
+  ],
+  "conclusion": {
+    "confirmed_project_defect_performance": "inconclusive: evaluations were run without reviewed confirmations, so the project-scope count is zero and first-confirmed-defect time is censored",
+    "risk_grouped_vs_risk_only": "algorithmically indistinguishable on this corpus because every structural complexity value is zero and both plans have the same order",
+    "scope": "descriptive backend-candidate/order-throughput pilot on three direct wrappers from one project family; no statistical superiority claim"
+  },
+  "limitations": [
+    "The corpus contains only three direct wrappers from one project family and has no independent held-out evaluation set.",
+    "All three targets are manifest-reported positives, so target-level Recall@K is K/3 for every ordering and does not discriminate strategies.",
+    "These evaluations contain no reviewed confirmations. A zero confirmed-project count means no candidate was promoted by evidence, not that review disproved every candidate.",
+    "Four fixed strategies (small-first, warning-first, risk-only, and risk-grouped) share one identical order; all structural scores are zero.",
+    "Wall-clock measurements include subprocess startup and are reported descriptively from seven repetitions."
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "name": "zkfuzz-positive-control",
+  "description": "Single upstream zkFuzz test fixture used only to verify backend candidate detection, artifact preservation, and status classification. It is not a real-project corpus item.",
+  "targets": [
+    {
+      "label": "zkFuzz upstream VulnerableIsZero positive control",
+      "project": "https://github.com/Koukyosyumei/zkFuzz",
+      "revision": "072bf1fbbd1c9ecad58d4f6d2204c3b96e7fec17",
+      "project_root": "../../.external/zkFuzz/tests/sample",
+      "entrypoint": "../../.external/zkFuzz/tests/sample/test_vuln_iszero.circom",
+      "template_name": "VulnerableIsZero",
+      "concrete_parameters": [],
+      "prime": "bn128",
+      "compile_args": [],
+      "mode": "original",
+      "input_assumptions": "Upstream synthetic test fixture. A backend NOT SAFE result is only an adapter positive control and is not counted as a confirmed project defect.",
+      "known_defects": []
+    }
+  ],
+  "exclusions": []
+}

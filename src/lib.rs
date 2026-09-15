@@ -1,11 +1,16 @@
 pub mod cli;
 pub mod config;
+pub mod corpus;
 pub mod db;
 pub mod error;
+pub mod experiment;
 pub mod features;
 pub mod ranker;
 pub mod report;
 pub mod runner;
 pub mod scanner;
 pub mod scheduler;
+pub mod semantic;
+pub mod static_rank;
+pub mod structure;
 pub mod targets;

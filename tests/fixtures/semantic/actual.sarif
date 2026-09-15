@@ -1,0 +1,1052 @@
+{
+  "runs": [
+    {
+      "results": [
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file://__FIXTURE_ROOT__/cases.circom"
+                },
+                "region": {
+                  "endColumn": 36,
+                  "endLine": 89,
+                  "startColumn": 31,
+                  "startLine": 89
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file://__FIXTURE_ROOT__/cases.circom"
+                },
+                "region": {
+                  "endColumn": 41,
+                  "endLine": 90,
+                  "startColumn": 17,
+                  "startLine": 90
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file://__FIXTURE_ROOT__/cases.circom"
+                },
+                "region": {
+                  "endColumn": 28,
+                  "endLine": 91,
+                  "startColumn": 13,
+                  "startLine": 91
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Circomlib template `Num2Bits` instantiated here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file://__FIXTURE_ROOT__/cases.circom"
+                },
+                "region": {
+                  "endColumn": 37,
+                  "endLine": 89,
+                  "startColumn": 22,
+                  "startLine": 89
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Using `Num2Bits` to convert field elements to bits may lead to aliasing issues."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0010"
+          },
+          "ruleId": "CS0010"
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "`a` needs to be constrained to ensure that it is <= p/2."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file://__FIXTURE_ROOT__/cases.circom"
+                },
+                "region": {
+                  "endColumn": 19,
+                  "endLine": 99,
+                  "startColumn": 18,
+                  "startLine": 99
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Inputs to `LessThan` need to be constrained to ensure that they are non-negative"
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0014"
+          },
+          "ruleId": "CS0014"
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "`b` needs to be constrained to ensure that it is <= p/2."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file://__FIXTURE_ROOT__/cases.circom"
+                },
+                "region": {
+                  "endColumn": 19,
+                  "endLine": 100,
+                  "startColumn": 18,
+                  "startLine": 100
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Inputs to `LessThan` need to be constrained to ensure that they are non-negative"
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0014"
+          },
+          "ruleId": "CS0014"
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "The template `Plain` is instantiated here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file://__FIXTURE_ROOT__/cases.circom"
+                },
+                "region": {
+                  "endColumn": 30,
+                  "endLine": 55,
+                  "startColumn": 23,
+                  "startLine": 55
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The output signal `out` defined by the template `Plain` is not constrained in `UnusedOutput`."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0018"
+          },
+          "ruleId": "CS0018"
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "The assigned signal `out[i]` is not constrained here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file://__FIXTURE_ROOT__/cases.circom"
+                },
+                "region": {
+                  "endColumn": 33,
+                  "endLine": 79,
+                  "startColumn": 9,
+                  "startLine": 79
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Using the signal assignment operator `<--` does not constrain the assigned signal."
+          },
+          "relatedLocations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "The signal `out[i]` is constrained here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file://__FIXTURE_ROOT__/cases.circom"
+                },
+                "region": {
+                  "endColumn": 37,
+                  "endLine": 80,
+                  "startColumn": 9,
+                  "startLine": 80
+                }
+              }
+            }
+          ],
+          "rule": {
+            "id": "CS0005"
+          },
+          "ruleId": "CS0005"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file://__FIXTURE_ROOT__/cases.circom"
+                },
+                "region": {
+                  "endColumn": 28,
+                  "endLine": 79,
+                  "startColumn": 21,
+                  "startLine": 79
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file://__FIXTURE_ROOT__/cases.circom"
+                },
+                "region": {
+                  "endColumn": 30,
+                  "endLine": 80,
+                  "startColumn": 9,
+                  "startLine": 80
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file://__FIXTURE_ROOT__/cases.circom"
+                },
+                "region": {
+                  "endColumn": 33,
+                  "endLine": 81,
+                  "startColumn": 9,
+                  "startLine": 81
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file://__FIXTURE_ROOT__/cases.circom"
+                },
+                "region": {
+                  "endColumn": 31,
+                  "endLine": 78,
+                  "startColumn": 28,
+                  "startLine": 78
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element comparison here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file://__FIXTURE_ROOT__/cases.circom"
+                },
+                "region": {
+                  "endColumn": 26,
+                  "endLine": 78,
+                  "startColumn": 21,
+                  "startLine": 78
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Comparisons with field elements greater than `p/2` may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0003"
+          },
+          "ruleId": "CS0003"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element comparison here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file://__FIXTURE_ROOT__/cases.circom"
+                },
+                "region": {
+                  "endColumn": 17,
+                  "endLine": 61,
+                  "startColumn": 12,
+                  "startLine": 61
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Comparisons with field elements greater than `p/2` may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0003"
+          },
+          "ruleId": "CS0003"
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "The assigned signal `inv` is not constrained here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file://__FIXTURE_ROOT__/cases.circom"
+                },
+                "region": {
+                  "endColumn": 33,
+                  "endLine": 36,
+                  "startColumn": 5,
+                  "startLine": 36
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Using the signal assignment operator `<--` does not constrain the assigned signal."
+          },
+          "relatedLocations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "The signal `inv` is constrained here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file://__FIXTURE_ROOT__/cases.circom"
+                },
+                "region": {
+                  "endColumn": 25,
+                  "endLine": 37,
+                  "startColumn": 5,
+                  "startLine": 37
+                }
+              }
+            }
+          ],
+          "rule": {
+            "id": "CS0005"
+          },
+          "ruleId": "CS0005"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file://__FIXTURE_ROOT__/cases.circom"
+                },
+                "region": {
+                  "endColumn": 29,
+                  "endLine": 36,
+                  "startColumn": 23,
+                  "startLine": 36
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file://__FIXTURE_ROOT__/cases.circom"
+                },
+                "region": {
+                  "endColumn": 25,
+                  "endLine": 37,
+                  "startColumn": 13,
+                  "startLine": 37
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file://__FIXTURE_ROOT__/cases.circom"
+                },
+                "region": {
+                  "endColumn": 13,
+                  "endLine": 38,
+                  "startColumn": 5,
+                  "startLine": 38
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "The expression assigned to `intermediate` is quadratic."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file://__FIXTURE_ROOT__/cases.circom"
+                },
+                "region": {
+                  "endColumn": 23,
+                  "endLine": 20,
+                  "startColumn": 5,
+                  "startLine": 20
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Using the signal assignment operator `<--` is not necessary here."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0013"
+          },
+          "ruleId": "CS0013"
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "The intermediate signal `intermediate` is declared here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file://__FIXTURE_ROOT__/cases.circom"
+                },
+                "region": {
+                  "endColumn": 24,
+                  "endLine": 18,
+                  "startColumn": 5,
+                  "startLine": 18
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Intermediate signals should typically occur in at least two separate constraints."
+          },
+          "relatedLocations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "The intermediate signal `intermediate` is constrained here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file://__FIXTURE_ROOT__/cases.circom"
+                },
+                "region": {
+                  "endColumn": 25,
+                  "endLine": 21,
+                  "startColumn": 5,
+                  "startLine": 21
+                }
+              }
+            }
+          ],
+          "rule": {
+            "id": "CS0017"
+          },
+          "ruleId": "CS0017"
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "The expression assigned to `out` is quadratic."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file://__FIXTURE_ROOT__/cases.circom"
+                },
+                "region": {
+                  "endColumn": 14,
+                  "endLine": 13,
+                  "startColumn": 5,
+                  "startLine": 13
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Using the signal assignment operator `<--` is not necessary here."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0013"
+          },
+          "ruleId": "CS0013"
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "The value assigned to `out` here is never read."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file://__FIXTURE_ROOT__/cases.circom"
+                },
+                "region": {
+                  "endColumn": 14,
+                  "endLine": 13,
+                  "startColumn": 5,
+                  "startLine": 13
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The variable `out` is assigned a value, but this value is never read."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0006"
+          },
+          "ruleId": "CS0006"
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "This signal does not occur in a constraint."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file://__FIXTURE_ROOT__/cases.circom"
+                },
+                "region": {
+                  "endColumn": 19,
+                  "endLine": 11,
+                  "startColumn": 5,
+                  "startLine": 11
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The signal `a` is not constrained by the template."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CA01"
+          },
+          "ruleId": "CA01"
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "The assigned signal `out` is not constrained here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file://__FIXTURE_ROOT__/cases.circom"
+                },
+                "region": {
+                  "endColumn": 18,
+                  "endLine": 28,
+                  "startColumn": 5,
+                  "startLine": 28
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Using the signal assignment operator `<--` does not constrain the assigned signal."
+          },
+          "relatedLocations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "The signal `out` is constrained here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file://__FIXTURE_ROOT__/cases.circom"
+                },
+                "region": {
+                  "endColumn": 19,
+                  "endLine": 29,
+                  "startColumn": 5,
+                  "startLine": 29
+                }
+              }
+            }
+          ],
+          "rule": {
+            "id": "CS0005"
+          },
+          "ruleId": "CS0005"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file://__FIXTURE_ROOT__/cases.circom"
+                },
+                "region": {
+                  "endColumn": 18,
+                  "endLine": 28,
+                  "startColumn": 13,
+                  "startLine": 28
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file://__FIXTURE_ROOT__/cases.circom"
+                },
+                "region": {
+                  "endColumn": 12,
+                  "endLine": 29,
+                  "startColumn": 5,
+                  "startLine": 29
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "The divisor `b` must be constrained to be non-zero."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file://__FIXTURE_ROOT__/cases.circom"
+                },
+                "region": {
+                  "endColumn": 18,
+                  "endLine": 28,
+                  "startColumn": 17,
+                  "startLine": 28
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "In signal assignments containing division, the divisor needs to be constrained to be non-zero"
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0015"
+          },
+          "ruleId": "CS0015"
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "The assigned signal `out` is not constrained here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file://__FIXTURE_ROOT__/cases.circom"
+                },
+                "region": {
+                  "endColumn": 18,
+                  "endLine": 48,
+                  "startColumn": 5,
+                  "startLine": 48
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Using the signal assignment operator `<--` does not constrain the assigned signal."
+          },
+          "relatedLocations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "The signal `out` is constrained here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file://__FIXTURE_ROOT__/cases.circom"
+                },
+                "region": {
+                  "endColumn": 19,
+                  "endLine": 49,
+                  "startColumn": 5,
+                  "startLine": 49
+                }
+              }
+            }
+          ],
+          "rule": {
+            "id": "CS0005"
+          },
+          "ruleId": "CS0005"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file://__FIXTURE_ROOT__/cases.circom"
+                },
+                "region": {
+                  "endColumn": 18,
+                  "endLine": 48,
+                  "startColumn": 13,
+                  "startLine": 48
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file://__FIXTURE_ROOT__/cases.circom"
+                },
+                "region": {
+                  "endColumn": 12,
+                  "endLine": 49,
+                  "startColumn": 5,
+                  "startLine": 49
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        }
+      ],
+      "tool": {
+        "driver": {
+          "downloadUri": "https://github.com/trailofbits/circomspect",
+          "name": "Circomspect",
+          "organization": "Trail of Bits",
+          "rules": [
+            {
+              "id": "CS0017",
+              "name": "under-constrained-signal"
+            },
+            {
+              "id": "CA01",
+              "name": "unconstrained-signal"
+            },
+            {
+              "id": "CS0015",
+              "name": "unconstrained-division"
+            },
+            {
+              "id": "CS0018",
+              "name": "unused-output-signal"
+            },
+            {
+              "id": "CS0005",
+              "name": "signal-assignment-statement"
+            },
+            {
+              "id": "CS0014",
+              "name": "unconstrained-less-than"
+            },
+            {
+              "id": "CS0003",
+              "name": "field-element-comparison"
+            },
+            {
+              "id": "CS0010",
+              "name": "non-strict-binary-conversion"
+            },
+            {
+              "id": "CS0004",
+              "name": "field-element-arithmetic"
+            },
+            {
+              "id": "CS0013",
+              "name": "unnecessary-signal-assignment"
+            },
+            {
+              "id": "CS0006",
+              "name": "unused-variable-value"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "version": "2.1.0"
+}

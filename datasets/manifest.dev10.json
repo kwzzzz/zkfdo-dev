@@ -1,5 +1,103 @@
 {
+  "schema_version": 1,
   "name": "dev10",
-  "description": "Small development manifest placeholder for up to 10 Circom targets.",
-  "targets": []
+  "description": "Three distinct direct-mode Circom targets from the pinned zkbugs checkout. This is an honest development subset, not ten targets and not an independent evaluation set.",
+  "targets": [
+    {
+      "label": "reclaim Add32Bits direct",
+      "project": "https://github.com/reclaimprotocol/circom-chacha20",
+      "revision": "project:ef9f5a5ad899d852740a26b30eabe5765673c71f;zkbugs:a0eed744ba1a816acaa2fae597f4e79b4fd01aea",
+      "project_root": "../.external/zkbugs/dataset/circom/reclaimprotocol/circom-chacha20/zksecurity_Unsound_Addition_Gadget",
+      "entrypoint": "../.external/zkbugs/dataset/circom/reclaimprotocol/circom-chacha20/zksecurity_Unsound_Addition_Gadget/circuit.circom",
+      "template_name": "Add32Bits",
+      "concrete_parameters": [],
+      "prime": "bn128",
+      "compile_args": [],
+      "mode": "direct",
+      "input_assumptions": "The isolated wrapper exposes a and b directly. The original caller's 32-bit input assumptions and project reachability have not been revalidated in this work.",
+      "known_defects": [
+        {
+          "root_cause_id": "reclaimprotocol/circom-chacha20/zksecurity_Unsound_Addition_Gadget",
+          "location": "add32bits.circom: Add32Bits, tmp witness assignment and output constraint",
+          "source_url": "https://github.com/zksecurity/zkbugs/blob/a0eed744ba1a816acaa2fae597f4e79b4fd01aea/dataset/circom/reclaimprotocol/circom-chacha20/zksecurity_Unsound_Addition_Gadget/zkbugs_config.json",
+          "reported": true,
+          "local_reproduction": "Not reproduced by this work. Pinned zkbugs metadata says Executed=true, Compiled Direct=true, Reproduced=false.",
+          "tcct_status": "Current zkFuzz detection has not been verified.",
+          "reachability": "Direct wrapper only; original-project reachability is unverified.",
+          "evidence": [
+            "../.external/zkbugs/dataset/circom/reclaimprotocol/circom-chacha20/zksecurity_Unsound_Addition_Gadget/zkbugs_config.json",
+            "../.external/zkbugs/dataset/circom/reclaimprotocol/circom-chacha20/zksecurity_Unsound_Addition_Gadget/README.md"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "reclaim XorWords direct",
+      "project": "https://github.com/reclaimprotocol/circom-chacha20",
+      "revision": "project:ef9f5a5ad899d852740a26b30eabe5765673c71f;zkbugs:a0eed744ba1a816acaa2fae597f4e79b4fd01aea",
+      "project_root": "../.external/zkbugs/dataset/circom/reclaimprotocol/circom-chacha20/zksecurity_Unsound_XOR_gadget",
+      "entrypoint": "../.external/zkbugs/dataset/circom/reclaimprotocol/circom-chacha20/zksecurity_Unsound_XOR_gadget/circuit.circom",
+      "template_name": "XorWords",
+      "concrete_parameters": [],
+      "prime": "bn128",
+      "compile_args": [],
+      "mode": "direct",
+      "input_assumptions": "The isolated wrapper exposes two field inputs. Original call-site bit/range assumptions and reachability have not been revalidated in this work.",
+      "known_defects": [
+        {
+          "root_cause_id": "reclaimprotocol/circom-chacha20/zksecurity_Unsound_XOR_gadget",
+          "location": "xor.circom: XorBits, unconstrained a_bits and b_bits witness assignments",
+          "source_url": "https://github.com/zksecurity/zkbugs/blob/a0eed744ba1a816acaa2fae597f4e79b4fd01aea/dataset/circom/reclaimprotocol/circom-chacha20/zksecurity_Unsound_XOR_gadget/zkbugs_config.json",
+          "reported": true,
+          "local_reproduction": "Not reproduced by this work. Pinned zkbugs metadata says Executed=true, Compiled Direct=true, Reproduced=false.",
+          "tcct_status": "Current zkFuzz detection has not been verified.",
+          "reachability": "Direct wrapper only; original-project reachability is unverified.",
+          "evidence": [
+            "../.external/zkbugs/dataset/circom/reclaimprotocol/circom-chacha20/zksecurity_Unsound_XOR_gadget/zkbugs_config.json",
+            "../.external/zkbugs/dataset/circom/reclaimprotocol/circom-chacha20/zksecurity_Unsound_XOR_gadget/README.md"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "reclaim RotateLeft32Bits(3) direct",
+      "project": "https://github.com/reclaimprotocol/circom-chacha20",
+      "revision": "project:ef9f5a5ad899d852740a26b30eabe5765673c71f;zkbugs:a0eed744ba1a816acaa2fae597f4e79b4fd01aea",
+      "project_root": "../.external/zkbugs/dataset/circom/reclaimprotocol/circom-chacha20/zksecurity_unsound_left_rotation",
+      "entrypoint": "../.external/zkbugs/dataset/circom/reclaimprotocol/circom-chacha20/zksecurity_unsound_left_rotation/circuit.circom",
+      "template_name": "RotateLeft32Bits",
+      "concrete_parameters": [
+        "3"
+      ],
+      "prime": "bn128",
+      "compile_args": [],
+      "mode": "direct",
+      "input_assumptions": "The wrapper fixes L=3 and exposes in directly. The template documents that in must already be constrained to 32 bits; original call-site enforcement is unverified here.",
+      "known_defects": [
+        {
+          "root_cause_id": "reclaimprotocol/circom-chacha20/zksecurity-1",
+          "location": "generics.circom: RotateLeft32Bits, part1/part2 constraints",
+          "source_url": "https://github.com/zksecurity/zkbugs/blob/a0eed744ba1a816acaa2fae597f4e79b4fd01aea/dataset/circom/reclaimprotocol/circom-chacha20/zksecurity_unsound_left_rotation/zkbugs_config.json",
+          "reported": true,
+          "local_reproduction": "Not reproduced by this work. Pinned zkbugs metadata says Executed=true, Compiled Direct=true, Reproduced=false.",
+          "tcct_status": "Current zkFuzz detection has not been verified.",
+          "reachability": "Direct wrapper only; original-project reachability and the documented 32-bit precondition are unverified.",
+          "evidence": [
+            "../.external/zkbugs/dataset/circom/reclaimprotocol/circom-chacha20/zksecurity_unsound_left_rotation/zkbugs_config.json",
+            "../.external/zkbugs/dataset/circom/reclaimprotocol/circom-chacha20/zksecurity_unsound_left_rotation/README.md"
+          ]
+        }
+      ]
+    }
+  ],
+  "exclusions": [
+    {
+      "label": "telepathy CoreVerifyPubkeyG1 simplified direct",
+      "reason": "The checked-out direct wrapper references a circuits/ dependency tree that is not present locally; no source download was retried."
+    },
+    {
+      "label": "reclaim original entrypoints",
+      "reason": "The three pinned zkbugs records list no original entrypoint and the full project source was not used, so only direct-mode candidates are included."
+    }
+  ]
 }

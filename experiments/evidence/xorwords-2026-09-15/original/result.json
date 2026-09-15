@@ -1,0 +1,31 @@
+{
+  "run_id": "a96a4865-2ea1-4e59-a9d4-02bc8197c23f",
+  "target": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev10-preparation/prepare-e11d82dd-e508-4b69-ab93-38dbed5345f8/targets/0001/sources/circuit.circom",
+  "command": {
+    "binary": "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkFuzz/target/release/zkfuzz",
+    "args": [
+      "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev10-preparation/prepare-e11d82dd-e508-4b69-ab93-38dbed5345f8/targets/0001/sources/circuit.circom",
+      "--prime",
+      "bn128",
+      "--search_mode",
+      "ga",
+      "--save_output",
+      "--path_to_mutation_setting",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev10-smoke/execution-ebf486be-c22f-4a60-962e-c0c594738137/mutation-settings.json"
+    ]
+  },
+  "started_at": "2026-09-15T04:48:02.930764Z",
+  "finished_at": "2026-09-15T04:48:02.959901Z",
+  "wall_time_seconds": 0.0291415,
+  "budget_seconds": 3,
+  "execution_limit_seconds": 3.0,
+  "process_start_offset_seconds": 0.000122084,
+  "timed_out": false,
+  "exit_code": 0,
+  "status": "bug_found",
+  "random_seed": 424242,
+  "last_generation": 0,
+  "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev10-smoke/execution-ebf486be-c22f-4a60-962e-c0c594738137/ef4000c1-46fc-4e34-a269-3bf971c5a21e/runs/a96a4865-2ea1-4e59-a9d4-02bc8197c23f/stdout.log",
+  "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev10-smoke/execution-ebf486be-c22f-4a60-962e-c0c594738137/ef4000c1-46fc-4e34-a269-3bf971c5a21e/runs/a96a4865-2ea1-4e59-a9d4-02bc8197c23f/stderr.log",
+  "error": null
+}
