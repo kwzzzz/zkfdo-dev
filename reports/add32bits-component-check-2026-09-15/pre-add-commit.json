@@ -1,0 +1,84 @@
+{
+  "sha": "9f98e3aaa95e629515883e0cc6e6cfe6aef6d622",
+  "node_id": "C_kwDOL3dhY9oAKDlmOThlM2FhYTk1ZTYyOTUxNTg4M2UwY2M2ZTZjZmU2YWVmNmQ2MjI",
+  "commit": {
+    "author": {
+      "name": "Alex E",
+      "email": "alex@creatoros.co",
+      "date": "2023-06-25T20:08:07Z"
+    },
+    "committer": {
+      "name": "Alex E",
+      "email": "alex@creatoros.co",
+      "date": "2023-06-25T20:08:07Z"
+    },
+    "message": "[FIX] optimized ptau and zkey generation",
+    "tree": {
+      "sha": "53457537f1996e48492f807c3838ff96474cfde5",
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/trees/53457537f1996e48492f807c3838ff96474cfde5"
+    },
+    "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/commits/9f98e3aaa95e629515883e0cc6e6cfe6aef6d622",
+    "comment_count": 0,
+    "verification": {
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
+    }
+  },
+  "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/commits/9f98e3aaa95e629515883e0cc6e6cfe6aef6d622",
+  "html_url": "https://github.com/reclaim-1/circom-chacha20/commit/9f98e3aaa95e629515883e0cc6e6cfe6aef6d622",
+  "comments_url": "https://api.github.com/repos/reclaim-1/circom-chacha20/commits/9f98e3aaa95e629515883e0cc6e6cfe6aef6d622/comments",
+  "author": null,
+  "committer": null,
+  "parents": [
+    {
+      "sha": "e37b573bfcd3c4923e7dc328f45ba0229458c1fb",
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/commits/e37b573bfcd3c4923e7dc328f45ba0229458c1fb",
+      "html_url": "https://github.com/reclaim-1/circom-chacha20/commit/e37b573bfcd3c4923e7dc328f45ba0229458c1fb"
+    }
+  ],
+  "stats": {
+    "total": 39,
+    "additions": 23,
+    "deletions": 16
+  },
+  "files": [
+    {
+      "sha": "0c928b96317f9e0c4794d0bcdf9014f85a56a541",
+      "filename": "resources/circuit_final.zkey",
+      "status": "modified",
+      "additions": 0,
+      "deletions": 0,
+      "changes": 0,
+      "blob_url": "https://github.com/reclaim-1/circom-chacha20/blob/9f98e3aaa95e629515883e0cc6e6cfe6aef6d622/resources%2Fcircuit_final.zkey",
+      "raw_url": "https://github.com/reclaim-1/circom-chacha20/raw/9f98e3aaa95e629515883e0cc6e6cfe6aef6d622/resources%2Fcircuit_final.zkey",
+      "contents_url": "https://api.github.com/repos/reclaim-1/circom-chacha20/contents/resources%2Fcircuit_final.zkey?ref=9f98e3aaa95e629515883e0cc6e6cfe6aef6d622"
+    },
+    {
+      "sha": "504dd4f77cd3867486a7a07813ef1e94e6de182e",
+      "filename": "scripts/build-circuit.sh",
+      "status": "modified",
+      "additions": 6,
+      "deletions": 6,
+      "changes": 12,
+      "blob_url": "https://github.com/reclaim-1/circom-chacha20/blob/9f98e3aaa95e629515883e0cc6e6cfe6aef6d622/scripts%2Fbuild-circuit.sh",
+      "raw_url": "https://github.com/reclaim-1/circom-chacha20/raw/9f98e3aaa95e629515883e0cc6e6cfe6aef6d622/scripts%2Fbuild-circuit.sh",
+      "contents_url": "https://api.github.com/repos/reclaim-1/circom-chacha20/contents/scripts%2Fbuild-circuit.sh?ref=9f98e3aaa95e629515883e0cc6e6cfe6aef6d622",
+      "patch": "@@ -5,13 +5,13 @@ circom circuits/circuit.circom --r1cs --wasm --O2 --inspect -o resources\n mv resources/circuit_js/circuit.wasm resources/circuit.wasm\n rm -rf resources/circuit_js\n echo \"generating verification key...\"\n-snarkjs groth16 setup resources/circuit.r1cs pot/pot18_final.ptau resources/circuit_0000.zkey\n-#snarkjs zkey contribute resources/circuit_0000.zkey resources/circuit_0001.zkey --name=\"1st Contributor\" -v -e=$(openssl rand -hex 10240)\n-#snarkjs zkey contribute resources/circuit_0001.zkey resources/circuit_0002.zkey --name=\"2nd Contributor\" -v -e=$(openssl rand -hex 10240)\n+npm exec snarkjs -- groth16 setup resources/circuit.r1cs pot/pot18_final.ptau resources/circuit_0000.zkey\n+npm exec snarkjs -- zkey contribute resources/circuit_0000.zkey resources/circuit_0001.zkey --name=\"1st Contributor\" -v -e=$(openssl rand -hex 10240)\n+#npm exec snarkjs -- zkey contribute resources/circuit_0001.zkey resources/circuit_0002.zkey --name=\"2nd Contributor\" -v -e=$(openssl rand -hex 10240)\n # last circuit_000x.zkey should go in here\n-#snarkjs zkey beacon resources/circuit_0000.zkey resources/circuit_final.zkey $(curl https://drand.cloudflare.com/public/latest | jq -r \".randomness\") 20 -n=\"Final Beacon phase2\"\n-snarkjs zkey beacon resources/circuit_0000.zkey resources/circuit_final.zkey $(openssl rand -hex 128) 20 -n=\"Final Beacon phase2\"\n-# snarkjs zkey verify resources/circuit.r1cs pot/pot18_final.ptau resources/circuit_final.zkey\n+#npm exec snarkjs -- zkey beacon resources/circuit_0000.zkey resources/circuit_final.zkey $(curl https://drand.cloudflare.com/public/latest | jq -r \".randomness\") 20\n+npm exec snarkjs -- zkey beacon resources/circuit_0001.zkey resources/circuit_final.zkey $(openssl rand -hex 128) 20\n+#npm exec snarkjs -- zkey verify resources/circuit.r1cs pot/pot18_final.ptau resources/circuit_final.zkey\n rm -rf resources/circuit_0000.zkey\n rm -rf resources/circuit_0001.zkey\n rm -rf resources/circuit_0002.zkey"
+    },
+    {
+      "sha": "c63fa22d2e573339aec5ee4d9d3f09aeda0bddbf",
+      "filename": "scripts/generate-ptau.sh",
+      "status": "modified",
+      "additions": 17,
+      "deletions": 10,
+      "changes": 27,
+      "blob_url": "https://github.com/reclaim-1/circom-chacha20/blob/9f98e3aaa95e629515883e0cc6e6cfe6aef6d622/scripts%2Fgenerate-ptau.sh",
+      "raw_url": "https://github.com/reclaim-1/circom-chacha20/raw/9f98e3aaa95e629515883e0cc6e6cfe6aef6d622/scripts%2Fgenerate-ptau.sh",
+      "contents_url": "https://api.github.com/repos/reclaim-1/circom-chacha20/contents/scripts%2Fgenerate-ptau.sh?ref=9f98e3aaa95e629515883e0cc6e6cfe6aef6d622",
+      "patch": "@@ -1,11 +1,18 @@\n set -e\n-npm exec snarkjs -- powersoftau new bls12-381 18 pot18_0000.ptau -v\n-npm exec snarkjs -- powersoftau contribute pot18_0000.ptau pot18_0001.ptau --name=\"First contribution\" -v -e=$(openssl rand -hex 10240)\n-npm exec snarkjs -- powersoftau contribute pot18_0001.ptau pot18_0002.ptau --name=\"Second contribution\" -v -e=$(openssl rand -hex 10240)\n-npm exec snarkjs -- powersoftau export challenge pot18_0002.ptau challenge_0003\n-npm exec snarkjs -- powersoftau challenge contribute bls12-381 challenge_0003 response_0003 -e=$(openssl rand -hex 10240)\n-npm exec snarkjs -- powersoftau import response pot18_0002.ptau response_0003 pot18_0003.ptau -n=\"Third contribution\"\n-npm exec snarkjs -- powersoftau verify pot18_0003.ptau\n-npm exec snarkjs -- powersoftau beacon pot18_0003.ptau pot18_beacon.ptau $(curl https://beacon.nist.gov/beacon/2.0/pulse/last | jq -r \".pulse.outputValue\") 10 -n=\"Final Beacon\"\n-npm exec snarkjs -- powersoftau prepare phase2 pot18_beacon.ptau pot18_final.ptau -v\n-npm exec snarkjs -- powersoftau verify pot18_final.ptau\n\\ No newline at end of file\n+npm exec snarkjs -- powersoftau new bls12-381 18 pot18_0000.ptau\n+npm exec snarkjs -- powersoftau contribute pot18_0000.ptau pot18_0001.ptau --name=\"First contribution\" -e=$(openssl rand -hex 10240)\n+npm exec snarkjs -- powersoftau contribute pot18_0001.ptau pot18_0002.ptau --name=\"Second contribution\" -e=$(openssl rand -hex 10240)\n+npm exec snarkjs -- powersoftau contribute pot18_0002.ptau pot18_0003.ptau --name=\"Third contribution\" -e=$(openssl rand -hex 10240)\n+#npm exec snarkjs -- powersoftau verify pot18_0003.ptau\n+npm exec snarkjs -- powersoftau beacon pot18_0003.ptau pot18_beacon.ptau $(openssl rand -hex 128) 20 -n=\"Final Beacon\"\n+#npm exec snarkjs -- powersoftau beacon pot18_0003.ptau pot18_beacon.ptau $(curl https://drand.cloudflare.com/public/latest | jq -r \".randomness\") 20 -n=\"Final Beacon\"\n+npm exec snarkjs -- powersoftau prepare phase2 pot18_beacon.ptau pot18_final.ptau\n+#npm exec snarkjs -- powersoftau verify pot18_final.ptau\n+\n+rm pot18_0000.ptau\n+rm pot18_0001.ptau\n+rm pot18_0002.ptau\n+rm pot18_0003.ptau\n+rm pot18_beacon.ptau\n+mv pot18_final.ptau pot/pot18_final.ptau\n+"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "checked_at_utc": "2026-09-17T10:01:48.528359+00:00",
+  "baseline": "preservation-before.json",
+  "baseline_entries": 2799,
+  "all_baseline_files_unchanged": true,
+  "missing": [],
+  "changed": [],
+  "scope": "All pre-existing repository files outside this new evidence directory"
+}

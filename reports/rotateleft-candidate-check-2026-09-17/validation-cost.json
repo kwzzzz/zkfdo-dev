@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "classification": "post-hoc validation cost; separate from the historical search budget",
+  "historical_candidate": {
+    "runner_started_at_utc": "2026-09-15T07:10:56.404240Z",
+    "runner_finished_at_utc": "2026-09-15T07:10:57.109606Z",
+    "runner_wall_time_seconds": 0.705367833,
+    "scheduler_completion_offset_seconds": 0.785422667,
+    "backend_reported_execution_time": "691.032333ms",
+    "exact_candidate_creation_timestamp": null
+  },
+  "automated_component_check": {
+    "started_at_utc": "2026-09-17T10:00:08.568743+00:00",
+    "finished_at_utc": "2026-09-17T10:00:08.599129+00:00",
+    "compile_seconds": 0.014712500007590279,
+    "post_compile_evaluation_seconds": 0.00032958301017060876,
+    "total_seconds": 0.03038750000996515
+  },
+  "human_assisted_task": {
+    "selection_completed_at_utc": "2026-09-17T09:58:06.468593+00:00",
+    "preservation_check_completed_at_utc": "2026-09-17T10:01:48.528359+00:00",
+    "observed_interval_seconds": 222.059766,
+    "active_manual_time_separately_instrumented": false,
+    "interpretation": "This interval includes tool execution, compilation, review, and documentation. It is not a measurement of active reviewer labor."
+  }
+}

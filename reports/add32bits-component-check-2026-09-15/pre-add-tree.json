@@ -1,0 +1,296 @@
+{
+  "sha": "9f98e3aaa95e629515883e0cc6e6cfe6aef6d622",
+  "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/trees/9f98e3aaa95e629515883e0cc6e6cfe6aef6d622",
+  "tree": [
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5f1a2490d0ffe3affa4404e58dd05f73489efd44",
+      "size": 79,
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/blobs/5f1a2490d0ffe3affa4404e58dd05f73489efd44"
+    },
+    {
+      "path": "circuits",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "aee3c802bc5167cc92141521485182e3de5e9406",
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/trees/aee3c802bc5167cc92141521485182e3de5e9406"
+    },
+    {
+      "path": "circuits/chacha20.circom",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "88d975a74771b2127940ea7af257aa80e2886112",
+      "size": 4610,
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/blobs/88d975a74771b2127940ea7af257aa80e2886112"
+    },
+    {
+      "path": "circuits/circuit.circom",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6d0c443e7e4af3d007fb5b38882442895e767729",
+      "size": 95,
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/blobs/6d0c443e7e4af3d007fb5b38882442895e767729"
+    },
+    {
+      "path": "circuits/generics.circom",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a263846f1c934c4ceafafb0421415b242f1277c8",
+      "size": 1561,
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/blobs/a263846f1c934c4ceafafb0421415b242f1277c8"
+    },
+    {
+      "path": "circuits/tests",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "1c65bdac616692dbeebe489dee01e318e8762095",
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/trees/1c65bdac616692dbeebe489dee01e318e8762095"
+    },
+    {
+      "path": "circuits/tests/add32bits.circom",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ecad438bb36663392405c4e7bd07af9358ffe807",
+      "size": 82,
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/blobs/ecad438bb36663392405c4e7bd07af9358ffe807"
+    },
+    {
+      "path": "circuits/tests/chacha20.circom",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "149fe4c99b3c354730f6f27c39f6fa990b009503",
+      "size": 83,
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/blobs/149fe4c99b3c354730f6f27c39f6fa990b009503"
+    },
+    {
+      "path": "circuits/tests/chacha20block.circom",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e14c12db36778ba3d16c60d51be42396bf62f4f8",
+      "size": 86,
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/blobs/e14c12db36778ba3d16c60d51be42396bf62f4f8"
+    },
+    {
+      "path": "circuits/tests/chacha20qr.circom",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "af30645a8ecbaaf7432d3e42a49996fed698f436",
+      "size": 75,
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/blobs/af30645a8ecbaaf7432d3e42a49996fed698f436"
+    },
+    {
+      "path": "circuits/tests/rotateLeft32bits.circom",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0d9425e10d2edf6fb13ee3886fbf92e3880e568f",
+      "size": 563,
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/blobs/0d9425e10d2edf6fb13ee3886fbf92e3880e568f"
+    },
+    {
+      "path": "circuits/tests/xor32bits.circom",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4ff298b28afd0c5026f287c6c478bca72aacde24",
+      "size": 86,
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/blobs/4ff298b28afd0c5026f287c6c478bca72aacde24"
+    },
+    {
+      "path": "jest.config.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8c601f98fcb8d72b6363f993bf931c5b367a2520",
+      "size": 219,
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/blobs/8c601f98fcb8d72b6363f993bf931c5b367a2520"
+    },
+    {
+      "path": "package-lock.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4a5d5feef44b560fa7552c8868b766322b6d2241",
+      "size": 172284,
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/blobs/4a5d5feef44b560fa7552c8868b766322b6d2241"
+    },
+    {
+      "path": "package.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fb2b08bc310ad0f780494f211164e4ae6a81bddb",
+      "size": 904,
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/blobs/fb2b08bc310ad0f780494f211164e4ae6a81bddb"
+    },
+    {
+      "path": "pot",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a6305fbd1c9fa62397d1ed790abb374d02148bf6",
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/trees/a6305fbd1c9fa62397d1ed790abb374d02148bf6"
+    },
+    {
+      "path": "pot/.gitadd",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "readme.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1c121742db9ce39009186547250ffa75efe9fd95",
+      "size": 2793,
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/blobs/1c121742db9ce39009186547250ffa75efe9fd95"
+    },
+    {
+      "path": "resources",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ce5a6ae8d8202fa40c7212cc899e7572b5e3190b",
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/trees/ce5a6ae8d8202fa40c7212cc899e7572b5e3190b"
+    },
+    {
+      "path": "resources/.gitadd",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "resources/circuit.wasm",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0751087eeb00c0ca579290d4e3b2190ac71f17b9",
+      "size": 180868,
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/blobs/0751087eeb00c0ca579290d4e3b2190ac71f17b9"
+    },
+    {
+      "path": "resources/circuit_final.zkey",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0c928b96317f9e0c4794d0bcdf9014f85a56a541",
+      "size": 13647982,
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/blobs/0c928b96317f9e0c4794d0bcdf9014f85a56a541"
+    },
+    {
+      "path": "scripts",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0fe704c43ad2ba52025819bf5535cab7bebc3316",
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/trees/0fe704c43ad2ba52025819bf5535cab7bebc3316"
+    },
+    {
+      "path": "scripts/build-circuit.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "504dd4f77cd3867486a7a07813ef1e94e6de182e",
+      "size": 1264,
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/blobs/504dd4f77cd3867486a7a07813ef1e94e6de182e"
+    },
+    {
+      "path": "scripts/download-ptau.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1df57e6c53ed12f60c46f45e8e63db69f6ee3d43",
+      "size": 150,
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/blobs/1df57e6c53ed12f60c46f45e8e63db69f6ee3d43"
+    },
+    {
+      "path": "scripts/generate-ptau.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c63fa22d2e573339aec5ee4d9d3f09aeda0bddbf",
+      "size": 1094,
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/blobs/c63fa22d2e573339aec5ee4d9d3f09aeda0bddbf"
+    },
+    {
+      "path": "src",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e81268ae9e618568ac3a9c5ded15b98be4a808e3",
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/trees/e81268ae9e618568ac3a9c5ded15b98be4a808e3"
+    },
+    {
+      "path": "src/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ccaa09bdfe6382a50d226341459eaee7ddee219b",
+      "size": 95,
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/blobs/ccaa09bdfe6382a50d226341459eaee7ddee219b"
+    },
+    {
+      "path": "src/operator.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d51e8f5262dc802f406fd0255bed18522f3bb8d9",
+      "size": 1040,
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/blobs/d51e8f5262dc802f406fd0255bed18522f3bb8d9"
+    },
+    {
+      "path": "src/tests",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8f084d76b87c7414d65a03bd2642200532510bcc",
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/trees/8f084d76b87c7414d65a03bd2642200532510bcc"
+    },
+    {
+      "path": "src/tests/circuits.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4d5230abba12f6517dbd9937417ded38fba99205",
+      "size": 8034,
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/blobs/4d5230abba12f6517dbd9937417ded38fba99205"
+    },
+    {
+      "path": "src/tests/lib.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "773f08dcde7c66d48cb52d084a38d510c349e979",
+      "size": 1438,
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/blobs/773f08dcde7c66d48cb52d084a38d510c349e979"
+    },
+    {
+      "path": "src/tests/utils.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4876a16a00b8cf59af1045f5a88656780e8489c2",
+      "size": 293,
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/blobs/4876a16a00b8cf59af1045f5a88656780e8489c2"
+    },
+    {
+      "path": "src/types.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "efa200fbd96715e851672f7b77cb94a3046aee47",
+      "size": 1477,
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/blobs/efa200fbd96715e851672f7b77cb94a3046aee47"
+    },
+    {
+      "path": "src/utils.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "13e4e276be932d1d17d9e2949e3b83c5efffc46d",
+      "size": 675,
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/blobs/13e4e276be932d1d17d9e2949e3b83c5efffc46d"
+    },
+    {
+      "path": "src/zk.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4e11af02233ede7811d72b6856d491bbcaf37dcd",
+      "size": 3478,
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/blobs/4e11af02233ede7811d72b6856d491bbcaf37dcd"
+    },
+    {
+      "path": "tsconfig.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5c4c2360bca325f24aa875caaa2b3807e3d8adc6",
+      "size": 507,
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/blobs/5c4c2360bca325f24aa875caaa2b3807e3d8adc6"
+    }
+  ],
+  "truncated": false
+}

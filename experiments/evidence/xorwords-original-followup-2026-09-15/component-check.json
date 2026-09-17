@@ -1,0 +1,94 @@
+{
+  "scope": "one preserved fixture assignment against unmodified historical XorWords(1, 32)",
+  "project_revision": "4551ca64c9fe536b7b9b7498a1feb1ecdc847474",
+  "candidate_path": "experiments/evidence/xorwords-2026-09-15/original/counterexample.json",
+  "candidate_sha256": "6dbcbffe3b707ddb75f763aec08aead29c76639d096d6b1def8a8e0de6bb78a8",
+  "source_sha256": {
+    "parent-generics.circom": "226c80d4906c973275b239ae1e73f4762e96a58d1f2aba77c298c1938aa4f938",
+    "parent-xor32bits.circom": "a6817a0be88b01c05cd370980ab9ab7bc342989ca028b72563337d0b8b3a95d8"
+  },
+  "compiler_version": "circom compiler 2.2.3",
+  "compile_command": [
+    "circom",
+    "runs/xorwords-original-followup-2026-09-15/component-check/circuits/tests/xor32bits.circom",
+    "--r1cs",
+    "--sym",
+    "--O0",
+    "--prime",
+    "bn128",
+    "-o",
+    "runs/xorwords-original-followup-2026-09-15/component-check/compiled"
+  ],
+  "compile_exit_code": 0,
+  "r1cs_sha256": "b8267464cca8e3c012f1f38e9018ad8facd65965f5f832fcfa2abecb25f43ea7",
+  "sym_sha256": "fd71a89b1ab0dd64b925054e73462024d8c21e6213fe6239cc24006d6585aaf7",
+  "source_or_constraint_changes": [],
+  "added_harness_constraints": [],
+  "entrypoint": "upstream circuits/tests/xor32bits.circom: component main = XorWords(1, 32)",
+  "mapping": {
+    "scalar": "main.{a,b,out} -> main.{a,b,out}[0]",
+    "bits": "main.xor.{a_bits,b_bits,xor_bits}[k] -> main.{abits,bbits,xors}[31-k]",
+    "reason": "fixture traverses low-to-high bits; original traverses high-to-low bits",
+    "checked_redundant_aliases": {
+      "main.xor.a": "main.a",
+      "main.xor.b": "main.b",
+      "main.xor.out": "main.out"
+    },
+    "field_value_conversion": "identity"
+  },
+  "mapped_named_signals": 99,
+  "assigned_constant_wire": "wire 0 = 1",
+  "unmapped_wires": [],
+  "defaulted_wires": [],
+  "nonzero_mapped_assignment": {
+    "main.out[0]": "21888242871839275222246405745257275088548364400416034343698204186558628725256",
+    "main.a[0]": "6",
+    "main.b[0]": "1",
+    "main.abits[3]": "21888242871839275222246405745257275088548364400416034343698204186575808495553",
+    "main.abits[29]": "1",
+    "main.abits[30]": "1",
+    "main.bbits[17]": "6",
+    "main.bbits[22]": "1",
+    "main.bbits[31]": "1",
+    "main.xors[3]": "21888242871839275222246405745257275088548364400416034343698204186575808495553",
+    "main.xors[17]": "6",
+    "main.xors[22]": "1",
+    "main.xors[29]": "1",
+    "main.xors[30]": "1",
+    "main.xors[31]": "1"
+  },
+  "expected_fixture_output": {
+    "name": "main.out",
+    "value": "7"
+  },
+  "r1cs_counts": {
+    "wires": 100,
+    "public_outputs": 1,
+    "public_inputs": 0,
+    "private_inputs": 2,
+    "labels": 100,
+    "constraints": 35
+  },
+  "satisfied_constraints": 33,
+  "failed_constraints": [
+    {
+      "constraint_index_zero_based": 32,
+      "original_constraint": "(a[0] - sum(abits[j] * 2**(31-j))) * a[0] === 0",
+      "A": "17179869184",
+      "B": "6",
+      "C": "0",
+      "A_times_B_minus_C_mod_p": "103079215104"
+    },
+    {
+      "constraint_index_zero_based": 33,
+      "original_constraint": "(b[0] - sum(bbits[j] * 2**(31-j))) * b[0] === 0",
+      "A": "21888242871839275222246405745257275088548364400416034343698204186575808396801",
+      "B": "1",
+      "C": "0",
+      "A_times_B_minus_C_mod_p": "21888242871839275222246405745257275088548364400416034343698204186575808396801"
+    }
+  ],
+  "candidate_satisfies_original_component": false,
+  "project_entrypoint_reachability": "not established by this component check",
+  "interpretation": "Rejection applies to this exact assignment; it does not establish original-component or project safety."
+}

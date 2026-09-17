@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "started_at_utc": "2026-09-17T09:47:32.717692+00:00",
+  "finished_at_utc": "2026-09-17T09:47:32.760459+00:00",
+  "question": "Does the exact RotateLeft32Bits fixture executed in dev3 preserve the pinned original component constraints?",
+  "verdict": "constraints_preserved_in_compared_component_scope",
+  "candidate_witness_files_read": [],
+  "actual_dev3_fixture": {
+    "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+    "template": "RotateLeft32Bits",
+    "parameters": [
+      "3"
+    ],
+    "prime": "bn128",
+    "compile_args": [],
+    "mode": "direct",
+    "prepared_sha256": "001056ea35a687233e520624f60f439f99a84600f83da64f697d0bb0f563b952",
+    "wrapper_sha256": "3c3363ed16fba47f0020ce7be9034af34c26fd4752273d7d5803163d10084fad",
+    "template_source_sha256": "cdd4afc861b5b07de22aa90fe81f0d9142882964586e8531185ca3422c745bae",
+    "representative_outcome": "runs/dev3-ranking-pilot-2026-09-15/rep-01-seed-2026091501/path-order/executions/execution-d825de18-7f45-4afc-8a35-a76e952cf867/outcome.json",
+    "representative_run_id": "222deb80-cf3f-40b9-9a70-f8e95e0136c1",
+    "zkfuzz_binary_sha256": "ac2d9d16fd97ff803b121b7994aef804b4e191636f3f78660ff6ecd6c9ae4edd",
+    "all_49_outcomes_same_prepared_and_backend": true
+  },
+  "original_and_fix_provenance": {
+    "compared_original_revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+    "original_source_path": "circuits/generics.circom",
+    "original_source_git_blob_sha1": "46ef6207acbd284271f27be9ccd7798e7f26603c",
+    "original_source_sha256": "4dca4517b1804c8d3a6c9fa0699bb31633a117ca1f0e6df7a45d352beb94d366",
+    "rotation_fix_revision": "e5e756375fc1fc8dc48667b00cdf38c79a0fdf50",
+    "fix_is_direct_child_of_original": true,
+    "fixed_source_git_blob_sha1": "6ba242c7a21ab49f759c6eac8035bc5a5df41342",
+    "fixed_source_sha256": "342b416bcb2f1f5436e6130d13920e4dc45fcdbd8622cfadecb517beaac237ee",
+    "fixture_template_matches_original_ignoring_comments_and_whitespace": true,
+    "fixture_template_matches_fixed_ignoring_comments_and_whitespace": false,
+    "exact_audit_snapshot": "unknown; the audit report does not identify a project commit hash",
+    "scope_note": "ef9 is pinned both by zkbugs metadata and as the direct parent of e5; commit labels alone were not used."
+  },
+  "input_and_signal_mapping": {
+    "mapping": {
+      "main.in": "main.in",
+      "main.out": "main.out",
+      "main.part1": "main.part1",
+      "main.part2": "main.part2"
+    },
+    "parameter_mapping": "L = 3 in both compilations",
+    "field_value_conversion": "none",
+    "wrapper_difference_for_comparison": "none; exact dev3 wrapper bytes used with each source",
+    "input_precondition": "in is an unsigned 32-bit value",
+    "precondition_source": "ef9 source comment and audit finding 1",
+    "enforced_by_component": false,
+    "enforced_by_dev3_wrapper": false,
+    "wrapper_public_annotation_effect": "marks in public; it does not add a range constraint",
+    "caller_responsibility": "the caller must constrain in to 32 bits"
+  },
+  "constraint_comparison": {
+    "compiler_version": "circom compiler 2.2.3",
+    "fixture_compile_command": [
+      "circom",
+      "reports/rotateleft-fixture-fidelity-2026-09-15/component-check/fixture/circuit.circom",
+      "--r1cs",
+      "--sym",
+      "--O0",
+      "--prime",
+      "bn128",
+      "-o",
+      "reports/rotateleft-fixture-fidelity-2026-09-15/component-check/fixture/compiled"
+    ],
+    "original_compile_command": [
+      "circom",
+      "reports/rotateleft-fixture-fidelity-2026-09-15/component-check/original/circuit.circom",
+      "--r1cs",
+      "--sym",
+      "--O0",
+      "--prime",
+      "bn128",
+      "-o",
+      "reports/rotateleft-fixture-fidelity-2026-09-15/component-check/original/compiled"
+    ],
+    "fixture_counts": {
+      "wires": 5,
+      "public_outputs": 1,
+      "public_inputs": 1,
+      "private_inputs": 0,
+      "labels": 5,
+      "constraints": 2
+    },
+    "original_counts": {
+      "wires": 5,
+      "public_outputs": 1,
+      "public_inputs": 1,
+      "private_inputs": 0,
+      "labels": 5,
+      "constraints": 2
+    },
+    "fixture_r1cs_sha256": "ca66ddb8e7daaa7499b3764cb41973507b4d80177f0b06918b4a7a3a75f4a42a",
+    "original_r1cs_sha256": "ca66ddb8e7daaa7499b3764cb41973507b4d80177f0b06918b4a7a3a75f4a42a",
+    "r1cs_bytes_identical": true,
+    "fixture_sym_sha256": "f9bf7855ea98a8a28be5b8695b49104d2519856daf00fb3fb0eda5463ad554f3",
+    "original_sym_sha256": "f9bf7855ea98a8a28be5b8695b49104d2519856daf00fb3fb0eda5463ad554f3",
+    "sym_bytes_identical": true,
+    "all_constraints_matched_by_signal_name_and_finite_field_polynomial": true,
+    "rows": [
+      {
+        "kind": "witness assignment, not a constraint",
+        "original_location": "ef9 circuits/generics.circom:42",
+        "fixture_location": "prepared generics.circom:11",
+        "source_expression_at_L3": "part1 <-- (in << 3) & 0xFFFFFFFF",
+        "classification": "same witness computation; generates no R1CS constraint",
+        "input_precondition_needed_for_intended_bit meaning": "in is a constrained unsigned 32-bit value"
+      },
+      {
+        "kind": "witness assignment, not a constraint",
+        "original_location": "ef9 circuits/generics.circom:43",
+        "fixture_location": "prepared generics.circom:12",
+        "source_expression_at_L3": "part2 <-- in >> 29",
+        "classification": "same witness computation; generates no R1CS constraint",
+        "input_precondition_needed_for_intended_bit meaning": "in is a constrained unsigned 32-bit value"
+      },
+      {
+        "kind": "constraint",
+        "original_location": "ef9 circuits/generics.circom:44",
+        "fixture_location": "prepared generics.circom:13",
+        "source_expression_at_L3": "out - part1 - part2 === 0",
+        "original_r1cs_index_zero_based": 0,
+        "fixture_r1cs_index_zero_based": 0,
+        "normalized_polynomial": {
+          "main.out": "1",
+          "main.part1": "21888242871839275222246405745257275088548364400416034343698204186575808495616",
+          "main.part2": "21888242871839275222246405745257275088548364400416034343698204186575808495616"
+        },
+        "classification": "same finite-field constraint",
+        "input_precondition_needed_for_algebraic_equivalence": "none"
+      },
+      {
+        "kind": "constraint",
+        "original_location": "ef9 circuits/generics.circom:45",
+        "fixture_location": "prepared generics.circom:14",
+        "source_expression_at_L3": "part1 / 2**3 + part2 * 2**29 - in === 0",
+        "original_r1cs_index_zero_based": 1,
+        "fixture_r1cs_index_zero_based": 1,
+        "normalized_polynomial": {
+          "main.in": "1",
+          "main.part1": "2736030358979909402780800718157159386068545550052004292962275523321976061952",
+          "main.part2": "21888242871839275222246405745257275088548364400416034343698204186575271624705"
+        },
+        "classification": "same finite-field constraint",
+        "input_precondition_needed_for_algebraic_equivalence": "none"
+      }
+    ]
+  },
+  "fixed_source_static_difference": {
+    "summary": "e5 changes part1's witness computation, constrains part2 with <==, and swaps the reconstruction terms; it is not the source executed in dev3.",
+    "effectiveness_assessed": false,
+    "audit_client_response_equivalence_assessed": false
+  },
+  "upstream_context": {
+    "upstream_test_path": "circuits/tests/rotateLeft32bits.circom",
+    "upstream_test_git_blob_sha1": "0d9425e10d2edf6fb13ee3886fbf92e3880e568f",
+    "upstream_test_parameters": [
+      16,
+      12,
+      8,
+      7
+    ],
+    "dev3_parameter_3_present_in_upstream_test": false,
+    "project_entrypoint_reachability_checked": false
+  },
+  "timing": {
+    "fixture_compile_seconds": 0.01713416700658854,
+    "original_compile_seconds": 0.00559304200578481,
+    "classification": "fixture-fidelity review cost; no candidate validation or fuzzing"
+  },
+  "interpretation": {
+    "component_evaluation_use": "The dev3 target is faithful for studying the constraint system of the pinned original RotateLeft32Bits(3) component.",
+    "not_established": [
+      "validity of any preserved RotateLeft candidate",
+      "project-call reachability or project-level impact",
+      "32-bit input enforcement by the component or wrapper",
+      "equivalence to the exact full audit snapshot",
+      "ranking performance"
+    ]
+  }
+}

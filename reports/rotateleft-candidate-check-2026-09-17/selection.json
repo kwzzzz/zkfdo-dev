@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "selected_at_utc": "2026-09-17T09:58:06.468593+00:00",
+  "selection_policy": "Earliest runner started_at, then run_id, then preserved path; fixed before parsing candidate values.",
+  "ranking_or_expected_validity_used": false,
+  "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+  "inventory_count": 21,
+  "inventory": [
+    {
+      "started_at": "2026-09-15T07:10:56.404240Z",
+      "run_id": "4f896cbb-0aa5-475a-b485-6b2be66fcbbe",
+      "strategy": "random",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/random/executions/execution-69fe44a5-430c-4640-81c6-14daf4f16247/outcome.json",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/random/executions/execution-69fe44a5-430c-4640-81c6-14daf4f16247/counterexample-candidates/0003/circuit.circom_p6UtyhoITh_counterexample.json",
+      "candidate_sha256": "8effd6c717f7ac463f956d9581cf0146eff4a0ba1b01e60bf23327d405cb93e4",
+      "classification": "backend-counterexample-candidate-unconfirmed",
+      "candidate_values_read_during_selection": false
+    },
+    {
+      "started_at": "2026-09-15T07:10:57.875002Z",
+      "run_id": "a462aaf1-5714-48d8-911c-bd63416a19c9",
+      "strategy": "small-first",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/small-first/executions/execution-498c9c6a-e096-4620-8d2c-4e3536527ce8/outcome.json",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/small-first/executions/execution-498c9c6a-e096-4620-8d2c-4e3536527ce8/counterexample-candidates/0002/circuit.circom_aMm4ja2g0X_counterexample.json",
+      "candidate_sha256": "b12cce131663ea4d12167e739d06f3a36aa3c3feb4eceb528c00e46b60500766",
+      "classification": "backend-counterexample-candidate-unconfirmed",
+      "candidate_values_read_during_selection": false
+    },
+    {
+      "started_at": "2026-09-15T07:10:59.171769Z",
+      "run_id": "263ee729-c919-4b02-bd08-763e63389ad5",
+      "strategy": "legacy",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/legacy/executions/execution-3787a3bf-8509-45c0-a484-ab0ec47b3c50/outcome.json",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/legacy/executions/execution-3787a3bf-8509-45c0-a484-ab0ec47b3c50/counterexample-candidates/0002/circuit.circom_uusdcCJ67K_counterexample.json",
+      "candidate_sha256": "864fb744b0fae1b7157e9e090e57c9dd25843e3bfa890600ee05b5a13c9f7e5c",
+      "classification": "backend-counterexample-candidate-unconfirmed",
+      "candidate_values_read_during_selection": false
+    },
+    {
+      "started_at": "2026-09-15T07:11:00.520274Z",
+      "run_id": "31abfb49-2fa2-41ee-9e06-ff974e7630bc",
+      "strategy": "warning-first",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/warning-first/executions/execution-b5a4fd07-f05c-4a31-a437-bce6e81ce423/outcome.json",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/warning-first/executions/execution-b5a4fd07-f05c-4a31-a437-bce6e81ce423/counterexample-candidates/0002/circuit.circom_Ehml5wWYOL_counterexample.json",
+      "candidate_sha256": "e387afc79c70aa4aaa3a5a3b3ab0ba693fb05559a626eb77bb8d1a5ac9a9c3d7",
+      "classification": "backend-counterexample-candidate-unconfirmed",
+      "candidate_values_read_during_selection": false
+    },
+    {
+      "started_at": "2026-09-15T07:11:01.823973Z",
+      "run_id": "19426e6c-574b-4f16-9156-e6c459b34b66",
+      "strategy": "risk-only",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/risk-only/executions/execution-dd73234f-ba9d-4029-afa8-342237146c36/outcome.json",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/risk-only/executions/execution-dd73234f-ba9d-4029-afa8-342237146c36/counterexample-candidates/0002/circuit.circom_FfKF51WDSW_counterexample.json",
+      "candidate_sha256": "176c392327ba4e6f5cd36b0e244d46ff2953ffbe11329d21bb30133503164cec",
+      "classification": "backend-counterexample-candidate-unconfirmed",
+      "candidate_values_read_during_selection": false
+    },
+    {
+      "started_at": "2026-09-15T07:11:03.227364Z",
+      "run_id": "58228185-c05f-4a9b-ad32-f145cdbeca91",
+      "strategy": "risk-grouped",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/risk-grouped/executions/execution-2acb9fc0-11f5-4c87-85a5-51b84796bfa0/outcome.json",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/risk-grouped/executions/execution-2acb9fc0-11f5-4c87-85a5-51b84796bfa0/counterexample-candidates/0002/circuit.circom_4neavJ74Rn_counterexample.json",
+      "candidate_sha256": "109780f735ac05605e53d02d703890cc6686d7c6faaef5073f994876f1632d99",
+      "classification": "backend-counterexample-candidate-unconfirmed",
+      "candidate_values_read_during_selection": false
+    },
+    {
+      "started_at": "2026-09-15T07:11:04.557713Z",
+      "run_id": "13af8384-ba46-4376-9803-5d9ecf0f024f",
+      "strategy": "path-order",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/path-order/executions/execution-b6c6e2d8-a270-42c4-90bc-fbb61fb2653e/outcome.json",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/path-order/executions/execution-b6c6e2d8-a270-42c4-90bc-fbb61fb2653e/counterexample-candidates/0003/circuit.circom_QYAwoWQHQ6_counterexample.json",
+      "candidate_sha256": "1d44276ed293cf90d7f48ab7a77f8758160edc582f0889ef5641d349f69e2efb",
+      "classification": "backend-counterexample-candidate-unconfirmed",
+      "candidate_values_read_during_selection": false
+    },
+    {
+      "started_at": "2026-09-15T07:11:32.173657Z",
+      "run_id": "98724237-bc01-4e61-8d03-a83daa2a4469",
+      "strategy": "legacy",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/legacy/executions/execution-fc29c1a2-6389-4397-b4ce-e4dadd38159a/outcome.json",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/legacy/executions/execution-fc29c1a2-6389-4397-b4ce-e4dadd38159a/counterexample-candidates/0002/circuit.circom_wT9bRzaJR7_counterexample.json",
+      "candidate_sha256": "43b7084d1513a5cefcfaeec6b9954cc58537fcc4d06ae353b45ba5b9d23cd0f2",
+      "classification": "backend-counterexample-candidate-unconfirmed",
+      "candidate_values_read_during_selection": false
+    },
+    {
+      "started_at": "2026-09-15T07:11:33.806093Z",
+      "run_id": "09b4df60-2cdb-4624-b290-28c4acd72a99",
+      "strategy": "warning-first",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/warning-first/executions/execution-0d135342-0509-4bd0-884d-8c41d440fb0b/outcome.json",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/warning-first/executions/execution-0d135342-0509-4bd0-884d-8c41d440fb0b/counterexample-candidates/0002/circuit.circom_SPqtI2Jh4L_counterexample.json",
+      "candidate_sha256": "d64a3545622f4fe9725a09e5ebae5cfaf8b3d5046d390b33d12008365a84b654",
+      "classification": "backend-counterexample-candidate-unconfirmed",
+      "candidate_values_read_during_selection": false
+    },
+    {
+      "started_at": "2026-09-15T07:11:35.408384Z",
+      "run_id": "594030c2-2780-4556-a6f6-700d57a538f5",
+      "strategy": "risk-only",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/risk-only/executions/execution-ded6d045-7bc5-4637-afa4-4d49fdf61dc8/outcome.json",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/risk-only/executions/execution-ded6d045-7bc5-4637-afa4-4d49fdf61dc8/counterexample-candidates/0002/circuit.circom_9wR2c05DBN_counterexample.json",
+      "candidate_sha256": "7a8d230b7a2ce53eff73ab80670b53fc7436d759b8618ce336345c63baf03f6f",
+      "classification": "backend-counterexample-candidate-unconfirmed",
+      "candidate_values_read_during_selection": false
+    },
+    {
+      "started_at": "2026-09-15T07:11:37.016176Z",
+      "run_id": "9b751c2a-8040-4768-80ad-41840ee1528e",
+      "strategy": "risk-grouped",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/risk-grouped/executions/execution-f241172f-2ef1-434d-940d-e948c478a60e/outcome.json",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/risk-grouped/executions/execution-f241172f-2ef1-434d-940d-e948c478a60e/counterexample-candidates/0002/circuit.circom_nONVme8oFs_counterexample.json",
+      "candidate_sha256": "1bd36cc00e6209cc130ba40f04327e9b1a3b59ac7fae210cffc549d6b058ac66",
+      "classification": "backend-counterexample-candidate-unconfirmed",
+      "candidate_values_read_during_selection": false
+    },
+    {
+      "started_at": "2026-09-15T07:11:38.723483Z",
+      "run_id": "af4dc3ee-4ca3-493d-b650-384e97e4e74c",
+      "strategy": "path-order",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/path-order/executions/execution-b7ec69b8-aa02-4bff-8515-a39018d6a5fd/outcome.json",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/path-order/executions/execution-b7ec69b8-aa02-4bff-8515-a39018d6a5fd/counterexample-candidates/0003/circuit.circom_OZrQrQhZZG_counterexample.json",
+      "candidate_sha256": "72310ce5719363fbab9e12b2103c49d912e4940046ee3d7d1edad0cefddc2ca5",
+      "classification": "backend-counterexample-candidate-unconfirmed",
+      "candidate_values_read_during_selection": false
+    },
+    {
+      "started_at": "2026-09-15T07:11:40.237557Z",
+      "run_id": "e314d6c1-2e9d-4e7c-ac4a-b6fb20740e82",
+      "strategy": "random",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/random/executions/execution-ad1f82d5-f092-416b-bd3b-0cba4e60f41f/outcome.json",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/random/executions/execution-ad1f82d5-f092-416b-bd3b-0cba4e60f41f/counterexample-candidates/0001/circuit.circom_Ujmlea5RBp_counterexample.json",
+      "candidate_sha256": "9c163010a1d64ff05144ec2c2b63d6f9bca1648df4021d632193702307fc771e",
+      "classification": "backend-counterexample-candidate-unconfirmed",
+      "candidate_values_read_during_selection": false
+    },
+    {
+      "started_at": "2026-09-15T07:11:41.873822Z",
+      "run_id": "88670cbe-7ea7-46f8-bf18-48b832cb88b5",
+      "strategy": "small-first",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/small-first/executions/execution-68f52d8a-bd97-44a9-a8b4-cfc1adb0414c/outcome.json",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/small-first/executions/execution-68f52d8a-bd97-44a9-a8b4-cfc1adb0414c/counterexample-candidates/0002/circuit.circom_OHgHACCmJe_counterexample.json",
+      "candidate_sha256": "2613d95bf70be3553f6386a9320b45b6d42d28425584d1bc74c6687d9be36540",
+      "classification": "backend-counterexample-candidate-unconfirmed",
+      "candidate_values_read_during_selection": false
+    },
+    {
+      "started_at": "2026-09-15T07:12:10.043447Z",
+      "run_id": "dc66bb94-cc3d-4fad-bc78-1396edb63a7a",
+      "strategy": "risk-only",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/risk-only/executions/execution-aea04fa5-dd8b-41b6-911d-85735de13aa4/outcome.json",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/risk-only/executions/execution-aea04fa5-dd8b-41b6-911d-85735de13aa4/counterexample-candidates/0002/circuit.circom_4T15ad12s5_counterexample.json",
+      "candidate_sha256": "e7cd47b8b7f7b4c5fc052292ebc492eb3a59b7cc90dcdaa8945a94585c544b8e",
+      "classification": "backend-counterexample-candidate-unconfirmed",
+      "candidate_values_read_during_selection": false
+    },
+    {
+      "started_at": "2026-09-15T07:12:11.194098Z",
+      "run_id": "4fe6f3fb-0367-4747-80af-4c4074ddeaf9",
+      "strategy": "risk-grouped",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/risk-grouped/executions/execution-8cb39e52-6427-4680-b1f0-96fc8a785b7f/outcome.json",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/risk-grouped/executions/execution-8cb39e52-6427-4680-b1f0-96fc8a785b7f/counterexample-candidates/0002/circuit.circom_moOwyotkgv_counterexample.json",
+      "candidate_sha256": "6261fe5b36351664fdca3d003b8a59d66083cccd4e9bfba1cbf559c467e3ee63",
+      "classification": "backend-counterexample-candidate-unconfirmed",
+      "candidate_values_read_during_selection": false
+    },
+    {
+      "started_at": "2026-09-15T07:12:12.359625Z",
+      "run_id": "51540353-f85c-4f4c-8c23-9aea8fb63825",
+      "strategy": "path-order",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/path-order/executions/execution-b39a7e61-3647-4406-87c7-1dcef6dfc13c/outcome.json",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/path-order/executions/execution-b39a7e61-3647-4406-87c7-1dcef6dfc13c/counterexample-candidates/0003/circuit.circom_Tuluon3ZZT_counterexample.json",
+      "candidate_sha256": "494eb5a699d16f14d3b6202b262422535a5df088ae8fa2e61b26d1eaf8dadc60",
+      "classification": "backend-counterexample-candidate-unconfirmed",
+      "candidate_values_read_during_selection": false
+    },
+    {
+      "started_at": "2026-09-15T07:12:13.445076Z",
+      "run_id": "bc634b47-d047-4a85-95d2-cf268c0bad04",
+      "strategy": "random",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/random/executions/execution-db49174a-d2d3-4366-b042-4e311c60d9c1/outcome.json",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/random/executions/execution-db49174a-d2d3-4366-b042-4e311c60d9c1/counterexample-candidates/0001/circuit.circom_UbKQUb20LS_counterexample.json",
+      "candidate_sha256": "24778960023cf4a392fb053c2b8bb6754d706f9f3de83ced4c3ddf52f40f8512",
+      "classification": "backend-counterexample-candidate-unconfirmed",
+      "candidate_values_read_during_selection": false
+    },
+    {
+      "started_at": "2026-09-15T07:12:14.640705Z",
+      "run_id": "66694224-57ac-4670-a495-52c229a05d6f",
+      "strategy": "small-first",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/small-first/executions/execution-de6cd5da-2390-4802-b201-59a2c6573f9f/outcome.json",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/small-first/executions/execution-de6cd5da-2390-4802-b201-59a2c6573f9f/counterexample-candidates/0002/circuit.circom_xaNH00pBAk_counterexample.json",
+      "candidate_sha256": "a765c7ac1fe685e7a745509fe49824914300ab013d1bc454317789c31ae8d169",
+      "classification": "backend-counterexample-candidate-unconfirmed",
+      "candidate_values_read_during_selection": false
+    },
+    {
+      "started_at": "2026-09-15T07:12:15.756897Z",
+      "run_id": "f2e676b5-ddba-4a56-b82a-b2f1ffcbfc51",
+      "strategy": "legacy",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/legacy/executions/execution-4599b932-0093-4ab5-aba1-0fd882939432/outcome.json",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/legacy/executions/execution-4599b932-0093-4ab5-aba1-0fd882939432/counterexample-candidates/0002/circuit.circom_uRAlo8qJhI_counterexample.json",
+      "candidate_sha256": "3edd77b8a5145c601281352c9ac7d94b108a9b63bbcabcfa21fb904b1524b8a0",
+      "classification": "backend-counterexample-candidate-unconfirmed",
+      "candidate_values_read_during_selection": false
+    },
+    {
+      "started_at": "2026-09-15T07:12:16.923504Z",
+      "run_id": "d0818fe7-d6d3-459d-ae22-cae172aaecd5",
+      "strategy": "warning-first",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/warning-first/executions/execution-ae71c50f-7253-4a7d-be56-f7f7dcd1f1e7/outcome.json",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/warning-first/executions/execution-ae71c50f-7253-4a7d-be56-f7f7dcd1f1e7/counterexample-candidates/0002/circuit.circom_o7moQlF6oc_counterexample.json",
+      "candidate_sha256": "171b323c9404990fdc63f685af4b678639956c2f44c4b75ffcd2b9a85fbb8c65",
+      "classification": "backend-counterexample-candidate-unconfirmed",
+      "candidate_values_read_during_selection": false
+    }
+  ],
+  "selected": {
+    "started_at": "2026-09-15T07:10:56.404240Z",
+    "run_id": "4f896cbb-0aa5-475a-b485-6b2be66fcbbe",
+    "strategy": "random",
+    "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/random/executions/execution-69fe44a5-430c-4640-81c6-14daf4f16247/outcome.json",
+    "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/random/executions/execution-69fe44a5-430c-4640-81c6-14daf4f16247/counterexample-candidates/0003/circuit.circom_p6UtyhoITh_counterexample.json",
+    "candidate_sha256": "8effd6c717f7ac463f956d9581cf0146eff4a0ba1b01e60bf23327d405cb93e4",
+    "classification": "backend-counterexample-candidate-unconfirmed",
+    "candidate_values_read_during_selection": false
+  }
+}

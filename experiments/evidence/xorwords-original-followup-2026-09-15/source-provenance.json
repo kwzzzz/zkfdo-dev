@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "checked_on": "2026-09-15",
+  "purpose": "Source provenance for the existing XorWords candidate only; no new fuzzing",
+  "zkbugs_revision": "a0eed744ba1a816acaa2fae597f4e79b4fd01aea",
+  "zkbugs_declared_project": "https://github.com/reclaimprotocol/circom-chacha20",
+  "zkbugs_declared_commit": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+  "zkbugs_declared_fix_commit": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+  "recovered_repository": {
+    "full_name": "reclaim-1/circom-chacha20",
+    "fork": true,
+    "api_parent": "Hmac512/circom-chacha20",
+    "api_source": "Hmac512/circom-chacha20",
+    "api_url": "https://api.github.com/repos/reclaim-1/circom-chacha20",
+    "historical_project_link_evidence": {
+      "revision": "4551ca64c9fe536b7b9b7498a1feb1ecdc847474",
+      "path": "readme.md",
+      "install_repository": "https://github.com/reclaimprotocol/circom-chacha20"
+    },
+    "note": "Recovered immutable commits from a public fork network; this does not establish the original URL rename history."
+  },
+  "commits": [
+    {
+      "sha": "4551ca64c9fe536b7b9b7498a1feb1ecdc847474",
+      "message": "fix: add circuit security",
+      "date": "2023-08-04T04:54:04Z",
+      "tree": "d39bd2375a4bf277a0f65b7d511f5a6191a86c2b",
+      "parents": [
+        "9f98e3aaa95e629515883e0cc6e6cfe6aef6d622"
+      ],
+      "html_url": "https://github.com/reclaim-1/circom-chacha20/commit/4551ca64c9fe536b7b9b7498a1feb1ecdc847474"
+    },
+    {
+      "sha": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "message": "fix: xor circuit security",
+      "date": "2023-08-04T05:09:38Z",
+      "tree": "0ec6f8270d29a77c465d9135d744f283ca0f53fb",
+      "parents": [
+        "4551ca64c9fe536b7b9b7498a1feb1ecdc847474"
+      ],
+      "html_url": "https://github.com/reclaim-1/circom-chacha20/commit/ef9f5a5ad899d852740a26b30eabe5765673c71f"
+    }
+  ],
+  "cross_check": {
+    "repository": "Hmac512/circom-chacha20",
+    "commit": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+    "tree": "0ec6f8270d29a77c465d9135d744f283ca0f53fb",
+    "parent": "4551ca64c9fe536b7b9b7498a1feb1ecdc847474",
+    "message": "fix: xor circuit security",
+    "status": "same commit metadata returned by GitHub API"
+  },
+  "audit_binding": {
+    "report_sha256": "5da9c42436f5b2212eedb21d43462243432749e096a6e646661b804fde8c23ae",
+    "url": "https://github.com/zksecurity/zkbugs/blob/a0eed744ba1a816acaa2fae597f4e79b4fd01aea/reports/documents/zksecurity-reclaimprotocol.pdf",
+    "relevant_pages": [
+      2,
+      3,
+      8,
+      9,
+      10
+    ],
+    "exact_audited_revision": "unknown: no project hash in report text or hyperlink annotations",
+    "parent_relationship": "Immediate parent of the identified XOR fix; relevant XorWords code matches the report excerpt. Not asserted to be the exact audit snapshot.",
+    "fix_relationship": "ef9 enables Boolean constraints and unconditional zero residuals within XorWords; not identified with the report later bit-level refactor."
+  },
+  "retrieval_findings": [
+    {
+      "location": ".external/zkbugs/dataset/codebases/circom/reclaimprotocol/circom-chacha20/ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "status": "not present locally before follow-up; not evidence of upstream absence"
+    },
+    {
+      "location": "https://github.com/reclaimprotocol/circom-chacha20/tree/ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "method": "web open",
+      "status": "cache miss; no source obtained"
+    },
+    {
+      "location": "https://raw.githubusercontent.com/reclaimprotocol/circom-chacha20/ef9f5a5ad899d852740a26b30eabe5765673c71f/circuits/generics.circom",
+      "method": "web open",
+      "status": "HTTP 404; not evidence code never existed"
+    },
+    {
+      "location": "https://api.github.com/repos/reclaimprotocol/circom-chacha20/commits/ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "method": "gh api",
+      "status": "first sandbox network failure; permitted network retry returned HTTP 404"
+    },
+    {
+      "location": "https://api.github.com/search/repositories?q=circom-chacha20+in:name+fork:true&per_page=100",
+      "method": "gh api",
+      "status": "found four public repositories, including reclaim-1 and Hmac512"
+    },
+    {
+      "location": "https://api.github.com/repos/reclaim-1/circom-chacha20/commits/ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "method": "gh api",
+      "status": "success; exact XOR fix and parent identified"
+    },
+    {
+      "location": "https://registry.npmjs.org/@reclaimprotocol%2Fcircom-chacha20",
+      "method": "read historical package metadata",
+      "status": "0.0.1 and 1.1.0 have different gitHead values; not used as vulnerable source"
+    }
+  ],
+  "sources": [
+    {
+      "revision": "4551ca64c9fe536b7b9b7498a1feb1ecdc847474",
+      "path": "circuits/generics.circom",
+      "git_blob_sha1": "bf905189feec82e15e389a1690016fb8ebe1ab20",
+      "sha256": "226c80d4906c973275b239ae1e73f4762e96a58d1f2aba77c298c1938aa4f938",
+      "size_bytes": 1956,
+      "api_url": "https://api.github.com/repos/reclaim-1/circom-chacha20/contents/circuits/generics.circom?ref=4551ca64c9fe536b7b9b7498a1feb1ecdc847474",
+      "html_url": "https://github.com/reclaim-1/circom-chacha20/blob/4551ca64c9fe536b7b9b7498a1feb1ecdc847474/circuits/generics.circom",
+      "download_url": "https://raw.githubusercontent.com/reclaim-1/circom-chacha20/4551ca64c9fe536b7b9b7498a1feb1ecdc847474/circuits/generics.circom",
+      "local_api_response": "runs/xorwords-original-followup-2026-09-15/parent-generics-content.json"
+    },
+    {
+      "revision": "4551ca64c9fe536b7b9b7498a1feb1ecdc847474",
+      "path": "circuits/chacha20.circom",
+      "git_blob_sha1": "88d975a74771b2127940ea7af257aa80e2886112",
+      "sha256": "f177500856d3456f4fd994a2f1042bd614f539100e25efcdb8f136fbd680f868",
+      "size_bytes": 4610,
+      "api_url": "https://api.github.com/repos/reclaim-1/circom-chacha20/contents/circuits/chacha20.circom?ref=4551ca64c9fe536b7b9b7498a1feb1ecdc847474",
+      "html_url": "https://github.com/reclaim-1/circom-chacha20/blob/4551ca64c9fe536b7b9b7498a1feb1ecdc847474/circuits/chacha20.circom",
+      "download_url": "https://raw.githubusercontent.com/reclaim-1/circom-chacha20/4551ca64c9fe536b7b9b7498a1feb1ecdc847474/circuits/chacha20.circom",
+      "local_api_response": "runs/xorwords-original-followup-2026-09-15/parent-chacha20-content.json"
+    },
+    {
+      "revision": "4551ca64c9fe536b7b9b7498a1feb1ecdc847474",
+      "path": "circuits/circuit.circom",
+      "git_blob_sha1": "6d0c443e7e4af3d007fb5b38882442895e767729",
+      "sha256": "02f6cd24def5cc1a456cfad56ed597e8f078eb1755f467a410f749761f5826f6",
+      "size_bytes": 95,
+      "api_url": "https://api.github.com/repos/reclaim-1/circom-chacha20/contents/circuits/circuit.circom?ref=4551ca64c9fe536b7b9b7498a1feb1ecdc847474",
+      "html_url": "https://github.com/reclaim-1/circom-chacha20/blob/4551ca64c9fe536b7b9b7498a1feb1ecdc847474/circuits/circuit.circom",
+      "download_url": "https://raw.githubusercontent.com/reclaim-1/circom-chacha20/4551ca64c9fe536b7b9b7498a1feb1ecdc847474/circuits/circuit.circom",
+      "local_api_response": "runs/xorwords-original-followup-2026-09-15/parent-entrypoint-content.json"
+    },
+    {
+      "revision": "4551ca64c9fe536b7b9b7498a1feb1ecdc847474",
+      "path": "circuits/tests/xor32bits.circom",
+      "git_blob_sha1": "4ff298b28afd0c5026f287c6c478bca72aacde24",
+      "sha256": "a6817a0be88b01c05cd370980ab9ab7bc342989ca028b72563337d0b8b3a95d8",
+      "size_bytes": 86,
+      "api_url": "https://api.github.com/repos/reclaim-1/circom-chacha20/contents/circuits/tests/xor32bits.circom?ref=4551ca64c9fe536b7b9b7498a1feb1ecdc847474",
+      "html_url": "https://github.com/reclaim-1/circom-chacha20/blob/4551ca64c9fe536b7b9b7498a1feb1ecdc847474/circuits/tests/xor32bits.circom",
+      "download_url": "https://raw.githubusercontent.com/reclaim-1/circom-chacha20/4551ca64c9fe536b7b9b7498a1feb1ecdc847474/circuits/tests/xor32bits.circom",
+      "local_api_response": "runs/xorwords-original-followup-2026-09-15/parent-xor-test-content.json"
+    },
+    {
+      "revision": "4551ca64c9fe536b7b9b7498a1feb1ecdc847474",
+      "path": "package.json",
+      "git_blob_sha1": "fb2b08bc310ad0f780494f211164e4ae6a81bddb",
+      "sha256": "3109188ee72f48a0dcbd6dfe889ca479b1e674ec501a7b04a0c954b56afb8cd9",
+      "size_bytes": 904,
+      "api_url": "https://api.github.com/repos/reclaim-1/circom-chacha20/contents/package.json?ref=4551ca64c9fe536b7b9b7498a1feb1ecdc847474",
+      "html_url": "https://github.com/reclaim-1/circom-chacha20/blob/4551ca64c9fe536b7b9b7498a1feb1ecdc847474/package.json",
+      "download_url": "https://raw.githubusercontent.com/reclaim-1/circom-chacha20/4551ca64c9fe536b7b9b7498a1feb1ecdc847474/package.json",
+      "local_api_response": "runs/xorwords-original-followup-2026-09-15/parent-package-content.json"
+    },
+    {
+      "revision": "4551ca64c9fe536b7b9b7498a1feb1ecdc847474",
+      "path": "readme.md",
+      "git_blob_sha1": "1c121742db9ce39009186547250ffa75efe9fd95",
+      "sha256": "2e3bb82d379c727aba7c0ae4d994d23b37d9949b6b45078d2bc3eaf10cb58e1a",
+      "size_bytes": 2793,
+      "api_url": "https://api.github.com/repos/reclaim-1/circom-chacha20/contents/readme.md?ref=4551ca64c9fe536b7b9b7498a1feb1ecdc847474",
+      "html_url": "https://github.com/reclaim-1/circom-chacha20/blob/4551ca64c9fe536b7b9b7498a1feb1ecdc847474/readme.md",
+      "download_url": "https://raw.githubusercontent.com/reclaim-1/circom-chacha20/4551ca64c9fe536b7b9b7498a1feb1ecdc847474/readme.md",
+      "local_api_response": "runs/xorwords-original-followup-2026-09-15/parent-readme-content.json"
+    },
+    {
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "path": "circuits/generics.circom",
+      "git_blob_sha1": "46ef6207acbd284271f27be9ccd7798e7f26603c",
+      "sha256": "4dca4517b1804c8d3a6c9fa0699bb31633a117ca1f0e6df7a45d352beb94d366",
+      "size_bytes": 2045,
+      "api_url": "https://api.github.com/repos/reclaim-1/circom-chacha20/contents/circuits/generics.circom?ref=ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "html_url": "https://github.com/reclaim-1/circom-chacha20/blob/ef9f5a5ad899d852740a26b30eabe5765673c71f/circuits/generics.circom",
+      "download_url": "https://raw.githubusercontent.com/reclaim-1/circom-chacha20/ef9f5a5ad899d852740a26b30eabe5765673c71f/circuits/generics.circom",
+      "local_api_response": "runs/xorwords-original-followup-2026-09-15/fix-generics-content.json"
+    }
+  ],
+  "scope_limits": [
+    "No source text or historical evidence was modified.",
+    "Original project test and caller source are now available; full-project input reachability and proof validity are not established.",
+    "No newer revision is substituted for the pre-fix source."
+  ]
+}

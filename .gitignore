@@ -1,6 +1,7 @@
 /target/
 /runs/
 /reports/generated/
+/reports/*/isolated-rerun/
 /.zkfr/
 /.zkfdo/
 
@@ -17,6 +18,9 @@
 .DS_Store
 *.swp
 *.swo
+__pycache__/
+/reports/*/audit-*.png
+/reports/*/audit-pdf.txt
 
 # Local environment files
 .env

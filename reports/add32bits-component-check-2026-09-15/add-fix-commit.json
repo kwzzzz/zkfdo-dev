@@ -1,0 +1,101 @@
+{
+  "sha": "4551ca64c9fe536b7b9b7498a1feb1ecdc847474",
+  "node_id": "C_kwDOL3dhY9oAKDQ1NTFjYTY0YzlmZTUzNmI3YjliNzQ5OGExZmViMWVjZGM4NDc0NzQ",
+  "commit": {
+    "author": {
+      "name": "Adhiraj Singh",
+      "email": "adhirajsingh1001@gmail.com",
+      "date": "2023-08-04T04:54:04Z"
+    },
+    "committer": {
+      "name": "Adhiraj Singh",
+      "email": "adhirajsingh1001@gmail.com",
+      "date": "2023-08-04T04:54:04Z"
+    },
+    "message": "fix: add circuit security",
+    "tree": {
+      "sha": "d39bd2375a4bf277a0f65b7d511f5a6191a86c2b",
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/trees/d39bd2375a4bf277a0f65b7d511f5a6191a86c2b"
+    },
+    "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/commits/4551ca64c9fe536b7b9b7498a1feb1ecdc847474",
+    "comment_count": 0,
+    "verification": {
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
+    }
+  },
+  "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/commits/4551ca64c9fe536b7b9b7498a1feb1ecdc847474",
+  "html_url": "https://github.com/reclaim-1/circom-chacha20/commit/4551ca64c9fe536b7b9b7498a1feb1ecdc847474",
+  "comments_url": "https://api.github.com/repos/reclaim-1/circom-chacha20/commits/4551ca64c9fe536b7b9b7498a1feb1ecdc847474/comments",
+  "author": {
+    "login": "adiwajshing",
+    "id": 8328864,
+    "node_id": "MDQ6VXNlcjgzMjg4NjQ=",
+    "avatar_url": "https://avatars.githubusercontent.com/u/8328864?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/adiwajshing",
+    "html_url": "https://github.com/adiwajshing",
+    "followers_url": "https://api.github.com/users/adiwajshing/followers",
+    "following_url": "https://api.github.com/users/adiwajshing/following{/other_user}",
+    "gists_url": "https://api.github.com/users/adiwajshing/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/adiwajshing/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/adiwajshing/subscriptions",
+    "organizations_url": "https://api.github.com/users/adiwajshing/orgs",
+    "repos_url": "https://api.github.com/users/adiwajshing/repos",
+    "events_url": "https://api.github.com/users/adiwajshing/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/adiwajshing/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "committer": {
+    "login": "adiwajshing",
+    "id": 8328864,
+    "node_id": "MDQ6VXNlcjgzMjg4NjQ=",
+    "avatar_url": "https://avatars.githubusercontent.com/u/8328864?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/adiwajshing",
+    "html_url": "https://github.com/adiwajshing",
+    "followers_url": "https://api.github.com/users/adiwajshing/followers",
+    "following_url": "https://api.github.com/users/adiwajshing/following{/other_user}",
+    "gists_url": "https://api.github.com/users/adiwajshing/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/adiwajshing/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/adiwajshing/subscriptions",
+    "organizations_url": "https://api.github.com/users/adiwajshing/orgs",
+    "repos_url": "https://api.github.com/users/adiwajshing/repos",
+    "events_url": "https://api.github.com/users/adiwajshing/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/adiwajshing/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "parents": [
+    {
+      "sha": "9f98e3aaa95e629515883e0cc6e6cfe6aef6d622",
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/commits/9f98e3aaa95e629515883e0cc6e6cfe6aef6d622",
+      "html_url": "https://github.com/reclaim-1/circom-chacha20/commit/9f98e3aaa95e629515883e0cc6e6cfe6aef6d622"
+    }
+  ],
+  "stats": {
+    "total": 8,
+    "additions": 8,
+    "deletions": 0
+  },
+  "files": [
+    {
+      "sha": "bf905189feec82e15e389a1690016fb8ebe1ab20",
+      "filename": "circuits/generics.circom",
+      "status": "modified",
+      "additions": 8,
+      "deletions": 0,
+      "changes": 8,
+      "blob_url": "https://github.com/reclaim-1/circom-chacha20/blob/4551ca64c9fe536b7b9b7498a1feb1ecdc847474/circuits%2Fgenerics.circom",
+      "raw_url": "https://github.com/reclaim-1/circom-chacha20/raw/4551ca64c9fe536b7b9b7498a1feb1ecdc847474/circuits%2Fgenerics.circom",
+      "contents_url": "https://api.github.com/repos/reclaim-1/circom-chacha20/contents/circuits%2Fgenerics.circom?ref=4551ca64c9fe536b7b9b7498a1feb1ecdc847474",
+      "patch": "@@ -2,6 +2,7 @@ pragma circom 2.0.0;\n \n /**\n  * Add two 32-bit integers\n+ * Note: a and b must be 32-bit integers\n  */\n template Add32Bits() {\n \tsignal input a;\n@@ -22,6 +23,13 @@ template Add32Bits() {\n \t// we'll get the correct result\n \t// which is (a + b) & 2**32\n \tout <== (a + b) - (tmp * (0xFFFFFFFF + 1));\n+\t// ensure that the tmp bit was correctly calculated\n+\t// if tmp is maliciously = 1 and (a + b) < 2**32 then\n+\t// (a+b) - out = 0, but tmp * (0xFFFFFFFF + 1) = 2**32\n+\t// hence condition below will fail\n+\t// if tmp is maliciously = 0 and (a + b) > 2**32 then\n+\t// (a+b) - out = 2**32, but tmp * (0xFFFFFFFF + 1) = 0\n+\t(a + b) - out === tmp * (0xFFFFFFFF + 1);\n }\n \n template RotateLeft32Bits(L) {"
+    }
+  ]
+}

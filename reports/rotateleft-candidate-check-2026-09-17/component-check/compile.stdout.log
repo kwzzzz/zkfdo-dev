@@ -1,0 +1,11 @@
+[32mtemplate instances[0m: 1
+non-linear constraints: 0
+linear constraints: 2
+public inputs: 1
+private inputs: 0
+public outputs: 1
+wires: 5
+labels: 5
+[32mWritten successfully:[0m reports/rotateleft-candidate-check-2026-09-17/component-check/compiled/circuit.r1cs
+[32mWritten successfully:[0m reports/rotateleft-candidate-check-2026-09-17/component-check/compiled/circuit.sym
+[32mEverything went okay[0m
