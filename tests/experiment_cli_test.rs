@@ -382,6 +382,7 @@ printf 'Verification: No Counter Example Found\n'
         let persisted_evaluation: Value =
             serde_json::from_slice(&fs::read(evaluation_path).unwrap()).unwrap();
         assert_eq!(evaluation, persisted_evaluation);
+        assert_eq!(evaluation["schema_version"], 2);
         assert_eq!(evaluation["planned_target_ids"], json!(planned_ids));
         assert_eq!(
             evaluation["actual_process_start_target_ids"],
@@ -390,10 +391,15 @@ printf 'Verification: No Counter Example Found\n'
         assert_eq!(evaluation["status_counts"]["no_counterexample"], 2);
         assert_eq!(evaluation["status_counts"]["runtime_error"], 1);
         assert_eq!(evaluation["confirmed_project_defect_count"], 0);
+        assert_eq!(evaluation["confirmed_original_component_defect_count"], 0);
         assert_eq!(evaluation["reviewed_confirmation_count"], 0);
         assert_eq!(evaluation["backend_bug_candidate_count"], 0);
         assert_eq!(
             evaluation["first_confirmed_defect_observed_by_seconds"],
+            Value::Null
+        );
+        assert_eq!(
+            evaluation["first_confirmed_original_component_defect_observed_by_seconds"],
             Value::Null
         );
     }

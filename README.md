@@ -24,7 +24,7 @@ Implemented now:
 - raw stdout/stderr logs and structured JSON run results
 - uniform per-target budget scheduling and experiment summaries
 - explicit corpus preparation, seven static ranking strategies, saved plans, and execution in ranked order under a total budget
-- evaluation JSON separating backend candidates from reviewed project defects
+- evaluation JSON separating backend candidates, reviewed original-component defects, and project-context defects
 - repeated-pilot validation and aggregation over paired backend seeds
 - placeholder modules for reports and database storage
 
@@ -61,6 +61,8 @@ target/debug/zkfDO experiment evaluate --plan runs/plan.json --outcome OUTCOME.j
 ```
 
 Replace the uppercase paths with your manifest and the reports produced by prior commands. Preparation without `--strategy` collects a common complete feature set; planning prints JSON without fuzzing. The checked-in `risk-grouped` boundary was frozen from the three-target development manifest, where every observed complexity was zero, so it currently provides no measured grouping benefit. The [bounded repeated-pilot report](experiments/dev3-ranking-pilot-2026-09-15.json) contains 49 strategy executions and candidate-level timing results; it does not establish confirmed-defect superiority. See [the complete workflow, runnable synthetic example, and evidence limits](docs/static_ranking_experiment.md).
+
+`experiment evaluate --confirmations FILE` accepts legacy confirmation schema 1 and structured schema 2. Schema 2 can record the review of input preconditions, fixed-original constraints, and a pre-specified property violation. Only records whose evidence origin is `backend-execution`, whose run and target match the plan, and whose backend status is `bug_found` can contribute to execution-discovery metrics. The evaluator checks this structure and the existence of evidence files; it does not prove the reviewer's conclusions.
 
 ## Commands
 

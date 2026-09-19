@@ -245,7 +245,7 @@ pub struct ExperimentEvaluateArgs {
     #[arg(long)]
     pub outcome: PathBuf,
 
-    /// Reviewed confirmation evidence; raw warnings or crashes are not confirmations.
+    /// Schema 1/2 reviewed evidence; only linked backend discoveries enter defect curves.
     #[arg(long)]
     pub confirmations: Option<PathBuf>,
 

@@ -15,7 +15,8 @@ use zkfdo::{
     },
     experiment::{
         create_plan, evaluate, execute_plan, ConfirmationScope, ConfirmationSet,
-        DefectConfirmation, ExecuteOptions, ExperimentOutcome, ExperimentPlan,
+        DefectConfirmation, EvidenceOrigin, ExecuteOptions, ExperimentOutcome, ExperimentPlan,
+        OriginalComponentReview, ReviewCriterion, ReviewVerdict,
     },
     static_rank::{ComplexityGroups, RankingStrategy, StaticRankingConfig},
     structure::STRUCTURAL_METRIC,
@@ -130,8 +131,8 @@ printf 'Random Seed: 123\nGeneration: 1/500\nVerification: NOT SAFE\n'
     };
     let options = ExecuteOptions {
         zkfuzz_bin: script(fixture.directory.path(), "fake-zkfuzz", body),
-        budget_seconds: 2,
-        total_budget_seconds: 5,
+        budget_seconds: 10,
+        total_budget_seconds: 30,
         zkfuzz_seed: Some(123),
         mutation_settings: None,
         output: fixture.directory.path().join("executions"),
@@ -141,6 +142,30 @@ printf 'Random Seed: 123\nGeneration: 1/500\nVerification: NOT SAFE\n'
 
 fn write_json(path: &Path, value: &impl serde::Serialize) {
     fs::write(path, serde_json::to_vec_pretty(value).unwrap()).unwrap();
+}
+
+fn original_component_review(
+    evidence: &Path,
+    input_preconditions: ReviewVerdict,
+    fixed_original_constraints: ReviewVerdict,
+    specified_property_violation: ReviewVerdict,
+) -> OriginalComponentReview {
+    let criterion = |verdict, note: &str| ReviewCriterion {
+        verdict,
+        evidence: vec![evidence.to_path_buf()],
+        note: note.to_owned(),
+    };
+    OriginalComponentReview {
+        input_preconditions: criterion(input_preconditions, "Synthetic input review"),
+        fixed_original_constraints: criterion(
+            fixed_original_constraints,
+            "Synthetic constraint review",
+        ),
+        specified_property_violation: criterion(
+            specified_property_violation,
+            "Synthetic property review",
+        ),
+    }
 }
 
 #[test]
@@ -164,6 +189,8 @@ fn reviewed_project_root_causes_are_deduplicated_across_targets_and_runs() {
             target_id: run.target_id.clone(),
             root_cause_id: "synthetic-shared-root-cause".to_owned(),
             scope: ConfirmationScope::Project,
+            evidence_origin: EvidenceOrigin::BackendExecution,
+            original_component_review: None,
             evidence: vec![evidence.clone()],
             note: "Synthetic reviewed fixture".to_owned(),
         })
@@ -177,6 +204,8 @@ fn reviewed_project_root_causes_are_deduplicated_across_targets_and_runs() {
             target_id: outcome.scheduler.runs[0].target_id.clone(),
             root_cause_id: root_cause_id.to_owned(),
             scope,
+            evidence_origin: EvidenceOrigin::BackendExecution,
+            original_component_review: None,
             evidence: vec![evidence.clone()],
             note: "Synthetic reviewed fixture".to_owned(),
         });
@@ -200,6 +229,7 @@ fn reviewed_project_root_causes_are_deduplicated_across_targets_and_runs() {
     assert_eq!(report.preserved_counterexample_count, 2);
     assert_eq!(report.reviewed_confirmation_count, 4);
     assert_eq!(report.confirmed_project_defect_count, 1);
+    assert_eq!(report.confirmed_original_component_defect_count, 0);
     assert_eq!(report.wrapper_only_confirmation_count, 1);
     assert_eq!(report.reachability_unknown_confirmation_count, 1);
     assert_eq!(
@@ -234,11 +264,393 @@ fn backend_candidates_without_review_leave_detection_time_null() {
     .unwrap();
     assert_eq!(report.backend_bug_candidate_count, 2);
     assert_eq!(report.confirmed_project_defect_count, 0);
+    assert_eq!(report.confirmed_original_component_defect_count, 0);
     assert!(report.detection_curve.is_empty());
+    assert!(report.original_component_detection_curve.is_empty());
     assert_eq!(report.first_confirmed_defect_observed_by_seconds, None);
+    assert_eq!(
+        report.first_confirmed_original_component_defect_observed_by_seconds,
+        None
+    );
     let json: serde_json::Value =
         serde_json::from_slice(&fs::read(report.report_path).unwrap()).unwrap();
     assert!(json["first_confirmed_defect_observed_by_seconds"].is_null());
+}
+
+#[test]
+fn original_component_execution_confirmations_are_deduplicated_by_root_cause() {
+    let fixture = fixture();
+    let plan = plan(&fixture);
+    let outcome = execute(&fixture, &plan, true);
+    let evidence = fixture.directory.path().join("component-review.txt");
+    fs::write(&evidence, "Synthetic structured component review").unwrap();
+    let confirmations = outcome
+        .scheduler
+        .runs
+        .iter()
+        .map(|run| DefectConfirmation {
+            run_id: run.result.run_id.clone(),
+            target_id: run.target_id.clone(),
+            root_cause_id: "synthetic-component-root".to_owned(),
+            scope: ConfirmationScope::OriginalComponent,
+            evidence_origin: EvidenceOrigin::BackendExecution,
+            original_component_review: Some(original_component_review(
+                &evidence,
+                ReviewVerdict::Satisfied,
+                ReviewVerdict::Satisfied,
+                ReviewVerdict::Satisfied,
+            )),
+            evidence: vec![evidence.clone()],
+            note: "Synthetic record; no real defect claim".to_owned(),
+        })
+        .collect();
+    let confirmation_path = fixture.directory.path().join("confirmations-v2.json");
+    write_json(
+        &confirmation_path,
+        &ConfirmationSet {
+            schema_version: 2,
+            confirmations,
+        },
+    );
+
+    let report = evaluate(
+        &plan.plan_path,
+        &outcome.report_path,
+        Some(&confirmation_path),
+        &fixture.directory.path().join("evaluation.json"),
+    )
+    .unwrap();
+
+    assert_eq!(report.schema_version, 2);
+    assert_eq!(report.reviewed_confirmation_count, 2);
+    assert_eq!(report.confirmed_project_defect_count, 0);
+    assert_eq!(report.confirmed_original_component_defect_count, 1);
+    assert_eq!(
+        report.confirmed_original_component_root_causes,
+        ["synthetic-component-root"]
+    );
+    assert_eq!(report.original_component_detection_curve.len(), 1);
+    assert_eq!(
+        report.original_component_detection_curve[0]
+            .cumulative_confirmed_original_component_defects,
+        1
+    );
+    let earliest_completion = outcome
+        .scheduler
+        .runs
+        .iter()
+        .map(|run| run.completion_offset_seconds)
+        .min_by(f64::total_cmp);
+    assert_eq!(
+        report.first_confirmed_original_component_defect_observed_by_seconds,
+        earliest_completion
+    );
+}
+
+#[test]
+fn unmet_or_unknown_component_criteria_do_not_count_as_valid_defects() {
+    let fixture = fixture();
+    let plan = plan(&fixture);
+    let outcome = execute(&fixture, &plan, true);
+    let run = &outcome.scheduler.runs[0];
+    let evidence = fixture.directory.path().join("incomplete-review.txt");
+    fs::write(&evidence, "Synthetic incomplete review").unwrap();
+    let confirmations = vec![
+        DefectConfirmation {
+            run_id: run.result.run_id.clone(),
+            target_id: run.target_id.clone(),
+            root_cause_id: "synthetic-precondition-failure".to_owned(),
+            scope: ConfirmationScope::OriginalComponent,
+            evidence_origin: EvidenceOrigin::BackendExecution,
+            original_component_review: Some(original_component_review(
+                &evidence,
+                ReviewVerdict::NotSatisfied,
+                ReviewVerdict::Satisfied,
+                ReviewVerdict::Satisfied,
+            )),
+            evidence: vec![evidence.clone()],
+            note: "Synthetic rejected review".to_owned(),
+        },
+        DefectConfirmation {
+            run_id: run.result.run_id.clone(),
+            target_id: run.target_id.clone(),
+            root_cause_id: "synthetic-property-unknown".to_owned(),
+            scope: ConfirmationScope::OriginalComponent,
+            evidence_origin: EvidenceOrigin::BackendExecution,
+            original_component_review: Some(original_component_review(
+                &evidence,
+                ReviewVerdict::Satisfied,
+                ReviewVerdict::Satisfied,
+                ReviewVerdict::Unknown,
+            )),
+            evidence: vec![evidence.clone()],
+            note: "Synthetic unresolved review".to_owned(),
+        },
+        DefectConfirmation {
+            run_id: run.result.run_id.clone(),
+            target_id: run.target_id.clone(),
+            root_cause_id: "synthetic-wrapper-only".to_owned(),
+            scope: ConfirmationScope::WrapperOnly,
+            evidence_origin: EvidenceOrigin::BackendExecution,
+            original_component_review: Some(original_component_review(
+                &evidence,
+                ReviewVerdict::Satisfied,
+                ReviewVerdict::Satisfied,
+                ReviewVerdict::Satisfied,
+            )),
+            evidence: vec![evidence.clone()],
+            note: "Synthetic wrapper-only classification".to_owned(),
+        },
+        DefectConfirmation {
+            run_id: run.result.run_id.clone(),
+            target_id: run.target_id.clone(),
+            root_cause_id: "synthetic-reachability-unknown".to_owned(),
+            scope: ConfirmationScope::ReachabilityUnknown,
+            evidence_origin: EvidenceOrigin::BackendExecution,
+            original_component_review: Some(original_component_review(
+                &evidence,
+                ReviewVerdict::Satisfied,
+                ReviewVerdict::Satisfied,
+                ReviewVerdict::Satisfied,
+            )),
+            evidence: vec![evidence.clone()],
+            note: "Synthetic unknown-reachability classification".to_owned(),
+        },
+    ];
+    let confirmation_path = fixture.directory.path().join("confirmations-v2.json");
+    write_json(
+        &confirmation_path,
+        &ConfirmationSet {
+            schema_version: 2,
+            confirmations,
+        },
+    );
+
+    let report = evaluate(
+        &plan.plan_path,
+        &outcome.report_path,
+        Some(&confirmation_path),
+        &fixture.directory.path().join("evaluation.json"),
+    )
+    .unwrap();
+
+    assert_eq!(report.reviewed_confirmation_count, 4);
+    assert_eq!(report.wrapper_only_confirmation_count, 1);
+    assert_eq!(report.reachability_unknown_confirmation_count, 1);
+    assert_eq!(report.confirmed_original_component_defect_count, 0);
+    assert!(report.original_component_detection_curve.is_empty());
+    assert_eq!(
+        report.first_confirmed_original_component_defect_observed_by_seconds,
+        None
+    );
+}
+
+#[test]
+fn original_component_scope_requires_a_structured_review() {
+    let fixture = fixture();
+    let plan = plan(&fixture);
+    let outcome = execute(&fixture, &plan, true);
+    let run = &outcome.scheduler.runs[0];
+    let evidence = fixture.directory.path().join("missing-review.txt");
+    fs::write(&evidence, "Synthetic missing structured review").unwrap();
+    let confirmation_path = fixture.directory.path().join("confirmations-v2.json");
+    write_json(
+        &confirmation_path,
+        &ConfirmationSet {
+            schema_version: 2,
+            confirmations: vec![DefectConfirmation {
+                run_id: run.result.run_id.clone(),
+                target_id: run.target_id.clone(),
+                root_cause_id: "synthetic-missing-review".to_owned(),
+                scope: ConfirmationScope::OriginalComponent,
+                evidence_origin: EvidenceOrigin::BackendExecution,
+                original_component_review: None,
+                evidence: vec![evidence],
+                note: "Synthetic invalid component record".to_owned(),
+            }],
+        },
+    );
+
+    let error = evaluate(
+        &plan.plan_path,
+        &outcome.report_path,
+        Some(&confirmation_path),
+        &fixture.directory.path().join("evaluation.json"),
+    )
+    .unwrap_err();
+    assert!(error
+        .to_string()
+        .contains("original-component scope requires a structured original-component review"));
+}
+
+#[test]
+fn static_review_evidence_is_preserved_but_not_counted_as_execution_discovery() {
+    let fixture = fixture();
+    let plan = plan(&fixture);
+    let outcome = execute(&fixture, &plan, false);
+    let run = &outcome.scheduler.runs[0];
+    let evidence = fixture.directory.path().join("static-review.txt");
+    fs::write(&evidence, "Synthetic static review").unwrap();
+    let confirmation_path = fixture.directory.path().join("confirmations-v2.json");
+    write_json(
+        &confirmation_path,
+        &ConfirmationSet {
+            schema_version: 2,
+            confirmations: vec![DefectConfirmation {
+                run_id: run.result.run_id.clone(),
+                target_id: run.target_id.clone(),
+                root_cause_id: "synthetic-static-root".to_owned(),
+                scope: ConfirmationScope::OriginalComponent,
+                evidence_origin: EvidenceOrigin::StaticWarning,
+                original_component_review: Some(original_component_review(
+                    &evidence,
+                    ReviewVerdict::Satisfied,
+                    ReviewVerdict::Satisfied,
+                    ReviewVerdict::Satisfied,
+                )),
+                evidence: vec![evidence],
+                note: "Synthetic static evidence only".to_owned(),
+            }],
+        },
+    );
+
+    let report = evaluate(
+        &plan.plan_path,
+        &outcome.report_path,
+        Some(&confirmation_path),
+        &fixture.directory.path().join("evaluation.json"),
+    )
+    .unwrap();
+
+    assert_eq!(report.reviewed_confirmation_count, 1);
+    assert_eq!(report.evidence_origin_counts["static-warning"], 1);
+    assert_eq!(report.confirmed_original_component_defect_count, 0);
+    assert_eq!(report.confirmed_project_defect_count, 0);
+}
+
+#[test]
+fn legacy_project_confirmation_keeps_project_metric_without_component_promotion() {
+    let fixture = fixture();
+    let plan = plan(&fixture);
+    let outcome = execute(&fixture, &plan, true);
+    let run = &outcome.scheduler.runs[0];
+    let evidence = fixture.directory.path().join("legacy-review.txt");
+    fs::write(&evidence, "Synthetic legacy project review").unwrap();
+    let confirmation_path = fixture.directory.path().join("confirmations-v1.json");
+    write_json(
+        &confirmation_path,
+        &serde_json::json!({
+            "schema_version": 1,
+            "confirmations": [{
+                "run_id": run.result.run_id,
+                "target_id": run.target_id,
+                "root_cause_id": "synthetic-legacy-project-root",
+                "scope": "project",
+                "evidence": [evidence],
+                "note": "Synthetic schema-1 compatibility record"
+            }]
+        }),
+    );
+
+    let report = evaluate(
+        &plan.plan_path,
+        &outcome.report_path,
+        Some(&confirmation_path),
+        &fixture.directory.path().join("evaluation.json"),
+    )
+    .unwrap();
+
+    assert_eq!(report.confirmed_project_defect_count, 1);
+    assert_eq!(report.confirmed_original_component_defect_count, 0);
+    assert_eq!(report.evidence_origin_counts["backend-execution"], 1);
+}
+
+#[test]
+fn project_confirmation_with_component_review_contributes_to_both_scopes() {
+    let fixture = fixture();
+    let plan = plan(&fixture);
+    let outcome = execute(&fixture, &plan, true);
+    let run = &outcome.scheduler.runs[0];
+    let evidence = fixture
+        .directory
+        .path()
+        .join("project-component-review.txt");
+    fs::write(&evidence, "Synthetic project and component review").unwrap();
+    let confirmation_path = fixture.directory.path().join("confirmations-v2.json");
+    write_json(
+        &confirmation_path,
+        &ConfirmationSet {
+            schema_version: 2,
+            confirmations: vec![DefectConfirmation {
+                run_id: run.result.run_id.clone(),
+                target_id: run.target_id.clone(),
+                root_cause_id: "synthetic-reviewed-project-root".to_owned(),
+                scope: ConfirmationScope::Project,
+                evidence_origin: EvidenceOrigin::BackendExecution,
+                original_component_review: Some(original_component_review(
+                    &evidence,
+                    ReviewVerdict::Satisfied,
+                    ReviewVerdict::Satisfied,
+                    ReviewVerdict::Satisfied,
+                )),
+                evidence: vec![evidence],
+                note: "Synthetic dual-scope qualification".to_owned(),
+            }],
+        },
+    );
+
+    let report = evaluate(
+        &plan.plan_path,
+        &outcome.report_path,
+        Some(&confirmation_path),
+        &fixture.directory.path().join("evaluation.json"),
+    )
+    .unwrap();
+
+    assert_eq!(report.confirmed_project_defect_count, 1);
+    assert_eq!(report.confirmed_original_component_defect_count, 1);
+}
+
+#[test]
+fn mismatched_confirmation_run_and_target_is_rejected() {
+    let fixture = fixture();
+    let plan = plan(&fixture);
+    let outcome = execute(&fixture, &plan, true);
+    let evidence = fixture.directory.path().join("mismatch-review.txt");
+    fs::write(&evidence, "Synthetic mismatched review").unwrap();
+    let confirmation_path = fixture.directory.path().join("confirmations-v2.json");
+    write_json(
+        &confirmation_path,
+        &ConfirmationSet {
+            schema_version: 2,
+            confirmations: vec![DefectConfirmation {
+                run_id: outcome.scheduler.runs[0].result.run_id.clone(),
+                target_id: outcome.scheduler.runs[1].target_id.clone(),
+                root_cause_id: "synthetic-mismatch-root".to_owned(),
+                scope: ConfirmationScope::OriginalComponent,
+                evidence_origin: EvidenceOrigin::BackendExecution,
+                original_component_review: Some(original_component_review(
+                    &evidence,
+                    ReviewVerdict::Satisfied,
+                    ReviewVerdict::Satisfied,
+                    ReviewVerdict::Satisfied,
+                )),
+                evidence: vec![evidence],
+                note: "Synthetic invalid linkage".to_owned(),
+            }],
+        },
+    );
+
+    let error = evaluate(
+        &plan.plan_path,
+        &outcome.report_path,
+        Some(&confirmation_path),
+        &fixture.directory.path().join("evaluation.json"),
+    )
+    .unwrap_err();
+    assert!(error
+        .to_string()
+        .contains("confirmation run/target mismatch"));
 }
 
 #[test]
@@ -371,6 +783,8 @@ fn a_run_without_a_backend_candidate_cannot_be_confirmed() {
                 target_id: run.target_id.clone(),
                 root_cause_id: "synthetic-root".to_owned(),
                 scope: ConfirmationScope::Project,
+                evidence_origin: EvidenceOrigin::BackendExecution,
+                original_component_review: None,
                 evidence: vec![evidence],
                 note: "Synthetic test only".to_owned(),
             }],

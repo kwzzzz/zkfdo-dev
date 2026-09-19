@@ -212,27 +212,62 @@ The evaluation's `separate_phase_sum_seconds` sums preparation, planning, schedu
 
 **Reviewed confirmations and evaluation**
 
-`bug_found` means the backend reported a candidate. Static warnings, compiler failures, crashes, and saved counterexamples are not automatically confirmed project defects. To supply reviewed evidence, create a JSON file with this schema, replacing the illustrative IDs and path with actual values:
+`bug_found` means the backend reported a candidate. Static warnings, compiler failures, crashes, and saved counterexamples are not automatically confirmed defects. Confirmation input schema 2 can record an original-component review as follows, replacing all illustrative IDs, notes, and paths with actual review data:
 
 ```json
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "confirmations": [{
     "run_id": "ACTUAL_RUN_ID",
     "target_id": "sha256:ACTUAL_TARGET_ID",
     "root_cause_id": "PROJECT/REVISION/REVIEWED_ROOT_CAUSE",
-    "scope": "project",
-    "evidence": ["evidence/reproduction-and-assumptions.md"],
-    "note": "Explain reproduction, violated project property, and input assumptions."
+    "scope": "original-component",
+    "evidence_origin": "backend-execution",
+    "original_component_review": {
+      "input_preconditions": {
+        "verdict": "satisfied",
+        "evidence": ["evidence/component-review.md"],
+        "note": "State the pinned source of each precondition and how the input meets it."
+      },
+      "fixed_original_constraints": {
+        "verdict": "satisfied",
+        "evidence": ["evidence/component-review.md"],
+        "note": "State the pinned original revision and whole-component constraint check."
+      },
+      "specified_property_violation": {
+        "verdict": "satisfied",
+        "evidence": ["evidence/component-review.md"],
+        "note": "State the property fixed before evaluation and the observed violation."
+      }
+    },
+    "evidence": ["evidence/component-review.md"],
+    "note": "Reviewer summary; this example is a schema illustration, not a defect record."
   }]
 }
 ```
 
-Pass it with `experiment evaluate --confirmations FILE`, alongside the same plan/outcome/output arguments. Evidence paths are absolute or relative to the confirmation file and must exist. A confirmation must refer to a matching target/run in this plan with backend status `bug_found`. Allowed scopes are `project`, `wrapper-only`, and `reachability-unknown`. Only `project` contributes to the confirmed project-defect count. Repeated confirmations of the same root-cause ID across runs count once; use consistent IDs for shared defects and distinct IDs for unrelated defects. The evaluator validates references and files, but does not independently prove the reviewer's reasoning.
+Pass it with `experiment evaluate --confirmations FILE`, alongside the same plan/outcome/output arguments. Evidence paths are absolute or relative to the confirmation file and must exist. Every record must refer to a matching run/target from the same plan. An execution discovery additionally requires `evidence_origin: "backend-execution"` and backend status `bug_found`. Other origins are `static-warning`, `manual-source-review`, and `known-defect-annotation`; they remain visible in `evidence_origin_counts` but never enter an execution-discovery curve.
+
+Allowed scopes are `project`, `original-component`, `wrapper-only`, and `reachability-unknown`. `original-component` requires all three structured criteria to be present. A criterion with `not-satisfied` or `unknown` preserves the review record but does not qualify it as a valid component defect. `project` retains the existing project metric; it also enters the new component metric only when the same complete component review is present and satisfied. `wrapper-only` and `reachability-unknown` never receive that promotion. Repeated qualifying records with the same root-cause ID count once, using the earliest linked run completion.
+
+The evaluator verifies enum values, run/target linkage, backend status for execution-origin records, notes, and evidence-file existence. These checks structure the review; they do not establish that a report's scientific claims are true. Human review completion time and its cost remain outside the fuzzing budget and are not represented by the run-completion curve.
+
+Confirmation schema 1 remains accepted. Its omitted `evidence_origin` has the legacy meaning `backend-execution`, and a schema-1 `project` record continues to contribute to the existing project metric after the same `bug_found` linkage validation. It does not enter the original-component metric because it lacks the three new review judgments. Evaluation output is schema 2: all old project fields keep their names and meanings, while these fields are added:
+
+```json
+{
+  "schema_version": 2,
+  "confirmed_original_component_defect_count": 0,
+  "confirmed_original_component_root_causes": [],
+  "original_component_detection_curve": [],
+  "first_confirmed_original_component_defect_observed_by_seconds": null,
+  "evidence_origin_counts": {}
+}
+```
 
 A manifest's `known_defects` annotation instead records `root_cause_id`, `location`, `source_url`, `reported`, `local_reproduction`, `tcct_status`, `reachability`, and optional `evidence`. It is provenance, not a finding from this execution. `known_target_ranks` and Recall@K use targets annotated with `reported: true`; the denominator is known targets, not all defects or presumed safe negatives. With no known targets, recall is `null`.
 
-Evaluation separates status counts, backend candidates, preserved artifacts, reviewed confirmations, wrapper-only findings, and unique confirmed project root causes. Detection curves use the earliest completing confirmed run per root cause. `first_confirmed_defect_observed_by_seconds` is a completion-time upper bound relative to scheduler start, not the exact discovery or human review time. It is `null` when no project defect is confirmed. A larger held-out multi-project comparison with reviewed project-scope positives and a real-project positive control remains required before drawing ranking-performance conclusions.
+Evaluation separates status counts, backend candidates, preserved artifacts, reviewed evidence records, valid original-component root causes, wrapper-only findings, and project-context root causes. Both curves use the earliest completing qualifying run per root cause. `first_confirmed_defect_observed_by_seconds` remains the legacy project completion-time upper bound. `first_confirmed_original_component_defect_observed_by_seconds` is the separate component-level upper bound and stays `null` when no qualifying execution-linked review exists. A controlled regression set and a held-out multi-project corpus with reviewed positives remain required before drawing ranking-performance conclusions.
 
 **Verification commands**
 

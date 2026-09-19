@@ -144,8 +144,55 @@ pub struct ExperimentOutcome {
 #[serde(rename_all = "kebab-case")]
 pub enum ConfirmationScope {
     Project,
+    OriginalComponent,
     WrapperOnly,
     ReachabilityUnknown,
+}
+
+#[derive(Debug, Clone, Copy, Default, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
+#[serde(rename_all = "kebab-case")]
+pub enum EvidenceOrigin {
+    #[default]
+    BackendExecution,
+    StaticWarning,
+    ManualSourceReview,
+    KnownDefectAnnotation,
+}
+
+#[derive(Debug, Clone, Copy, Serialize, Deserialize, PartialEq, Eq)]
+#[serde(rename_all = "kebab-case")]
+pub enum ReviewVerdict {
+    Satisfied,
+    NotSatisfied,
+    Unknown,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct ReviewCriterion {
+    pub verdict: ReviewVerdict,
+    pub evidence: Vec<PathBuf>,
+    pub note: String,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct OriginalComponentReview {
+    pub input_preconditions: ReviewCriterion,
+    pub fixed_original_constraints: ReviewCriterion,
+    pub specified_property_violation: ReviewCriterion,
+}
+
+impl OriginalComponentReview {
+    fn is_satisfied(&self) -> bool {
+        [
+            &self.input_preconditions,
+            &self.fixed_original_constraints,
+            &self.specified_property_violation,
+        ]
+        .into_iter()
+        .all(|criterion| criterion.verdict == ReviewVerdict::Satisfied)
+    }
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -155,6 +202,10 @@ pub struct DefectConfirmation {
     pub target_id: String,
     pub root_cause_id: String,
     pub scope: ConfirmationScope,
+    #[serde(default)]
+    pub evidence_origin: EvidenceOrigin,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub original_component_review: Option<OriginalComponentReview>,
     pub evidence: Vec<PathBuf>,
     pub note: String,
 }
@@ -192,6 +243,15 @@ pub struct DetectionPoint {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct OriginalComponentDetectionPoint {
+    pub root_cause_id: String,
+    pub target_id: String,
+    pub run_id: String,
+    pub observed_by_seconds: f64,
+    pub cumulative_confirmed_original_component_defects: usize,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct EvaluationTimings {
     pub preparation_seconds: f64,
     pub preparation_accounting: PreparationAccounting,
@@ -222,11 +282,16 @@ pub struct EvaluationReport {
     pub preserved_counterexample_count: usize,
     pub reviewed_confirmation_count: usize,
     pub confirmed_project_defect_count: usize,
+    pub confirmed_original_component_defect_count: usize,
     pub wrapper_only_confirmation_count: usize,
     pub reachability_unknown_confirmation_count: usize,
+    pub evidence_origin_counts: BTreeMap<String, usize>,
     pub confirmed_project_root_causes: Vec<String>,
+    pub confirmed_original_component_root_causes: Vec<String>,
     pub detection_curve: Vec<DetectionPoint>,
+    pub original_component_detection_curve: Vec<OriginalComponentDetectionPoint>,
     pub first_confirmed_defect_observed_by_seconds: Option<f64>,
+    pub first_confirmed_original_component_defect_observed_by_seconds: Option<f64>,
     pub timings: EvaluationTimings,
     pub limitations: Vec<String>,
 }
@@ -521,47 +586,30 @@ pub fn evaluate(
         .filter(|run| run.process_start_offset_seconds.is_some())
         .map(|run| run.target_id.clone())
         .collect::<Vec<_>>();
-    let project_confirmations = confirmations
-        .iter()
-        .filter(|confirmation| confirmation.scope == ConfirmationScope::Project)
-        .collect::<Vec<_>>();
-    let mut first_by_root: BTreeMap<String, (&DefectConfirmation, f64)> = BTreeMap::new();
     let run_offsets = outcome
         .scheduler
         .runs
         .iter()
         .map(|run| (run.result.run_id.as_str(), run.completion_offset_seconds))
         .collect::<BTreeMap<_, _>>();
-    for confirmation in project_confirmations {
-        let offset = *run_offsets
-            .get(confirmation.run_id.as_str())
-            .context("confirmed run has no completion offset")?;
-        match first_by_root.get(&confirmation.root_cause_id) {
-            Some((_, old)) if *old <= offset => {}
-            _ => {
-                first_by_root.insert(confirmation.root_cause_id.clone(), (confirmation, offset));
-            }
-        }
-    }
-    let mut detections = first_by_root.into_iter().collect::<Vec<_>>();
-    detections.sort_by(|left, right| {
-        left.1
-             .1
-            .total_cmp(&right.1 .1)
-            .then_with(|| left.0.cmp(&right.0))
-    });
-    let detection_curve = detections
+
+    let project_detections = earliest_confirmations(
+        confirmations.iter().filter(|confirmation| {
+            confirmation.scope == ConfirmationScope::Project
+                && confirmation.evidence_origin == EvidenceOrigin::BackendExecution
+        }),
+        &run_offsets,
+    )?;
+    let detection_curve = project_detections
         .iter()
         .enumerate()
-        .map(
-            |(index, (root_cause_id, (confirmation, offset)))| DetectionPoint {
-                root_cause_id: root_cause_id.clone(),
-                target_id: confirmation.target_id.clone(),
-                run_id: confirmation.run_id.clone(),
-                observed_by_seconds: *offset,
-                cumulative_confirmed_project_defects: index + 1,
-            },
-        )
+        .map(|(index, (confirmation, offset))| DetectionPoint {
+            root_cause_id: confirmation.root_cause_id.clone(),
+            target_id: confirmation.target_id.clone(),
+            run_id: confirmation.run_id.clone(),
+            observed_by_seconds: *offset,
+            cumulative_confirmed_project_defects: index + 1,
+        })
         .collect::<Vec<_>>();
     let first_confirmed_defect_observed_by_seconds = detection_curve
         .first()
@@ -570,10 +618,53 @@ pub fn evaluate(
         .iter()
         .map(|point| point.root_cause_id.clone())
         .collect::<Vec<_>>();
+
+    let original_component_detections = earliest_confirmations(
+        confirmations.iter().filter(|confirmation| {
+            confirmation.evidence_origin == EvidenceOrigin::BackendExecution
+                && matches!(
+                    confirmation.scope,
+                    ConfirmationScope::OriginalComponent | ConfirmationScope::Project
+                )
+                && confirmation
+                    .original_component_review
+                    .as_ref()
+                    .is_some_and(OriginalComponentReview::is_satisfied)
+        }),
+        &run_offsets,
+    )?;
+    let original_component_detection_curve = original_component_detections
+        .iter()
+        .enumerate()
+        .map(
+            |(index, (confirmation, offset))| OriginalComponentDetectionPoint {
+                root_cause_id: confirmation.root_cause_id.clone(),
+                target_id: confirmation.target_id.clone(),
+                run_id: confirmation.run_id.clone(),
+                observed_by_seconds: *offset,
+                cumulative_confirmed_original_component_defects: index + 1,
+            },
+        )
+        .collect::<Vec<_>>();
+    let first_confirmed_original_component_defect_observed_by_seconds =
+        original_component_detection_curve
+            .first()
+            .map(|point| point.observed_by_seconds);
+    let confirmed_original_component_root_causes = original_component_detection_curve
+        .iter()
+        .map(|point| point.root_cause_id.clone())
+        .collect::<Vec<_>>();
+
+    let mut evidence_origin_counts = BTreeMap::new();
+    for confirmation in &confirmations {
+        *evidence_origin_counts
+            .entry(evidence_origin_name(confirmation.evidence_origin).to_owned())
+            .or_insert(0) += 1;
+    }
     let evaluation_seconds = timer.elapsed().as_secs_f64();
     let output_path = absolute_output_path(output_path)?;
     let report = EvaluationReport {
-        schema_version: 1,
+        schema_version: 2,
         report_path: output_path.clone(),
         plan_id: plan.plan_id,
         outcome_id: outcome.outcome_id,
@@ -601,6 +692,7 @@ pub fn evaluate(
         preserved_counterexample_count: outcome.counterexample_candidates.len(),
         reviewed_confirmation_count: confirmations.len(),
         confirmed_project_defect_count: confirmed_project_root_causes.len(),
+        confirmed_original_component_defect_count: confirmed_original_component_root_causes.len(),
         wrapper_only_confirmation_count: confirmations
             .iter()
             .filter(|confirmation| confirmation.scope == ConfirmationScope::WrapperOnly)
@@ -611,9 +703,13 @@ pub fn evaluate(
                 confirmation.scope == ConfirmationScope::ReachabilityUnknown
             })
             .count(),
+        evidence_origin_counts,
         confirmed_project_root_causes,
+        confirmed_original_component_root_causes,
         detection_curve,
+        original_component_detection_curve,
         first_confirmed_defect_observed_by_seconds,
+        first_confirmed_original_component_defect_observed_by_seconds,
         timings: EvaluationTimings {
             preparation_seconds: plan.preparation_elapsed_seconds,
             preparation_accounting: plan.preparation_accounting.clone(),
@@ -627,13 +723,49 @@ pub fn evaluate(
         },
         limitations: vec![
             "Recall@K uses the target as its unit and only manifest-annotated known-defect targets as its denominator; unlabeled targets are not safe negatives.".to_owned(),
-            "Confirmed defects require explicit review evidence and project scope; backend warnings, crashes, and counterexamples are reported separately.".to_owned(),
-            "Detection timestamps are scheduler completion upper bounds for runs that were subsequently confirmed, not exact discovery or human confirmation times.".to_owned(),
+            "Original-component execution metrics require backend-execution evidence plus satisfied reviews of input preconditions, fixed-original constraints, and the pre-specified property violation; file existence and reviewer declarations are validated structurally, not independently proven.".to_owned(),
+            "Legacy project metrics retain their schema-1 meaning. A project record contributes to the original-component metric only when it also supplies the complete satisfied component review.".to_owned(),
+            "Static warnings, manual source review, known-defect annotations, crashes, and counterexample files do not contribute to execution-discovered defect curves.".to_owned(),
+            "Detection timestamps are scheduler completion upper bounds for linked runs, not exact discovery or human confirmation times; post-run review time is not part of the fuzzing budget.".to_owned(),
             "Separate phase durations may have occurred in different invocations; their sum is accounting, not a single uninterrupted wall-clock measurement.".to_owned(),
         ],
     };
     write_json(&output_path, &report)?;
     Ok(report)
+}
+
+fn earliest_confirmations<'a>(
+    confirmations: impl Iterator<Item = &'a DefectConfirmation>,
+    run_offsets: &BTreeMap<&str, f64>,
+) -> Result<Vec<(&'a DefectConfirmation, f64)>> {
+    let mut first_by_root: BTreeMap<String, (&DefectConfirmation, f64)> = BTreeMap::new();
+    for confirmation in confirmations {
+        let offset = *run_offsets
+            .get(confirmation.run_id.as_str())
+            .context("confirmed run has no completion offset")?;
+        match first_by_root.get(&confirmation.root_cause_id) {
+            Some((_, old)) if *old <= offset => {}
+            _ => {
+                first_by_root.insert(confirmation.root_cause_id.clone(), (confirmation, offset));
+            }
+        }
+    }
+    let mut detections = first_by_root.into_values().collect::<Vec<_>>();
+    detections.sort_by(|left, right| {
+        left.1
+            .total_cmp(&right.1)
+            .then_with(|| left.0.root_cause_id.cmp(&right.0.root_cause_id))
+    });
+    Ok(detections)
+}
+
+fn evidence_origin_name(origin: EvidenceOrigin) -> &'static str {
+    match origin {
+        EvidenceOrigin::BackendExecution => "backend-execution",
+        EvidenceOrigin::StaticWarning => "static-warning",
+        EvidenceOrigin::ManualSourceReview => "manual-source-review",
+        EvidenceOrigin::KnownDefectAnnotation => "known-defect-annotation",
+    }
 }
 
 fn validate_prepared_target(
@@ -1183,9 +1315,10 @@ fn load_and_validate_confirmations(
     let set: ConfirmationSet =
         serde_json::from_slice(&fs::read(&path)?).context("invalid defect confirmations JSON")?;
     ensure!(
-        set.schema_version == 1,
+        matches!(set.schema_version, 1 | 2),
         "unsupported confirmation schema version"
     );
+    let confirmation_schema_version = set.schema_version;
     let plan_ids = plan
         .targets
         .iter()
@@ -1200,6 +1333,14 @@ fn load_and_validate_confirmations(
     let mut unique = BTreeSet::new();
     let mut confirmations = set.confirmations;
     for confirmation in &mut confirmations {
+        if confirmation_schema_version == 1 {
+            ensure!(
+                confirmation.scope != ConfirmationScope::OriginalComponent
+                    && confirmation.evidence_origin == EvidenceOrigin::BackendExecution
+                    && confirmation.original_component_review.is_none(),
+                "original-component reviews and evidence origins require confirmation schema version 2"
+            );
+        }
         ensure!(
             !confirmation.root_cause_id.trim().is_empty(),
             "confirmation root cause ID must not be empty"
@@ -1215,39 +1356,76 @@ fn load_and_validate_confirmations(
             run.target_id == confirmation.target_id,
             "confirmation run/target mismatch"
         );
-        ensure!(
-            run.result.status == RunStatus::BugFound,
-            "only backend BugFound runs can be confirmed"
-        );
+        if confirmation.evidence_origin == EvidenceOrigin::BackendExecution {
+            ensure!(
+                run.result.status == RunStatus::BugFound,
+                "only backend BugFound runs can be confirmed as execution discoveries"
+            );
+        }
+        if confirmation.scope == ConfirmationScope::OriginalComponent {
+            ensure!(
+                confirmation.original_component_review.is_some(),
+                "original-component scope requires a structured original-component review"
+            );
+        }
         ensure!(
             !confirmation.evidence.is_empty(),
             "confirmation requires at least one evidence file"
         );
-        for evidence in &mut confirmation.evidence {
-            let resolved = if evidence.is_absolute() {
-                evidence.clone()
-            } else {
-                parent.join(&*evidence)
-            };
-            *evidence = fs::canonicalize(&resolved).with_context(|| {
-                format!("confirmation evidence unavailable: {}", resolved.display())
-            })?;
-            ensure!(
-                evidence.is_file(),
-                "confirmation evidence must be a file: {}",
-                evidence.display()
-            );
+        resolve_evidence_paths(&mut confirmation.evidence, parent)?;
+        if let Some(review) = &mut confirmation.original_component_review {
+            for (name, criterion) in [
+                ("input_preconditions", &mut review.input_preconditions),
+                (
+                    "fixed_original_constraints",
+                    &mut review.fixed_original_constraints,
+                ),
+                (
+                    "specified_property_violation",
+                    &mut review.specified_property_violation,
+                ),
+            ] {
+                ensure!(
+                    !criterion.note.trim().is_empty(),
+                    "original-component review criterion {name} requires a note"
+                );
+                ensure!(
+                    !criterion.evidence.is_empty(),
+                    "original-component review criterion {name} requires evidence"
+                );
+                resolve_evidence_paths(&mut criterion.evidence, parent)?;
+            }
         }
         ensure!(
             unique.insert((
                 confirmation.run_id.clone(),
                 confirmation.root_cause_id.clone(),
                 confirmation.scope,
+                confirmation.evidence_origin,
             )),
             "duplicate defect confirmation"
         );
     }
     Ok(confirmations)
+}
+
+fn resolve_evidence_paths(evidence_paths: &mut [PathBuf], parent: &Path) -> Result<()> {
+    for evidence in evidence_paths {
+        let resolved = if evidence.is_absolute() {
+            evidence.clone()
+        } else {
+            parent.join(&*evidence)
+        };
+        *evidence = fs::canonicalize(&resolved).with_context(|| {
+            format!("confirmation evidence unavailable: {}", resolved.display())
+        })?;
+        ensure!(
+            evidence.is_file(),
+            "confirmation evidence must be a file: {}",
+            evidence.display()
+        );
+    }
+    Ok(())
 }
 
 fn known_target_ranks(plan: &ExperimentPlan) -> Vec<KnownTargetRank> {
