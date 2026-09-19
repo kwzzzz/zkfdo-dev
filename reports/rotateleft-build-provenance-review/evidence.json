@@ -1,0 +1,758 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-09-19T04:53:08.942332+00:00",
+  "status_vocabulary": [
+    "확인 완료",
+    "부재 확인",
+    "미확인",
+    "범위 밖"
+  ],
+  "question": "Do actual RotateLeft parameters/build conditions correspond, and can the distributed WASM/zkey be linked to pinned source ef9f5a5... by verifiable provenance?",
+  "scope": {
+    "previous_reports_read": [
+      "reports/rotateleft-static-integration-review/REPORT.md",
+      "reports/rotateleft-static-integration-review/evidence.json",
+      "reports/rotateleft-fixture-fidelity-2026-09-15/REPORT.md",
+      "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+    ],
+    "counterexample_or_witness_artifacts_opened": [],
+    "experiment_run_artifacts_opened": [],
+    "new_counterexamples_generated": false,
+    "new_witnesses_generated": false,
+    "proofs_generated": false,
+    "existing_wasm_executed": false,
+    "wasm_generated": false,
+    "zkey_regenerated": false,
+    "trusted_setup_run": false,
+    "verification_key_exported_for_metadata_only": true,
+    "preliminary_r1cs_sym_compile_attempts": 1,
+    "preliminary_note": "The first L16 fixture compile succeeded; the old O0-only symbol parser rejected O2 wire=-1. Temporary output was discarded and no witness was generated.",
+    "final_r1cs_sym_compilations": 9,
+    "existing_source_experiment_or_report_files_modified": false
+  },
+  "version_separation": {
+    "pinned_original_revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+    "rotation_fix_revision": "e5e756375fc1fc8dc48667b00cdf38c79a0fdf50",
+    "source_archive_sha256": "8b81d8fe5d70ae7fb4fb8cb683449bf06b303b9799ad589b95b6a55cff2f399f",
+    "current_comparison_circom": "circom compiler 2.2.3",
+    "current_metadata_snarkjs": "snarkjs 0.7.6",
+    "historical_circom_version": "미확인",
+    "current_tool_versions_treated_as_historical": false,
+    "prior_L3_settings": {
+      "compiler": "circom compiler 2.2.3",
+      "optimization": "O0",
+      "prime": "bn128 explicit",
+      "scope": "direct RotateLeft32Bits(3)"
+    }
+  },
+  "source_files": [
+    {
+      "path": "package.json",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "git_blob_sha1": "fb2b08bc310ad0f780494f211164e4ae6a81bddb",
+      "sha256": "3109188ee72f48a0dcbd6dfe889ca479b1e674ec501a7b04a0c954b56afb8cd9",
+      "size_bytes": 904,
+      "line_count": 37
+    },
+    {
+      "path": "package-lock.json",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "git_blob_sha1": "4a5d5feef44b560fa7552c8868b766322b6d2241",
+      "sha256": "a77104ee635d2dcfcd56eea4ea8664fee31b633ed63255320cd3af0eea28e59c",
+      "size_bytes": 172284,
+      "line_count": 4656
+    },
+    {
+      "path": "readme.md",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "git_blob_sha1": "1c121742db9ce39009186547250ffa75efe9fd95",
+      "sha256": "2e3bb82d379c727aba7c0ae4d994d23b37d9949b6b45078d2bc3eaf10cb58e1a",
+      "size_bytes": 2793,
+      "line_count": 108
+    },
+    {
+      "path": "scripts/build-circuit.sh",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "git_blob_sha1": "504dd4f77cd3867486a7a07813ef1e94e6de182e",
+      "sha256": "a4284681163badfe52645960335ecb86ef419eaf855da30279314635913dfe23",
+      "size_bytes": 1264,
+      "line_count": 17
+    },
+    {
+      "path": "scripts/download-ptau.sh",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "git_blob_sha1": "1df57e6c53ed12f60c46f45e8e63db69f6ee3d43",
+      "sha256": "4d90e241dea74cf577c497a385c6bcf1fb2fa3508c587629c7b582d5ce7912b1",
+      "size_bytes": 150,
+      "line_count": 3
+    },
+    {
+      "path": "scripts/generate-ptau.sh",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "git_blob_sha1": "c63fa22d2e573339aec5ee4d9d3f09aeda0bddbf",
+      "sha256": "9d2e413c84d4a7900d9e826d6d15df157d55202f4d6a8c5e4af136623739ee82",
+      "size_bytes": 1094,
+      "line_count": 18
+    },
+    {
+      "path": "circuits/circuit.circom",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "git_blob_sha1": "6d0c443e7e4af3d007fb5b38882442895e767729",
+      "sha256": "02f6cd24def5cc1a456cfad56ed597e8f078eb1755f467a410f749761f5826f6",
+      "size_bytes": 95,
+      "line_count": 5
+    },
+    {
+      "path": "circuits/chacha20.circom",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "git_blob_sha1": "88d975a74771b2127940ea7af257aa80e2886112",
+      "sha256": "f177500856d3456f4fd994a2f1042bd614f539100e25efcdb8f136fbd680f868",
+      "size_bytes": 4610,
+      "line_count": 221
+    },
+    {
+      "path": "circuits/generics.circom",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "git_blob_sha1": "46ef6207acbd284271f27be9ccd7798e7f26603c",
+      "sha256": "4dca4517b1804c8d3a6c9fa0699bb31633a117ca1f0e6df7a45d352beb94d366",
+      "size_bytes": 2045,
+      "line_count": 91
+    },
+    {
+      "path": "src/operator.ts",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "git_blob_sha1": "d51e8f5262dc802f406fd0255bed18522f3bb8d9",
+      "sha256": "12fe917a4b432aa1ccb2aa663913d70aa8b9a7a7990c36347a7f3ee4fe031e8e",
+      "size_bytes": 1040,
+      "line_count": 48
+    }
+  ],
+  "references": [
+    {
+      "id": "npm-build-command",
+      "path": "package.json",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 6,
+        "end": 12
+      },
+      "purpose": "build:circuit delegates to scripts/build-circuit.sh",
+      "excerpt_sha256": "05528939fcd0411eabca692e7b10058d0c48a1244a7f3f6f6b4ecc60b0d69f24"
+    },
+    {
+      "id": "package-declarations",
+      "path": "package.json",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 26,
+        "end": 36
+      },
+      "purpose": "declared JavaScript development dependencies",
+      "excerpt_sha256": "3d94a4246cfb7093964b3fdb4f539bc26575fbcc6f5c1bc7c2bdbfa66c56f449"
+    },
+    {
+      "id": "lock-root",
+      "path": "package-lock.json",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 1,
+        "end": 29
+      },
+      "purpose": "lockfile version and root dependency ranges",
+      "excerpt_sha256": "b14ff42b8fdf4dd69e1a6f8911a50e2846ab8b39d2306cfaf94d4eba72a53e21"
+    },
+    {
+      "id": "lock-circom-tester",
+      "path": "package-lock.json",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 1711,
+        "end": 1723
+      },
+      "purpose": "locked circom_tester and its own snarkjs dependency",
+      "excerpt_sha256": "8809a79ef60104af69bab0ec1c6433aa332fa43655cb7cd3e5f94d65a327101a"
+    },
+    {
+      "id": "lock-jest",
+      "path": "package-lock.json",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 2664,
+        "end": 2676
+      },
+      "purpose": "locked Jest version",
+      "excerpt_sha256": "bf7cb7e209049627dac775847024ac0879c5fc0f089ba6f215b1fb2a2c02f6c7"
+    },
+    {
+      "id": "lock-snarkjs",
+      "path": "package-lock.json",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 3975,
+        "end": 3990
+      },
+      "purpose": "locked project snarkjs version and runtime dependency",
+      "excerpt_sha256": "c54bf53f62897fdb65d66dd73dd00bdc625bcdfe6c3531a07cb3b9bb341ec616"
+    },
+    {
+      "id": "lock-ts-jest",
+      "path": "package-lock.json",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 4273,
+        "end": 4288
+      },
+      "purpose": "locked ts-jest version",
+      "excerpt_sha256": "32e8ef10534b2c36a1b060b1261399d9e9777aeec30d503acca6ac7b2b554a19"
+    },
+    {
+      "id": "lock-typescript",
+      "path": "package-lock.json",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 4413,
+        "end": 4424
+      },
+      "purpose": "locked TypeScript version",
+      "excerpt_sha256": "745d0694f5b6322d21044478584737b7c0104578db8a7d1a0ee5f3a6dbb7075e"
+    },
+    {
+      "id": "configured-circom-command",
+      "path": "scripts/build-circuit.sh",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 1,
+        "end": 5
+      },
+      "purpose": "actual configured entrypoint and O2 flags; no explicit prime or compiler version",
+      "excerpt_sha256": "0e2cd00fdc6bc2c27f7eaf8d4e7b8c12f8071a7f3e4b7450854a7902705db96e"
+    },
+    {
+      "id": "configured-zkey-steps",
+      "path": "scripts/build-circuit.sh",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 7,
+        "end": 17
+      },
+      "purpose": "zkey generation steps and commented verification command",
+      "excerpt_sha256": "bbadf7bc916da9c75b1484a5a773718241719908259ff3955502851a9597efde"
+    },
+    {
+      "id": "documented-circom-install",
+      "path": "readme.md",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 80,
+        "end": 100
+      },
+      "purpose": "Circom is an external prerequisite and build command is documented",
+      "excerpt_sha256": "2ce3f62a177384c0e2497887d676df6f6baa6ec045eae13bbc719c27bc26d1c2"
+    },
+    {
+      "id": "documented-field",
+      "path": "readme.md",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 95,
+        "end": 107
+      },
+      "purpose": "BN128 ptau and current-field statement are documentation",
+      "excerpt_sha256": "35ddafb92994a7d4f665ed1d4c7fcf877b7b05d45caa6a51aeec27ec25303db7"
+    },
+    {
+      "id": "ptau-download",
+      "path": "scripts/download-ptau.sh",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 1,
+        "end": 3
+      },
+      "purpose": "download URL has no recorded integrity check",
+      "excerpt_sha256": "4d90e241dea74cf577c497a385c6bcf1fb2fa3508c587629c7b582d5ce7912b1"
+    },
+    {
+      "id": "ptau-local-generation",
+      "path": "scripts/generate-ptau.sh",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 1,
+        "end": 17
+      },
+      "purpose": "alternative BLS12-381 ceremony path and commented verification",
+      "excerpt_sha256": "a647569550fc4a08be3fc84f409edc48b8e1dbcefce019882bd98fe8cdd369a1"
+    },
+    {
+      "id": "production-entrypoint",
+      "path": "circuits/circuit.circom",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 1,
+        "end": 5
+      },
+      "purpose": "full circuit main is ChaCha20(16)",
+      "excerpt_sha256": "02f6cd24def5cc1a456cfad56ed597e8f078eb1755f467a410f749761f5826f6"
+    },
+    {
+      "id": "actual-parameters",
+      "path": "circuits/chacha20.circom",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 152,
+        "end": 218
+      },
+      "purpose": "actual QR rotation parameters and connections",
+      "excerpt_sha256": "61c4a47b73382dcb3a77aa1f0589a6660188a8788f95fb14e0fee23deb0cfba6"
+    },
+    {
+      "id": "rotate-template",
+      "path": "circuits/generics.circom",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 35,
+        "end": 46
+      },
+      "purpose": "pinned original RotateLeft32Bits template",
+      "excerpt_sha256": "13a28251b4b1cd7ce1c38ae64e5bd6ea68873e73f098c559ddaea505e1ee5402"
+    },
+    {
+      "id": "default-operator-artifacts",
+      "path": "src/operator.ts",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 10,
+        "end": 22
+      },
+      "purpose": "default operator reads the distributed WASM and zkey",
+      "excerpt_sha256": "a626fe05561d4cf012f52fb26f85b688f3ef6636d787199176e99373124a1da1"
+    }
+  ],
+  "build_environment": {
+    "configured_entrypoint": {
+      "status": "확인 완료",
+      "command": "circom circuits/circuit.circom --r1cs --wasm --O2 --inspect -o resources",
+      "optimization": "O2",
+      "prime_flag_present": false,
+      "compiler_version_pin_present": false
+    },
+    "documentation": {
+      "status": "확인 완료",
+      "field_statement": "README says current circuit is BN-128 and points to an official BN128 ptau download",
+      "classification": "documentation, not a historical build record"
+    },
+    "javascript_lockfile": {
+      "status": "확인 완료",
+      "lockfile_version": 3,
+      "package_versions": {
+        "circom_tester": {
+          "version": "0.0.19",
+          "resolved": "https://registry.npmjs.org/circom_tester/-/circom_tester-0.0.19.tgz",
+          "integrity": "sha512-SNHaBsGxcBH6XsVWfsRbRPA7NF8m8AMKJI9dtJJCFGUtOTT2+zsoIqAwi50z6XCnO4TtjyXq7AeXa1PLHqT0tw=="
+        },
+        "snarkjs": {
+          "version": "0.7.0",
+          "resolved": "https://registry.npmjs.org/snarkjs/-/snarkjs-0.7.0.tgz",
+          "integrity": "sha512-Vu5W+0Va6X1xvlCllpZ2r3/S7MafnL6IrAv09lk/F+VNDHuHEHx3xopR9Kr70p2KpbBBJ/HB9VCDZWism8WGlA=="
+        },
+        "jest": {
+          "version": "29.5.0",
+          "resolved": "https://registry.npmjs.org/jest/-/jest-29.5.0.tgz",
+          "integrity": "sha512-juMg3he2uru1QoXX078zTa7pO85QyB9xajZc6bU+d9yEGwrKX6+vGmJQ3UdVZsvTEUARIdObzH68QItim6OSSQ=="
+        },
+        "ts-jest": {
+          "version": "29.1.0",
+          "resolved": "https://registry.npmjs.org/ts-jest/-/ts-jest-29.1.0.tgz",
+          "integrity": "sha512-ZhNr7Z4PcYa+JjMl62ir+zPiNJfXJN6E8hSLnaUKhOgqcn8vb3e537cpkd0FuAfRK3sR1LSqM1MOhliXNgOFPA=="
+        },
+        "typescript": {
+          "version": "5.1.3",
+          "resolved": "https://registry.npmjs.org/typescript/-/typescript-5.1.3.tgz",
+          "integrity": "sha512-XH627E9vkeqhlZFQuL+UsyAXEnibT0kWR2FWONlr4sTjvxyJYnyefgrkyECLzM5NenmKzRAy2rR/OlYLA1HkZw=="
+        }
+      }
+    },
+    "circom_compiler_version": {
+      "status": "미확인",
+      "reason": "Circom is an external prerequisite; no version pin, container, CI log, or build manifest was found"
+    },
+    "historical_prime": {
+      "status": "미확인",
+      "artifact_metadata": "zkey metadata says bn128",
+      "command_pin": "부재 확인",
+      "reason": "the command omits --prime; exact compiler/default build record is absent"
+    },
+    "ptau": {
+      "status": "미확인",
+      "tracked_file_present": false,
+      "download_url_recorded": true,
+      "expected_hash_recorded": false,
+      "note": "pot/ contains only .gitadd; exact ptau used for the tracked zkey is not available"
+    },
+    "repository_ci": {
+      "status": "부재 확인",
+      "ci_config_files_in_pinned_tree": [],
+      "commit_status_count": 0,
+      "check_run_count": 0,
+      "github_action_run_count": 0,
+      "scope_note": "No repository/GitHub-visible record was found; external build systems cannot be excluded."
+    }
+  },
+  "actual_parameter_correspondence": {
+    "16": {
+      "status": "확인 완료",
+      "fixture_source_sha256": "cdd4afc861b5b07de22aa90fe81f0d9142882964586e8531185ca3422c745bae",
+      "original_source_sha256": "4dca4517b1804c8d3a6c9fa0699bb31633a117ca1f0e6df7a45d352beb94d366",
+      "wrapper_sha256": "0c35231d5a2be3dfba317b55de301ab7e9a4377e4cb9925ec0cb6c7e0e63fde3",
+      "settings": {
+        "compiler": "circom compiler 2.2.3 (current comparison tool)",
+        "optimization": "O2",
+        "prime": "bn128 explicit",
+        "inspect": true
+      },
+      "counts": {
+        "wires": 3,
+        "public_outputs": 1,
+        "public_inputs": 1,
+        "private_inputs": 0,
+        "labels": 5,
+        "constraints": 0
+      },
+      "r1cs_sha256": "729ff97ef99dbf75cef5781ecef0d42107568191b4aa35359492222c19b61a5f",
+      "sym_sha256": "6ee1dc69b2bc33d24769352d74a029cb36cde8328f18ee9ecf8213fe2930e1d7",
+      "r1cs_bytes_identical": true,
+      "sym_bytes_identical": true,
+      "raw_constraints_identical": true,
+      "interpretation": "exact output identity for the two stated direct wrappers in the current comparison environment; not historical deployment provenance or a safety result"
+    },
+    "12": {
+      "status": "확인 완료",
+      "fixture_source_sha256": "cdd4afc861b5b07de22aa90fe81f0d9142882964586e8531185ca3422c745bae",
+      "original_source_sha256": "4dca4517b1804c8d3a6c9fa0699bb31633a117ca1f0e6df7a45d352beb94d366",
+      "wrapper_sha256": "3fd1b1cfb3474cb464780c443fb2b03cf80671ad680d2f4a7c9e1a951d50eb6a",
+      "settings": {
+        "compiler": "circom compiler 2.2.3 (current comparison tool)",
+        "optimization": "O2",
+        "prime": "bn128 explicit",
+        "inspect": true
+      },
+      "counts": {
+        "wires": 3,
+        "public_outputs": 1,
+        "public_inputs": 1,
+        "private_inputs": 0,
+        "labels": 5,
+        "constraints": 0
+      },
+      "r1cs_sha256": "729ff97ef99dbf75cef5781ecef0d42107568191b4aa35359492222c19b61a5f",
+      "sym_sha256": "6ee1dc69b2bc33d24769352d74a029cb36cde8328f18ee9ecf8213fe2930e1d7",
+      "r1cs_bytes_identical": true,
+      "sym_bytes_identical": true,
+      "raw_constraints_identical": true,
+      "interpretation": "exact output identity for the two stated direct wrappers in the current comparison environment; not historical deployment provenance or a safety result"
+    },
+    "8": {
+      "status": "확인 완료",
+      "fixture_source_sha256": "cdd4afc861b5b07de22aa90fe81f0d9142882964586e8531185ca3422c745bae",
+      "original_source_sha256": "4dca4517b1804c8d3a6c9fa0699bb31633a117ca1f0e6df7a45d352beb94d366",
+      "wrapper_sha256": "5760e02e38393dde5164b4107e76c0955dea0a933769e55da6340ca6fd10e6dc",
+      "settings": {
+        "compiler": "circom compiler 2.2.3 (current comparison tool)",
+        "optimization": "O2",
+        "prime": "bn128 explicit",
+        "inspect": true
+      },
+      "counts": {
+        "wires": 3,
+        "public_outputs": 1,
+        "public_inputs": 1,
+        "private_inputs": 0,
+        "labels": 5,
+        "constraints": 0
+      },
+      "r1cs_sha256": "729ff97ef99dbf75cef5781ecef0d42107568191b4aa35359492222c19b61a5f",
+      "sym_sha256": "6ee1dc69b2bc33d24769352d74a029cb36cde8328f18ee9ecf8213fe2930e1d7",
+      "r1cs_bytes_identical": true,
+      "sym_bytes_identical": true,
+      "raw_constraints_identical": true,
+      "interpretation": "exact output identity for the two stated direct wrappers in the current comparison environment; not historical deployment provenance or a safety result"
+    },
+    "7": {
+      "status": "확인 완료",
+      "fixture_source_sha256": "cdd4afc861b5b07de22aa90fe81f0d9142882964586e8531185ca3422c745bae",
+      "original_source_sha256": "4dca4517b1804c8d3a6c9fa0699bb31633a117ca1f0e6df7a45d352beb94d366",
+      "wrapper_sha256": "a28b98749aab8fa13956b44f3f116813d8f90bd10ad869c81b10296309aece65",
+      "settings": {
+        "compiler": "circom compiler 2.2.3 (current comparison tool)",
+        "optimization": "O2",
+        "prime": "bn128 explicit",
+        "inspect": true
+      },
+      "counts": {
+        "wires": 3,
+        "public_outputs": 1,
+        "public_inputs": 1,
+        "private_inputs": 0,
+        "labels": 5,
+        "constraints": 0
+      },
+      "r1cs_sha256": "729ff97ef99dbf75cef5781ecef0d42107568191b4aa35359492222c19b61a5f",
+      "sym_sha256": "6ee1dc69b2bc33d24769352d74a029cb36cde8328f18ee9ecf8213fe2930e1d7",
+      "r1cs_bytes_identical": true,
+      "sym_bytes_identical": true,
+      "raw_constraints_identical": true,
+      "interpretation": "exact output identity for the two stated direct wrappers in the current comparison environment; not historical deployment provenance or a safety result"
+    }
+  },
+  "full_entrypoint_current_baseline": {
+    "status": "미확인",
+    "source": "reclaim-1/circom-chacha20@ef9f5a5ad899d852740a26b30eabe5765673c71f",
+    "wrapper": "circuits/circuit.circom main = ChaCha20(16)",
+    "settings": {
+      "circom_version": "circom compiler 2.2.3",
+      "classification": "current reproduction tool, not evidence of the historical deployment compiler",
+      "optimization": "O2",
+      "prime": "bn128 (explicitly selected for comparison)",
+      "inspect": true,
+      "outputs": [
+        "r1cs",
+        "sym"
+      ],
+      "witness_generated": false,
+      "wasm_generated": false,
+      "proof_generated": false
+    },
+    "counts": {
+      "wires": 32269,
+      "public_outputs": 16,
+      "public_inputs": 16,
+      "private_inputs": 12,
+      "labels": 36605,
+      "constraints": 32592
+    },
+    "r1cs_sha256": "3c4c4596ecfb37b249b94ab437124c660f0f8427696e830a46428d96fd2d9cb3",
+    "sym_sha256": "e38c608435a78b56f501cdf3d913d40386a383f163840c6c9f300f4b04dc8541",
+    "reason": "A current-tool baseline was generated, but there is no fixture/full-circuit counterpart or historical R1CS/build record to compare.",
+    "not_proven": [
+      "historical compiler equivalence",
+      "distributed WASM source equivalence",
+      "distributed zkey/R1CS equivalence",
+      "semantic correctness"
+    ]
+  },
+  "distributed_artifacts": {
+    "wasm": {
+      "path": "resources/circuit.wasm",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "size_bytes": 180868,
+      "sha256": "832a40dee8dc64f2a1bd5e56caed83a42e939846d8bd477c4983e99d5bf94456",
+      "git_blob_sha1": "0751087eeb00c0ca579290d4e3b2190ac71f17b9",
+      "format": "WebAssembly binary module version 1 (static header/file inspection only)",
+      "executed": false,
+      "last_repository_change": {
+        "commit": "e37b573bfcd3c4923e7dc328f45ba0229458c1fb",
+        "date": "2023-06-25T16:44:25Z",
+        "message": "[FIX] fixed warnings in RotateLeft32Bits, added ptau download command and updated readme"
+      }
+    },
+    "zkey": {
+      "path": "resources/circuit_final.zkey",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "size_bytes": 13647982,
+      "sha256": "783acd4aceb66baa24bb253b426f6eab3bfd935facee9564d30678ef439b2bfe",
+      "git_blob_sha1": "0c928b96317f9e0c4794d0bcdf9014f85a56a541",
+      "format": "zkey with 10 sections",
+      "inspection_tool": "snarkjs 0.7.6 (current metadata tool, not historical build tool)",
+      "protocol": "groth16",
+      "curve": "bn128",
+      "nPublic": 32,
+      "verification_key_export_sha256": "8c9b16d8917b6267e98855e6fb07d7bd616379ec3697c09c49fd43211c73a936",
+      "verification_key_export_size_bytes": 8603,
+      "regenerated": false,
+      "trusted_setup_run": false,
+      "last_repository_change": {
+        "commit": "9f98e3aaa95e629515883e0cc6e6cfe6aef6d622",
+        "date": "2023-06-25T20:08:07Z",
+        "message": "[FIX] optimized ptau and zkey generation"
+      }
+    }
+  },
+  "artifact_history": {
+    "wasm_history": {
+      "status": "확인 완료",
+      "commits": [
+        {
+          "sha": "e37b573bfcd3c4923e7dc328f45ba0229458c1fb",
+          "date": "2023-06-25T16:44:25Z",
+          "message": "[FIX] fixed warnings in RotateLeft32Bits, added ptau download command and updated readme"
+        },
+        {
+          "sha": "72462e4e34afda13411b8ca342bd2df985ec53d4",
+          "date": "2023-06-25T08:04:20Z",
+          "message": "feat: cleanup code & document"
+        }
+      ]
+    },
+    "zkey_history": {
+      "status": "확인 완료",
+      "commits": [
+        {
+          "sha": "9f98e3aaa95e629515883e0cc6e6cfe6aef6d622",
+          "date": "2023-06-25T20:08:07Z",
+          "message": "[FIX] optimized ptau and zkey generation"
+        },
+        {
+          "sha": "e37b573bfcd3c4923e7dc328f45ba0229458c1fb",
+          "date": "2023-06-25T16:44:25Z",
+          "message": "[FIX] fixed warnings in RotateLeft32Bits, added ptau download command and updated readme"
+        },
+        {
+          "sha": "72462e4e34afda13411b8ca342bd2df985ec53d4",
+          "date": "2023-06-25T08:04:20Z",
+          "message": "feat: cleanup code & document"
+        }
+      ]
+    },
+    "subsequent_constraint_source_changes": [
+      {
+        "sha": "4551ca64c9fe536b7b9b7498a1feb1ecdc847474",
+        "date": "2023-08-04T04:54:04Z",
+        "message": "fix: add circuit security",
+        "changed_files": [
+          "circuits/generics.circom"
+        ]
+      },
+      {
+        "sha": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+        "date": "2023-08-04T05:09:38Z",
+        "message": "fix: xor circuit security",
+        "changed_files": [
+          "circuits/generics.circom"
+        ]
+      }
+    ],
+    "finding": "The tracked WASM last changed at e37b573... and zkey at 9f98e3a...; both blobs remained unchanged through later 4551ca... and ef9f5a... generics constraint-source changes."
+  },
+  "provenance_assessment": {
+    "artifact_identity_at_pinned_commit": {
+      "status": "확인 완료",
+      "basis": "Git blob, size, and SHA-256 recorded"
+    },
+    "manifest_or_build_record_linking_artifacts_to_ef9_source": {
+      "status": "부재 확인",
+      "basis": "no manifest/log/CI record/source hash link in pinned tree or GitHub-visible checks"
+    },
+    "exact_wasm_generated_from_ef9_source": {
+      "status": "미확인",
+      "reason": "artifact predates later source changes and no historical compiler/build record links it to ef9"
+    },
+    "exact_zkey_generated_from_ef9_r1cs": {
+      "status": "미확인",
+      "reason": "artifact predates later source changes; historical R1CS and exact ptau are unavailable"
+    },
+    "coarse_metadata_consistency": {
+      "status": "확인 완료",
+      "facts": [
+        "zkey protocol groth16",
+        "zkey curve bn128",
+        "zkey nPublic 32",
+        "current full baseline has 16 public outputs + 16 public inputs"
+      ],
+      "interpretation": "consistency only, not source provenance"
+    }
+  },
+  "api_evidence": [
+    {
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/commits?path=resources/circuit.wasm&sha=ef9f5a5ad899d852740a26b30eabe5765673c71f&per_page=100",
+      "response_sha256": "daeb7e1856ab5ea8aae6a5643184016479ef172b17976e985a2392d4862a1e33"
+    },
+    {
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/commits?path=resources/circuit_final.zkey&sha=ef9f5a5ad899d852740a26b30eabe5765673c71f&per_page=100",
+      "response_sha256": "75439621da983d3aca567ab25903a5058b97245194e8f5289f912e1499c390f6"
+    },
+    {
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/commits/ef9f5a5ad899d852740a26b30eabe5765673c71f/status",
+      "response_sha256": "02ea4c4869576c274a19183607e3fa6a7a8c33e32b7cc297f4c6d6db3460cc79"
+    },
+    {
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/commits/ef9f5a5ad899d852740a26b30eabe5765673c71f/check-runs",
+      "response_sha256": "c7b61227444bbb547c0bf732c29f8c6b96105350ff14f4512d97def04b2ccd1b"
+    },
+    {
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/actions/runs?head_sha=ef9f5a5ad899d852740a26b30eabe5765673c71f&per_page=100",
+      "response_sha256": "52d589da93373d1efadfa660185a0970a1b2320703a8b87d6ed693946661e1cd"
+    },
+    {
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/commits/e37b573bfcd3c4923e7dc328f45ba0229458c1fb",
+      "response_sha256": "4406b95d642e08322570a45e33905dda78192942ed7cd690b3e812747bc25e89"
+    },
+    {
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/commits/9f98e3aaa95e629515883e0cc6e6cfe6aef6d622",
+      "response_sha256": "a0179058ed733b5f005867d63e653b0245b48273281f1c44265dc6f80419c453"
+    }
+  ],
+  "not_performed": [
+    {
+      "item": "existing WASM execution",
+      "status": "범위 밖"
+    },
+    {
+      "item": "witness/proof generation",
+      "status": "범위 밖"
+    },
+    {
+      "item": "zkey regeneration or trusted setup",
+      "status": "범위 밖"
+    },
+    {
+      "item": "zkey-vs-current-R1CS verification",
+      "status": "미확인",
+      "reason": "the exact ptau is absent; no replacement was used"
+    },
+    {
+      "item": "O0-vs-O2 semantic equivalence claim",
+      "status": "범위 밖"
+    },
+    {
+      "item": "RotateLeft correctness, safety, or candidate validity",
+      "status": "범위 밖"
+    }
+  ],
+  "additional_material_needed": [
+    "the historical Circom executable or exact version plus build host/container description",
+    "the exact pot18_final.ptau with a trusted hash",
+    "the historical circuit.r1cs and build log or a signed manifest linking source commit, command, R1CS, WASM, and zkey hashes",
+    "a full-circuit evaluation counterpart if full ChaCha20 correspondence is to be claimed"
+  ],
+  "validation": {
+    "validated_at_utc": "2026-09-19T04:55:33.168799+00:00",
+    "json_parse": "pass",
+    "status_vocabulary": "pass",
+    "fixed_source_file_hashes": {
+      "count": 10,
+      "result": "pass"
+    },
+    "evidence_line_references": {
+      "count": 18,
+      "result": "pass"
+    },
+    "report_line_references": {
+      "count": 13,
+      "result": "pass"
+    },
+    "report_local_links": "pass",
+    "distributed_artifact_hashes": "pass",
+    "api_response_hashes": {
+      "count": 7,
+      "result": "pass"
+    },
+    "parameter_r1cs_and_sym_hashes": {
+      "parameter_count": 4,
+      "result": "pass"
+    },
+    "full_baseline_r1cs_and_sym_hashes": "pass",
+    "output_file_set": [
+      "REPORT.md",
+      "evidence.json"
+    ]
+  }
+}
