@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "scopes": [
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/subtractTensor.circom",
+      "template_name": "Subtract",
+      "start_line": 3,
+      "end_line": 10
+    }
+  ],
+  "capture": {
+    "tool_path": "/Users/miiz/Desktop/kwzzzz_zkfr/.external/circomspect/target/release/circomspect",
+    "tool_version": "0.9.0",
+    "tool_revision": "ece9efe0a21e6c422a43ab6f2e1c0ce99678013b",
+    "curve": "BN254",
+    "command": [
+      "/Users/miiz/Desktop/kwzzzz_zkfr/.external/circomspect/target/release/circomspect",
+      "--level",
+      "INFO",
+      "--verbose",
+      "--curve",
+      "BN254",
+      "--sarif-file",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/semantic/analysis.sarif",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/subtractTensor.circom"
+    ],
+    "sarif_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/semantic/analysis.sarif",
+    "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/semantic/stdout.log",
+    "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/semantic/stderr.log",
+    "exit_code": 1,
+    "timed_out": false,
+    "elapsed_seconds": 0.0129775,
+    "execution_error": null
+  },
+  "complete": true,
+  "features": [
+    {
+      "rule_id": "CS0013",
+      "rule_name": "unnecessary-signal-assignment",
+      "meaning": "single-arrow assignment has a quadratic RHS that could instead use a constraint assignment; separate constraints can still make it correct",
+      "status": "complete",
+      "value": 1,
+      "observed_warning_count": 1,
+      "reasons": []
+    },
+    {
+      "rule_id": "CS0014",
+      "rule_name": "unconstrained-less-than",
+      "meaning": "analyzer could not establish the required input range for a Circomlib LessThan use",
+      "status": "complete",
+      "value": 0,
+      "observed_warning_count": 0,
+      "reasons": []
+    },
+    {
+      "rule_id": "CS0015",
+      "rule_name": "unconstrained-division",
+      "meaning": "analyzer did not find its supported IsZero-based nonzero check for the divisor",
+      "status": "complete",
+      "value": 0,
+      "observed_warning_count": 0,
+      "reasons": []
+    },
+    {
+      "rule_id": "CS0017",
+      "rule_name": "under-constrained-signal",
+      "meaning": "intermediate signal appears in fewer than two separate constraints under this analyzer's analysis",
+      "status": "complete",
+      "value": 1,
+      "observed_warning_count": 1,
+      "reasons": []
+    },
+    {
+      "rule_id": "CS0018",
+      "rule_name": "unused-output-signal",
+      "meaning": "instantiated component output is not used as expected, subject to the analyzer's allowlist and access approximation",
+      "status": "complete",
+      "value": 0,
+      "observed_warning_count": 0,
+      "reasons": []
+    }
+  ],
+  "risk_score": 2,
+  "warning_count": 2,
+  "warnings": [
+    {
+      "rule_id": "CS0013",
+      "message": "Using the signal assignment operator `<--` is not necessary here.",
+      "locations": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/subtractTensor.circom",
+          "start_line": 8,
+          "end_line": 8,
+          "start_column": 5,
+          "end_column": 12,
+          "label": "The expression assigned to `d` is quadratic."
+        }
+      ],
+      "related_locations": [],
+      "attributed_scopes": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/subtractTensor.circom",
+          "template_name": "Subtract",
+          "start_line": 3,
+          "end_line": 10
+        }
+      ],
+      "attribution_basis": "primary source region inside caller-validated reachable template scope",
+      "raw_result_index": 0,
+      "raw_result_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/semantic/analysis.sarif"
+    },
+    {
+      "rule_id": "CS0017",
+      "message": "Intermediate signals should typically occur in at least two separate constraints.",
+      "locations": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/subtractTensor.circom",
+          "start_line": 7,
+          "end_line": 7,
+          "start_column": 5,
+          "end_column": 13,
+          "label": "The intermediate signal `d` is declared here."
+        }
+      ],
+      "related_locations": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/subtractTensor.circom",
+          "start_line": 9,
+          "end_line": 9,
+          "start_column": 5,
+          "end_column": 20,
+          "label": "The intermediate signal `d` is constrained here."
+        }
+      ],
+      "attributed_scopes": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/subtractTensor.circom",
+          "template_name": "Subtract",
+          "start_line": 3,
+          "end_line": 10
+        }
+      ],
+      "attribution_basis": "primary source region inside caller-validated reachable template scope",
+      "raw_result_index": 2,
+      "raw_result_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/semantic/analysis.sarif"
+    }
+  ],
+  "ignored_out_of_scope_count": 0,
+  "ignored_other_rule_count": 1,
+  "duplicate_warning_count": 0,
+  "reasons": [],
+  "unsupported_features": [
+    {
+      "name": "compile-time parameter assertion versus signal-dependent assertion",
+      "status": "unsupported",
+      "reason": "the verified Circomspect release has no dedicated rule that establishes this distinction; assertions are not counted"
+    }
+  ],
+  "limitations": [
+    "Warnings describe template definitions; Circomspect does not specialize templates with this target's concrete parameters.",
+    "The caller must validate reachable template scopes and their full dependency closure; file co-location is not reachability.",
+    "Complete means these analyzer passes ran with no observed analysis failure, not that the circuit is safe or all bugs are detectable.",
+    "Any detected partial analysis conservatively makes every required feature unknown; observed warnings remain available.",
+    "Only the five selected rule IDs count in warning-first; unrelated lint reports remain in raw SARIF."
+  ]
+}

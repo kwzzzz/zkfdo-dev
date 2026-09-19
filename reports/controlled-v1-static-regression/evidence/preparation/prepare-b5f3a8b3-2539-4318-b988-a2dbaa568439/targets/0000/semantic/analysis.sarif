@@ -1,0 +1,138 @@
+{
+  "runs": [
+    {
+      "results": [
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "The expression assigned to `d` is quadratic."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/subtractTensor.circom"
+                },
+                "region": {
+                  "endColumn": 12,
+                  "endLine": 8,
+                  "startColumn": 5,
+                  "startLine": 8
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Using the signal assignment operator `<--` is not necessary here."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0013"
+          },
+          "ruleId": "CS0013"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/subtractTensor.circom"
+                },
+                "region": {
+                  "endColumn": 20,
+                  "endLine": 9,
+                  "startColumn": 11,
+                  "startLine": 9
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "The intermediate signal `d` is declared here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/subtractTensor.circom"
+                },
+                "region": {
+                  "endColumn": 13,
+                  "endLine": 7,
+                  "startColumn": 5,
+                  "startLine": 7
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Intermediate signals should typically occur in at least two separate constraints."
+          },
+          "relatedLocations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "The intermediate signal `d` is constrained here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/subtractTensor.circom"
+                },
+                "region": {
+                  "endColumn": 20,
+                  "endLine": 9,
+                  "startColumn": 5,
+                  "startLine": 9
+                }
+              }
+            }
+          ],
+          "rule": {
+            "id": "CS0017"
+          },
+          "ruleId": "CS0017"
+        }
+      ],
+      "tool": {
+        "driver": {
+          "downloadUri": "https://github.com/trailofbits/circomspect",
+          "name": "Circomspect",
+          "organization": "Trail of Bits",
+          "rules": [
+            {
+              "id": "CS0013",
+              "name": "unnecessary-signal-assignment"
+            },
+            {
+              "id": "CS0017",
+              "name": "under-constrained-signal"
+            },
+            {
+              "id": "CS0004",
+              "name": "field-element-arithmetic"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "version": "2.1.0"
+}

@@ -1,0 +1,10 @@
+[32mtemplate instances[0m: 1
+non-linear constraints: 0
+linear constraints: 1
+public inputs: 0
+private inputs: 2
+public outputs: 1
+wires: 4
+labels: 4
+[32mWritten successfully:[0m /Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/structure/r1cs/circuit.r1cs
+[32mEverything went okay[0m
