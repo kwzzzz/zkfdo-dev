@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "performed_at_utc": "2026-09-20T11:54:34.946370+00:00",
+  "reason": "Remove hash-identical source-directory duplicates after preservation so raw candidates remain only under the ignored campaign run tree.",
+  "verified_duplicate_count": 36,
+  "removed_source_duplicate_count": 36,
+  "preserved_campaign_copy_count": 36,
+  "raw_candidate_values_in_record": false,
+  "entries": [
+    {
+      "original_generated_path": "reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom_jC2lQCVMTF_counterexample.json",
+      "preserved_campaign_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-01/attempt-01/01-risk-only/raw/execution-95e82309-1719-4f26-87ae-e287c80f7420/counterexample-candidates/0001/circuit.circom_jC2lQCVMTF_counterexample.json",
+      "sha256": "432d547848bcf7eb0f02d9854ccc04d4a715409e4247620e5b545461bfeb4ea2"
+    },
+    {
+      "original_generated_path": "reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom_IgUZkc25VF_counterexample.json",
+      "preserved_campaign_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-01/attempt-01/02-random/raw/execution-f35c3134-94a2-4b68-9655-220704713fa4/counterexample-candidates/0003/circuit.circom_IgUZkc25VF_counterexample.json",
+      "sha256": "6361e5d54464a5c4096f3232cb30d370e52900796a490463e82755be1edfb0bb"
+    },
+    {
+      "original_generated_path": "reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom_9feczi9L2O_counterexample.json",
+      "preserved_campaign_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-01/attempt-01/03-small-first/raw/execution-faa94df8-b6ab-4edb-bcb3-4e2916aabbfa/counterexample-candidates/0003/circuit.circom_9feczi9L2O_counterexample.json",
+      "sha256": "e314650318ed23bddfeba8308ad48e256fb8adcc4431e866641e64ea9388472e"
+    },
+    {
+      "original_generated_path": "reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom_9YgcnGgmWY_counterexample.json",
+      "preserved_campaign_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-02/attempt-01/01-random/raw/execution-f5dd980c-12c9-48d4-bd11-c6337e1e8523/counterexample-candidates/0002/circuit.circom_9YgcnGgmWY_counterexample.json",
+      "sha256": "df3f18935d4ab09d0526e45cbb84acab165fa8afed829986e639b22db4093702"
+    },
+    {
+      "original_generated_path": "reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom_MrIkX2mb26_counterexample.json",
+      "preserved_campaign_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-02/attempt-01/02-small-first/raw/execution-1bf29f0d-c87c-4e16-b27f-b835761cd95d/counterexample-candidates/0003/circuit.circom_MrIkX2mb26_counterexample.json",
+      "sha256": "f349d8766340c45624250cc806ec4f334c8ced30110d809542aa81065bcffffe"
+    },
+    {
+      "original_generated_path": "reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom_rEuOXdt2zf_counterexample.json",
+      "preserved_campaign_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-02/attempt-01/03-risk-only/raw/execution-7a3d3a39-050a-4249-b5a6-a21ed787e66f/counterexample-candidates/0001/circuit.circom_rEuOXdt2zf_counterexample.json",
+      "sha256": "4d3cda8d9d64515f2dbf04e84d4102e9d443d84c6afeeb55a99c38744d730174"
+    },
+    {
+      "original_generated_path": "reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom_RBwqIdAIGI_counterexample.json",
+      "preserved_campaign_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-03/attempt-01/01-small-first/raw/execution-5c58eca8-6c16-40b1-a76e-1a3a77d3570a/counterexample-candidates/0003/circuit.circom_RBwqIdAIGI_counterexample.json",
+      "sha256": "af44aac14d1bbda51e543b684b13e17b5df42c068c2da9c59feffd71e345fc69"
+    },
+    {
+      "original_generated_path": "reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom_goGg0TfT83_counterexample.json",
+      "preserved_campaign_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-03/attempt-01/02-risk-only/raw/execution-b6075220-cd38-42a7-8125-f3ed1a851857/counterexample-candidates/0001/circuit.circom_goGg0TfT83_counterexample.json",
+      "sha256": "c6b6474cce2eb2fee14e6a021461eb29336e9e15923b7222aa1ac362ab4fc8bf"
+    },
+    {
+      "original_generated_path": "reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom_egPmvltlrG_counterexample.json",
+      "preserved_campaign_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-03/attempt-01/03-random/raw/execution-695c88bd-dc33-49f5-86d0-bbf59a4ff997/counterexample-candidates/0002/circuit.circom_egPmvltlrG_counterexample.json",
+      "sha256": "618f42cfee5fd254ea92bf3248bd9ee3a57d05a46c2736ef6a11a4985df4cf6f"
+    },
+    {
+      "original_generated_path": "reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom_oWXp40jvZA_counterexample.json",
+      "preserved_campaign_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-04/attempt-01/01-risk-only/raw/execution-e600cdbd-5ecf-45dc-b54a-8986037b86ce/counterexample-candidates/0001/circuit.circom_oWXp40jvZA_counterexample.json",
+      "sha256": "ac7aa29a8b39499ec4ab61b7a26d6fddf35869e3855660063c2476e653bbdfeb"
+    },
+    {
+      "original_generated_path": "reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom_lWaiCDdxC9_counterexample.json",
+      "preserved_campaign_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-04/attempt-01/02-random/raw/execution-5b656ba9-dc93-4fef-9dd3-3c6094b49b37/counterexample-candidates/0004/circuit.circom_lWaiCDdxC9_counterexample.json",
+      "sha256": "b1c0062d909383efda26a69e257d91f74ed882fbc21fd0f4a0d6548faf8cc985"
+    },
+    {
+      "original_generated_path": "reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom_crYq0BwPTE_counterexample.json",
+      "preserved_campaign_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-04/attempt-01/03-small-first/raw/execution-2523ac59-846c-45d1-8168-e79968635589/counterexample-candidates/0003/circuit.circom_crYq0BwPTE_counterexample.json",
+      "sha256": "8dde3b106d6ca7f9ac74c716e54a541be9a5b639d564756f268e003bc7045357"
+    },
+    {
+      "original_generated_path": "reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom_koAgwmq5vV_counterexample.json",
+      "preserved_campaign_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-05/attempt-01/01-random/raw/execution-695d5a0e-9012-408e-8ac9-76f5c8efc60d/counterexample-candidates/0002/circuit.circom_koAgwmq5vV_counterexample.json",
+      "sha256": "1398aab6daa31614e15cea8432503c917347558d10fabc356c1e910ce8f4a78e"
+    },
+    {
+      "original_generated_path": "reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom_2jvFoWhAbT_counterexample.json",
+      "preserved_campaign_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-05/attempt-01/02-small-first/raw/execution-d033a10e-da14-4aa6-811d-464758b51534/counterexample-candidates/0003/circuit.circom_2jvFoWhAbT_counterexample.json",
+      "sha256": "1240e5cb98aed27e699ed234b4a4107e23e4740e890e8d0a450c84d24e43ad77"
+    },
+    {
+      "original_generated_path": "reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom_OFXaL2dv6d_counterexample.json",
+      "preserved_campaign_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-05/attempt-01/03-risk-only/raw/execution-9a90ae88-9f7f-4953-8b55-780e49497256/counterexample-candidates/0001/circuit.circom_OFXaL2dv6d_counterexample.json",
+      "sha256": "e67dfc827ebc2f7ea6f9a13347db109a84b67ea9f5e907d2271645970f44f2a6"
+    },
+    {
+      "original_generated_path": "reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom_i7oZJ3fL57_counterexample.json",
+      "preserved_campaign_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-06/attempt-01/01-small-first/raw/execution-c397faf6-d261-4c48-817c-994828e20f42/counterexample-candidates/0003/circuit.circom_i7oZJ3fL57_counterexample.json",
+      "sha256": "ee04160f75c2637204210c338c14fb91e5c70bdf93d418845d857c754e3a7a5b"
+    },
+    {
+      "original_generated_path": "reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom_sfvbSmGJqD_counterexample.json",
+      "preserved_campaign_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-06/attempt-01/02-risk-only/raw/execution-e2ab03bf-0729-4a8e-b5cb-19e358483cfc/counterexample-candidates/0001/circuit.circom_sfvbSmGJqD_counterexample.json",
+      "sha256": "293d1749fccfe976b5a50da5545e96c64e125bcdf174a788b6a2049d9859b52b"
+    },
+    {
+      "original_generated_path": "reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom_8VMgOwVXAR_counterexample.json",
+      "preserved_campaign_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-06/attempt-01/03-random/raw/execution-6c197129-0bef-4025-b003-caeeb6f2be77/counterexample-candidates/0003/circuit.circom_8VMgOwVXAR_counterexample.json",
+      "sha256": "db422a293c45ccfa072fa7608a83daae252cb33578f7fa1b6bc414d27d4f94f5"
+    },
+    {
+      "original_generated_path": "reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom_d0TS6dDZPQ_counterexample.json",
+      "preserved_campaign_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-07/attempt-01/01-risk-only/raw/execution-aa8fd07b-338d-4079-a33a-99de675cca82/counterexample-candidates/0001/circuit.circom_d0TS6dDZPQ_counterexample.json",
+      "sha256": "e44e654c24f3c500d5417229ffaa9680a08e6a569fd11b3534f54d30758f1abd"
+    },
+    {
+      "original_generated_path": "reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom_Q1ALbLlUBC_counterexample.json",
+      "preserved_campaign_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-07/attempt-01/02-random/raw/execution-7514af1f-b8d9-4c07-802d-e04e427457eb/counterexample-candidates/0002/circuit.circom_Q1ALbLlUBC_counterexample.json",
+      "sha256": "708051207fc7bf92a7514e3d67dc983db16bc71af943eca0d8be7d9acb95b4d1"
+    },
+    {
+      "original_generated_path": "reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom_YVo0xlieMv_counterexample.json",
+      "preserved_campaign_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-07/attempt-01/03-small-first/raw/execution-5abdc3b8-8544-415d-b5cf-032eadcf2ff4/counterexample-candidates/0003/circuit.circom_YVo0xlieMv_counterexample.json",
+      "sha256": "72fd7e837e5c19c91290d23fed41619ceb5e1382e857bfd2cafc25121e50be3e"
+    },
+    {
+      "original_generated_path": "reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom_nYalegE111_counterexample.json",
+      "preserved_campaign_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-08/attempt-01/01-random/raw/execution-71f38a13-665f-43a9-9924-0612550ef1f4/counterexample-candidates/0001/circuit.circom_nYalegE111_counterexample.json",
+      "sha256": "54b260acb6f7ebd94529fc6ee8b85395c990b8076305f04a2c7be989e9420f91"
+    },
+    {
+      "original_generated_path": "reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom_SatyuiYbJI_counterexample.json",
+      "preserved_campaign_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-08/attempt-01/02-small-first/raw/execution-9cd88248-f430-4a9d-9a8c-38b76618f0a9/counterexample-candidates/0003/circuit.circom_SatyuiYbJI_counterexample.json",
+      "sha256": "042cb77513f62167e21a463633295a484ca18c9a1901ecc40b03a56a3d0dea4f"
+    },
+    {
+      "original_generated_path": "reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom_cnaBw4W9li_counterexample.json",
+      "preserved_campaign_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-08/attempt-01/03-risk-only/raw/execution-706857bf-4e37-4d1b-b76d-64fafcebfbf6/counterexample-candidates/0001/circuit.circom_cnaBw4W9li_counterexample.json",
+      "sha256": "5388e5a40b4f6617842363f8de3cceee579c6b7ac12d017a0877f75cefcbfbe4"
+    },
+    {
+      "original_generated_path": "reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom_S83hfekE6g_counterexample.json",
+      "preserved_campaign_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-09/attempt-01/01-small-first/raw/execution-2667ac54-b440-4f7a-b01e-07de5bc9ffa8/counterexample-candidates/0003/circuit.circom_S83hfekE6g_counterexample.json",
+      "sha256": "973c1083a25122090ea9faa92bf6aac0f22a172d1bc165f8e0f7dbc8003d9b57"
+    },
+    {
+      "original_generated_path": "reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom_K7hJ9IWLm7_counterexample.json",
+      "preserved_campaign_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-09/attempt-01/02-risk-only/raw/execution-4321de7a-786f-4e63-a2fa-b1608dd0961e/counterexample-candidates/0001/circuit.circom_K7hJ9IWLm7_counterexample.json",
+      "sha256": "b9569504bb2373cb6ad8e15c6e6f9e28b659206b1e8986a7d36a6a2dc500d22c"
+    },
+    {
+      "original_generated_path": "reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom_DRMAl0CuzK_counterexample.json",
+      "preserved_campaign_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-09/attempt-01/03-random/raw/execution-30ad784e-0ff4-45d5-919c-8d34ed98b3bf/counterexample-candidates/0003/circuit.circom_DRMAl0CuzK_counterexample.json",
+      "sha256": "84ccd29db41a35febdb44dcce6ca8790a479122d6de17f53fbd9183ba450a908"
+    },
+    {
+      "original_generated_path": "reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom_tMVJMLFWdI_counterexample.json",
+      "preserved_campaign_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-10/attempt-01/01-risk-only/raw/execution-d54a9ee7-f3cf-4534-9e01-328d434a61ef/counterexample-candidates/0001/circuit.circom_tMVJMLFWdI_counterexample.json",
+      "sha256": "29cb132ff148b6ca29dccc413040acf9d03f1c32c0f17e27acfb350f3ff0783d"
+    },
+    {
+      "original_generated_path": "reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom_1Vxd6QnzvZ_counterexample.json",
+      "preserved_campaign_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-10/attempt-01/02-random/raw/execution-493085e1-a002-4af1-8e9a-cd6a63c13995/counterexample-candidates/0003/circuit.circom_1Vxd6QnzvZ_counterexample.json",
+      "sha256": "23952447730ff3c7a1a03092da58af33338d12eb5da2182b4b9beed7d2bd20d0"
+    },
+    {
+      "original_generated_path": "reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom_s0kGlzlJuv_counterexample.json",
+      "preserved_campaign_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-10/attempt-01/03-small-first/raw/execution-60eac69f-bcd5-41e4-be0d-876dbe0d9b4f/counterexample-candidates/0003/circuit.circom_s0kGlzlJuv_counterexample.json",
+      "sha256": "176d5345f74d85f2d0fae4ef3795cc89c342c9776e5d928593b6093e56b8e8df"
+    },
+    {
+      "original_generated_path": "reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom_I4nrGAtb0g_counterexample.json",
+      "preserved_campaign_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-11/attempt-01/01-random/raw/execution-2614412f-3c86-4831-842b-80793defd5d3/counterexample-candidates/0003/circuit.circom_I4nrGAtb0g_counterexample.json",
+      "sha256": "af8a67fafbfd94a8611e69906632ac1c868068b6035d94d20f75ce40d97a93b4"
+    },
+    {
+      "original_generated_path": "reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom_v15ee33HDi_counterexample.json",
+      "preserved_campaign_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-11/attempt-01/02-small-first/raw/execution-ba86b217-ff16-4901-a4d0-3c627ce8e1e4/counterexample-candidates/0003/circuit.circom_v15ee33HDi_counterexample.json",
+      "sha256": "85771fa71de404bdae2c4d80a35563b30bd0df870cadc3f2c69a02f73055803a"
+    },
+    {
+      "original_generated_path": "reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom_C1IpcUfPuh_counterexample.json",
+      "preserved_campaign_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-11/attempt-01/03-risk-only/raw/execution-038c5633-814c-433b-a84f-b0d3a5e64c80/counterexample-candidates/0001/circuit.circom_C1IpcUfPuh_counterexample.json",
+      "sha256": "fa8a6e1dfbafff7c5aff1e959cbc6e140a4f7d5d8b102b1ee2c8ea8749f20952"
+    },
+    {
+      "original_generated_path": "reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom_3A2qbAitfP_counterexample.json",
+      "preserved_campaign_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-12/attempt-01/01-small-first/raw/execution-7ea7998c-ad76-4669-bb20-49042f549d34/counterexample-candidates/0003/circuit.circom_3A2qbAitfP_counterexample.json",
+      "sha256": "2a64cefb3b2cedc6094110e7c3b6fe2bfdb9dc46ddb312e07ce1e109d87ddcdc"
+    },
+    {
+      "original_generated_path": "reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom_CVJBxk1zPJ_counterexample.json",
+      "preserved_campaign_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-12/attempt-01/02-risk-only/raw/execution-c2b1e774-863a-4406-a460-1dd0f6e2934d/counterexample-candidates/0001/circuit.circom_CVJBxk1zPJ_counterexample.json",
+      "sha256": "0722202ebd7a972b4cdcc608196723899c6fb4950f66a755a114c030235aca84"
+    },
+    {
+      "original_generated_path": "reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom_H2tmhtOiGC_counterexample.json",
+      "preserved_campaign_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-12/attempt-01/03-random/raw/execution-e76d1d1d-0627-41ac-81c7-df239f19f6a9/counterexample-candidates/0001/circuit.circom_H2tmhtOiGC_counterexample.json",
+      "sha256": "b526533986233d4f3d2e9c4ee7632437a4cb34a0f39fd2d1ea49d9241f5c693b"
+    }
+  ]
+}
