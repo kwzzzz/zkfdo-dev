@@ -47,6 +47,7 @@ fn fixture() -> Fixture {
             project_root: project_root.clone(), entrypoint, template_name: format!("Root{label}"), concrete_parameters: vec![],
             prime: "bn128".to_owned(), compile_args: vec![], mode: "original".to_owned(),
             input_assumptions: "Synthetic test fixture; no actual vulnerability claim.".to_owned(),
+            input_contract: None,
             known_defects: vec![KnownDefect {
                 root_cause_id: "synthetic-shared-root-cause".to_owned(), location: format!("{label}.circom:1"),
                 source_url: "unit-test:fixture".to_owned(), reported: true,

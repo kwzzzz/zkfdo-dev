@@ -57,8 +57,40 @@ pub struct CorpusTarget {
     /// Entrypoint provenance: `original` for a project entrypoint or `direct` for an isolated wrapper.
     pub mode: String,
     pub input_assumptions: String,
+    /// Machine-readable eligibility for schema 2 manifests. Legacy schema 1 keeps its behavior.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub input_contract: Option<InputContract>,
     #[serde(default)]
     pub known_defects: Vec<KnownDefect>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(tag = "kind", rename_all = "snake_case", deny_unknown_fields)]
+pub enum InputContract {
+    /// The specified property uses the field directly, without a narrower input domain.
+    FieldOnly,
+    /// The property needs an additional domain constraint, such as an integer range.
+    Bounded {
+        enforcement: BoundedEnforcement,
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        evidence: Option<ContractEvidence>,
+    },
+}
+
+#[derive(Debug, Clone, Copy, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum BoundedEnforcement {
+    Unverified,
+    ReviewedInExecutable,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct ContractEvidence {
+    pub path: PathBuf,
+    pub sha256: String,
+    pub entrypoint_sha256: String,
+    pub source_closure_sha256: String,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -310,7 +342,7 @@ pub fn stable_target_id(
             .map(|relative| Path::new("@project-root").join(relative))
             .unwrap_or_else(|_| path.to_path_buf())
     });
-    let descriptor = serde_json::json!({
+    let mut descriptor = serde_json::json!({
         "identity_version": 1,
         "project": definition.project,
         "revision": definition.revision,
@@ -323,6 +355,20 @@ pub fn stable_target_id(
         "mode": definition.mode,
         "input_assumptions": definition.input_assumptions,
     });
+    if let Some(contract) = &definition.input_contract {
+        descriptor["input_contract"] = match contract {
+            InputContract::FieldOnly => serde_json::json!({"kind": "field_only"}),
+            InputContract::Bounded {
+                enforcement,
+                evidence,
+            } => serde_json::json!({
+                "kind": "bounded",
+                "enforcement": enforcement,
+                "evidence_sha256": evidence.as_ref().map(|value| &value.sha256),
+                "entrypoint_sha256": evidence.as_ref().map(|value| &value.entrypoint_sha256),
+            }),
+        };
+    }
     Ok(format!(
         "sha256:{}",
         sha256(&serde_json::to_vec(&descriptor)?)
@@ -345,9 +391,10 @@ pub fn prepare_manifest(
     let manifest: CorpusManifest =
         serde_json::from_slice(&manifest_bytes).context("invalid corpus manifest")?;
     ensure!(
-        manifest.schema_version == 1,
+        matches!(manifest.schema_version, 1 | 2),
         "unsupported corpus manifest schema version"
     );
+    let manifest_schema_version = manifest.schema_version;
     ensure!(!manifest.name.trim().is_empty(), "corpus name is required");
     let manifest_dir = manifest_path.parent().context("manifest has no parent")?;
     let output_dir = output_root.join(format!("prepare-{}", Uuid::new_v4()));
@@ -403,6 +450,10 @@ pub fn prepare_manifest(
                 .exclusion_reasons
                 .push(format!("preparation failed: {error:#}"));
         }
+        prepared.exclusion_reasons.extend(input_contract_exclusions(
+            &prepared,
+            manifest_schema_version,
+        ));
         prepared.elapsed_seconds = target_start.elapsed().as_secs_f64();
         prepared.eligible = prepared.exclusion_reasons.is_empty();
         targets.push(prepared);
@@ -694,6 +745,64 @@ fn prepare_target(
     Ok(())
 }
 
+fn input_contract_exclusions(target: &PreparedTarget, manifest_schema_version: u32) -> Vec<String> {
+    if manifest_schema_version == 1 {
+        return if target.definition.input_contract.is_some() {
+            vec!["input_contract requires corpus manifest schema 2".to_owned()]
+        } else {
+            Vec::new()
+        };
+    }
+    if target.definition.input_contract.is_none() {
+        return vec!["schema 2 target is missing input_contract".to_owned()];
+    }
+    verify_input_contract_evidence(target)
+        .err()
+        .map(|error| vec![format!("{error:#}")])
+        .unwrap_or_default()
+}
+
+/// Recheck the review record before planning or execution. A matching hash binds the review
+/// to the executable source; it does not independently prove the reviewer's conclusion.
+pub fn verify_input_contract_evidence(target: &PreparedTarget) -> Result<()> {
+    match &target.definition.input_contract {
+        None | Some(InputContract::FieldOnly) => Ok(()),
+        Some(InputContract::Bounded {
+            enforcement: BoundedEnforcement::Unverified,
+            ..
+        }) => anyhow::bail!("bounded input contract is not reviewed in the executable target"),
+        Some(InputContract::Bounded {
+            enforcement: BoundedEnforcement::ReviewedInExecutable,
+            evidence,
+        }) => {
+            let evidence = evidence
+                .as_ref()
+                .context("reviewed bounded input contract has no evidence")?;
+            let entrypoint = target
+                .source_fingerprints
+                .iter()
+                .find(|source| source.path == target.definition.entrypoint)
+                .context("reviewed bounded input contract has no fingerprinted entrypoint")?;
+            ensure!(
+                entrypoint.sha256 == evidence.entrypoint_sha256,
+                "input contract evidence is bound to a different entrypoint"
+            );
+            ensure!(
+                sha256(&serde_json::to_vec(&target.source_fingerprints)?)
+                    == evidence.source_closure_sha256,
+                "input contract evidence is bound to a different source closure"
+            );
+            let bytes =
+                fs::read(&evidence.path).context("input contract evidence is unavailable")?;
+            ensure!(
+                sha256(&bytes) == evidence.sha256,
+                "input contract evidence hash mismatch"
+            );
+            Ok(())
+        }
+    }
+}
+
 fn empty_target(definition: CorpusTarget) -> Result<PreparedTarget> {
     let target_id = format!("invalid:{}", sha256(&serde_json::to_vec(&definition)?));
     let ranking = RankingInput {
@@ -765,6 +874,13 @@ fn source_common_root(inspection: &EntrypointInspection) -> Result<&Path> {
 fn resolve_definition(mut target: CorpusTarget, parent: &Path) -> CorpusTarget {
     target.project_root = resolve_path(parent, &target.project_root);
     target.entrypoint = resolve_path(parent, &target.entrypoint);
+    if let Some(InputContract::Bounded {
+        evidence: Some(evidence),
+        ..
+    }) = &mut target.input_contract
+    {
+        evidence.path = resolve_path(parent, &evidence.path);
+    }
     for defect in &mut target.known_defects {
         for evidence in &mut defect.evidence {
             *evidence = resolve_path(parent, evidence);

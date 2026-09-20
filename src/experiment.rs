@@ -773,6 +773,7 @@ fn validate_prepared_target(
     strategy: RankingStrategy,
     config: &StaticRankingConfig,
 ) -> Result<()> {
+    corpus::verify_input_contract_evidence(target)?;
     corpus::verify_fingerprints(&target.source_fingerprints)?;
     corpus::verify_fingerprints(&target.snapshot_fingerprints)?;
     let inspection = target

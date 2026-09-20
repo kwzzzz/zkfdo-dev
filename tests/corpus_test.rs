@@ -7,9 +7,11 @@ use tempfile::{tempdir, TempDir};
 use zkfdo::{
     corpus::{
         fingerprint_sources, prepare_manifest, stable_target_id, verify_fingerprints,
-        verify_snapshot_provenance, CorpusManifest, CorpusTarget, Exclusion, PrepareOptions,
+        verify_input_contract_evidence, verify_snapshot_provenance, BoundedEnforcement,
+        ContractEvidence, CorpusManifest, CorpusTarget, Exclusion, InputContract, PrepareOptions,
         PreparedCorpus,
     },
+    experiment::create_plan,
     static_rank::RankingStrategy,
     targets::inspect_entrypoint,
 };
@@ -27,6 +29,7 @@ fn definition(project: &Path, entrypoint: &Path, argument: &str) -> CorpusTarget
         compile_args: vec![],
         mode: "original".to_owned(),
         input_assumptions: "Synthetic test only; no public defect claim.".to_owned(),
+        input_contract: None,
         known_defects: vec![],
     }
 }
@@ -71,6 +74,14 @@ fn manifest(directory: &Path, targets: Vec<CorpusTarget>) -> PathBuf {
         .unwrap(),
     )
     .unwrap();
+    path
+}
+
+fn manifest_v2(directory: &Path, targets: Vec<CorpusTarget>) -> PathBuf {
+    let path = manifest(directory, targets);
+    let mut value: serde_json::Value = serde_json::from_slice(&fs::read(&path).unwrap()).unwrap();
+    value["schema_version"] = serde_json::json!(2);
+    fs::write(&path, serde_json::to_vec_pretty(&value).unwrap()).unwrap();
     path
 }
 
@@ -278,6 +289,119 @@ fn baseline_compiles_snapshot_without_requesting_ast_or_semantic() {
     fs::write(&target.entrypoint, "changed after prepare").unwrap();
     assert!(verify_fingerprints(&prepared.source_fingerprints).is_err());
     verify_fingerprints(&prepared.snapshot_fingerprints).unwrap();
+}
+
+#[cfg(unix)]
+#[test]
+fn schema_two_excludes_unverified_bounded_inputs_but_retains_compile_evidence() {
+    let (directory, mut target) = source_fixture();
+    target.input_contract = Some(InputContract::Bounded {
+        enforcement: BoundedEnforcement::Unverified,
+        evidence: None,
+    });
+    let path = manifest_v2(directory.path(), vec![target]);
+    let report = prepare_manifest(
+        &path,
+        &baseline_options(directory.path()),
+        &directory.path().join("out"),
+    )
+    .unwrap();
+    let prepared = &report.targets[0];
+    assert!(!prepared.eligible);
+    assert!(prepared.structure.as_ref().unwrap().compile_success);
+    assert!(prepared
+        .exclusion_reasons
+        .iter()
+        .any(|reason| reason.contains("bounded input contract is not reviewed")));
+    let config = Path::new(env!("CARGO_MANIFEST_DIR")).join("configs/static-ranking.json");
+    let error = create_plan(
+        &report.report_path,
+        RankingStrategy::PathOrder,
+        &config,
+        None,
+        &directory.path().join("plan.json"),
+    )
+    .unwrap_err();
+    assert!(format!("{error:#}").contains("no targets eligible"));
+}
+
+#[cfg(unix)]
+#[test]
+fn schema_two_requires_a_contract_and_accepts_field_only() {
+    let (directory, target) = source_fixture();
+    let path = manifest_v2(directory.path(), vec![target.clone()]);
+    let missing = prepare_manifest(
+        &path,
+        &baseline_options(directory.path()),
+        &directory.path().join("missing-out"),
+    )
+    .unwrap();
+    assert!(!missing.targets[0].eligible);
+    assert!(missing.targets[0]
+        .exclusion_reasons
+        .iter()
+        .any(|reason| reason.contains("missing input_contract")));
+
+    let mut field_only = target;
+    field_only.input_contract = Some(InputContract::FieldOnly);
+    let path = manifest_v2(directory.path(), vec![field_only]);
+    let accepted = prepare_manifest(
+        &path,
+        &baseline_options(directory.path()),
+        &directory.path().join("accepted-out"),
+    )
+    .unwrap();
+    assert!(accepted.targets[0].eligible);
+    assert_ne!(missing.targets[0].target_id, accepted.targets[0].target_id);
+}
+
+#[cfg(unix)]
+#[test]
+fn reviewed_bounded_contract_must_match_fingerprinted_entrypoint_and_evidence() {
+    let (directory, mut target) = source_fixture();
+    let evidence_path = directory.path().join("range-review.txt");
+    fs::write(&evidence_path, "unit-test review record").unwrap();
+    let evidence_sha256 = sha256_hex(&fs::read(&evidence_path).unwrap());
+    let entrypoint_sha256 = sha256_hex(&fs::read(&target.entrypoint).unwrap());
+    let inspection = inspect_entrypoint(&target.entrypoint, &target.project_root).unwrap();
+    let source_fingerprints = fingerprint_sources(&inspection.dependency_paths).unwrap();
+    let source_closure_sha256 = sha256_hex(&serde_json::to_vec(&source_fingerprints).unwrap());
+    target.input_contract = Some(InputContract::Bounded {
+        enforcement: BoundedEnforcement::ReviewedInExecutable,
+        evidence: Some(ContractEvidence {
+            path: evidence_path.clone(),
+            sha256: evidence_sha256,
+            entrypoint_sha256,
+            source_closure_sha256,
+        }),
+    });
+    let path = manifest_v2(directory.path(), vec![target.clone()]);
+    let accepted = prepare_manifest(
+        &path,
+        &baseline_options(directory.path()),
+        &directory.path().join("accepted-out"),
+    )
+    .unwrap();
+    assert!(accepted.targets[0].eligible);
+
+    fs::write(&evidence_path, "changed review record").unwrap();
+    assert!(verify_input_contract_evidence(&accepted.targets[0]).is_err());
+    let rejected = prepare_manifest(
+        &path,
+        &baseline_options(directory.path()),
+        &directory.path().join("rejected-out"),
+    )
+    .unwrap();
+    assert!(!rejected.targets[0].eligible);
+    assert!(rejected.targets[0]
+        .exclusion_reasons
+        .iter()
+        .any(|reason| reason.contains("evidence hash mismatch")));
+}
+
+fn sha256_hex(bytes: &[u8]) -> String {
+    use sha2::{Digest, Sha256};
+    format!("{:x}", Sha256::digest(bytes))
 }
 
 #[cfg(unix)]
