@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "plan_id": "b74f387d-c30f-4a95-8a94-3afbb7731805",
+  "created_at": "2026-09-20T10:16:09.429261Z",
+  "plan_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-11/attempt-01/01-random/plan.json",
+  "prepared_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/prepared.json",
+  "prepared_sha256": "ab180da1918e275d541866b9476728898805df551a9c1457978f62b43c2ebaa1",
+  "preparation_profile_strategy": null,
+  "strategy": "random",
+  "ranking_seed": 2026092911,
+  "random_algorithm": "splitmix64-fisher-yates-rejection-v1",
+  "config_path": "/Users/miiz/Desktop/kwzzzz_zkfr/configs/static-ranking.json",
+  "config_sha256": "8fed87764b001245d600307f7ba7d8453e88e3b977afda656014eac83ea32d26",
+  "config": {
+    "schema_version": 1,
+    "complexity_groups": {
+      "metric": "root_ast_if_plus_while",
+      "upper_bounds": [
+        0
+      ],
+      "group_order": [
+        0,
+        1
+      ],
+      "provenance": "Frozen before fuzzing from datasets/manifest.dev10.json on 2026-09-15: all three complete root-template profiles measured 0; group 0 is exactly 0 and group 1 is the reserved positive-complexity overflow bin. This tiny development set does not validate the boundary."
+    }
+  },
+  "comparison_target_set": "common-complete-feature-set",
+  "preparation_elapsed_seconds": 1.876862458,
+  "preparation_accounting": {
+    "inspection_seconds": 0.004231,
+    "snapshot_seconds": 0.00112925,
+    "structure_seconds": 0.248991416,
+    "semantic_seconds": 0.028589751,
+    "legacy_seconds": 0.06434200000000001,
+    "excluded_target_elapsed_seconds": 0.0,
+    "orchestration_overhead_seconds": 1.528512541
+  },
+  "planning_elapsed_seconds": 0.002634625,
+  "targets": [
+    {
+      "rank": 1,
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "definition": {
+        "label": "subnet-2-circom Subtract vulnerable",
+        "project": "https://github.com/inference-labs-inc/subnet-2-circom",
+        "revision": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+        "project_root": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable",
+        "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/circuit.circom",
+        "template_name": "Subtract",
+        "concrete_parameters": [],
+        "prime": "bn128",
+        "compile_args": [],
+        "mode": "direct",
+        "input_assumptions": "a and b are canonical elements of the BN128 scalar field. The property is interpreted in field arithmetic; this direct wrapper adds no range or caller constraints.",
+        "known_defects": [
+          {
+            "root_cause_id": "inference-labs-inc/subnet-2-circom/koukyosyumei_subtract_unconstrained_multiplier",
+            "location": "src/subtractTensor.circom:3-10; signal d is witness-assigned but not constrained",
+            "source_url": "https://github.com/inference-labs-inc/subnet-2-circom/pull/2",
+            "reported": true,
+            "local_reproduction": "Source/provenance and compile readiness prepared only. No fuzzing, counterexample, witness, proof, or original-component candidate validation was run for controlled-v1.",
+            "tcct_status": "not-run-controlled-v1",
+            "reachability": "Direct Subtract wrapper only. Public records name project callers, but original-project reachability is outside controlled-v1 and was not revalidated.",
+            "evidence": [
+              "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/contracts.controlled-v1.json",
+              "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/subtractTensor.circom",
+              "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/inference-labs-inc/subnet-2-circom/koukyosyumei_subtract_unconstrained_multiplier/zkbugs_config.json",
+              "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/inference-labs-inc/subnet-2-circom/koukyosyumei_subtract_unconstrained_multiplier/README.md"
+            ]
+          }
+        ]
+      },
+      "inspection": {
+        "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/circuit.circom",
+        "project_root": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable",
+        "root": {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/subtractTensor.circom",
+          "template_name": "Subtract",
+          "concrete_parameters": []
+        },
+        "instances": [
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/subtractTensor.circom",
+            "template_name": "Subtract",
+            "concrete_parameters": []
+          }
+        ],
+        "scopes": [
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/subtractTensor.circom",
+            "template_name": "Subtract",
+            "start_line": 3,
+            "end_line": 10
+          }
+        ],
+        "dependency_paths": [
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/circuit.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/subtractTensor.circom"
+        ],
+        "complete": true,
+        "unsupported": []
+      },
+      "run_entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/sources/circuit.circom",
+      "ranking": {
+        "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+        "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/circuit.circom",
+        "risk_score": 2,
+        "warning_count": 2,
+        "complexity": 0,
+        "size": 1,
+        "legacy_score": 4.638574590472789
+      },
+      "source_fingerprints": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/circuit.circom",
+          "sha256": "5160da57762a5a561cf797a44f2dd6f009126536be476cbcec0926459362e079"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/subtractTensor.circom",
+          "sha256": "502ee44b70a368066fafcf09cc2d0356479f8a862bfa726bde8097c728c83cc1"
+        }
+      ],
+      "snapshot_fingerprints": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/sources/circuit.circom",
+          "sha256": "5160da57762a5a561cf797a44f2dd6f009126536be476cbcec0926459362e079"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/sources/subtractTensor.circom",
+          "sha256": "502ee44b70a368066fafcf09cc2d0356479f8a862bfa726bde8097c728c83cc1"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "target_id": "sha256:a85819549a69210934d31e3fa4a0ba4e01f1f456bc86b32a480a29c5b18aec91",
+      "definition": {
+        "label": "subnet-2-circom Subtract fixed comparator",
+        "project": "https://github.com/inference-labs-inc/subnet-2-circom",
+        "revision": "b8f92bdec1694138df0e069921f1aa0bdc94053e",
+        "project_root": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/fixed",
+        "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/fixed/circuit.circom",
+        "template_name": "Subtract",
+        "concrete_parameters": [],
+        "prime": "bn128",
+        "compile_args": [],
+        "mode": "direct",
+        "input_assumptions": "a and b are canonical elements of the BN128 scalar field. The property is interpreted in field arithmetic; this direct wrapper adds no range or caller constraints.",
+        "known_defects": []
+      },
+      "inspection": {
+        "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/fixed/circuit.circom",
+        "project_root": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/fixed",
+        "root": {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/fixed/subtractTensor.circom",
+          "template_name": "Subtract",
+          "concrete_parameters": []
+        },
+        "instances": [
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/fixed/subtractTensor.circom",
+            "template_name": "Subtract",
+            "concrete_parameters": []
+          }
+        ],
+        "scopes": [
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/fixed/subtractTensor.circom",
+            "template_name": "Subtract",
+            "start_line": 3,
+            "end_line": 8
+          }
+        ],
+        "dependency_paths": [
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/fixed/circuit.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/fixed/subtractTensor.circom"
+        ],
+        "complete": true,
+        "unsupported": []
+      },
+      "run_entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/sources/circuit.circom",
+      "ranking": {
+        "target_id": "sha256:a85819549a69210934d31e3fa4a0ba4e01f1f456bc86b32a480a29c5b18aec91",
+        "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/fixed/circuit.circom",
+        "risk_score": 0,
+        "warning_count": 0,
+        "complexity": 0,
+        "size": 1,
+        "legacy_score": 1.163042446019645
+      },
+      "source_fingerprints": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/fixed/circuit.circom",
+          "sha256": "5160da57762a5a561cf797a44f2dd6f009126536be476cbcec0926459362e079"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/fixed/subtractTensor.circom",
+          "sha256": "c5d6aa9de7e95f09283e6b014dcbda85e16e583c3e157d7f8fdd95bb001023ba"
+        }
+      ],
+      "snapshot_fingerprints": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/sources/circuit.circom",
+          "sha256": "5160da57762a5a561cf797a44f2dd6f009126536be476cbcec0926459362e079"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/sources/subtractTensor.circom",
+          "sha256": "c5d6aa9de7e95f09283e6b014dcbda85e16e583c3e157d7f8fdd95bb001023ba"
+        }
+      ]
+    }
+  ],
+  "exclusions": [],
+  "manifest_exclusions": [
+    {
+      "label": "reclaim Add32Bits, XorWords, RotateLeft32Bits",
+      "reason": "Their root causes were already used in manifest.dev10/dev3 development work, so controlled-v1 excludes them to prevent development/evaluation leakage."
+    },
+    {
+      "label": "iden3 MiMCSponge local direct fixture",
+      "reason": "The pinned zkbugs description says the local circuit was modified from a newer version because the original buggy source did not reproduce under Circom 2; it is not an exact original/fixed source pair."
+    },
+    {
+      "label": "remaining local zkbugs Circom records",
+      "reason": "Not selected for v1 because their complete pinned vulnerable and fixed source closures were not already available locally and reviewed within this bounded preparation. This is not a validity or safety judgment."
+    }
+  ],
+  "limitations": [
+    "The plan freezes a target order; ranking scores are hypotheses, not vulnerability probabilities.",
+    "Preparation time is recorded but excluded from the ranking-separated fuzzing budget."
+  ]
+}

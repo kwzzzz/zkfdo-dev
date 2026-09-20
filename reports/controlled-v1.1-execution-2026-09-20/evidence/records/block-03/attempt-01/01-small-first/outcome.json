@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "outcome_id": "58bf1c4b-968c-42db-85bb-7426527cecab",
+  "report_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-03/attempt-01/01-small-first/raw/execution-10c68e27-d098-4e12-a5b4-e2c019f9c449/outcome.json",
+  "plan_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-03/attempt-01/01-small-first/plan.json",
+  "plan_sha256": "149cc0a6ebd8689085d73f9ab53e9b7130e308a9301cd7d6e7752026f7de134e",
+  "plan_id": "bc5d986e-3201-48bb-9cdd-5a4b44f3fc15",
+  "strategy": "small-first",
+  "execution_mode": "ranking-separated",
+  "ranking_preparation_excluded_from_fuzzing_budget": true,
+  "started_at": "2026-09-20T10:15:38.269803Z",
+  "finished_at": "2026-09-20T10:15:39.249111Z",
+  "elapsed_seconds": 0.979308958,
+  "budget_seconds_per_target": 30,
+  "total_budget_seconds": 60,
+  "zkfuzz_binary": "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkFuzz/target/release/zkfuzz",
+  "zkfuzz_binary_sha256": "ac2d9d16fd97ff803b121b7994aef804b4e191636f3f78660ff6ecd6c9ae4edd",
+  "mutation_settings": {
+    "source_path": null,
+    "source_sha256": null,
+    "frozen_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-03/attempt-01/01-small-first/raw/execution-10c68e27-d098-4e12-a5b4-e2c019f9c449/mutation-settings.json",
+    "frozen_sha256": "1508c2e01cb989950399f880c68f078d359f8783a8ab32dfd1950b68f5f2e8bf",
+    "requested_seed": 2026091903,
+    "effective_seed": 2026091903,
+    "seed_controlled": true
+  },
+  "scheduler": {
+    "experiment_id": "74e3f987-0dca-4f52-b4e5-d0d42f04cc20",
+    "scheduler": "uniform-ordered",
+    "budget_seconds_per_target": 30,
+    "total_budget_seconds": 60,
+    "planned_target_ids": [
+      "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "sha256:a85819549a69210934d31e3fa4a0ba4e01f1f456bc86b32a480a29c5b18aec91"
+    ],
+    "started_at": "2026-09-20T10:15:38.453276Z",
+    "finished_at": "2026-09-20T10:15:39.247658Z",
+    "elapsed_seconds": 0.794385917,
+    "runs": [
+      {
+        "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+        "index": 0,
+        "process_start_offset_seconds": 0.000176334,
+        "completion_offset_seconds": 0.032981375,
+        "execution_limit_seconds": 30.0,
+        "result": {
+          "run_id": "f50212be-9fb5-49fd-8879-1a00ff277e47",
+          "target": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/sources/circuit.circom",
+          "command": {
+            "binary": "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkFuzz/target/release/zkfuzz",
+            "args": [
+              "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/sources/circuit.circom",
+              "--prime",
+              "bn128",
+              "--search_mode",
+              "ga",
+              "--save_output",
+              "--path_to_mutation_setting",
+              "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-03/attempt-01/01-small-first/raw/execution-10c68e27-d098-4e12-a5b4-e2c019f9c449/mutation-settings.json"
+            ]
+          },
+          "started_at": "2026-09-20T10:15:38.453349Z",
+          "finished_at": "2026-09-20T10:15:38.483653Z",
+          "wall_time_seconds": 0.030304625,
+          "budget_seconds": 30,
+          "execution_limit_seconds": 30.0,
+          "process_start_offset_seconds": 0.000104125,
+          "timed_out": false,
+          "exit_code": 0,
+          "status": "bug_found",
+          "random_seed": 2026091903,
+          "last_generation": 0,
+          "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-03/attempt-01/01-small-first/raw/execution-10c68e27-d098-4e12-a5b4-e2c019f9c449/74e3f987-0dca-4f52-b4e5-d0d42f04cc20/runs/f50212be-9fb5-49fd-8879-1a00ff277e47/stdout.log",
+          "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-03/attempt-01/01-small-first/raw/execution-10c68e27-d098-4e12-a5b4-e2c019f9c449/74e3f987-0dca-4f52-b4e5-d0d42f04cc20/runs/f50212be-9fb5-49fd-8879-1a00ff277e47/stderr.log",
+          "error": null
+        }
+      },
+      {
+        "target_id": "sha256:a85819549a69210934d31e3fa4a0ba4e01f1f456bc86b32a480a29c5b18aec91",
+        "index": 1,
+        "process_start_offset_seconds": 0.033107875,
+        "completion_offset_seconds": 0.79438125,
+        "execution_limit_seconds": 30.0,
+        "result": {
+          "run_id": "483dfa2a-c443-44f9-8b53-c2b937a9cdf9",
+          "target": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/sources/circuit.circom",
+          "command": {
+            "binary": "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkFuzz/target/release/zkfuzz",
+            "args": [
+              "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/sources/circuit.circom",
+              "--prime",
+              "bn128",
+              "--search_mode",
+              "ga",
+              "--save_output",
+              "--path_to_mutation_setting",
+              "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-03/attempt-01/01-small-first/raw/execution-10c68e27-d098-4e12-a5b4-e2c019f9c449/mutation-settings.json"
+            ]
+          },
+          "started_at": "2026-09-20T10:15:38.486261Z",
+          "finished_at": "2026-09-20T10:15:39.241476Z",
+          "wall_time_seconds": 0.755220875,
+          "budget_seconds": 30,
+          "execution_limit_seconds": 30.0,
+          "process_start_offset_seconds": 0.000123958,
+          "timed_out": false,
+          "exit_code": 0,
+          "status": "no_counterexample",
+          "random_seed": 2026091903,
+          "last_generation": 499,
+          "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-03/attempt-01/01-small-first/raw/execution-10c68e27-d098-4e12-a5b4-e2c019f9c449/74e3f987-0dca-4f52-b4e5-d0d42f04cc20/runs/483dfa2a-c443-44f9-8b53-c2b937a9cdf9/stdout.log",
+          "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-03/attempt-01/01-small-first/raw/execution-10c68e27-d098-4e12-a5b4-e2c019f9c449/74e3f987-0dca-4f52-b4e5-d0d42f04cc20/runs/483dfa2a-c443-44f9-8b53-c2b937a9cdf9/stderr.log",
+          "error": null
+        }
+      }
+    ],
+    "failures": [],
+    "skipped": [],
+    "summary_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-03/attempt-01/01-small-first/raw/execution-10c68e27-d098-4e12-a5b4-e2c019f9c449/74e3f987-0dca-4f52-b4e5-d0d42f04cc20/summary.json"
+  },
+  "counterexample_candidates": [
+    {
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "run_id": "f50212be-9fb5-49fd-8879-1a00ff277e47",
+      "original_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/sources/circuit.circom_DZsy5SViGT_counterexample.json",
+      "preserved_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-03/attempt-01/01-small-first/raw/execution-10c68e27-d098-4e12-a5b4-e2c019f9c449/counterexample-candidates/0001/circuit.circom_DZsy5SViGT_counterexample.json",
+      "sha256": "79da25f251162719b530d877cb9af94c9da1e4dd69ef338803b25e230300a3c7",
+      "classification": "backend-counterexample-candidate-unconfirmed"
+    }
+  ],
+  "limitations": [
+    "The total fuzzing budget starts inside the ordered scheduler after plan/source validation and command construction.",
+    "The scheduler does not let a backend process run beyond the remaining deadline and starts no later target after exhaustion; required log/result persistence is not aborted and can make recorded elapsed time slightly exceed the nominal total.",
+    "A backend NOT SAFE result and saved counterexample are candidates until separately reviewed against project input assumptions and root cause.",
+    "The runner records successful spawn-call order; it cannot observe the exact OS exec timestamp."
+  ]
+}

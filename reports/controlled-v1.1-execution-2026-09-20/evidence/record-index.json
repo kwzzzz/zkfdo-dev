@@ -1,0 +1,497 @@
+{
+  "schema_version": 1,
+  "scope": "v1.1 campaign ledger, driver, block and environment records, and plan/outcome JSON only; raw counterexample values are excluded",
+  "source_campaign": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z",
+  "records": [
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/campaign.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/campaign-ledger.json",
+      "sha256": "86bbfbf1d1088f60f8ab4c5c3eca1a4623a6c97bcb240e7577e971a05f523018"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/frozen-tools/campaign_driver.py",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/campaign-driver.py",
+      "sha256": "c6e7daf62ac301111b61c4d7a7b469030d6a1a7d9cd43ac8622e650cdc3e933b"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-01/block.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-01/block.json",
+      "sha256": "e10fdb5be9bc6d3507b3d36e4f17e2388cb7b3109d86067c8819b9fe16d337cd"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-01/attempt-01/environment.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-01/attempt-01/environment.json",
+      "sha256": "0d6b470091fc6b93039b20d26b290bf6cb143edbbce45f05b093c96a3c55acee"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-01/attempt-01/01-risk-only/plan.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-01/attempt-01/01-risk-only/plan.json",
+      "sha256": "85a7495a4fba31438771f66ece0e1471d7b3913205e09da0fe7a94c7eb5ecb49"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-01/attempt-01/01-risk-only/raw/execution-5dc5ede2-8b55-4a10-aec4-10231ff6c541/outcome.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-01/attempt-01/01-risk-only/outcome.json",
+      "sha256": "fab7e2e9875f5ee5368337e377972bccf47fed2e7e4e29abdf39357c9676f91c"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-01/attempt-01/02-random/plan.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-01/attempt-01/02-random/plan.json",
+      "sha256": "797d49984ffec540e59cef3d55a45b6e8957203a4a40cafbbe5455c9d96c64b6"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-01/attempt-01/02-random/raw/execution-e5e52147-d0c2-44df-933a-b1f381cb3f7a/outcome.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-01/attempt-01/02-random/outcome.json",
+      "sha256": "051b2adf6eb9ac944c7d3c8186f716ef7ec96e513db4f3b5c3aad785a45fa3f8"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-01/attempt-01/03-small-first/plan.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-01/attempt-01/03-small-first/plan.json",
+      "sha256": "701d09bf55819325d84f057ea5b0f0cef35aac04eeb115f5b0d9067e2fd6d45f"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-01/attempt-01/03-small-first/raw/execution-2089a801-537f-4849-af9d-1bb49793495c/outcome.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-01/attempt-01/03-small-first/outcome.json",
+      "sha256": "92c0f1e05225c1f1c2810bcef69d3b61502831301b9ac070a22c007354afab0f"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-02/block.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-02/block.json",
+      "sha256": "825018bffcffde1903447dc891bdf1d5d3354fb6e918b4247b3ef08c43ef2525"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-02/attempt-01/environment.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-02/attempt-01/environment.json",
+      "sha256": "4326e221be27196602f74e3c523448af3fc991d0130114338449d0afa50a770e"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-02/attempt-01/01-random/plan.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-02/attempt-01/01-random/plan.json",
+      "sha256": "28a978c33d1dd84d6bdf3c2a6d3506f647a950123c041fb17c5db27a6a7c8635"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-02/attempt-01/01-random/raw/execution-05bc512e-cc03-4b21-bb94-09a27471d9ff/outcome.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-02/attempt-01/01-random/outcome.json",
+      "sha256": "d227528b1d2da64648c29753b93a6e8d805b66865ceae1c84f9ef2cb383087be"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-02/attempt-01/02-small-first/plan.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-02/attempt-01/02-small-first/plan.json",
+      "sha256": "76f0f6702ecd6016adc6648f92ba8fa151ae57131d992e5b407656204b2061a5"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-02/attempt-01/02-small-first/raw/execution-fc090144-cedc-471c-9b1e-0ec98a0a7579/outcome.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-02/attempt-01/02-small-first/outcome.json",
+      "sha256": "43a5c7c86d3227e601f0477d123bcabf4736a41f27167ca66636eb4188fff026"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-02/attempt-01/03-risk-only/plan.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-02/attempt-01/03-risk-only/plan.json",
+      "sha256": "4002e3ee1638a0377859b2b98d50d37ef7d3e948c8b00702a80179c0ed893fe4"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-02/attempt-01/03-risk-only/raw/execution-bc21645b-6133-4cba-8f0b-2aad7bb59643/outcome.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-02/attempt-01/03-risk-only/outcome.json",
+      "sha256": "e8748128d69aad70d2b7482e95499f70986c1894a38a7259bf01a36fbc42f9ad"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-03/block.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-03/block.json",
+      "sha256": "4ca6ae3fd6e5d0c74f695c97d7331c54d9b765a4a7aed7b73b31f342a71b8745"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-03/attempt-01/environment.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-03/attempt-01/environment.json",
+      "sha256": "e11c5dbe9ca44c779670541ba7866ff4511a91a711d8287388c85e07a36d63ef"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-03/attempt-01/01-small-first/plan.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-03/attempt-01/01-small-first/plan.json",
+      "sha256": "149cc0a6ebd8689085d73f9ab53e9b7130e308a9301cd7d6e7752026f7de134e"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-03/attempt-01/01-small-first/raw/execution-10c68e27-d098-4e12-a5b4-e2c019f9c449/outcome.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-03/attempt-01/01-small-first/outcome.json",
+      "sha256": "637949f937c9166908c22d3bccffd4d01bdbf556d4ec39d0639cd0aef3bb826e"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-03/attempt-01/02-risk-only/plan.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-03/attempt-01/02-risk-only/plan.json",
+      "sha256": "e984b4a7cf0e18122df4e741bffe3eca5e464ba9b0533f14ad6d8220e9a258a2"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-03/attempt-01/02-risk-only/raw/execution-565822d2-18fc-40e2-ac47-f2dc6111a90b/outcome.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-03/attempt-01/02-risk-only/outcome.json",
+      "sha256": "95f5d8a065ba20ea52f0f2ff493bf4a2f217a56b4f8930b58e48e7e09bc7ff41"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-03/attempt-01/03-random/plan.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-03/attempt-01/03-random/plan.json",
+      "sha256": "c55049d7c732219860c47a5bcad39faaa9d54e1dc73bdbd8531a150d31b9a99e"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-03/attempt-01/03-random/raw/execution-8304c725-fbbd-4876-8dc5-285c06d95f06/outcome.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-03/attempt-01/03-random/outcome.json",
+      "sha256": "e7e2456dd4adcee87d83ec7806c17a2476da39af81c02f3ceea02df5b68ed1a4"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-04/block.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-04/block.json",
+      "sha256": "dac1ebaa4d9d36757f1721b6804cda6a2ea7aee634d45c887aad3ca790b685ce"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-04/attempt-01/environment.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-04/attempt-01/environment.json",
+      "sha256": "06559fe3f81cce1a822f0403ca7554a3f3225e2487224f6c248a3ccfdacea391"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-04/attempt-01/01-risk-only/plan.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-04/attempt-01/01-risk-only/plan.json",
+      "sha256": "638c8d824217f40287880fdb3b5d42b512eea468b8e4b878be0377d62d66ae35"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-04/attempt-01/01-risk-only/raw/execution-cb9ee8e2-d881-4445-9718-c883abc35b53/outcome.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-04/attempt-01/01-risk-only/outcome.json",
+      "sha256": "517569d9edeeda45c460d2f9cd8654afc2fbd496dda6681d0a77661d15d523d0"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-04/attempt-01/02-random/plan.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-04/attempt-01/02-random/plan.json",
+      "sha256": "591cb31cb42f4cea7224476eef5da161075bc62c74fde345f8d1db14ed80efd3"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-04/attempt-01/02-random/raw/execution-58ec2fc1-01ef-482b-bd2e-5b963b3c0eec/outcome.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-04/attempt-01/02-random/outcome.json",
+      "sha256": "f76471d623fca1d7f9a327ac748957a356d6b36ea05ab4354ce0c1eeb5412be5"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-04/attempt-01/03-small-first/plan.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-04/attempt-01/03-small-first/plan.json",
+      "sha256": "d8bd110f90a14217913562dab2ce846b475fd8659437227c17498e82ac785804"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-04/attempt-01/03-small-first/raw/execution-17808603-ed04-4b58-8944-0b5efadbff42/outcome.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-04/attempt-01/03-small-first/outcome.json",
+      "sha256": "c9783184e495c02b41752da5fc9f8e5e0f56f3e2640de0d3ff3a1af057d918e4"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-05/block.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-05/block.json",
+      "sha256": "62a7b00d2a8f4b0df914a6a393444655fba6e1e541a322174dda8758b61b8bad"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-05/attempt-01/environment.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-05/attempt-01/environment.json",
+      "sha256": "456b1e5c73109bdabb5004ec1ed755f31098102248163094ce7e9e28d22d7edd"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-05/attempt-01/01-random/plan.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-05/attempt-01/01-random/plan.json",
+      "sha256": "6d225e5ca2ba5589dd7ce831d33b25c432201942cede7f737f5c571355906797"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-05/attempt-01/01-random/raw/execution-7794ddfe-8a53-4ab1-b5a2-d82b4e5d80a3/outcome.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-05/attempt-01/01-random/outcome.json",
+      "sha256": "9d98d537a48b0770b156c8f80e82fe7c12873097e4f76a3f6b259a9fbb12a100"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-05/attempt-01/02-small-first/plan.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-05/attempt-01/02-small-first/plan.json",
+      "sha256": "a280b8aee2d7ef840c79b9ac493ab3fc32c9d7edbb8a66c60af032a4d10cc558"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-05/attempt-01/02-small-first/raw/execution-cb6886a7-7134-4a7e-bd50-4fcaa6c5c0d1/outcome.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-05/attempt-01/02-small-first/outcome.json",
+      "sha256": "56124841bbff37cf04eb0d4bd76edecb07a08aa251623971952ba7696f93ab30"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-05/attempt-01/03-risk-only/plan.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-05/attempt-01/03-risk-only/plan.json",
+      "sha256": "74f1dc18077ba5490938aa8cb18fdc69d95ce3a7660a7cd2dadcabbda9d73e1d"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-05/attempt-01/03-risk-only/raw/execution-95d376ea-6ade-4297-9c15-8993738a3eb9/outcome.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-05/attempt-01/03-risk-only/outcome.json",
+      "sha256": "2a14133e7175af2b33751cf99074ddb8f7864ea6545de57a5dd0c8b8d8bca8f9"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-06/block.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-06/block.json",
+      "sha256": "b3efd32415a588a73fb8760aac71a67b2e5d58fa6f13d7d59e9f37b4ab8365fa"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-06/attempt-01/environment.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-06/attempt-01/environment.json",
+      "sha256": "590d696f44c1300f11c8f65e298a8b457a9ed063a574de7566ab95ccd82860f6"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-06/attempt-01/01-small-first/plan.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-06/attempt-01/01-small-first/plan.json",
+      "sha256": "d7776f35c7ebcd9a5d9d03203ad87d54f892051bc350ada91bcd15160d0bbd96"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-06/attempt-01/01-small-first/raw/execution-7bd31be7-a91d-4846-852f-596eaa2ab7b3/outcome.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-06/attempt-01/01-small-first/outcome.json",
+      "sha256": "d01cd60ac32d77bd890828ac11bbf2177d670d03d336d6dd19d3a940d536422b"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-06/attempt-01/02-risk-only/plan.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-06/attempt-01/02-risk-only/plan.json",
+      "sha256": "abe30f10b64580363b78f3dd19d1fdc7433435e3785f35384aa184be9ce4bc7a"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-06/attempt-01/02-risk-only/raw/execution-95941ac1-ce66-45b3-9e1b-256b7b0c9112/outcome.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-06/attempt-01/02-risk-only/outcome.json",
+      "sha256": "e53710ede9ca8b7b9982d3de4770ea231ae853c611c67aacfe014b408e074067"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-06/attempt-01/03-random/plan.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-06/attempt-01/03-random/plan.json",
+      "sha256": "9bfcdf4ce6e39b721ecb75b118dd6d3e60da153fc03682bb90e3cc57077c6c37"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-06/attempt-01/03-random/raw/execution-ec5682f4-249e-444b-85d0-f18690e6ecbb/outcome.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-06/attempt-01/03-random/outcome.json",
+      "sha256": "7b01c92bd244e4b2622c638db467f74e7c10646c8219ece85b03cf4b71bad17f"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-07/block.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-07/block.json",
+      "sha256": "3d03c71c47bf7207c765cfa61324ae987c6ef90493aa3c767aa319ef882d556f"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-07/attempt-01/environment.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-07/attempt-01/environment.json",
+      "sha256": "2be3b76948c170aa43e697b6c81ae7c858aa5103dde6b7a17e4fc2418680da31"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-07/attempt-01/01-risk-only/plan.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-07/attempt-01/01-risk-only/plan.json",
+      "sha256": "8ceda46ce3f935d77ce0d79d7c8fd9c94ffbe642f2c31ba27da5e1c071fda499"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-07/attempt-01/01-risk-only/raw/execution-db522329-e72a-4e5c-b183-d4c62c0066bc/outcome.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-07/attempt-01/01-risk-only/outcome.json",
+      "sha256": "5772015ba10af97966ec5387c802cb527c8b4abcab636329938c478598484f81"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-07/attempt-01/02-random/plan.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-07/attempt-01/02-random/plan.json",
+      "sha256": "c021dcf8d5d3e38ab914ded92c35057481fdb2967df4f41c5af5e99166ed2496"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-07/attempt-01/02-random/raw/execution-41663554-55fe-461b-a3fc-777f065afcd2/outcome.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-07/attempt-01/02-random/outcome.json",
+      "sha256": "dc755407f809b64e484003c8090b801412bfb881c87013a7a5821f07784ae093"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-07/attempt-01/03-small-first/plan.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-07/attempt-01/03-small-first/plan.json",
+      "sha256": "2362d86e0f2c7744248a03115d4287b51b0cdae8c4afc7076411dfa9eee5e370"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-07/attempt-01/03-small-first/raw/execution-a78336e3-fd70-44ae-812a-3237cbe211c1/outcome.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-07/attempt-01/03-small-first/outcome.json",
+      "sha256": "b475d1c12adaa475fe1542717b45ca1ad857eba6e654ae765a5169cc837526a1"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/block.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-08/block.json",
+      "sha256": "9f8d21641b8f101350b6b38a4b33d9dc0169b30d7a7e7b26652d52b5bac1e26a"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/environment.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-08/attempt-01/environment.json",
+      "sha256": "42f4e67f6f96af8a12a6ef4cf517b4b0f617f38a020e28b0f28db4ed76cf1cb5"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/01-random/plan.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-08/attempt-01/01-random/plan.json",
+      "sha256": "e487e1faac832729e6173b7d6cb28ead9b28e4f6dfce8e390ee676c733e3b492"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/01-random/raw/execution-586bbbcf-9282-4d75-8446-6b3c8d7f7365/outcome.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-08/attempt-01/01-random/outcome.json",
+      "sha256": "e9a706d27eaf8c27f69936d00ef63e1d10405ee043757c360468e3cac3d213c7"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/02-small-first/plan.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-08/attempt-01/02-small-first/plan.json",
+      "sha256": "a9cd36345fe6b4aa2cabc25877953c73b22172777b5a6f25b406d49acaa586a0"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/02-small-first/raw/execution-3f0b53bb-4122-4c27-a1ec-4049b430c267/outcome.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-08/attempt-01/02-small-first/outcome.json",
+      "sha256": "de8e5c1bea2106cba06c9061f9067bf243840e0e6bc6f1c11161b71fbc7dcf33"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/03-risk-only/plan.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-08/attempt-01/03-risk-only/plan.json",
+      "sha256": "9dd6a0d8e2dcb27c11690834c1170ed2399814501231062e6b7240aeecd0ff12"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/03-risk-only/raw/execution-0d365f85-b26b-43fa-bd0a-128a4db7986a/outcome.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-08/attempt-01/03-risk-only/outcome.json",
+      "sha256": "34294ff3045696f8d901ebd5d897bfb09defdca2ab7fca07775477e608f440e5"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-09/block.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-09/block.json",
+      "sha256": "53ed8875fe81a05a082bbe59585d5710e0ef4f523be2dfb4d86410fc16567e5b"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-09/attempt-01/environment.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-09/attempt-01/environment.json",
+      "sha256": "2f85eb0d89fe1b394016bbbff1f81e22294ffef8063b543c0d181c01d0d35648"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-09/attempt-01/01-small-first/plan.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-09/attempt-01/01-small-first/plan.json",
+      "sha256": "6729214692165114f56a1a97225bfc1e5ae12b84f2dc8b7c0d6b13001c2cf03c"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-09/attempt-01/01-small-first/raw/execution-76581dd7-b5ba-41ce-b15b-438d188944d0/outcome.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-09/attempt-01/01-small-first/outcome.json",
+      "sha256": "f307b44f2be44a173bb285ce2e385ed9633ae0322448d079b82b0afe781ad8dc"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-09/attempt-01/02-risk-only/plan.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-09/attempt-01/02-risk-only/plan.json",
+      "sha256": "209f4e94d34f2e67c4f7264fad4705f56460e4c8655d8cc2a62a5925e317404c"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-09/attempt-01/02-risk-only/raw/execution-e09cb00d-00c4-4f1a-9e38-0703792eba90/outcome.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-09/attempt-01/02-risk-only/outcome.json",
+      "sha256": "d4f1499816f0113dfb473b33d9b4e8556f0d4f3e8b4fcfe02f460a6525dea8eb"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-09/attempt-01/03-random/plan.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-09/attempt-01/03-random/plan.json",
+      "sha256": "fc6b59c44eba2f91952b9b582b183d8c7b1ba6a94596c829a3a681876c048d6f"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-09/attempt-01/03-random/raw/execution-bda58206-f357-43b8-99b9-c290fdfebe24/outcome.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-09/attempt-01/03-random/outcome.json",
+      "sha256": "c7a716713dcff7a041a6c65d80569580775ce395b02cb199959b2ee5e74efb36"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-10/block.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-10/block.json",
+      "sha256": "ea0d5b8a43abb546fdb9057a42e79bab0c7c50bc9aa9d7ffef45deaaea09bc16"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-10/attempt-01/environment.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-10/attempt-01/environment.json",
+      "sha256": "80c54e1acca3e95bc3ebbed347a27f30e5a2b0f8527c91107d49dffa87417ec3"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-10/attempt-01/01-risk-only/plan.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-10/attempt-01/01-risk-only/plan.json",
+      "sha256": "93d5aaeb567280915d83b79142376f513fdfcd48bd06b530c5b16b92f3e957ff"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-10/attempt-01/01-risk-only/raw/execution-97c95c56-a784-4e05-8195-c6bcc30000df/outcome.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-10/attempt-01/01-risk-only/outcome.json",
+      "sha256": "375d5258eebb902c2621042f60b2cda4214d53d3334a0f0d62a3420afc8afd20"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-10/attempt-01/02-random/plan.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-10/attempt-01/02-random/plan.json",
+      "sha256": "f8c773db8f5632810a6c076e67868262e3b37f9966a19ac9f743d4328bba7f27"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-10/attempt-01/02-random/raw/execution-85140736-f053-40dc-ad1c-81f0f1a1f822/outcome.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-10/attempt-01/02-random/outcome.json",
+      "sha256": "9e6bd347c613da4cf670fdf6edbdcb281e887c05f52ba8f0dedb9d5a3c5fccbf"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-10/attempt-01/03-small-first/plan.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-10/attempt-01/03-small-first/plan.json",
+      "sha256": "725078c395913d4129416cd8f3d2e61e2eb4719c3e02e92de52d0af138ee4e6c"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-10/attempt-01/03-small-first/raw/execution-78483b93-2307-4ed8-a6ef-8268ad1c6397/outcome.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-10/attempt-01/03-small-first/outcome.json",
+      "sha256": "765e169727b3434178b9ac9dbac7cde28e944735ee236a92a1aed34134e37cb2"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-11/block.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-11/block.json",
+      "sha256": "444229bb4c2233554b522f2171707024634006b55cde69e745b86fedb8f3cf61"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-11/attempt-01/environment.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-11/attempt-01/environment.json",
+      "sha256": "f9c16a2921b3487cee9c679ef2fee5a966c3c048cdd839f52b0f85fc39e26f62"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-11/attempt-01/01-random/plan.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-11/attempt-01/01-random/plan.json",
+      "sha256": "cad26bcfb32b3e10b29fa73059922e7b85ed9ee56c8f4aa8b50af38898b3c79d"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-11/attempt-01/01-random/raw/execution-1f53293e-34bc-4379-909b-01c4d599c203/outcome.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-11/attempt-01/01-random/outcome.json",
+      "sha256": "9c7e77171c90085fef496b3c72d45abb8fa9be36fce1891facba887a3c196279"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-11/attempt-01/02-small-first/plan.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-11/attempt-01/02-small-first/plan.json",
+      "sha256": "929f845c103b032b66c2d3019b4dbe4b67be205cab508e22ccfed5caf196ed4e"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-11/attempt-01/02-small-first/raw/execution-0dc471e5-8ccd-4405-83ad-2f57b8a2e220/outcome.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-11/attempt-01/02-small-first/outcome.json",
+      "sha256": "caf50889592294ca9efadd3fe6dc0c7a367d65fb5c1147ef6bc0e2fec98aef1b"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-11/attempt-01/03-risk-only/plan.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-11/attempt-01/03-risk-only/plan.json",
+      "sha256": "1cdc5c52a33e07204fae98a7c318188533de73685402045e1bb36700fc876775"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-11/attempt-01/03-risk-only/raw/execution-44c96d6d-2836-4013-a067-0f37d35000fa/outcome.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-11/attempt-01/03-risk-only/outcome.json",
+      "sha256": "c5f44d861728f356b04292639042fb284e163a9f134c02a403541a2d13f1d587"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-12/block.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-12/block.json",
+      "sha256": "7d23daef0209e0879ff61e545af1eafb787e4a90d6c7f3ecebac8a01a6b8c238"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-12/attempt-01/environment.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-12/attempt-01/environment.json",
+      "sha256": "81942507c253ad7fc0bd051ecab3f950a878d6c3171dfcd9fbcae4b73f715fe3"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-12/attempt-01/01-small-first/plan.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-12/attempt-01/01-small-first/plan.json",
+      "sha256": "8f278d9ed5ba73153c0180b6adf7da83e8d2d8c8f1b43e15b7cbf888f73fc86f"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-12/attempt-01/01-small-first/raw/execution-55a93dcd-de91-4770-83ca-79e10cd9e2d4/outcome.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-12/attempt-01/01-small-first/outcome.json",
+      "sha256": "3553c20deedc724982c1429a54b577d222c6e147f1aee106fed287717f4f0583"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-12/attempt-01/02-risk-only/plan.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-12/attempt-01/02-risk-only/plan.json",
+      "sha256": "a96528e6a7b218af030ee29349b9445c1f13e7b200f30fda510441ba37d1c874"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-12/attempt-01/02-risk-only/raw/execution-5a15349d-ef9b-4cc0-ae9d-ea740bd39ddd/outcome.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-12/attempt-01/02-risk-only/outcome.json",
+      "sha256": "c5564b4ed0ad9e61d7a44f701ce32c0d120a06ca0755fcd3813d3aedee419d8a"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-12/attempt-01/03-random/plan.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-12/attempt-01/03-random/plan.json",
+      "sha256": "af0096d179fbc71bdeec9eb73f3553e1fe5d0d5249d5d3cd6d19fb4a59d4f08e"
+    },
+    {
+      "source_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-12/attempt-01/03-random/raw/execution-fc7c85bd-39a3-4239-a302-7913cec3620a/outcome.json",
+      "copy_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/records/block-12/attempt-01/03-random/outcome.json",
+      "sha256": "ba77aa1034a91da48c813c5ea2a31c123dc175568ace69064b6a9cb232e9f539"
+    }
+  ]
+}
