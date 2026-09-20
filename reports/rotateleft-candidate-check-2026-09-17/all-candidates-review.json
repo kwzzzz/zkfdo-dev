@@ -1,0 +1,1135 @@
+{
+  "schema_version": 1,
+  "review_metadata": {
+    "generated_at_utc": "2026-09-19T06:55:42.165610+00:00",
+    "question": "Whether any of the 21 fixed dev3 RotateLeft32Bits(3) bug_found candidates qualifies as a reviewed original-component defect.",
+    "selection_path": "reports/rotateleft-candidate-check-2026-09-17/selection.json",
+    "selection_sha256": "253c9dd22c2da503fefc1f890bf5edcbbee1ddb9400a3d9ae805e0268dc87de1",
+    "fixed_order": "selection.json inventory order",
+    "candidate_count": 21,
+    "prior_review_preserved": {
+      "selection_index": 1,
+      "candidate_sha256": "8effd6c717f7ac463f956d9581cf0146eff4a0ba1b01e60bf23327d405cb93e4",
+      "review_path": "reports/rotateleft-candidate-check-2026-09-17/component-check.json",
+      "review_sha256": "f1049f5463f24254810c54b55a05c60d985b17692f94e0a6c21544fc881475a6",
+      "verdict": "input_precondition_failed"
+    },
+    "new_fuzzing_performed": false,
+    "candidate_or_witness_modified": false,
+    "witness_or_proof_generated": false,
+    "candidate_raw_values_persisted_in_this_file": false
+  },
+  "component_scope": {
+    "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+    "template": "RotateLeft32Bits",
+    "parameters": [
+      "3"
+    ],
+    "prime": "bn128",
+    "fixed_original_revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+    "fidelity_evidence_path": "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json",
+    "fidelity_evidence_sha256": "8a610d810eec1c9a1e0240f45157777e978c2cb27b05be7b0476ad44800cd36d",
+    "fidelity_verdict": "constraints_preserved_in_compared_component_scope",
+    "pinned_original_r1cs": {
+      "path": "reports/rotateleft-candidate-check-2026-09-17/component-check/compiled/circuit.r1cs",
+      "sha256": "ca66ddb8e7daaa7499b3764cb41973507b4d80177f0b06918b4a7a3a75f4a42a",
+      "constraint_count": 2,
+      "source_constraints": [
+        "out - part1 - part2 === 0",
+        "part1 / 2**3 + part2 * 2**29 - in === 0"
+      ]
+    },
+    "pinned_symbol_table": {
+      "path": "reports/rotateleft-candidate-check-2026-09-17/component-check/compiled/circuit.sym",
+      "sha256": "f9bf7855ea98a8a28be5b8695b49104d2519856daf00fb3fb0eda5463ad554f3"
+    },
+    "input_precondition": "0 <= in < 2**32",
+    "predeclared_property": "out = ((in << 3) & 0xffffffff) | (in >> 29) for unsigned 32-bit in",
+    "project_context_boundary": "This review covers the pinned L=3 original component only. The inspected ChaCha20 build uses L=16,12,8,7 and has no identified L=3 instantiation, so no ChaCha20 project defect is claimed."
+  },
+  "review_method": {
+    "preservation_and_execution_link_checks": [
+      "candidate file SHA-256 equals the fixed selection entry",
+      "outcome counterexample artifact matches candidate path, SHA-256, run, target, and classification",
+      "scheduler run matches run and target and has backend status bug_found",
+      "outcome plan hash and ID match, and its target is RotateLeft32Bits(3) over bn128",
+      "plan snapshot fingerprints match the previously reviewed wrapper and template source"
+    ],
+    "criteria": {
+      "input_preconditions": "Direct range check against the predeclared unsigned 32-bit domain.",
+      "fixed_original_constraints": "Direct finite-field evaluation of every row in the pinned, hash-verified original R1CS using the preserved assignment; no witness generation.",
+      "specified_property_violation": "Compared with the predeclared rotate-left property only when the input precondition is satisfied."
+    },
+    "overall_rule": "valid requires verified run/target linkage and all three criteria satisfied; any definitely not-satisfied criterion rejects the exact candidate; unresolved linkage or criteria remain unknown.",
+    "schema_2_rule": "Only valid candidates may appear in top-level confirmations; repeated candidates for the same root cause are deduplicated to the earliest scheduler completion upper bound."
+  },
+  "summary": {
+    "valid_candidate_count": 0,
+    "rejected_candidate_count": 21,
+    "unknown_candidate_count": 0,
+    "candidate_hashes_verified": 21,
+    "run_target_links_verified": 21,
+    "criterion_verdict_counts": {
+      "input_preconditions": {
+        "not-satisfied": 21
+      },
+      "fixed_original_constraints": {
+        "satisfied": 21
+      },
+      "specified_property_violation": {
+        "unknown": 21
+      }
+    },
+    "common_rejection_reason": "All candidates violate the unsigned 32-bit input precondition; all satisfy both pinned-original constraints, and the domain-limited rotation property is therefore unknown rather than treated as passed or failed.",
+    "unique_confirmed_original_component_root_causes": 0,
+    "confirmed_root_cause_ids": [],
+    "first_valid_discovery_completion_upper_bound_seconds": null,
+    "confirmed_project_context_defect_count": 0
+  },
+  "candidate_reviews": [
+    {
+      "selection_index": 1,
+      "run_id": "4f896cbb-0aa5-475a-b485-6b2be66fcbbe",
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "strategy": "random",
+      "candidate_path": "runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/random/executions/execution-69fe44a5-430c-4640-81c6-14daf4f16247/counterexample-candidates/0003/circuit.circom_p6UtyhoITh_counterexample.json",
+      "candidate_sha256": "8effd6c717f7ac463f956d9581cf0146eff4a0ba1b01e60bf23327d405cb93e4",
+      "candidate_hash_verified": true,
+      "outcome_path": "runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/random/executions/execution-69fe44a5-430c-4640-81c6-14daf4f16247/outcome.json",
+      "outcome_sha256": "1b3adaba8885a45c6a97e05f077b5dc13a94b92ab0d09a0d3a978e1b3aab8b34",
+      "plan_path": "runs/dev3-ranking-pilot-2026-09-15/plans/random-rep-02.json",
+      "run_target_link": {
+        "verified": true,
+        "backend_status": "bug_found",
+        "completion_time_upper_bound_seconds": 0.785422667,
+        "errors": []
+      },
+      "review_basis": "preserved-prior-review",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "not-satisfied",
+          "evidence": [
+            "reports/rotateleft-candidate-check-2026-09-17/selection.json",
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The preserved main.in is outside unsigned 32-bit range."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json",
+            "reports/rotateleft-candidate-check-2026-09-17/component-check/compiled/circuit.r1cs"
+          ],
+          "note": "All 2 pinned-original R1CS constraints are satisfied."
+        },
+        "specified_property_violation": {
+          "verdict": "unknown",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The predeclared unsigned 32-bit rotation property is not applied outside its input domain."
+        }
+      },
+      "failed_original_constraint_indices_zero_based": [],
+      "mapping_error": null,
+      "overall_verdict": "rejected",
+      "schema_2_eligible": false,
+      "plan_sha256": "06ea736219bb599d3899e704b6affc460ae092200a23095755e2d67e05f9467a"
+    },
+    {
+      "selection_index": 2,
+      "run_id": "a462aaf1-5714-48d8-911c-bd63416a19c9",
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "strategy": "small-first",
+      "candidate_path": "runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/small-first/executions/execution-498c9c6a-e096-4620-8d2c-4e3536527ce8/counterexample-candidates/0002/circuit.circom_aMm4ja2g0X_counterexample.json",
+      "candidate_sha256": "b12cce131663ea4d12167e739d06f3a36aa3c3feb4eceb528c00e46b60500766",
+      "candidate_hash_verified": true,
+      "outcome_path": "runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/small-first/executions/execution-498c9c6a-e096-4620-8d2c-4e3536527ce8/outcome.json",
+      "outcome_sha256": "ab5f4109c3fd5e809fa3d5cff0b4a8a772b4235af830a833cf43b5ed37e67be4",
+      "plan_path": "runs/dev10-plans/small-first.json",
+      "run_target_link": {
+        "verified": true,
+        "backend_status": "bug_found",
+        "completion_time_upper_bound_seconds": 0.5899015,
+        "errors": []
+      },
+      "review_basis": "current-batch-review",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "not-satisfied",
+          "evidence": [
+            "reports/rotateleft-candidate-check-2026-09-17/selection.json",
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The preserved main.in is outside unsigned 32-bit range."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json",
+            "reports/rotateleft-candidate-check-2026-09-17/component-check/compiled/circuit.r1cs"
+          ],
+          "note": "All 2 pinned-original R1CS constraints are satisfied."
+        },
+        "specified_property_violation": {
+          "verdict": "unknown",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The predeclared unsigned 32-bit rotation property is not applied outside its input domain."
+        }
+      },
+      "failed_original_constraint_indices_zero_based": [],
+      "mapping_error": null,
+      "overall_verdict": "rejected",
+      "schema_2_eligible": false,
+      "plan_sha256": "9d14598ad1a61b9cc081b49868d8bd9db3c28791d0bf3fe8fcd94448dd4589af"
+    },
+    {
+      "selection_index": 3,
+      "run_id": "263ee729-c919-4b02-bd08-763e63389ad5",
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "strategy": "legacy",
+      "candidate_path": "runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/legacy/executions/execution-3787a3bf-8509-45c0-a484-ab0ec47b3c50/counterexample-candidates/0002/circuit.circom_uusdcCJ67K_counterexample.json",
+      "candidate_sha256": "864fb744b0fae1b7157e9e090e57c9dd25843e3bfa890600ee05b5a13c9f7e5c",
+      "candidate_hash_verified": true,
+      "outcome_path": "runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/legacy/executions/execution-3787a3bf-8509-45c0-a484-ab0ec47b3c50/outcome.json",
+      "outcome_sha256": "e05c7f7b7c3a021aab663f0e7ff8780f5b65cdc3e5551a6df1747a193a551f53",
+      "plan_path": "runs/dev10-plans/legacy.json",
+      "run_target_link": {
+        "verified": true,
+        "backend_status": "bug_found",
+        "completion_time_upper_bound_seconds": 0.60894475,
+        "errors": []
+      },
+      "review_basis": "current-batch-review",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "not-satisfied",
+          "evidence": [
+            "reports/rotateleft-candidate-check-2026-09-17/selection.json",
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The preserved main.in is outside unsigned 32-bit range."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json",
+            "reports/rotateleft-candidate-check-2026-09-17/component-check/compiled/circuit.r1cs"
+          ],
+          "note": "All 2 pinned-original R1CS constraints are satisfied."
+        },
+        "specified_property_violation": {
+          "verdict": "unknown",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The predeclared unsigned 32-bit rotation property is not applied outside its input domain."
+        }
+      },
+      "failed_original_constraint_indices_zero_based": [],
+      "mapping_error": null,
+      "overall_verdict": "rejected",
+      "schema_2_eligible": false,
+      "plan_sha256": "e318f3bb140ae863017b99fdb6e1dd8346cd0b68da35913edbeff325a58726cd"
+    },
+    {
+      "selection_index": 4,
+      "run_id": "31abfb49-2fa2-41ee-9e06-ff974e7630bc",
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "strategy": "warning-first",
+      "candidate_path": "runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/warning-first/executions/execution-b5a4fd07-f05c-4a31-a437-bce6e81ce423/counterexample-candidates/0002/circuit.circom_Ehml5wWYOL_counterexample.json",
+      "candidate_sha256": "e387afc79c70aa4aaa3a5a3b3ab0ba693fb05559a626eb77bb8d1a5ac9a9c3d7",
+      "candidate_hash_verified": true,
+      "outcome_path": "runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/warning-first/executions/execution-b5a4fd07-f05c-4a31-a437-bce6e81ce423/outcome.json",
+      "outcome_sha256": "8af5498bc763cb3a937c4b95f08f224aa82e1c6df14487226fbb58befb670841",
+      "plan_path": "runs/dev10-plans/warning-first.json",
+      "run_target_link": {
+        "verified": true,
+        "backend_status": "bug_found",
+        "completion_time_upper_bound_seconds": 0.59434975,
+        "errors": []
+      },
+      "review_basis": "current-batch-review",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "not-satisfied",
+          "evidence": [
+            "reports/rotateleft-candidate-check-2026-09-17/selection.json",
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The preserved main.in is outside unsigned 32-bit range."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json",
+            "reports/rotateleft-candidate-check-2026-09-17/component-check/compiled/circuit.r1cs"
+          ],
+          "note": "All 2 pinned-original R1CS constraints are satisfied."
+        },
+        "specified_property_violation": {
+          "verdict": "unknown",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The predeclared unsigned 32-bit rotation property is not applied outside its input domain."
+        }
+      },
+      "failed_original_constraint_indices_zero_based": [],
+      "mapping_error": null,
+      "overall_verdict": "rejected",
+      "schema_2_eligible": false,
+      "plan_sha256": "2d574c9d6a6cd609cf8c66212a9727da7b5693187f33f0f927702d562aee57d0"
+    },
+    {
+      "selection_index": 5,
+      "run_id": "19426e6c-574b-4f16-9156-e6c459b34b66",
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "strategy": "risk-only",
+      "candidate_path": "runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/risk-only/executions/execution-dd73234f-ba9d-4029-afa8-342237146c36/counterexample-candidates/0002/circuit.circom_FfKF51WDSW_counterexample.json",
+      "candidate_sha256": "176c392327ba4e6f5cd36b0e244d46ff2953ffbe11329d21bb30133503164cec",
+      "candidate_hash_verified": true,
+      "outcome_path": "runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/risk-only/executions/execution-dd73234f-ba9d-4029-afa8-342237146c36/outcome.json",
+      "outcome_sha256": "507fd300f3396fba3723611a01583673e1faf1677ad957f7fd2c9dd260706e18",
+      "plan_path": "runs/dev10-plans/risk-only.json",
+      "run_target_link": {
+        "verified": true,
+        "backend_status": "bug_found",
+        "completion_time_upper_bound_seconds": 0.664809458,
+        "errors": []
+      },
+      "review_basis": "current-batch-review",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "not-satisfied",
+          "evidence": [
+            "reports/rotateleft-candidate-check-2026-09-17/selection.json",
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The preserved main.in is outside unsigned 32-bit range."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json",
+            "reports/rotateleft-candidate-check-2026-09-17/component-check/compiled/circuit.r1cs"
+          ],
+          "note": "All 2 pinned-original R1CS constraints are satisfied."
+        },
+        "specified_property_violation": {
+          "verdict": "unknown",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The predeclared unsigned 32-bit rotation property is not applied outside its input domain."
+        }
+      },
+      "failed_original_constraint_indices_zero_based": [],
+      "mapping_error": null,
+      "overall_verdict": "rejected",
+      "schema_2_eligible": false,
+      "plan_sha256": "09bb86fd3ad31f866efd4124d53e56c13969e075ebc98f1b77b13f89f9c4c038"
+    },
+    {
+      "selection_index": 6,
+      "run_id": "58228185-c05f-4a9b-ad32-f145cdbeca91",
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "strategy": "risk-grouped",
+      "candidate_path": "runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/risk-grouped/executions/execution-2acb9fc0-11f5-4c87-85a5-51b84796bfa0/counterexample-candidates/0002/circuit.circom_4neavJ74Rn_counterexample.json",
+      "candidate_sha256": "109780f735ac05605e53d02d703890cc6686d7c6faaef5073f994876f1632d99",
+      "candidate_hash_verified": true,
+      "outcome_path": "runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/risk-grouped/executions/execution-2acb9fc0-11f5-4c87-85a5-51b84796bfa0/outcome.json",
+      "outcome_sha256": "6c978fc59820ac582b659f0476b550d96a7a97145c3ad8bdb0a9492c407400a5",
+      "plan_path": "runs/dev10-plans/risk-grouped.json",
+      "run_target_link": {
+        "verified": true,
+        "backend_status": "bug_found",
+        "completion_time_upper_bound_seconds": 0.584408417,
+        "errors": []
+      },
+      "review_basis": "current-batch-review",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "not-satisfied",
+          "evidence": [
+            "reports/rotateleft-candidate-check-2026-09-17/selection.json",
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The preserved main.in is outside unsigned 32-bit range."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json",
+            "reports/rotateleft-candidate-check-2026-09-17/component-check/compiled/circuit.r1cs"
+          ],
+          "note": "All 2 pinned-original R1CS constraints are satisfied."
+        },
+        "specified_property_violation": {
+          "verdict": "unknown",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The predeclared unsigned 32-bit rotation property is not applied outside its input domain."
+        }
+      },
+      "failed_original_constraint_indices_zero_based": [],
+      "mapping_error": null,
+      "overall_verdict": "rejected",
+      "schema_2_eligible": false,
+      "plan_sha256": "a1d0b57eef9b44c9660b4366fb72548df3ddb0763fd38a2eae47e6ed1747e633"
+    },
+    {
+      "selection_index": 7,
+      "run_id": "13af8384-ba46-4376-9803-5d9ecf0f024f",
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "strategy": "path-order",
+      "candidate_path": "runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/path-order/executions/execution-b6c6e2d8-a270-42c4-90bc-fbb61fb2653e/counterexample-candidates/0003/circuit.circom_QYAwoWQHQ6_counterexample.json",
+      "candidate_sha256": "1d44276ed293cf90d7f48ab7a77f8758160edc582f0889ef5641d349f69e2efb",
+      "candidate_hash_verified": true,
+      "outcome_path": "runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/path-order/executions/execution-b6c6e2d8-a270-42c4-90bc-fbb61fb2653e/outcome.json",
+      "outcome_sha256": "f5ac42dabff0d7779d9bd07be0f7c0a39200647c8664a73836da0a76ca4880c3",
+      "plan_path": "runs/dev10-plans/path-order.json",
+      "run_target_link": {
+        "verified": true,
+        "backend_status": "bug_found",
+        "completion_time_upper_bound_seconds": 0.652963209,
+        "errors": []
+      },
+      "review_basis": "current-batch-review",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "not-satisfied",
+          "evidence": [
+            "reports/rotateleft-candidate-check-2026-09-17/selection.json",
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The preserved main.in is outside unsigned 32-bit range."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json",
+            "reports/rotateleft-candidate-check-2026-09-17/component-check/compiled/circuit.r1cs"
+          ],
+          "note": "All 2 pinned-original R1CS constraints are satisfied."
+        },
+        "specified_property_violation": {
+          "verdict": "unknown",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The predeclared unsigned 32-bit rotation property is not applied outside its input domain."
+        }
+      },
+      "failed_original_constraint_indices_zero_based": [],
+      "mapping_error": null,
+      "overall_verdict": "rejected",
+      "schema_2_eligible": false,
+      "plan_sha256": "f8aed8a2a1e5e212042ddf6003d6d2ef8d33d485654d90ebd4e08d5a358d9ceb"
+    },
+    {
+      "selection_index": 8,
+      "run_id": "98724237-bc01-4e61-8d03-a83daa2a4469",
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "strategy": "legacy",
+      "candidate_path": "runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/legacy/executions/execution-fc29c1a2-6389-4397-b4ce-e4dadd38159a/counterexample-candidates/0002/circuit.circom_wT9bRzaJR7_counterexample.json",
+      "candidate_sha256": "43b7084d1513a5cefcfaeec6b9954cc58537fcc4d06ae353b45ba5b9d23cd0f2",
+      "candidate_hash_verified": true,
+      "outcome_path": "runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/legacy/executions/execution-fc29c1a2-6389-4397-b4ce-e4dadd38159a/outcome.json",
+      "outcome_sha256": "fb73c9b0f7b274c12f734ca6b8fce56fb0fcd896270fd7bf0834b0e31cf6c905",
+      "plan_path": "runs/dev10-plans/legacy.json",
+      "run_target_link": {
+        "verified": true,
+        "backend_status": "bug_found",
+        "completion_time_upper_bound_seconds": 0.931985041,
+        "errors": []
+      },
+      "review_basis": "current-batch-review",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "not-satisfied",
+          "evidence": [
+            "reports/rotateleft-candidate-check-2026-09-17/selection.json",
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The preserved main.in is outside unsigned 32-bit range."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json",
+            "reports/rotateleft-candidate-check-2026-09-17/component-check/compiled/circuit.r1cs"
+          ],
+          "note": "All 2 pinned-original R1CS constraints are satisfied."
+        },
+        "specified_property_violation": {
+          "verdict": "unknown",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The predeclared unsigned 32-bit rotation property is not applied outside its input domain."
+        }
+      },
+      "failed_original_constraint_indices_zero_based": [],
+      "mapping_error": null,
+      "overall_verdict": "rejected",
+      "schema_2_eligible": false,
+      "plan_sha256": "e318f3bb140ae863017b99fdb6e1dd8346cd0b68da35913edbeff325a58726cd"
+    },
+    {
+      "selection_index": 9,
+      "run_id": "09b4df60-2cdb-4624-b290-28c4acd72a99",
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "strategy": "warning-first",
+      "candidate_path": "runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/warning-first/executions/execution-0d135342-0509-4bd0-884d-8c41d440fb0b/counterexample-candidates/0002/circuit.circom_SPqtI2Jh4L_counterexample.json",
+      "candidate_sha256": "d64a3545622f4fe9725a09e5ebae5cfaf8b3d5046d390b33d12008365a84b654",
+      "candidate_hash_verified": true,
+      "outcome_path": "runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/warning-first/executions/execution-0d135342-0509-4bd0-884d-8c41d440fb0b/outcome.json",
+      "outcome_sha256": "049b26fc353b744708bd4e8ec67b5a75cf8580cbc101a69e576f46d69dbd1ba6",
+      "plan_path": "runs/dev10-plans/warning-first.json",
+      "run_target_link": {
+        "verified": true,
+        "backend_status": "bug_found",
+        "completion_time_upper_bound_seconds": 0.911577584,
+        "errors": []
+      },
+      "review_basis": "current-batch-review",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "not-satisfied",
+          "evidence": [
+            "reports/rotateleft-candidate-check-2026-09-17/selection.json",
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The preserved main.in is outside unsigned 32-bit range."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json",
+            "reports/rotateleft-candidate-check-2026-09-17/component-check/compiled/circuit.r1cs"
+          ],
+          "note": "All 2 pinned-original R1CS constraints are satisfied."
+        },
+        "specified_property_violation": {
+          "verdict": "unknown",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The predeclared unsigned 32-bit rotation property is not applied outside its input domain."
+        }
+      },
+      "failed_original_constraint_indices_zero_based": [],
+      "mapping_error": null,
+      "overall_verdict": "rejected",
+      "schema_2_eligible": false,
+      "plan_sha256": "2d574c9d6a6cd609cf8c66212a9727da7b5693187f33f0f927702d562aee57d0"
+    },
+    {
+      "selection_index": 10,
+      "run_id": "594030c2-2780-4556-a6f6-700d57a538f5",
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "strategy": "risk-only",
+      "candidate_path": "runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/risk-only/executions/execution-ded6d045-7bc5-4637-afa4-4d49fdf61dc8/counterexample-candidates/0002/circuit.circom_9wR2c05DBN_counterexample.json",
+      "candidate_sha256": "7a8d230b7a2ce53eff73ab80670b53fc7436d759b8618ce336345c63baf03f6f",
+      "candidate_hash_verified": true,
+      "outcome_path": "runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/risk-only/executions/execution-ded6d045-7bc5-4637-afa4-4d49fdf61dc8/outcome.json",
+      "outcome_sha256": "d23c4066e2149bbfdb3789c22c385c40aaed9ef5e3152561efe7a1e55c8159fd",
+      "plan_path": "runs/dev10-plans/risk-only.json",
+      "run_target_link": {
+        "verified": true,
+        "backend_status": "bug_found",
+        "completion_time_upper_bound_seconds": 0.911425459,
+        "errors": []
+      },
+      "review_basis": "current-batch-review",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "not-satisfied",
+          "evidence": [
+            "reports/rotateleft-candidate-check-2026-09-17/selection.json",
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The preserved main.in is outside unsigned 32-bit range."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json",
+            "reports/rotateleft-candidate-check-2026-09-17/component-check/compiled/circuit.r1cs"
+          ],
+          "note": "All 2 pinned-original R1CS constraints are satisfied."
+        },
+        "specified_property_violation": {
+          "verdict": "unknown",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The predeclared unsigned 32-bit rotation property is not applied outside its input domain."
+        }
+      },
+      "failed_original_constraint_indices_zero_based": [],
+      "mapping_error": null,
+      "overall_verdict": "rejected",
+      "schema_2_eligible": false,
+      "plan_sha256": "09bb86fd3ad31f866efd4124d53e56c13969e075ebc98f1b77b13f89f9c4c038"
+    },
+    {
+      "selection_index": 11,
+      "run_id": "9b751c2a-8040-4768-80ad-41840ee1528e",
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "strategy": "risk-grouped",
+      "candidate_path": "runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/risk-grouped/executions/execution-f241172f-2ef1-434d-940d-e948c478a60e/counterexample-candidates/0002/circuit.circom_nONVme8oFs_counterexample.json",
+      "candidate_sha256": "1bd36cc00e6209cc130ba40f04327e9b1a3b59ac7fae210cffc549d6b058ac66",
+      "candidate_hash_verified": true,
+      "outcome_path": "runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/risk-grouped/executions/execution-f241172f-2ef1-434d-940d-e948c478a60e/outcome.json",
+      "outcome_sha256": "b721ba305e012dfa07fd41d785c3ee449d0723336006c94ef4c8f1d6cb3561d0",
+      "plan_path": "runs/dev10-plans/risk-grouped.json",
+      "run_target_link": {
+        "verified": true,
+        "backend_status": "bug_found",
+        "completion_time_upper_bound_seconds": 0.915773834,
+        "errors": []
+      },
+      "review_basis": "current-batch-review",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "not-satisfied",
+          "evidence": [
+            "reports/rotateleft-candidate-check-2026-09-17/selection.json",
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The preserved main.in is outside unsigned 32-bit range."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json",
+            "reports/rotateleft-candidate-check-2026-09-17/component-check/compiled/circuit.r1cs"
+          ],
+          "note": "All 2 pinned-original R1CS constraints are satisfied."
+        },
+        "specified_property_violation": {
+          "verdict": "unknown",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The predeclared unsigned 32-bit rotation property is not applied outside its input domain."
+        }
+      },
+      "failed_original_constraint_indices_zero_based": [],
+      "mapping_error": null,
+      "overall_verdict": "rejected",
+      "schema_2_eligible": false,
+      "plan_sha256": "a1d0b57eef9b44c9660b4366fb72548df3ddb0763fd38a2eae47e6ed1747e633"
+    },
+    {
+      "selection_index": 12,
+      "run_id": "af4dc3ee-4ca3-493d-b650-384e97e4e74c",
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "strategy": "path-order",
+      "candidate_path": "runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/path-order/executions/execution-b7ec69b8-aa02-4bff-8515-a39018d6a5fd/counterexample-candidates/0003/circuit.circom_OZrQrQhZZG_counterexample.json",
+      "candidate_sha256": "72310ce5719363fbab9e12b2103c49d912e4940046ee3d7d1edad0cefddc2ca5",
+      "candidate_hash_verified": true,
+      "outcome_path": "runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/path-order/executions/execution-b7ec69b8-aa02-4bff-8515-a39018d6a5fd/outcome.json",
+      "outcome_sha256": "dc188a069e84b10ef98f347f1a697b35301fe8588dca25fedbacfad5313653d2",
+      "plan_path": "runs/dev10-plans/path-order.json",
+      "run_target_link": {
+        "verified": true,
+        "backend_status": "bug_found",
+        "completion_time_upper_bound_seconds": 0.92195975,
+        "errors": []
+      },
+      "review_basis": "current-batch-review",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "not-satisfied",
+          "evidence": [
+            "reports/rotateleft-candidate-check-2026-09-17/selection.json",
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The preserved main.in is outside unsigned 32-bit range."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json",
+            "reports/rotateleft-candidate-check-2026-09-17/component-check/compiled/circuit.r1cs"
+          ],
+          "note": "All 2 pinned-original R1CS constraints are satisfied."
+        },
+        "specified_property_violation": {
+          "verdict": "unknown",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The predeclared unsigned 32-bit rotation property is not applied outside its input domain."
+        }
+      },
+      "failed_original_constraint_indices_zero_based": [],
+      "mapping_error": null,
+      "overall_verdict": "rejected",
+      "schema_2_eligible": false,
+      "plan_sha256": "f8aed8a2a1e5e212042ddf6003d6d2ef8d33d485654d90ebd4e08d5a358d9ceb"
+    },
+    {
+      "selection_index": 13,
+      "run_id": "e314d6c1-2e9d-4e7c-ac4a-b6fb20740e82",
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "strategy": "random",
+      "candidate_path": "runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/random/executions/execution-ad1f82d5-f092-416b-bd3b-0cba4e60f41f/counterexample-candidates/0001/circuit.circom_Ujmlea5RBp_counterexample.json",
+      "candidate_sha256": "9c163010a1d64ff05144ec2c2b63d6f9bca1648df4021d632193702307fc771e",
+      "candidate_hash_verified": true,
+      "outcome_path": "runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/random/executions/execution-ad1f82d5-f092-416b-bd3b-0cba4e60f41f/outcome.json",
+      "outcome_sha256": "fff0f1355628d3c3ffdf4fc0c9d4a4622bd36ab5ba26ff156729aab8af93363c",
+      "plan_path": "runs/dev3-ranking-pilot-2026-09-15/plans/random-rep-04.json",
+      "run_target_link": {
+        "verified": true,
+        "backend_status": "bug_found",
+        "completion_time_upper_bound_seconds": 0.879845083,
+        "errors": []
+      },
+      "review_basis": "current-batch-review",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "not-satisfied",
+          "evidence": [
+            "reports/rotateleft-candidate-check-2026-09-17/selection.json",
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The preserved main.in is outside unsigned 32-bit range."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json",
+            "reports/rotateleft-candidate-check-2026-09-17/component-check/compiled/circuit.r1cs"
+          ],
+          "note": "All 2 pinned-original R1CS constraints are satisfied."
+        },
+        "specified_property_violation": {
+          "verdict": "unknown",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The predeclared unsigned 32-bit rotation property is not applied outside its input domain."
+        }
+      },
+      "failed_original_constraint_indices_zero_based": [],
+      "mapping_error": null,
+      "overall_verdict": "rejected",
+      "schema_2_eligible": false,
+      "plan_sha256": "f1dad1408c7b7eb39c2c7a8b642099b98bfc421690eaa4722df3114a62c116e8"
+    },
+    {
+      "selection_index": 14,
+      "run_id": "88670cbe-7ea7-46f8-bf18-48b832cb88b5",
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "strategy": "small-first",
+      "candidate_path": "runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/small-first/executions/execution-68f52d8a-bd97-44a9-a8b4-cfc1adb0414c/counterexample-candidates/0002/circuit.circom_OHgHACCmJe_counterexample.json",
+      "candidate_sha256": "2613d95bf70be3553f6386a9320b45b6d42d28425584d1bc74c6687d9be36540",
+      "candidate_hash_verified": true,
+      "outcome_path": "runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/small-first/executions/execution-68f52d8a-bd97-44a9-a8b4-cfc1adb0414c/outcome.json",
+      "outcome_sha256": "d72905c68e9bfb0bbd50fe223498d572d80ee5f8a841477f591a694571f8cdd0",
+      "plan_path": "runs/dev10-plans/small-first.json",
+      "run_target_link": {
+        "verified": true,
+        "backend_status": "bug_found",
+        "completion_time_upper_bound_seconds": 0.921403917,
+        "errors": []
+      },
+      "review_basis": "current-batch-review",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "not-satisfied",
+          "evidence": [
+            "reports/rotateleft-candidate-check-2026-09-17/selection.json",
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The preserved main.in is outside unsigned 32-bit range."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json",
+            "reports/rotateleft-candidate-check-2026-09-17/component-check/compiled/circuit.r1cs"
+          ],
+          "note": "All 2 pinned-original R1CS constraints are satisfied."
+        },
+        "specified_property_violation": {
+          "verdict": "unknown",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The predeclared unsigned 32-bit rotation property is not applied outside its input domain."
+        }
+      },
+      "failed_original_constraint_indices_zero_based": [],
+      "mapping_error": null,
+      "overall_verdict": "rejected",
+      "schema_2_eligible": false,
+      "plan_sha256": "9d14598ad1a61b9cc081b49868d8bd9db3c28791d0bf3fe8fcd94448dd4589af"
+    },
+    {
+      "selection_index": 15,
+      "run_id": "dc66bb94-cc3d-4fad-bc78-1396edb63a7a",
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "strategy": "risk-only",
+      "candidate_path": "runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/risk-only/executions/execution-aea04fa5-dd8b-41b6-911d-85735de13aa4/counterexample-candidates/0002/circuit.circom_4T15ad12s5_counterexample.json",
+      "candidate_sha256": "e7cd47b8b7f7b4c5fc052292ebc492eb3a59b7cc90dcdaa8945a94585c544b8e",
+      "candidate_hash_verified": true,
+      "outcome_path": "runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/risk-only/executions/execution-aea04fa5-dd8b-41b6-911d-85735de13aa4/outcome.json",
+      "outcome_sha256": "2bdf613e1ac5121e6ceb624351d640b8eedb3a5038b566260b01b7636fd2e7ec",
+      "plan_path": "runs/dev10-plans/risk-only.json",
+      "run_target_link": {
+        "verified": true,
+        "backend_status": "bug_found",
+        "completion_time_upper_bound_seconds": 0.449976625,
+        "errors": []
+      },
+      "review_basis": "current-batch-review",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "not-satisfied",
+          "evidence": [
+            "reports/rotateleft-candidate-check-2026-09-17/selection.json",
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The preserved main.in is outside unsigned 32-bit range."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json",
+            "reports/rotateleft-candidate-check-2026-09-17/component-check/compiled/circuit.r1cs"
+          ],
+          "note": "All 2 pinned-original R1CS constraints are satisfied."
+        },
+        "specified_property_violation": {
+          "verdict": "unknown",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The predeclared unsigned 32-bit rotation property is not applied outside its input domain."
+        }
+      },
+      "failed_original_constraint_indices_zero_based": [],
+      "mapping_error": null,
+      "overall_verdict": "rejected",
+      "schema_2_eligible": false,
+      "plan_sha256": "09bb86fd3ad31f866efd4124d53e56c13969e075ebc98f1b77b13f89f9c4c038"
+    },
+    {
+      "selection_index": 16,
+      "run_id": "4fe6f3fb-0367-4747-80af-4c4074ddeaf9",
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "strategy": "risk-grouped",
+      "candidate_path": "runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/risk-grouped/executions/execution-8cb39e52-6427-4680-b1f0-96fc8a785b7f/counterexample-candidates/0002/circuit.circom_moOwyotkgv_counterexample.json",
+      "candidate_sha256": "6261fe5b36351664fdca3d003b8a59d66083cccd4e9bfba1cbf559c467e3ee63",
+      "candidate_hash_verified": true,
+      "outcome_path": "runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/risk-grouped/executions/execution-8cb39e52-6427-4680-b1f0-96fc8a785b7f/outcome.json",
+      "outcome_sha256": "ad7f667524b4c057fec09d7ec0c6f8f7356a752e508c183660b54727d2434c44",
+      "plan_path": "runs/dev10-plans/risk-grouped.json",
+      "run_target_link": {
+        "verified": true,
+        "backend_status": "bug_found",
+        "completion_time_upper_bound_seconds": 0.436424292,
+        "errors": []
+      },
+      "review_basis": "current-batch-review",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "not-satisfied",
+          "evidence": [
+            "reports/rotateleft-candidate-check-2026-09-17/selection.json",
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The preserved main.in is outside unsigned 32-bit range."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json",
+            "reports/rotateleft-candidate-check-2026-09-17/component-check/compiled/circuit.r1cs"
+          ],
+          "note": "All 2 pinned-original R1CS constraints are satisfied."
+        },
+        "specified_property_violation": {
+          "verdict": "unknown",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The predeclared unsigned 32-bit rotation property is not applied outside its input domain."
+        }
+      },
+      "failed_original_constraint_indices_zero_based": [],
+      "mapping_error": null,
+      "overall_verdict": "rejected",
+      "schema_2_eligible": false,
+      "plan_sha256": "a1d0b57eef9b44c9660b4366fb72548df3ddb0763fd38a2eae47e6ed1747e633"
+    },
+    {
+      "selection_index": 17,
+      "run_id": "51540353-f85c-4f4c-8c23-9aea8fb63825",
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "strategy": "path-order",
+      "candidate_path": "runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/path-order/executions/execution-b39a7e61-3647-4406-87c7-1dcef6dfc13c/counterexample-candidates/0003/circuit.circom_Tuluon3ZZT_counterexample.json",
+      "candidate_sha256": "494eb5a699d16f14d3b6202b262422535a5df088ae8fa2e61b26d1eaf8dadc60",
+      "candidate_hash_verified": true,
+      "outcome_path": "runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/path-order/executions/execution-b39a7e61-3647-4406-87c7-1dcef6dfc13c/outcome.json",
+      "outcome_sha256": "a1c8904f58b0b813d3a74b2e7a6878a8424cfc0a293cb4777234b2ec35d14b78",
+      "plan_path": "runs/dev10-plans/path-order.json",
+      "run_target_link": {
+        "verified": true,
+        "backend_status": "bug_found",
+        "completion_time_upper_bound_seconds": 0.4780735,
+        "errors": []
+      },
+      "review_basis": "current-batch-review",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "not-satisfied",
+          "evidence": [
+            "reports/rotateleft-candidate-check-2026-09-17/selection.json",
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The preserved main.in is outside unsigned 32-bit range."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json",
+            "reports/rotateleft-candidate-check-2026-09-17/component-check/compiled/circuit.r1cs"
+          ],
+          "note": "All 2 pinned-original R1CS constraints are satisfied."
+        },
+        "specified_property_violation": {
+          "verdict": "unknown",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The predeclared unsigned 32-bit rotation property is not applied outside its input domain."
+        }
+      },
+      "failed_original_constraint_indices_zero_based": [],
+      "mapping_error": null,
+      "overall_verdict": "rejected",
+      "schema_2_eligible": false,
+      "plan_sha256": "f8aed8a2a1e5e212042ddf6003d6d2ef8d33d485654d90ebd4e08d5a358d9ceb"
+    },
+    {
+      "selection_index": 18,
+      "run_id": "bc634b47-d047-4a85-95d2-cf268c0bad04",
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "strategy": "random",
+      "candidate_path": "runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/random/executions/execution-db49174a-d2d3-4366-b042-4e311c60d9c1/counterexample-candidates/0001/circuit.circom_UbKQUb20LS_counterexample.json",
+      "candidate_sha256": "24778960023cf4a392fb053c2b8bb6754d706f9f3de83ced4c3ddf52f40f8512",
+      "candidate_hash_verified": true,
+      "outcome_path": "runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/random/executions/execution-db49174a-d2d3-4366-b042-4e311c60d9c1/outcome.json",
+      "outcome_sha256": "369e61e543a2c848b7533e49b25240ac8a8e93317b2f9318f91367938528be58",
+      "plan_path": "runs/dev3-ranking-pilot-2026-09-15/plans/random-rep-06.json",
+      "run_target_link": {
+        "verified": true,
+        "backend_status": "bug_found",
+        "completion_time_upper_bound_seconds": 0.409605041,
+        "errors": []
+      },
+      "review_basis": "current-batch-review",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "not-satisfied",
+          "evidence": [
+            "reports/rotateleft-candidate-check-2026-09-17/selection.json",
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The preserved main.in is outside unsigned 32-bit range."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json",
+            "reports/rotateleft-candidate-check-2026-09-17/component-check/compiled/circuit.r1cs"
+          ],
+          "note": "All 2 pinned-original R1CS constraints are satisfied."
+        },
+        "specified_property_violation": {
+          "verdict": "unknown",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The predeclared unsigned 32-bit rotation property is not applied outside its input domain."
+        }
+      },
+      "failed_original_constraint_indices_zero_based": [],
+      "mapping_error": null,
+      "overall_verdict": "rejected",
+      "schema_2_eligible": false,
+      "plan_sha256": "50be8a25fce8f73c273c7bd8a2c45993f81576f18bac66ded357742cbf709bc5"
+    },
+    {
+      "selection_index": 19,
+      "run_id": "66694224-57ac-4670-a495-52c229a05d6f",
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "strategy": "small-first",
+      "candidate_path": "runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/small-first/executions/execution-de6cd5da-2390-4802-b201-59a2c6573f9f/counterexample-candidates/0002/circuit.circom_xaNH00pBAk_counterexample.json",
+      "candidate_sha256": "a765c7ac1fe685e7a745509fe49824914300ab013d1bc454317789c31ae8d169",
+      "candidate_hash_verified": true,
+      "outcome_path": "runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/small-first/executions/execution-de6cd5da-2390-4802-b201-59a2c6573f9f/outcome.json",
+      "outcome_sha256": "0e6e04951df462ca8e67ecd4ef496158f18729cbfefe955e6e0ea9ff828e4110",
+      "plan_path": "runs/dev10-plans/small-first.json",
+      "run_target_link": {
+        "verified": true,
+        "backend_status": "bug_found",
+        "completion_time_upper_bound_seconds": 0.422943917,
+        "errors": []
+      },
+      "review_basis": "current-batch-review",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "not-satisfied",
+          "evidence": [
+            "reports/rotateleft-candidate-check-2026-09-17/selection.json",
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The preserved main.in is outside unsigned 32-bit range."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json",
+            "reports/rotateleft-candidate-check-2026-09-17/component-check/compiled/circuit.r1cs"
+          ],
+          "note": "All 2 pinned-original R1CS constraints are satisfied."
+        },
+        "specified_property_violation": {
+          "verdict": "unknown",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The predeclared unsigned 32-bit rotation property is not applied outside its input domain."
+        }
+      },
+      "failed_original_constraint_indices_zero_based": [],
+      "mapping_error": null,
+      "overall_verdict": "rejected",
+      "schema_2_eligible": false,
+      "plan_sha256": "9d14598ad1a61b9cc081b49868d8bd9db3c28791d0bf3fe8fcd94448dd4589af"
+    },
+    {
+      "selection_index": 20,
+      "run_id": "f2e676b5-ddba-4a56-b82a-b2f1ffcbfc51",
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "strategy": "legacy",
+      "candidate_path": "runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/legacy/executions/execution-4599b932-0093-4ab5-aba1-0fd882939432/counterexample-candidates/0002/circuit.circom_uRAlo8qJhI_counterexample.json",
+      "candidate_sha256": "3edd77b8a5145c601281352c9ac7d94b108a9b63bbcabcfa21fb904b1524b8a0",
+      "candidate_hash_verified": true,
+      "outcome_path": "runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/legacy/executions/execution-4599b932-0093-4ab5-aba1-0fd882939432/outcome.json",
+      "outcome_sha256": "202577fd67ec16282747f7e4c8cbbe8ff4d22a0e89d74cb7d85218843e5eb9ab",
+      "plan_path": "runs/dev10-plans/legacy.json",
+      "run_target_link": {
+        "verified": true,
+        "backend_status": "bug_found",
+        "completion_time_upper_bound_seconds": 0.450744334,
+        "errors": []
+      },
+      "review_basis": "current-batch-review",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "not-satisfied",
+          "evidence": [
+            "reports/rotateleft-candidate-check-2026-09-17/selection.json",
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The preserved main.in is outside unsigned 32-bit range."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json",
+            "reports/rotateleft-candidate-check-2026-09-17/component-check/compiled/circuit.r1cs"
+          ],
+          "note": "All 2 pinned-original R1CS constraints are satisfied."
+        },
+        "specified_property_violation": {
+          "verdict": "unknown",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The predeclared unsigned 32-bit rotation property is not applied outside its input domain."
+        }
+      },
+      "failed_original_constraint_indices_zero_based": [],
+      "mapping_error": null,
+      "overall_verdict": "rejected",
+      "schema_2_eligible": false,
+      "plan_sha256": "e318f3bb140ae863017b99fdb6e1dd8346cd0b68da35913edbeff325a58726cd"
+    },
+    {
+      "selection_index": 21,
+      "run_id": "d0818fe7-d6d3-459d-ae22-cae172aaecd5",
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "strategy": "warning-first",
+      "candidate_path": "runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/warning-first/executions/execution-ae71c50f-7253-4a7d-be56-f7f7dcd1f1e7/counterexample-candidates/0002/circuit.circom_o7moQlF6oc_counterexample.json",
+      "candidate_sha256": "171b323c9404990fdc63f685af4b678639956c2f44c4b75ffcd2b9a85fbb8c65",
+      "candidate_hash_verified": true,
+      "outcome_path": "runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/warning-first/executions/execution-ae71c50f-7253-4a7d-be56-f7f7dcd1f1e7/outcome.json",
+      "outcome_sha256": "58e0c131366187cb2901044d935097c8129b380a6fe8bb130939382fa0a124f9",
+      "plan_path": "runs/dev10-plans/warning-first.json",
+      "run_target_link": {
+        "verified": true,
+        "backend_status": "bug_found",
+        "completion_time_upper_bound_seconds": 0.4415245,
+        "errors": []
+      },
+      "review_basis": "current-batch-review",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "not-satisfied",
+          "evidence": [
+            "reports/rotateleft-candidate-check-2026-09-17/selection.json",
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The preserved main.in is outside unsigned 32-bit range."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json",
+            "reports/rotateleft-candidate-check-2026-09-17/component-check/compiled/circuit.r1cs"
+          ],
+          "note": "All 2 pinned-original R1CS constraints are satisfied."
+        },
+        "specified_property_violation": {
+          "verdict": "unknown",
+          "evidence": [
+            "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+          ],
+          "note": "The predeclared unsigned 32-bit rotation property is not applied outside its input domain."
+        }
+      },
+      "failed_original_constraint_indices_zero_based": [],
+      "mapping_error": null,
+      "overall_verdict": "rejected",
+      "schema_2_eligible": false,
+      "plan_sha256": "2d574c9d6a6cd609cf8c66212a9727da7b5693187f33f0f927702d562aee57d0"
+    }
+  ],
+  "limitations": [
+    "Rejection of these exact candidates does not establish original-component safety or invalidate unreviewed candidates outside the fixed list.",
+    "The rotation property is intentionally unknown for candidates outside its unsigned 32-bit input domain.",
+    "Scheduler completion offsets are upper bounds, not exact backend discovery timestamps.",
+    "No result here establishes a defect in the actual ChaCha20 build or compares ranking performance."
+  ],
+  "schema_2_connection": {
+    "status": "no-eligible-confirmations",
+    "reason": "All 21 exact candidates fail the 32-bit input-precondition review criterion.",
+    "applicable_outcome_path": null,
+    "confirmation_set": {
+      "schema_version": 2,
+      "confirmations": []
+    }
+  }
+}
