@@ -1,0 +1,1079 @@
+ DEBUG circomspect_program_structure::control_flow_graph::lifting > building CFG for template `GreaterEqThan`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg     > propagating variable types for `GreaterEqThan`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg     > computing variable use for `GreaterEqThan`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg     > converting `GreaterEqThan` CFG to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input in[2]` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal output out` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `component lt` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `lt = LessThan(n)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `lt <== update(lt, [in, 0], access(in, [1]))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `lt <== update(lt, [in, 1], (access(in, [0]) + 1))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `out <== access(lt, [out])` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `GreaterEqThan`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating constant values for `GreaterEqThan`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating expression degrees for `GreaterEqThan`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `GreaterEqThan`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 0: (predecessors: {}, successors: {})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input in[2]
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal output out
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     component lt
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     lt = LessThan(n.0)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     lt <== update(lt, [in, 0], access(in, [1]))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     lt <== update(lt, [in, 1], (access(in, [0]) + 1))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     out <== access(lt, [out])
+ TRACE circomspect_program_analysis::analysis_runner               > successfully lifted template `GreaterEqThan`
+ DEBUG circomspect_program_structure::control_flow_graph::lifting  > building CFG for template `LessThan`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `LessThan`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `LessThan`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > converting `LessThan` CFG to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `assert((n <= 252))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input in[2]` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal output out` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `component n2b` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `n2b = Num2Bits((n + 1))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `n2b <== update(n2b, [in], ((access(in, [0]) + (1 << n)) - access(in, [1])))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `out <== (1 - access(n2b, [out, n]))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `LessThan`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating constant values for `LessThan`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating expression degrees for `LessThan`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `LessThan`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 0: (predecessors: {}, successors: {})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     assert((n.0 <= 252))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input in[2]
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal output out
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     component n2b
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     n2b = Num2Bits((n.0 + 1))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     n2b <== update(n2b, [in], ((access(in, [0]) + (1 << n.0)) - access(in, [1])))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     out <== (1 - access(n2b, [out, n.0]))
+ TRACE circomspect_program_analysis::analysis_runner               > successfully lifted template `LessThan`
+ DEBUG circomspect_program_structure::control_flow_graph::lifting  > building CFG for template `Num2Bits_strict`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `Num2Bits_strict`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `Num2Bits_strict`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > converting `Num2Bits_strict` CFG to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input in` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal output out[254]` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `component aliasCheck` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `aliasCheck = AliasCheck()` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `component n2b` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `n2b = Num2Bits(254)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `n2b <== update(n2b, [in], in)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `var i` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i = 0` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i = φ(i.0)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `if (i < 254) then 2` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `out <== update(out, [i], access(n2b, [out, i]))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `aliasCheck <== update(aliasCheck, [in, i], access(n2b, [out, i]))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i = (i + 1)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `Num2Bits_strict`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating constant values for `Num2Bits_strict`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating expression degrees for `Num2Bits_strict`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `Num2Bits_strict`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 0: (predecessors: {}, successors: {1})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input in
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal output out[254]
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     component aliasCheck
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     aliasCheck = AliasCheck()
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     component n2b
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     n2b = Num2Bits(254)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     n2b <== update(n2b, [in], in)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     var i.2, i.0, i.1
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i.0 = 0
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 1: (predecessors: {0, 2}, successors: {2})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i.1 = φ(i.0, i.2)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     if (i.1 < 254) then 2
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 2: (predecessors: {1}, successors: {1})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     out <== update(out, [i.1], access(n2b, [out, i.1]))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     aliasCheck <== update(aliasCheck, [in, i.1], access(n2b, [out, i.1]))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i.2 = (i.1 + 1)
+ TRACE circomspect_program_analysis::analysis_runner               > successfully lifted template `Num2Bits_strict`
+ DEBUG circomspect_program_structure::control_flow_graph::lifting  > building CFG for template `AliasCheck`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `AliasCheck`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `AliasCheck`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > converting `AliasCheck` CFG to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input in[254]` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `component compConstant` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `compConstant = CompConstant((-1))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `var i` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i = 0` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i = φ(i.0)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `if (i < 254) then 2 else 3` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `access(compConstant, [out]) === 0` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `compConstant <== update(compConstant, [in, i], access(in, [i]))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i = (i + 1)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `AliasCheck`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating constant values for `AliasCheck`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating expression degrees for `AliasCheck`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `AliasCheck`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 0: (predecessors: {}, successors: {1})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input in[254]
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     component compConstant
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     compConstant = CompConstant((-1))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     var i.2, i.0, i.1
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i.0 = 0
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 1: (predecessors: {0, 2}, successors: {3, 2})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i.1 = φ(i.0, i.2)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     if (i.1 < 254) then 2 else 3
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 2: (predecessors: {1}, successors: {1})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     compConstant <== update(compConstant, [in, i.1], access(in, [i.1]))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i.2 = (i.1 + 1)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 3: (predecessors: {1}, successors: {})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     access(compConstant, [out]) === 0
+ TRACE circomspect_program_analysis::analysis_runner               > successfully lifted template `AliasCheck`
+ DEBUG circomspect_program_structure::control_flow_graph::lifting  > building CFG for template `IsEqual`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `IsEqual`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `IsEqual`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > converting `IsEqual` CFG to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input in[2]` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal output out` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `component isz` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `isz = IsZero()` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `isz <== update(isz, [in], (access(in, [1]) - access(in, [0])))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `out <== access(isz, [out])` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `IsEqual`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating constant values for `IsEqual`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating expression degrees for `IsEqual`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `IsEqual`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 0: (predecessors: {}, successors: {})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input in[2]
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal output out
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     component isz
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     isz = IsZero()
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     isz <== update(isz, [in], (access(in, [1]) - access(in, [0])))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     out <== access(isz, [out])
+ TRACE circomspect_program_analysis::analysis_runner               > successfully lifted template `IsEqual`
+ DEBUG circomspect_program_structure::control_flow_graph::lifting  > building CFG for template `IsZero`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `IsZero`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `IsZero`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > converting `IsZero` CFG to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input in` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal output out` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal inv` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `inv <-- ((in != 0)? (1 / in) : 0)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `out <== (((-in) * inv) + 1)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `(in * out) === 0` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `IsZero`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating constant values for `IsZero`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating expression degrees for `IsZero`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `IsZero`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 0: (predecessors: {}, successors: {})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input in
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal output out
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal inv
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     inv <-- ((in != 0)? (1 / in) : 0)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     out <== (((-in) * inv) + 1)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     (in * out) === 0
+ TRACE circomspect_program_analysis::analysis_runner               > successfully lifted template `IsZero`
+ DEBUG circomspect_program_structure::control_flow_graph::lifting  > building CFG for template `Bits2Num_strict`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `Bits2Num_strict`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `Bits2Num_strict`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > converting `Bits2Num_strict` CFG to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input in[254]` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal output out` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `component aliasCheck` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `aliasCheck = AliasCheck()` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `component b2n` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `b2n = Bits2Num(254)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `var i` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i = 0` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i = φ(i.0)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `if (i < 254) then 2 else 3` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `b2n <== update(b2n, [in, i], access(in, [i]))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `aliasCheck <== update(aliasCheck, [in, i], access(in, [i]))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i = (i + 1)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `out <== access(b2n, [out])` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `Bits2Num_strict`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating constant values for `Bits2Num_strict`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating expression degrees for `Bits2Num_strict`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `Bits2Num_strict`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 0: (predecessors: {}, successors: {1})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input in[254]
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal output out
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     component aliasCheck
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     aliasCheck = AliasCheck()
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     component b2n
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     b2n = Bits2Num(254)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     var i.2, i.0, i.1
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i.0 = 0
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 1: (predecessors: {2, 0}, successors: {2, 3})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i.1 = φ(i.0, i.2)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     if (i.1 < 254) then 2 else 3
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 2: (predecessors: {1}, successors: {1})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     b2n <== update(b2n, [in, i.1], access(in, [i.1]))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     aliasCheck <== update(aliasCheck, [in, i.1], access(in, [i.1]))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i.2 = (i.1 + 1)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 3: (predecessors: {1}, successors: {})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     out <== access(b2n, [out])
+ TRACE circomspect_program_analysis::analysis_runner               > successfully lifted template `Bits2Num_strict`
+ DEBUG circomspect_program_structure::control_flow_graph::lifting  > building CFG for template `Bits2Num`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `Bits2Num`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `Bits2Num`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > converting `Bits2Num` CFG to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input in[n]` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal output out` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `var lc1` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `lc1 = 0` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `var e2` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `e2 = 1` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `var i` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i = 0` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `e2 = φ(e2.0)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `lc1 = φ(lc1.0)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i = φ(i.0)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `if (i < n) then 2 else 3` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `out <== lc1` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `lc1 = (lc1 + (access(in, [i]) * e2))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `e2 = (e2 + e2)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i = (i + 1)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `Bits2Num`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating constant values for `Bits2Num`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating expression degrees for `Bits2Num`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `Bits2Num`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 0: (predecessors: {}, successors: {1})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input in[n.0]
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal output out
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     var lc1.2, lc1.0, lc1.1
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     lc1.0 = 0
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     var e2.2, e2.0, e2.1
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     e2.0 = 1
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     var i.2, i.0, i.1
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i.0 = 0
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 1: (predecessors: {2, 0}, successors: {3, 2})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     e2.1 = φ(e2.0, e2.2)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     lc1.1 = φ(lc1.0, lc1.2)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i.1 = φ(i.0, i.2)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     if (i.1 < n.0) then 2 else 3
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 2: (predecessors: {1}, successors: {1})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     lc1.2 = (lc1.1 + (access(in, [i.1]) * e2.1))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     e2.2 = (e2.1 + e2.1)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i.2 = (i.1 + 1)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 3: (predecessors: {1}, successors: {})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     out <== lc1.1
+ TRACE circomspect_program_analysis::analysis_runner               > successfully lifted template `Bits2Num`
+ DEBUG circomspect_program_structure::control_flow_graph::lifting  > building CFG for template `Blake3NovaTreePath_CheckDepth`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `Blake3NovaTreePath_CheckDepth`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `Blake3NovaTreePath_CheckDepth`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > converting `Blake3NovaTreePath_CheckDepth` CFG to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input depth` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input leaf_depth` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal output is_root` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal output is_parent` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `component check_root` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `check_root = IsEqual()` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `check_root <== update(check_root, [in, 0], depth)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `check_root <== update(check_root, [in, 1], 0)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `is_root <== access(check_root, [out])` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `component n2b_depth` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `n2b_depth = Num2Bits(8)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `n2b_depth <== update(n2b_depth, [in], depth)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `component n2b_leaf_depth` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `n2b_leaf_depth = Num2Bits(8)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `n2b_leaf_depth <== update(n2b_leaf_depth, [in], leaf_depth)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `component check_parent` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `check_parent = LessThan(8)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `check_parent <== update(check_parent, [in, 0], depth)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `check_parent <== update(check_parent, [in, 1], (leaf_depth - 1))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `is_parent <== access(check_parent, [out])` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `component exceed_depth` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `exceed_depth = GreaterEqThan(8)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `exceed_depth <== update(exceed_depth, [in, 0], depth)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `exceed_depth <== update(exceed_depth, [in, 1], leaf_depth)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `access(exceed_depth, [out]) === 0` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `Blake3NovaTreePath_CheckDepth`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating constant values for `Blake3NovaTreePath_CheckDepth`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating expression degrees for `Blake3NovaTreePath_CheckDepth`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `Blake3NovaTreePath_CheckDepth`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 0: (predecessors: {}, successors: {})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input depth
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input leaf_depth
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal output is_root
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal output is_parent
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     component check_root
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     check_root = IsEqual()
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     check_root <== update(check_root, [in, 0], depth)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     check_root <== update(check_root, [in, 1], 0)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     is_root <== access(check_root, [out])
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     component n2b_depth
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     n2b_depth = Num2Bits(8)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     n2b_depth <== update(n2b_depth, [in], depth)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     component n2b_leaf_depth
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     n2b_leaf_depth = Num2Bits(8)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     n2b_leaf_depth <== update(n2b_leaf_depth, [in], leaf_depth)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     component check_parent
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     check_parent = LessThan(8)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     check_parent <== update(check_parent, [in, 0], depth)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     check_parent <== update(check_parent, [in, 1], (leaf_depth - 1))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     is_parent <== access(check_parent, [out])
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     component exceed_depth
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     exceed_depth = GreaterEqThan(8)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     exceed_depth <== update(exceed_depth, [in, 0], depth)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     exceed_depth <== update(exceed_depth, [in, 1], leaf_depth)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     access(exceed_depth, [out]) === 0
+ TRACE circomspect_program_analysis::analysis_runner               > successfully lifted template `Blake3NovaTreePath_CheckDepth`
+ DEBUG circomspect_program_structure::control_flow_graph::lifting  > building CFG for template `Blake3GetFinal_m`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `Blake3GetFinal_m`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `Blake3GetFinal_m`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > converting `Blake3GetFinal_m` CFG to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input h[8]` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input m[16]` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input is_parent` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input depth` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input total_depth` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input chunk_idx` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal output out_m[16]` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `component down_left_path` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `down_left_path = Blake3GetDownLeftPath()` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `down_left_path <== update(down_left_path, [depth], depth)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `down_left_path <== update(down_left_path, [leaf_idx], chunk_idx)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `down_left_path <== update(down_left_path, [is_parent], is_parent)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `down_left_path <== update(down_left_path, [total_depth], total_depth)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal m_is_parent[16]` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal tmp_down[16]` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal tmp_is_par[16]` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `var i` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i = 0` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i = φ(i.0)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `if (i < 16) then 2` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `if (i < 8) then 3 else 4` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `tmp_down <== update(tmp_down, [i], (access(h, [(i - 8)]) * (1 - access(down_left_path, [out]))))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `m_is_parent <== update(m_is_parent, [i], ((access(m, [(i - 8)]) * access(down_left_path, [out])) + access(tmp_down, [i])))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `tmp_is_par <== update(tmp_is_par, [i], (access(m_is_parent, [i]) * is_parent))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `out_m <== update(out_m, [i], ((access(m, [i]) * (1 - is_parent)) + access(tmp_is_par, [i])))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i = (i + 1)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `tmp_down <== update(tmp_down, [i], (access(h, [i]) * access(down_left_path, [out])))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `m_is_parent <== update(m_is_parent, [i], ((access(m, [i]) * (1 - access(down_left_path, [out]))) + access(tmp_down, [i])))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `Blake3GetFinal_m`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating constant values for `Blake3GetFinal_m`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating expression degrees for `Blake3GetFinal_m`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `Blake3GetFinal_m`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 0: (predecessors: {}, successors: {1})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input h[8]
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input m[16]
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input is_parent
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input depth
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input total_depth
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input chunk_idx
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal output out_m[16]
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     component down_left_path
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     down_left_path = Blake3GetDownLeftPath()
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     down_left_path <== update(down_left_path, [depth], depth)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     down_left_path <== update(down_left_path, [leaf_idx], chunk_idx)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     down_left_path <== update(down_left_path, [is_parent], is_parent)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     down_left_path <== update(down_left_path, [total_depth], total_depth)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal m_is_parent[16]
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal tmp_down[16]
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal tmp_is_par[16]
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     var i.2, i.0, i.1
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i.0 = 0
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 1: (predecessors: {0, 5}, successors: {2})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i.1 = φ(i.0, i.2)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     if (i.1 < 16) then 2
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 2: (predecessors: {1}, successors: {3, 4})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     if (i.1 < 8) then 3 else 4
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 3: (predecessors: {2}, successors: {5})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     tmp_down <== update(tmp_down, [i.1], (access(h, [i.1]) * access(down_left_path, [out])))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     m_is_parent <== update(m_is_parent, [i.1], ((access(m, [i.1]) * (1 - access(down_left_path, [out]))) + access(tmp_down, [i.1])))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 4: (predecessors: {2}, successors: {5})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     tmp_down <== update(tmp_down, [i.1], (access(h, [(i.1 - 8)]) * (1 - access(down_left_path, [out]))))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     m_is_parent <== update(m_is_parent, [i.1], ((access(m, [(i.1 - 8)]) * access(down_left_path, [out])) + access(tmp_down, [i.1])))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 5: (predecessors: {4, 3}, successors: {1})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     tmp_is_par <== update(tmp_is_par, [i.1], (access(m_is_parent, [i.1]) * is_parent))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     out_m <== update(out_m, [i.1], ((access(m, [i.1]) * (1 - is_parent)) + access(tmp_is_par, [i.1])))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i.2 = (i.1 + 1)
+ TRACE circomspect_program_analysis::analysis_runner               > successfully lifted template `Blake3GetFinal_m`
+ DEBUG circomspect_program_structure::control_flow_graph::lifting  > building CFG for template `Blake3GetDownLeftPath`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `Blake3GetDownLeftPath`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `Blake3GetDownLeftPath`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > converting `Blake3GetDownLeftPath` CFG to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `var GO_LEFT` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `GO_LEFT = 1` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input depth` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input leaf_idx` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input is_parent` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input total_depth` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal output out` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `component n2b` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `n2b = Num2Bits(65)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `n2b <== update(n2b, [in], leaf_idx)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal bit_at_depth[65]` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `component eqs[65]` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `eqs = update(eqs, [0], IsEqual())` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `eqs <== update(eqs, [0, in, 0], depth)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `eqs <== update(eqs, [0, in, 1], (total_depth - 2))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `bit_at_depth <== update(bit_at_depth, [0], ((1 - access(n2b, [out, 0])) * access(eqs, [0, out])))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `var i` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i = 1` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i = φ(i.0)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `if (i < 64) then 2 else 3` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `out <== ((GO_LEFT * (1 - is_parent)) + ((GO_LEFT * is_parent) * access(bit_at_depth, [63])))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `(out * (1 - out)) === 0` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `eqs = update(eqs, [i], IsEqual())` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `eqs <== update(eqs, [i, in, 0], depth)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `eqs <== update(eqs, [i, in, 1], ((total_depth - i) - 2))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `bit_at_depth <== update(bit_at_depth, [i], (access(bit_at_depth, [(i - 1)]) + ((1 - access(n2b, [out, i])) * access(eqs, [i, out]))))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i = (i + 1)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `Blake3GetDownLeftPath`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating constant values for `Blake3GetDownLeftPath`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating expression degrees for `Blake3GetDownLeftPath`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `Blake3GetDownLeftPath`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 0: (predecessors: {}, successors: {1})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     var GO_LEFT.0
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     GO_LEFT.0 = 1
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input depth
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input leaf_idx
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input is_parent
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input total_depth
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal output out
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     component n2b
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     n2b = Num2Bits(65)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     n2b <== update(n2b, [in], leaf_idx)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal bit_at_depth[65]
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     component eqs[65]
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     eqs = update(eqs, [0], IsEqual())
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     eqs <== update(eqs, [0, in, 0], depth)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     eqs <== update(eqs, [0, in, 1], (total_depth - 2))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     bit_at_depth <== update(bit_at_depth, [0], ((1 - access(n2b, [out, 0])) * access(eqs, [0, out])))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     var i.2, i.0, i.1
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i.0 = 1
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 1: (predecessors: {0, 2}, successors: {2, 3})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i.1 = φ(i.0, i.2)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     if (i.1 < 64) then 2 else 3
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 2: (predecessors: {1}, successors: {1})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     eqs = update(eqs, [i.1], IsEqual())
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     eqs <== update(eqs, [i.1, in, 0], depth)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     eqs <== update(eqs, [i.1, in, 1], ((total_depth - i.1) - 2))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     bit_at_depth <== update(bit_at_depth, [i.1], (access(bit_at_depth, [(i.1 - 1)]) + ((1 - access(n2b, [out, i.1])) * access(eqs, [i.1, out]))))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i.2 = (i.1 + 1)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 3: (predecessors: {1}, successors: {})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     out <== ((GO_LEFT.0 * (1 - is_parent)) + ((GO_LEFT.0 * is_parent) * access(bit_at_depth, [63])))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     (out * (1 - out)) === 0
+ TRACE circomspect_program_analysis::analysis_runner               > successfully lifted template `Blake3GetDownLeftPath`
+ DEBUG circomspect_program_structure::control_flow_graph::lifting  > building CFG for template `Num2Bits`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `Num2Bits`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `Num2Bits`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > converting `Num2Bits` CFG to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input in` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal output out[n]` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `var lc1` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `lc1 = 0` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `var e2` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `e2 = 1` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `var i` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i = 0` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `e2 = φ(e2.0)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i = φ(i.0)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `lc1 = φ(lc1.0)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `if (i < n) then 2 else 3` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `lc1 === in` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `out <-- update(out, [i], ((in >> i) & 1))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `(access(out, [i]) * (access(out, [i]) - 1)) === 0` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `lc1 = (lc1 + (access(out, [i]) * e2))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `e2 = (e2 + e2)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i = (i + 1)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `Num2Bits`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating constant values for `Num2Bits`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating expression degrees for `Num2Bits`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `Num2Bits`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 0: (predecessors: {}, successors: {1})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input in
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal output out[n.0]
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     var lc1.2, lc1.0, lc1.1
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     lc1.0 = 0
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     var e2.2, e2.0, e2.1
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     e2.0 = 1
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     var i.2, i.0, i.1
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i.0 = 0
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 1: (predecessors: {2, 0}, successors: {3, 2})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     e2.1 = φ(e2.0, e2.2)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i.1 = φ(i.0, i.2)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     lc1.1 = φ(lc1.0, lc1.2)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     if (i.1 < n.0) then 2 else 3
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 2: (predecessors: {1}, successors: {1})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     out <-- update(out, [i.1], ((in >> i.1) & 1))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     (access(out, [i.1]) * (access(out, [i.1]) - 1)) === 0
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     lc1.2 = (lc1.1 + (access(out, [i.1]) * e2.1))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     e2.2 = (e2.1 + e2.1)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i.2 = (i.1 + 1)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 3: (predecessors: {1}, successors: {})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     lc1.1 === in
+ TRACE circomspect_program_analysis::analysis_runner               > successfully lifted template `Num2Bits`
+ DEBUG circomspect_program_structure::control_flow_graph::lifting  > building CFG for template `Num2BitsNeg`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `Num2BitsNeg`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `Num2BitsNeg`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > converting `Num2BitsNeg` CFG to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input in` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal output out[n]` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `var lc1` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `lc1 = 0` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `component isZero` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `isZero = IsZero()` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `var neg` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `neg = ((n == 0)? 0 : ((2 ** n) - in))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `var i` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i = 0` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `lc1 = φ(lc1.0)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i = φ(i.0)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `if (i < n) then 2 else 3` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `isZero <== update(isZero, [in], in)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `(lc1 + (access(isZero, [out]) * (2 ** n))) === ((2 ** n) - in)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `out <-- update(out, [i], ((neg >> i) & 1))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `(access(out, [i]) * (access(out, [i]) - 1)) === 0` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `lc1 = (lc1 + (access(out, [i]) * (2 ** i)))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i = (i + 1)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `Num2BitsNeg`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating constant values for `Num2BitsNeg`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating expression degrees for `Num2BitsNeg`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `Num2BitsNeg`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 0: (predecessors: {}, successors: {1})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input in
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal output out[n.0]
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     var lc1.2, lc1.0, lc1.1
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     lc1.0 = 0
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     component isZero
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     isZero = IsZero()
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     var neg.0
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     neg.0 = ((n.0 == 0)? 0 : ((2 ** n.0) - in))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     var i.2, i.0, i.1
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i.0 = 0
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 1: (predecessors: {0, 2}, successors: {3, 2})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     lc1.1 = φ(lc1.0, lc1.2)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i.1 = φ(i.0, i.2)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     if (i.1 < n.0) then 2 else 3
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 2: (predecessors: {1}, successors: {1})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     out <-- update(out, [i.1], ((neg.0 >> i.1) & 1))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     (access(out, [i.1]) * (access(out, [i.1]) - 1)) === 0
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     lc1.2 = (lc1.1 + (access(out, [i.1]) * (2 ** i.1)))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i.2 = (i.1 + 1)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 3: (predecessors: {1}, successors: {})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     isZero <== update(isZero, [in], in)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     (lc1.1 + (access(isZero, [out]) * (2 ** n.0))) === ((2 ** n.0) - in)
+ TRACE circomspect_program_analysis::analysis_runner               > successfully lifted template `Num2BitsNeg`
+ DEBUG circomspect_program_structure::control_flow_graph::lifting  > building CFG for template `ForceEqualIfEnabled`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `ForceEqualIfEnabled`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `ForceEqualIfEnabled`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > converting `ForceEqualIfEnabled` CFG to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input enabled` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input in[2]` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `component isz` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `isz = IsZero()` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `isz <== update(isz, [in], (access(in, [1]) - access(in, [0])))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `((1 - access(isz, [out])) * enabled) === 0` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `ForceEqualIfEnabled`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating constant values for `ForceEqualIfEnabled`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating expression degrees for `ForceEqualIfEnabled`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `ForceEqualIfEnabled`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 0: (predecessors: {}, successors: {})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input enabled
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input in[2]
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     component isz
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     isz = IsZero()
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     isz <== update(isz, [in], (access(in, [1]) - access(in, [0])))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     ((1 - access(isz, [out])) * enabled) === 0
+ TRACE circomspect_program_analysis::analysis_runner               > successfully lifted template `ForceEqualIfEnabled`
+ DEBUG circomspect_program_structure::control_flow_graph::lifting  > building CFG for template `LessEqThan`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `LessEqThan`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `LessEqThan`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > converting `LessEqThan` CFG to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input in[2]` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal output out` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `component lt` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `lt = LessThan(n)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `lt <== update(lt, [in, 0], access(in, [0]))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `lt <== update(lt, [in, 1], (access(in, [1]) + 1))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `out <== access(lt, [out])` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `LessEqThan`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating constant values for `LessEqThan`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating expression degrees for `LessEqThan`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `LessEqThan`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 0: (predecessors: {}, successors: {})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input in[2]
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal output out
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     component lt
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     lt = LessThan(n.0)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     lt <== update(lt, [in, 0], access(in, [0]))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     lt <== update(lt, [in, 1], (access(in, [1]) + 1))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     out <== access(lt, [out])
+ TRACE circomspect_program_analysis::analysis_runner               > successfully lifted template `LessEqThan`
+ DEBUG circomspect_program_structure::control_flow_graph::lifting  > building CFG for template `GreaterThan`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `GreaterThan`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `GreaterThan`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > converting `GreaterThan` CFG to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input in[2]` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal output out` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `component lt` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `lt = LessThan(n)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `lt <== update(lt, [in, 0], access(in, [1]))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `lt <== update(lt, [in, 1], access(in, [0]))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `out <== access(lt, [out])` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `GreaterThan`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating constant values for `GreaterThan`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating expression degrees for `GreaterThan`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `GreaterThan`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 0: (predecessors: {}, successors: {})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input in[2]
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal output out
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     component lt
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     lt = LessThan(n.0)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     lt <== update(lt, [in, 0], access(in, [1]))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     lt <== update(lt, [in, 1], access(in, [0]))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     out <== access(lt, [out])
+ TRACE circomspect_program_analysis::analysis_runner               > successfully lifted template `GreaterThan`
+ DEBUG circomspect_program_structure::control_flow_graph::lifting  > building CFG for template `Blake3GetFlag`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `Blake3GetFlag`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `Blake3GetFlag`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > converting `Blake3GetFlag` CFG to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `var FIRST_BLOCK_FLAG` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `FIRST_BLOCK_FLAG = 1` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `var LAST_BLOCK_FLAG` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `LAST_BLOCK_FLAG = 2` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `var PARENT_FLAG` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `PARENT_FLAG = 4` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `var ROOT_FLAG` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `ROOT_FLAG = 8` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input is_parent` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input is_root` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input block_count` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input n_blocks` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal output out` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal output is_last_block` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `component not_root` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `not_root = NOT()` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `not_root <== update(not_root, [in], is_root)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `component not_parent` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `not_parent = NOT()` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `not_parent <== update(not_parent, [in], is_parent)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `component check_block_counts[2]` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `check_block_counts = update(check_block_counts, [0], IsEqual())` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `check_block_counts = update(check_block_counts, [1], IsEqual())` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `check_block_counts <== update(check_block_counts, [0, in, 0], block_count)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `check_block_counts <== update(check_block_counts, [0, in, 1], 0)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `check_block_counts <== update(check_block_counts, [1, in, 0], block_count)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `check_block_counts <== update(check_block_counts, [1, in, 1], (n_blocks - 1))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `is_last_block <== (access(check_block_counts, [1, out]) * access(not_parent, [out]))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `component first_block_flag_set` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `first_block_flag_set = AND()` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `first_block_flag_set <== update(first_block_flag_set, [a], access(check_block_counts, [0, out]))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `first_block_flag_set <== update(first_block_flag_set, [b], access(not_parent, [out]))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `component last_block_flag_set` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `last_block_flag_set = AND()` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `last_block_flag_set <== update(last_block_flag_set, [a], access(check_block_counts, [1, out]))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `last_block_flag_set <== update(last_block_flag_set, [b], access(not_parent, [out]))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `component use_root_flag_tmp` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `use_root_flag_tmp = OR()` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `use_root_flag_tmp <== update(use_root_flag_tmp, [a], is_parent)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `use_root_flag_tmp <== update(use_root_flag_tmp, [b], access(check_block_counts, [1, out]))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal use_root_flag` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `use_root_flag <== (access(use_root_flag_tmp, [out]) * is_root)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `out <== ((((D_FLAGS + (FIRST_BLOCK_FLAG * access(first_block_flag_set, [out]))) + (LAST_BLOCK_FLAG * access(last_block_flag_set, [out]))) + (ROOT_FLAG * use_root_flag)) + (is_parent * PARENT_FLAG))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `log("\"D_FLAGS: \", D_FLAGS")` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `Blake3GetFlag`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating constant values for `Blake3GetFlag`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating expression degrees for `Blake3GetFlag`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `Blake3GetFlag`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 0: (predecessors: {}, successors: {})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     var FIRST_BLOCK_FLAG.0
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     FIRST_BLOCK_FLAG.0 = 1
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     var LAST_BLOCK_FLAG.0
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     LAST_BLOCK_FLAG.0 = 2
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     var PARENT_FLAG.0
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     PARENT_FLAG.0 = 4
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     var ROOT_FLAG.0
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     ROOT_FLAG.0 = 8
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input is_parent
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input is_root
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input block_count
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input n_blocks
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal output out
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal output is_last_block
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     component not_root
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     not_root = NOT()
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     not_root <== update(not_root, [in], is_root)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     component not_parent
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     not_parent = NOT()
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     not_parent <== update(not_parent, [in], is_parent)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     component check_block_counts[2]
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     check_block_counts = update(check_block_counts, [0], IsEqual())
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     check_block_counts = update(check_block_counts, [1], IsEqual())
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     check_block_counts <== update(check_block_counts, [0, in, 0], block_count)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     check_block_counts <== update(check_block_counts, [0, in, 1], 0)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     check_block_counts <== update(check_block_counts, [1, in, 0], block_count)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     check_block_counts <== update(check_block_counts, [1, in, 1], (n_blocks - 1))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     is_last_block <== (access(check_block_counts, [1, out]) * access(not_parent, [out]))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     component first_block_flag_set
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     first_block_flag_set = AND()
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     first_block_flag_set <== update(first_block_flag_set, [a], access(check_block_counts, [0, out]))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     first_block_flag_set <== update(first_block_flag_set, [b], access(not_parent, [out]))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     component last_block_flag_set
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     last_block_flag_set = AND()
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     last_block_flag_set <== update(last_block_flag_set, [a], access(check_block_counts, [1, out]))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     last_block_flag_set <== update(last_block_flag_set, [b], access(not_parent, [out]))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     component use_root_flag_tmp
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     use_root_flag_tmp = OR()
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     use_root_flag_tmp <== update(use_root_flag_tmp, [a], is_parent)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     use_root_flag_tmp <== update(use_root_flag_tmp, [b], access(check_block_counts, [1, out]))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal use_root_flag
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     use_root_flag <== (access(use_root_flag_tmp, [out]) * is_root)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     out <== ((((D_FLAGS.0 + (FIRST_BLOCK_FLAG.0 * access(first_block_flag_set, [out]))) + (LAST_BLOCK_FLAG.0 * access(last_block_flag_set, [out]))) + (ROOT_FLAG.0 * use_root_flag)) + (is_parent * PARENT_FLAG.0))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     log("\"D_FLAGS: \", D_FLAGS.0")
+ TRACE circomspect_program_analysis::analysis_runner               > successfully lifted template `Blake3GetFlag`
+ TRACE circomspect_program_analysis::analysis_runner               > failed to lift unknown template `NOT`
+ TRACE circomspect_program_analysis::analysis_runner               > failed to lift unknown template `NOT`
+ TRACE circomspect_program_analysis::analysis_runner               > failed to lift unknown template `AND`
+ TRACE circomspect_program_analysis::analysis_runner               > failed to lift unknown template `AND`
+ TRACE circomspect_program_analysis::analysis_runner               > failed to lift unknown template `OR`
+ DEBUG circomspect_program_structure::control_flow_graph::lifting  > building CFG for template `Blake3Nova`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `Blake3Nova`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `Blake3Nova`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > converting `Blake3Nova` CFG to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input n_blocks` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input block_count` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input h[8]` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input chunk_idx_low` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input chunk_idx_high` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input leaf_depth` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input total_depth` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input depth` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input m[16]` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input b` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal output n_blocks_out` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal output block_count_out` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal output h_out[8]` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal output total_depth_out` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal output depth_out` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal output chunk_idx_low_out` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal output chunk_idx_high_out` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal output leaf_depth_out` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `component check_depth` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `check_depth = Blake3NovaTreePath_CheckDepth()` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `check_depth <== update(check_depth, [depth], depth)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `check_depth <== update(check_depth, [leaf_depth], leaf_depth)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `component comp_d` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `comp_d = Blake3GetFlag(D_FLAGS)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `comp_d <== update(comp_d, [is_parent], access(check_depth, [is_parent]))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `comp_d <== update(comp_d, [is_root], access(check_depth, [is_root]))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `comp_d <== update(comp_d, [block_count], block_count)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `comp_d <== update(comp_d, [n_blocks], n_blocks)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `component iv` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `iv = IV()` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `component final_m` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `final_m = Blake3GetFinal_m()` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal tmpIV[8]` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `final_m <== update(final_m, [h], h)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `final_m <== update(final_m, [m], m)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `final_m <== update(final_m, [is_parent], access(check_depth, [is_parent]))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `final_m <== update(final_m, [depth], depth)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `final_m <== update(final_m, [total_depth], total_depth)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `final_m <== update(final_m, [chunk_idx], (chunk_idx_low + (chunk_idx_high * (2 ** 32))))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal h_compression[8]` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `var i` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i = 0` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i = φ(i.0)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `if (i < 8) then 2 else 3` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `tmpIV <== update(tmpIV, [i], (access(iv, [out, i]) * access(check_depth, [is_parent])))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `h_compression <== update(h_compression, [i], ((access(h, [i]) * (1 - access(check_depth, [is_parent]))) + access(tmpIV, [i])))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i = (i + 1)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `component blake3Compression` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `blake3Compression = Blake3Compression()` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `blake3Compression <== update(blake3Compression, [m], access(final_m, [out_m]))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `blake3Compression <== update(blake3Compression, [h], h_compression)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `blake3Compression <== update(blake3Compression, [d], access(comp_d, [out]))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `blake3Compression <== update(blake3Compression, [b], b)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `blake3Compression <== update(blake3Compression, [t, 1], (chunk_idx_high * (1 - access(check_depth, [is_parent]))))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `blake3Compression <== update(blake3Compression, [t, 0], (chunk_idx_low * (1 - access(check_depth, [is_parent]))))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `var i_0` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i_0 = 0` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i_0 = φ(i_0.0)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `if (i_0 < 8) then 5 else 6` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `block_count_out <== (block_count + (1 - access(check_depth, [is_parent])))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `n_blocks_out <== n_blocks` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `component check_decr_depth` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `check_decr_depth = OR()` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `check_decr_depth <== update(check_decr_depth, [a], access(comp_d, [is_last_block]))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `check_decr_depth <== update(check_decr_depth, [b], access(check_depth, [is_parent]))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal decr_depth` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `decr_depth <== (access(check_decr_depth, [out]) * (1 - access(check_depth, [is_root])))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `(decr_depth * (1 - decr_depth)) === 0` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `depth_out <== (depth - (1 * decr_depth))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `total_depth_out <== total_depth` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `chunk_idx_low_out <== chunk_idx_low` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `chunk_idx_high_out <== chunk_idx_high` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `leaf_depth_out <== leaf_depth` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `h_out <== update(h_out, [i_0], access(blake3Compression, [out, i_0]))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i_0 = (i_0 + 1)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `Blake3Nova`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating constant values for `Blake3Nova`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating expression degrees for `Blake3Nova`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `Blake3Nova`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 0: (predecessors: {}, successors: {1})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input n_blocks
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input block_count
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input h[8]
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input chunk_idx_low
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input chunk_idx_high
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input leaf_depth
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input total_depth
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input depth
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input m[16]
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input b
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal output n_blocks_out
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal output block_count_out
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal output h_out[8]
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal output total_depth_out
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal output depth_out
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal output chunk_idx_low_out
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal output chunk_idx_high_out
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal output leaf_depth_out
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     component check_depth
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     check_depth = Blake3NovaTreePath_CheckDepth()
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     check_depth <== update(check_depth, [depth], depth)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     check_depth <== update(check_depth, [leaf_depth], leaf_depth)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     component comp_d
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     comp_d = Blake3GetFlag(D_FLAGS.0)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     comp_d <== update(comp_d, [is_parent], access(check_depth, [is_parent]))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     comp_d <== update(comp_d, [is_root], access(check_depth, [is_root]))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     comp_d <== update(comp_d, [block_count], block_count)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     comp_d <== update(comp_d, [n_blocks], n_blocks)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     component iv
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     iv = IV()
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     component final_m
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     final_m = Blake3GetFinal_m()
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal tmpIV[8]
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     final_m <== update(final_m, [h], h)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     final_m <== update(final_m, [m], m)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     final_m <== update(final_m, [is_parent], access(check_depth, [is_parent]))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     final_m <== update(final_m, [depth], depth)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     final_m <== update(final_m, [total_depth], total_depth)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     final_m <== update(final_m, [chunk_idx], (chunk_idx_low + (chunk_idx_high * (2 ** 32))))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal h_compression[8]
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     var i.2, i.0, i.1
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i.0 = 0
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 1: (predecessors: {0, 2}, successors: {2, 3})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i.1 = φ(i.0, i.2)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     if (i.1 < 8) then 2 else 3
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 2: (predecessors: {1}, successors: {1})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     tmpIV <== update(tmpIV, [i.1], (access(iv, [out, i.1]) * access(check_depth, [is_parent])))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     h_compression <== update(h_compression, [i.1], ((access(h, [i.1]) * (1 - access(check_depth, [is_parent]))) + access(tmpIV, [i.1])))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i.2 = (i.1 + 1)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 3: (predecessors: {1}, successors: {4})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     component blake3Compression
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     blake3Compression = Blake3Compression()
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     blake3Compression <== update(blake3Compression, [m], access(final_m, [out_m]))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     blake3Compression <== update(blake3Compression, [h], h_compression)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     blake3Compression <== update(blake3Compression, [d], access(comp_d, [out]))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     blake3Compression <== update(blake3Compression, [b], b)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     blake3Compression <== update(blake3Compression, [t, 1], (chunk_idx_high * (1 - access(check_depth, [is_parent]))))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     blake3Compression <== update(blake3Compression, [t, 0], (chunk_idx_low * (1 - access(check_depth, [is_parent]))))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     var i_0.2, i_0.0, i_0.1
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i_0.0 = 0
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 4: (predecessors: {5, 3}, successors: {5, 6})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i_0.1 = φ(i_0.0, i_0.2)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     if (i_0.1 < 8) then 5 else 6
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 5: (predecessors: {4}, successors: {4})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     h_out <== update(h_out, [i_0.1], access(blake3Compression, [out, i_0.1]))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i_0.2 = (i_0.1 + 1)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 6: (predecessors: {4}, successors: {})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     block_count_out <== (block_count + (1 - access(check_depth, [is_parent])))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     n_blocks_out <== n_blocks
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     component check_decr_depth
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     check_decr_depth = OR()
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     check_decr_depth <== update(check_decr_depth, [a], access(comp_d, [is_last_block]))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     check_decr_depth <== update(check_decr_depth, [b], access(check_depth, [is_parent]))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal decr_depth
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     decr_depth <== (access(check_decr_depth, [out]) * (1 - access(check_depth, [is_root])))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     (decr_depth * (1 - decr_depth)) === 0
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     depth_out <== (depth - (1 * decr_depth))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     total_depth_out <== total_depth
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     chunk_idx_low_out <== chunk_idx_low
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     chunk_idx_high_out <== chunk_idx_high
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     leaf_depth_out <== leaf_depth
+ TRACE circomspect_program_analysis::analysis_runner               > successfully lifted template `Blake3Nova`
+ DEBUG circomspect_program_structure::control_flow_graph::lifting  > building CFG for template `IV`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `IV`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `IV`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > converting `IV` CFG to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal output out[8]` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `var initializationVector[8]` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `initializationVector = [1779033703, 3144134277, 1013904242, 2773480762, 1359893119, 2600822924, 528734635, 1541459225]` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `var j` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `j = 0` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `j = φ(j.0)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `if (j < 8) then 2` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `out <== update(out, [j], access(initializationVector, [j]))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `j = (j + 1)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `IV`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating constant values for `IV`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating expression degrees for `IV`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `IV`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 0: (predecessors: {}, successors: {1})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal output out[8]
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     var initializationVector.0[8]
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     initializationVector.0 = [1779033703, 3144134277, 1013904242, 2773480762, 1359893119, 2600822924, 528734635, 1541459225]
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     var j.2, j.0, j.1
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     j.0 = 0
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 1: (predecessors: {0, 2}, successors: {2})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     j.1 = φ(j.0, j.2)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     if (j.1 < 8) then 2
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 2: (predecessors: {1}, successors: {1})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     out <== update(out, [j.1], access(initializationVector.0, [j.1]))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     j.2 = (j.1 + 1)
+ TRACE circomspect_program_analysis::analysis_runner               > successfully lifted template `IV`
+ DEBUG circomspect_program_structure::control_flow_graph::lifting  > building CFG for template `Blake3Compression`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `Blake3Compression`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `Blake3Compression`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > converting `Blake3Compression` CFG to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input h[8]` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input m[16]` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input t[2]` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input b` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input d` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal output out[16]` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `component iv` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `iv = IV()` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal init[16]` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `var i` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i = 0` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i = φ(i.0)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `if (i < 8) then 2 else 3` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `init <== update(init, [i], access(h, [i]))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i = (i + 1)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `var i_0` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i_0 = 0` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i_0 = φ(i_0.0)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `if (i_0 < 4) then 5 else 6` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `init <== update(init, [(i_0 + 8)], access(iv, [out, i_0]))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i_0 = (i_0 + 1)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `var i_1` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i_1 = 0` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i_1 = φ(i_1.0)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `if (i_1 < 2) then 8 else 9` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `init <== update(init, [14], b)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `init <== update(init, [15], d)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `component rounds[7]` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `component permuters[6]` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `rounds = update(rounds, [0], SingleRound())` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `rounds <== update(rounds, [0, msg], m)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `rounds <== update(rounds, [0, inp], init)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `var i_2` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i_2 = 0` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i_2 = φ(i_2.0)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `if (i_2 < 6) then 11 else 15` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `component outXor[16]` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `var i_3` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i_3 = 0` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i_3 = φ(i_3.0)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `if (i_3 < 8) then 17 else 18` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `outXor = update(outXor, [i_3], XorWord2(32))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `outXor <== update(outXor, [i_3, x], access(rounds, [6, out, i_3]))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `outXor <== update(outXor, [i_3, y], access(rounds, [6, out, (i_3 + 8)]))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `out <== update(out, [i_3], access(outXor, [i_3, out_word]))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i_3 = (i_3 + 1)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `var i_4` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i_4 = 8` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i_4 = φ(i_4.0)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `if (i_4 < 16) then 20` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `outXor = update(outXor, [i_4], XorWord2(32))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `outXor <== update(outXor, [i_4, x], access(rounds, [6, out, i_4]))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `outXor <== update(outXor, [i_4, y], access(h, [(i_4 - 8)]))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `out <== update(out, [i_4], access(outXor, [i_4, out_word]))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i_4 = (i_4 + 1)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `rounds = update(rounds, [(i_2 + 1)], SingleRound())` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `permuters = update(permuters, [i_2], Blake3Permute())` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `if (i_2 == 0) then 12 else 13` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `permuters <== update(permuters, [i_2, inp], access(permuters, [(i_2 - 1), out]))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `rounds <== update(rounds, [(i_2 + 1), msg], access(permuters, [i_2, out]))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `rounds <== update(rounds, [(i_2 + 1), inp], access(rounds, [i_2, out]))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i_2 = (i_2 + 1)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `permuters <== update(permuters, [i_2, inp], m)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `init <== update(init, [(i_1 + 12)], access(t, [i_1]))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i_1 = (i_1 + 1)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `Blake3Compression`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating constant values for `Blake3Compression`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating expression degrees for `Blake3Compression`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `Blake3Compression`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 0: (predecessors: {}, successors: {1})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input h[8]
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input m[16]
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input t[2]
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input b
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input d
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal output out[16]
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     component iv
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     iv = IV()
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal init[16]
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     var i.2, i.0, i.1
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i.0 = 0
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 1: (predecessors: {2, 0}, successors: {2, 3})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i.1 = φ(i.0, i.2)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     if (i.1 < 8) then 2 else 3
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 2: (predecessors: {1}, successors: {1})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     init <== update(init, [i.1], access(h, [i.1]))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i.2 = (i.1 + 1)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 3: (predecessors: {1}, successors: {4})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     var i_0.2, i_0.0, i_0.1
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i_0.0 = 0
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 4: (predecessors: {5, 3}, successors: {6, 5})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i_0.1 = φ(i_0.0, i_0.2)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     if (i_0.1 < 4) then 5 else 6
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 5: (predecessors: {4}, successors: {4})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     init <== update(init, [(i_0.1 + 8)], access(iv, [out, i_0.1]))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i_0.2 = (i_0.1 + 1)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 6: (predecessors: {4}, successors: {7})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     var i_1.2, i_1.0, i_1.1
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i_1.0 = 0
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 7: (predecessors: {8, 6}, successors: {9, 8})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i_1.1 = φ(i_1.0, i_1.2)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     if (i_1.1 < 2) then 8 else 9
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 8: (predecessors: {7}, successors: {7})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     init <== update(init, [(i_1.1 + 12)], access(t, [i_1.1]))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i_1.2 = (i_1.1 + 1)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 9: (predecessors: {7}, successors: {10})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     init <== update(init, [14], b)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     init <== update(init, [15], d)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     component rounds[7]
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     component permuters[6]
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     rounds = update(rounds, [0], SingleRound())
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     rounds <== update(rounds, [0, msg], m)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     rounds <== update(rounds, [0, inp], init)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     var i_2.2, i_2.0, i_2.1
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i_2.0 = 0
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 10: (predecessors: {9, 14}, successors: {11, 15})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i_2.1 = φ(i_2.0, i_2.2)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     if (i_2.1 < 6) then 11 else 15
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 11: (predecessors: {10}, successors: {13, 12})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     rounds = update(rounds, [(i_2.1 + 1)], SingleRound())
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     permuters = update(permuters, [i_2.1], Blake3Permute())
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     if (i_2.1 == 0) then 12 else 13
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 12: (predecessors: {11}, successors: {14})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     permuters <== update(permuters, [i_2.1, inp], m)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 13: (predecessors: {11}, successors: {14})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     permuters <== update(permuters, [i_2.1, inp], access(permuters, [(i_2.1 - 1), out]))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 14: (predecessors: {13, 12}, successors: {10})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     rounds <== update(rounds, [(i_2.1 + 1), msg], access(permuters, [i_2.1, out]))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     rounds <== update(rounds, [(i_2.1 + 1), inp], access(rounds, [i_2.1, out]))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i_2.2 = (i_2.1 + 1)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 15: (predecessors: {10}, successors: {16})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     component outXor[16]
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     var i_3.2, i_3.0, i_3.1
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i_3.0 = 0
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 16: (predecessors: {15, 17}, successors: {17, 18})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i_3.1 = φ(i_3.0, i_3.2)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     if (i_3.1 < 8) then 17 else 18
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 17: (predecessors: {16}, successors: {16})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     outXor = update(outXor, [i_3.1], XorWord2(32))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     outXor <== update(outXor, [i_3.1, x], access(rounds, [6, out, i_3.1]))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     outXor <== update(outXor, [i_3.1, y], access(rounds, [6, out, (i_3.1 + 8)]))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     out <== update(out, [i_3.1], access(outXor, [i_3.1, out_word]))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i_3.2 = (i_3.1 + 1)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 18: (predecessors: {16}, successors: {19})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     var i_4.2, i_4.0, i_4.1
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i_4.0 = 8
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 19: (predecessors: {18, 20}, successors: {20})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i_4.1 = φ(i_4.0, i_4.2)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     if (i_4.1 < 16) then 20
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 20: (predecessors: {19}, successors: {19})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     outXor = update(outXor, [i_4.1], XorWord2(32))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     outXor <== update(outXor, [i_4.1, x], access(rounds, [6, out, i_4.1]))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     outXor <== update(outXor, [i_4.1, y], access(h, [(i_4.1 - 8)]))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     out <== update(out, [i_4.1], access(outXor, [i_4.1, out_word]))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i_4.2 = (i_4.1 + 1)
+ TRACE circomspect_program_analysis::analysis_runner               > successfully lifted template `Blake3Compression`
+ TRACE circomspect_program_analysis::analysis_runner               > failed to lift unknown template `OR`

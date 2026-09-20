@@ -1,0 +1,251 @@
+{
+  "schema_version": 1,
+  "scopes": [
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom",
+      "template_name": "Num2Bits",
+      "start_line": 25,
+      "end_line": 39
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom",
+      "template_name": "IsZero",
+      "start_line": 24,
+      "end_line": 34
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom",
+      "template_name": "IsEqual",
+      "start_line": 37,
+      "end_line": 46
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom",
+      "template_name": "LessThan",
+      "start_line": 89,
+      "end_line": 99
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom",
+      "template_name": "GreaterEqThan",
+      "start_line": 131,
+      "end_line": 140
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom",
+      "template_name": "Blake3NovaTreePath_CheckDepth",
+      "start_line": 13,
+      "end_line": 45
+    }
+  ],
+  "capture": {
+    "tool_path": "/Users/miiz/Desktop/kwzzzz_zkfr/.external/circomspect/target/release/circomspect",
+    "tool_version": "0.1.2",
+    "tool_revision": "ece9efe0a21e6c422a43ab6f2e1c0ce99678013b",
+    "curve": "BN254",
+    "command": [
+      "/Users/miiz/Desktop/kwzzzz_zkfr/.external/circomspect/target/release/circomspect",
+      "--level",
+      "INFO",
+      "--verbose",
+      "--curve",
+      "BN254",
+      "--sarif-file",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/preparation/prepare-beff14a8-9a59-4e42-ac81-687a45772b18/targets/0003/semantic/analysis.sarif",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom"
+    ],
+    "sarif_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/preparation/prepare-beff14a8-9a59-4e42-ac81-687a45772b18/targets/0003/semantic/analysis.sarif",
+    "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/preparation/prepare-beff14a8-9a59-4e42-ac81-687a45772b18/targets/0003/semantic/stdout.log",
+    "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/preparation/prepare-beff14a8-9a59-4e42-ac81-687a45772b18/targets/0003/semantic/stderr.log",
+    "exit_code": 1,
+    "timed_out": false,
+    "elapsed_seconds": 0.034277083,
+    "execution_error": null
+  },
+  "complete": false,
+  "features": [
+    {
+      "rule_id": "CS0013",
+      "rule_name": "unnecessary-signal-assignment",
+      "meaning": "single-arrow assignment has a quadratic RHS that could instead use a constraint assignment; separate constraints can still make it correct",
+      "status": "unknown",
+      "value": null,
+      "observed_warning_count": 0,
+      "reasons": [
+        "analyzer emitted error P1000 at result 0",
+        "analyzer emitted error P1000 at result 1",
+        "analyzer emitted error P1000 at result 2",
+        "analyzer reported incomplete work: failed to lift",
+        "unverified analyzer version/revision; completion contract is unsupported"
+      ]
+    },
+    {
+      "rule_id": "CS0014",
+      "rule_name": "unconstrained-less-than",
+      "meaning": "analyzer could not establish the required input range for a Circomlib LessThan use",
+      "status": "unknown",
+      "value": null,
+      "observed_warning_count": 3,
+      "reasons": [
+        "analyzer emitted error P1000 at result 0",
+        "analyzer emitted error P1000 at result 1",
+        "analyzer emitted error P1000 at result 2",
+        "analyzer reported incomplete work: failed to lift",
+        "unverified analyzer version/revision; completion contract is unsupported"
+      ]
+    },
+    {
+      "rule_id": "CS0015",
+      "rule_name": "unconstrained-division",
+      "meaning": "analyzer did not find its supported IsZero-based nonzero check for the divisor",
+      "status": "unknown",
+      "value": null,
+      "observed_warning_count": 0,
+      "reasons": [
+        "analyzer emitted error P1000 at result 0",
+        "analyzer emitted error P1000 at result 1",
+        "analyzer emitted error P1000 at result 2",
+        "analyzer reported incomplete work: failed to lift",
+        "unverified analyzer version/revision; completion contract is unsupported"
+      ]
+    },
+    {
+      "rule_id": "CS0017",
+      "rule_name": "under-constrained-signal",
+      "meaning": "intermediate signal appears in fewer than two separate constraints under this analyzer's analysis",
+      "status": "unknown",
+      "value": null,
+      "observed_warning_count": 0,
+      "reasons": [
+        "analyzer emitted error P1000 at result 0",
+        "analyzer emitted error P1000 at result 1",
+        "analyzer emitted error P1000 at result 2",
+        "analyzer reported incomplete work: failed to lift",
+        "unverified analyzer version/revision; completion contract is unsupported"
+      ]
+    },
+    {
+      "rule_id": "CS0018",
+      "rule_name": "unused-output-signal",
+      "meaning": "instantiated component output is not used as expected, subject to the analyzer's allowlist and access approximation",
+      "status": "unknown",
+      "value": null,
+      "observed_warning_count": 0,
+      "reasons": [
+        "analyzer emitted error P1000 at result 0",
+        "analyzer emitted error P1000 at result 1",
+        "analyzer emitted error P1000 at result 2",
+        "analyzer reported incomplete work: failed to lift",
+        "unverified analyzer version/revision; completion contract is unsupported"
+      ]
+    }
+  ],
+  "risk_score": null,
+  "warning_count": 3,
+  "warnings": [
+    {
+      "rule_id": "CS0014",
+      "message": "Inputs to `LessThan` need to be constrained to ensure that they are non-negative",
+      "locations": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom",
+          "start_line": 137,
+          "end_line": 137,
+          "start_column": 18,
+          "end_column": 23,
+          "label": "`in[1]` needs to be constrained to ensure that it is <= p/2."
+        }
+      ],
+      "related_locations": [],
+      "attributed_scopes": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom",
+          "template_name": "GreaterEqThan",
+          "start_line": 131,
+          "end_line": 140
+        }
+      ],
+      "attribution_basis": "primary source region inside caller-validated reachable template scope",
+      "raw_result_index": 4,
+      "raw_result_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/preparation/prepare-beff14a8-9a59-4e42-ac81-687a45772b18/targets/0003/semantic/analysis.sarif"
+    },
+    {
+      "rule_id": "CS0014",
+      "message": "Inputs to `LessThan` need to be constrained to ensure that they are non-negative",
+      "locations": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom",
+          "start_line": 138,
+          "end_line": 138,
+          "start_column": 18,
+          "end_column": 25,
+          "label": "`(in[0] + 1)` needs to be constrained to ensure that it is <= p/2."
+        }
+      ],
+      "related_locations": [],
+      "attributed_scopes": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom",
+          "template_name": "GreaterEqThan",
+          "start_line": 131,
+          "end_line": 140
+        }
+      ],
+      "attribution_basis": "primary source region inside caller-validated reachable template scope",
+      "raw_result_index": 5,
+      "raw_result_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/preparation/prepare-beff14a8-9a59-4e42-ac81-687a45772b18/targets/0003/semantic/analysis.sarif"
+    },
+    {
+      "rule_id": "CS0014",
+      "message": "Inputs to `LessThan` need to be constrained to ensure that they are non-negative",
+      "locations": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom",
+          "start_line": 33,
+          "end_line": 33,
+          "start_column": 25,
+          "end_column": 39,
+          "label": "`(leaf_depth - 1)` needs to be constrained to ensure that it is <= p/2."
+        }
+      ],
+      "related_locations": [],
+      "attributed_scopes": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom",
+          "template_name": "Blake3NovaTreePath_CheckDepth",
+          "start_line": 13,
+          "end_line": 45
+        }
+      ],
+      "attribution_basis": "primary source region inside caller-validated reachable template scope",
+      "raw_result_index": 14,
+      "raw_result_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/preparation/prepare-beff14a8-9a59-4e42-ac81-687a45772b18/targets/0003/semantic/analysis.sarif"
+    }
+  ],
+  "ignored_out_of_scope_count": 4,
+  "ignored_other_rule_count": 78,
+  "duplicate_warning_count": 0,
+  "reasons": [
+    "analyzer emitted error P1000 at result 0",
+    "analyzer emitted error P1000 at result 1",
+    "analyzer emitted error P1000 at result 2",
+    "analyzer reported incomplete work: failed to lift",
+    "unverified analyzer version/revision; completion contract is unsupported"
+  ],
+  "unsupported_features": [
+    {
+      "name": "compile-time parameter assertion versus signal-dependent assertion",
+      "status": "unsupported",
+      "reason": "the verified Circomspect release has no dedicated rule that establishes this distinction; assertions are not counted"
+    }
+  ],
+  "limitations": [
+    "Warnings describe template definitions; Circomspect does not specialize templates with this target's concrete parameters.",
+    "The caller must validate reachable template scopes and their full dependency closure; file co-location is not reachability.",
+    "Complete means these analyzer passes ran with no observed analysis failure, not that the circuit is safe or all bugs are detectable.",
+    "Any detected partial analysis conservatively makes every required feature unknown; observed warnings remain available.",
+    "Only the five selected rule IDs count in warning-first; unrelated lint reports remain in raw SARIF."
+  ]
+}

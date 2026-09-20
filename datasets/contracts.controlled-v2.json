@@ -1,0 +1,296 @@
+{
+  "schema_version": 1,
+  "set_id": "controlled-v2",
+  "created_at_utc": "2026-09-20T11:17:47.973047+00:00",
+  "status": {
+    "material_preparation": "complete",
+    "backend_execution": "not_run",
+    "candidate_review": "not_run",
+    "performance_analysis": "not_run",
+    "confirmed_original_component_defect_count": null,
+    "first_confirmed_completion_upper_bound_seconds": null
+  },
+  "partition_policy": {
+    "role": "held-out-evaluation",
+    "excluded_development_causes": [
+      "controlled-v1.1 Subtract",
+      "dev3 Reclaim Add32Bits/XorWords/RotateLeft32Bits and variants"
+    ],
+    "root_cause_groups": [
+      "tangle-network/protocol-solidity/set-membership-zero-initialization",
+      "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+    ],
+    "independence_statement": "The selected cases are from different projects and different cause classes: wrong product initialization versus missing comparator input range constraints. Parameter or wrapper variants remain in the same root-cause group."
+  },
+  "manifest": {
+    "path": "datasets/manifest.controlled-v2.json",
+    "sha256": "758180ae4827f53adbaa35d8075566a3f3eb3a090be221dbd5183527657c70b7"
+  },
+  "prepared": {
+    "path": "reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/prepared.json",
+    "sha256": "967135b38000ee09b1d82aa15cf1bbbdb354fbecf437692e77a9e440f99dd504",
+    "manifest_sha256": "758180ae4827f53adbaa35d8075566a3f3eb3a090be221dbd5183527657c70b7",
+    "all_four_targets_eligible": true
+  },
+  "comparison_environment": {
+    "classification": "current frozen comparison environment, not historical deployment environment",
+    "zkfdo": {
+      "commit": "9a8bb0319a8b4e127f73be5f1fa279eafb9156db",
+      "tree": "4215bea47d73115dd8c5663a5df538803828a746",
+      "path": "runs/controlled-v1.1/frozen-tools/zkfDO-9a8bb031-debug",
+      "sha256": "e3472909d3d8de4411ee20a9574a822b9c262e7aff935c9bf38eac8f31a16960"
+    },
+    "zkfuzz": {
+      "revision": "072bf1fbbd1c9ecad58d4f6d2204c3b96e7fec17",
+      "path": ".external/zkFuzz/target/release/zkfuzz",
+      "sha256": "ac2d9d16fd97ff803b121b7994aef804b4e191636f3f78660ff6ecd6c9ae4edd"
+    },
+    "circom": {
+      "version": "2.2.3",
+      "path": "/Users/miiz/.cargo/bin/circom",
+      "sha256": "8991887889c2a74d6fc704d5689ada4cc76fba004e866c987de6cbf3b3db6227",
+      "prime": "bn128"
+    },
+    "circomspect": {
+      "version": "0.9.0",
+      "revision": "ece9efe0a21e6c422a43ab6f2e1c0ce99678013b",
+      "path": ".external/circomspect/target/release/circomspect",
+      "sha256": "6acebb5f1c00fd3823e96388cb322cd29bd516f8bacecf855fee5652431c3590"
+    },
+    "ranking_config": {
+      "path": "configs/static-ranking.json",
+      "sha256": "8fed87764b001245d600307f7ba7d8453e88e3b977afda656014eac83ea32d26"
+    },
+    "circomlib_dependency_bundle": {
+      "source": ".external/zkbugs at a0eed744ba1a816acaa2fae597f4e79b4fd01aea",
+      "aggregate_sha256": "9c5b70b5ff0722f71b020c253f7c38391c6e31efb63156b3f5389a26959cabe8"
+    }
+  },
+  "pairs": [
+    {
+      "pair_id": "tangle-set-membership-v2",
+      "root_cause_id": "tangle-network/protocol-solidity/set-membership-zero-initialization",
+      "independence_class": "wrong initialization / wrong translation of logic into constraints",
+      "project": "https://github.com/tangle-network/protocol-solidity",
+      "public_defect": {
+        "zkbugs_checkout_revision": "a0eed744ba1a816acaa2fae597f4e79b4fd01aea",
+        "config_path": ".external/zkbugs/dataset/circom/tangle-network/protocol-solidity/veridise_incorrect_initialization_in_membership_circuits/zkbugs_config.json",
+        "config_sha256": "5e99ab3a17707a829555802d2a872887eeccadd5b93b305b6fc1431dcd679286",
+        "readme_path": ".external/zkbugs/dataset/circom/tangle-network/protocol-solidity/veridise_incorrect_initialization_in_membership_circuits/README.md",
+        "readme_sha256": "869a8ab2f4777f3337257ac3f75e85df1ceafb535331e2c858fa2647efebea60",
+        "vulnerable_location": "circuits/set/membership.circom:17-26",
+        "fix_description": "Initialize product[0] to 1 rather than element."
+      },
+      "revision_relationship": {
+        "vulnerable_revision": "848d073bb17f0aaffc6d39f594cc59efedeaec89",
+        "fixed_revision": "eeb4fc7a4883d513e3fe3adbe2c447133ccd39f2",
+        "fixed_parents": [
+          "24925db48271e39fbac4cf7777e5a3b5323f2e99"
+        ],
+        "vulnerable_is_ancestor_of_fixed": true,
+        "relationship_note": "The public fix revision is later in the same repository history; only the named component/file change is used as the regression contract."
+      },
+      "component_contract": {
+        "input_preconditions": "element and all three set entries are canonical BN128 field elements; no narrower domain applies.",
+        "predeclared_property": {
+          "id": "set-membership-soundness",
+          "statement": "Every satisfying assignment must have element equal to at least one of set[0], set[1], or set[2] in the BN128 scalar field.",
+          "violation_rule": "All frozen target constraints are satisfied while element differs from every set entry."
+        },
+        "review_rule": {
+          "valid_execution_finding_requires": [
+            "candidate linked to the same saved plan run and target",
+            "linked backend status is bug_found",
+            "input preconditions satisfied",
+            "all constraints of the frozen selected target satisfied",
+            "predeclared property violated"
+          ],
+          "known_defect_metadata_is_execution_discovery": false,
+          "static_warning_is_execution_discovery": false
+        }
+      },
+      "variants": [
+        {
+          "variant_id": "tangle-set-membership-vulnerable",
+          "role": "published-vulnerable-source",
+          "revision": "848d073bb17f0aaffc6d39f594cc59efedeaec89",
+          "target_id": "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+          "source_path": "datasets/controlled-v2/tangle-set-membership/vulnerable/project/circuits/set/membership.circom",
+          "source_git_blob_sha1": "71c766eeef827d501e370d97e7df282a4d5fb94d",
+          "source_sha256": "884f3b47b1134607f85f03af91fed2f3eba98a1bf9b5b21b0e7ce8eb309142a0",
+          "source_copy_git_blob_sha1": "71c766eeef827d501e370d97e7df282a4d5fb94d",
+          "source_blob_matches": true,
+          "wrapper_path": "datasets/controlled-v2/tangle-set-membership/vulnerable/project/circuit.circom",
+          "wrapper_sha256": "04f13d961be1ce9d5ab6a7a64a31dfbb0ddab646e8a46ab7152ccb8cd413141c",
+          "prepared_source_closure_sha256": "cc32e45f0ab85c26f7a9a2d6ba8f93ab9a6777337ef31b5b6d090a224fb9ff32",
+          "constraint_count": 6,
+          "risk_score": 0,
+          "warning_count": 0,
+          "eligible": true,
+          "exclusion_reasons": []
+        },
+        {
+          "variant_id": "tangle-set-membership-fixed",
+          "role": "patched-regression-comparator",
+          "revision": "eeb4fc7a4883d513e3fe3adbe2c447133ccd39f2",
+          "target_id": "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+          "source_path": "datasets/controlled-v2/tangle-set-membership/fixed/project/circuits/set/membership.circom",
+          "source_git_blob_sha1": "ba396423b8b765a37d0718f63da7dea0e7c0e930",
+          "source_sha256": "aa3591a36706b1f90aac449cf6ee3f2433b0e120b13eee7bb5069c335a9aaaa3",
+          "source_copy_git_blob_sha1": "ba396423b8b765a37d0718f63da7dea0e7c0e930",
+          "source_blob_matches": true,
+          "wrapper_path": "datasets/controlled-v2/tangle-set-membership/fixed/project/circuit.circom",
+          "wrapper_sha256": "04f13d961be1ce9d5ab6a7a64a31dfbb0ddab646e8a46ab7152ccb8cd413141c",
+          "prepared_source_closure_sha256": "7240a8130a8d9997e6c73789129434a67a8c21aa4b0420812b71ae06084d6738",
+          "constraint_count": 6,
+          "risk_score": 0,
+          "warning_count": 0,
+          "eligible": true,
+          "exclusion_reasons": []
+        }
+      ],
+      "expected_scope": {
+        "original_component": "eligible for the primary metric only after all review conditions pass",
+        "project_caller": "not established by this direct-wrapper evaluation",
+        "fixed_variant": "regression comparator for the named cause, not a whole-component or whole-project safety proof"
+      }
+    },
+    {
+      "pair_id": "banyan-check-depth-v2",
+      "root_cause_id": "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range",
+      "independence_class": "missing input constraints / comparator range",
+      "project": "https://github.com/banyancomputer/hot-proofs-blake3-circom",
+      "public_defect": {
+        "zkbugs_checkout_revision": "a0eed744ba1a816acaa2fae597f4e79b4fd01aea",
+        "config_path": ".external/zkbugs/dataset/circom/banyancomputer/hot-proofs-blake3-circom/koukyosyumei_checkdepth_comparator_overflow/zkbugs_config.json",
+        "config_sha256": "60b8779f12001c1fd2ffc0bd6e17667196de3ddb71a72d197d164836e4d91255",
+        "readme_path": ".external/zkbugs/dataset/circom/banyancomputer/hot-proofs-blake3-circom/koukyosyumei_checkdepth_comparator_overflow/README.md",
+        "readme_sha256": "20c206a29f377ada9d91f589544127342d311538bf21ee6827a9103b01e8b747",
+        "vulnerable_location": "circuits/blake3_nova.circom:13-39",
+        "fix_description": "Add Num2Bits(8) constraints for depth and leaf_depth before comparator use."
+      },
+      "revision_relationship": {
+        "vulnerable_revision": "76b83107eb00c8f886bde82172eaa3cdd5d57f25",
+        "fixed_revision": "e37eb56e29b304024055f3d0a1681e6f22132ecc",
+        "fixed_parents": [
+          "76b83107eb00c8f886bde82172eaa3cdd5d57f25",
+          "73992f7d4e8dda53e4472031f8a8a354531502bf"
+        ],
+        "vulnerable_is_ancestor_of_fixed": true,
+        "relationship_note": "The public fix revision is later in the same repository history; only the named component/file change is used as the regression contract."
+      },
+      "component_contract": {
+        "input_preconditions": "depth and leaf_depth are canonical BN128 field elements. Eight-bit range enforcement is part of the component property, not an assumed caller guarantee.",
+        "predeclared_property": {
+          "id": "check-depth-range-and-order",
+          "statement": "A satisfying assignment must use depth and leaf_depth in [0,255]; within that domain it must have depth < leaf_depth, is_root = 1 iff depth = 0, and is_parent = 1 iff depth < leaf_depth - 1.",
+          "violation_rule": "All frozen target constraints are satisfied but either input is outside [0,255], or an in-range assignment violates the declared order/output relations."
+        },
+        "review_rule": {
+          "valid_execution_finding_requires": [
+            "candidate linked to the same saved plan run and target",
+            "linked backend status is bug_found",
+            "input preconditions satisfied",
+            "all constraints of the frozen selected target satisfied",
+            "predeclared property violated"
+          ],
+          "known_defect_metadata_is_execution_discovery": false,
+          "static_warning_is_execution_discovery": false
+        }
+      },
+      "variants": [
+        {
+          "variant_id": "banyan-check-depth-vulnerable",
+          "role": "published-vulnerable-source",
+          "revision": "76b83107eb00c8f886bde82172eaa3cdd5d57f25",
+          "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+          "source_path": "datasets/controlled-v2/banyan-check-depth/vulnerable/project/source/circuits/blake3_nova.circom",
+          "source_git_blob_sha1": "21caa792db2ab5f2f424af6fa129ca3c281244c9",
+          "source_sha256": "f7d04495f0bf186ab2376e860ce0fc2468087f32b0b80d6a0f2d3d6f0bd28f52",
+          "source_copy_git_blob_sha1": "21caa792db2ab5f2f424af6fa129ca3c281244c9",
+          "source_blob_matches": true,
+          "wrapper_path": "datasets/controlled-v2/banyan-check-depth/vulnerable/project/circuit.circom",
+          "wrapper_sha256": "7c711b21c84868cd2182abb0a75b0272d5da98c3a83e792e4ea738c6596c300f",
+          "prepared_source_closure_sha256": "031ba4da61e49278b9b666ab343dfc299660416151cb006e646ef92d79e200f2",
+          "constraint_count": 29,
+          "risk_score": 1,
+          "warning_count": 4,
+          "eligible": true,
+          "exclusion_reasons": []
+        },
+        {
+          "variant_id": "banyan-check-depth-fixed",
+          "role": "patched-regression-comparator",
+          "revision": "e37eb56e29b304024055f3d0a1681e6f22132ecc",
+          "target_id": "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+          "source_path": "datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom",
+          "source_git_blob_sha1": "1c0e00a1c9b418ae89dc62e7906d116f1885fb3d",
+          "source_sha256": "33fcc0ce24971e32de2a60d84f4220356ab7a6985e6b7c9c4be9051c0f96bb4d",
+          "source_copy_git_blob_sha1": "1c0e00a1c9b418ae89dc62e7906d116f1885fb3d",
+          "source_blob_matches": true,
+          "wrapper_path": "datasets/controlled-v2/banyan-check-depth/fixed/project/circuit.circom",
+          "wrapper_sha256": "7c711b21c84868cd2182abb0a75b0272d5da98c3a83e792e4ea738c6596c300f",
+          "prepared_source_closure_sha256": "c371b55fda5d38aa25b279b3db63573b2913d152cff214db1c3e1c171876166b",
+          "constraint_count": 47,
+          "risk_score": 1,
+          "warning_count": 3,
+          "eligible": true,
+          "exclusion_reasons": []
+        }
+      ],
+      "expected_scope": {
+        "original_component": "eligible for the primary metric only after all review conditions pass",
+        "project_caller": "not established by this direct-wrapper evaluation",
+        "fixed_variant": "regression comparator for the named cause, not a whole-component or whole-project safety proof"
+      }
+    }
+  ],
+  "selection_log": [
+    {
+      "case": "Tangle SetMembership",
+      "decision": "included",
+      "reason": "Exact public vulnerable/fixed file relation, simple field property, current compile and full frozen preparation succeed."
+    },
+    {
+      "case": "Banyan CheckDepth",
+      "decision": "included",
+      "reason": "Exact public vulnerable/fixed relation, distinct missing-range cause, current compile and full frozen preparation succeed."
+    },
+    {
+      "case": "Subtract",
+      "decision": "excluded",
+      "reason": "Observed controlled-v1.1 development positive control."
+    },
+    {
+      "case": "Reclaim family",
+      "decision": "excluded",
+      "reason": "Used in dev3 development and validation."
+    },
+    {
+      "case": "SIV ExtractStringFromPoint",
+      "decision": "excluded",
+      "reason": "Pinned fix uses RShift1(5) while metadata says RShift1(8), and the documented encoder permits first-byte values through 60."
+    },
+    {
+      "case": "Aptos Base64DecodedLength",
+      "decision": "excluded",
+      "reason": "Frozen zkfDO cannot completely inspect the original syntax and frozen zkFuzz frontend rejects the fixed pragma 2.2.2."
+    },
+    {
+      "case": "Telepathy ArrayXOR",
+      "decision": "excluded",
+      "reason": "Frozen zkfDO parser does not support the fixed component-array construction."
+    },
+    {
+      "case": "zk-email FpMul",
+      "decision": "not_selected",
+      "reason": "Two independent eligible causes already met the minimum; the more complex modular-arithmetic contract was not expanded."
+    }
+  ],
+  "limitations": [
+    "Prepared static scores are not detections.",
+    "Public defect labels do not count as discoveries.",
+    "Direct component results do not establish project caller reachability or impact.",
+    "The fixed variants are comparators for named causes and are not safety proofs."
+  ]
+}

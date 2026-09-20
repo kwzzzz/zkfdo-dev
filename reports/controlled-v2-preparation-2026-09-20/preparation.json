@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "set_id": "controlled-v2",
+  "frozen_at_utc": "2026-09-20T11:24:52Z",
+  "status": {
+    "material_preparation": "complete",
+    "protocol": "frozen_before_backend",
+    "environment_preflight": "passed",
+    "backend_strategy_executions": 0,
+    "backend_target_attempts": 0,
+    "candidate_reviews": 0,
+    "performance_analysis": "not_run"
+  },
+  "selected_root_cause_ids": [
+    "tangle-network/protocol-solidity/set-membership-zero-initialization",
+    "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+  ],
+  "frozen_files": {
+    "protocol": {
+      "path": "docs/controlled_v2_execution_protocol.md",
+      "sha256": "4835c9bb340e34a436c71c4e86a91e6ff2c17f9dbd05747852d635ef0f894b76"
+    },
+    "manifest": {
+      "path": "datasets/manifest.controlled-v2.json",
+      "sha256": "758180ae4827f53adbaa35d8075566a3f3eb3a090be221dbd5183527657c70b7"
+    },
+    "contracts": {
+      "path": "datasets/contracts.controlled-v2.json",
+      "sha256": "a9f0d595dfee347f0d54a9c2b253ea4da84ae74c76d39cb108ad1151dd2152a0"
+    },
+    "prepared": {
+      "path": "reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/prepared.json",
+      "sha256": "967135b38000ee09b1d82aa15cf1bbbdb354fbecf437692e77a9e440f99dd504"
+    },
+    "campaign_driver": {
+      "path": "runs/controlled-v2/frozen-tools/campaign_driver.py",
+      "sha256": "77176be1e0479454adc11c71baf442fbbe20bc085474090f049f4980ade4b6fb"
+    }
+  },
+  "planned_counts": {
+    "paired_blocks": 12,
+    "strategy_executions": 36,
+    "target_attempts": 144,
+    "independent_root_causes": 2
+  }
+}

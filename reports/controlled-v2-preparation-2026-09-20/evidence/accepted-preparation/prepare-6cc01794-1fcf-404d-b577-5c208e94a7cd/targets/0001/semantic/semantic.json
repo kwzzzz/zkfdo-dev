@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "scopes": [
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/fixed/project/circuits/set/membership.circom",
+      "template_name": "SetMembership",
+      "start_line": 14,
+      "end_line": 28
+    }
+  ],
+  "capture": {
+    "tool_path": "/Users/miiz/Desktop/kwzzzz_zkfr/.external/circomspect/target/release/circomspect",
+    "tool_version": "0.9.0",
+    "tool_revision": "ece9efe0a21e6c422a43ab6f2e1c0ce99678013b",
+    "curve": "BN254",
+    "command": [
+      "/Users/miiz/Desktop/kwzzzz_zkfr/.external/circomspect/target/release/circomspect",
+      "--level",
+      "INFO",
+      "--verbose",
+      "--curve",
+      "BN254",
+      "--sarif-file",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0001/semantic/analysis.sarif",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/fixed/project/circuits/set/membership.circom"
+    ],
+    "sarif_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0001/semantic/analysis.sarif",
+    "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0001/semantic/stdout.log",
+    "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0001/semantic/stderr.log",
+    "exit_code": 1,
+    "timed_out": false,
+    "elapsed_seconds": 0.024972291,
+    "execution_error": null
+  },
+  "complete": true,
+  "features": [
+    {
+      "rule_id": "CS0013",
+      "rule_name": "unnecessary-signal-assignment",
+      "meaning": "single-arrow assignment has a quadratic RHS that could instead use a constraint assignment; separate constraints can still make it correct",
+      "status": "complete",
+      "value": 0,
+      "observed_warning_count": 0,
+      "reasons": []
+    },
+    {
+      "rule_id": "CS0014",
+      "rule_name": "unconstrained-less-than",
+      "meaning": "analyzer could not establish the required input range for a Circomlib LessThan use",
+      "status": "complete",
+      "value": 0,
+      "observed_warning_count": 0,
+      "reasons": []
+    },
+    {
+      "rule_id": "CS0015",
+      "rule_name": "unconstrained-division",
+      "meaning": "analyzer did not find its supported IsZero-based nonzero check for the divisor",
+      "status": "complete",
+      "value": 0,
+      "observed_warning_count": 0,
+      "reasons": []
+    },
+    {
+      "rule_id": "CS0017",
+      "rule_name": "under-constrained-signal",
+      "meaning": "intermediate signal appears in fewer than two separate constraints under this analyzer's analysis",
+      "status": "complete",
+      "value": 0,
+      "observed_warning_count": 0,
+      "reasons": []
+    },
+    {
+      "rule_id": "CS0018",
+      "rule_name": "unused-output-signal",
+      "meaning": "instantiated component output is not used as expected, subject to the analyzer's allowlist and access approximation",
+      "status": "complete",
+      "value": 0,
+      "observed_warning_count": 0,
+      "reasons": []
+    }
+  ],
+  "risk_score": 0,
+  "warning_count": 0,
+  "warnings": [],
+  "ignored_out_of_scope_count": 0,
+  "ignored_other_rule_count": 6,
+  "duplicate_warning_count": 0,
+  "reasons": [],
+  "unsupported_features": [
+    {
+      "name": "compile-time parameter assertion versus signal-dependent assertion",
+      "status": "unsupported",
+      "reason": "the verified Circomspect release has no dedicated rule that establishes this distinction; assertions are not counted"
+    }
+  ],
+  "limitations": [
+    "Warnings describe template definitions; Circomspect does not specialize templates with this target's concrete parameters.",
+    "The caller must validate reachable template scopes and their full dependency closure; file co-location is not reachability.",
+    "Complete means these analyzer passes ran with no observed analysis failure, not that the circuit is safe or all bugs are detectable.",
+    "Any detected partial analysis conservatively makes every required feature unknown; observed warnings remain available.",
+    "Only the five selected rule IDs count in warning-first; unrelated lint reports remain in raw SARIF."
+  ]
+}

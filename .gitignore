@@ -28,3 +28,7 @@ __pycache__/
 
 # Local third-party checkouts and tooling
 .external/
+
+# Source surveys excluded from the controlled-v2 evaluation.
+/datasets/controlled-v2/aptos-base64-decoded-length/
+/datasets/controlled-v2/telepathy-array-xor/

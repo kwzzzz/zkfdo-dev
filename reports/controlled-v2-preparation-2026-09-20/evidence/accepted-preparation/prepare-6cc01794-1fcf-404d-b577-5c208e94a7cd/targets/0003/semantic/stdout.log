@@ -1,0 +1,792 @@
+circomspect: analyzing template 'Num2Bits'
+warning[CS0005]: Using the signal assignment operator `<--` does not constrain the assigned signal.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom:32:9
+   │
+32 │         out[i] <-- (in >> i) & 1;
+   │         ^^^^^^^^^^^^^^^^^^^^^^^^ The assigned signal `out[i]` is not constrained here.
+33 │         out[i] * (out[i] -1 ) === 0;
+   │         ---------------------------- The signal `out[i]` is constrained here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+   = To ignore this type of result, use `--allow CS0005`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom:32:21
+   │
+32 │         out[i] <-- (in >> i) & 1;
+   │                     ^^^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom:33:9
+   │
+33 │         out[i] * (out[i] -1 ) === 0;
+   │         ^^^^^^^^^^^^^^^^^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom:34:9
+   │
+34 │         lc1 += out[i] * e2;
+   │         ^^^^^^^^^^^^^^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom:35:14
+   │
+35 │         e2 = e2+e2;
+   │              ^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom:31:26
+   │
+31 │     for (var i = 0; i<n; i++) {
+   │                          ^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0003]: Comparisons with field elements greater than `p/2` may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom:31:21
+   │
+31 │     for (var i = 0; i<n; i++) {
+   │                     ^^^ Field element comparison here.
+   │
+   = Field elements are always normalized to the interval `(-p/2, p/2]` before they are compared.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-comparison.
+   = To ignore this type of result, use `--allow CS0003`.
+
+circomspect: analyzing template 'Bits2Num_strict'
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom:76:26
+   │
+76 │     for (var i=0; i<254; i++) {
+   │                          ^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0003]: Comparisons with field elements greater than `p/2` may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom:76:19
+   │
+76 │     for (var i=0; i<254; i++) {
+   │                   ^^^^^ Field element comparison here.
+   │
+   = Field elements are always normalized to the interval `(-p/2, p/2]` before they are compared.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-comparison.
+   = To ignore this type of result, use `--allow CS0003`.
+
+warning[CS0010]: Using `Bits2Num` to convert arrays to field elements may lead to aliasing issues.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom:74:21
+   │
+74 │     component b2n = Bits2Num(254);
+   │                     ^^^^^^^^^^^^^ Circomlib template `Bits2Num` instantiated here.
+   │
+   = Consider using `Bits2Num_strict` if the input size may be >= than the prime size.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#non-strict-binary-conversion.
+   = To ignore this type of result, use `--allow CS0010`.
+
+circomspect: analyzing template 'Blake3NovaTreePath_CheckDepth'
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom:33:25
+   │
+33 │     check_parent.in[1] <== leaf_depth - 1;
+   │                            ^^^^^^^^^^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+warning[CS0014]: Inputs to `LessThan` need to be constrained to ensure that they are non-negative
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom:33:25
+   │
+33 │     check_parent.in[1] <== leaf_depth - 1;
+   │                            ^^^^^^^^^^^^^^ `(leaf_depth - 1)` needs to be constrained to ensure that it is <= p/2.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unconstrained-less-than.
+   = To ignore this type of result, use `--allow CS0014`.
+
+circomspect: analyzing template 'LessEqThan'
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+    ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom:112:18
+    │
+112 │     lt.in[1] <== in[1]+1;
+    │                  ^^^^^^^ Field element arithmetic here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+    = To ignore this type of result, use `--allow CS0004`.
+
+warning[CS0014]: Inputs to `LessThan` need to be constrained to ensure that they are non-negative
+    ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom:111:18
+    │
+111 │     lt.in[0] <== in[0];
+    │                  ^^^^^ `in[0]` needs to be constrained to ensure that it is <= p/2.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unconstrained-less-than.
+    = To ignore this type of result, use `--allow CS0014`.
+
+warning[CS0014]: Inputs to `LessThan` need to be constrained to ensure that they are non-negative
+    ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom:112:18
+    │
+112 │     lt.in[1] <== in[1]+1;
+    │                  ^^^^^^^ `(in[1] + 1)` needs to be constrained to ensure that it is <= p/2.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unconstrained-less-than.
+    = To ignore this type of result, use `--allow CS0014`.
+
+circomspect: analyzing template 'IsZero'
+warning[CS0005]: Using the signal assignment operator `<--` does not constrain the assigned signal.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom:30:5
+   │
+30 │     inv <-- in!=0 ? 1/in : 0;
+   │     ^^^^^^^^^^^^^^^^^^^^^^^^ The assigned signal `inv` is not constrained here.
+31 │ 
+32 │     out <== -in*inv +1;
+   │     ------------------ The signal `inv` is constrained here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+   = To ignore this type of result, use `--allow CS0005`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom:30:21
+   │
+30 │     inv <-- in!=0 ? 1/in : 0;
+   │                     ^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom:32:13
+   │
+32 │     out <== -in*inv +1;
+   │             ^^^^^^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom:33:5
+   │
+33 │     in*out === 0;
+   │     ^^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+circomspect: analyzing template 'Num2BitsNeg'
+warning[CS0005]: Using the signal assignment operator `<--` does not constrain the assigned signal.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom:96:9
+   │
+96 │         out[i] <-- (neg >> i) & 1;
+   │         ^^^^^^^^^^^^^^^^^^^^^^^^^ The assigned signal `out[i]` is not constrained here.
+97 │         out[i] * (out[i] -1 ) === 0;
+   │         ---------------------------- The signal `out[i]` is constrained here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment.
+   = To ignore this type of result, use `--allow CS0005`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom:93:28
+   │
+93 │     var neg = n == 0 ? 0 : 2**n - in;
+   │                            ^^^^^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom:96:21
+   │
+96 │         out[i] <-- (neg >> i) & 1;
+   │                     ^^^^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom:97:9
+   │
+97 │         out[i] * (out[i] -1 ) === 0;
+   │         ^^^^^^^^^^^^^^^^^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom:98:9
+   │
+98 │         lc1 += out[i] * 2**i;
+   │         ^^^^^^^^^^^^^^^^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom:95:26
+   │
+95 │     for (var i = 0; i<n; i++) {
+   │                          ^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+    ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom:105:5
+    │
+105 │     lc1 + isZero.out * 2**n === 2**n - in;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^ Field element arithmetic here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+    = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+    ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom:105:33
+    │
+105 │     lc1 + isZero.out * 2**n === 2**n - in;
+    │                                 ^^^^^^^^^ Field element arithmetic here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+    = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0003]: Comparisons with field elements greater than `p/2` may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom:95:21
+   │
+95 │     for (var i = 0; i<n; i++) {
+   │                     ^^^ Field element comparison here.
+   │
+   = Field elements are always normalized to the interval `(-p/2, p/2]` before they are compared.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-comparison.
+   = To ignore this type of result, use `--allow CS0003`.
+
+circomspect: analyzing template 'ForceEqualIfEnabled'
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom:54:5
+   │
+54 │     in[1] - in[0] ==> isz.in;
+   │     ^^^^^^^^^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom:56:5
+   │
+56 │     (1 - isz.out)*enabled === 0;
+   │     ^^^^^^^^^^^^^^^^^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+circomspect: analyzing template 'GreaterThan'
+warning[CS0014]: Inputs to `LessThan` need to be constrained to ensure that they are non-negative
+    ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom:124:18
+    │
+124 │     lt.in[0] <== in[1];
+    │                  ^^^^^ `in[1]` needs to be constrained to ensure that it is <= p/2.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unconstrained-less-than.
+    = To ignore this type of result, use `--allow CS0014`.
+
+warning[CS0014]: Inputs to `LessThan` need to be constrained to ensure that they are non-negative
+    ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom:125:18
+    │
+125 │     lt.in[1] <== in[0];
+    │                  ^^^^^ `in[0]` needs to be constrained to ensure that it is <= p/2.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unconstrained-less-than.
+    = To ignore this type of result, use `--allow CS0014`.
+
+circomspect: analyzing template 'Blake3Nova'
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+    ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom:227:24
+    │
+227 │     final_m.chunk_idx <== chunk_idx_low + chunk_idx_high * (2 ** 32);
+    │                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Field element arithmetic here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+    = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+    ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom:231:16
+    │
+231 │         tmpIV[i] <== iv.out[i] * check_depth.is_parent;
+    │                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Field element arithmetic here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+    = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+    ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom:232:24
+    │
+232 │         h_compression[i] <== h[i] * (1 - check_depth.is_parent) + tmpIV[i];
+    │                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Field element arithmetic here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+    = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+    ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom:230:25
+    │
+230 │     for (var i = 0; i < 8; i++) { 
+    │                            ^^^ Field element arithmetic here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+    = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+    ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom:244:29
+    │
+244 │     blake3Compression.t[1] <== chunk_idx_high * (1 - check_depth.is_parent);
+    │                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Field element arithmetic here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+    = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+    ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom:245:29
+    │
+245 │     blake3Compression.t[0] <== chunk_idx_low * (1 - check_depth.is_parent);
+    │                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Field element arithmetic here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+    = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+    ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom:248:25
+    │
+248 │     for (var i = 0; i < 8; i++) { h_out[i] <== blake3Compression.out[i]; }
+    │                            ^^^ Field element arithmetic here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+    = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+    ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom:251:22
+    │
+251 │     block_count_out <== block_count + (1 - check_depth.is_parent);
+    │                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Field element arithmetic here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+    = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+    ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom:258:24
+    │
+258 │     signal decr_depth <== check_decr_depth.out * (1 - check_depth.is_root); // Decr if (chunk end or is parent) and (not root)
+    │                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Field element arithmetic here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+    = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+    ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom:259:2
+    │
+259 │     decr_depth * (1 - decr_depth) === 0;
+    │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Field element arithmetic here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+    = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+    ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom:262:16
+    │
+262 │     depth_out <== depth - 1 * decr_depth;
+    │                   ^^^^^^^^^^^^^^^^^^^^^^ Field element arithmetic here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+    = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0003]: Comparisons with field elements greater than `p/2` may produce unexpected results.
+    ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom:230:18
+    │
+230 │     for (var i = 0; i < 8; i++) { 
+    │                     ^^^^^ Field element comparison here.
+    │
+    = Field elements are always normalized to the interval `(-p/2, p/2]` before they are compared.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-comparison.
+    = To ignore this type of result, use `--allow CS0003`.
+
+note[CS0003]: Comparisons with field elements greater than `p/2` may produce unexpected results.
+    ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom:248:18
+    │
+248 │     for (var i = 0; i < 8; i++) { h_out[i] <== blake3Compression.out[i]; }
+    │                     ^^^^^ Field element comparison here.
+    │
+    = Field elements are always normalized to the interval `(-p/2, p/2]` before they are compared.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-comparison.
+    = To ignore this type of result, use `--allow CS0003`.
+
+circomspect: analyzing template 'LessThan'
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom:94:30
+   │
+94 │     component n2b = Num2Bits(n+1);
+   │                              ^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom:96:16
+   │
+96 │     n2b.in <== in[0]+ (1<<n) - in[1];
+   │                ^^^^^^^^^^^^^^^^^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom:98:13
+   │
+98 │     out <== 1-n2b.out[n];
+   │             ^^^^^^^^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0003]: Comparisons with field elements greater than `p/2` may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom:90:12
+   │
+90 │     assert(n <= 252);
+   │            ^^^^^^^^ Field element comparison here.
+   │
+   = Field elements are always normalized to the interval `(-p/2, p/2]` before they are compared.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-comparison.
+   = To ignore this type of result, use `--allow CS0003`.
+
+warning[CS0010]: Using `Num2Bits` to convert field elements to bits may lead to aliasing issues.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom:94:21
+   │
+94 │     component n2b = Num2Bits(n+1);
+   │                     ^^^^^^^^^^^^^ Circomlib template `Num2Bits` instantiated here.
+   │
+   = Consider using `Num2Bits_strict` if the input size may be >= than the prime size.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#non-strict-binary-conversion.
+   = To ignore this type of result, use `--allow CS0010`.
+
+circomspect: analyzing template 'GreaterEqThan'
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+    ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom:138:18
+    │
+138 │     lt.in[1] <== in[0]+1;
+    │                  ^^^^^^^ Field element arithmetic here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+    = To ignore this type of result, use `--allow CS0004`.
+
+warning[CS0014]: Inputs to `LessThan` need to be constrained to ensure that they are non-negative
+    ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom:137:18
+    │
+137 │     lt.in[0] <== in[1];
+    │                  ^^^^^ `in[1]` needs to be constrained to ensure that it is <= p/2.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unconstrained-less-than.
+    = To ignore this type of result, use `--allow CS0014`.
+
+warning[CS0014]: Inputs to `LessThan` need to be constrained to ensure that they are non-negative
+    ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom:138:18
+    │
+138 │     lt.in[1] <== in[0]+1;
+    │                  ^^^^^^^ `(in[0] + 1)` needs to be constrained to ensure that it is <= p/2.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unconstrained-less-than.
+    = To ignore this type of result, use `--allow CS0014`.
+
+circomspect: analyzing template 'Bits2Num'
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom:62:9
+   │
+62 │         lc1 += in[i] * e2;
+   │         ^^^^^^^^^^^^^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom:63:14
+   │
+63 │         e2 = e2 + e2;
+   │              ^^^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom:61:26
+   │
+61 │     for (var i = 0; i<n; i++) {
+   │                          ^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0003]: Comparisons with field elements greater than `p/2` may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom:61:21
+   │
+61 │     for (var i = 0; i<n; i++) {
+   │                     ^^^ Field element comparison here.
+   │
+   = Field elements are always normalized to the interval `(-p/2, p/2]` before they are compared.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-comparison.
+   = To ignore this type of result, use `--allow CS0003`.
+
+circomspect: analyzing template 'Num2Bits_strict'
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom:49:26
+   │
+49 │     for (var i=0; i<254; i++) {
+   │                          ^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0003]: Comparisons with field elements greater than `p/2` may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom:49:19
+   │
+49 │     for (var i=0; i<254; i++) {
+   │                   ^^^^^ Field element comparison here.
+   │
+   = Field elements are always normalized to the interval `(-p/2, p/2]` before they are compared.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-comparison.
+   = To ignore this type of result, use `--allow CS0003`.
+
+warning[CS0010]: Using `Num2Bits` to convert field elements to bits may lead to aliasing issues.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom:46:21
+   │
+46 │     component n2b = Num2Bits(254);
+   │                     ^^^^^^^^^^^^^ Circomlib template `Num2Bits` instantiated here.
+   │
+   = Consider using `Num2Bits_strict` if the input size may be >= than the prime size.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#non-strict-binary-conversion.
+   = To ignore this type of result, use `--allow CS0010`.
+
+circomspect: analyzing template 'Blake3GetDownLeftPath'
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom:65:63
+   │
+65 │     eqs[0] = IsEqual(); eqs[0].in[0] <== depth; eqs[0].in[1] <== total_depth - 2; 
+   │                                                                  ^^^^^^^^^^^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom:66:22
+   │
+66 │     bit_at_depth[0] <== (1 - n2b.out[0]) * eqs[0].out;
+   │                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom:70:64
+   │
+70 │         eqs[i] = IsEqual(); eqs[i].in[0] <== depth; eqs[i].in[1] <== total_depth - i - 2;
+   │                                                                      ^^^^^^^^^^^^^^^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom:71:23
+   │
+71 │         bit_at_depth[i] <== bit_at_depth[i - 1] + (1 - n2b.out[i]) * eqs[i].out;
+   │                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom:68:26
+   │
+68 │     for (var i = 1; i < 64; i++) {
+   │                             ^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom:81:10
+   │
+81 │     out <== GO_LEFT * (1 - is_parent) + GO_LEFT * is_parent * (bit_at_depth[63]);
+   │             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom:83:2
+   │
+83 │     out * (1 - out) === 0;
+   │     ^^^^^^^^^^^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0003]: Comparisons with field elements greater than `p/2` may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom:68:18
+   │
+68 │     for (var i = 1; i < 64; i++) {
+   │                     ^^^^^^ Field element comparison here.
+   │
+   = Field elements are always normalized to the interval `(-p/2, p/2]` before they are compared.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-comparison.
+   = To ignore this type of result, use `--allow CS0003`.
+
+circomspect: analyzing template 'Blake3GetFinal_m'
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+    ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom:110:21
+    │
+110 │             tmp_down[i] <== h[i] * down_left_path.out;
+    │                             ^^^^^^^^^^^^^^^^^^^^^^^^^ Field element arithmetic here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+    = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+    ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom:112:23
+    │
+112 │             m_is_parent[i] <== m[i] * (1 - down_left_path.out) + tmp_down[i];
+    │                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Field element arithmetic here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+    = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+    ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom:114:21
+    │
+114 │             tmp_down[i] <== h[i - 8] * (1 - down_left_path.out);
+    │                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Field element arithmetic here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+    = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+    ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom:115:23
+    │
+115 │             m_is_parent[i] <== m[i - 8] * down_left_path.out + tmp_down[i];
+    │                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Field element arithmetic here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+    = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+    ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom:117:21
+    │
+117 │         tmp_is_par[i] <== m_is_parent[i] * is_parent;
+    │                           ^^^^^^^^^^^^^^^^^^^^^^^^^^ Field element arithmetic here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+    = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+    ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom:118:16
+    │
+118 │         out_m[i] <== m[i] * (1 - is_parent) + tmp_is_par[i];
+    │                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Field element arithmetic here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+    = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+    ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom:108:26
+    │
+108 │     for (var i = 0; i < 16; i++) {
+    │                             ^^^ Field element arithmetic here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+    = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0003]: Comparisons with field elements greater than `p/2` may produce unexpected results.
+    ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom:108:18
+    │
+108 │     for (var i = 0; i < 16; i++) {
+    │                     ^^^^^^ Field element comparison here.
+    │
+    = Field elements are always normalized to the interval `(-p/2, p/2]` before they are compared.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-comparison.
+    = To ignore this type of result, use `--allow CS0003`.
+
+note[CS0003]: Comparisons with field elements greater than `p/2` may produce unexpected results.
+    ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom:109:7
+    │
+109 │         if (i < 8) { // For the left child
+    │             ^^^^^ Field element comparison here.
+    │
+    = Field elements are always normalized to the interval `(-p/2, p/2]` before they are compared.
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-comparison.
+    = To ignore this type of result, use `--allow CS0003`.
+
+circomspect: analyzing template 'IsEqual'
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom:43:5
+   │
+43 │     in[1] - in[0] ==> isz.in;
+   │     ^^^^^^^^^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+circomspect: analyzing template 'Blake3GetFlag'
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+    ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom:145:34
+    │
+145 │     check_block_counts[1].in[1] <== n_blocks - 1;
+    │                                     ^^^^^^^^^^^^ Field element arithmetic here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+    = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+    ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom:148:20
+    │
+148 │     is_last_block <== check_block_counts[1].out * not_parent.out;
+    │                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Field element arithmetic here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+    = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+    ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom:158:27
+    │
+158 │     signal use_root_flag <== use_root_flag_tmp.out * is_root;
+    │                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Field element arithmetic here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+    = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+    ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom:161:10
+    │  
+161 │       out <== D_FLAGS
+    │ ╭─────────────^
+162 │ │                     + FIRST_BLOCK_FLAG * first_block_flag_set.out // Need (not parent) && first block
+163 │ │                     + LAST_BLOCK_FLAG * last_block_flag_set.out
+164 │ │                     + ROOT_FLAG * use_root_flag // ROOT
+165 │ │                     + is_parent * PARENT_FLAG;
+    │ ╰─────────────────────────────────────────────^ Field element arithmetic here.
+    │  
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+    = To ignore this type of result, use `--allow CS0004`.
+
+warning[CS0018]: The output signal `out` defined by the template `NOT` is not constrained in `Blake3GetFlag`.
+    ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom:136:23
+    │
+136 │     component not_root = NOT(); not_root.in <== is_root;
+    │                          ^^^^^ The template `NOT` is instantiated here.
+    │
+    = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unused-output-signal.
+    = To ignore this type of result, use `--allow CS0018`.
+
+circomspect: Result written to `/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0003/semantic/analysis.sarif`.
+circomspect: 83 issues found.

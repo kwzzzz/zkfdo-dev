@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "name": "controlled-held-out-evaluation-v2",
+  "description": "Frozen Tangle SetMembership and Banyan CheckDepth vulnerable/fixed pairs selected before backend execution. Subtract and Reclaim causes are excluded.",
+  "targets": [
+    {
+      "label": "Tangle SetMembership vulnerable",
+      "project": "https://github.com/tangle-network/protocol-solidity",
+      "revision": "848d073bb17f0aaffc6d39f594cc59efedeaec89",
+      "project_root": "controlled-v2/tangle-set-membership/vulnerable/project",
+      "entrypoint": "controlled-v2/tangle-set-membership/vulnerable/project/circuit.circom",
+      "template_name": "SetMembership",
+      "concrete_parameters": [
+        "3"
+      ],
+      "prime": "bn128",
+      "compile_args": [],
+      "mode": "direct",
+      "input_assumptions": "element and set[0..2] are canonical BN128 field elements. Membership is equality in the field; no narrower integer range or caller-only precondition is imposed.",
+      "known_defects": [
+        {
+          "root_cause_id": "tangle-network/protocol-solidity/set-membership-zero-initialization",
+          "location": "circuits/set/membership.circom:17-26; product[0] is initialized to element instead of 1",
+          "source_url": "https://github.com/zksecurity/zkbugs/blob/main/reports/documents/veridise-tangle-network-protocol-solidity.pdf",
+          "reported": true,
+          "local_reproduction": "Exact source revision and SetMembership(3) direct wrapper compile in the frozen comparison environment; no v2 backend result is assigned before execution.",
+          "tcct_status": "not-run-controlled-v2",
+          "reachability": "Direct original component only; whole-project caller reachability is reported separately.",
+          "evidence": [
+            "contracts.controlled-v2.json",
+            "../.external/zkbugs/dataset/circom/tangle-network/protocol-solidity/veridise_incorrect_initialization_in_membership_circuits/zkbugs_config.json",
+            "../.external/zkbugs/dataset/circom/tangle-network/protocol-solidity/veridise_incorrect_initialization_in_membership_circuits/README.md"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Tangle SetMembership fixed comparator",
+      "project": "https://github.com/tangle-network/protocol-solidity",
+      "revision": "eeb4fc7a4883d513e3fe3adbe2c447133ccd39f2",
+      "project_root": "controlled-v2/tangle-set-membership/fixed/project",
+      "entrypoint": "controlled-v2/tangle-set-membership/fixed/project/circuit.circom",
+      "template_name": "SetMembership",
+      "concrete_parameters": [
+        "3"
+      ],
+      "prime": "bn128",
+      "compile_args": [],
+      "mode": "direct",
+      "input_assumptions": "element and set[0..2] are canonical BN128 field elements. Membership is equality in the field; no narrower integer range or caller-only precondition is imposed.",
+      "known_defects": []
+    },
+    {
+      "label": "Banyan Blake3 CheckDepth vulnerable",
+      "project": "https://github.com/banyancomputer/hot-proofs-blake3-circom",
+      "revision": "76b83107eb00c8f886bde82172eaa3cdd5d57f25",
+      "project_root": "controlled-v2/banyan-check-depth/vulnerable/project",
+      "entrypoint": "controlled-v2/banyan-check-depth/vulnerable/project/circuit.circom",
+      "template_name": "Blake3NovaTreePath_CheckDepth",
+      "concrete_parameters": [],
+      "prime": "bn128",
+      "compile_args": [
+        "-l",
+        "controlled-v2/banyan-check-depth/vulnerable/project"
+      ],
+      "mode": "direct",
+      "input_assumptions": "depth and leaf_depth are canonical BN128 field elements. The component itself is required to reject values outside unsigned 8-bit range before applying 8-bit comparators; no caller-only range assumption is added.",
+      "known_defects": [
+        {
+          "root_cause_id": "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range",
+          "location": "circuits/blake3_nova.circom:13-39; depth and leaf_depth reach 8-bit comparators without range constraints",
+          "source_url": "https://github.com/banyancomputer/hot-proofs-blake3-circom/issues/10",
+          "reported": true,
+          "local_reproduction": "Exact source revision and direct wrapper compile in the frozen comparison environment; no v2 backend result is assigned before execution.",
+          "tcct_status": "not-run-controlled-v2",
+          "reachability": "Direct original component only; whole-project caller reachability and impact are reported separately.",
+          "evidence": [
+            "contracts.controlled-v2.json",
+            "../.external/zkbugs/dataset/circom/banyancomputer/hot-proofs-blake3-circom/koukyosyumei_checkdepth_comparator_overflow/zkbugs_config.json",
+            "../.external/zkbugs/dataset/circom/banyancomputer/hot-proofs-blake3-circom/koukyosyumei_checkdepth_comparator_overflow/README.md"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Banyan Blake3 CheckDepth fixed comparator",
+      "project": "https://github.com/banyancomputer/hot-proofs-blake3-circom",
+      "revision": "e37eb56e29b304024055f3d0a1681e6f22132ecc",
+      "project_root": "controlled-v2/banyan-check-depth/fixed/project",
+      "entrypoint": "controlled-v2/banyan-check-depth/fixed/project/circuit.circom",
+      "template_name": "Blake3NovaTreePath_CheckDepth",
+      "concrete_parameters": [],
+      "prime": "bn128",
+      "compile_args": [
+        "-l",
+        "controlled-v2/banyan-check-depth/fixed/project"
+      ],
+      "mode": "direct",
+      "input_assumptions": "depth and leaf_depth are canonical BN128 field elements. This fixed comparator is expected to enforce unsigned 8-bit range internally before applying the comparators.",
+      "known_defects": []
+    }
+  ],
+  "exclusions": [
+    {
+      "label": "Subtract vulnerable/fixed pair",
+      "reason": "controlled-v1.1 outcomes were already observed, so Subtract is a development positive control and is excluded from the held-out metric."
+    },
+    {
+      "label": "Reclaim Add32Bits, XorWords, RotateLeft32Bits and variants",
+      "reason": "Their causes and candidates were used in dev3 development and validation work."
+    },
+    {
+      "label": "SIV ExtractStringFromPoint",
+      "reason": "The pinned fix source uses RShift1(5), while the zkbugs narrative says RShift1(8) and the project encoder permits first-byte values through 60; the fixed comparator contract is therefore ambiguous over the documented caller domain."
+    },
+    {
+      "label": "Aptos Base64DecodedLength",
+      "reason": "Pre-execution preparation rejected the vulnerable source syntax as incomplete in the frozen zkfDO parser, and the fixed source pragma 2.2.2 is rejected by the frozen zkFuzz frontend using Circom 2.2.1."
+    },
+    {
+      "label": "Telepathy ArrayXOR",
+      "reason": "Pre-execution preparation rejected component arrays in the fixed ByteArrayXOR source as unsupported by the frozen zkfDO parser."
+    },
+    {
+      "label": "zk-email FpMul and other local Circom records",
+      "reason": "Not selected after two independent causes met the minimum. No validity or safety judgment is made about unselected records."
+    }
+  ]
+}

@@ -1,0 +1,513 @@
+{
+  "target_id": "sha256:29e50cca13f485c7425282fe18c40ea26c1af10f08413999735873c8f4e85a6b",
+  "definition": {
+    "label": "Telepathy ByteArrayXOR fixed comparator",
+    "project": "https://github.com/succinctlabs/telepathy-circuits",
+    "revision": "b0c839cef30c3c25ef41d1ad3000081784766934",
+    "project_root": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed",
+    "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/circuit.circom",
+    "template_name": "ControlledArrayXOR",
+    "concrete_parameters": [],
+    "prime": "bn128",
+    "compile_args": [
+      "-l",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed"
+    ],
+    "mode": "direct",
+    "input_assumptions": "The wrapper constrains every a[i] and b[i] to an unsigned byte with Num2Bits(8), then connects ByteArrayXOR(4) without changing its source.",
+    "known_defects": []
+  },
+  "inspection": {
+    "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/circuit.circom",
+    "project_root": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed",
+    "root": {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/circuit.circom",
+      "template_name": "ControlledArrayXOR",
+      "concrete_parameters": []
+    },
+    "instances": [
+      {
+        "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/circuit.circom",
+        "template_name": "ControlledArrayXOR",
+        "concrete_parameters": []
+      },
+      {
+        "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/hash_to_field.circom",
+        "template_name": "ByteArrayXOR",
+        "concrete_parameters": [
+          "4"
+        ]
+      }
+    ],
+    "scopes": [
+      {
+        "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/circuit.circom",
+        "template_name": "ControlledArrayXOR",
+        "start_line": 12,
+        "end_line": 34
+      },
+      {
+        "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/hash_to_field.circom",
+        "template_name": "ByteArrayXOR",
+        "start_line": 223,
+        "end_line": 256
+      }
+    ],
+    "dependency_paths": [
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/dependencies/circomlib/circuits/aliascheck.circom",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/dependencies/circomlib/circuits/binsum.circom",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/dependencies/circomlib/circuits/bitify.circom",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/dependencies/circomlib/circuits/comparators.circom",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/dependencies/circomlib/circuits/compconstant.circom",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/dependencies/circomlib/circuits/gates.circom",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/circuit.circom",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/constants.circom",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/hash_to_field.circom",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/pairing/bigint.circom",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/pairing/bigint_func.circom",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/pairing/field_elements_func.circom",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/pairing/fp.circom",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/sha256/ch.circom",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/sha256/constants.circom",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/sha256/maj.circom",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/sha256/rotate.circom",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/sha256/sha256.circom",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/sha256/sha256compression.circom",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/sha256/sha256compression_function.circom",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/sha256/shift.circom",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/sha256/sigma.circom",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/sha256/sigmaplus.circom",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/sha256/t1.circom",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/sha256/t2.circom",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/sha256/xor3.circom",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/sha256.circom"
+    ],
+    "complete": false,
+    "unsupported": [
+      {
+        "source_path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/circuit.circom",
+        "line": 17,
+        "construct": "component aRange [ 4 ]",
+        "reason": "component arrays are unsupported by this MVP"
+      },
+      {
+        "source_path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/circuit.circom",
+        "line": 18,
+        "construct": "component bRange [ 4 ]",
+        "reason": "component arrays are unsupported by this MVP"
+      },
+      {
+        "source_path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/circuit.circom",
+        "line": 19,
+        "construct": "for",
+        "reason": "component instantiation inside control flow is unsupported by this MVP"
+      },
+      {
+        "source_path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/hash_to_field.circom",
+        "line": 228,
+        "construct": "component bitifiersA [ n ]",
+        "reason": "component arrays are unsupported by this MVP"
+      },
+      {
+        "source_path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/hash_to_field.circom",
+        "line": 229,
+        "construct": "component bitifiersB [ n ]",
+        "reason": "component arrays are unsupported by this MVP"
+      },
+      {
+        "source_path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/hash_to_field.circom",
+        "line": 230,
+        "construct": "for",
+        "reason": "component instantiation inside control flow is unsupported by this MVP"
+      },
+      {
+        "source_path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/hash_to_field.circom",
+        "line": 245,
+        "construct": "component byteifiers [ n ]",
+        "reason": "component arrays are unsupported by this MVP"
+      },
+      {
+        "source_path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/hash_to_field.circom",
+        "line": 246,
+        "construct": "for",
+        "reason": "component instantiation inside control flow is unsupported by this MVP"
+      }
+    ]
+  },
+  "run_entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/sources/project/circuit.circom",
+  "structure": {
+    "profile_kind": "structure_only_no_fuzz_search",
+    "complete": false,
+    "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/sources/project/circuit.circom",
+    "root_template": "ControlledArrayXOR",
+    "prime": "bn128",
+    "compile_args": [
+      "-l",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed"
+    ],
+    "size": null,
+    "size_source": null,
+    "r1cs_path": null,
+    "complexity": null,
+    "metric": "root_ast_if_plus_while",
+    "parameter_reflected": false,
+    "compile_success": false,
+    "ast_success": false,
+    "ast_requested": true,
+    "ast_stats": null,
+    "compile": {
+      "requested": true,
+      "purpose": "compile-r1cs",
+      "binary": "/Users/miiz/.cargo/bin/circom",
+      "args": [
+        "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/sources/project/circuit.circom",
+        "--r1cs",
+        "--prime",
+        "bn128",
+        "--output",
+        "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/structure/r1cs",
+        "-l",
+        "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed"
+      ],
+      "started_at": "2026-09-20T11:08:51.921855Z",
+      "finished_at": "2026-09-20T11:08:51.952308Z",
+      "elapsed_seconds": 0.030454459,
+      "timeout_seconds": 60,
+      "exit_code": 1,
+      "success": false,
+      "timed_out": false,
+      "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/structure/compile-r1cs.stdout.log",
+      "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/structure/compile-r1cs.stderr.log",
+      "error": null
+    },
+    "ast": {
+      "requested": true,
+      "purpose": "root-ast-only",
+      "binary": "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkFuzz/target/release/zkfuzz",
+      "args": [
+        "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/sources/project/circuit.circom",
+        "--show_stats_of_ast",
+        "--prime",
+        "bn128",
+        "-l",
+        "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed"
+      ],
+      "started_at": "2026-09-20T11:08:51.952358Z",
+      "finished_at": "2026-09-20T11:08:51.980843Z",
+      "elapsed_seconds": 0.028487458,
+      "timeout_seconds": 60,
+      "exit_code": 1,
+      "success": false,
+      "timed_out": false,
+      "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/structure/root-ast-only.stdout.log",
+      "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/structure/root-ast-only.stderr.log",
+      "error": null
+    },
+    "circom_version": {
+      "requested": true,
+      "purpose": "circom-version",
+      "binary": "/Users/miiz/.cargo/bin/circom",
+      "args": [
+        "--version"
+      ],
+      "started_at": "2026-09-20T11:08:51.864100Z",
+      "finished_at": "2026-09-20T11:08:51.891134Z",
+      "elapsed_seconds": 0.027035834,
+      "timeout_seconds": 60,
+      "exit_code": 0,
+      "success": true,
+      "timed_out": false,
+      "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/structure/circom-version.stdout.log",
+      "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/structure/circom-version.stderr.log",
+      "error": null
+    },
+    "zkfuzz_version": {
+      "requested": true,
+      "purpose": "zkfuzz-version",
+      "binary": "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkFuzz/target/release/zkfuzz",
+      "args": [
+        "--version"
+      ],
+      "started_at": "2026-09-20T11:08:51.891222Z",
+      "finished_at": "2026-09-20T11:08:51.921780Z",
+      "elapsed_seconds": 0.030559375,
+      "timeout_seconds": 60,
+      "exit_code": 0,
+      "success": true,
+      "timed_out": false,
+      "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/structure/zkfuzz-version.stdout.log",
+      "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/structure/zkfuzz-version.stderr.log",
+      "error": null
+    },
+    "limitations": [
+      "Complexity counts only IfThenElse and While nodes in the named root template definition, not reachable dependency templates.",
+      "AST control-flow nodes are not expanded for concrete parameters, loop iterations, or Circom constraint optimizations.",
+      "num_statements counts visited AST statement nodes, including blocks; it is not source lines or constraints.",
+      "R1CS constraint count is a separate concrete compiled size measure, not LEOPARD structural complexity.",
+      "zkFuzz --show_stats_of_ast exits after parse/type analysis; this invocation provides no fuzzing or defect-reproduction evidence."
+    ],
+    "errors": [
+      "compile-r1cs failed (exit Some(1), timed_out false): see captured output",
+      "root-ast-only failed (exit Some(1), timed_out false): see captured output"
+    ],
+    "profile_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/structure/structure-profile.json"
+  },
+  "semantic": null,
+  "ranking": {
+    "target_id": "sha256:29e50cca13f485c7425282fe18c40ea26c1af10f08413999735873c8f4e85a6b",
+    "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/circuit.circom",
+    "risk_score": null,
+    "warning_count": null,
+    "complexity": null,
+    "size": null,
+    "legacy_score": 10.91511025865936
+  },
+  "eligible": false,
+  "exclusion_reasons": [
+    "unsupported inspection: component aRange [ 4 ]: component arrays are unsupported by this MVP",
+    "unsupported inspection: component bRange [ 4 ]: component arrays are unsupported by this MVP",
+    "unsupported inspection: for: component instantiation inside control flow is unsupported by this MVP",
+    "unsupported inspection: component bitifiersA [ n ]: component arrays are unsupported by this MVP",
+    "unsupported inspection: component bitifiersB [ n ]: component arrays are unsupported by this MVP",
+    "unsupported inspection: for: component instantiation inside control flow is unsupported by this MVP",
+    "unsupported inspection: component byteifiers [ n ]: component arrays are unsupported by this MVP",
+    "unsupported inspection: for: component instantiation inside control flow is unsupported by this MVP",
+    "structure: compile-r1cs failed (exit Some(1), timed_out false): see captured output",
+    "structure: root-ast-only failed (exit Some(1), timed_out false): see captured output",
+    "compilation or compiled size is unavailable",
+    "required root AST complexity is unavailable",
+    "semantic attribution unavailable because reachable scopes are incomplete"
+  ],
+  "source_fingerprints": [
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/dependencies/circomlib/circuits/aliascheck.circom",
+      "sha256": "7df7542461a68c1564a55be8f01d75571c0e2555a08a078abeba43e1ea032eb4"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/dependencies/circomlib/circuits/binsum.circom",
+      "sha256": "8aa153baf5791d96d06dce837c1e19b9ecc3a7dc65054132d5dd189b60bfcfc2"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/dependencies/circomlib/circuits/bitify.circom",
+      "sha256": "688f121303a2dd0154ceeda8d2f53a9d2d26789d10a69a46acd534642725683e"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/dependencies/circomlib/circuits/comparators.circom",
+      "sha256": "fd0c7723ee56e1467df1861131157cbb108e156fe2d9ec64895c8e68de14db20"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/dependencies/circomlib/circuits/compconstant.circom",
+      "sha256": "94c5cc93b589a940acbfecdb98babc2efc253ad4298814399fb41109faa3b50d"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/dependencies/circomlib/circuits/gates.circom",
+      "sha256": "890e2514ddcbce77e0a5f6867749401fc182664a4b901d6d7bf6856197e0d87c"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/circuit.circom",
+      "sha256": "e2ab5cfca30acb07ebea55d8330fc5c3eef195c65fffa865d5740b4c6287a3ce"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/constants.circom",
+      "sha256": "8f4d8497685287de12ebfd14cd8f19c07b9d754b5496ef9b0651ae83b7375df2"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/hash_to_field.circom",
+      "sha256": "5edb2cdf74779ca5ec1fa763d3c2c8e6e4d8260a41b8ac77311e0f36ecfd9a87"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/pairing/bigint.circom",
+      "sha256": "015bee241d76f19821e73070171cc1220de6864a7c2a8556151cafb2c8128449"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/pairing/bigint_func.circom",
+      "sha256": "3443aac8cf003ec497ef61fd4f8bd75149f4f2ae69b6d75546d952951ef0e5cd"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/pairing/field_elements_func.circom",
+      "sha256": "c10778f4c26a7a48740d0c6670269c97fa2bd40614fde4786a0e91efedb40960"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/pairing/fp.circom",
+      "sha256": "9b2b7e519307c6255cf77b9e72d381976fdfc60623ecad7a522da36ea04675ed"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/sha256/ch.circom",
+      "sha256": "facb33f8ed5dfcd3590eaaf8921c37c27839564d61d565597de1412b78e42cf8"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/sha256/constants.circom",
+      "sha256": "90f910027d360162896b81a4a1654fae16b74d90d43521d172f72c6deb52104e"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/sha256/maj.circom",
+      "sha256": "64f2483ac7db29099bc5d241f5870dec0b5172599d40c56084565ebd589247ff"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/sha256/rotate.circom",
+      "sha256": "a20bc425cd4b516696c374da461b2f1c046b5782c18741ecea4a0a45e29ba7ab"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/sha256/sha256.circom",
+      "sha256": "6aa5f2907798187ab41d1e5d44439498d27523691b611736b3b68362759d1b1e"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/sha256/sha256compression.circom",
+      "sha256": "5539ccd6764e6f0e3f53f43426509e69355f920bdf0e030389d81e421071fece"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/sha256/sha256compression_function.circom",
+      "sha256": "1418439e9609ff086f6cce56341eb3add999c875bd48e2dc9f84a252781bc9e5"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/sha256/shift.circom",
+      "sha256": "874990de968719b50e7f0d6e713926f016c53f3f1ce33ee354b5b1984f2aa4de"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/sha256/sigma.circom",
+      "sha256": "0af88a750958ecabbb6e4c17b3d5d4f8efdd8841b98a1e5186ba1092a74d2024"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/sha256/sigmaplus.circom",
+      "sha256": "3a1f4353e77a44938e7058659155a05002343627b9df25e78df521d751609ef4"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/sha256/t1.circom",
+      "sha256": "160cb2384ce07389d620afa3a40a6253a968a2e592d7d35f68db4a343cc66953"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/sha256/t2.circom",
+      "sha256": "11db8744cfd5068a09c1c4178e49baa4ff8df565dc2289fcc17675e9dae29fa0"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/sha256/xor3.circom",
+      "sha256": "d2d65d9ef40a37c1b46e4fae0dd1e7f9084ab917c870153dbb6303c6e4e378f1"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/telepathy-array-xor/fixed/project/source/sha256.circom",
+      "sha256": "8e4f308f381b4f6702b1bb464c3b52a67d376e283ab9826fb1e85a1de8a6e64d"
+    }
+  ],
+  "snapshot_fingerprints": [
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/sources/dependencies/circomlib/circuits/aliascheck.circom",
+      "sha256": "7df7542461a68c1564a55be8f01d75571c0e2555a08a078abeba43e1ea032eb4"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/sources/dependencies/circomlib/circuits/binsum.circom",
+      "sha256": "8aa153baf5791d96d06dce837c1e19b9ecc3a7dc65054132d5dd189b60bfcfc2"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/sources/dependencies/circomlib/circuits/bitify.circom",
+      "sha256": "688f121303a2dd0154ceeda8d2f53a9d2d26789d10a69a46acd534642725683e"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/sources/dependencies/circomlib/circuits/comparators.circom",
+      "sha256": "fd0c7723ee56e1467df1861131157cbb108e156fe2d9ec64895c8e68de14db20"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/sources/dependencies/circomlib/circuits/compconstant.circom",
+      "sha256": "94c5cc93b589a940acbfecdb98babc2efc253ad4298814399fb41109faa3b50d"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/sources/dependencies/circomlib/circuits/gates.circom",
+      "sha256": "890e2514ddcbce77e0a5f6867749401fc182664a4b901d6d7bf6856197e0d87c"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/sources/project/circuit.circom",
+      "sha256": "e2ab5cfca30acb07ebea55d8330fc5c3eef195c65fffa865d5740b4c6287a3ce"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/sources/project/source/constants.circom",
+      "sha256": "8f4d8497685287de12ebfd14cd8f19c07b9d754b5496ef9b0651ae83b7375df2"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/sources/project/source/hash_to_field.circom",
+      "sha256": "5edb2cdf74779ca5ec1fa763d3c2c8e6e4d8260a41b8ac77311e0f36ecfd9a87"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/sources/project/source/pairing/bigint.circom",
+      "sha256": "015bee241d76f19821e73070171cc1220de6864a7c2a8556151cafb2c8128449"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/sources/project/source/pairing/bigint_func.circom",
+      "sha256": "3443aac8cf003ec497ef61fd4f8bd75149f4f2ae69b6d75546d952951ef0e5cd"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/sources/project/source/pairing/field_elements_func.circom",
+      "sha256": "c10778f4c26a7a48740d0c6670269c97fa2bd40614fde4786a0e91efedb40960"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/sources/project/source/pairing/fp.circom",
+      "sha256": "9b2b7e519307c6255cf77b9e72d381976fdfc60623ecad7a522da36ea04675ed"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/sources/project/source/sha256/ch.circom",
+      "sha256": "facb33f8ed5dfcd3590eaaf8921c37c27839564d61d565597de1412b78e42cf8"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/sources/project/source/sha256/constants.circom",
+      "sha256": "90f910027d360162896b81a4a1654fae16b74d90d43521d172f72c6deb52104e"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/sources/project/source/sha256/maj.circom",
+      "sha256": "64f2483ac7db29099bc5d241f5870dec0b5172599d40c56084565ebd589247ff"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/sources/project/source/sha256/rotate.circom",
+      "sha256": "a20bc425cd4b516696c374da461b2f1c046b5782c18741ecea4a0a45e29ba7ab"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/sources/project/source/sha256/sha256.circom",
+      "sha256": "6aa5f2907798187ab41d1e5d44439498d27523691b611736b3b68362759d1b1e"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/sources/project/source/sha256/sha256compression.circom",
+      "sha256": "5539ccd6764e6f0e3f53f43426509e69355f920bdf0e030389d81e421071fece"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/sources/project/source/sha256/sha256compression_function.circom",
+      "sha256": "1418439e9609ff086f6cce56341eb3add999c875bd48e2dc9f84a252781bc9e5"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/sources/project/source/sha256/shift.circom",
+      "sha256": "874990de968719b50e7f0d6e713926f016c53f3f1ce33ee354b5b1984f2aa4de"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/sources/project/source/sha256/sigma.circom",
+      "sha256": "0af88a750958ecabbb6e4c17b3d5d4f8efdd8841b98a1e5186ba1092a74d2024"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/sources/project/source/sha256/sigmaplus.circom",
+      "sha256": "3a1f4353e77a44938e7058659155a05002343627b9df25e78df521d751609ef4"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/sources/project/source/sha256/t1.circom",
+      "sha256": "160cb2384ce07389d620afa3a40a6253a968a2e592d7d35f68db4a343cc66953"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/sources/project/source/sha256/t2.circom",
+      "sha256": "11db8744cfd5068a09c1c4178e49baa4ff8df565dc2289fcc17675e9dae29fa0"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/sources/project/source/sha256/xor3.circom",
+      "sha256": "d2d65d9ef40a37c1b46e4fae0dd1e7f9084ab917c870153dbb6303c6e4e378f1"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0001/sources/project/source/sha256.circom",
+      "sha256": "8e4f308f381b4f6702b1bb464c3b52a67d376e283ab9826fb1e85a1de8a6e64d"
+    }
+  ],
+  "timings": {
+    "inspection_seconds": 0.827105333,
+    "snapshot_seconds": 0.011248791,
+    "structure_seconds": 0.117363709,
+    "semantic_seconds": 1.67e-7,
+    "legacy_seconds": 0.019493542
+  },
+  "elapsed_seconds": 0.988626,
+  "limitations": [
+    "Semantic locations refer to the fingerprinted original sources; compiler/AST execution and future fuzzing use the copied entrypoint. Absolute includes can retain read-only original dependencies.",
+    "Legacy baseline maps the existing lexical risk/cost formula over the entire root template source file, including unrelated templates in that file; it is not semantic risk."
+  ]
+}

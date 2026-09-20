@@ -1,0 +1,2586 @@
+{
+  "runs": [
+    {
+      "results": [
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom"
+                },
+                "region": {
+                  "endColumn": 25,
+                  "endLine": 112,
+                  "startColumn": 18,
+                  "startLine": 112
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "`(in[1] + 1)` needs to be constrained to ensure that it is <= p/2."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom"
+                },
+                "region": {
+                  "endColumn": 25,
+                  "endLine": 112,
+                  "startColumn": 18,
+                  "startLine": 112
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Inputs to `LessThan` need to be constrained to ensure that they are non-negative"
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0014"
+          },
+          "ruleId": "CS0014"
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "`in[0]` needs to be constrained to ensure that it is <= p/2."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom"
+                },
+                "region": {
+                  "endColumn": 23,
+                  "endLine": 111,
+                  "startColumn": 18,
+                  "startLine": 111
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Inputs to `LessThan` need to be constrained to ensure that they are non-negative"
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0014"
+          },
+          "ruleId": "CS0014"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom"
+                },
+                "region": {
+                  "endColumn": 26,
+                  "endLine": 62,
+                  "startColumn": 9,
+                  "startLine": 62
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom"
+                },
+                "region": {
+                  "endColumn": 21,
+                  "endLine": 63,
+                  "startColumn": 14,
+                  "startLine": 63
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom"
+                },
+                "region": {
+                  "endColumn": 29,
+                  "endLine": 61,
+                  "startColumn": 26,
+                  "startLine": 61
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element comparison here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom"
+                },
+                "region": {
+                  "endColumn": 24,
+                  "endLine": 61,
+                  "startColumn": 21,
+                  "startLine": 61
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Comparisons with field elements greater than `p/2` may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0003"
+          },
+          "ruleId": "CS0003"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom"
+                },
+                "region": {
+                  "endColumn": 29,
+                  "endLine": 76,
+                  "startColumn": 26,
+                  "startLine": 76
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element comparison here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom"
+                },
+                "region": {
+                  "endColumn": 24,
+                  "endLine": 76,
+                  "startColumn": 19,
+                  "startLine": 76
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Comparisons with field elements greater than `p/2` may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0003"
+          },
+          "ruleId": "CS0003"
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Circomlib template `Bits2Num` instantiated here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom"
+                },
+                "region": {
+                  "endColumn": 34,
+                  "endLine": 74,
+                  "startColumn": 21,
+                  "startLine": 74
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Using `Bits2Num` to convert arrays to field elements may lead to aliasing issues."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0010"
+          },
+          "ruleId": "CS0010"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom"
+                },
+                "region": {
+                  "endColumn": 25,
+                  "endLine": 138,
+                  "startColumn": 18,
+                  "startLine": 138
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "`in[1]` needs to be constrained to ensure that it is <= p/2."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom"
+                },
+                "region": {
+                  "endColumn": 23,
+                  "endLine": 137,
+                  "startColumn": 18,
+                  "startLine": 137
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Inputs to `LessThan` need to be constrained to ensure that they are non-negative"
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0014"
+          },
+          "ruleId": "CS0014"
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "`(in[0] + 1)` needs to be constrained to ensure that it is <= p/2."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom"
+                },
+                "region": {
+                  "endColumn": 25,
+                  "endLine": 138,
+                  "startColumn": 18,
+                  "startLine": 138
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Inputs to `LessThan` need to be constrained to ensure that they are non-negative"
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0014"
+          },
+          "ruleId": "CS0014"
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "The assigned signal `out[i]` is not constrained here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom"
+                },
+                "region": {
+                  "endColumn": 34,
+                  "endLine": 96,
+                  "startColumn": 9,
+                  "startLine": 96
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Using the signal assignment operator `<--` does not constrain the assigned signal."
+          },
+          "relatedLocations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "The signal `out[i]` is constrained here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom"
+                },
+                "region": {
+                  "endColumn": 37,
+                  "endLine": 97,
+                  "startColumn": 9,
+                  "startLine": 97
+                }
+              }
+            }
+          ],
+          "rule": {
+            "id": "CS0005"
+          },
+          "ruleId": "CS0005"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom"
+                },
+                "region": {
+                  "endColumn": 37,
+                  "endLine": 93,
+                  "startColumn": 28,
+                  "startLine": 93
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom"
+                },
+                "region": {
+                  "endColumn": 29,
+                  "endLine": 96,
+                  "startColumn": 21,
+                  "startLine": 96
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom"
+                },
+                "region": {
+                  "endColumn": 30,
+                  "endLine": 97,
+                  "startColumn": 9,
+                  "startLine": 97
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom"
+                },
+                "region": {
+                  "endColumn": 29,
+                  "endLine": 98,
+                  "startColumn": 9,
+                  "startLine": 98
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom"
+                },
+                "region": {
+                  "endColumn": 29,
+                  "endLine": 95,
+                  "startColumn": 26,
+                  "startLine": 95
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom"
+                },
+                "region": {
+                  "endColumn": 28,
+                  "endLine": 105,
+                  "startColumn": 5,
+                  "startLine": 105
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom"
+                },
+                "region": {
+                  "endColumn": 42,
+                  "endLine": 105,
+                  "startColumn": 33,
+                  "startLine": 105
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element comparison here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom"
+                },
+                "region": {
+                  "endColumn": 24,
+                  "endLine": 95,
+                  "startColumn": 21,
+                  "startLine": 95
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Comparisons with field elements greater than `p/2` may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0003"
+          },
+          "ruleId": "CS0003"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom"
+                },
+                "region": {
+                  "endColumn": 18,
+                  "endLine": 54,
+                  "startColumn": 5,
+                  "startLine": 54
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom"
+                },
+                "region": {
+                  "endColumn": 26,
+                  "endLine": 56,
+                  "startColumn": 5,
+                  "startLine": 56
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom"
+                },
+                "region": {
+                  "endColumn": 46,
+                  "endLine": 145,
+                  "startColumn": 34,
+                  "startLine": 145
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom"
+                },
+                "region": {
+                  "endColumn": 62,
+                  "endLine": 148,
+                  "startColumn": 20,
+                  "startLine": 148
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom"
+                },
+                "region": {
+                  "endColumn": 58,
+                  "endLine": 158,
+                  "startColumn": 27,
+                  "startLine": 158
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom"
+                },
+                "region": {
+                  "endColumn": 31,
+                  "endLine": 165,
+                  "startColumn": 10,
+                  "startLine": 161
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "The template `NOT` is instantiated here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom"
+                },
+                "region": {
+                  "endColumn": 28,
+                  "endLine": 136,
+                  "startColumn": 23,
+                  "startLine": 136
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "The output signal `out` defined by the template `NOT` is not constrained in `Blake3GetFlag`."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0018"
+          },
+          "ruleId": "CS0018"
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "`in[1]` needs to be constrained to ensure that it is <= p/2."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom"
+                },
+                "region": {
+                  "endColumn": 23,
+                  "endLine": 124,
+                  "startColumn": 18,
+                  "startLine": 124
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Inputs to `LessThan` need to be constrained to ensure that they are non-negative"
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0014"
+          },
+          "ruleId": "CS0014"
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "`in[0]` needs to be constrained to ensure that it is <= p/2."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom"
+                },
+                "region": {
+                  "endColumn": 23,
+                  "endLine": 125,
+                  "startColumn": 18,
+                  "startLine": 125
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Inputs to `LessThan` need to be constrained to ensure that they are non-negative"
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0014"
+          },
+          "ruleId": "CS0014"
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "The assigned signal `out[i]` is not constrained here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom"
+                },
+                "region": {
+                  "endColumn": 33,
+                  "endLine": 32,
+                  "startColumn": 9,
+                  "startLine": 32
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Using the signal assignment operator `<--` does not constrain the assigned signal."
+          },
+          "relatedLocations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "The signal `out[i]` is constrained here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom"
+                },
+                "region": {
+                  "endColumn": 37,
+                  "endLine": 33,
+                  "startColumn": 9,
+                  "startLine": 33
+                }
+              }
+            }
+          ],
+          "rule": {
+            "id": "CS0005"
+          },
+          "ruleId": "CS0005"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom"
+                },
+                "region": {
+                  "endColumn": 28,
+                  "endLine": 32,
+                  "startColumn": 21,
+                  "startLine": 32
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom"
+                },
+                "region": {
+                  "endColumn": 30,
+                  "endLine": 33,
+                  "startColumn": 9,
+                  "startLine": 33
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom"
+                },
+                "region": {
+                  "endColumn": 27,
+                  "endLine": 34,
+                  "startColumn": 9,
+                  "startLine": 34
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom"
+                },
+                "region": {
+                  "endColumn": 19,
+                  "endLine": 35,
+                  "startColumn": 14,
+                  "startLine": 35
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom"
+                },
+                "region": {
+                  "endColumn": 29,
+                  "endLine": 31,
+                  "startColumn": 26,
+                  "startLine": 31
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element comparison here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom"
+                },
+                "region": {
+                  "endColumn": 24,
+                  "endLine": 31,
+                  "startColumn": 21,
+                  "startLine": 31
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Comparisons with field elements greater than `p/2` may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0003"
+          },
+          "ruleId": "CS0003"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom"
+                },
+                "region": {
+                  "endColumn": 78,
+                  "endLine": 65,
+                  "startColumn": 63,
+                  "startLine": 65
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom"
+                },
+                "region": {
+                  "endColumn": 51,
+                  "endLine": 66,
+                  "startColumn": 22,
+                  "startLine": 66
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom"
+                },
+                "region": {
+                  "endColumn": 83,
+                  "endLine": 70,
+                  "startColumn": 64,
+                  "startLine": 70
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom"
+                },
+                "region": {
+                  "endColumn": 74,
+                  "endLine": 71,
+                  "startColumn": 23,
+                  "startLine": 71
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom"
+                },
+                "region": {
+                  "endColumn": 29,
+                  "endLine": 68,
+                  "startColumn": 26,
+                  "startLine": 68
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom"
+                },
+                "region": {
+                  "endColumn": 78,
+                  "endLine": 81,
+                  "startColumn": 10,
+                  "startLine": 81
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom"
+                },
+                "region": {
+                  "endColumn": 17,
+                  "endLine": 83,
+                  "startColumn": 2,
+                  "startLine": 83
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element comparison here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom"
+                },
+                "region": {
+                  "endColumn": 24,
+                  "endLine": 68,
+                  "startColumn": 18,
+                  "startLine": 68
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Comparisons with field elements greater than `p/2` may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0003"
+          },
+          "ruleId": "CS0003"
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "The assigned signal `inv` is not constrained here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom"
+                },
+                "region": {
+                  "endColumn": 29,
+                  "endLine": 30,
+                  "startColumn": 5,
+                  "startLine": 30
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Using the signal assignment operator `<--` does not constrain the assigned signal."
+          },
+          "relatedLocations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "The signal `inv` is constrained here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom"
+                },
+                "region": {
+                  "endColumn": 23,
+                  "endLine": 32,
+                  "startColumn": 5,
+                  "startLine": 32
+                }
+              }
+            }
+          ],
+          "rule": {
+            "id": "CS0005"
+          },
+          "ruleId": "CS0005"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom"
+                },
+                "region": {
+                  "endColumn": 25,
+                  "endLine": 30,
+                  "startColumn": 21,
+                  "startLine": 30
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom"
+                },
+                "region": {
+                  "endColumn": 23,
+                  "endLine": 32,
+                  "startColumn": 13,
+                  "startLine": 32
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom"
+                },
+                "region": {
+                  "endColumn": 11,
+                  "endLine": 33,
+                  "startColumn": 5,
+                  "startLine": 33
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom"
+                },
+                "region": {
+                  "endColumn": 18,
+                  "endLine": 43,
+                  "startColumn": 5,
+                  "startLine": 43
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom"
+                },
+                "region": {
+                  "endColumn": 39,
+                  "endLine": 33,
+                  "startColumn": 25,
+                  "startLine": 33
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "`(leaf_depth - 1)` needs to be constrained to ensure that it is <= p/2."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom"
+                },
+                "region": {
+                  "endColumn": 39,
+                  "endLine": 33,
+                  "startColumn": 25,
+                  "startLine": 33
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Inputs to `LessThan` need to be constrained to ensure that they are non-negative"
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0014"
+          },
+          "ruleId": "CS0014"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom"
+                },
+                "region": {
+                  "endColumn": 33,
+                  "endLine": 94,
+                  "startColumn": 30,
+                  "startLine": 94
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom"
+                },
+                "region": {
+                  "endColumn": 37,
+                  "endLine": 96,
+                  "startColumn": 16,
+                  "startLine": 96
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom"
+                },
+                "region": {
+                  "endColumn": 25,
+                  "endLine": 98,
+                  "startColumn": 13,
+                  "startLine": 98
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element comparison here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom"
+                },
+                "region": {
+                  "endColumn": 20,
+                  "endLine": 90,
+                  "startColumn": 12,
+                  "startLine": 90
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Comparisons with field elements greater than `p/2` may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0003"
+          },
+          "ruleId": "CS0003"
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Circomlib template `Num2Bits` instantiated here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom"
+                },
+                "region": {
+                  "endColumn": 34,
+                  "endLine": 94,
+                  "startColumn": 21,
+                  "startLine": 94
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Using `Num2Bits` to convert field elements to bits may lead to aliasing issues."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0010"
+          },
+          "ruleId": "CS0010"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom"
+                },
+                "region": {
+                  "endColumn": 46,
+                  "endLine": 110,
+                  "startColumn": 21,
+                  "startLine": 110
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom"
+                },
+                "region": {
+                  "endColumn": 68,
+                  "endLine": 112,
+                  "startColumn": 23,
+                  "startLine": 112
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom"
+                },
+                "region": {
+                  "endColumn": 56,
+                  "endLine": 114,
+                  "startColumn": 21,
+                  "startLine": 114
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom"
+                },
+                "region": {
+                  "endColumn": 66,
+                  "endLine": 115,
+                  "startColumn": 23,
+                  "startLine": 115
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom"
+                },
+                "region": {
+                  "endColumn": 47,
+                  "endLine": 117,
+                  "startColumn": 21,
+                  "startLine": 117
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom"
+                },
+                "region": {
+                  "endColumn": 54,
+                  "endLine": 118,
+                  "startColumn": 16,
+                  "startLine": 118
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom"
+                },
+                "region": {
+                  "endColumn": 29,
+                  "endLine": 108,
+                  "startColumn": 26,
+                  "startLine": 108
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element comparison here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom"
+                },
+                "region": {
+                  "endColumn": 24,
+                  "endLine": 108,
+                  "startColumn": 18,
+                  "startLine": 108
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Comparisons with field elements greater than `p/2` may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0003"
+          },
+          "ruleId": "CS0003"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element comparison here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom"
+                },
+                "region": {
+                  "endColumn": 12,
+                  "endLine": 109,
+                  "startColumn": 7,
+                  "startLine": 109
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Comparisons with field elements greater than `p/2` may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0003"
+          },
+          "ruleId": "CS0003"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom"
+                },
+                "region": {
+                  "endColumn": 66,
+                  "endLine": 227,
+                  "startColumn": 24,
+                  "startLine": 227
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom"
+                },
+                "region": {
+                  "endColumn": 49,
+                  "endLine": 231,
+                  "startColumn": 16,
+                  "startLine": 231
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom"
+                },
+                "region": {
+                  "endColumn": 69,
+                  "endLine": 232,
+                  "startColumn": 24,
+                  "startLine": 232
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom"
+                },
+                "region": {
+                  "endColumn": 28,
+                  "endLine": 230,
+                  "startColumn": 25,
+                  "startLine": 230
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom"
+                },
+                "region": {
+                  "endColumn": 73,
+                  "endLine": 244,
+                  "startColumn": 29,
+                  "startLine": 244
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom"
+                },
+                "region": {
+                  "endColumn": 72,
+                  "endLine": 245,
+                  "startColumn": 29,
+                  "startLine": 245
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom"
+                },
+                "region": {
+                  "endColumn": 28,
+                  "endLine": 248,
+                  "startColumn": 25,
+                  "startLine": 248
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom"
+                },
+                "region": {
+                  "endColumn": 63,
+                  "endLine": 251,
+                  "startColumn": 22,
+                  "startLine": 251
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom"
+                },
+                "region": {
+                  "endColumn": 72,
+                  "endLine": 258,
+                  "startColumn": 24,
+                  "startLine": 258
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom"
+                },
+                "region": {
+                  "endColumn": 31,
+                  "endLine": 259,
+                  "startColumn": 2,
+                  "startLine": 259
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom"
+                },
+                "region": {
+                  "endColumn": 38,
+                  "endLine": 262,
+                  "startColumn": 16,
+                  "startLine": 262
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element comparison here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom"
+                },
+                "region": {
+                  "endColumn": 23,
+                  "endLine": 230,
+                  "startColumn": 18,
+                  "startLine": 230
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Comparisons with field elements greater than `p/2` may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0003"
+          },
+          "ruleId": "CS0003"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element comparison here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom"
+                },
+                "region": {
+                  "endColumn": 23,
+                  "endLine": 248,
+                  "startColumn": 18,
+                  "startLine": 248
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Comparisons with field elements greater than `p/2` may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0003"
+          },
+          "ruleId": "CS0003"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element arithmetic here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom"
+                },
+                "region": {
+                  "endColumn": 29,
+                  "endLine": 49,
+                  "startColumn": 26,
+                  "startLine": 49
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Field element arithmetic could overflow, which may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0004"
+          },
+          "ruleId": "CS0004"
+        },
+        {
+          "level": "note",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Field element comparison here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom"
+                },
+                "region": {
+                  "endColumn": 24,
+                  "endLine": 49,
+                  "startColumn": 19,
+                  "startLine": 49
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Comparisons with field elements greater than `p/2` may produce unexpected results."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0003"
+          },
+          "ruleId": "CS0003"
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "id": 0,
+              "message": {
+                "text": "Circomlib template `Num2Bits` instantiated here."
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom"
+                },
+                "region": {
+                  "endColumn": 34,
+                  "endLine": 46,
+                  "startColumn": 21,
+                  "startLine": 46
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Using `Num2Bits` to convert field elements to bits may lead to aliasing issues."
+          },
+          "relatedLocations": [],
+          "rule": {
+            "id": "CS0010"
+          },
+          "ruleId": "CS0010"
+        }
+      ],
+      "tool": {
+        "driver": {
+          "downloadUri": "https://github.com/trailofbits/circomspect",
+          "name": "Circomspect",
+          "organization": "Trail of Bits",
+          "rules": [
+            {
+              "id": "CS0003",
+              "name": "field-element-comparison"
+            },
+            {
+              "id": "CS0004",
+              "name": "field-element-arithmetic"
+            },
+            {
+              "id": "CS0014",
+              "name": "unconstrained-less-than"
+            },
+            {
+              "id": "CS0005",
+              "name": "signal-assignment-statement"
+            },
+            {
+              "id": "CS0018",
+              "name": "unused-output-signal"
+            },
+            {
+              "id": "CS0010",
+              "name": "non-strict-binary-conversion"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "version": "2.1.0"
+}

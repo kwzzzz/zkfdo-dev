@@ -1,0 +1,10 @@
+[32mtemplate instances[0m: 6
+non-linear constraints: 20
+linear constraints: 9
+public inputs: 0
+private inputs: 2
+public outputs: 2
+wires: 29
+labels: 40
+[32mWritten successfully:[0m /Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/final-preparation/prepare-27be69b9-7678-4c7a-b40e-6e99e8f1751c/targets/0002/structure/r1cs/circuit.r1cs
+[32mEverything went okay[0m

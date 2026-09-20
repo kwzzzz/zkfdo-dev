@@ -1,0 +1,112 @@
+{
+  "profile_kind": "structure_only_no_fuzz_search",
+  "complete": true,
+  "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0000/sources/circuit.circom",
+  "root_template": "SetMembership",
+  "prime": "bn128",
+  "compile_args": [],
+  "size": 6,
+  "size_source": "Circom R1CS compiler summary: non-linear constraints + linear constraints under recorded compile settings",
+  "r1cs_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0000/structure/r1cs/circuit.r1cs",
+  "complexity": 1,
+  "metric": "root_ast_if_plus_while",
+  "parameter_reflected": false,
+  "compile_success": true,
+  "ast_success": true,
+  "ast_requested": true,
+  "ast_stats": {
+    "template_name": "SetMembership",
+    "num_statements": 23,
+    "num_if_then_else": 0,
+    "num_while": 1
+  },
+  "compile": {
+    "requested": true,
+    "purpose": "compile-r1cs",
+    "binary": "/Users/miiz/.cargo/bin/circom",
+    "args": [
+      "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0000/sources/circuit.circom",
+      "--r1cs",
+      "--prime",
+      "bn128",
+      "--output",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0000/structure/r1cs"
+    ],
+    "started_at": "2026-09-20T11:13:34.527862Z",
+    "finished_at": "2026-09-20T11:13:34.558193Z",
+    "elapsed_seconds": 0.030332417,
+    "timeout_seconds": 60,
+    "exit_code": 0,
+    "success": true,
+    "timed_out": false,
+    "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0000/structure/compile-r1cs.stdout.log",
+    "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0000/structure/compile-r1cs.stderr.log",
+    "error": null
+  },
+  "ast": {
+    "requested": true,
+    "purpose": "root-ast-only",
+    "binary": "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkFuzz/target/release/zkfuzz",
+    "args": [
+      "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0000/sources/circuit.circom",
+      "--show_stats_of_ast",
+      "--prime",
+      "bn128"
+    ],
+    "started_at": "2026-09-20T11:13:34.558238Z",
+    "finished_at": "2026-09-20T11:13:34.588615Z",
+    "elapsed_seconds": 0.030381458,
+    "timeout_seconds": 60,
+    "exit_code": 0,
+    "success": true,
+    "timed_out": false,
+    "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0000/structure/root-ast-only.stdout.log",
+    "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0000/structure/root-ast-only.stderr.log",
+    "error": null
+  },
+  "circom_version": {
+    "requested": true,
+    "purpose": "circom-version",
+    "binary": "/Users/miiz/.cargo/bin/circom",
+    "args": [
+      "--version"
+    ],
+    "started_at": "2026-09-20T11:13:34.466886Z",
+    "finished_at": "2026-09-20T11:13:34.497406Z",
+    "elapsed_seconds": 0.030522583,
+    "timeout_seconds": 60,
+    "exit_code": 0,
+    "success": true,
+    "timed_out": false,
+    "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0000/structure/circom-version.stdout.log",
+    "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0000/structure/circom-version.stderr.log",
+    "error": null
+  },
+  "zkfuzz_version": {
+    "requested": true,
+    "purpose": "zkfuzz-version",
+    "binary": "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkFuzz/target/release/zkfuzz",
+    "args": [
+      "--version"
+    ],
+    "started_at": "2026-09-20T11:13:34.497465Z",
+    "finished_at": "2026-09-20T11:13:34.527810Z",
+    "elapsed_seconds": 0.030346458,
+    "timeout_seconds": 60,
+    "exit_code": 0,
+    "success": true,
+    "timed_out": false,
+    "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0000/structure/zkfuzz-version.stdout.log",
+    "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0000/structure/zkfuzz-version.stderr.log",
+    "error": null
+  },
+  "limitations": [
+    "Complexity counts only IfThenElse and While nodes in the named root template definition, not reachable dependency templates.",
+    "AST control-flow nodes are not expanded for concrete parameters, loop iterations, or Circom constraint optimizations.",
+    "num_statements counts visited AST statement nodes, including blocks; it is not source lines or constraints.",
+    "R1CS constraint count is a separate concrete compiled size measure, not LEOPARD structural complexity.",
+    "zkFuzz --show_stats_of_ast exits after parse/type analysis; this invocation provides no fuzzing or defect-reproduction evidence."
+  ],
+  "errors": [],
+  "profile_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0000/structure/structure-profile.json"
+}
