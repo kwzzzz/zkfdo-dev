@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "set_id": "controlled-v3-development",
+  "recorded_before_backend_execution": true,
+  "backend_attempts_at_freeze": 0,
+  "classification": "development compatibility pilot, not held-out evaluation",
+  "source_checkpoint": {
+    "path": "runs/controlled-v3-preflight/checkpoints/pre-freeze-2026-09-23/checkpoint-manifest.json",
+    "sha256": "54f4ab3969b4cd009edd5789efc3373a6402e5c1f8cb7b0875055339121eb5a1",
+    "git_visibility": "ignored local evidence"
+  },
+  "initial_compile_survey": {
+    "path": "runs/controlled-v3-preflight/compilation-2026-09-23/compile-index.json",
+    "sha256": "afef1dbf68bcbc92c98451b480fbfa7160e5226cefbedc31a122d6ac21929e42",
+    "variant_count": 10,
+    "compile_success_count": 10,
+    "git_visibility": "ignored local evidence"
+  },
+  "manifest": {
+    "path": "datasets/manifest.controlled-v3-development.json",
+    "sha256": "4c52bc101a2b3d3dc7a193c4dded8f15778639e4294946b0adb5f222fa73304d"
+  },
+  "contracts": {
+    "path": "datasets/contracts.controlled-v3-development.json",
+    "sha256": "5bfd409ab5d748a82c7dc0448a1c776a4d85107294e2988f752769d0026357ea"
+  },
+  "protocol": {
+    "path": "docs/controlled_v3_development_protocol.md",
+    "sha256": "2e465a6b3c47be32ab2cd401ba01e3d2a0c928abd4d99f2ae25bad794dd48093"
+  },
+  "prepared": {
+    "path": "reports/controlled-v3-preflight-2026-09-23/evidence/prepared.json",
+    "sha256": "2669bd3cf1616b03c52b4c986b6083755f2797d08bda59915e1b4d3e2d4ac443",
+    "eligible_targets": 4,
+    "excluded_targets": 0
+  },
+  "plan": {
+    "path": "reports/controlled-v3-preflight-2026-09-23/evidence/plan.json",
+    "sha256": "cf4e11f82b5dd2fc5fbc608cbe8b9c9b758c4d4ee13103d79c8230193a8e781e",
+    "plan_id": "117a6076-a970-4b72-94ec-46e319296445",
+    "strategy": "risk-only",
+    "ordered_target_ids": [
+      "sha256:6f2c43c5a4a81b1a77099f29be2a769c06075f817315f3ee0e8f12c12e3d8352",
+      "sha256:7aa9cb58574b90108bca0ca60b88ea35e81320f887aa5bac39503980ce2c2d61",
+      "sha256:1c00a72631bc6e31451c6fca4a5b21827784504727eb1648e3dd90376e530be6",
+      "sha256:593ebf069393e830a57a6cf4f611cee14562ae6b351e218495ea86b38530fd21"
+    ]
+  },
+  "targets": [
+    {
+      "label": "circomlib Decoder vulnerable",
+      "target_id": "sha256:593ebf069393e830a57a6cf4f611cee14562ae6b351e218495ea86b38530fd21",
+      "constraint_count": 6,
+      "risk_score": 0,
+      "warning_count": 0
+    },
+    {
+      "label": "circomlib Decoder fixed comparator",
+      "target_id": "sha256:1c00a72631bc6e31451c6fca4a5b21827784504727eb1648e3dd90376e530be6",
+      "constraint_count": 12,
+      "risk_score": 0,
+      "warning_count": 0
+    },
+    {
+      "label": "UniRep BigLessThan vulnerable",
+      "target_id": "sha256:7aa9cb58574b90108bca0ca60b88ea35e81320f887aa5bac39503980ce2c2d61",
+      "constraint_count": 780,
+      "risk_score": 1,
+      "warning_count": 4
+    },
+    {
+      "label": "UniRep BigLessThan fixed comparator",
+      "target_id": "sha256:6f2c43c5a4a81b1a77099f29be2a769c06075f817315f3ee0e8f12c12e3d8352",
+      "constraint_count": 1306,
+      "risk_score": 1,
+      "warning_count": 4
+    }
+  ],
+  "confirmed_original_component_defects": null,
+  "first_valid_completion_upper_bound_seconds": null
+}

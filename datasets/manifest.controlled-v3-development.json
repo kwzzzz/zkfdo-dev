@@ -1,0 +1,120 @@
+{
+  "schema_version": 2,
+  "name": "controlled-v3-development",
+  "description": "Development compatibility corpus for target-inspection and backend preflight. These cases were inspected while extending parser support and are not a held-out performance set.",
+  "targets": [
+    {
+      "label": "circomlib Decoder vulnerable",
+      "project": "https://github.com/iden3/circomlib",
+      "revision": "cff5ab6288b55ef23602221694a6a38a0239dcc0",
+      "project_root": "controlled-v3/circomlib-decoder/vulnerable/project",
+      "entrypoint": "controlled-v3/circomlib-decoder/vulnerable/project/circuit.circom",
+      "template_name": "Decoder",
+      "concrete_parameters": [
+        "4"
+      ],
+      "prime": "bn128",
+      "compile_args": [
+        "-l",
+        "controlled-v3/circomlib-decoder/vulnerable/project"
+      ],
+      "mode": "direct",
+      "input_assumptions": "inp is a canonical BN128 field element. Decoder(4) is defined for every field element; no narrower caller precondition is imposed.",
+      "input_contract": {
+        "kind": "field_only"
+      },
+      "known_defects": [
+        {
+          "root_cause_id": "iden3/circomlib/decoder-unconstrained-one-hot-output",
+          "location": "circuits/multiplexer.circom:80-94; witness-only output selection permits out[i]=0 when inp=i",
+          "source_url": "https://github.com/zksecurity/zkbugs/blob/main/reports/documents/veridise-circomlib.pdf",
+          "reported": true,
+          "local_reproduction": "Exact vulnerable source and Decoder(4) wrapper compile under the frozen development environment; backend discovery is not established by this annotation.",
+          "tcct_status": "not-run-at-manifest-freeze",
+          "reachability": "The public metadata's original entrypoint is the same direct wrapper; a larger project caller is not established.",
+          "evidence": [
+            "contracts.controlled-v3-development.json",
+            "../.external/zkbugs/dataset/circom/iden3/circomlib/veridise_decoder_accepting_bogus_output_signal/README.md"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "circomlib Decoder fixed comparator",
+      "project": "https://github.com/iden3/circomlib",
+      "revision": "9d2918e5972dbcfb9e435add2043df4ff2c5cc97",
+      "project_root": "controlled-v3/circomlib-decoder/fixed/project",
+      "entrypoint": "controlled-v3/circomlib-decoder/fixed/project/circuit.circom",
+      "template_name": "Decoder",
+      "concrete_parameters": [
+        "4"
+      ],
+      "prime": "bn128",
+      "compile_args": [
+        "-l",
+        "controlled-v3/circomlib-decoder/fixed/project"
+      ],
+      "mode": "direct",
+      "input_assumptions": "inp is a canonical BN128 field element. Decoder(4) is defined for every field element; no narrower caller precondition is imposed.",
+      "input_contract": {
+        "kind": "field_only"
+      },
+      "known_defects": []
+    },
+    {
+      "label": "UniRep BigLessThan vulnerable",
+      "project": "https://github.com/Unirep/Unirep",
+      "revision": "0985a28c38c8b2e7b7a9e80f43e63179fdd08b89",
+      "project_root": "controlled-v3/unirep-big-less-than/vulnerable/project",
+      "entrypoint": "controlled-v3/unirep-big-less-than/vulnerable/project/circuit.circom",
+      "template_name": "BigLessThan",
+      "concrete_parameters": [],
+      "prime": "bn128",
+      "compile_args": [
+        "-l",
+        "controlled-v3/unirep-big-less-than/vulnerable/project"
+      ],
+      "mode": "direct",
+      "input_assumptions": "in[0] and in[1] are canonical BN128 field elements interpreted by their canonical integer representatives in [0, p-1].",
+      "input_contract": {
+        "kind": "field_only"
+      },
+      "known_defects": [
+        {
+          "root_cause_id": "unirep/unirep/big-less-than-num2bits-alias",
+          "location": "packages/circuits/circuits/bigComparators.circom:41-45; Num2Bits(254) admits a non-canonical decomposition",
+          "source_url": "https://github.com/zksecurity/zkbugs/blob/main/reports/documents/veridise-unirep.pdf",
+          "reported": true,
+          "local_reproduction": "Exact vulnerable source and BigLessThan() wrapper compile under the frozen development environment; backend discovery is not established by this annotation.",
+          "tcct_status": "not-run-at-manifest-freeze",
+          "reachability": "The public repository supplies packages/circuits/generated/bigComparators.circom as an original entrypoint; broader production-caller impact is not established.",
+          "evidence": [
+            "contracts.controlled-v3-development.json",
+            "../.external/zkbugs/dataset/circom/Unirep/Unirep/veridise_underconstrained_circuit_allows_invalid_comparison/README.md"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "UniRep BigLessThan fixed comparator",
+      "project": "https://github.com/Unirep/Unirep",
+      "revision": "3348caa362d5d632d29c532ffa88023d55628eab",
+      "project_root": "controlled-v3/unirep-big-less-than/fixed/project",
+      "entrypoint": "controlled-v3/unirep-big-less-than/fixed/project/circuit.circom",
+      "template_name": "BigLessThan",
+      "concrete_parameters": [],
+      "prime": "bn128",
+      "compile_args": [
+        "-l",
+        "controlled-v3/unirep-big-less-than/fixed/project"
+      ],
+      "mode": "direct",
+      "input_assumptions": "in[0] and in[1] are canonical BN128 field elements interpreted by their canonical integer representatives in [0, p-1].",
+      "input_contract": {
+        "kind": "field_only"
+      },
+      "known_defects": []
+    }
+  ],
+  "exclusions": []
+}

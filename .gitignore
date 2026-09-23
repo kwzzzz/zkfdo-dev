@@ -32,3 +32,10 @@ __pycache__/
 # Source surveys excluded from the controlled-v2 evaluation.
 /datasets/controlled-v2/aptos-base64-decoded-length/
 /datasets/controlled-v2/telepathy-array-xor/
+
+# Local controlled-v3 survey copies that did not pass the development preflight.
+# Their byte-identical checkpoint remains under the already ignored /runs/ tree.
+/datasets/controlled-v3/bigint-bigmod/
+/datasets/controlled-v3/rarimo-date-encoder/
+/datasets/controlled-v3/unirep-epoch-key-lite/
+/datasets/controlled-v3/zkemail-fpmul/
