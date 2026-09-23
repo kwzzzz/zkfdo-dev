@@ -32,6 +32,8 @@ pub struct AnalysisOptions {
     pub timeout_seconds: u64,
     pub tool_version: String,
     pub tool_revision: String,
+    /// Search roots used to resolve includes while Circomspect parses the scoped sources.
+    pub library_paths: Vec<PathBuf>,
 }
 
 impl Default for AnalysisOptions {
@@ -42,6 +44,7 @@ impl Default for AnalysisOptions {
             timeout_seconds: 60,
             tool_version: ANALYZER_VERSION.to_string(),
             tool_revision: ANALYZER_REVISION.to_string(),
+            library_paths: Vec::new(),
         }
     }
 }
@@ -152,6 +155,14 @@ pub fn analyze_target(
         .iter()
         .map(|s| s.path.clone())
         .collect::<BTreeSet<_>>();
+    let libraries = options
+        .library_paths
+        .iter()
+        .map(|path| {
+            fs::canonicalize(path)
+                .with_context(|| format!("resolve Circomspect library path {}", path.display()))
+        })
+        .collect::<Result<BTreeSet<_>>>()?;
     let mut args = vec![
         "--level".to_string(),
         "INFO".to_string(),
@@ -161,6 +172,10 @@ pub fn analyze_target(
         "--sarif-file".to_string(),
         sarif_path.to_string_lossy().into_owned(),
     ];
+    for library in libraries {
+        args.push("--library".to_string());
+        args.push(library.to_string_lossy().into_owned());
+    }
     args.extend(sources.iter().map(|p| p.to_string_lossy().into_owned()));
     let mut capture = AnalysisCapture {
         tool_path: options.binary.clone(),

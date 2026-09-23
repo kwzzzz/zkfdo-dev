@@ -677,6 +677,7 @@ fn prepare_target(
                     timeout_seconds: options.timeout_seconds,
                     tool_version: options.analyzer_version.clone(),
                     tool_revision: options.analyzer_revision.clone(),
+                    library_paths: semantic_library_paths(&target.definition),
                 };
                 match semantic::analyze_target(
                     &scopes,
@@ -904,6 +905,27 @@ fn map_library_paths(args: &mut [String], map: impl Fn(&Path) -> PathBuf) {
             index += 1;
         }
     }
+}
+
+fn semantic_library_paths(definition: &CorpusTarget) -> Vec<PathBuf> {
+    let mut paths = vec![definition.project_root.clone()];
+    let mut index = 0;
+    while index < definition.compile_args.len() {
+        if definition.compile_args[index] == "-l" {
+            index += 1;
+            while index < definition.compile_args.len()
+                && !definition.compile_args[index].starts_with('-')
+            {
+                paths.push(PathBuf::from(&definition.compile_args[index]));
+                index += 1;
+            }
+        } else {
+            index += 1;
+        }
+    }
+    paths.sort();
+    paths.dedup();
+    paths
 }
 
 fn resolve_path(parent: &Path, path: &Path) -> PathBuf {
