@@ -12,6 +12,31 @@ use uuid::Uuid;
 use crate::scanner;
 
 const MAX_INSTANTIATION_DEPTH: usize = 64;
+const MAX_COMPILE_TIME_LOOP_ITERATIONS: usize = 100_000;
+const MAX_TOTAL_EXPANSION_STEPS: usize = 100_000;
+
+struct ExpansionBudget {
+    remaining: usize,
+    exhausted: bool,
+}
+
+impl ExpansionBudget {
+    fn new() -> Self {
+        Self {
+            remaining: MAX_TOTAL_EXPANSION_STEPS,
+            exhausted: false,
+        }
+    }
+
+    fn consume(&mut self) -> bool {
+        if self.exhausted || self.remaining == 0 {
+            self.exhausted = true;
+            return false;
+        }
+        self.remaining -= 1;
+        true
+    }
+}
 
 #[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq)]
 #[serde(rename_all = "snake_case")]
@@ -152,7 +177,27 @@ enum BodyItem {
     },
     Instantiation {
         component_name: String,
+        component_index: Option<Vec<Token>>,
         call: TemplateCall,
+        line: usize,
+    },
+    ComponentArray {
+        name: String,
+        length: Vec<Token>,
+        line: usize,
+    },
+    ForLoop {
+        variable: String,
+        initial: Vec<Token>,
+        condition: Vec<Token>,
+        update: LoopUpdate,
+        body: Vec<BodyItem>,
+        line: usize,
+    },
+    Conditional {
+        condition: Vec<Token>,
+        then_body: Vec<BodyItem>,
+        else_body: Vec<BodyItem>,
         line: usize,
     },
     Unsupported {
@@ -160,6 +205,12 @@ enum BodyItem {
         construct: String,
         reason: String,
     },
+}
+
+#[derive(Debug, Clone, Copy)]
+enum LoopUpdate {
+    Increment,
+    Decrement,
 }
 
 #[derive(Debug, Clone)]
@@ -258,6 +309,8 @@ pub fn inspect_entrypoint(entrypoint: &Path, project_root: &Path) -> Result<Entr
                             instances.push(instance);
                             let mut children = Vec::new();
                             let mut stack = vec![(root.name.clone(), parameters.clone())];
+                            let mut expansion_budget = ExpansionBudget::new();
+                            let mut seen_target_identities = HashSet::new();
                             expand_template(
                                 root,
                                 &parameters,
@@ -266,7 +319,12 @@ pub fn inspect_entrypoint(entrypoint: &Path, project_root: &Path) -> Result<Entr
                                 &mut children,
                                 &mut unsupported,
                                 0,
+                                &mut expansion_budget,
+                                &mut seen_target_identities,
                             );
+                            if expansion_budget.exhausted {
+                                children.clear();
+                            }
                             for target in children {
                                 let instance = InspectedTemplateInstance {
                                     path: target.source_path,
@@ -363,59 +421,31 @@ pub fn inspect_entrypoint(entrypoint: &Path, project_root: &Path) -> Result<Entr
 }
 
 fn inspect_binding_changes(definition: &TemplateDefinition) -> Result<Vec<UnsupportedCase>> {
-    let mut needed = definition
-        .body
-        .iter()
-        .filter_map(|item| match item {
-            BodyItem::Instantiation { call, .. } => Some(&call.arguments),
-            _ => None,
-        })
-        .flatten()
-        .flatten()
-        .filter_map(token_identifier)
-        .map(str::to_string)
-        .collect::<HashSet<_>>();
-    loop {
-        let before = needed.len();
-        for item in &definition.body {
-            if let BodyItem::Variable {
-                name, expression, ..
-            } = item
-            {
-                if needed.contains(name) {
-                    needed.extend(
-                        expression
-                            .iter()
-                            .filter_map(token_identifier)
-                            .map(str::to_string),
-                    );
-                }
-            }
-        }
-        if before == needed.len() {
-            break;
-        }
-    }
-    let components = definition
-        .body
-        .iter()
-        .filter_map(|item| match item {
-            BodyItem::Instantiation { component_name, .. } => Some(component_name.clone()),
-            _ => None,
-        })
-        .collect::<HashSet<_>>();
+    let mut needed = HashSet::new();
+    let mut variables = Vec::new();
+    let mut components = HashSet::new();
+    let mut parsed_component_assignments = HashSet::new();
+    collect_resolution_metadata(
+        &definition.body,
+        &mut needed,
+        &mut variables,
+        &mut components,
+        &mut parsed_component_assignments,
+    );
+    close_resolution_bindings(&mut needed, &variables);
     let source = fs::read_to_string(&definition.source_path)?;
     let tokens = lex(&source)
         .expect("inspection source was already lexed")
         .into_iter()
         .filter(|token| token.line >= definition.start_line && token.line <= definition.end_line)
         .collect::<Vec<_>>();
+    let allowed_loop_updates = concrete_loop_update_positions(&tokens);
+    let allowed_loop_declarations = concrete_loop_declaration_positions(&tokens);
     let mut declared = definition
         .parameters
         .iter()
         .cloned()
         .collect::<HashSet<_>>();
-    let mut initialized_components = HashSet::new();
     let mut issues = Vec::new();
     for (index, token) in tokens.iter().enumerate() {
         let Some(name) = token_identifier(token) else {
@@ -443,17 +473,21 @@ fn inspect_binding_changes(definition: &TemplateDefinition) -> Result<Vec<Unsupp
         if !direct_assignment && !increment && !compound_assignment {
             continue;
         }
+        if increment && allowed_loop_updates.contains(&index) {
+            continue;
+        }
         if direct_assignment && components.contains(name) {
-            let parsed_assignment = definition.body.iter().any(|item| {
-                matches!(item, BodyItem::Instantiation { component_name, line, .. }
-                    if component_name == name && *line == token.line)
-            });
-            if parsed_assignment && initialized_components.insert(name.to_string()) {
+            let parsed_assignment =
+                parsed_component_assignments.contains(&(name.to_string(), token.line));
+            if parsed_assignment {
                 continue;
             }
         }
         let declaration = previous.is_some_and(|t| token_is_identifier(t, "var"));
-        if direct_assignment && declaration && declared.insert(name.to_string()) {
+        if direct_assignment
+            && declaration
+            && (allowed_loop_declarations.contains(&index) || declared.insert(name.to_string()))
+        {
             continue;
         }
         // The existing expansion evaluates declarations only, never subsequent mutations.
@@ -464,6 +498,194 @@ fn inspect_binding_changes(definition: &TemplateDefinition) -> Result<Vec<Unsupp
         });
     }
     Ok(issues)
+}
+
+fn resolution_needed_bindings(items: &[BodyItem]) -> HashSet<String> {
+    let mut needed = HashSet::new();
+    let mut variables = Vec::new();
+    let mut components = HashSet::new();
+    let mut parsed_component_assignments = HashSet::new();
+    collect_resolution_metadata(
+        items,
+        &mut needed,
+        &mut variables,
+        &mut components,
+        &mut parsed_component_assignments,
+    );
+    close_resolution_bindings(&mut needed, &variables);
+    needed
+}
+
+fn close_resolution_bindings(needed: &mut HashSet<String>, variables: &[(String, &[Token])]) {
+    loop {
+        let before = needed.len();
+        for (name, expression) in variables {
+            if needed.contains(name) {
+                extend_identifiers(needed, expression);
+            }
+        }
+        if before == needed.len() {
+            break;
+        }
+    }
+}
+
+#[allow(clippy::too_many_arguments)]
+fn collect_resolution_metadata<'a>(
+    items: &'a [BodyItem],
+    needed: &mut HashSet<String>,
+    variables: &mut Vec<(String, &'a [Token])>,
+    components: &mut HashSet<String>,
+    parsed_component_assignments: &mut HashSet<(String, usize)>,
+) {
+    for item in items {
+        match item {
+            BodyItem::Variable {
+                name, expression, ..
+            } => variables.push((name.clone(), expression)),
+            BodyItem::Instantiation {
+                component_name,
+                component_index,
+                call,
+                line,
+            } => {
+                components.insert(component_name.clone());
+                parsed_component_assignments.insert((component_name.clone(), *line));
+                if let Some(index) = component_index {
+                    extend_identifiers(needed, index);
+                }
+                for argument in &call.arguments {
+                    extend_identifiers(needed, argument);
+                }
+            }
+            BodyItem::ComponentArray { name, length, .. } => {
+                components.insert(name.clone());
+                extend_identifiers(needed, length);
+            }
+            BodyItem::ForLoop {
+                variable,
+                initial,
+                condition,
+                body,
+                ..
+            } => {
+                needed.insert(variable.clone());
+                extend_identifiers(needed, condition);
+                variables.push((variable.clone(), initial));
+                collect_resolution_metadata(
+                    body,
+                    needed,
+                    variables,
+                    components,
+                    parsed_component_assignments,
+                );
+            }
+            BodyItem::Conditional {
+                condition,
+                then_body,
+                else_body,
+                ..
+            } => {
+                extend_identifiers(needed, condition);
+                collect_resolution_metadata(
+                    then_body,
+                    needed,
+                    variables,
+                    components,
+                    parsed_component_assignments,
+                );
+                collect_resolution_metadata(
+                    else_body,
+                    needed,
+                    variables,
+                    components,
+                    parsed_component_assignments,
+                );
+            }
+            BodyItem::Unsupported { .. } => {}
+        }
+    }
+}
+
+fn concrete_loop_update_positions(tokens: &[Token]) -> HashSet<usize> {
+    let mut positions = HashSet::new();
+    for (index, token) in tokens.iter().enumerate() {
+        if !token_is_identifier(token, "for") {
+            continue;
+        }
+        let Some(open) = tokens[index + 1..]
+            .iter()
+            .position(|token| token_is_symbol(token, '('))
+            .map(|offset| index + 1 + offset)
+        else {
+            continue;
+        };
+        let Some(close) = find_matching(tokens, open, '(', ')') else {
+            continue;
+        };
+        let Ok(groups) = split_top_level(&tokens[open + 1..close], ';') else {
+            continue;
+        };
+        let loop_variable = groups.first().and_then(|initializer| {
+            (initializer.len() >= 4
+                && token_is_identifier(&initializer[0], "var")
+                && initializer
+                    .get(2)
+                    .is_some_and(|token| token_is_symbol(token, '=')))
+            .then(|| initializer.get(1).and_then(token_identifier))
+            .flatten()
+        });
+        let update_is_counter = groups.get(2).is_some_and(|update| {
+            matches!(
+                update.as_slice(),
+                [name, Token {
+                    kind: TokenKind::Operator(operator),
+                    ..
+                }] if token_identifier(name) == loop_variable
+                    && (operator == "++" || operator == "--")
+            )
+        });
+        if update_is_counter && close >= open + 3 {
+            positions.insert(close - 2);
+        }
+    }
+    positions
+}
+
+fn concrete_loop_declaration_positions(tokens: &[Token]) -> HashSet<usize> {
+    let mut positions = HashSet::new();
+    for (index, token) in tokens.iter().enumerate() {
+        if !token_is_identifier(token, "for") {
+            continue;
+        }
+        let Some(open) = tokens[index + 1..]
+            .iter()
+            .position(|token| token_is_symbol(token, '('))
+            .map(|offset| index + 1 + offset)
+        else {
+            continue;
+        };
+        let Some(close) = find_matching(tokens, open, '(', ')') else {
+            continue;
+        };
+        if open + 3 < close
+            && token_is_identifier(&tokens[open + 1], "var")
+            && token_identifier(&tokens[open + 2]).is_some()
+            && token_is_symbol(&tokens[open + 3], '=')
+        {
+            positions.insert(open + 2);
+        }
+    }
+    positions
+}
+
+fn extend_identifiers(needed: &mut HashSet<String>, tokens: &[Token]) {
+    needed.extend(
+        tokens
+            .iter()
+            .filter_map(token_identifier)
+            .map(str::to_string),
+    );
 }
 
 fn load_inspection_files(
@@ -644,6 +866,8 @@ pub fn discover_project_targets(
                         &mut unsupported,
                     ) {
                         let mut stack = vec![(root.name.clone(), main_parameters.clone())];
+                        let mut expansion_budget = ExpansionBudget::new();
+                        let mut seen_target_identities = HashSet::new();
                         expand_template(
                             root,
                             &main_parameters,
@@ -652,7 +876,34 @@ pub fn discover_project_targets(
                             &mut targets,
                             &mut unsupported,
                             0,
+                            &mut expansion_budget,
+                            &mut seen_target_identities,
                         );
+                        if expansion_budget.exhausted {
+                            targets.clear();
+                        }
+                        let mut binding_issues = Vec::new();
+                        let mut checked_definitions = HashSet::new();
+                        if checked_definitions.insert((root.source_path.clone(), root.name.clone()))
+                        {
+                            binding_issues.extend(inspect_binding_changes(root)?);
+                        }
+                        for target in &targets {
+                            if checked_definitions
+                                .insert((target.source_path.clone(), target.template_name.clone()))
+                            {
+                                let definition = template_index[&target.template_name]
+                                    .iter()
+                                    .find(|definition| definition.source_path == target.source_path)
+                                    .expect("expanded target refers to a resolved definition");
+                                binding_issues.extend(inspect_binding_changes(definition)?);
+                            }
+                        }
+                        if !binding_issues.is_empty() {
+                            unsupported.extend(binding_issues);
+                            // Expansion may have used a stale value after a mutation.
+                            targets.clear();
+                        }
                     }
                 }
                 Err(reason) => unsupported.push(UnsupportedCase {
@@ -786,6 +1037,30 @@ fn resolve_template<'a>(
     Some(definition)
 }
 
+fn consume_expansion_step(
+    budget: &mut ExpansionBudget,
+    unsupported: &mut Vec<UnsupportedCase>,
+    source_path: &Path,
+    line: Option<usize>,
+    construct: String,
+) -> bool {
+    let already_exhausted = budget.exhausted;
+    if budget.consume() {
+        return true;
+    }
+    if !already_exhausted {
+        unsupported.push(UnsupportedCase {
+            source_path: source_path.to_path_buf(),
+            line,
+            construct,
+            reason: format!(
+                "total target expansion exceeded the inspection limit of {MAX_TOTAL_EXPANSION_STEPS} steps"
+            ),
+        });
+    }
+    false
+}
+
 #[allow(clippy::too_many_arguments)]
 fn expand_template(
     definition: &TemplateDefinition,
@@ -795,6 +1070,8 @@ fn expand_template(
     targets: &mut Vec<ConcreteFuzzTarget>,
     unsupported: &mut Vec<UnsupportedCase>,
     depth: usize,
+    expansion_budget: &mut ExpansionBudget,
+    seen_target_identities: &mut HashSet<String>,
 ) {
     if depth >= MAX_INSTANTIATION_DEPTH {
         unsupported.push(UnsupportedCase {
@@ -814,14 +1091,55 @@ fn expand_template(
         .cloned()
         .zip(concrete_parameters.iter().copied())
         .collect::<HashMap<_, _>>();
+    let mut component_arrays = HashMap::new();
+    let mut initialized_components = HashSet::new();
+    let needed_bindings = resolution_needed_bindings(&definition.body);
+    expand_body(
+        &definition.body,
+        definition,
+        concrete_parameters,
+        template_index,
+        stack,
+        targets,
+        unsupported,
+        depth,
+        &mut bindings,
+        &mut component_arrays,
+        &mut initialized_components,
+        &needed_bindings,
+        expansion_budget,
+        seen_target_identities,
+    );
+}
 
-    for item in &definition.body {
+#[allow(clippy::too_many_arguments)]
+fn expand_body(
+    items: &[BodyItem],
+    definition: &TemplateDefinition,
+    concrete_parameters: &[i128],
+    template_index: &HashMap<String, Vec<&TemplateDefinition>>,
+    stack: &mut Vec<(String, Vec<i128>)>,
+    targets: &mut Vec<ConcreteFuzzTarget>,
+    unsupported: &mut Vec<UnsupportedCase>,
+    depth: usize,
+    bindings: &mut HashMap<String, i128>,
+    component_arrays: &mut HashMap<String, usize>,
+    initialized_components: &mut HashSet<String>,
+    needed_bindings: &HashSet<String>,
+    expansion_budget: &mut ExpansionBudget,
+    seen_target_identities: &mut HashSet<String>,
+) {
+    for item in items {
+        if expansion_budget.exhausted {
+            return;
+        }
         match item {
+            BodyItem::Variable { name, .. } if !needed_bindings.contains(name) => {}
             BodyItem::Variable {
                 name,
                 expression,
                 line,
-            } => match evaluate_expression(expression, &bindings) {
+            } => match evaluate_expression(expression, bindings) {
                 Ok(value) => {
                     bindings.insert(name.clone(), value);
                 }
@@ -832,12 +1150,104 @@ fn expand_template(
                     reason: format!("compile-time variable is not supported: {reason}"),
                 }),
             },
+            BodyItem::ComponentArray { name, length, line } => {
+                let length = match evaluate_expression(length, bindings) {
+                    Ok(length) => length,
+                    Err(reason) => {
+                        unsupported.push(UnsupportedCase {
+                            source_path: definition.source_path.clone(),
+                            line: Some(*line),
+                            construct: format!("component {name}[...]"),
+                            reason: format!("component array length is not concrete: {reason}"),
+                        });
+                        continue;
+                    }
+                };
+                let Ok(length) = usize::try_from(length) else {
+                    unsupported.push(UnsupportedCase {
+                        source_path: definition.source_path.clone(),
+                        line: Some(*line),
+                        construct: format!("component {name}[{length}]"),
+                        reason:
+                            "component array length must be a non-negative platform-sized integer"
+                                .to_string(),
+                    });
+                    continue;
+                };
+                if component_arrays.insert(name.clone(), length).is_some() {
+                    unsupported.push(UnsupportedCase {
+                        source_path: definition.source_path.clone(),
+                        line: Some(*line),
+                        construct: format!("component {name}[{length}]"),
+                        reason: "duplicate component array declarations are unsupported"
+                            .to_string(),
+                    });
+                }
+            }
             BodyItem::Instantiation {
                 component_name,
+                component_index,
                 call,
                 line,
             } => {
-                let parameters = match evaluate_arguments(&call.arguments, &bindings) {
+                let concrete_component_name = if let Some(index) = component_index {
+                    let index = match evaluate_expression(index, bindings) {
+                        Ok(index) => index,
+                        Err(reason) => {
+                            unsupported.push(UnsupportedCase {
+                                source_path: definition.source_path.clone(),
+                                line: Some(*line),
+                                construct: format!("{component_name}[...]"),
+                                reason: format!("component array index is not concrete: {reason}"),
+                            });
+                            continue;
+                        }
+                    };
+                    let Some(length) = component_arrays.get(component_name).copied() else {
+                        unsupported.push(UnsupportedCase {
+                            source_path: definition.source_path.clone(),
+                            line: Some(*line),
+                            construct: format!("{component_name}[{index}]"),
+                            reason: "component array assignment has no concrete declaration"
+                                .to_string(),
+                        });
+                        continue;
+                    };
+                    let Ok(index) = usize::try_from(index) else {
+                        unsupported.push(UnsupportedCase {
+                            source_path: definition.source_path.clone(),
+                            line: Some(*line),
+                            construct: format!("{component_name}[{index}]"),
+                            reason: "component array index must be non-negative".to_string(),
+                        });
+                        continue;
+                    };
+                    if index >= length {
+                        unsupported.push(UnsupportedCase {
+                            source_path: definition.source_path.clone(),
+                            line: Some(*line),
+                            construct: format!("{component_name}[{index}]"),
+                            reason: format!(
+                                "component array index is outside the concrete length {length}"
+                            ),
+                        });
+                        continue;
+                    }
+                    format!("{component_name}[{index}]")
+                } else {
+                    component_name.clone()
+                };
+                if !initialized_components.insert(concrete_component_name.clone()) {
+                    unsupported.push(UnsupportedCase {
+                        source_path: definition.source_path.clone(),
+                        line: Some(*line),
+                        construct: concrete_component_name,
+                        reason: "component is assigned more than once in the concrete expansion"
+                            .to_string(),
+                    });
+                    continue;
+                }
+                let parameters = match evaluate_arguments(&call.arguments, bindings) {
                     Ok(parameters) => parameters,
                     Err(reason) => {
                         unsupported.push(UnsupportedCase {
@@ -872,12 +1282,26 @@ fn expand_template(
                     .map(ToString::to_string)
                     .collect::<Vec<_>>();
                 let identity = format!(
-                    "{}:{}:{}->{}",
+                    "{}:{}:{}:{}->{}",
                     definition.source_path.display(),
                     line,
-                    component_name,
+                    format_call(&definition.name, concrete_parameters),
+                    concrete_component_name,
                     format_call(&call.template_name, &parameters)
                 );
+
+                if !seen_target_identities.insert(identity.clone()) {
+                    continue;
+                }
+                if !consume_expansion_step(
+                    expansion_budget,
+                    unsupported,
+                    &definition.source_path,
+                    Some(*line),
+                    identity.clone(),
+                ) {
+                    return;
+                }
 
                 targets.push(ConcreteFuzzTarget {
                     identity,
@@ -888,7 +1312,7 @@ fn expand_template(
                         source_path: definition.source_path.clone(),
                         parent_template: definition.name.clone(),
                         parent_parameters: parent_parameter_strings,
-                        component_name: component_name.clone(),
+                        component_name: concrete_component_name,
                         line: *line,
                     },
                     generated_wrapper_path: None,
@@ -919,9 +1343,159 @@ fn expand_template(
                     targets,
                     unsupported,
                     depth + 1,
+                    expansion_budget,
+                    seen_target_identities,
                 );
                 stack.pop();
             }
+            BodyItem::ForLoop {
+                variable,
+                initial,
+                condition,
+                update,
+                body,
+                line,
+            } => {
+                let initial_value = match evaluate_expression(initial, bindings) {
+                    Ok(value) => value,
+                    Err(reason) => {
+                        unsupported.push(UnsupportedCase {
+                            source_path: definition.source_path.clone(),
+                            line: Some(*line),
+                            construct: format!("for ({variable} = ... )"),
+                            reason: format!("loop initial value is not concrete: {reason}"),
+                        });
+                        continue;
+                    }
+                };
+                let previous = bindings.insert(variable.clone(), initial_value);
+                let mut iteration_count = 0_usize;
+                let mut current = initial_value;
+                let mut loop_failure = None;
+                loop {
+                    bindings.insert(variable.clone(), current);
+                    let condition_value = match evaluate_expression(condition, bindings) {
+                        Ok(value) => value,
+                        Err(reason) => {
+                            loop_failure =
+                                Some(format!("loop condition is not concrete: {reason}"));
+                            break;
+                        }
+                    };
+                    if condition_value == 0 {
+                        break;
+                    }
+                    if iteration_count >= MAX_COMPILE_TIME_LOOP_ITERATIONS {
+                        loop_failure = Some(format!(
+                            "loop exceeded the inspection limit of {MAX_COMPILE_TIME_LOOP_ITERATIONS} iterations"
+                        ));
+                        break;
+                    }
+                    iteration_count += 1;
+                    current = match update {
+                        LoopUpdate::Increment => current.checked_add(1),
+                        LoopUpdate::Decrement => current.checked_sub(1),
+                    }
+                    .unwrap_or_else(|| {
+                        loop_failure = Some("loop counter overflowed i128".to_string());
+                        current
+                    });
+                    if loop_failure.is_some() {
+                        break;
+                    }
+                }
+                match previous {
+                    Some(value) => {
+                        bindings.insert(variable.clone(), value);
+                    }
+                    None => {
+                        bindings.remove(variable);
+                    }
+                }
+                if let Some(reason) = loop_failure {
+                    unsupported.push(UnsupportedCase {
+                        source_path: definition.source_path.clone(),
+                        line: Some(*line),
+                        construct: format!("for ({variable}; ... )"),
+                        reason,
+                    });
+                    continue;
+                }
+                let mut value = initial_value;
+                for _ in 0..iteration_count {
+                    if !consume_expansion_step(
+                        expansion_budget,
+                        unsupported,
+                        &definition.source_path,
+                        Some(*line),
+                        format!("for ({variable}; ... )"),
+                    ) {
+                        break;
+                    }
+                    let previous = bindings.insert(variable.clone(), value);
+                    expand_body(
+                        body,
+                        definition,
+                        concrete_parameters,
+                        template_index,
+                        stack,
+                        targets,
+                        unsupported,
+                        depth,
+                        bindings,
+                        component_arrays,
+                        initialized_components,
+                        needed_bindings,
+                        expansion_budget,
+                        seen_target_identities,
+                    );
+                    match previous {
+                        Some(value) => {
+                            bindings.insert(variable.clone(), value);
+                        }
+                        None => {
+                            bindings.remove(variable);
+                        }
+                    }
+                    if expansion_budget.exhausted {
+                        break;
+                    }
+                    value = match update {
+                        LoopUpdate::Increment => value.checked_add(1),
+                        LoopUpdate::Decrement => value.checked_sub(1),
+                    }
+                    .expect("loop counter was validated before concrete expansion");
+                }
+            }
+            BodyItem::Conditional {
+                condition,
+                then_body,
+                else_body,
+                line,
+            } => match evaluate_expression(condition, bindings) {
+                Ok(value) => expand_body(
+                    if value != 0 { then_body } else { else_body },
+                    definition,
+                    concrete_parameters,
+                    template_index,
+                    stack,
+                    targets,
+                    unsupported,
+                    depth,
+                    bindings,
+                    component_arrays,
+                    initialized_components,
+                    needed_bindings,
+                    expansion_budget,
+                    seen_target_identities,
+                ),
+                Err(reason) => unsupported.push(UnsupportedCase {
+                    source_path: definition.source_path.clone(),
+                    line: Some(*line),
+                    construct: format!("if ({})", tokens_to_text(condition)),
+                    reason: format!("compile-time condition is not concrete: {reason}"),
+                }),
+            },
             BodyItem::Unsupported {
                 line,
                 construct,
@@ -943,6 +1517,14 @@ fn generate_and_validate_wrappers(
     parsed_files: &HashMap<PathBuf, ParsedFile>,
     circom_bin: Option<&Path>,
 ) -> Result<()> {
+    let mut identities = HashSet::new();
+    for target in targets.iter() {
+        anyhow::ensure!(
+            identities.insert(target.identity.as_str()),
+            "duplicate concrete target identity before wrapper generation: {}",
+            target.identity
+        );
+    }
     let wrappers_dir = work_dir.join("wrappers");
     fs::create_dir_all(&wrappers_dir)
         .with_context(|| format!("failed to create wrapper dir: {}", wrappers_dir.display()))?;
@@ -1267,32 +1849,58 @@ fn parse_main_declaration(tokens: &[Token], line: usize) -> ParsedMain {
 
 fn parse_template_body(tokens: &[Token]) -> Vec<BodyItem> {
     let mut items = Vec::new();
-    let mut declared_components = HashSet::new();
+    let mut declared_components = HashMap::new();
     parse_body_block(tokens, &mut declared_components, &mut items);
     items
 }
 
 fn parse_body_block(
     tokens: &[Token],
-    declared_components: &mut HashSet<String>,
+    declared_components: &mut HashMap<String, bool>,
     items: &mut Vec<BodyItem>,
 ) {
     let mut cursor = 0;
     while cursor < tokens.len() {
-        if token_is_identifier(&tokens[cursor], "if")
-            || token_is_identifier(&tokens[cursor], "for")
-            || token_is_identifier(&tokens[cursor], "while")
-        {
+        if token_is_identifier(&tokens[cursor], "if") {
             let line = tokens[cursor].line;
-            let construct = token_identifier(&tokens[cursor]).unwrap_or("control flow");
+            let end = control_flow_end(tokens, cursor).unwrap_or(tokens.len());
+            if contains_possible_instantiation(&tokens[cursor..end]) {
+                match parse_conditional(&tokens[cursor..end], declared_components) {
+                    Ok(item) => items.push(item),
+                    Err(reason) => items.push(BodyItem::Unsupported {
+                        line,
+                        construct: "if".to_string(),
+                        reason,
+                    }),
+                }
+            }
+            cursor = end;
+            continue;
+        }
+        if token_is_identifier(&tokens[cursor], "for") {
+            let line = tokens[cursor].line;
+            let end = control_flow_end(tokens, cursor).unwrap_or(tokens.len());
+            if contains_possible_instantiation(&tokens[cursor..end]) {
+                match parse_for_loop(&tokens[cursor..end], declared_components) {
+                    Ok(item) => items.push(item),
+                    Err(reason) => items.push(BodyItem::Unsupported {
+                        line,
+                        construct: "for".to_string(),
+                        reason,
+                    }),
+                }
+            }
+            cursor = end;
+            continue;
+        }
+        if token_is_identifier(&tokens[cursor], "while") {
+            let line = tokens[cursor].line;
             let end = control_flow_end(tokens, cursor).unwrap_or(tokens.len());
             if contains_possible_instantiation(&tokens[cursor..end]) {
                 items.push(BodyItem::Unsupported {
                     line,
-                    construct: construct.to_string(),
-                    reason:
-                        "component instantiation inside control flow is unsupported by this MVP"
-                            .to_string(),
+                    construct: "while".to_string(),
+                    reason: "component instantiation inside while loops is unsupported".to_string(),
                 });
             }
             cursor = end;
@@ -1316,9 +1924,14 @@ fn parse_body_block(
         } else if let Some(component_name) = statement
             .first()
             .and_then(token_identifier)
-            .filter(|name| declared_components.contains(*name))
+            .filter(|name| declared_components.contains_key(*name))
         {
-            parse_separate_component_assignment(component_name, statement, items);
+            parse_separate_component_assignment(
+                component_name,
+                declared_components[component_name],
+                statement,
+                items,
+            );
         } else if contains_anonymous_component_call(statement) {
             items.push(BodyItem::Unsupported {
                 line: tokens[cursor].line,
@@ -1330,9 +1943,139 @@ fn parse_body_block(
     }
 }
 
+fn parse_conditional(
+    tokens: &[Token],
+    declared_components: &mut HashMap<String, bool>,
+) -> std::result::Result<BodyItem, String> {
+    let line = tokens.first().map_or(1, |token| token.line);
+    let open = tokens
+        .iter()
+        .position(|token| token_is_symbol(token, '('))
+        .ok_or_else(|| "compile-time if condition is missing".to_string())?;
+    let close = find_matching(tokens, open, '(', ')')
+        .ok_or_else(|| "compile-time if condition is unbalanced".to_string())?;
+    if close == open + 1 {
+        return Err("compile-time if condition is empty".to_string());
+    }
+    let (then_tokens, mut next) = control_body_tokens(tokens, close + 1)?;
+    let mut then_body = Vec::new();
+    let mut then_components = declared_components.clone();
+    parse_body_block(then_tokens, &mut then_components, &mut then_body);
+    let mut else_body = Vec::new();
+    if tokens
+        .get(next)
+        .is_some_and(|token| token_is_identifier(token, "else"))
+    {
+        let (else_tokens, after_else) = control_body_tokens(tokens, next + 1)?;
+        let mut else_components = declared_components.clone();
+        parse_body_block(else_tokens, &mut else_components, &mut else_body);
+        next = after_else;
+    }
+    if next != tokens.len() {
+        return Err("trailing compile-time if syntax is unsupported".to_string());
+    }
+    Ok(BodyItem::Conditional {
+        condition: tokens[open + 1..close].to_vec(),
+        then_body,
+        else_body,
+        line,
+    })
+}
+
+fn parse_for_loop(
+    tokens: &[Token],
+    declared_components: &mut HashMap<String, bool>,
+) -> std::result::Result<BodyItem, String> {
+    let line = tokens.first().map_or(1, |token| token.line);
+    let open = tokens
+        .iter()
+        .position(|token| token_is_symbol(token, '('))
+        .ok_or_else(|| "compile-time for header is missing".to_string())?;
+    let close = find_matching(tokens, open, '(', ')')
+        .ok_or_else(|| "compile-time for header is unbalanced".to_string())?;
+    let groups = split_top_level(&tokens[open + 1..close], ';')?;
+    if groups.len() != 3 {
+        return Err("compile-time for header must contain three clauses".to_string());
+    }
+    let initializer = &groups[0];
+    if initializer.len() < 4
+        || !token_is_identifier(&initializer[0], "var")
+        || !initializer
+            .get(2)
+            .is_some_and(|token| token_is_symbol(token, '='))
+    {
+        return Err("compile-time for initializer must be `var name = expression`".to_string());
+    }
+    let variable = initializer[1].kind.clone();
+    let TokenKind::Identifier(variable) = variable else {
+        return Err("compile-time for variable must be an identifier".to_string());
+    };
+    if groups[1].is_empty() {
+        return Err("compile-time for condition is empty".to_string());
+    }
+    let update = match groups[2].as_slice() {
+        [name, Token {
+            kind: TokenKind::Operator(operator),
+            ..
+        }] if token_identifier(name) == Some(variable.as_str()) && operator == "++" => {
+            LoopUpdate::Increment
+        }
+        [name, Token {
+            kind: TokenKind::Operator(operator),
+            ..
+        }] if token_identifier(name) == Some(variable.as_str()) && operator == "--" => {
+            LoopUpdate::Decrement
+        }
+        _ => {
+            return Err("compile-time for update must be `variable++` or `variable--`".to_string())
+        }
+    };
+    let (body_tokens, next) = control_body_tokens(tokens, close + 1)?;
+    if next != tokens.len() {
+        return Err("trailing compile-time for syntax is unsupported".to_string());
+    }
+    let mut body = Vec::new();
+    let mut body_components = declared_components.clone();
+    parse_body_block(body_tokens, &mut body_components, &mut body);
+    Ok(BodyItem::ForLoop {
+        variable,
+        initial: initializer[3..].to_vec(),
+        condition: groups[1].clone(),
+        update,
+        body,
+        line,
+    })
+}
+
+fn control_body_tokens(
+    tokens: &[Token],
+    start: usize,
+) -> std::result::Result<(&[Token], usize), String> {
+    if tokens.get(start).is_some_and(|token| {
+        ["if", "for", "while"]
+            .iter()
+            .any(|keyword| token_is_identifier(token, keyword))
+    }) {
+        let end = control_flow_end(tokens, start)
+            .ok_or_else(|| "nested compile-time control-flow body is unbalanced".to_string())?;
+        return Ok((&tokens[start..end], end));
+    }
+    if tokens
+        .get(start)
+        .is_some_and(|token| token_is_symbol(token, '{'))
+    {
+        let close = find_matching(tokens, start, '{', '}')
+            .ok_or_else(|| "compile-time control-flow body is unbalanced".to_string())?;
+        return Ok((&tokens[start + 1..close], close + 1));
+    }
+    let end = find_statement_end(tokens, start)
+        .ok_or_else(|| "compile-time control-flow body has no statement terminator".to_string())?;
+    Ok((&tokens[start..=end], end + 1))
+}
+
 fn parse_component_statement(
     statement: &[Token],
-    declared_components: &mut HashSet<String>,
+    declared_components: &mut HashMap<String, bool>,
     items: &mut Vec<BodyItem>,
 ) {
     let line = statement.first().map_or(1, |token| token.line);
@@ -1348,26 +2091,84 @@ fn parse_component_statement(
         .get(2)
         .is_some_and(|token| token_is_symbol(token, '['))
     {
-        items.push(BodyItem::Unsupported {
+        let Some(close) = find_matching(statement, 2, '[', ']') else {
+            items.push(BodyItem::Unsupported {
+                line,
+                construct: tokens_to_text(statement),
+                reason: "component array declaration is unbalanced".to_string(),
+            });
+            return;
+        };
+        if close == 3 {
+            items.push(BodyItem::Unsupported {
+                line,
+                construct: tokens_to_text(statement),
+                reason: "component array length is empty".to_string(),
+            });
+            return;
+        }
+        if close + 1 != statement.len() {
+            items.push(BodyItem::Unsupported {
+                line,
+                construct: tokens_to_text(statement),
+                reason: "direct component array initialization is unsupported".to_string(),
+            });
+            return;
+        }
+        declared_components.insert(component_name.to_string(), true);
+        items.push(BodyItem::ComponentArray {
+            name: component_name.to_string(),
+            length: statement[3..close].to_vec(),
             line,
-            construct: tokens_to_text(statement),
-            reason: "component arrays are unsupported by this MVP".to_string(),
         });
         return;
     }
     let Some(equal) = find_top_level_symbol(statement, '=') else {
-        declared_components.insert(component_name.to_string());
+        declared_components.insert(component_name.to_string(), false);
         return;
     };
-    push_instantiation(component_name, &statement[equal + 1..], line, items);
+    declared_components.insert(component_name.to_string(), false);
+    push_instantiation(component_name, None, &statement[equal + 1..], line, items);
 }
 
 fn parse_separate_component_assignment(
     component_name: &str,
+    is_array: bool,
     statement: &[Token],
     items: &mut Vec<BodyItem>,
 ) {
     let line = statement.first().map_or(1, |token| token.line);
+    if is_array {
+        if !statement
+            .get(1)
+            .is_some_and(|token| token_is_symbol(token, '['))
+        {
+            return;
+        }
+        let Some(close) = find_matching(statement, 1, '[', ']') else {
+            items.push(BodyItem::Unsupported {
+                line,
+                construct: tokens_to_text(statement),
+                reason: "component array index is unbalanced".to_string(),
+            });
+            return;
+        };
+        if close == 2
+            || !statement
+                .get(close + 1)
+                .is_some_and(|token| token_is_symbol(token, '='))
+        {
+            return;
+        }
+        push_instantiation(
+            component_name,
+            Some(statement[2..close].to_vec()),
+            &statement[close + 2..],
+            line,
+            items,
+        );
+        return;
+    }
     if statement
         .get(1)
         .is_some_and(|token| token_is_symbol(token, '['))
@@ -1375,7 +2176,7 @@ fn parse_separate_component_assignment(
         items.push(BodyItem::Unsupported {
             line,
             construct: tokens_to_text(statement),
-            reason: "component array assignments are unsupported by this MVP".to_string(),
+            reason: "scalar component cannot be assigned through an array index".to_string(),
         });
         return;
     }
@@ -1385,11 +2186,12 @@ fn parse_separate_component_assignment(
     {
         return;
     }
-    push_instantiation(component_name, &statement[2..], line, items);
+    push_instantiation(component_name, None, &statement[2..], line, items);
 }
 
 fn push_instantiation(
     component_name: &str,
+    component_index: Option<Vec<Token>>,
     right_hand_side: &[Token],
     line: usize,
     items: &mut Vec<BodyItem>,
@@ -1397,6 +2199,7 @@ fn push_instantiation(
     match parse_call(right_hand_side) {
         Ok(call) => items.push(BodyItem::Instantiation {
             component_name: component_name.to_string(),
+            component_index,
             call,
             line,
         }),
@@ -1555,6 +2358,14 @@ impl ExpressionParser<'_> {
                 .checked_neg()
                 .ok_or_else(|| "integer overflow".to_string());
         }
+        if self
+            .tokens
+            .get(self.cursor)
+            .is_some_and(|token| token_is_symbol(token, '!'))
+        {
+            self.cursor += 1;
+            return Ok(i128::from(self.parse_unary()? == 0));
+        }
         self.parse_primary()
     }
 
@@ -1593,6 +2404,8 @@ impl ExpressionParser<'_> {
     fn current_binary_operator(&self) -> Option<(&'static str, u8, bool)> {
         let operator = match &self.tokens.get(self.cursor)?.kind {
             TokenKind::Operator(operator) => operator.as_str(),
+            TokenKind::Symbol('<') => "<",
+            TokenKind::Symbol('>') => ">",
             TokenKind::Symbol('+') => "+",
             TokenKind::Symbol('-') => "-",
             TokenKind::Symbol('*') => "*",
@@ -1609,17 +2422,25 @@ impl ExpressionParser<'_> {
 
 fn binary_operator(operator: &str) -> Option<(&'static str, u8, bool)> {
     match operator {
-        "|" => Some(("|", 1, false)),
-        "^" => Some(("^", 2, false)),
-        "&" => Some(("&", 3, false)),
-        "<<" => Some(("<<", 4, false)),
-        ">>" => Some((">>", 4, false)),
-        "+" => Some(("+", 5, false)),
-        "-" => Some(("-", 5, false)),
-        "*" => Some(("*", 6, false)),
-        "/" => Some(("/", 6, false)),
-        "%" => Some(("%", 6, false)),
-        "**" => Some(("**", 7, true)),
+        "||" => Some(("||", 1, false)),
+        "&&" => Some(("&&", 2, false)),
+        "|" => Some(("|", 3, false)),
+        "^" => Some(("^", 4, false)),
+        "&" => Some(("&", 5, false)),
+        "==" => Some(("==", 6, false)),
+        "!=" => Some(("!=", 6, false)),
+        "<" => Some(("<", 7, false)),
+        "<=" => Some(("<=", 7, false)),
+        ">" => Some((">", 7, false)),
+        ">=" => Some((">=", 7, false)),
+        "<<" => Some(("<<", 8, false)),
+        ">>" => Some((">>", 8, false)),
+        "+" => Some(("+", 9, false)),
+        "-" => Some(("-", 9, false)),
+        "*" => Some(("*", 10, false)),
+        "/" => Some(("/", 10, false)),
+        "%" => Some(("%", 10, false)),
+        "**" => Some(("**", 11, true)),
         _ => None,
     }
 }
@@ -1627,6 +2448,14 @@ fn binary_operator(operator: &str) -> Option<(&'static str, u8, bool)> {
 fn apply_binary(operator: &str, left: i128, right: i128) -> std::result::Result<i128, String> {
     let overflow = || format!("integer overflow while evaluating {left} {operator} {right}");
     match operator {
+        "||" => Ok(i128::from(left != 0 || right != 0)),
+        "&&" => Ok(i128::from(left != 0 && right != 0)),
+        "==" => Ok(i128::from(left == right)),
+        "!=" => Ok(i128::from(left != right)),
+        "<" => Ok(i128::from(left < right)),
+        "<=" => Ok(i128::from(left <= right)),
+        ">" => Ok(i128::from(left > right)),
+        ">=" => Ok(i128::from(left >= right)),
         "+" => left.checked_add(right).ok_or_else(overflow),
         "-" => left.checked_sub(right).ok_or_else(overflow),
         "*" => left.checked_mul(right).ok_or_else(overflow),
@@ -1670,37 +2499,38 @@ fn parse_integer(value: &str) -> std::result::Result<i128, String> {
 }
 
 fn control_flow_end(tokens: &[Token], start: usize) -> Option<usize> {
-    let open_condition = tokens[start + 1..]
+    let keyword = tokens.get(start)?;
+    let open_condition = tokens
+        .get(start + 1..)?
         .iter()
         .position(|token| token_is_symbol(token, '('))?
         + start
         + 1;
     let close_condition = find_matching(tokens, open_condition, '(', ')')?;
-    let body_start = close_condition + 1;
-    let body_end = if tokens
-        .get(body_start)
-        .is_some_and(|token| token_is_symbol(token, '{'))
-    {
-        find_matching(tokens, body_start, '{', '}')? + 1
-    } else {
-        find_statement_end(tokens, body_start)? + 1
-    };
+    let body_end = control_body_end(tokens, close_condition + 1)?;
 
-    if token_is_identifier(&tokens[start], "if")
+    if token_is_identifier(keyword, "if")
         && tokens
             .get(body_end)
             .is_some_and(|token| token_is_identifier(token, "else"))
     {
-        let else_start = body_end + 1;
-        if tokens
-            .get(else_start)
-            .is_some_and(|token| token_is_symbol(token, '{'))
-        {
-            return find_matching(tokens, else_start, '{', '}').map(|end| end + 1);
-        }
-        return find_statement_end(tokens, else_start).map(|end| end + 1);
+        return control_body_end(tokens, body_end + 1);
     }
     Some(body_end)
+}
+
+fn control_body_end(tokens: &[Token], start: usize) -> Option<usize> {
+    let first = tokens.get(start)?;
+    if token_is_symbol(first, '{') {
+        return find_matching(tokens, start, '{', '}').map(|end| end + 1);
+    }
+    if ["if", "for", "while"]
+        .iter()
+        .any(|keyword| token_is_identifier(first, keyword))
+    {
+        return control_flow_end(tokens, start);
+    }
+    find_statement_end(tokens, start).map(|end| end + 1)
 }
 
 fn contains_possible_instantiation(tokens: &[Token]) -> bool {
@@ -1708,11 +2538,17 @@ fn contains_possible_instantiation(tokens: &[Token]) -> bool {
         .iter()
         .any(|token| token_is_identifier(token, "component"))
         || contains_anonymous_component_call(tokens)
-        || tokens.windows(3).any(|window| {
-            token_is_symbol(&window[0], '=')
-                && token_identifier(&window[1]).is_some()
-                && token_is_symbol(&window[2], '(')
-        })
+        || contains_assigned_template_call(tokens)
+}
+
+fn contains_assigned_template_call(tokens: &[Token]) -> bool {
+    tokens.iter().enumerate().any(|(index, token)| {
+        if !token_is_symbol(token, '=') {
+            return false;
+        }
+        let end = find_statement_end(tokens, index + 1).unwrap_or(tokens.len());
+        parse_call(&tokens[index + 1..end]).is_ok()
+    })
 }
 
 fn contains_anonymous_component_call(tokens: &[Token]) -> bool {
