@@ -1,6 +1,7 @@
 /target/
 /runs/
 /reports/generated/
+/reports/START_HERE.md
 /reports/*/isolated-rerun/
 /.zkfr/
 /.zkfdo/
