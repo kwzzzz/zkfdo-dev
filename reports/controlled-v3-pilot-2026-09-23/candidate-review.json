@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "scope": "controlled-v3 development Decoder original-component review",
+  "plan_path": "reports/controlled-v3-preflight-2026-09-23/evidence/plan.json",
+  "plan_sha256": "cf4e11f82b5dd2fc5fbc608cbe8b9c9b758c4d4ee13103d79c8230193a8e781e",
+  "outcome_path": "runs/controlled-v3-development/pilot-2026-09-23/execution/execution-aa47e6bc-8901-443b-b921-7e7d0f664464/outcome.json",
+  "outcome_sha256": "42049cf693223a328598cd82b4c3e6bbb08519c5b9d0d1459b4fe7e4e7226a4d",
+  "contract_path": "datasets/contracts.controlled-v3-development.json",
+  "contract_sha256": "5bfd409ab5d748a82c7dc0448a1c776a4d85107294e2988f752769d0026357ea",
+  "prepared_r1cs_path": "runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0000/structure/r1cs/circuit.r1cs",
+  "prepared_r1cs_sha256": "89627dd5739a231818cf2f06f45413741e0fdbd951a6cfbad6f89e2ccb81ccb9",
+  "review_r1cs_path": "runs/controlled-v3-development/pilot-2026-09-23/review-decoder-r1cs/circuit.r1cs",
+  "review_r1cs_byte_identical_to_prepared": true,
+  "review_sym_path": "runs/controlled-v3-development/pilot-2026-09-23/review-decoder-r1cs/circuit.sym",
+  "review_sym_sha256": "3c84c8a5923020d0dd58005b8e9a13d088f35661efb34a1b4823121d8e56f9af",
+  "r1cs_counts": {
+    "wires": 7,
+    "public_outputs": 5,
+    "public_inputs": 0,
+    "private_inputs": 1,
+    "labels": 7,
+    "constraints": 6
+  },
+  "candidate_count": 1,
+  "reviews": [
+    {
+      "target_id": "sha256:593ebf069393e830a57a6cf4f611cee14562ae6b351e218495ea86b38530fd21",
+      "run_id": "3aeddcd0-c608-4449-93c9-515d57d3e019",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 74.155606875,
+      "candidate_path": "runs/controlled-v3-development/pilot-2026-09-23/execution/execution-aa47e6bc-8901-443b-b921-7e7d0f664464/counterexample-candidates/0004/circuit.circom_VF1ZAmVHFu_counterexample.json",
+      "candidate_sha256": "d5a3d6f233b26b487390341912e3af70d6176900d5be4b33ae2aabf0817fa5c7",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "contract": "canonical BN128 inp"
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "checked_constraint_count": 6,
+          "failed_constraint_count": 0,
+          "canonical_signal_values": true
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "violation_class": "one-hot-output-equivalence"
+        }
+      },
+      "disposition": "validated",
+      "root_cause_id": "iden3/circomlib/decoder-unconstrained-one-hot-output",
+      "schema_2_eligible": true
+    }
+  ],
+  "validated_count": 1,
+  "rejected_count": 0,
+  "unresolved_count": 0,
+  "automated_review_seconds": 0.0011678330192808062,
+  "manual_review_seconds": null,
+  "raw_signal_values_published": false
+}
