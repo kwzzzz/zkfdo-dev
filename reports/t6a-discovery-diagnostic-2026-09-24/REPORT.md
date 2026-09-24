@@ -1,0 +1,58 @@
+# T6a 실제 프로젝트 탐색 진단
+
+날짜: 2026-09-24. **T1 제외 목록에 이미 들어 있는 프로젝트 6개만** 사용했다. 독립 평가 후보 프로젝트는 열지 않았고, zkFuzz는 실행하지 않았다. 값 없는 근거는 [evidence.json](evidence.json)에 있다.
+
+## 보완 전 상태
+
+| 프로젝트 | 결과 |
+|---|---|
+| zk-email | `main` 12개 → "multiple main"으로 타깃 0개 |
+| Moonsong | `main` 5개 → 타깃 0개 |
+| Inference | `main` 1개 → 타깃 2,325개, 익명 컴포넌트 호출 1,587건 미지원 |
+| Rarimo | 컴파일 없이도 탐색이 5분 넘게 끝나지 않음 |
+
+Rarimo는 호출 스택을 샘플링해 **lexer**에서 멈춘 것을 확인했다. 파일을 하나씩 따로 돌리자 8개가 각각 3초를 넘겼고, 그중 7개는 3~32MB짜리 상수표였다. lexer가 기호를 만날 때마다 남은 입력 전체를 복사해서, 처리 시간이 파일 크기의 제곱에 비례했다.
+
+## 보완한 것 (커밋 `87c799f`)
+
+- **lexer:** 연산자 판별에 앞의 최대 3글자만 본다. 결과는 같고 시간은 선형이다.
+- **`--entrypoint PATH`:** 지정한 파일의 `main`과 include closure만 불러온다. 프로젝트의 다른 `main`과 관계없는 파일은 파싱하지 않는다. 경로는 프로젝트 루트 안의 파일이어야 한다.
+- **`--library-path DIR`(반복 가능, `--entrypoint` 필요):** include 해석 순서를 파일 디렉터리 → 프로젝트 루트 → 라이브러리 경로(지정 순서)로 둔다.
+- **wrapper 컴파일:** `-l 프로젝트 루트`와 라이브러리 경로를 넘긴다. 기존 `capture_tool`로 컴파일러를 별도 프로세스 그룹에서 실행하고, `--compile-timeout-seconds`(기본 600초)가 지나면 그룹 전체를 종료한다. 명령, 경과시간, 종료 코드, timeout 여부를 타깃별로 기록하고, timeout이 나면 `compile_timed_out`으로 남긴 뒤 다시 시도하지 않는다.
+- **보고서 필드:** 선택한 entrypoint, library path, 컴파일 제한시간. 예전 보고서도 그대로 읽힌다.
+- **테스트 6개 추가:** entrypoint closure, library path 순서, 잘못된 옵션 거부, 컴파일 명령 기록, timeout 시 손자 프로세스까지 종료, 큰 파일 lexing. 전체 153개 통과.
+
+## 보완 후 진단
+
+각 프로젝트의 모든 `main` 파일(191개)을 하나씩 `--entrypoint`로 지정하고, circomlib를 `--library-path`로 주고, 컴파일 없이 탐색했다.
+
+| 프로젝트 | entrypoint | 문제 없이 타깃 발견 | 타깃 발견·일부 미지원 | 타깃 0개 | 발견 타깃 합계 | 최대 탐색 시간 |
+|---|---:|---:|---:|---:|---:|---:|
+| zk-email | 12 | 3 | 5 | 4 | 2,834 | 0.4초 |
+| Moonsong | 5 | 0 | 0 | 5 | 0 | 0.1초 |
+| Rarimo | 64 | 0 | 24 | 40 | 4,382 | 5.2초 |
+| Self | 90 | 3 | 33 | 54 | 676 | 5.3초 |
+| BigInt | 19 | 0 | 15 | 4 | 1,286 | 0.5초 |
+| Inference | 1 | 0 | 1 | 0 | 2,325 | 0.4초 |
+
+- 모든 entrypoint가 `found`로 인식되고, 탐색이 멈추거나 느려지는 경우는 없었다.
+- **컴파일 확인:** zk-email `base64-test`(11개)와 Self `isOlderThan_tester`(17개)를 600초 제한으로 실제 circom 2.2.3에 컴파일했다. 28개 모두 성공했고, 가장 오래 걸린 것이 0.03초였다.
+
+## 남은 한계
+
+**1. Circom 구문 지원 부족(가장 큰 한계).** 타깃이 일부만 발견되거나 전혀 발견되지 않는 주된 원인이다.
+- 익명 컴포넌트 호출 `Foo()(a, b)`: Self 86개, zk-email 7개, Moonsong 5개, Inference의 entrypoint에서 발생
+- 컴파일 타임 변수 배열, 직접 컴포넌트 배열 초기화
+- 함수나 변수로 계산하는 템플릿 파라미터·루프 경계(예: `log_ceil`, `N_ROUNDS`)
+
+**2. 의존성 미설치.** 해석되지 않은 include는 모두 npm 패키지(`@zk-email/circuits`, `@openpassport/zk-email-circuits`, `@zk-kit/...`, `../node_modules/circomlib`)였다. 로컬 사본에 `node_modules`가 없어서 생긴 것이고 resolver 결함이 아니다. T2b에서는 프로젝트의 lockfile로 고정된 버전의 의존성을 설치하는 절차가 필요하다.
+
+**3. 테스트 entrypoint와 production entrypoint 구분.** 문제 없이 발견된 6개가 모두 테스트용 회로였다. 기준 문서 3단계대로 production entrypoint만 세려면, entrypoint 분류 기준을 T2b 전에 정해야 한다.
+
+## 결정이 필요한 것
+
+도구와 기준을 최종 고정하기 전에 다음을 정해야 한다.
+
+1. **익명 컴포넌트 호출 지원을 추가할지.** 추가하지 않으면 최신 Circom 문법을 쓰는 평가 후보가 4단계에서 대거 `tool-unsupported`로 탈락할 가능성이 크다. 추가한다면 T6a의 연장으로, 이미 제외된 프로젝트로만 개발·검증한다.
+2. **일부 구문이 미지원인 entrypoint를 어떻게 셀지.** 결함 인스턴스가 발견됐더라도 같은 entrypoint에 미지원 구문이 있으면 `N_p`는 실제보다 작은 하한값이다. 이를 허용하고 기록할지, 아니면 탈락시킬지 기준 문서에 적어야 한다.
+3. **의존성 설치 절차와 production entrypoint 판정 규칙**을 기준 문서에 추가한다.
