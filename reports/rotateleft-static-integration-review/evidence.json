@@ -26,7 +26,6 @@
     "source_archive_url": "https://github.com/reclaim-1/circom-chacha20/archive/ef9f5a5ad899d852740a26b30eabe5765673c71f.tar.gz",
     "downloaded_archive_sha256": "8b81d8fe5d70ae7fb4fb8cb683449bf06b303b9799ad589b95b6a55cff2f399f",
     "zkfdo_workspace_head": "020ef5bde018f8562a0476e16c5ce58bda36d23e",
-    "zkfdo_workspace_branch": "codex/candidate-validation-evidence",
     "workspace_current_tree_used_as_upstream_source": false,
     "prior_comparison_path": "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json",
     "prior_comparison_verdict": "constraints_preserved_in_compared_component_scope"

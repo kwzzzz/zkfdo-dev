@@ -8,7 +8,7 @@
 
 검토한 upstream 소스는 `reclaim-1/circom-chacha20`의 고정 revision **`ef9f5a5ad899d852740a26b30eabe5765673c71f`**이다. RotateLeft 수정 `e5e756375fc1fc8dc48667b00cdf38c79a0fdf50`의 직접 부모라는 기존 provenance를 재사용했다. 고정 commit archive의 SHA-256은 `8b81d8fe5d70ae7fb4fb8cb683449bf06b303b9799ad589b95b6a55cff2f399f`이다. 각 파일의 Git blob과 SHA-256은 [evidence.json](evidence.json)에 기록했다.
 
-현재 zkfDO 작업 트리는 `codex/candidate-validation-evidence`의 `020ef5bde018f8562a0476e16c5ce58bda36d23e`이며 upstream 원본으로 사용하지 않았다. `.external`의 현재 동명 파일도 근거로 사용하지 않았다. 감사 보고서에 전체 프로젝트 commit이 없으므로 `ef9f5a…`과 감사 당시 전체 snapshot의 동일성은 계속 미확인이다.
+현재 zkfDO 작업 트리는 commit `020ef5bde018f8562a0476e16c5ce58bda36d23e`이며 upstream 원본으로 사용하지 않았다. `.external`의 현재 동명 파일도 근거로 사용하지 않았다. 감사 보고서에 전체 프로젝트 commit이 없으므로 `ef9f5a…`과 감사 당시 전체 snapshot의 동일성은 계속 미확인이다.
 
 요청된 이전 보고서와 `comparison.json` 외에 RotateLeft 반례·witness·실험 실행 산출물은 열거나 평가하지 않았다. 컴파일·witness 생성·퍼징도 수행하지 않았고 기존 소스와 실험 파일은 변경하지 않았다.
 
