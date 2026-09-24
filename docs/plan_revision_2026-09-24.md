@@ -2,12 +2,14 @@
 
 이 문서는 2026-09-23까지의 실험 결과를 보고 **남은 계획을 어떻게 바꾸는지**, 그리고 **누가 무엇을 해야 하는지**를 정리한다. 팀원 모두 이 문서를 기준으로 작업한다. 이미 고정된 프로토콜(`docs/controlled_v*_protocol.md`)과 기존 실행 결과는 수정하지 않는다. 현재 결과 요약은 [README](../README.md)의 Status와 각 `reports/*/REPORT.md`를 본다.
 
+**용어:** 이 문서에서 **취약본**은 결함이 있는 실제 과거 소스이고, **패치 대조본**은 그 결함을 고친 실제 패치 소스다. 패치 대조본은 다시 **공식 패치**(프로젝트에 병합된 커밋, 예: UniRep `3348caa`)와 **제안 패치**(병합되지 않은 PR, 예: circomlib Decoder의 open PR #81 `9d2918e`)로 나눠 적는다. 두 경우 모두 우리가 코드를 일부러 취약하게 바꾼 것이 아니다. 원본을 변형해 만든 fixture(예: MiMCSponge)는 정확한 원본·패치 쌍이 아니므로 평가에서 제외한다.
+
 ## 1. 왜 수정하는가
 
 지금까지 확인한 것은 **파이프라인이 알려진 결함을 끝까지 재발견하고, 검토 기준까지 통과시킬 수 있다**는 점이다(v1.1, v2, v3에서 각 1건). 연구의 핵심 주장은 **예산이 부족할 때 순위를 매겨 실행하면 무작위나 단순 기준보다 검토를 통과한 결함을 더 빨리 또는 더 많이 찾는다**는 것인데, 이 주장은 아직 시험하지 못했다. 이유는 다음과 같다.
 
 1. **예산이 부족한 상황을 한 번도 만들지 않았다.** 지금까지 실험의 타깃은 2~4개였고, 예산 안에서 모두 끝까지 실행됐다. 이렇게 되면 전략 간 차이는 순서 효과뿐이다(v2 보고서에도 기록됨). 순위가 의미를 가지려면 전체 예산으로 모든 타깃을 다 실행할 수 없어야 한다.
-2. **취약본·수정본 쌍은 순위 평가에 맞지 않는다.** 수정은 보통 제약 몇 줄 차이라서 정적 특징이 거의 같다. v3에서 두 쌍 모두 위험점수가 같았다(`0=0`, `1=1`). 동점은 `target_id`(소스·설정의 SHA-256) 오름차순으로 정리되므로([src/static_rank.rs](../src/static_rank.rs) `risk_order`), 수정본이 먼저 실행된 것은 편향이 아니라 해시 순서에 따른 우연이다. 즉 쌍 설계는 **zkFuzz가 이 결함을 잡는지 확인하는 통제용**이지 순위 평가용이 아니다.
+2. **취약본·패치 대조본 쌍은 순위 평가에 맞지 않는다.** 패치는 보통 제약 몇 줄 차이라서 정적 특징이 거의 같다. v3에서 두 쌍 모두 위험점수가 같았다(`0=0`, `1=1`). 동점은 `target_id`(소스·설정의 SHA-256) 오름차순으로 정리되므로([src/static_rank.rs](../src/static_rank.rs) `risk_order`), 패치 대조본이 먼저 실행된 것은 편향이 아니라 해시 순서에 따른 우연이다. 설계의 문제는 패치 대조본을 순위 실행 예산에 함께 넣은 것 하나다. 쌍 설계는 **취약본에서 나온 문제가 패치 대조본에서 사라지는지 확인하는 통제용**이지 순위 평가용이 아니다.
 3. **사례 하나를 검증하는 비용이 크다.** 9/15~9/23 동안 한 번에 결함 1~2개를 검증했다. 이 속도로는 원인 5개 이상·프로젝트 3개 이상으로 여러 전략을 짝지어 비교하기 어렵다.
 4. **계획한 범위가 구현 범위보다 넓다.** `evaluation_plan.md`의 `cost-aware`, `analyzer-aware`, `adaptive` 전략과 RQ4(smoke→deep)는 구현돼 있지 않다. 현재 구현된 전략은 `path-order`, `random`, `small-first`, `warning-first`, `legacy`, `risk-only`, `risk-grouped` 7개다.
 
@@ -15,7 +17,7 @@
 
 | 항목 | 기존 계획 | 수정 |
 |---|---|---|
-| 평가 세트 구성 | 알려진 원인마다 취약·수정 쌍, 직접 래퍼 중심 | **취약 버전 프로젝트의 실제 `main`에서 도달 가능한 구체 타깃 전부**(결함 타깃 + 결함 없는 타깃)를 한 세트로 둔다. 수정본은 후보 확인용 음성 대조로만 쓴다 |
+| 평가 세트 구성 | 알려진 원인마다 취약본·패치 대조본 쌍, 직접 래퍼 중심 | **취약 버전 프로젝트의 실제 `main`에서 도달 가능한 구체 타깃 전부**(결함 타깃 + 결함 없는 타깃)를 한 세트로 둔다. 패치 대조본은 순위 대상에서 빼고, 후보가 나왔을 때 문제가 사라지는지 확인하는 음성 대조로만 쓴다 |
 | 예산 | 모든 타깃을 실행할 수 있는 수준 | **전체 예산 = (타깃 수 × 타깃별 timeout)의 20~40%**. 실행 전에 계산할 수 있고, 반드시 일부 타깃이 실행되지 못하는 조건이다 |
 | 비교 전략 | 계획서의 8개 | 필수: `random`(여러 ranking seed), `small-first`, `path-order`, `risk-only`, `cost-aware`(신규). 선택: `warning-first`(Circomspect 설치 시). `adaptive`, `analyzer-aware`는 제외 |
 | RQ3 (분석기 경고) | 별도 결합 전략 | `warning-first`와 `risk-only`를 한 번 비교하는 것으로 축소 |
@@ -64,19 +66,26 @@ T1, T4, T5, T6은 지금 바로 병행해서 시작할 수 있다.
   5. 병합이 끝난 브랜치(`feat/minimal-runner`, `feat/uniform-scheduler-target-discovery`, `feat/candidate-validation-evidence`)는 삭제해도 된다. 커밋은 main 이력에 남는다.
 - 앞으로는 T1~T8마다 main에서 짧은 브랜치를 따서 작업 하나당 PR 하나로 올린다. PR이 몇십 개 커밋씩 쌓이지 않게 한다.
 
-### T1. 개발에 사용한 사례의 제외 목록 — 담당:
+### T1. 개발에 사용한 사례의 제외 목록 — 담당: miiz
 
 - **목표:** 지금까지 본 모든 결함 원인과 프로젝트를 기록해서 독립 평가 세트에 섞이지 않게 한다.
 - **산출물:** `datasets/exclusions.development.json` (항목마다 `root_cause_id` 또는 zkbugs 경로, 프로젝트, 처음 사용한 실험, 근거 파일)
 - **포함 범위:** controlled-v1/v1.1(Subtract), v2(Banyan, Tangle 및 v2 준비 단계에서 본 Aptos base64, Telepathy array-xor), v3(Decoder, BigLessThan 및 선정에서 탈락한 bigint-bigmod, rarimo-date-encoder, unirep-epoch-key-lite, zkemail-fpmul), dev3·dev10(reclaimprotocol chacha20의 XorWords, Add32Bits, RotateLeft 계열). 출처: `datasets/manifest.*.json`, `datasets/controlled-v*/`, `reports/*/REPORT.md`
 - **완료 조건:** 위 보고서에서 언급된 모든 사례가 목록에 있고, 누락 여부를 다른 사람이 한 번 확인했다.
 - **금지:** 목록을 줄이기 위해 기존 보고서를 해석하지 않는다. 애매하면 제외 쪽으로 둔다.
+- **결과 (2026-09-24, 검토 대기):** [datasets/exclusions.development.json](../datasets/exclusions.development.json)에 21개 원인을 기록했다.
+  - 실행 8개: Subtract, Banyan, Tangle, Decoder, BigLessThan, Reclaim 3개
+  - 준비·컴파일 7개: Aptos base64, Telepathy ArrayXOR, zk-email FpMul, BigMod, Rarimo DateEncoder, UniRep EpochKeyLite(`veridise_missing_range_checks_on_comparison_circuits`), MiMC
+  - 소스 검토 6개: SIV ExtractStringFromPoint, Inference Clamp, Moonsong non-determinism, Self Merkle boolean, Self SMT aliasing, zk-email SHA256
+  - **보고서에 없던 노출:** 9/22 v3 후보 조사 때 `/private/tmp/controlled-v3-work/`에 Moonsong, Self 2건, zk-email SHA256의 취약본·패치 대조본 소스를 받아 검토한 흔적이 있다. v3 사전 점검 보고서에는 이름이 없지만 보수적으로 제외했다. 이 폴더는 `/private/tmp`라 재부팅하면 사라질 수 있다.
+  - **프로젝트 규칙:** 실행한 원인이 있는 6개 프로젝트는 평가 세트에서 완전히 제외한다. 조사만 한 8개 프로젝트는 다른 원인을 쓸 수 있지만 "프로젝트 3개 이상" 조건에는 세지 않는다.
+  - **남은 후보:** zkbugs Circom 70건 중 조건을 통과하는 원인은 42개이고, 처음 보는 프로젝트 13개에 29개가 있다. 그중 under-constrained이면서 패치 커밋(zkbugs `Fix Commit`)이 있는 것은 16개(panther-core 8, zk-regex 2, zkopru 2, Arianee, darkforest, MACI, worm-privacy 각 1)로, 7개 프로젝트에 걸쳐 있다. 실제 사용 가능 여부는 T2에서 판단한다.
 
 ### T2. 독립 평가 후보 조사 (실행 금지) — 담당:
 
 - **목표:** zkbugs Circom 사례(`.external/zkbugs/dataset/circom/`, 현재 70건·25개 조직) 중 T1에 없는 것으로 평가 세트 후보를 만든다.
 - **사례마다 기록할 것:**
-  - 프로젝트, 취약·수정 커밋, 결함 위치
+  - 프로젝트, 취약 커밋과 패치 커밋(공식 패치인지 제안 패치인지 표시), 결함 위치
   - 결함 템플릿이 **실제 프로젝트 `main`에서 도달 가능한지**, 그리고 zkfDO `targets`로 그 `main`에서 발견되는 구체 타깃 수
   - wrapper 컴파일 성공 여부
   - 입력 계약(`field_only` 또는 `bounded`)과 사전 정의할 속성의 초안
@@ -108,7 +117,7 @@ T1, T4, T5, T6은 지금 바로 병행해서 시작할 수 있다.
 - **완료 조건:** v1.1, v2(Banyan), v3(Decoder)의 기존 후보에 적용했을 때 기존 판정과 같은 결과가 나온다(원시 후보가 있는 로컬에서 확인). 테스트 포함.
 - **금지:** 기존 보고서의 판정 파일을 덮어쓰지 않는다. 신호 값을 Git에 커밋하지 않는다.
 
-### T5. `cost-aware` 전략과 동점 기록 — 담당:
+### T5. `cost-aware` 전략과 동점 기록 — 담당: miiz
 
 - **목표:** `evaluation_plan.md`에는 있지만 구현되지 않은 `cost-aware` 전략을 추가하고, 동점 정보를 계획에 남긴다.
 - **내용:**
@@ -117,6 +126,12 @@ T1, T4, T5, T6은 지금 바로 병행해서 시작할 수 있다.
   - `docs/static_ranking_experiment.md`에 전략 목록과 동점 규칙을 갱신한다.
 - **완료 조건:** `cargo fmt`, `cargo clippy --all-targets --all-features -- -D warnings`, `cargo test`를 통과한다. 기존 전략의 계획 출력은 바뀌지 않는다(회귀 테스트).
 - **금지:** 기존 전략의 점수나 가중치를 바꾸지 않는다. v1~v3 결과를 보고 가중치를 조정하지 않는다.
+- **결과 (2026-09-24, 검토 대기):**
+  - `cost-aware` = `risk_score / cost_bits(size)` 내림차순. `size`는 prepare 단계에서 이미 측정하는 컴파일 제약 수이고, `cost_bits`는 `size + 1`의 비트 길이(대략 log₂)다. 타깃마다 timeout으로 시간이 제한되기 때문에, 제약 수를 그대로 쓰면 0~5점짜리 위험점수가 묻힌다. 그래서 로그 척도를 썼다. 정수 곱으로 비교해서 플랫폼과 관계없이 같은 순서가 나온다. 비율이 같으면 제약 수가 작은 쪽, 그다음은 `target_id` 순이다.
+  - 모든 계획 JSON에 `ties`(`target_id`로만 순서가 갈린 그룹 수, 해당 타깃 수, 최대 그룹 크기)를 기록한다. `random`은 `null`이다. 예전 계획 파일도 그대로 읽힌다.
+  - **회귀 확인:** 고정된 v3 prepared 파일로 `risk-only` 계획을 다시 만들었을 때 순서가 저장된 계획과 같았다. `ties`는 v3의 두 동점 쌍을 `tie_group_count: 2`로 보고했다.
+  - **주의:** v3에서 `cost-aware`는 두 쌍 모두 취약본을 먼저 둔다. 제약이 빠진 취약본의 `size`가 더 작기 때문이다. 이는 취약본·패치 대조본 쌍 설계에서 생기는 현상이고 순위 성능의 근거가 아니다. v3는 개발용이며, 이 확인은 공식을 정한 뒤 회귀 점검으로만 했다.
+  - 변경 파일: `src/static_rank.rs`, `src/experiment.rs`, `src/corpus.rs`, `src/cli.rs`, `tests/static_rank_test.rs`, `tests/experiment_test.rs`, `docs/static_ranking_experiment.md`, `README.md`
 
 ### T6. zkbugs 외 대형 프로젝트 실행 가능성 연구 (RQ5) — 담당:
 
@@ -155,11 +170,11 @@ T1, T4, T5, T6은 지금 바로 병행해서 시작할 수 있다.
 | ID | 상태 | 담당 | 메모 |
 |---|---|---|---|
 | T0 | 대기 | 사람 | |
-| T1 | 대기 | | |
+| T1 | 검토 대기 | miiz | 21개 원인 기록. 팀원 1명 확인 필요 |
 | T2 | 대기 | | T1 후 |
 | T3 | 대기 | | T2, T5 후 |
 | T4 | 대기 | | |
-| T5 | 대기 | | |
+| T5 | 검토 대기 | miiz | cost-aware와 ties 구현, 테스트 통과 |
 | T6 | 대기 | | |
 | T7 | 대기 | | T3, T4 후 |
 | T8 | 보류 | | 선택 |
