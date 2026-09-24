@@ -1,0 +1,2872 @@
+{
+  "schema_version": 1,
+  "started_at_utc": "2026-09-20T11:51:32.316833+00:00",
+  "finished_at_utc": "2026-09-20T11:51:32.366908+00:00",
+  "scope": "controlled-v2 post-hoc original-component review",
+  "campaign_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z",
+  "campaign_ledger_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/campaign.json",
+  "campaign_ledger_sha256": "ce48197f3bcab4fca083af1388af1623f966549261ba290ebbd2a16d17c7be10",
+  "contract_path": "datasets/contracts.controlled-v2.json",
+  "contract_sha256": "a9f0d595dfee347f0d54a9c2b253ea4da84ae74c76d39cb108ad1151dd2152a0",
+  "root_cause_id": "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range",
+  "component": {
+    "template": "Blake3NovaTreePath_CheckDepth",
+    "variant": "published-vulnerable-source",
+    "revision": "76b83107eb00c8f886bde82172eaa3cdd5d57f25",
+    "prime": "bn128",
+    "input_precondition": "depth and leaf_depth are canonical BN128 field elements; 8-bit enforcement is part of the property",
+    "predeclared_property": "inputs are 8-bit and satisfy the declared depth/order/output relations",
+    "r1cs_path": "reports/controlled-v2-execution-2026-09-20/evidence/banyan-vulnerable-compiled/circuit.r1cs",
+    "r1cs_sha256": "2ce972ae628f4e107f52aaea51994670b39937f4d010e8da895eaa99adacacc9",
+    "sym_path": "reports/controlled-v2-execution-2026-09-20/evidence/banyan-vulnerable-compiled/circuit.sym",
+    "sym_sha256": "7e0306604bec9e406476420955745907b41e17b96f6608f9a232775879556e94",
+    "prepared_r1cs_path": "reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/structure/r1cs/circuit.r1cs",
+    "prepared_r1cs_sha256": "2ce972ae628f4e107f52aaea51994670b39937f4d010e8da895eaa99adacacc9",
+    "review_r1cs_byte_identical_to_prepared": true,
+    "r1cs_counts": {
+      "wires": 29,
+      "public_outputs": 2,
+      "public_inputs": 0,
+      "private_inputs": 2,
+      "labels": 40,
+      "constraints": 29
+    }
+  },
+  "execution_summary": [
+    {
+      "block": 1,
+      "strategy": "risk-only",
+      "strategy_position": 1,
+      "execution_seed": 2026092001,
+      "ranking_seed": null,
+      "target_order": [
+        "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+        "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+        "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+        "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377"
+      ],
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-01/attempt-01/01-risk-only/plan.json",
+      "plan_sha256": "81fd15632fa60cf977bdaa7f51d1593bcab176a9d877b21ffa7c15f6aaddb862",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-01/attempt-01/01-risk-only/raw/execution-95e82309-1719-4f26-87ae-e287c80f7420/outcome.json",
+      "outcome_sha256": "8c0cc81c64715fc5ee420891c2c459c23118c05c05173b0f47af8a0b8c85f35e",
+      "scheduler_elapsed_seconds": 37.783248584,
+      "backend_statuses": [
+        "bug_found",
+        "timeout",
+        "no_counterexample",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 1,
+      "strategy": "random",
+      "strategy_position": 2,
+      "execution_seed": 2026092001,
+      "ranking_seed": 2026094001,
+      "target_order": [
+        "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+        "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+        "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+        "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5"
+      ],
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-01/attempt-01/02-random/plan.json",
+      "plan_sha256": "4dc688a9fbc486187867c838be9164e48cfc812b8b493477512b24dce2972b3b",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-01/attempt-01/02-random/raw/execution-f35c3134-94a2-4b68-9655-220704713fa4/outcome.json",
+      "outcome_sha256": "47e7a4d7ba674c24e4dc0cf68ef8e1ba772b887b9d79414d1cfcc9cc4324391e",
+      "scheduler_elapsed_seconds": 37.922885,
+      "backend_statuses": [
+        "timeout",
+        "no_counterexample",
+        "bug_found",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 1,
+      "strategy": "small-first",
+      "strategy_position": 3,
+      "execution_seed": 2026092001,
+      "ranking_seed": null,
+      "target_order": [
+        "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+        "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+        "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+        "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c"
+      ],
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-01/attempt-01/03-small-first/plan.json",
+      "plan_sha256": "bac3e3ab40807db99e47e2cee7fe3272e471378e484e76f4b8b0ad0e1db283ba",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-01/attempt-01/03-small-first/raw/execution-faa94df8-b6ab-4edb-bcb3-4e2916aabbfa/outcome.json",
+      "outcome_sha256": "09980f620821026c30c49476b829f7878898a7a2f32ea07f874d39731a7054d3",
+      "scheduler_elapsed_seconds": 37.729393666,
+      "backend_statuses": [
+        "no_counterexample",
+        "no_counterexample",
+        "bug_found",
+        "timeout"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 2,
+      "strategy": "random",
+      "strategy_position": 1,
+      "execution_seed": 2026092002,
+      "ranking_seed": 2026094002,
+      "target_order": [
+        "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+        "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+        "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+        "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377"
+      ],
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-02/attempt-01/01-random/plan.json",
+      "plan_sha256": "15e65ae1b3e8278d1a4d81879c9fa783a45b80812c5f125cea523a094bd25904",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-02/attempt-01/01-random/raw/execution-f5dd980c-12c9-48d4-bd11-c6337e1e8523/outcome.json",
+      "outcome_sha256": "20e36491c64a4da3cb132320a4bbfeda9860dfe25ff3498b0c6c979cb1af3d63",
+      "scheduler_elapsed_seconds": 37.941741,
+      "backend_statuses": [
+        "no_counterexample",
+        "bug_found",
+        "timeout",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 2,
+      "strategy": "small-first",
+      "strategy_position": 2,
+      "execution_seed": 2026092002,
+      "ranking_seed": null,
+      "target_order": [
+        "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+        "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+        "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+        "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c"
+      ],
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-02/attempt-01/02-small-first/plan.json",
+      "plan_sha256": "b3dda272a0a32fd737aa72498a8f5a31afcacc1a34f17a242fe55a94e51af241",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-02/attempt-01/02-small-first/raw/execution-1bf29f0d-c87c-4e16-b27f-b835761cd95d/outcome.json",
+      "outcome_sha256": "df021d8724a8eadec3a58a10f646782d73d250dc3789a59f0164ea561231e0bf",
+      "scheduler_elapsed_seconds": 38.126796708,
+      "backend_statuses": [
+        "no_counterexample",
+        "no_counterexample",
+        "bug_found",
+        "timeout"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 2,
+      "strategy": "risk-only",
+      "strategy_position": 3,
+      "execution_seed": 2026092002,
+      "ranking_seed": null,
+      "target_order": [
+        "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+        "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+        "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+        "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377"
+      ],
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-02/attempt-01/03-risk-only/plan.json",
+      "plan_sha256": "f2e83de85880dda22a9ce4e3b4edc44286ae8cc05a490a13b494530981e68780",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-02/attempt-01/03-risk-only/raw/execution-7a3d3a39-050a-4249-b5a6-a21ed787e66f/outcome.json",
+      "outcome_sha256": "0a73d80f38682e212d436dcb27ecb9f61b0a597389d291d2c93dafeec560bd73",
+      "scheduler_elapsed_seconds": 37.885547042,
+      "backend_statuses": [
+        "bug_found",
+        "timeout",
+        "no_counterexample",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 3,
+      "strategy": "small-first",
+      "strategy_position": 1,
+      "execution_seed": 2026092003,
+      "ranking_seed": null,
+      "target_order": [
+        "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+        "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+        "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+        "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c"
+      ],
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-03/attempt-01/01-small-first/plan.json",
+      "plan_sha256": "bcb2f26dd3fbd4f979c43ff92b396a1562381e47fea5ee7775901e35e1065b30",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-03/attempt-01/01-small-first/raw/execution-5c58eca8-6c16-40b1-a76e-1a3a77d3570a/outcome.json",
+      "outcome_sha256": "26538e468dba6eb3099b95ec56396b9e3458d1660b20d5e78d754288c8a008e1",
+      "scheduler_elapsed_seconds": 37.772112083,
+      "backend_statuses": [
+        "no_counterexample",
+        "no_counterexample",
+        "bug_found",
+        "timeout"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 3,
+      "strategy": "risk-only",
+      "strategy_position": 2,
+      "execution_seed": 2026092003,
+      "ranking_seed": null,
+      "target_order": [
+        "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+        "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+        "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+        "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377"
+      ],
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-03/attempt-01/02-risk-only/plan.json",
+      "plan_sha256": "ef4a23b1160e652e8b0783518cb8075cf3d18c8dd3015c4e9a216950ba9b4686",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-03/attempt-01/02-risk-only/raw/execution-b6075220-cd38-42a7-8125-f3ed1a851857/outcome.json",
+      "outcome_sha256": "2a75d230bbade0d04d0d614412ca344510ebaff2c9bd66851af3ca9cf72de722",
+      "scheduler_elapsed_seconds": 39.204790917,
+      "backend_statuses": [
+        "bug_found",
+        "timeout",
+        "no_counterexample",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 3,
+      "strategy": "random",
+      "strategy_position": 3,
+      "execution_seed": 2026092003,
+      "ranking_seed": 2026094003,
+      "target_order": [
+        "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+        "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+        "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+        "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377"
+      ],
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-03/attempt-01/03-random/plan.json",
+      "plan_sha256": "11f9a50ed5bea6cd857e1c56180397d3e6ad1af62c0a2aaaef11418278e64948",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-03/attempt-01/03-random/raw/execution-695c88bd-dc33-49f5-86d0-bbf59a4ff997/outcome.json",
+      "outcome_sha256": "aa0fd38cd860f8c3658601738dde9be768c27308738bbf08deada463285eedbf",
+      "scheduler_elapsed_seconds": 37.907130792,
+      "backend_statuses": [
+        "timeout",
+        "bug_found",
+        "no_counterexample",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 4,
+      "strategy": "risk-only",
+      "strategy_position": 1,
+      "execution_seed": 2026092004,
+      "ranking_seed": null,
+      "target_order": [
+        "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+        "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+        "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+        "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377"
+      ],
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-04/attempt-01/01-risk-only/plan.json",
+      "plan_sha256": "2acea344833175518bd0db36ddd05a248619b08b4cf099b34c20d59b2a76886a",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-04/attempt-01/01-risk-only/raw/execution-e600cdbd-5ecf-45dc-b54a-8986037b86ce/outcome.json",
+      "outcome_sha256": "9783036f656abe22803d438a7b29b3744fb468e4b3b7a5040d243723a0a019ca",
+      "scheduler_elapsed_seconds": 37.744355541,
+      "backend_statuses": [
+        "bug_found",
+        "timeout",
+        "no_counterexample",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 4,
+      "strategy": "random",
+      "strategy_position": 2,
+      "execution_seed": 2026092004,
+      "ranking_seed": 2026094004,
+      "target_order": [
+        "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+        "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+        "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+        "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496"
+      ],
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-04/attempt-01/02-random/plan.json",
+      "plan_sha256": "3e4e0f7ba41b95f13bb22713c3a1a38dd22e49a4c7afd64fee638339eca8f4ec",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-04/attempt-01/02-random/raw/execution-5b656ba9-dc93-4fef-9dd3-3c6094b49b37/outcome.json",
+      "outcome_sha256": "4ca0c89e36a106a1c5111b9068f14a79f5fae511e8c83bc92158023e329fd040",
+      "scheduler_elapsed_seconds": 37.860146208,
+      "backend_statuses": [
+        "timeout",
+        "no_counterexample",
+        "no_counterexample",
+        "bug_found"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 4,
+      "strategy": "small-first",
+      "strategy_position": 3,
+      "execution_seed": 2026092004,
+      "ranking_seed": null,
+      "target_order": [
+        "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+        "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+        "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+        "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c"
+      ],
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-04/attempt-01/03-small-first/plan.json",
+      "plan_sha256": "1bfe5e710e1a74c5debcc11a87cf19592699f121a5ed7139a6eacb2e01bb3cfe",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-04/attempt-01/03-small-first/raw/execution-2523ac59-846c-45d1-8168-e79968635589/outcome.json",
+      "outcome_sha256": "1cb9a9c0669aeb2b5b44b152debab0bd329ecf41a09d63b1c735c569b3b70666",
+      "scheduler_elapsed_seconds": 37.89227875,
+      "backend_statuses": [
+        "no_counterexample",
+        "no_counterexample",
+        "bug_found",
+        "timeout"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 5,
+      "strategy": "random",
+      "strategy_position": 1,
+      "execution_seed": 2026092005,
+      "ranking_seed": 2026094005,
+      "target_order": [
+        "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+        "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+        "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+        "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c"
+      ],
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-05/attempt-01/01-random/plan.json",
+      "plan_sha256": "c1f6d82532c82f62e0b892c4467cf658a3597f3650651900f1e795c0e5505241",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-05/attempt-01/01-random/raw/execution-695d5a0e-9012-408e-8ac9-76f5c8efc60d/outcome.json",
+      "outcome_sha256": "ba14cac8fdd5816a7ee67b002853a9d6b24c9356bdf04e702a5a6acc28243c65",
+      "scheduler_elapsed_seconds": 37.784143042,
+      "backend_statuses": [
+        "no_counterexample",
+        "bug_found",
+        "no_counterexample",
+        "timeout"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 5,
+      "strategy": "small-first",
+      "strategy_position": 2,
+      "execution_seed": 2026092005,
+      "ranking_seed": null,
+      "target_order": [
+        "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+        "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+        "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+        "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c"
+      ],
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-05/attempt-01/02-small-first/plan.json",
+      "plan_sha256": "385c4db8b00c0f3ace8fb629551f35eed5456d4f9a1f8c69dbe45bf91f2c7fe3",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-05/attempt-01/02-small-first/raw/execution-d033a10e-da14-4aa6-811d-464758b51534/outcome.json",
+      "outcome_sha256": "4ae8b88ddd189325e185f544a11f442e2d704b84e5febe1b98cbfe13c3b51ec8",
+      "scheduler_elapsed_seconds": 38.007666708,
+      "backend_statuses": [
+        "no_counterexample",
+        "no_counterexample",
+        "bug_found",
+        "timeout"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 5,
+      "strategy": "risk-only",
+      "strategy_position": 3,
+      "execution_seed": 2026092005,
+      "ranking_seed": null,
+      "target_order": [
+        "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+        "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+        "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+        "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377"
+      ],
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-05/attempt-01/03-risk-only/plan.json",
+      "plan_sha256": "7db6e2505fe96ebe049c682ebeea8e219efe5e31664f22e6dbec39d445c577ea",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-05/attempt-01/03-risk-only/raw/execution-9a90ae88-9f7f-4953-8b55-780e49497256/outcome.json",
+      "outcome_sha256": "91f58b5615477191b891a518f8fe67b7c44b246b676d526f1cc107ae2442c560",
+      "scheduler_elapsed_seconds": 37.77978275,
+      "backend_statuses": [
+        "bug_found",
+        "timeout",
+        "no_counterexample",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 6,
+      "strategy": "small-first",
+      "strategy_position": 1,
+      "execution_seed": 2026092006,
+      "ranking_seed": null,
+      "target_order": [
+        "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+        "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+        "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+        "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c"
+      ],
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-06/attempt-01/01-small-first/plan.json",
+      "plan_sha256": "39709bf79df7da280a287128c5717296a73efe5869a1ed96fc99ed012a405fcf",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-06/attempt-01/01-small-first/raw/execution-c397faf6-d261-4c48-817c-994828e20f42/outcome.json",
+      "outcome_sha256": "c1588ffcd208a8b836f3b93a680c782f81e466a64f3d5c0ee8a276a2a05af7cd",
+      "scheduler_elapsed_seconds": 37.721280042,
+      "backend_statuses": [
+        "no_counterexample",
+        "no_counterexample",
+        "bug_found",
+        "timeout"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 6,
+      "strategy": "risk-only",
+      "strategy_position": 2,
+      "execution_seed": 2026092006,
+      "ranking_seed": null,
+      "target_order": [
+        "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+        "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+        "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+        "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377"
+      ],
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-06/attempt-01/02-risk-only/plan.json",
+      "plan_sha256": "99e6c0bfc1f4566201fe6026b6129029fd190075e88b26d4d2f25263029e5609",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-06/attempt-01/02-risk-only/raw/execution-e2ab03bf-0729-4a8e-b5cb-19e358483cfc/outcome.json",
+      "outcome_sha256": "ad1dee4fc1e836c763d34fe8e52411e831d4c2f354ca72f723909577d81d89e6",
+      "scheduler_elapsed_seconds": 37.787231792,
+      "backend_statuses": [
+        "bug_found",
+        "timeout",
+        "no_counterexample",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 6,
+      "strategy": "random",
+      "strategy_position": 3,
+      "execution_seed": 2026092006,
+      "ranking_seed": 2026094006,
+      "target_order": [
+        "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+        "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+        "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+        "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377"
+      ],
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-06/attempt-01/03-random/plan.json",
+      "plan_sha256": "04d5105d5b84283386d21d34b29e942ab0fbd469bcf35693cb7330d6c1efc201",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-06/attempt-01/03-random/raw/execution-6c197129-0bef-4025-b003-caeeb6f2be77/outcome.json",
+      "outcome_sha256": "14223543e230dd7857d2fd18ad1d519cae875c33c2c8b45cf0432a78b00f217d",
+      "scheduler_elapsed_seconds": 37.759793417,
+      "backend_statuses": [
+        "no_counterexample",
+        "timeout",
+        "bug_found",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 7,
+      "strategy": "risk-only",
+      "strategy_position": 1,
+      "execution_seed": 2026092007,
+      "ranking_seed": null,
+      "target_order": [
+        "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+        "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+        "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+        "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377"
+      ],
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-07/attempt-01/01-risk-only/plan.json",
+      "plan_sha256": "9f46f4e48280d62161e84febf3490dbf825d8f4d79c6b4df7dd561e5acef5d1a",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-07/attempt-01/01-risk-only/raw/execution-aa8fd07b-338d-4079-a33a-99de675cca82/outcome.json",
+      "outcome_sha256": "a13aeaaa4b3be00ce20c789d387ee9adf9798302bfe8400d0e70ee81c1215d43",
+      "scheduler_elapsed_seconds": 37.714281625,
+      "backend_statuses": [
+        "bug_found",
+        "timeout",
+        "no_counterexample",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 7,
+      "strategy": "random",
+      "strategy_position": 2,
+      "execution_seed": 2026092007,
+      "ranking_seed": 2026094007,
+      "target_order": [
+        "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+        "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+        "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+        "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c"
+      ],
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-07/attempt-01/02-random/plan.json",
+      "plan_sha256": "a00508e9cd49d3c884de2e799819e32b474cc00cee26223f287156392f065de6",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-07/attempt-01/02-random/raw/execution-7514af1f-b8d9-4c07-802d-e04e427457eb/outcome.json",
+      "outcome_sha256": "5b7299a880b14ed40c9a82c9e55188c323f2a808cbce10385dc7cba12723cdf7",
+      "scheduler_elapsed_seconds": 37.6980075,
+      "backend_statuses": [
+        "no_counterexample",
+        "bug_found",
+        "no_counterexample",
+        "timeout"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 7,
+      "strategy": "small-first",
+      "strategy_position": 3,
+      "execution_seed": 2026092007,
+      "ranking_seed": null,
+      "target_order": [
+        "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+        "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+        "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+        "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c"
+      ],
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-07/attempt-01/03-small-first/plan.json",
+      "plan_sha256": "3bb535c65a1474b0f858268b968562214889bc4d6d0367c18ed24a655ae78029",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-07/attempt-01/03-small-first/raw/execution-5abdc3b8-8544-415d-b5cf-032eadcf2ff4/outcome.json",
+      "outcome_sha256": "73610b21e424298fbd416b50ab1b5ed0a795a039e173dd232026d272a47f00f2",
+      "scheduler_elapsed_seconds": 37.767429667,
+      "backend_statuses": [
+        "no_counterexample",
+        "no_counterexample",
+        "bug_found",
+        "timeout"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 8,
+      "strategy": "random",
+      "strategy_position": 1,
+      "execution_seed": 2026092008,
+      "ranking_seed": 2026094008,
+      "target_order": [
+        "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+        "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+        "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+        "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5"
+      ],
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-08/attempt-01/01-random/plan.json",
+      "plan_sha256": "eab8495b1c8aa688c851ee0cee14de9d42de819e0a5bcb3f9dd83f498bf58abb",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-08/attempt-01/01-random/raw/execution-71f38a13-665f-43a9-9924-0612550ef1f4/outcome.json",
+      "outcome_sha256": "5f5aff289b77f48d37de837c08403030a6b046c9713e79391743a1f9d1c752ed",
+      "scheduler_elapsed_seconds": 37.799845125,
+      "backend_statuses": [
+        "bug_found",
+        "timeout",
+        "no_counterexample",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 8,
+      "strategy": "small-first",
+      "strategy_position": 2,
+      "execution_seed": 2026092008,
+      "ranking_seed": null,
+      "target_order": [
+        "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+        "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+        "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+        "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c"
+      ],
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-08/attempt-01/02-small-first/plan.json",
+      "plan_sha256": "e5569164fa3df867a2e4f8d560db2e5564772ed8040a74df2031a0c26fe8dc5c",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-08/attempt-01/02-small-first/raw/execution-9cd88248-f430-4a9d-9a8c-38b76618f0a9/outcome.json",
+      "outcome_sha256": "e00fe4dcecaf5577c1ce1ca601b9721d2f2be12ed4bdfbf1d4d830371164f0d9",
+      "scheduler_elapsed_seconds": 37.920461167,
+      "backend_statuses": [
+        "no_counterexample",
+        "no_counterexample",
+        "bug_found",
+        "timeout"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 8,
+      "strategy": "risk-only",
+      "strategy_position": 3,
+      "execution_seed": 2026092008,
+      "ranking_seed": null,
+      "target_order": [
+        "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+        "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+        "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+        "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377"
+      ],
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-08/attempt-01/03-risk-only/plan.json",
+      "plan_sha256": "097e66daad0b0a1f47d9fb7b5b339e29245bfe6ff83ba86305571bcfe797ec77",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-08/attempt-01/03-risk-only/raw/execution-706857bf-4e37-4d1b-b76d-64fafcebfbf6/outcome.json",
+      "outcome_sha256": "aff8c3f9dff037cb4885b7719a4e5deb4bed8820255548daa4640a24cc042764",
+      "scheduler_elapsed_seconds": 38.040092,
+      "backend_statuses": [
+        "bug_found",
+        "timeout",
+        "no_counterexample",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 9,
+      "strategy": "small-first",
+      "strategy_position": 1,
+      "execution_seed": 2026092009,
+      "ranking_seed": null,
+      "target_order": [
+        "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+        "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+        "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+        "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c"
+      ],
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-09/attempt-01/01-small-first/plan.json",
+      "plan_sha256": "125b1dfbda5b376bbcd4c4fc59d6d2717005d312a78e69e45c011111c0c42eac",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-09/attempt-01/01-small-first/raw/execution-2667ac54-b440-4f7a-b01e-07de5bc9ffa8/outcome.json",
+      "outcome_sha256": "95a0f9db4776f11c0ceef8bc4c2cb97cc9f0b47b4f28569479da480a84b62b07",
+      "scheduler_elapsed_seconds": 37.868184709,
+      "backend_statuses": [
+        "no_counterexample",
+        "no_counterexample",
+        "bug_found",
+        "timeout"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 9,
+      "strategy": "risk-only",
+      "strategy_position": 2,
+      "execution_seed": 2026092009,
+      "ranking_seed": null,
+      "target_order": [
+        "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+        "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+        "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+        "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377"
+      ],
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-09/attempt-01/02-risk-only/plan.json",
+      "plan_sha256": "238c0a3dba3da53136486c44f5d932f21b55ddfad4b8d609871f26e1a5f1714c",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-09/attempt-01/02-risk-only/raw/execution-4321de7a-786f-4e63-a2fa-b1608dd0961e/outcome.json",
+      "outcome_sha256": "28cb75d2a2e8da555396d642a12dd8cf4978fdaa1e832687bc7be77b12b6f314",
+      "scheduler_elapsed_seconds": 37.842265291,
+      "backend_statuses": [
+        "bug_found",
+        "timeout",
+        "no_counterexample",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 9,
+      "strategy": "random",
+      "strategy_position": 3,
+      "execution_seed": 2026092009,
+      "ranking_seed": 2026094009,
+      "target_order": [
+        "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+        "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+        "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+        "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377"
+      ],
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-09/attempt-01/03-random/plan.json",
+      "plan_sha256": "4c337d36190f952d21b24ce87d8410f1d6f353010bb6502d5f88f1c0d6c5b456",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-09/attempt-01/03-random/raw/execution-30ad784e-0ff4-45d5-919c-8d34ed98b3bf/outcome.json",
+      "outcome_sha256": "fdd1f7e79a13192e90f219f65e8d6847b55c6d7364f519a8bb0cc20b7cf636e8",
+      "scheduler_elapsed_seconds": 37.804713541,
+      "backend_statuses": [
+        "no_counterexample",
+        "timeout",
+        "bug_found",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 10,
+      "strategy": "risk-only",
+      "strategy_position": 1,
+      "execution_seed": 2026092010,
+      "ranking_seed": null,
+      "target_order": [
+        "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+        "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+        "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+        "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377"
+      ],
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-10/attempt-01/01-risk-only/plan.json",
+      "plan_sha256": "beaf88a3030df15ed61f24adf3c63787d25a0c982d0cd219aa004b6462dc9f65",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-10/attempt-01/01-risk-only/raw/execution-d54a9ee7-f3cf-4534-9e01-328d434a61ef/outcome.json",
+      "outcome_sha256": "bc4adf7ade38afeae4158651f38591db7a33a20cb0465446ade94cb51d75bce3",
+      "scheduler_elapsed_seconds": 37.812762917,
+      "backend_statuses": [
+        "bug_found",
+        "timeout",
+        "no_counterexample",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 10,
+      "strategy": "random",
+      "strategy_position": 2,
+      "execution_seed": 2026092010,
+      "ranking_seed": 2026094010,
+      "target_order": [
+        "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+        "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+        "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+        "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c"
+      ],
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-10/attempt-01/02-random/plan.json",
+      "plan_sha256": "5d4ecd9a03f1992dd67a626c8badfe62936065598136b1edf522f2e5819d2916",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-10/attempt-01/02-random/raw/execution-493085e1-a002-4af1-8e9a-cd6a63c13995/outcome.json",
+      "outcome_sha256": "bcf1dc44988abe22910fd2c9166931139e9adf669d78b6a6e0227c0b9942a8b5",
+      "scheduler_elapsed_seconds": 37.897238208,
+      "backend_statuses": [
+        "no_counterexample",
+        "no_counterexample",
+        "bug_found",
+        "timeout"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 10,
+      "strategy": "small-first",
+      "strategy_position": 3,
+      "execution_seed": 2026092010,
+      "ranking_seed": null,
+      "target_order": [
+        "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+        "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+        "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+        "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c"
+      ],
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-10/attempt-01/03-small-first/plan.json",
+      "plan_sha256": "638f9c5ea76efb3a46af52ccbf195ab454b90814718072ac8b14cfe7b53da733",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-10/attempt-01/03-small-first/raw/execution-60eac69f-bcd5-41e4-be0d-876dbe0d9b4f/outcome.json",
+      "outcome_sha256": "f5c94d01bef080b0677ba2f3b42aafcfc0f3bb17968459c6f194a6090d259def",
+      "scheduler_elapsed_seconds": 37.777758291,
+      "backend_statuses": [
+        "no_counterexample",
+        "no_counterexample",
+        "bug_found",
+        "timeout"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 11,
+      "strategy": "random",
+      "strategy_position": 1,
+      "execution_seed": 2026092011,
+      "ranking_seed": 2026094011,
+      "target_order": [
+        "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+        "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+        "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+        "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c"
+      ],
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-11/attempt-01/01-random/plan.json",
+      "plan_sha256": "64c5400c887da28c08ce5a9baf03b1ae762bf9a4f53c4f4776993379d0f8f2bf",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-11/attempt-01/01-random/raw/execution-2614412f-3c86-4831-842b-80793defd5d3/outcome.json",
+      "outcome_sha256": "78e5b2b0d45b9b10dbd3d3ca8a11ff7b3640fb8a20fa85b676a495dcf50d7526",
+      "scheduler_elapsed_seconds": 37.732371583,
+      "backend_statuses": [
+        "no_counterexample",
+        "no_counterexample",
+        "bug_found",
+        "timeout"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 11,
+      "strategy": "small-first",
+      "strategy_position": 2,
+      "execution_seed": 2026092011,
+      "ranking_seed": null,
+      "target_order": [
+        "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+        "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+        "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+        "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c"
+      ],
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-11/attempt-01/02-small-first/plan.json",
+      "plan_sha256": "dde26a1eb78739c5f67741c33dfb00fc854ef1407988d4c3ae1a000bc523fd0d",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-11/attempt-01/02-small-first/raw/execution-ba86b217-ff16-4901-a4d0-3c627ce8e1e4/outcome.json",
+      "outcome_sha256": "1372f9941257c6dd0f6b08b2d5015c7870f259506bf4fddea2d57992ab7f9b3f",
+      "scheduler_elapsed_seconds": 37.870694417,
+      "backend_statuses": [
+        "no_counterexample",
+        "no_counterexample",
+        "bug_found",
+        "timeout"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 11,
+      "strategy": "risk-only",
+      "strategy_position": 3,
+      "execution_seed": 2026092011,
+      "ranking_seed": null,
+      "target_order": [
+        "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+        "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+        "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+        "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377"
+      ],
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-11/attempt-01/03-risk-only/plan.json",
+      "plan_sha256": "456378f66eab2d8aa13627706f651e70575ca09390ca8e60bebe980c74c2be0b",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-11/attempt-01/03-risk-only/raw/execution-038c5633-814c-433b-a84f-b0d3a5e64c80/outcome.json",
+      "outcome_sha256": "df811ef42d211d1ef6386d376aae8027e1f67d8eb53b4401952c0a5488668d21",
+      "scheduler_elapsed_seconds": 37.867073625,
+      "backend_statuses": [
+        "bug_found",
+        "timeout",
+        "no_counterexample",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 12,
+      "strategy": "small-first",
+      "strategy_position": 1,
+      "execution_seed": 2026092012,
+      "ranking_seed": null,
+      "target_order": [
+        "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+        "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+        "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+        "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c"
+      ],
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-12/attempt-01/01-small-first/plan.json",
+      "plan_sha256": "abc94e7ce1cae4209928a1fada0f5a2a68244b5ee8c2dc5d3fec82784c443e12",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-12/attempt-01/01-small-first/raw/execution-7ea7998c-ad76-4669-bb20-49042f549d34/outcome.json",
+      "outcome_sha256": "3867939625a470abad795351fa306922f506192deef1c7226465d547c4056cd5",
+      "scheduler_elapsed_seconds": 37.853701292,
+      "backend_statuses": [
+        "no_counterexample",
+        "no_counterexample",
+        "bug_found",
+        "timeout"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 12,
+      "strategy": "risk-only",
+      "strategy_position": 2,
+      "execution_seed": 2026092012,
+      "ranking_seed": null,
+      "target_order": [
+        "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+        "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+        "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+        "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377"
+      ],
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-12/attempt-01/02-risk-only/plan.json",
+      "plan_sha256": "531f822c3ac43b8096822bc8dad5aa7040b98876a57c15bfcd99b80cd2c9ed0f",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-12/attempt-01/02-risk-only/raw/execution-c2b1e774-863a-4406-a460-1dd0f6e2934d/outcome.json",
+      "outcome_sha256": "cf8efc29e32abb350f6937e6511de2a96271c00df2a286373fb1f32523246783",
+      "scheduler_elapsed_seconds": 37.850645209,
+      "backend_statuses": [
+        "bug_found",
+        "timeout",
+        "no_counterexample",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 12,
+      "strategy": "random",
+      "strategy_position": 3,
+      "execution_seed": 2026092012,
+      "ranking_seed": 2026094012,
+      "target_order": [
+        "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+        "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+        "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+        "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377"
+      ],
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-12/attempt-01/03-random/plan.json",
+      "plan_sha256": "112b2e3ca0c179788de18195059b0e6c934a5bd5b4f76eecaf385bf009311265",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-12/attempt-01/03-random/raw/execution-e76d1d1d-0627-41ac-81c7-df239f19f6a9/outcome.json",
+      "outcome_sha256": "a7500054b5c954f7665bfcc4291c945df1862d003cd771163bdb2712e8d0d711",
+      "scheduler_elapsed_seconds": 37.8478955,
+      "backend_statuses": [
+        "bug_found",
+        "no_counterexample",
+        "timeout",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    }
+  ],
+  "candidate_reviews": [
+    {
+      "block": 1,
+      "strategy": "risk-only",
+      "strategy_position": 1,
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-01/attempt-01/01-risk-only/plan.json",
+      "plan_sha256": "81fd15632fa60cf977bdaa7f51d1593bcab176a9d877b21ffa7c15f6aaddb862",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-01/attempt-01/01-risk-only/raw/execution-95e82309-1719-4f26-87ae-e287c80f7420/outcome.json",
+      "outcome_sha256": "8c0cc81c64715fc5ee420891c2c459c23118c05c05173b0f47af8a0b8c85f35e",
+      "run_id": "45ba43f2-00fd-4e39-ac0c-c5940b922d99",
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.033864917,
+      "candidate_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-01/attempt-01/01-risk-only/raw/execution-95e82309-1719-4f26-87ae-e287c80f7420/counterexample-candidates/0001/circuit.circom_jC2lQCVMTF_counterexample.json",
+      "candidate_sha256": "432d547848bcf7eb0f02d9854ccc04d4a715409e4247620e5b545461bfeb4ea2",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_count": 0,
+      "failed_original_constraint_indices_zero_based": [],
+      "property_violation_class": "input-outside-required-8-bit-component-domain",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "Both preserved component inputs are canonical BN128 field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v2-execution-2026-09-20/evidence/banyan-vulnerable-compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies all 29 constraints in the hash-pinned vulnerable component."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "The satisfying assignment violates the predeclared CheckDepth range/order contract."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T11:51:32.319066+00:00",
+      "review_finished_at_utc": "2026-09-20T11:51:32.319575+00:00",
+      "automated_review_seconds": 0.0005122919974382967,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 1,
+      "strategy": "random",
+      "strategy_position": 2,
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-01/attempt-01/02-random/plan.json",
+      "plan_sha256": "4dc688a9fbc486187867c838be9164e48cfc812b8b493477512b24dce2972b3b",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-01/attempt-01/02-random/raw/execution-f35c3134-94a2-4b68-9655-220704713fa4/outcome.json",
+      "outcome_sha256": "47e7a4d7ba674c24e4dc0cf68ef8e1ba772b887b9d79414d1cfcc9cc4324391e",
+      "run_id": "ede68623-8302-4962-9936-80131132f9af",
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 33.694694833,
+      "candidate_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-01/attempt-01/02-random/raw/execution-f35c3134-94a2-4b68-9655-220704713fa4/counterexample-candidates/0003/circuit.circom_IgUZkc25VF_counterexample.json",
+      "candidate_sha256": "6361e5d54464a5c4096f3232cb30d370e52900796a490463e82755be1edfb0bb",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_count": 0,
+      "failed_original_constraint_indices_zero_based": [],
+      "property_violation_class": "input-outside-required-8-bit-component-domain",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "Both preserved component inputs are canonical BN128 field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v2-execution-2026-09-20/evidence/banyan-vulnerable-compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies all 29 constraints in the hash-pinned vulnerable component."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "The satisfying assignment violates the predeclared CheckDepth range/order contract."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T11:51:32.320162+00:00",
+      "review_finished_at_utc": "2026-09-20T11:51:32.320618+00:00",
+      "automated_review_seconds": 0.00045754198799841106,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 1,
+      "strategy": "small-first",
+      "strategy_position": 3,
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-01/attempt-01/03-small-first/plan.json",
+      "plan_sha256": "bac3e3ab40807db99e47e2cee7fe3272e471378e484e76f4b8b0ad0e1db283ba",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-01/attempt-01/03-small-first/raw/execution-faa94df8-b6ab-4edb-bcb3-4e2916aabbfa/outcome.json",
+      "outcome_sha256": "09980f620821026c30c49476b829f7878898a7a2f32ea07f874d39731a7054d3",
+      "run_id": "926742d3-853e-4de9-a400-abfcd47b2752",
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 7.719829708,
+      "candidate_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-01/attempt-01/03-small-first/raw/execution-faa94df8-b6ab-4edb-bcb3-4e2916aabbfa/counterexample-candidates/0003/circuit.circom_9feczi9L2O_counterexample.json",
+      "candidate_sha256": "e314650318ed23bddfeba8308ad48e256fb8adcc4431e866641e64ea9388472e",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_count": 0,
+      "failed_original_constraint_indices_zero_based": [],
+      "property_violation_class": "input-outside-required-8-bit-component-domain",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "Both preserved component inputs are canonical BN128 field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v2-execution-2026-09-20/evidence/banyan-vulnerable-compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies all 29 constraints in the hash-pinned vulnerable component."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "The satisfying assignment violates the predeclared CheckDepth range/order contract."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T11:51:32.321182+00:00",
+      "review_finished_at_utc": "2026-09-20T11:51:32.321646+00:00",
+      "automated_review_seconds": 0.00046637500054202974,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 2,
+      "strategy": "random",
+      "strategy_position": 1,
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-02/attempt-01/01-random/plan.json",
+      "plan_sha256": "15e65ae1b3e8278d1a4d81879c9fa783a45b80812c5f125cea523a094bd25904",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-02/attempt-01/01-random/raw/execution-f5dd980c-12c9-48d4-bd11-c6337e1e8523/outcome.json",
+      "outcome_sha256": "20e36491c64a4da3cb132320a4bbfeda9860dfe25ff3498b0c6c979cb1af3d63",
+      "run_id": "5acf6df8-b2a8-4585-9ade-aaa66ed33b20",
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 4.185493584,
+      "candidate_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-02/attempt-01/01-random/raw/execution-f5dd980c-12c9-48d4-bd11-c6337e1e8523/counterexample-candidates/0002/circuit.circom_9YgcnGgmWY_counterexample.json",
+      "candidate_sha256": "df3f18935d4ab09d0526e45cbb84acab165fa8afed829986e639b22db4093702",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_count": 0,
+      "failed_original_constraint_indices_zero_based": [],
+      "property_violation_class": "input-outside-required-8-bit-component-domain",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "Both preserved component inputs are canonical BN128 field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v2-execution-2026-09-20/evidence/banyan-vulnerable-compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies all 29 constraints in the hash-pinned vulnerable component."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "The satisfying assignment violates the predeclared CheckDepth range/order contract."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T11:51:32.322196+00:00",
+      "review_finished_at_utc": "2026-09-20T11:51:32.322621+00:00",
+      "automated_review_seconds": 0.00042695802403613925,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 2,
+      "strategy": "small-first",
+      "strategy_position": 2,
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-02/attempt-01/02-small-first/plan.json",
+      "plan_sha256": "b3dda272a0a32fd737aa72498a8f5a31afcacc1a34f17a242fe55a94e51af241",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-02/attempt-01/02-small-first/raw/execution-1bf29f0d-c87c-4e16-b27f-b835761cd95d/outcome.json",
+      "outcome_sha256": "df021d8724a8eadec3a58a10f646782d73d250dc3789a59f0164ea561231e0bf",
+      "run_id": "810da8d0-d541-42ce-974f-07469d070326",
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 8.122348625,
+      "candidate_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-02/attempt-01/02-small-first/raw/execution-1bf29f0d-c87c-4e16-b27f-b835761cd95d/counterexample-candidates/0003/circuit.circom_MrIkX2mb26_counterexample.json",
+      "candidate_sha256": "f349d8766340c45624250cc806ec4f334c8ced30110d809542aa81065bcffffe",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_count": 0,
+      "failed_original_constraint_indices_zero_based": [],
+      "property_violation_class": "input-outside-required-8-bit-component-domain",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "Both preserved component inputs are canonical BN128 field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v2-execution-2026-09-20/evidence/banyan-vulnerable-compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies all 29 constraints in the hash-pinned vulnerable component."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "The satisfying assignment violates the predeclared CheckDepth range/order contract."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T11:51:32.323185+00:00",
+      "review_finished_at_utc": "2026-09-20T11:51:32.323611+00:00",
+      "automated_review_seconds": 0.0004277499974705279,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 2,
+      "strategy": "risk-only",
+      "strategy_position": 3,
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-02/attempt-01/03-risk-only/plan.json",
+      "plan_sha256": "f2e83de85880dda22a9ce4e3b4edc44286ae8cc05a490a13b494530981e68780",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-02/attempt-01/03-risk-only/raw/execution-7a3d3a39-050a-4249-b5a6-a21ed787e66f/outcome.json",
+      "outcome_sha256": "0a73d80f38682e212d436dcb27ecb9f61b0a597389d291d2c93dafeec560bd73",
+      "run_id": "2d80bf4f-8b7e-40ac-bdbf-6c72f6cb5d3f",
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.033029042,
+      "candidate_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-02/attempt-01/03-risk-only/raw/execution-7a3d3a39-050a-4249-b5a6-a21ed787e66f/counterexample-candidates/0001/circuit.circom_rEuOXdt2zf_counterexample.json",
+      "candidate_sha256": "4d3cda8d9d64515f2dbf04e84d4102e9d443d84c6afeeb55a99c38744d730174",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_count": 0,
+      "failed_original_constraint_indices_zero_based": [],
+      "property_violation_class": "input-outside-required-8-bit-component-domain",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "Both preserved component inputs are canonical BN128 field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v2-execution-2026-09-20/evidence/banyan-vulnerable-compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies all 29 constraints in the hash-pinned vulnerable component."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "The satisfying assignment violates the predeclared CheckDepth range/order contract."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T11:51:32.324090+00:00",
+      "review_finished_at_utc": "2026-09-20T11:51:32.324456+00:00",
+      "automated_review_seconds": 0.0003675410116557032,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 3,
+      "strategy": "small-first",
+      "strategy_position": 1,
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-03/attempt-01/01-small-first/plan.json",
+      "plan_sha256": "bcb2f26dd3fbd4f979c43ff92b396a1562381e47fea5ee7775901e35e1065b30",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-03/attempt-01/01-small-first/raw/execution-5c58eca8-6c16-40b1-a76e-1a3a77d3570a/outcome.json",
+      "outcome_sha256": "26538e468dba6eb3099b95ec56396b9e3458d1660b20d5e78d754288c8a008e1",
+      "run_id": "1037d952-9ffa-4c1c-93ed-2d41e5fcaf25",
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 7.766554125,
+      "candidate_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-03/attempt-01/01-small-first/raw/execution-5c58eca8-6c16-40b1-a76e-1a3a77d3570a/counterexample-candidates/0003/circuit.circom_RBwqIdAIGI_counterexample.json",
+      "candidate_sha256": "af44aac14d1bbda51e543b684b13e17b5df42c068c2da9c59feffd71e345fc69",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_count": 0,
+      "failed_original_constraint_indices_zero_based": [],
+      "property_violation_class": "input-outside-required-8-bit-component-domain",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "Both preserved component inputs are canonical BN128 field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v2-execution-2026-09-20/evidence/banyan-vulnerable-compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies all 29 constraints in the hash-pinned vulnerable component."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "The satisfying assignment violates the predeclared CheckDepth range/order contract."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T11:51:32.324972+00:00",
+      "review_finished_at_utc": "2026-09-20T11:51:32.325341+00:00",
+      "automated_review_seconds": 0.000370624999050051,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 3,
+      "strategy": "risk-only",
+      "strategy_position": 2,
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-03/attempt-01/02-risk-only/plan.json",
+      "plan_sha256": "ef4a23b1160e652e8b0783518cb8075cf3d18c8dd3015c4e9a216950ba9b4686",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-03/attempt-01/02-risk-only/raw/execution-b6075220-cd38-42a7-8125-f3ed1a851857/outcome.json",
+      "outcome_sha256": "2a75d230bbade0d04d0d614412ca344510ebaff2c9bd66851af3ca9cf72de722",
+      "run_id": "648d989e-c4a5-43f1-810d-8a49a6beb7c6",
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.030889625,
+      "candidate_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-03/attempt-01/02-risk-only/raw/execution-b6075220-cd38-42a7-8125-f3ed1a851857/counterexample-candidates/0001/circuit.circom_goGg0TfT83_counterexample.json",
+      "candidate_sha256": "c6b6474cce2eb2fee14e6a021461eb29336e9e15923b7222aa1ac362ab4fc8bf",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_count": 0,
+      "failed_original_constraint_indices_zero_based": [],
+      "property_violation_class": "input-outside-required-8-bit-component-domain",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "Both preserved component inputs are canonical BN128 field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v2-execution-2026-09-20/evidence/banyan-vulnerable-compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies all 29 constraints in the hash-pinned vulnerable component."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "The satisfying assignment violates the predeclared CheckDepth range/order contract."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T11:51:32.325833+00:00",
+      "review_finished_at_utc": "2026-09-20T11:51:32.326213+00:00",
+      "automated_review_seconds": 0.00038104099803604186,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 3,
+      "strategy": "random",
+      "strategy_position": 3,
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-03/attempt-01/03-random/plan.json",
+      "plan_sha256": "11f9a50ed5bea6cd857e1c56180397d3e6ad1af62c0a2aaaef11418278e64948",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-03/attempt-01/03-random/raw/execution-695c88bd-dc33-49f5-86d0-bbf59a4ff997/outcome.json",
+      "outcome_sha256": "aa0fd38cd860f8c3658601738dde9be768c27308738bbf08deada463285eedbf",
+      "run_id": "f670a1e6-576a-426e-9d1d-add9bf25655f",
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 30.042457292,
+      "candidate_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-03/attempt-01/03-random/raw/execution-695c88bd-dc33-49f5-86d0-bbf59a4ff997/counterexample-candidates/0002/circuit.circom_egPmvltlrG_counterexample.json",
+      "candidate_sha256": "618f42cfee5fd254ea92bf3248bd9ee3a57d05a46c2736ef6a11a4985df4cf6f",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_count": 0,
+      "failed_original_constraint_indices_zero_based": [],
+      "property_violation_class": "input-outside-required-8-bit-component-domain",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "Both preserved component inputs are canonical BN128 field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v2-execution-2026-09-20/evidence/banyan-vulnerable-compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies all 29 constraints in the hash-pinned vulnerable component."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "The satisfying assignment violates the predeclared CheckDepth range/order contract."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T11:51:32.326709+00:00",
+      "review_finished_at_utc": "2026-09-20T11:51:32.327092+00:00",
+      "automated_review_seconds": 0.0003837500116787851,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 4,
+      "strategy": "risk-only",
+      "strategy_position": 1,
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-04/attempt-01/01-risk-only/plan.json",
+      "plan_sha256": "2acea344833175518bd0db36ddd05a248619b08b4cf099b34c20d59b2a76886a",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-04/attempt-01/01-risk-only/raw/execution-e600cdbd-5ecf-45dc-b54a-8986037b86ce/outcome.json",
+      "outcome_sha256": "9783036f656abe22803d438a7b29b3744fb468e4b3b7a5040d243723a0a019ca",
+      "run_id": "df75e3db-56c7-4949-83d1-d2bfebbca213",
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.032839083,
+      "candidate_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-04/attempt-01/01-risk-only/raw/execution-e600cdbd-5ecf-45dc-b54a-8986037b86ce/counterexample-candidates/0001/circuit.circom_oWXp40jvZA_counterexample.json",
+      "candidate_sha256": "ac7aa29a8b39499ec4ab61b7a26d6fddf35869e3855660063c2476e653bbdfeb",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_count": 0,
+      "failed_original_constraint_indices_zero_based": [],
+      "property_violation_class": "input-outside-required-8-bit-component-domain",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "Both preserved component inputs are canonical BN128 field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v2-execution-2026-09-20/evidence/banyan-vulnerable-compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies all 29 constraints in the hash-pinned vulnerable component."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "The satisfying assignment violates the predeclared CheckDepth range/order contract."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T11:51:32.327700+00:00",
+      "review_finished_at_utc": "2026-09-20T11:51:32.328075+00:00",
+      "automated_review_seconds": 0.0003766670124605298,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 4,
+      "strategy": "random",
+      "strategy_position": 2,
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-04/attempt-01/02-random/plan.json",
+      "plan_sha256": "3e4e0f7ba41b95f13bb22713c3a1a38dd22e49a4c7afd64fee638339eca8f4ec",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-04/attempt-01/02-random/raw/execution-5b656ba9-dc93-4fef-9dd3-3c6094b49b37/outcome.json",
+      "outcome_sha256": "4ca0c89e36a106a1c5111b9068f14a79f5fae511e8c83bc92158023e329fd040",
+      "run_id": "641897cc-2b40-47ce-80d4-19966b8532a0",
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 37.860142375,
+      "candidate_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-04/attempt-01/02-random/raw/execution-5b656ba9-dc93-4fef-9dd3-3c6094b49b37/counterexample-candidates/0004/circuit.circom_lWaiCDdxC9_counterexample.json",
+      "candidate_sha256": "b1c0062d909383efda26a69e257d91f74ed882fbc21fd0f4a0d6548faf8cc985",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_count": 0,
+      "failed_original_constraint_indices_zero_based": [],
+      "property_violation_class": "input-outside-required-8-bit-component-domain",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "Both preserved component inputs are canonical BN128 field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v2-execution-2026-09-20/evidence/banyan-vulnerable-compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies all 29 constraints in the hash-pinned vulnerable component."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "The satisfying assignment violates the predeclared CheckDepth range/order contract."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T11:51:32.328677+00:00",
+      "review_finished_at_utc": "2026-09-20T11:51:32.329179+00:00",
+      "automated_review_seconds": 0.0005032909975852817,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 4,
+      "strategy": "small-first",
+      "strategy_position": 3,
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-04/attempt-01/03-small-first/plan.json",
+      "plan_sha256": "1bfe5e710e1a74c5debcc11a87cf19592699f121a5ed7139a6eacb2e01bb3cfe",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-04/attempt-01/03-small-first/raw/execution-2523ac59-846c-45d1-8168-e79968635589/outcome.json",
+      "outcome_sha256": "1cb9a9c0669aeb2b5b44b152debab0bd329ecf41a09d63b1c735c569b3b70666",
+      "run_id": "a43340f9-a024-4b4c-9a14-279c6926cf84",
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 7.886206958,
+      "candidate_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-04/attempt-01/03-small-first/raw/execution-2523ac59-846c-45d1-8168-e79968635589/counterexample-candidates/0003/circuit.circom_crYq0BwPTE_counterexample.json",
+      "candidate_sha256": "8dde3b106d6ca7f9ac74c716e54a541be9a5b639d564756f268e003bc7045357",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_count": 0,
+      "failed_original_constraint_indices_zero_based": [],
+      "property_violation_class": "input-outside-required-8-bit-component-domain",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "Both preserved component inputs are canonical BN128 field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v2-execution-2026-09-20/evidence/banyan-vulnerable-compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies all 29 constraints in the hash-pinned vulnerable component."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "The satisfying assignment violates the predeclared CheckDepth range/order contract."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T11:51:32.329707+00:00",
+      "review_finished_at_utc": "2026-09-20T11:51:32.330148+00:00",
+      "automated_review_seconds": 0.00044237502152100205,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 5,
+      "strategy": "random",
+      "strategy_position": 1,
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-05/attempt-01/01-random/plan.json",
+      "plan_sha256": "c1f6d82532c82f62e0b892c4467cf658a3597f3650651900f1e795c0e5505241",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-05/attempt-01/01-random/raw/execution-695d5a0e-9012-408e-8ac9-76f5c8efc60d/outcome.json",
+      "outcome_sha256": "ba14cac8fdd5816a7ee67b002853a9d6b24c9356bdf04e702a5a6acc28243c65",
+      "run_id": "593630e6-0015-40c4-97d6-823e2a0a89be",
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 3.716028459,
+      "candidate_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-05/attempt-01/01-random/raw/execution-695d5a0e-9012-408e-8ac9-76f5c8efc60d/counterexample-candidates/0002/circuit.circom_koAgwmq5vV_counterexample.json",
+      "candidate_sha256": "1398aab6daa31614e15cea8432503c917347558d10fabc356c1e910ce8f4a78e",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_count": 0,
+      "failed_original_constraint_indices_zero_based": [],
+      "property_violation_class": "input-outside-required-8-bit-component-domain",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "Both preserved component inputs are canonical BN128 field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v2-execution-2026-09-20/evidence/banyan-vulnerable-compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies all 29 constraints in the hash-pinned vulnerable component."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "The satisfying assignment violates the predeclared CheckDepth range/order contract."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T11:51:32.330668+00:00",
+      "review_finished_at_utc": "2026-09-20T11:51:32.331040+00:00",
+      "automated_review_seconds": 0.00037366600008681417,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 5,
+      "strategy": "small-first",
+      "strategy_position": 2,
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-05/attempt-01/02-small-first/plan.json",
+      "plan_sha256": "385c4db8b00c0f3ace8fb629551f35eed5456d4f9a1f8c69dbe45bf91f2c7fe3",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-05/attempt-01/02-small-first/raw/execution-d033a10e-da14-4aa6-811d-464758b51534/outcome.json",
+      "outcome_sha256": "4ae8b88ddd189325e185f544a11f442e2d704b84e5febe1b98cbfe13c3b51ec8",
+      "run_id": "c370b55d-fa54-43ae-814a-ca3baad333ef",
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 7.999540708,
+      "candidate_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-05/attempt-01/02-small-first/raw/execution-d033a10e-da14-4aa6-811d-464758b51534/counterexample-candidates/0003/circuit.circom_2jvFoWhAbT_counterexample.json",
+      "candidate_sha256": "1240e5cb98aed27e699ed234b4a4107e23e4740e890e8d0a450c84d24e43ad77",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_count": 0,
+      "failed_original_constraint_indices_zero_based": [],
+      "property_violation_class": "input-outside-required-8-bit-component-domain",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "Both preserved component inputs are canonical BN128 field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v2-execution-2026-09-20/evidence/banyan-vulnerable-compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies all 29 constraints in the hash-pinned vulnerable component."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "The satisfying assignment violates the predeclared CheckDepth range/order contract."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T11:51:32.331522+00:00",
+      "review_finished_at_utc": "2026-09-20T11:51:32.331881+00:00",
+      "automated_review_seconds": 0.000360875012120232,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 5,
+      "strategy": "risk-only",
+      "strategy_position": 3,
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-05/attempt-01/03-risk-only/plan.json",
+      "plan_sha256": "7db6e2505fe96ebe049c682ebeea8e219efe5e31664f22e6dbec39d445c577ea",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-05/attempt-01/03-risk-only/raw/execution-9a90ae88-9f7f-4953-8b55-780e49497256/outcome.json",
+      "outcome_sha256": "91f58b5615477191b891a518f8fe67b7c44b246b676d526f1cc107ae2442c560",
+      "run_id": "382d95f4-074e-4d0a-b393-50c88df4ba47",
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.032833917,
+      "candidate_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-05/attempt-01/03-risk-only/raw/execution-9a90ae88-9f7f-4953-8b55-780e49497256/counterexample-candidates/0001/circuit.circom_OFXaL2dv6d_counterexample.json",
+      "candidate_sha256": "e67dfc827ebc2f7ea6f9a13347db109a84b67ea9f5e907d2271645970f44f2a6",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_count": 0,
+      "failed_original_constraint_indices_zero_based": [],
+      "property_violation_class": "input-outside-required-8-bit-component-domain",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "Both preserved component inputs are canonical BN128 field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v2-execution-2026-09-20/evidence/banyan-vulnerable-compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies all 29 constraints in the hash-pinned vulnerable component."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "The satisfying assignment violates the predeclared CheckDepth range/order contract."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T11:51:32.332522+00:00",
+      "review_finished_at_utc": "2026-09-20T11:51:32.334698+00:00",
+      "automated_review_seconds": 0.002227332995971665,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 6,
+      "strategy": "small-first",
+      "strategy_position": 1,
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-06/attempt-01/01-small-first/plan.json",
+      "plan_sha256": "39709bf79df7da280a287128c5717296a73efe5869a1ed96fc99ed012a405fcf",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-06/attempt-01/01-small-first/raw/execution-c397faf6-d261-4c48-817c-994828e20f42/outcome.json",
+      "outcome_sha256": "c1588ffcd208a8b836f3b93a680c782f81e466a64f3d5c0ee8a276a2a05af7cd",
+      "run_id": "ba3a50d1-7db3-49bd-9d76-4acd90ad701c",
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 7.714343125,
+      "candidate_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-06/attempt-01/01-small-first/raw/execution-c397faf6-d261-4c48-817c-994828e20f42/counterexample-candidates/0003/circuit.circom_i7oZJ3fL57_counterexample.json",
+      "candidate_sha256": "ee04160f75c2637204210c338c14fb91e5c70bdf93d418845d857c754e3a7a5b",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_count": 0,
+      "failed_original_constraint_indices_zero_based": [],
+      "property_violation_class": "input-outside-required-8-bit-component-domain",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "Both preserved component inputs are canonical BN128 field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v2-execution-2026-09-20/evidence/banyan-vulnerable-compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies all 29 constraints in the hash-pinned vulnerable component."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "The satisfying assignment violates the predeclared CheckDepth range/order contract."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T11:51:32.340061+00:00",
+      "review_finished_at_utc": "2026-09-20T11:51:32.340609+00:00",
+      "automated_review_seconds": 0.0005533749936148524,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 6,
+      "strategy": "risk-only",
+      "strategy_position": 2,
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-06/attempt-01/02-risk-only/plan.json",
+      "plan_sha256": "99e6c0bfc1f4566201fe6026b6129029fd190075e88b26d4d2f25263029e5609",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-06/attempt-01/02-risk-only/raw/execution-e2ab03bf-0729-4a8e-b5cb-19e358483cfc/outcome.json",
+      "outcome_sha256": "ad1dee4fc1e836c763d34fe8e52411e831d4c2f354ca72f723909577d81d89e6",
+      "run_id": "8e08fd56-4f66-427e-9fb0-f05ac3b0bf23",
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.027973625,
+      "candidate_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-06/attempt-01/02-risk-only/raw/execution-e2ab03bf-0729-4a8e-b5cb-19e358483cfc/counterexample-candidates/0001/circuit.circom_sfvbSmGJqD_counterexample.json",
+      "candidate_sha256": "293d1749fccfe976b5a50da5545e96c64e125bcdf174a788b6a2049d9859b52b",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_count": 0,
+      "failed_original_constraint_indices_zero_based": [],
+      "property_violation_class": "input-outside-required-8-bit-component-domain",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "Both preserved component inputs are canonical BN128 field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v2-execution-2026-09-20/evidence/banyan-vulnerable-compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies all 29 constraints in the hash-pinned vulnerable component."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "The satisfying assignment violates the predeclared CheckDepth range/order contract."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T11:51:32.341687+00:00",
+      "review_finished_at_utc": "2026-09-20T11:51:32.342306+00:00",
+      "automated_review_seconds": 0.0006229169957805425,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 6,
+      "strategy": "random",
+      "strategy_position": 3,
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-06/attempt-01/03-random/plan.json",
+      "plan_sha256": "04d5105d5b84283386d21d34b29e942ab0fbd469bcf35693cb7330d6c1efc201",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-06/attempt-01/03-random/raw/execution-6c197129-0bef-4025-b003-caeeb6f2be77/outcome.json",
+      "outcome_sha256": "14223543e230dd7857d2fd18ad1d519cae875c33c2c8b45cf0432a78b00f217d",
+      "run_id": "8de9c24f-11dc-49a6-9621-4bac43293e63",
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 34.106268625,
+      "candidate_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-06/attempt-01/03-random/raw/execution-6c197129-0bef-4025-b003-caeeb6f2be77/counterexample-candidates/0003/circuit.circom_8VMgOwVXAR_counterexample.json",
+      "candidate_sha256": "db422a293c45ccfa072fa7608a83daae252cb33578f7fa1b6bc414d27d4f94f5",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_count": 0,
+      "failed_original_constraint_indices_zero_based": [],
+      "property_violation_class": "input-outside-required-8-bit-component-domain",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "Both preserved component inputs are canonical BN128 field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v2-execution-2026-09-20/evidence/banyan-vulnerable-compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies all 29 constraints in the hash-pinned vulnerable component."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "The satisfying assignment violates the predeclared CheckDepth range/order contract."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T11:51:32.342876+00:00",
+      "review_finished_at_utc": "2026-09-20T11:51:32.343324+00:00",
+      "automated_review_seconds": 0.0004495409957598895,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 7,
+      "strategy": "risk-only",
+      "strategy_position": 1,
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-07/attempt-01/01-risk-only/plan.json",
+      "plan_sha256": "9f46f4e48280d62161e84febf3490dbf825d8f4d79c6b4df7dd561e5acef5d1a",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-07/attempt-01/01-risk-only/raw/execution-aa8fd07b-338d-4079-a33a-99de675cca82/outcome.json",
+      "outcome_sha256": "a13aeaaa4b3be00ce20c789d387ee9adf9798302bfe8400d0e70ee81c1215d43",
+      "run_id": "67274a40-228b-40d0-bdec-a8213169de97",
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.032777375,
+      "candidate_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-07/attempt-01/01-risk-only/raw/execution-aa8fd07b-338d-4079-a33a-99de675cca82/counterexample-candidates/0001/circuit.circom_d0TS6dDZPQ_counterexample.json",
+      "candidate_sha256": "e44e654c24f3c500d5417229ffaa9680a08e6a569fd11b3534f54d30758f1abd",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_count": 0,
+      "failed_original_constraint_indices_zero_based": [],
+      "property_violation_class": "input-outside-required-8-bit-component-domain",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "Both preserved component inputs are canonical BN128 field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v2-execution-2026-09-20/evidence/banyan-vulnerable-compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies all 29 constraints in the hash-pinned vulnerable component."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "The satisfying assignment violates the predeclared CheckDepth range/order contract."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T11:51:32.343887+00:00",
+      "review_finished_at_utc": "2026-09-20T11:51:32.344332+00:00",
+      "automated_review_seconds": 0.0004470420244615525,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 7,
+      "strategy": "random",
+      "strategy_position": 2,
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-07/attempt-01/02-random/plan.json",
+      "plan_sha256": "a00508e9cd49d3c884de2e799819e32b474cc00cee26223f287156392f065de6",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-07/attempt-01/02-random/raw/execution-7514af1f-b8d9-4c07-802d-e04e427457eb/outcome.json",
+      "outcome_sha256": "5b7299a880b14ed40c9a82c9e55188c323f2a808cbce10385dc7cba12723cdf7",
+      "run_id": "baad91b0-0fb4-4e46-a9b8-8898f3c1c394",
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 3.65359675,
+      "candidate_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-07/attempt-01/02-random/raw/execution-7514af1f-b8d9-4c07-802d-e04e427457eb/counterexample-candidates/0002/circuit.circom_Q1ALbLlUBC_counterexample.json",
+      "candidate_sha256": "708051207fc7bf92a7514e3d67dc983db16bc71af943eca0d8be7d9acb95b4d1",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_count": 0,
+      "failed_original_constraint_indices_zero_based": [],
+      "property_violation_class": "input-outside-required-8-bit-component-domain",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "Both preserved component inputs are canonical BN128 field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v2-execution-2026-09-20/evidence/banyan-vulnerable-compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies all 29 constraints in the hash-pinned vulnerable component."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "The satisfying assignment violates the predeclared CheckDepth range/order contract."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T11:51:32.344861+00:00",
+      "review_finished_at_utc": "2026-09-20T11:51:32.345234+00:00",
+      "automated_review_seconds": 0.00037416702252812684,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 7,
+      "strategy": "small-first",
+      "strategy_position": 3,
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-07/attempt-01/03-small-first/plan.json",
+      "plan_sha256": "3bb535c65a1474b0f858268b968562214889bc4d6d0367c18ed24a655ae78029",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-07/attempt-01/03-small-first/raw/execution-5abdc3b8-8544-415d-b5cf-032eadcf2ff4/outcome.json",
+      "outcome_sha256": "73610b21e424298fbd416b50ab1b5ed0a795a039e173dd232026d272a47f00f2",
+      "run_id": "ee1b5eaf-a930-46bb-afaa-8e57d2a86a54",
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 7.755780042,
+      "candidate_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-07/attempt-01/03-small-first/raw/execution-5abdc3b8-8544-415d-b5cf-032eadcf2ff4/counterexample-candidates/0003/circuit.circom_YVo0xlieMv_counterexample.json",
+      "candidate_sha256": "72fd7e837e5c19c91290d23fed41619ceb5e1382e857bfd2cafc25121e50be3e",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_count": 0,
+      "failed_original_constraint_indices_zero_based": [],
+      "property_violation_class": "input-outside-required-8-bit-component-domain",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "Both preserved component inputs are canonical BN128 field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v2-execution-2026-09-20/evidence/banyan-vulnerable-compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies all 29 constraints in the hash-pinned vulnerable component."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "The satisfying assignment violates the predeclared CheckDepth range/order contract."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T11:51:32.345758+00:00",
+      "review_finished_at_utc": "2026-09-20T11:51:32.346934+00:00",
+      "automated_review_seconds": 0.0011797499901149422,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 8,
+      "strategy": "random",
+      "strategy_position": 1,
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-08/attempt-01/01-random/plan.json",
+      "plan_sha256": "eab8495b1c8aa688c851ee0cee14de9d42de819e0a5bcb3f9dd83f498bf58abb",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-08/attempt-01/01-random/raw/execution-71f38a13-665f-43a9-9924-0612550ef1f4/outcome.json",
+      "outcome_sha256": "5f5aff289b77f48d37de837c08403030a6b046c9713e79391743a1f9d1c752ed",
+      "run_id": "29c65ae0-5c08-452c-8315-e6e745f98fbe",
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.032786125,
+      "candidate_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-08/attempt-01/01-random/raw/execution-71f38a13-665f-43a9-9924-0612550ef1f4/counterexample-candidates/0001/circuit.circom_nYalegE111_counterexample.json",
+      "candidate_sha256": "54b260acb6f7ebd94529fc6ee8b85395c990b8076305f04a2c7be989e9420f91",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_count": 0,
+      "failed_original_constraint_indices_zero_based": [],
+      "property_violation_class": "input-outside-required-8-bit-component-domain",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "Both preserved component inputs are canonical BN128 field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v2-execution-2026-09-20/evidence/banyan-vulnerable-compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies all 29 constraints in the hash-pinned vulnerable component."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "The satisfying assignment violates the predeclared CheckDepth range/order contract."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T11:51:32.347562+00:00",
+      "review_finished_at_utc": "2026-09-20T11:51:32.348042+00:00",
+      "automated_review_seconds": 0.00048158300342038274,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 8,
+      "strategy": "small-first",
+      "strategy_position": 2,
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-08/attempt-01/02-small-first/plan.json",
+      "plan_sha256": "e5569164fa3df867a2e4f8d560db2e5564772ed8040a74df2031a0c26fe8dc5c",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-08/attempt-01/02-small-first/raw/execution-9cd88248-f430-4a9d-9a8c-38b76618f0a9/outcome.json",
+      "outcome_sha256": "e00fe4dcecaf5577c1ce1ca601b9721d2f2be12ed4bdfbf1d4d830371164f0d9",
+      "run_id": "97dc461f-af8f-4dd8-946a-a3b5137f01d3",
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 7.911690625,
+      "candidate_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-08/attempt-01/02-small-first/raw/execution-9cd88248-f430-4a9d-9a8c-38b76618f0a9/counterexample-candidates/0003/circuit.circom_SatyuiYbJI_counterexample.json",
+      "candidate_sha256": "042cb77513f62167e21a463633295a484ca18c9a1901ecc40b03a56a3d0dea4f",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_count": 0,
+      "failed_original_constraint_indices_zero_based": [],
+      "property_violation_class": "input-outside-required-8-bit-component-domain",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "Both preserved component inputs are canonical BN128 field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v2-execution-2026-09-20/evidence/banyan-vulnerable-compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies all 29 constraints in the hash-pinned vulnerable component."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "The satisfying assignment violates the predeclared CheckDepth range/order contract."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T11:51:32.348720+00:00",
+      "review_finished_at_utc": "2026-09-20T11:51:32.349138+00:00",
+      "automated_review_seconds": 0.00041916698683053255,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 8,
+      "strategy": "risk-only",
+      "strategy_position": 3,
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-08/attempt-01/03-risk-only/plan.json",
+      "plan_sha256": "097e66daad0b0a1f47d9fb7b5b339e29245bfe6ff83ba86305571bcfe797ec77",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-08/attempt-01/03-risk-only/raw/execution-706857bf-4e37-4d1b-b76d-64fafcebfbf6/outcome.json",
+      "outcome_sha256": "aff8c3f9dff037cb4885b7719a4e5deb4bed8820255548daa4640a24cc042764",
+      "run_id": "eb7091b9-3634-4cd9-8a16-f7bc75a4edba",
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.03282175,
+      "candidate_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-08/attempt-01/03-risk-only/raw/execution-706857bf-4e37-4d1b-b76d-64fafcebfbf6/counterexample-candidates/0001/circuit.circom_cnaBw4W9li_counterexample.json",
+      "candidate_sha256": "5388e5a40b4f6617842363f8de3cceee579c6b7ac12d017a0877f75cefcbfbe4",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_count": 0,
+      "failed_original_constraint_indices_zero_based": [],
+      "property_violation_class": "input-outside-required-8-bit-component-domain",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "Both preserved component inputs are canonical BN128 field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v2-execution-2026-09-20/evidence/banyan-vulnerable-compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies all 29 constraints in the hash-pinned vulnerable component."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "The satisfying assignment violates the predeclared CheckDepth range/order contract."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T11:51:32.349689+00:00",
+      "review_finished_at_utc": "2026-09-20T11:51:32.350092+00:00",
+      "automated_review_seconds": 0.0004045829991810024,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 9,
+      "strategy": "small-first",
+      "strategy_position": 1,
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-09/attempt-01/01-small-first/plan.json",
+      "plan_sha256": "125b1dfbda5b376bbcd4c4fc59d6d2717005d312a78e69e45c011111c0c42eac",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-09/attempt-01/01-small-first/raw/execution-2667ac54-b440-4f7a-b01e-07de5bc9ffa8/outcome.json",
+      "outcome_sha256": "95a0f9db4776f11c0ceef8bc4c2cb97cc9f0b47b4f28569479da480a84b62b07",
+      "run_id": "ba6e1ccb-df94-4319-906f-be8b3d559a9e",
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 7.858345834,
+      "candidate_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-09/attempt-01/01-small-first/raw/execution-2667ac54-b440-4f7a-b01e-07de5bc9ffa8/counterexample-candidates/0003/circuit.circom_S83hfekE6g_counterexample.json",
+      "candidate_sha256": "973c1083a25122090ea9faa92bf6aac0f22a172d1bc165f8e0f7dbc8003d9b57",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_count": 0,
+      "failed_original_constraint_indices_zero_based": [],
+      "property_violation_class": "input-outside-required-8-bit-component-domain",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "Both preserved component inputs are canonical BN128 field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v2-execution-2026-09-20/evidence/banyan-vulnerable-compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies all 29 constraints in the hash-pinned vulnerable component."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "The satisfying assignment violates the predeclared CheckDepth range/order contract."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T11:51:32.350584+00:00",
+      "review_finished_at_utc": "2026-09-20T11:51:32.350960+00:00",
+      "automated_review_seconds": 0.0003766670124605298,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 9,
+      "strategy": "risk-only",
+      "strategy_position": 2,
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-09/attempt-01/02-risk-only/plan.json",
+      "plan_sha256": "238c0a3dba3da53136486c44f5d932f21b55ddfad4b8d609871f26e1a5f1714c",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-09/attempt-01/02-risk-only/raw/execution-4321de7a-786f-4e63-a2fa-b1608dd0961e/outcome.json",
+      "outcome_sha256": "28cb75d2a2e8da555396d642a12dd8cf4978fdaa1e832687bc7be77b12b6f314",
+      "run_id": "f90b65fb-e26c-4cd7-bf56-d3174a78fed4",
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.032826166,
+      "candidate_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-09/attempt-01/02-risk-only/raw/execution-4321de7a-786f-4e63-a2fa-b1608dd0961e/counterexample-candidates/0001/circuit.circom_K7hJ9IWLm7_counterexample.json",
+      "candidate_sha256": "b9569504bb2373cb6ad8e15c6e6f9e28b659206b1e8986a7d36a6a2dc500d22c",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_count": 0,
+      "failed_original_constraint_indices_zero_based": [],
+      "property_violation_class": "input-outside-required-8-bit-component-domain",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "Both preserved component inputs are canonical BN128 field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v2-execution-2026-09-20/evidence/banyan-vulnerable-compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies all 29 constraints in the hash-pinned vulnerable component."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "The satisfying assignment violates the predeclared CheckDepth range/order contract."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T11:51:32.351479+00:00",
+      "review_finished_at_utc": "2026-09-20T11:51:32.351891+00:00",
+      "automated_review_seconds": 0.00041341601172462106,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 9,
+      "strategy": "random",
+      "strategy_position": 3,
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-09/attempt-01/03-random/plan.json",
+      "plan_sha256": "4c337d36190f952d21b24ce87d8410f1d6f353010bb6502d5f88f1c0d6c5b456",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-09/attempt-01/03-random/raw/execution-30ad784e-0ff4-45d5-919c-8d34ed98b3bf/outcome.json",
+      "outcome_sha256": "fdd1f7e79a13192e90f219f65e8d6847b55c6d7364f519a8bb0cc20b7cf636e8",
+      "run_id": "c486396b-3912-429d-8932-6f520b3c9a70",
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 34.110738916,
+      "candidate_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-09/attempt-01/03-random/raw/execution-30ad784e-0ff4-45d5-919c-8d34ed98b3bf/counterexample-candidates/0003/circuit.circom_DRMAl0CuzK_counterexample.json",
+      "candidate_sha256": "84ccd29db41a35febdb44dcce6ca8790a479122d6de17f53fbd9183ba450a908",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_count": 0,
+      "failed_original_constraint_indices_zero_based": [],
+      "property_violation_class": "input-outside-required-8-bit-component-domain",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "Both preserved component inputs are canonical BN128 field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v2-execution-2026-09-20/evidence/banyan-vulnerable-compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies all 29 constraints in the hash-pinned vulnerable component."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "The satisfying assignment violates the predeclared CheckDepth range/order contract."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T11:51:32.352401+00:00",
+      "review_finished_at_utc": "2026-09-20T11:51:32.352782+00:00",
+      "automated_review_seconds": 0.0003819999983534217,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 10,
+      "strategy": "risk-only",
+      "strategy_position": 1,
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-10/attempt-01/01-risk-only/plan.json",
+      "plan_sha256": "beaf88a3030df15ed61f24adf3c63787d25a0c982d0cd219aa004b6462dc9f65",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-10/attempt-01/01-risk-only/raw/execution-d54a9ee7-f3cf-4534-9e01-328d434a61ef/outcome.json",
+      "outcome_sha256": "bc4adf7ade38afeae4158651f38591db7a33a20cb0465446ade94cb51d75bce3",
+      "run_id": "b4d5fbae-de04-40c6-8d73-943f60c0cb12",
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.032766625,
+      "candidate_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-10/attempt-01/01-risk-only/raw/execution-d54a9ee7-f3cf-4534-9e01-328d434a61ef/counterexample-candidates/0001/circuit.circom_tMVJMLFWdI_counterexample.json",
+      "candidate_sha256": "29cb132ff148b6ca29dccc413040acf9d03f1c32c0f17e27acfb350f3ff0783d",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_count": 0,
+      "failed_original_constraint_indices_zero_based": [],
+      "property_violation_class": "input-outside-required-8-bit-component-domain",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "Both preserved component inputs are canonical BN128 field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v2-execution-2026-09-20/evidence/banyan-vulnerable-compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies all 29 constraints in the hash-pinned vulnerable component."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "The satisfying assignment violates the predeclared CheckDepth range/order contract."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T11:51:32.353317+00:00",
+      "review_finished_at_utc": "2026-09-20T11:51:32.353734+00:00",
+      "automated_review_seconds": 0.0004187079903203994,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 10,
+      "strategy": "random",
+      "strategy_position": 2,
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-10/attempt-01/02-random/plan.json",
+      "plan_sha256": "5d4ecd9a03f1992dd67a626c8badfe62936065598136b1edf522f2e5819d2916",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-10/attempt-01/02-random/raw/execution-493085e1-a002-4af1-8e9a-cd6a63c13995/outcome.json",
+      "outcome_sha256": "bcf1dc44988abe22910fd2c9166931139e9adf669d78b6a6e0227c0b9942a8b5",
+      "run_id": "d38d4d32-f036-43c1-b027-1f8b28056fbb",
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 7.8888745,
+      "candidate_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-10/attempt-01/02-random/raw/execution-493085e1-a002-4af1-8e9a-cd6a63c13995/counterexample-candidates/0003/circuit.circom_1Vxd6QnzvZ_counterexample.json",
+      "candidate_sha256": "23952447730ff3c7a1a03092da58af33338d12eb5da2182b4b9beed7d2bd20d0",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_count": 0,
+      "failed_original_constraint_indices_zero_based": [],
+      "property_violation_class": "input-outside-required-8-bit-component-domain",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "Both preserved component inputs are canonical BN128 field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v2-execution-2026-09-20/evidence/banyan-vulnerable-compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies all 29 constraints in the hash-pinned vulnerable component."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "The satisfying assignment violates the predeclared CheckDepth range/order contract."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T11:51:32.354262+00:00",
+      "review_finished_at_utc": "2026-09-20T11:51:32.355668+00:00",
+      "automated_review_seconds": 0.001415292004821822,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 10,
+      "strategy": "small-first",
+      "strategy_position": 3,
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-10/attempt-01/03-small-first/plan.json",
+      "plan_sha256": "638f9c5ea76efb3a46af52ccbf195ab454b90814718072ac8b14cfe7b53da733",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-10/attempt-01/03-small-first/raw/execution-60eac69f-bcd5-41e4-be0d-876dbe0d9b4f/outcome.json",
+      "outcome_sha256": "f5c94d01bef080b0677ba2f3b42aafcfc0f3bb17968459c6f194a6090d259def",
+      "run_id": "a6eced5a-e6c4-4029-81c6-c03a49731ede",
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 7.768853208,
+      "candidate_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-10/attempt-01/03-small-first/raw/execution-60eac69f-bcd5-41e4-be0d-876dbe0d9b4f/counterexample-candidates/0003/circuit.circom_s0kGlzlJuv_counterexample.json",
+      "candidate_sha256": "176d5345f74d85f2d0fae4ef3795cc89c342c9776e5d928593b6093e56b8e8df",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_count": 0,
+      "failed_original_constraint_indices_zero_based": [],
+      "property_violation_class": "input-outside-required-8-bit-component-domain",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "Both preserved component inputs are canonical BN128 field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v2-execution-2026-09-20/evidence/banyan-vulnerable-compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies all 29 constraints in the hash-pinned vulnerable component."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "The satisfying assignment violates the predeclared CheckDepth range/order contract."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T11:51:32.356314+00:00",
+      "review_finished_at_utc": "2026-09-20T11:51:32.356767+00:00",
+      "automated_review_seconds": 0.0004555000050459057,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 11,
+      "strategy": "random",
+      "strategy_position": 1,
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-11/attempt-01/01-random/plan.json",
+      "plan_sha256": "64c5400c887da28c08ce5a9baf03b1ae762bf9a4f53c4f4776993379d0f8f2bf",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-11/attempt-01/01-random/raw/execution-2614412f-3c86-4831-842b-80793defd5d3/outcome.json",
+      "outcome_sha256": "78e5b2b0d45b9b10dbd3d3ca8a11ff7b3640fb8a20fa85b676a495dcf50d7526",
+      "run_id": "c4857436-3371-4907-b3da-4164d916ee13",
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 7.723177541,
+      "candidate_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-11/attempt-01/01-random/raw/execution-2614412f-3c86-4831-842b-80793defd5d3/counterexample-candidates/0003/circuit.circom_I4nrGAtb0g_counterexample.json",
+      "candidate_sha256": "af8a67fafbfd94a8611e69906632ac1c868068b6035d94d20f75ce40d97a93b4",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_count": 0,
+      "failed_original_constraint_indices_zero_based": [],
+      "property_violation_class": "input-outside-required-8-bit-component-domain",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "Both preserved component inputs are canonical BN128 field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v2-execution-2026-09-20/evidence/banyan-vulnerable-compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies all 29 constraints in the hash-pinned vulnerable component."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "The satisfying assignment violates the predeclared CheckDepth range/order contract."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T11:51:32.357292+00:00",
+      "review_finished_at_utc": "2026-09-20T11:51:32.357691+00:00",
+      "automated_review_seconds": 0.00040020898450165987,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 11,
+      "strategy": "small-first",
+      "strategy_position": 2,
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-11/attempt-01/02-small-first/plan.json",
+      "plan_sha256": "dde26a1eb78739c5f67741c33dfb00fc854ef1407988d4c3ae1a000bc523fd0d",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-11/attempt-01/02-small-first/raw/execution-ba86b217-ff16-4901-a4d0-3c627ce8e1e4/outcome.json",
+      "outcome_sha256": "1372f9941257c6dd0f6b08b2d5015c7870f259506bf4fddea2d57992ab7f9b3f",
+      "run_id": "732008e9-d15e-45cd-9aba-d466c25efbed",
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 7.860934959,
+      "candidate_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-11/attempt-01/02-small-first/raw/execution-ba86b217-ff16-4901-a4d0-3c627ce8e1e4/counterexample-candidates/0003/circuit.circom_v15ee33HDi_counterexample.json",
+      "candidate_sha256": "85771fa71de404bdae2c4d80a35563b30bd0df870cadc3f2c69a02f73055803a",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_count": 0,
+      "failed_original_constraint_indices_zero_based": [],
+      "property_violation_class": "input-outside-required-8-bit-component-domain",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "Both preserved component inputs are canonical BN128 field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v2-execution-2026-09-20/evidence/banyan-vulnerable-compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies all 29 constraints in the hash-pinned vulnerable component."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "The satisfying assignment violates the predeclared CheckDepth range/order contract."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T11:51:32.358451+00:00",
+      "review_finished_at_utc": "2026-09-20T11:51:32.359749+00:00",
+      "automated_review_seconds": 0.0013012080162297934,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 11,
+      "strategy": "risk-only",
+      "strategy_position": 3,
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-11/attempt-01/03-risk-only/plan.json",
+      "plan_sha256": "456378f66eab2d8aa13627706f651e70575ca09390ca8e60bebe980c74c2be0b",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-11/attempt-01/03-risk-only/raw/execution-038c5633-814c-433b-a84f-b0d3a5e64c80/outcome.json",
+      "outcome_sha256": "df811ef42d211d1ef6386d376aae8027e1f67d8eb53b4401952c0a5488668d21",
+      "run_id": "ac30a847-db2b-4430-89a0-44ed53870710",
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.032964125,
+      "candidate_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-11/attempt-01/03-risk-only/raw/execution-038c5633-814c-433b-a84f-b0d3a5e64c80/counterexample-candidates/0001/circuit.circom_C1IpcUfPuh_counterexample.json",
+      "candidate_sha256": "fa8a6e1dfbafff7c5aff1e959cbc6e140a4f7d5d8b102b1ee2c8ea8749f20952",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_count": 0,
+      "failed_original_constraint_indices_zero_based": [],
+      "property_violation_class": "input-outside-required-8-bit-component-domain",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "Both preserved component inputs are canonical BN128 field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v2-execution-2026-09-20/evidence/banyan-vulnerable-compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies all 29 constraints in the hash-pinned vulnerable component."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "The satisfying assignment violates the predeclared CheckDepth range/order contract."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T11:51:32.360426+00:00",
+      "review_finished_at_utc": "2026-09-20T11:51:32.362405+00:00",
+      "automated_review_seconds": 0.0019850000098813325,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 12,
+      "strategy": "small-first",
+      "strategy_position": 1,
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-12/attempt-01/01-small-first/plan.json",
+      "plan_sha256": "abc94e7ce1cae4209928a1fada0f5a2a68244b5ee8c2dc5d3fec82784c443e12",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-12/attempt-01/01-small-first/raw/execution-7ea7998c-ad76-4669-bb20-49042f549d34/outcome.json",
+      "outcome_sha256": "3867939625a470abad795351fa306922f506192deef1c7226465d547c4056cd5",
+      "run_id": "1c4f5896-72fe-4e7f-b485-e8b2d3d5d310",
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 7.84695325,
+      "candidate_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-12/attempt-01/01-small-first/raw/execution-7ea7998c-ad76-4669-bb20-49042f549d34/counterexample-candidates/0003/circuit.circom_3A2qbAitfP_counterexample.json",
+      "candidate_sha256": "2a64cefb3b2cedc6094110e7c3b6fe2bfdb9dc46ddb312e07ce1e109d87ddcdc",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_count": 0,
+      "failed_original_constraint_indices_zero_based": [],
+      "property_violation_class": "input-outside-required-8-bit-component-domain",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "Both preserved component inputs are canonical BN128 field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v2-execution-2026-09-20/evidence/banyan-vulnerable-compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies all 29 constraints in the hash-pinned vulnerable component."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "The satisfying assignment violates the predeclared CheckDepth range/order contract."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T11:51:32.363633+00:00",
+      "review_finished_at_utc": "2026-09-20T11:51:32.364222+00:00",
+      "automated_review_seconds": 0.0005936659872531891,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 12,
+      "strategy": "risk-only",
+      "strategy_position": 2,
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-12/attempt-01/02-risk-only/plan.json",
+      "plan_sha256": "531f822c3ac43b8096822bc8dad5aa7040b98876a57c15bfcd99b80cd2c9ed0f",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-12/attempt-01/02-risk-only/raw/execution-c2b1e774-863a-4406-a460-1dd0f6e2934d/outcome.json",
+      "outcome_sha256": "cf8efc29e32abb350f6937e6511de2a96271c00df2a286373fb1f32523246783",
+      "run_id": "18bbcac6-952b-4702-901b-cedffcfd5e97",
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.032860125,
+      "candidate_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-12/attempt-01/02-risk-only/raw/execution-c2b1e774-863a-4406-a460-1dd0f6e2934d/counterexample-candidates/0001/circuit.circom_CVJBxk1zPJ_counterexample.json",
+      "candidate_sha256": "0722202ebd7a972b4cdcc608196723899c6fb4950f66a755a114c030235aca84",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_count": 0,
+      "failed_original_constraint_indices_zero_based": [],
+      "property_violation_class": "input-outside-required-8-bit-component-domain",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "Both preserved component inputs are canonical BN128 field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v2-execution-2026-09-20/evidence/banyan-vulnerable-compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies all 29 constraints in the hash-pinned vulnerable component."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "The satisfying assignment violates the predeclared CheckDepth range/order contract."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T11:51:32.364735+00:00",
+      "review_finished_at_utc": "2026-09-20T11:51:32.365266+00:00",
+      "automated_review_seconds": 0.0005363330128602684,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 12,
+      "strategy": "random",
+      "strategy_position": 3,
+      "plan_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-12/attempt-01/03-random/plan.json",
+      "plan_sha256": "112b2e3ca0c179788de18195059b0e6c934a5bd5b4f76eecaf385bf009311265",
+      "outcome_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-12/attempt-01/03-random/raw/execution-e76d1d1d-0627-41ac-81c7-df239f19f6a9/outcome.json",
+      "outcome_sha256": "a7500054b5c954f7665bfcc4291c945df1862d003cd771163bdb2712e8d0d711",
+      "run_id": "c46fbb22-0285-4532-8827-7478d19b7576",
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.028824,
+      "candidate_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-12/attempt-01/03-random/raw/execution-e76d1d1d-0627-41ac-81c7-df239f19f6a9/counterexample-candidates/0001/circuit.circom_H2tmhtOiGC_counterexample.json",
+      "candidate_sha256": "b526533986233d4f3d2e9c4ee7632437a4cb34a0f39fd2d1ea49d9241f5c693b",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_count": 0,
+      "failed_original_constraint_indices_zero_based": [],
+      "property_violation_class": "input-outside-required-8-bit-component-domain",
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "Both preserved component inputs are canonical BN128 field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v2-execution-2026-09-20/evidence/banyan-vulnerable-compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies all 29 constraints in the hash-pinned vulnerable component."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v2.json"
+          ],
+          "note": "The satisfying assignment violates the predeclared CheckDepth range/order contract."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T11:51:32.365870+00:00",
+      "review_finished_at_utc": "2026-09-20T11:51:32.366860+00:00",
+      "automated_review_seconds": 0.0009966249926947057,
+      "manual_review_seconds": null
+    }
+  ],
+  "summary": {
+    "strategy_execution_count": 36,
+    "target_attempt_count": 144,
+    "backend_candidate_count": 36,
+    "validated_count": 36,
+    "rejected_count": 0,
+    "unresolved_count": 0,
+    "unreviewed_count": 0,
+    "unique_campaign_root_cause_count": 1,
+    "validated_by_strategy": {
+      "risk-only": 12,
+      "random": 12,
+      "small-first": 12
+    },
+    "post_hoc_automated_review_seconds": 0.05000391701469198,
+    "post_hoc_manual_review_seconds": null
+  },
+  "raw_candidate_values_persisted_in_this_report": false,
+  "limitations": [
+    "This review establishes only the frozen direct original-component contract, not project caller reachability or impact.",
+    "The same root cause repeated across blocks and strategies is one independent defect.",
+    "Scheduler completion offsets are upper bounds on discovery time; review time is outside the fuzzing budget.",
+    "Manual review setup time was not instrumented and remains null; automated review time is recorded.",
+    "No candidate signal value is copied into this report."
+  ]
+}

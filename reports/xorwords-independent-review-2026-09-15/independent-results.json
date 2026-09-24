@@ -1,0 +1,400 @@
+{
+  "integrity": {
+    "checksum_entries": 56,
+    "manifest_entries": 51,
+    "all_supplied_files": 65,
+    "unlisted_top_level_copies_equal": {
+      "dev3-ranking-pilot-2026-09-15.json": [
+        "files/experiments/dev3-ranking-pilot-2026-09-15.json"
+      ],
+      "xorwords-case-study-2026-09-15.md": [
+        "files/experiments/xorwords-case-study-2026-09-15.md"
+      ],
+      "static_ranking_experiment.md": [
+        "files/docs/static_ranking_experiment.md"
+      ],
+      "component-check.json": [
+        "files/experiments/evidence/xorwords-original-followup-2026-09-15/component-check.json"
+      ],
+      "dev10-preparation-2026-09-15.json": [
+        "files/experiments/dev10-preparation-2026-09-15.json"
+      ],
+      "source-provenance.json": [
+        "files/experiments/evidence/xorwords-original-followup-2026-09-15/source-provenance.json"
+      ],
+      "semantic_features.md": [
+        "files/docs/semantic_features.md"
+      ],
+      "experiment.rs": [
+        "files/src/experiment.rs"
+      ]
+    }
+  },
+  "provenance": {
+    "parent": "4551ca64c9fe536b7b9b7498a1feb1ecdc847474",
+    "fix": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+    "parent_tree_recomputed": "d39bd2375a4bf277a0f65b7d511f5a6191a86c2b",
+    "tree_response_top_level_sha": "4551ca64c9fe536b7b9b7498a1feb1ecdc847474",
+    "sources_checked": [
+      {
+        "path": "circuits/generics.circom",
+        "revision": "4551ca64c9fe536b7b9b7498a1feb1ecdc847474",
+        "matching_raw_files": [
+          "parent-generics.circom"
+        ]
+      },
+      {
+        "path": "circuits/chacha20.circom",
+        "revision": "4551ca64c9fe536b7b9b7498a1feb1ecdc847474",
+        "matching_raw_files": [
+          "parent-chacha20.circom"
+        ]
+      },
+      {
+        "path": "circuits/circuit.circom",
+        "revision": "4551ca64c9fe536b7b9b7498a1feb1ecdc847474",
+        "matching_raw_files": [
+          "parent-circuit.circom"
+        ]
+      },
+      {
+        "path": "circuits/tests/xor32bits.circom",
+        "revision": "4551ca64c9fe536b7b9b7498a1feb1ecdc847474",
+        "matching_raw_files": [
+          "parent-xor32bits.circom"
+        ]
+      },
+      {
+        "path": "package.json",
+        "revision": "4551ca64c9fe536b7b9b7498a1feb1ecdc847474",
+        "matching_raw_files": [
+          "parent-package.json"
+        ]
+      },
+      {
+        "path": "readme.md",
+        "revision": "4551ca64c9fe536b7b9b7498a1feb1ecdc847474",
+        "matching_raw_files": [
+          "parent-readme.md"
+        ]
+      },
+      {
+        "path": "circuits/generics.circom",
+        "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+        "matching_raw_files": [
+          "fix-generics.circom"
+        ]
+      }
+    ],
+    "scope": "Saved API records and source bytes; no new network retrieval or commit-object reconstruction."
+  },
+  "independent_math": {
+    "prime": "21888242871839275222246405745257275088548364400416034343698204186575808495617",
+    "counts": {
+      "wires": 100,
+      "public_outputs": 1,
+      "public_inputs": 0,
+      "private_inputs": 2,
+      "labels": 100,
+      "constraints": 35
+    },
+    "all_35_source_polynomials_match_binary": true,
+    "readable_matches_binary": true,
+    "mapped_signals": 99,
+    "unmapped_signals": [],
+    "packed": {
+      "abits": "21888242871839275222246405745257275088548364400416034343698204186558628626439",
+      "bbits": "98817",
+      "xors": "21888242871839275222246405745257275088548364400416034343698204186558628725256"
+    },
+    "expected_xor": 7,
+    "actual_output": "21888242871839275222246405745257275088548364400416034343698204186558628725256",
+    "xor_equations_satisfied": true,
+    "satisfied": 33,
+    "failed": [
+      {
+        "index": 32,
+        "A": "17179869184",
+        "B": "6",
+        "C": "0",
+        "residual": "103079215104"
+      },
+      {
+        "index": 33,
+        "A": "21888242871839275222246405745257275088548364400416034343698204186575808396801",
+        "B": "1",
+        "C": "0",
+        "residual": "21888242871839275222246405745257275088548364400416034343698204186575808396801"
+      }
+    ],
+    "all_rows": [
+      {
+        "index": 0,
+        "A": "0",
+        "B": "0",
+        "C": "0",
+        "residual": "0"
+      },
+      {
+        "index": 1,
+        "A": "0",
+        "B": "0",
+        "C": "0",
+        "residual": "0"
+      },
+      {
+        "index": 2,
+        "A": "0",
+        "B": "0",
+        "C": "0",
+        "residual": "0"
+      },
+      {
+        "index": 3,
+        "A": "21888242871839275222246405745257275088548364400416034343698204186575808495489",
+        "B": "0",
+        "C": "0",
+        "residual": "0"
+      },
+      {
+        "index": 4,
+        "A": "0",
+        "B": "0",
+        "C": "0",
+        "residual": "0"
+      },
+      {
+        "index": 5,
+        "A": "0",
+        "B": "0",
+        "C": "0",
+        "residual": "0"
+      },
+      {
+        "index": 6,
+        "A": "0",
+        "B": "0",
+        "C": "0",
+        "residual": "0"
+      },
+      {
+        "index": 7,
+        "A": "0",
+        "B": "0",
+        "C": "0",
+        "residual": "0"
+      },
+      {
+        "index": 8,
+        "A": "0",
+        "B": "0",
+        "C": "0",
+        "residual": "0"
+      },
+      {
+        "index": 9,
+        "A": "0",
+        "B": "0",
+        "C": "0",
+        "residual": "0"
+      },
+      {
+        "index": 10,
+        "A": "0",
+        "B": "0",
+        "C": "0",
+        "residual": "0"
+      },
+      {
+        "index": 11,
+        "A": "0",
+        "B": "0",
+        "C": "0",
+        "residual": "0"
+      },
+      {
+        "index": 12,
+        "A": "0",
+        "B": "0",
+        "C": "0",
+        "residual": "0"
+      },
+      {
+        "index": 13,
+        "A": "0",
+        "B": "0",
+        "C": "0",
+        "residual": "0"
+      },
+      {
+        "index": 14,
+        "A": "0",
+        "B": "0",
+        "C": "0",
+        "residual": "0"
+      },
+      {
+        "index": 15,
+        "A": "0",
+        "B": "0",
+        "C": "0",
+        "residual": "0"
+      },
+      {
+        "index": 16,
+        "A": "0",
+        "B": "0",
+        "C": "0",
+        "residual": "0"
+      },
+      {
+        "index": 17,
+        "A": "0",
+        "B": "6",
+        "C": "0",
+        "residual": "0"
+      },
+      {
+        "index": 18,
+        "A": "0",
+        "B": "0",
+        "C": "0",
+        "residual": "0"
+      },
+      {
+        "index": 19,
+        "A": "0",
+        "B": "0",
+        "C": "0",
+        "residual": "0"
+      },
+      {
+        "index": 20,
+        "A": "0",
+        "B": "0",
+        "C": "0",
+        "residual": "0"
+      },
+      {
+        "index": 21,
+        "A": "0",
+        "B": "0",
+        "C": "0",
+        "residual": "0"
+      },
+      {
+        "index": 22,
+        "A": "0",
+        "B": "1",
+        "C": "0",
+        "residual": "0"
+      },
+      {
+        "index": 23,
+        "A": "0",
+        "B": "0",
+        "C": "0",
+        "residual": "0"
+      },
+      {
+        "index": 24,
+        "A": "0",
+        "B": "0",
+        "C": "0",
+        "residual": "0"
+      },
+      {
+        "index": 25,
+        "A": "0",
+        "B": "0",
+        "C": "0",
+        "residual": "0"
+      },
+      {
+        "index": 26,
+        "A": "0",
+        "B": "0",
+        "C": "0",
+        "residual": "0"
+      },
+      {
+        "index": 27,
+        "A": "0",
+        "B": "0",
+        "C": "0",
+        "residual": "0"
+      },
+      {
+        "index": 28,
+        "A": "0",
+        "B": "0",
+        "C": "0",
+        "residual": "0"
+      },
+      {
+        "index": 29,
+        "A": "2",
+        "B": "0",
+        "C": "0",
+        "residual": "0"
+      },
+      {
+        "index": 30,
+        "A": "2",
+        "B": "0",
+        "C": "0",
+        "residual": "0"
+      },
+      {
+        "index": 31,
+        "A": "0",
+        "B": "1",
+        "C": "0",
+        "residual": "0"
+      },
+      {
+        "index": 32,
+        "A": "17179869184",
+        "B": "6",
+        "C": "0",
+        "residual": "103079215104"
+      },
+      {
+        "index": 33,
+        "A": "21888242871839275222246405745257275088548364400416034343698204186575808396801",
+        "B": "1",
+        "C": "0",
+        "residual": "21888242871839275222246405745257275088548364400416034343698204186575808396801"
+      },
+      {
+        "index": 34,
+        "A": "0",
+        "B": "0",
+        "C": "0",
+        "residual": "0"
+      }
+    ]
+  },
+  "fixture_rerun": {
+    "exit_code": 0,
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/reports/xorwords-independent-review-2026-09-15/isolated-rerun/experiments/evidence/xorwords-2026-09-15/verify.py"
+    ]
+  },
+  "component_rerun": {
+    "exit_code": 0,
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/reports/xorwords-independent-review-2026-09-15/isolated-rerun/experiments/evidence/xorwords-original-followup-2026-09-15/check_r1cs.py"
+    ],
+    "compiler": "circom compiler 2.2.3",
+    "differences_from_recorded": [],
+    "satisfied": 33,
+    "failed": 2
+  },
+  "preservation": {
+    "all_original_files_unchanged": true,
+    "files_checked": 65
+  }
+}

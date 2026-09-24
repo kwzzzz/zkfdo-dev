@@ -1,0 +1,346 @@
+{
+  "target_id": "sha256:92574ce295e668c4379a79f4f7aadae66243a9bcb559e33224d2fae8aac8149b",
+  "definition": {
+    "label": "Aptos Base64UrlDecodedLength fixed comparator",
+    "project": "https://github.com/aptos-labs/keyless-zk-proofs",
+    "revision": "fa943244d45cb733626e54108a0ce7e10bcba5c3",
+    "project_root": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/aptos-base64-decoded-length/fixed/project",
+    "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/aptos-base64-decoded-length/fixed/project/circuit.circom",
+    "template_name": "ControlledBase64DecodedLength",
+    "concrete_parameters": [],
+    "prime": "bn128",
+    "compile_args": [
+      "-l",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/aptos-base64-decoded-length/fixed/project"
+    ],
+    "mode": "direct",
+    "input_assumptions": "The wrapper enforces encoded length n as an unsigned integer in [0,8]. It adds only that range check, maps n to m, and connects Base64UrlDecodedLength(8).decoded_len.",
+    "known_defects": []
+  },
+  "inspection": {
+    "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/aptos-base64-decoded-length/fixed/project/circuit.circom",
+    "project_root": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/aptos-base64-decoded-length/fixed/project",
+    "root": {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/aptos-base64-decoded-length/fixed/project/circuit.circom",
+      "template_name": "ControlledBase64DecodedLength",
+      "concrete_parameters": []
+    },
+    "instances": [
+      {
+        "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/aptos-base64-decoded-length/fixed/project/circomlib/circuits/bitify.circom",
+        "template_name": "Num2Bits",
+        "concrete_parameters": [
+          "5"
+        ]
+      },
+      {
+        "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/aptos-base64-decoded-length/fixed/project/circomlib/circuits/comparators.circom",
+        "template_name": "LessThan",
+        "concrete_parameters": [
+          "4"
+        ]
+      },
+      {
+        "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/aptos-base64-decoded-length/fixed/project/circuit.circom",
+        "template_name": "ControlledBase64DecodedLength",
+        "concrete_parameters": []
+      },
+      {
+        "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/aptos-base64-decoded-length/fixed/project/source/templates/helpers/base64url.circom",
+        "template_name": "Base64UrlDecodedLength",
+        "concrete_parameters": [
+          "8"
+        ]
+      }
+    ],
+    "scopes": [
+      {
+        "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/aptos-base64-decoded-length/fixed/project/circomlib/circuits/bitify.circom",
+        "template_name": "Num2Bits",
+        "start_line": 25,
+        "end_line": 39
+      },
+      {
+        "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/aptos-base64-decoded-length/fixed/project/circomlib/circuits/comparators.circom",
+        "template_name": "LessThan",
+        "start_line": 89,
+        "end_line": 99
+      },
+      {
+        "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/aptos-base64-decoded-length/fixed/project/circuit.circom",
+        "template_name": "ControlledBase64DecodedLength",
+        "start_line": 5,
+        "end_line": 17
+      },
+      {
+        "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/aptos-base64-decoded-length/fixed/project/source/templates/helpers/base64url.circom",
+        "template_name": "Base64UrlDecodedLength",
+        "start_line": 206,
+        "end_line": 229
+      }
+    ],
+    "dependency_paths": [
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/aptos-base64-decoded-length/fixed/project/circomlib/circuits/aliascheck.circom",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/aptos-base64-decoded-length/fixed/project/circomlib/circuits/binsum.circom",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/aptos-base64-decoded-length/fixed/project/circomlib/circuits/bitify.circom",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/aptos-base64-decoded-length/fixed/project/circomlib/circuits/comparators.circom",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/aptos-base64-decoded-length/fixed/project/circomlib/circuits/compconstant.circom",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/aptos-base64-decoded-length/fixed/project/circuit.circom",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/aptos-base64-decoded-length/fixed/project/source/templates/helpers/base64url.circom",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/aptos-base64-decoded-length/fixed/project/source/templates/stdlib/functions/log2_floor.circom",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/aptos-base64-decoded-length/fixed/project/source/templates/stdlib/functions/min_num_bits.circom"
+    ],
+    "complete": false,
+    "unsupported": [
+      {
+        "source_path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/aptos-base64-decoded-length/fixed/project/source/templates/helpers/base64url.circom",
+        "line": 208,
+        "construct": "var MAX_QUO = ( 3 * MAX_ENCODED_LEN ) \\ 4",
+        "reason": "compile-time variable is not supported: unsupported expression \\ 4"
+      },
+      {
+        "source_path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/aptos-base64-decoded-length/fixed/project/source/templates/helpers/base64url.circom",
+        "line": 209,
+        "construct": "var MAX_QUO_BITS = min_num_bits ( MAX_QUO )",
+        "reason": "compile-time variable is not supported: unknown compile-time value min_num_bits"
+      },
+      {
+        "source_path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/aptos-base64-decoded-length/fixed/project/source/templates/helpers/base64url.circom",
+        "line": 220,
+        "construct": "_ <== Num2Bits ( 2 ) ( r )",
+        "reason": "anonymous component calls are unsupported by this MVP"
+      },
+      {
+        "source_path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/aptos-base64-decoded-length/fixed/project/source/templates/helpers/base64url.circom",
+        "line": 225,
+        "construct": "_ <== Num2Bits ( MAX_QUO_BITS ) ( q )",
+        "reason": "anonymous component calls are unsupported by this MVP"
+      }
+    ]
+  },
+  "run_entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/preparation/prepare-beff14a8-9a59-4e42-ac81-687a45772b18/targets/0001/sources/circuit.circom",
+  "structure": {
+    "profile_kind": "structure_only_no_fuzz_search",
+    "complete": false,
+    "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/preparation/prepare-beff14a8-9a59-4e42-ac81-687a45772b18/targets/0001/sources/circuit.circom",
+    "root_template": "ControlledBase64DecodedLength",
+    "prime": "bn128",
+    "compile_args": [
+      "-l",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/aptos-base64-decoded-length/fixed/project"
+    ],
+    "size": 16,
+    "size_source": "Circom R1CS compiler summary: non-linear constraints + linear constraints under recorded compile settings",
+    "r1cs_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/preparation/prepare-beff14a8-9a59-4e42-ac81-687a45772b18/targets/0001/structure/r1cs/circuit.r1cs",
+    "complexity": null,
+    "metric": "root_ast_if_plus_while",
+    "parameter_reflected": false,
+    "compile_success": true,
+    "ast_success": false,
+    "ast_requested": true,
+    "ast_stats": null,
+    "compile": {
+      "requested": true,
+      "purpose": "compile-r1cs",
+      "binary": "/Users/miiz/.cargo/bin/circom",
+      "args": [
+        "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/preparation/prepare-beff14a8-9a59-4e42-ac81-687a45772b18/targets/0001/sources/circuit.circom",
+        "--r1cs",
+        "--prime",
+        "bn128",
+        "--output",
+        "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/preparation/prepare-beff14a8-9a59-4e42-ac81-687a45772b18/targets/0001/structure/r1cs",
+        "-l",
+        "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/aptos-base64-decoded-length/fixed/project"
+      ],
+      "started_at": "2026-09-20T11:06:40.798415Z",
+      "finished_at": "2026-09-20T11:06:40.828820Z",
+      "elapsed_seconds": 0.030406166,
+      "timeout_seconds": 60,
+      "exit_code": 0,
+      "success": true,
+      "timed_out": false,
+      "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/preparation/prepare-beff14a8-9a59-4e42-ac81-687a45772b18/targets/0001/structure/compile-r1cs.stdout.log",
+      "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/preparation/prepare-beff14a8-9a59-4e42-ac81-687a45772b18/targets/0001/structure/compile-r1cs.stderr.log",
+      "error": null
+    },
+    "ast": {
+      "requested": true,
+      "purpose": "root-ast-only",
+      "binary": "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkFuzz/target/release/zkfuzz",
+      "args": [
+        "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/preparation/prepare-beff14a8-9a59-4e42-ac81-687a45772b18/targets/0001/sources/circuit.circom",
+        "--show_stats_of_ast",
+        "--prime",
+        "bn128",
+        "-l",
+        "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/aptos-base64-decoded-length/fixed/project"
+      ],
+      "started_at": "2026-09-20T11:06:40.828891Z",
+      "finished_at": "2026-09-20T11:06:40.859338Z",
+      "elapsed_seconds": 0.030448708,
+      "timeout_seconds": 60,
+      "exit_code": 1,
+      "success": false,
+      "timed_out": false,
+      "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/preparation/prepare-beff14a8-9a59-4e42-ac81-687a45772b18/targets/0001/structure/root-ast-only.stdout.log",
+      "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/preparation/prepare-beff14a8-9a59-4e42-ac81-687a45772b18/targets/0001/structure/root-ast-only.stderr.log",
+      "error": null
+    },
+    "circom_version": {
+      "requested": true,
+      "purpose": "circom-version",
+      "binary": "/Users/miiz/.cargo/bin/circom",
+      "args": [
+        "--version"
+      ],
+      "started_at": "2026-09-20T11:06:40.737585Z",
+      "finished_at": "2026-09-20T11:06:40.767928Z",
+      "elapsed_seconds": 0.030343,
+      "timeout_seconds": 60,
+      "exit_code": 0,
+      "success": true,
+      "timed_out": false,
+      "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/preparation/prepare-beff14a8-9a59-4e42-ac81-687a45772b18/targets/0001/structure/circom-version.stdout.log",
+      "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/preparation/prepare-beff14a8-9a59-4e42-ac81-687a45772b18/targets/0001/structure/circom-version.stderr.log",
+      "error": null
+    },
+    "zkfuzz_version": {
+      "requested": true,
+      "purpose": "zkfuzz-version",
+      "binary": "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkFuzz/target/release/zkfuzz",
+      "args": [
+        "--version"
+      ],
+      "started_at": "2026-09-20T11:06:40.767988Z",
+      "finished_at": "2026-09-20T11:06:40.798306Z",
+      "elapsed_seconds": 0.030320125,
+      "timeout_seconds": 60,
+      "exit_code": 0,
+      "success": true,
+      "timed_out": false,
+      "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/preparation/prepare-beff14a8-9a59-4e42-ac81-687a45772b18/targets/0001/structure/zkfuzz-version.stdout.log",
+      "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/preparation/prepare-beff14a8-9a59-4e42-ac81-687a45772b18/targets/0001/structure/zkfuzz-version.stderr.log",
+      "error": null
+    },
+    "limitations": [
+      "Complexity counts only IfThenElse and While nodes in the named root template definition, not reachable dependency templates.",
+      "AST control-flow nodes are not expanded for concrete parameters, loop iterations, or Circom constraint optimizations.",
+      "num_statements counts visited AST statement nodes, including blocks; it is not source lines or constraints.",
+      "R1CS constraint count is a separate concrete compiled size measure, not LEOPARD structural complexity.",
+      "zkFuzz --show_stats_of_ast exits after parse/type analysis; this invocation provides no fuzzing or defect-reproduction evidence."
+    ],
+    "errors": [
+      "root-ast-only failed (exit Some(1), timed_out false): see captured output"
+    ],
+    "profile_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/preparation/prepare-beff14a8-9a59-4e42-ac81-687a45772b18/targets/0001/structure/structure-profile.json"
+  },
+  "semantic": null,
+  "ranking": {
+    "target_id": "sha256:92574ce295e668c4379a79f4f7aadae66243a9bcb559e33224d2fae8aac8149b",
+    "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/aptos-base64-decoded-length/fixed/project/circuit.circom",
+    "risk_score": null,
+    "warning_count": null,
+    "complexity": null,
+    "size": 16,
+    "legacy_score": 2.254306762864857
+  },
+  "eligible": false,
+  "exclusion_reasons": [
+    "unsupported inspection: var MAX_QUO = ( 3 * MAX_ENCODED_LEN ) \\ 4: compile-time variable is not supported: unsupported expression \\ 4",
+    "unsupported inspection: var MAX_QUO_BITS = min_num_bits ( MAX_QUO ): compile-time variable is not supported: unknown compile-time value min_num_bits",
+    "unsupported inspection: _ <== Num2Bits ( 2 ) ( r ): anonymous component calls are unsupported by this MVP",
+    "unsupported inspection: _ <== Num2Bits ( MAX_QUO_BITS ) ( q ): anonymous component calls are unsupported by this MVP",
+    "structure: root-ast-only failed (exit Some(1), timed_out false): see captured output",
+    "required root AST complexity is unavailable",
+    "semantic attribution unavailable because reachable scopes are incomplete"
+  ],
+  "source_fingerprints": [
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/aptos-base64-decoded-length/fixed/project/circomlib/circuits/aliascheck.circom",
+      "sha256": "7df7542461a68c1564a55be8f01d75571c0e2555a08a078abeba43e1ea032eb4"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/aptos-base64-decoded-length/fixed/project/circomlib/circuits/binsum.circom",
+      "sha256": "8aa153baf5791d96d06dce837c1e19b9ecc3a7dc65054132d5dd189b60bfcfc2"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/aptos-base64-decoded-length/fixed/project/circomlib/circuits/bitify.circom",
+      "sha256": "688f121303a2dd0154ceeda8d2f53a9d2d26789d10a69a46acd534642725683e"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/aptos-base64-decoded-length/fixed/project/circomlib/circuits/comparators.circom",
+      "sha256": "fd0c7723ee56e1467df1861131157cbb108e156fe2d9ec64895c8e68de14db20"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/aptos-base64-decoded-length/fixed/project/circomlib/circuits/compconstant.circom",
+      "sha256": "94c5cc93b589a940acbfecdb98babc2efc253ad4298814399fb41109faa3b50d"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/aptos-base64-decoded-length/fixed/project/circuit.circom",
+      "sha256": "4f64caf311cc6b13d94e3a0b103919199fa4c0415fe8bcdc54417b03e133cf68"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/aptos-base64-decoded-length/fixed/project/source/templates/helpers/base64url.circom",
+      "sha256": "0711fb41e6a92b39466eba93063c3df25db6fe1d9165b285638afc33c127753c"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/aptos-base64-decoded-length/fixed/project/source/templates/stdlib/functions/log2_floor.circom",
+      "sha256": "aff936ad5512ba3bd6d50ca4dedcc1e69389dcd6f0e1d8d1696ddc2df730e60a"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/aptos-base64-decoded-length/fixed/project/source/templates/stdlib/functions/min_num_bits.circom",
+      "sha256": "6b87a7b3e695d9d0e934d28aa854f9f2cd584feb0f8656c392db359991ab76ac"
+    }
+  ],
+  "snapshot_fingerprints": [
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/preparation/prepare-beff14a8-9a59-4e42-ac81-687a45772b18/targets/0001/sources/circomlib/circuits/aliascheck.circom",
+      "sha256": "7df7542461a68c1564a55be8f01d75571c0e2555a08a078abeba43e1ea032eb4"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/preparation/prepare-beff14a8-9a59-4e42-ac81-687a45772b18/targets/0001/sources/circomlib/circuits/binsum.circom",
+      "sha256": "8aa153baf5791d96d06dce837c1e19b9ecc3a7dc65054132d5dd189b60bfcfc2"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/preparation/prepare-beff14a8-9a59-4e42-ac81-687a45772b18/targets/0001/sources/circomlib/circuits/bitify.circom",
+      "sha256": "688f121303a2dd0154ceeda8d2f53a9d2d26789d10a69a46acd534642725683e"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/preparation/prepare-beff14a8-9a59-4e42-ac81-687a45772b18/targets/0001/sources/circomlib/circuits/comparators.circom",
+      "sha256": "fd0c7723ee56e1467df1861131157cbb108e156fe2d9ec64895c8e68de14db20"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/preparation/prepare-beff14a8-9a59-4e42-ac81-687a45772b18/targets/0001/sources/circomlib/circuits/compconstant.circom",
+      "sha256": "94c5cc93b589a940acbfecdb98babc2efc253ad4298814399fb41109faa3b50d"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/preparation/prepare-beff14a8-9a59-4e42-ac81-687a45772b18/targets/0001/sources/circuit.circom",
+      "sha256": "4f64caf311cc6b13d94e3a0b103919199fa4c0415fe8bcdc54417b03e133cf68"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/preparation/prepare-beff14a8-9a59-4e42-ac81-687a45772b18/targets/0001/sources/source/templates/helpers/base64url.circom",
+      "sha256": "0711fb41e6a92b39466eba93063c3df25db6fe1d9165b285638afc33c127753c"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/preparation/prepare-beff14a8-9a59-4e42-ac81-687a45772b18/targets/0001/sources/source/templates/stdlib/functions/log2_floor.circom",
+      "sha256": "aff936ad5512ba3bd6d50ca4dedcc1e69389dcd6f0e1d8d1696ddc2df730e60a"
+    },
+    {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/preparation/prepare-beff14a8-9a59-4e42-ac81-687a45772b18/targets/0001/sources/source/templates/stdlib/functions/min_num_bits.circom",
+      "sha256": "6b87a7b3e695d9d0e934d28aa854f9f2cd584feb0f8656c392db359991ab76ac"
+    }
+  ],
+  "timings": {
+    "inspection_seconds": 0.054830917,
+    "snapshot_seconds": 0.003332291,
+    "structure_seconds": 0.122912875,
+    "semantic_seconds": 2.5e-7,
+    "legacy_seconds": 0.020751792
+  },
+  "elapsed_seconds": 0.204815959,
+  "limitations": [
+    "Semantic locations refer to the fingerprinted original sources; compiler/AST execution and future fuzzing use the copied entrypoint. Absolute includes can retain read-only original dependencies.",
+    "Legacy baseline maps the existing lexical risk/cost formula over the entire root template source file, including unrelated templates in that file; it is not semantic risk."
+  ]
+}

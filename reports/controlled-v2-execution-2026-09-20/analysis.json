@@ -1,0 +1,1097 @@
+{
+  "schema_version": 1,
+  "status": "complete_all_36_runs_reviews_and_schema2_evaluations",
+  "protocol_path": "docs/controlled_v2_execution_protocol.md",
+  "protocol_sha256": "4835c9bb340e34a436c71c4e86a91e6ff2c17f9dbd05747852d635ef0f894b76",
+  "campaign_ledger_path": "runs/controlled-v2/campaigns/campaign-20260920T112512Z/campaign.json",
+  "campaign_ledger_sha256": "ce48197f3bcab4fca083af1388af1623f966549261ba290ebbd2a16d17c7be10",
+  "candidate_review_path": "reports/controlled-v2-execution-2026-09-20/candidate-review.json",
+  "candidate_review_sha256": "b02fa047b580421704cc70287efb6159d1506a8604b8989619d01aa82fc5323e",
+  "evaluation_index_path": "reports/controlled-v2-execution-2026-09-20/evaluation-index.json",
+  "evaluation_index_sha256": "53093150384fc4519d261b8783c5db41bf30406050fd24b7d8347214ecde432c",
+  "analysis_horizon_seconds": 120.0,
+  "execution_integrity": {
+    "paired_blocks": 12,
+    "strategy_executions": 36,
+    "target_attempts": 144,
+    "valid_first_attempt_blocks": 12,
+    "campaign_invalid_attempts": 0,
+    "missing_plans": 0,
+    "missing_outcomes": 0,
+    "run_target_link_failures": 0,
+    "backend_retries": 0
+  },
+  "adjudication": {
+    "backend_candidate_count": 36,
+    "validated": 36,
+    "rejected": 0,
+    "unresolved": 0,
+    "unreviewed": 0,
+    "unique_original_component_root_causes_in_campaign": 1,
+    "eligible_independent_root_causes_in_set": 2,
+    "campaign_cause_coverage": 0.5,
+    "confirmed_project_defect_count": 0,
+    "project_caller_reachability": "not-reviewed"
+  },
+  "strategy_results": {
+    "risk-only": {
+      "paired_block_count": 12,
+      "any_valid_cause_discovery_blocks": 12,
+      "any_valid_cause_discovery_rate": 1.0,
+      "independent_cause_opportunities": 24,
+      "validated_cause_block_events": 12,
+      "cause_opportunity_detection_rate": 0.5,
+      "per_cause": {
+        "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range": {
+          "discovery_blocks": 12,
+          "discovery_rate": 1.0,
+          "completion_time_upper_bounds_by_block_seconds": [
+            0.033864917,
+            0.033029042,
+            0.030889625,
+            0.032839083,
+            0.032833917,
+            0.027973625,
+            0.032777375,
+            0.03282175,
+            0.032826166,
+            0.032766625,
+            0.032964125,
+            0.032860125
+          ],
+          "completion_time_upper_bound_summary_seconds": {
+            "count": 12,
+            "sum": 0.388446375,
+            "mean": 0.03237053125,
+            "median": 0.0328300415,
+            "minimum": 0.027973625,
+            "maximum": 0.033864917
+          }
+        },
+        "tangle-network/protocol-solidity/set-membership-zero-initialization": {
+          "discovery_blocks": 0,
+          "discovery_rate": 0.0,
+          "completion_time_upper_bounds_by_block_seconds": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "completion_time_upper_bound_summary_seconds": null
+        }
+      },
+      "unique_root_causes_per_block": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "mean_unique_root_causes_by_execution_end": 1.0,
+      "median_unique_root_causes_by_execution_end": 1.0,
+      "campaign_level_unique_root_causes": 1,
+      "first_valid_completion_upper_bound_summary_seconds": {
+        "count": 12,
+        "sum": 0.388446375,
+        "mean": 0.03237053125,
+        "median": 0.0328300415,
+        "minimum": 0.027973625,
+        "maximum": 0.033864917
+      },
+      "restricted_mean_time_to_first_valid_finding_0_120_seconds": 0.03237053125,
+      "mean_cumulative_unique_root_cause_curve": [
+        {
+          "time_seconds": 0.0,
+          "mean_cumulative_unique_root_causes": 0.0
+        },
+        {
+          "time_seconds": 0.027973625,
+          "mean_cumulative_unique_root_causes": 0.08333333333333333
+        },
+        {
+          "time_seconds": 0.030889625,
+          "mean_cumulative_unique_root_causes": 0.16666666666666666
+        },
+        {
+          "time_seconds": 0.032766625,
+          "mean_cumulative_unique_root_causes": 0.25
+        },
+        {
+          "time_seconds": 0.032777375,
+          "mean_cumulative_unique_root_causes": 0.3333333333333333
+        },
+        {
+          "time_seconds": 0.03282175,
+          "mean_cumulative_unique_root_causes": 0.4166666666666667
+        },
+        {
+          "time_seconds": 0.032826166,
+          "mean_cumulative_unique_root_causes": 0.5
+        },
+        {
+          "time_seconds": 0.032833917,
+          "mean_cumulative_unique_root_causes": 0.5833333333333334
+        },
+        {
+          "time_seconds": 0.032839083,
+          "mean_cumulative_unique_root_causes": 0.6666666666666666
+        },
+        {
+          "time_seconds": 0.032860125,
+          "mean_cumulative_unique_root_causes": 0.75
+        },
+        {
+          "time_seconds": 0.032964125,
+          "mean_cumulative_unique_root_causes": 0.8333333333333334
+        },
+        {
+          "time_seconds": 0.033029042,
+          "mean_cumulative_unique_root_causes": 0.9166666666666666
+        },
+        {
+          "time_seconds": 0.033864917,
+          "mean_cumulative_unique_root_causes": 1.0
+        }
+      ],
+      "scheduler_observation_end_summary_seconds": {
+        "count": 12,
+        "sum": 455.312077293,
+        "mean": 37.94267310775,
+        "median": 37.827514104,
+        "minimum": 37.714281625,
+        "maximum": 39.204790917
+      },
+      "tangle_0_120_restricted_mean": {
+        "status": "not-estimable",
+        "reason": "The backend ended the Tangle attempts after its finite no-counterexample search before 30 seconds; no event was observed and the trace does not support extending observation to 120 seconds."
+      },
+      "banyan_target_position_by_block": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "banyan_target_position_counts": {
+        "1": 12
+      },
+      "target_orders_by_block": [
+        [
+          "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+          "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+          "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+          "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377"
+        ],
+        [
+          "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+          "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+          "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+          "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377"
+        ],
+        [
+          "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+          "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+          "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+          "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377"
+        ],
+        [
+          "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+          "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+          "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+          "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377"
+        ],
+        [
+          "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+          "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+          "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+          "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377"
+        ],
+        [
+          "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+          "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+          "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+          "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377"
+        ],
+        [
+          "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+          "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+          "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+          "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377"
+        ],
+        [
+          "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+          "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+          "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+          "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377"
+        ],
+        [
+          "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+          "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+          "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+          "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377"
+        ],
+        [
+          "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+          "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+          "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+          "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377"
+        ],
+        [
+          "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+          "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+          "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+          "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377"
+        ],
+        [
+          "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+          "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+          "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+          "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377"
+        ]
+      ],
+      "strategy_execution_position_counts": {
+        "1": 4,
+        "3": 4,
+        "2": 4
+      },
+      "backend_status_counts": {
+        "bug_found": 12,
+        "timeout": 12,
+        "no_counterexample": 24
+      },
+      "backend_candidate_count": 12,
+      "adjudication_counts": {
+        "validated": 12,
+        "rejected": 0,
+        "unresolved": 0,
+        "unreviewed": 0
+      },
+      "failure_count": 0,
+      "timeout_count": 12,
+      "not_started_count": 0,
+      "post_budget_completion_count": 0,
+      "planning_cost_seconds": {
+        "count": 12,
+        "sum": 0.25472779,
+        "mean": 0.021227315833333333,
+        "median": 0.0210408125,
+        "minimum": 0.020622916,
+        "maximum": 0.022368541
+      },
+      "scheduler_cost_seconds": {
+        "count": 12,
+        "sum": 455.312077293,
+        "mean": 37.94267310775,
+        "median": 37.827514104,
+        "minimum": 37.714281625,
+        "maximum": 39.204790917
+      },
+      "automated_review_cost_seconds": {
+        "count": 12,
+        "sum": 0.008692873059771955,
+        "mean": 0.0007244060883143296,
+        "median": 0.00043287500739097595,
+        "minimum": 0.0003675410116557032,
+        "maximum": 0.002227332995971665
+      },
+      "schema_evaluation_cost_seconds": {
+        "count": 12,
+        "sum": 0.458805914997356,
+        "mean": 0.03823382624977967,
+        "median": 0.03594074949796777,
+        "minimum": 0.03493745799642056,
+        "maximum": 0.04841437499271706
+      }
+    },
+    "random": {
+      "paired_block_count": 12,
+      "any_valid_cause_discovery_blocks": 12,
+      "any_valid_cause_discovery_rate": 1.0,
+      "independent_cause_opportunities": 24,
+      "validated_cause_block_events": 12,
+      "cause_opportunity_detection_rate": 0.5,
+      "per_cause": {
+        "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range": {
+          "discovery_blocks": 12,
+          "discovery_rate": 1.0,
+          "completion_time_upper_bounds_by_block_seconds": [
+            33.694694833,
+            4.185493584,
+            30.042457292,
+            37.860142375,
+            3.716028459,
+            34.106268625,
+            3.65359675,
+            0.032786125,
+            34.110738916,
+            7.8888745,
+            7.723177541,
+            0.028824
+          ],
+          "completion_time_upper_bound_summary_seconds": {
+            "count": 12,
+            "sum": 197.043083,
+            "mean": 16.420256916666666,
+            "median": 7.8060260205,
+            "minimum": 0.028824,
+            "maximum": 37.860142375
+          }
+        },
+        "tangle-network/protocol-solidity/set-membership-zero-initialization": {
+          "discovery_blocks": 0,
+          "discovery_rate": 0.0,
+          "completion_time_upper_bounds_by_block_seconds": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "completion_time_upper_bound_summary_seconds": null
+        }
+      },
+      "unique_root_causes_per_block": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "mean_unique_root_causes_by_execution_end": 1.0,
+      "median_unique_root_causes_by_execution_end": 1.0,
+      "campaign_level_unique_root_causes": 1,
+      "first_valid_completion_upper_bound_summary_seconds": {
+        "count": 12,
+        "sum": 197.043083,
+        "mean": 16.420256916666666,
+        "median": 7.8060260205,
+        "minimum": 0.028824,
+        "maximum": 37.860142375
+      },
+      "restricted_mean_time_to_first_valid_finding_0_120_seconds": 16.420256916666666,
+      "mean_cumulative_unique_root_cause_curve": [
+        {
+          "time_seconds": 0.0,
+          "mean_cumulative_unique_root_causes": 0.0
+        },
+        {
+          "time_seconds": 0.028824,
+          "mean_cumulative_unique_root_causes": 0.08333333333333333
+        },
+        {
+          "time_seconds": 0.032786125,
+          "mean_cumulative_unique_root_causes": 0.16666666666666666
+        },
+        {
+          "time_seconds": 3.65359675,
+          "mean_cumulative_unique_root_causes": 0.25
+        },
+        {
+          "time_seconds": 3.716028459,
+          "mean_cumulative_unique_root_causes": 0.3333333333333333
+        },
+        {
+          "time_seconds": 4.185493584,
+          "mean_cumulative_unique_root_causes": 0.4166666666666667
+        },
+        {
+          "time_seconds": 7.723177541,
+          "mean_cumulative_unique_root_causes": 0.5
+        },
+        {
+          "time_seconds": 7.8888745,
+          "mean_cumulative_unique_root_causes": 0.5833333333333334
+        },
+        {
+          "time_seconds": 30.042457292,
+          "mean_cumulative_unique_root_causes": 0.6666666666666666
+        },
+        {
+          "time_seconds": 33.694694833,
+          "mean_cumulative_unique_root_causes": 0.75
+        },
+        {
+          "time_seconds": 34.106268625,
+          "mean_cumulative_unique_root_causes": 0.8333333333333334
+        },
+        {
+          "time_seconds": 34.110738916,
+          "mean_cumulative_unique_root_causes": 0.9166666666666666
+        },
+        {
+          "time_seconds": 37.860142375,
+          "mean_cumulative_unique_root_causes": 1.0
+        }
+      ],
+      "scheduler_observation_end_summary_seconds": {
+        "count": 12,
+        "sum": 453.955910916,
+        "mean": 37.829659243,
+        "median": 37.8263045205,
+        "minimum": 37.6980075,
+        "maximum": 37.941741
+      },
+      "tangle_0_120_restricted_mean": {
+        "status": "not-estimable",
+        "reason": "The backend ended the Tangle attempts after its finite no-counterexample search before 30 seconds; no event was observed and the trace does not support extending observation to 120 seconds."
+      },
+      "banyan_target_position_by_block": [
+        3,
+        2,
+        2,
+        4,
+        2,
+        3,
+        2,
+        1,
+        3,
+        3,
+        3,
+        1
+      ],
+      "banyan_target_position_counts": {
+        "3": 5,
+        "2": 4,
+        "4": 1,
+        "1": 2
+      },
+      "target_orders_by_block": [
+        [
+          "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+          "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+          "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+          "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5"
+        ],
+        [
+          "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+          "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+          "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+          "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377"
+        ],
+        [
+          "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+          "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+          "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+          "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377"
+        ],
+        [
+          "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+          "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+          "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+          "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496"
+        ],
+        [
+          "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+          "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+          "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+          "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c"
+        ],
+        [
+          "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+          "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+          "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+          "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377"
+        ],
+        [
+          "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+          "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+          "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+          "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c"
+        ],
+        [
+          "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+          "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+          "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+          "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5"
+        ],
+        [
+          "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+          "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+          "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+          "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377"
+        ],
+        [
+          "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+          "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+          "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+          "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c"
+        ],
+        [
+          "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+          "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+          "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+          "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c"
+        ],
+        [
+          "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+          "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+          "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+          "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377"
+        ]
+      ],
+      "strategy_execution_position_counts": {
+        "2": 4,
+        "1": 4,
+        "3": 4
+      },
+      "backend_status_counts": {
+        "timeout": 12,
+        "no_counterexample": 24,
+        "bug_found": 12
+      },
+      "backend_candidate_count": 12,
+      "adjudication_counts": {
+        "validated": 12,
+        "rejected": 0,
+        "unresolved": 0,
+        "unreviewed": 0
+      },
+      "failure_count": 0,
+      "timeout_count": 12,
+      "not_started_count": 0,
+      "post_budget_completion_count": 0,
+      "planning_cost_seconds": {
+        "count": 12,
+        "sum": 0.259822083,
+        "mean": 0.02165184025,
+        "median": 0.021147375,
+        "minimum": 0.020579625,
+        "maximum": 0.025695625
+      },
+      "scheduler_cost_seconds": {
+        "count": 12,
+        "sum": 453.955910916,
+        "mean": 37.829659243,
+        "median": 37.8263045205,
+        "minimum": 37.6980075,
+        "maximum": 37.941741
+      },
+      "automated_review_cost_seconds": {
+        "count": 12,
+        "sum": 0.00664462402346544,
+        "mean": 0.0005537186686221199,
+        "median": 0.00043824950989801437,
+        "minimum": 0.00037366600008681417,
+        "maximum": 0.001415292004821822
+      },
+      "schema_evaluation_cost_seconds": {
+        "count": 12,
+        "sum": 0.4517526239505969,
+        "mean": 0.03764605199588308,
+        "median": 0.036725978992762975,
+        "minimum": 0.03488029199070297,
+        "maximum": 0.042311333992984146
+      }
+    },
+    "small-first": {
+      "paired_block_count": 12,
+      "any_valid_cause_discovery_blocks": 12,
+      "any_valid_cause_discovery_rate": 1.0,
+      "independent_cause_opportunities": 24,
+      "validated_cause_block_events": 12,
+      "cause_opportunity_detection_rate": 0.5,
+      "per_cause": {
+        "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range": {
+          "discovery_blocks": 12,
+          "discovery_rate": 1.0,
+          "completion_time_upper_bounds_by_block_seconds": [
+            7.719829708,
+            8.122348625,
+            7.766554125,
+            7.886206958,
+            7.999540708,
+            7.714343125,
+            7.755780042,
+            7.911690625,
+            7.858345834,
+            7.768853208,
+            7.860934959,
+            7.84695325
+          ],
+          "completion_time_upper_bound_summary_seconds": {
+            "count": 12,
+            "sum": 94.211381167,
+            "mean": 7.850948430583333,
+            "median": 7.852649542,
+            "minimum": 7.714343125,
+            "maximum": 8.122348625
+          }
+        },
+        "tangle-network/protocol-solidity/set-membership-zero-initialization": {
+          "discovery_blocks": 0,
+          "discovery_rate": 0.0,
+          "completion_time_upper_bounds_by_block_seconds": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "completion_time_upper_bound_summary_seconds": null
+        }
+      },
+      "unique_root_causes_per_block": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "mean_unique_root_causes_by_execution_end": 1.0,
+      "median_unique_root_causes_by_execution_end": 1.0,
+      "campaign_level_unique_root_causes": 1,
+      "first_valid_completion_upper_bound_summary_seconds": {
+        "count": 12,
+        "sum": 94.211381167,
+        "mean": 7.850948430583333,
+        "median": 7.852649542,
+        "minimum": 7.714343125,
+        "maximum": 8.122348625
+      },
+      "restricted_mean_time_to_first_valid_finding_0_120_seconds": 7.850948430583333,
+      "mean_cumulative_unique_root_cause_curve": [
+        {
+          "time_seconds": 0.0,
+          "mean_cumulative_unique_root_causes": 0.0
+        },
+        {
+          "time_seconds": 7.714343125,
+          "mean_cumulative_unique_root_causes": 0.08333333333333333
+        },
+        {
+          "time_seconds": 7.719829708,
+          "mean_cumulative_unique_root_causes": 0.16666666666666666
+        },
+        {
+          "time_seconds": 7.755780042,
+          "mean_cumulative_unique_root_causes": 0.25
+        },
+        {
+          "time_seconds": 7.766554125,
+          "mean_cumulative_unique_root_causes": 0.3333333333333333
+        },
+        {
+          "time_seconds": 7.768853208,
+          "mean_cumulative_unique_root_causes": 0.4166666666666667
+        },
+        {
+          "time_seconds": 7.84695325,
+          "mean_cumulative_unique_root_causes": 0.5
+        },
+        {
+          "time_seconds": 7.858345834,
+          "mean_cumulative_unique_root_causes": 0.5833333333333334
+        },
+        {
+          "time_seconds": 7.860934959,
+          "mean_cumulative_unique_root_causes": 0.6666666666666666
+        },
+        {
+          "time_seconds": 7.886206958,
+          "mean_cumulative_unique_root_causes": 0.75
+        },
+        {
+          "time_seconds": 7.911690625,
+          "mean_cumulative_unique_root_causes": 0.8333333333333334
+        },
+        {
+          "time_seconds": 7.999540708,
+          "mean_cumulative_unique_root_causes": 0.9166666666666666
+        },
+        {
+          "time_seconds": 8.122348625,
+          "mean_cumulative_unique_root_causes": 1.0
+        }
+      ],
+      "scheduler_observation_end_summary_seconds": {
+        "count": 12,
+        "sum": 454.3077575,
+        "mean": 37.85897979166667,
+        "median": 37.8609430005,
+        "minimum": 37.721280042,
+        "maximum": 38.126796708
+      },
+      "tangle_0_120_restricted_mean": {
+        "status": "not-estimable",
+        "reason": "The backend ended the Tangle attempts after its finite no-counterexample search before 30 seconds; no event was observed and the trace does not support extending observation to 120 seconds."
+      },
+      "banyan_target_position_by_block": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "banyan_target_position_counts": {
+        "3": 12
+      },
+      "target_orders_by_block": [
+        [
+          "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+          "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+          "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+          "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c"
+        ],
+        [
+          "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+          "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+          "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+          "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c"
+        ],
+        [
+          "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+          "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+          "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+          "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c"
+        ],
+        [
+          "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+          "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+          "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+          "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c"
+        ],
+        [
+          "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+          "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+          "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+          "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c"
+        ],
+        [
+          "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+          "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+          "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+          "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c"
+        ],
+        [
+          "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+          "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+          "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+          "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c"
+        ],
+        [
+          "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+          "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+          "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+          "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c"
+        ],
+        [
+          "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+          "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+          "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+          "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c"
+        ],
+        [
+          "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+          "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+          "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+          "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c"
+        ],
+        [
+          "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+          "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+          "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+          "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c"
+        ],
+        [
+          "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+          "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+          "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+          "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c"
+        ]
+      ],
+      "strategy_execution_position_counts": {
+        "3": 4,
+        "2": 4,
+        "1": 4
+      },
+      "backend_status_counts": {
+        "no_counterexample": 24,
+        "bug_found": 12,
+        "timeout": 12
+      },
+      "backend_candidate_count": 12,
+      "adjudication_counts": {
+        "validated": 12,
+        "rejected": 0,
+        "unresolved": 0,
+        "unreviewed": 0
+      },
+      "failure_count": 0,
+      "timeout_count": 12,
+      "not_started_count": 0,
+      "post_budget_completion_count": 0,
+      "planning_cost_seconds": {
+        "count": 12,
+        "sum": 0.259114042,
+        "mean": 0.021592836833333334,
+        "median": 0.02098225,
+        "minimum": 0.020470917,
+        "maximum": 0.025812208
+      },
+      "scheduler_cost_seconds": {
+        "count": 12,
+        "sum": 454.3077575,
+        "mean": 37.85897979166667,
+        "median": 37.8609430005,
+        "minimum": 37.721280042,
+        "maximum": 38.126796708
+      },
+      "automated_review_cost_seconds": {
+        "count": 12,
+        "sum": 0.006947333022253588,
+        "mean": 0.0005789444185211323,
+        "median": 0.0004489375132834539,
+        "minimum": 0.000360875012120232,
+        "maximum": 0.0013012080162297934
+      },
+      "schema_evaluation_cost_seconds": {
+        "count": 12,
+        "sum": 0.4831105420307722,
+        "mean": 0.04025921183589768,
+        "median": 0.037644104508217424,
+        "minimum": 0.034845791989937425,
+        "maximum": 0.0672585410065949
+      }
+    }
+  },
+  "paired_comparisons": [
+    {
+      "comparison": "risk-only_vs_random",
+      "paired_unique_root_cause_count_difference_by_block": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_unique_root_cause_count_difference": 0.0,
+      "risk_only_minus_comparator_first_completion_upper_bound_seconds_by_block": [
+        -33.660829916,
+        -4.152464542,
+        -30.011567667,
+        -37.827303292,
+        -3.683194542,
+        -34.078295,
+        -3.620819375,
+        3.5624999999997464e-05,
+        -34.07791275,
+        -7.856107875,
+        -7.690213416,
+        0.004036124999999998
+      ],
+      "paired_time_difference_summary_seconds": {
+        "count": 12,
+        "sum": -196.654636625,
+        "mean": -16.387886385416667,
+        "median": -7.7731606455,
+        "minimum": -37.827303292,
+        "maximum": 0.004036124999999998
+      },
+      "risk_only_faster_blocks": 10,
+      "equal_upper_bound_blocks": 0,
+      "risk_only_slower_blocks": 2,
+      "inferential_test": "not-predeclared; descriptive paired result only"
+    },
+    {
+      "comparison": "risk-only_vs_small-first",
+      "paired_unique_root_cause_count_difference_by_block": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_unique_root_cause_count_difference": 0.0,
+      "risk_only_minus_comparator_first_completion_upper_bound_seconds_by_block": [
+        -7.685964791,
+        -8.089319583,
+        -7.7356644999999995,
+        -7.853367875,
+        -7.966706791,
+        -7.6863695000000005,
+        -7.723002666999999,
+        -7.878868875,
+        -7.825519667999999,
+        -7.7360865830000005,
+        -7.827970833999999,
+        -7.814093125
+      ],
+      "paired_time_difference_summary_seconds": {
+        "count": 12,
+        "sum": -93.822934792,
+        "mean": -7.8185778993333335,
+        "median": -7.8198063965,
+        "minimum": -8.089319583,
+        "maximum": -7.685964791
+      },
+      "risk_only_faster_blocks": 12,
+      "equal_upper_bound_blocks": 0,
+      "risk_only_slower_blocks": 0,
+      "inferential_test": "not-predeclared; descriptive paired result only"
+    }
+  ],
+  "costs": {
+    "shared_preparation_seconds": 1.754529292,
+    "campaign_wall_seconds": 1381.720585,
+    "planning_by_strategy_seconds": {
+      "risk-only": {
+        "count": 12,
+        "sum": 0.25472779,
+        "mean": 0.021227315833333333,
+        "median": 0.0210408125,
+        "minimum": 0.020622916,
+        "maximum": 0.022368541
+      },
+      "random": {
+        "count": 12,
+        "sum": 0.259822083,
+        "mean": 0.02165184025,
+        "median": 0.021147375,
+        "minimum": 0.020579625,
+        "maximum": 0.025695625
+      },
+      "small-first": {
+        "count": 12,
+        "sum": 0.259114042,
+        "mean": 0.021592836833333334,
+        "median": 0.02098225,
+        "minimum": 0.020470917,
+        "maximum": 0.025812208
+      }
+    },
+    "scheduler_by_strategy_seconds": {
+      "risk-only": {
+        "count": 12,
+        "sum": 455.312077293,
+        "mean": 37.94267310775,
+        "median": 37.827514104,
+        "minimum": 37.714281625,
+        "maximum": 39.204790917
+      },
+      "random": {
+        "count": 12,
+        "sum": 453.955910916,
+        "mean": 37.829659243,
+        "median": 37.8263045205,
+        "minimum": 37.6980075,
+        "maximum": 37.941741
+      },
+      "small-first": {
+        "count": 12,
+        "sum": 454.3077575,
+        "mean": 37.85897979166667,
+        "median": 37.8609430005,
+        "minimum": 37.721280042,
+        "maximum": 38.126796708
+      }
+    },
+    "post_hoc_candidate_review_automated_seconds": 0.05000391701469198,
+    "post_hoc_candidate_review_manual_seconds": null,
+    "schema_evaluation_by_strategy_seconds": {
+      "risk-only": {
+        "count": 12,
+        "sum": 0.458805914997356,
+        "mean": 0.03823382624977967,
+        "median": 0.03594074949796777,
+        "minimum": 0.03493745799642056,
+        "maximum": 0.04841437499271706
+      },
+      "random": {
+        "count": 12,
+        "sum": 0.4517526239505969,
+        "mean": 0.03764605199588308,
+        "median": 0.036725978992762975,
+        "minimum": 0.03488029199070297,
+        "maximum": 0.042311333992984146
+      },
+      "small-first": {
+        "count": 12,
+        "sum": 0.4831105420307722,
+        "mean": 0.04025921183589768,
+        "median": 0.037644104508217424,
+        "minimum": 0.034845791989937425,
+        "maximum": 0.0672585410065949
+      }
+    },
+    "schema_evaluation_driver_wall_seconds": 1.4208692499960307
+  },
+  "interpretation": [
+    "All three strategies validated the Banyan CheckDepth root cause in all 12 blocks; none rediscovered the independent Tangle SetMembership root cause.",
+    "The campaign therefore validates one independent original-component cause, not 36 defects and not both held-out causes.",
+    "Risk-only found the shared Banyan cause earlier because its frozen order placed that vulnerable target first; it did not increase the number of independent causes found.",
+    "The result is a two-cause controlled target-order comparison and is not a general multi-project performance claim.",
+    "Project caller reachability and impact were not reviewed, so the project-confirmed count remains zero.",
+    "Static scores and public labels were not counted as discoveries."
+  ]
+}

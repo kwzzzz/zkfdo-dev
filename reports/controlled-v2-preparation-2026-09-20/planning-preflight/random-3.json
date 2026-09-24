@@ -1,0 +1,796 @@
+{
+  "schema_version": 1,
+  "plan_id": "1475687e-c75d-46d1-883f-b0a8d7404c5e",
+  "created_at": "2026-09-20T11:14:31.397615Z",
+  "plan_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/planning-preflight/random-3.json",
+  "prepared_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/prepared.json",
+  "prepared_sha256": "967135b38000ee09b1d82aa15cf1bbbdb354fbecf437692e77a9e440f99dd504",
+  "preparation_profile_strategy": null,
+  "strategy": "random",
+  "ranking_seed": 2026094003,
+  "random_algorithm": "splitmix64-fisher-yates-rejection-v1",
+  "config_path": "/Users/miiz/Desktop/kwzzzz_zkfr/configs/static-ranking.json",
+  "config_sha256": "8fed87764b001245d600307f7ba7d8453e88e3b977afda656014eac83ea32d26",
+  "config": {
+    "schema_version": 1,
+    "complexity_groups": {
+      "metric": "root_ast_if_plus_while",
+      "upper_bounds": [
+        0
+      ],
+      "group_order": [
+        0,
+        1
+      ],
+      "provenance": "Frozen before fuzzing from datasets/manifest.dev10.json on 2026-09-15: all three complete root-template profiles measured 0; group 0 is exactly 0 and group 1 is the reserved positive-complexity overflow bin. This tiny development set does not validate the boundary."
+    }
+  },
+  "comparison_target_set": "common-complete-feature-set",
+  "preparation_elapsed_seconds": 1.754529292,
+  "preparation_accounting": {
+    "inspection_seconds": 0.251417,
+    "snapshot_seconds": 0.012788583,
+    "structure_seconds": 0.48961258300000005,
+    "semantic_seconds": 0.145684873,
+    "legacy_seconds": 0.072833335,
+    "excluded_target_elapsed_seconds": 0.0,
+    "orchestration_overhead_seconds": 0.769192417
+  },
+  "planning_elapsed_seconds": 0.020509208,
+  "targets": [
+    {
+      "rank": 1,
+      "target_id": "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+      "definition": {
+        "label": "Banyan Blake3 CheckDepth fixed comparator",
+        "project": "https://github.com/banyancomputer/hot-proofs-blake3-circom",
+        "revision": "e37eb56e29b304024055f3d0a1681e6f22132ecc",
+        "project_root": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project",
+        "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circuit.circom",
+        "template_name": "Blake3NovaTreePath_CheckDepth",
+        "concrete_parameters": [],
+        "prime": "bn128",
+        "compile_args": [
+          "-l",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project"
+        ],
+        "mode": "direct",
+        "input_assumptions": "depth and leaf_depth are canonical BN128 field elements. This fixed comparator is expected to enforce unsigned 8-bit range internally before applying the comparators.",
+        "known_defects": []
+      },
+      "inspection": {
+        "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circuit.circom",
+        "project_root": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project",
+        "root": {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom",
+          "template_name": "Blake3NovaTreePath_CheckDepth",
+          "concrete_parameters": []
+        },
+        "instances": [
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom",
+            "template_name": "Num2Bits",
+            "concrete_parameters": [
+              "8"
+            ]
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom",
+            "template_name": "Num2Bits",
+            "concrete_parameters": [
+              "9"
+            ]
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom",
+            "template_name": "GreaterEqThan",
+            "concrete_parameters": [
+              "8"
+            ]
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom",
+            "template_name": "IsEqual",
+            "concrete_parameters": []
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom",
+            "template_name": "IsZero",
+            "concrete_parameters": []
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom",
+            "template_name": "LessThan",
+            "concrete_parameters": [
+              "8"
+            ]
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom",
+            "template_name": "Blake3NovaTreePath_CheckDepth",
+            "concrete_parameters": []
+          }
+        ],
+        "scopes": [
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom",
+            "template_name": "Num2Bits",
+            "start_line": 25,
+            "end_line": 39
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom",
+            "template_name": "IsZero",
+            "start_line": 24,
+            "end_line": 34
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom",
+            "template_name": "IsEqual",
+            "start_line": 37,
+            "end_line": 46
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom",
+            "template_name": "LessThan",
+            "start_line": 89,
+            "end_line": 99
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom",
+            "template_name": "GreaterEqThan",
+            "start_line": 131,
+            "end_line": 140
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom",
+            "template_name": "Blake3NovaTreePath_CheckDepth",
+            "start_line": 13,
+            "end_line": 45
+          }
+        ],
+        "dependency_paths": [
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/aliascheck.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/binsum.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/compconstant.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/gates.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circuit.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_common.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_compression.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom"
+        ],
+        "complete": true,
+        "unsupported": []
+      },
+      "run_entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0003/sources/circuit.circom",
+      "ranking": {
+        "target_id": "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+        "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circuit.circom",
+        "risk_score": 1,
+        "warning_count": 3,
+        "complexity": 0,
+        "size": 47,
+        "legacy_score": 27.41656498180255
+      },
+      "source_fingerprints": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/aliascheck.circom",
+          "sha256": "7df7542461a68c1564a55be8f01d75571c0e2555a08a078abeba43e1ea032eb4"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/binsum.circom",
+          "sha256": "8aa153baf5791d96d06dce837c1e19b9ecc3a7dc65054132d5dd189b60bfcfc2"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/bitify.circom",
+          "sha256": "688f121303a2dd0154ceeda8d2f53a9d2d26789d10a69a46acd534642725683e"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/comparators.circom",
+          "sha256": "fd0c7723ee56e1467df1861131157cbb108e156fe2d9ec64895c8e68de14db20"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/compconstant.circom",
+          "sha256": "94c5cc93b589a940acbfecdb98babc2efc253ad4298814399fb41109faa3b50d"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circomlib/circuits/gates.circom",
+          "sha256": "890e2514ddcbce77e0a5f6867749401fc182664a4b901d6d7bf6856197e0d87c"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/circuit.circom",
+          "sha256": "7c711b21c84868cd2182abb0a75b0272d5da98c3a83e792e4ea738c6596c300f"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_common.circom",
+          "sha256": "9663e4d81508979f718c9f3b4f887d38c13af15e44b858967c7eb4bb32261650"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_compression.circom",
+          "sha256": "5e491be0314e5c9cbfda57d0bbdf6873bcbbeba65dd96a8eab3db605175d2ca9"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project/source/circuits/blake3_nova.circom",
+          "sha256": "33fcc0ce24971e32de2a60d84f4220356ab7a6985e6b7c9c4be9051c0f96bb4d"
+        }
+      ],
+      "snapshot_fingerprints": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0003/sources/circomlib/circuits/aliascheck.circom",
+          "sha256": "7df7542461a68c1564a55be8f01d75571c0e2555a08a078abeba43e1ea032eb4"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0003/sources/circomlib/circuits/binsum.circom",
+          "sha256": "8aa153baf5791d96d06dce837c1e19b9ecc3a7dc65054132d5dd189b60bfcfc2"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0003/sources/circomlib/circuits/bitify.circom",
+          "sha256": "688f121303a2dd0154ceeda8d2f53a9d2d26789d10a69a46acd534642725683e"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0003/sources/circomlib/circuits/comparators.circom",
+          "sha256": "fd0c7723ee56e1467df1861131157cbb108e156fe2d9ec64895c8e68de14db20"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0003/sources/circomlib/circuits/compconstant.circom",
+          "sha256": "94c5cc93b589a940acbfecdb98babc2efc253ad4298814399fb41109faa3b50d"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0003/sources/circomlib/circuits/gates.circom",
+          "sha256": "890e2514ddcbce77e0a5f6867749401fc182664a4b901d6d7bf6856197e0d87c"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0003/sources/circuit.circom",
+          "sha256": "7c711b21c84868cd2182abb0a75b0272d5da98c3a83e792e4ea738c6596c300f"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0003/sources/source/circuits/blake3_common.circom",
+          "sha256": "9663e4d81508979f718c9f3b4f887d38c13af15e44b858967c7eb4bb32261650"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0003/sources/source/circuits/blake3_compression.circom",
+          "sha256": "5e491be0314e5c9cbfda57d0bbdf6873bcbbeba65dd96a8eab3db605175d2ca9"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0003/sources/source/circuits/blake3_nova.circom",
+          "sha256": "33fcc0ce24971e32de2a60d84f4220356ab7a6985e6b7c9c4be9051c0f96bb4d"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "definition": {
+        "label": "Banyan Blake3 CheckDepth vulnerable",
+        "project": "https://github.com/banyancomputer/hot-proofs-blake3-circom",
+        "revision": "76b83107eb00c8f886bde82172eaa3cdd5d57f25",
+        "project_root": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/vulnerable/project",
+        "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/vulnerable/project/circuit.circom",
+        "template_name": "Blake3NovaTreePath_CheckDepth",
+        "concrete_parameters": [],
+        "prime": "bn128",
+        "compile_args": [
+          "-l",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/vulnerable/project"
+        ],
+        "mode": "direct",
+        "input_assumptions": "depth and leaf_depth are canonical BN128 field elements. The component itself is required to reject values outside unsigned 8-bit range before applying 8-bit comparators; no caller-only range assumption is added.",
+        "known_defects": [
+          {
+            "root_cause_id": "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range",
+            "location": "circuits/blake3_nova.circom:13-39; depth and leaf_depth reach 8-bit comparators without range constraints",
+            "source_url": "https://github.com/banyancomputer/hot-proofs-blake3-circom/issues/10",
+            "reported": true,
+            "local_reproduction": "Exact source revision and direct wrapper compile in the frozen comparison environment; no v2 backend result is assigned before execution.",
+            "tcct_status": "not-run-controlled-v2",
+            "reachability": "Direct original component only; whole-project caller reachability and impact are reported separately.",
+            "evidence": [
+              "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/contracts.controlled-v2.json",
+              "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/banyancomputer/hot-proofs-blake3-circom/koukyosyumei_checkdepth_comparator_overflow/zkbugs_config.json",
+              "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/banyancomputer/hot-proofs-blake3-circom/koukyosyumei_checkdepth_comparator_overflow/README.md"
+            ]
+          }
+        ]
+      },
+      "inspection": {
+        "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/vulnerable/project/circuit.circom",
+        "project_root": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/vulnerable/project",
+        "root": {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/vulnerable/project/source/circuits/blake3_nova.circom",
+          "template_name": "Blake3NovaTreePath_CheckDepth",
+          "concrete_parameters": []
+        },
+        "instances": [
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/vulnerable/project/circomlib/circuits/bitify.circom",
+            "template_name": "Num2Bits",
+            "concrete_parameters": [
+              "9"
+            ]
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/vulnerable/project/circomlib/circuits/comparators.circom",
+            "template_name": "GreaterEqThan",
+            "concrete_parameters": [
+              "8"
+            ]
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/vulnerable/project/circomlib/circuits/comparators.circom",
+            "template_name": "IsEqual",
+            "concrete_parameters": []
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/vulnerable/project/circomlib/circuits/comparators.circom",
+            "template_name": "IsZero",
+            "concrete_parameters": []
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/vulnerable/project/circomlib/circuits/comparators.circom",
+            "template_name": "LessThan",
+            "concrete_parameters": [
+              "8"
+            ]
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/vulnerable/project/source/circuits/blake3_nova.circom",
+            "template_name": "Blake3NovaTreePath_CheckDepth",
+            "concrete_parameters": []
+          }
+        ],
+        "scopes": [
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/vulnerable/project/circomlib/circuits/bitify.circom",
+            "template_name": "Num2Bits",
+            "start_line": 25,
+            "end_line": 39
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/vulnerable/project/circomlib/circuits/comparators.circom",
+            "template_name": "IsZero",
+            "start_line": 24,
+            "end_line": 34
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/vulnerable/project/circomlib/circuits/comparators.circom",
+            "template_name": "IsEqual",
+            "start_line": 37,
+            "end_line": 46
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/vulnerable/project/circomlib/circuits/comparators.circom",
+            "template_name": "LessThan",
+            "start_line": 89,
+            "end_line": 99
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/vulnerable/project/circomlib/circuits/comparators.circom",
+            "template_name": "GreaterEqThan",
+            "start_line": 131,
+            "end_line": 140
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/vulnerable/project/source/circuits/blake3_nova.circom",
+            "template_name": "Blake3NovaTreePath_CheckDepth",
+            "start_line": 13,
+            "end_line": 39
+          }
+        ],
+        "dependency_paths": [
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/vulnerable/project/circomlib/circuits/aliascheck.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/vulnerable/project/circomlib/circuits/binsum.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/vulnerable/project/circomlib/circuits/bitify.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/vulnerable/project/circomlib/circuits/comparators.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/vulnerable/project/circomlib/circuits/compconstant.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/vulnerable/project/circomlib/circuits/gates.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/vulnerable/project/circuit.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/vulnerable/project/source/circuits/blake3_common.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/vulnerable/project/source/circuits/blake3_compression.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/vulnerable/project/source/circuits/blake3_nova.circom"
+        ],
+        "complete": true,
+        "unsupported": []
+      },
+      "run_entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom",
+      "ranking": {
+        "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+        "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/vulnerable/project/circuit.circom",
+        "risk_score": 1,
+        "warning_count": 4,
+        "complexity": 0,
+        "size": 29,
+        "legacy_score": 27.075520243873136
+      },
+      "source_fingerprints": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/vulnerable/project/circomlib/circuits/aliascheck.circom",
+          "sha256": "7df7542461a68c1564a55be8f01d75571c0e2555a08a078abeba43e1ea032eb4"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/vulnerable/project/circomlib/circuits/binsum.circom",
+          "sha256": "8aa153baf5791d96d06dce837c1e19b9ecc3a7dc65054132d5dd189b60bfcfc2"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/vulnerable/project/circomlib/circuits/bitify.circom",
+          "sha256": "688f121303a2dd0154ceeda8d2f53a9d2d26789d10a69a46acd534642725683e"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/vulnerable/project/circomlib/circuits/comparators.circom",
+          "sha256": "fd0c7723ee56e1467df1861131157cbb108e156fe2d9ec64895c8e68de14db20"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/vulnerable/project/circomlib/circuits/compconstant.circom",
+          "sha256": "94c5cc93b589a940acbfecdb98babc2efc253ad4298814399fb41109faa3b50d"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/vulnerable/project/circomlib/circuits/gates.circom",
+          "sha256": "890e2514ddcbce77e0a5f6867749401fc182664a4b901d6d7bf6856197e0d87c"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/vulnerable/project/circuit.circom",
+          "sha256": "7c711b21c84868cd2182abb0a75b0272d5da98c3a83e792e4ea738c6596c300f"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/vulnerable/project/source/circuits/blake3_common.circom",
+          "sha256": "9663e4d81508979f718c9f3b4f887d38c13af15e44b858967c7eb4bb32261650"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/vulnerable/project/source/circuits/blake3_compression.circom",
+          "sha256": "5e491be0314e5c9cbfda57d0bbdf6873bcbbeba65dd96a8eab3db605175d2ca9"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/vulnerable/project/source/circuits/blake3_nova.circom",
+          "sha256": "f7d04495f0bf186ab2376e860ce0fc2468087f32b0b80d6a0f2d3d6f0bd28f52"
+        }
+      ],
+      "snapshot_fingerprints": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circomlib/circuits/aliascheck.circom",
+          "sha256": "7df7542461a68c1564a55be8f01d75571c0e2555a08a078abeba43e1ea032eb4"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circomlib/circuits/binsum.circom",
+          "sha256": "8aa153baf5791d96d06dce837c1e19b9ecc3a7dc65054132d5dd189b60bfcfc2"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circomlib/circuits/bitify.circom",
+          "sha256": "688f121303a2dd0154ceeda8d2f53a9d2d26789d10a69a46acd534642725683e"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circomlib/circuits/comparators.circom",
+          "sha256": "fd0c7723ee56e1467df1861131157cbb108e156fe2d9ec64895c8e68de14db20"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circomlib/circuits/compconstant.circom",
+          "sha256": "94c5cc93b589a940acbfecdb98babc2efc253ad4298814399fb41109faa3b50d"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circomlib/circuits/gates.circom",
+          "sha256": "890e2514ddcbce77e0a5f6867749401fc182664a4b901d6d7bf6856197e0d87c"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom",
+          "sha256": "7c711b21c84868cd2182abb0a75b0272d5da98c3a83e792e4ea738c6596c300f"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/source/circuits/blake3_common.circom",
+          "sha256": "9663e4d81508979f718c9f3b4f887d38c13af15e44b858967c7eb4bb32261650"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/source/circuits/blake3_compression.circom",
+          "sha256": "5e491be0314e5c9cbfda57d0bbdf6873bcbbeba65dd96a8eab3db605175d2ca9"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/source/circuits/blake3_nova.circom",
+          "sha256": "f7d04495f0bf186ab2376e860ce0fc2468087f32b0b80d6a0f2d3d6f0bd28f52"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "target_id": "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+      "definition": {
+        "label": "Tangle SetMembership vulnerable",
+        "project": "https://github.com/tangle-network/protocol-solidity",
+        "revision": "848d073bb17f0aaffc6d39f594cc59efedeaec89",
+        "project_root": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/vulnerable/project",
+        "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/vulnerable/project/circuit.circom",
+        "template_name": "SetMembership",
+        "concrete_parameters": [
+          "3"
+        ],
+        "prime": "bn128",
+        "compile_args": [],
+        "mode": "direct",
+        "input_assumptions": "element and set[0..2] are canonical BN128 field elements. Membership is equality in the field; no narrower integer range or caller-only precondition is imposed.",
+        "known_defects": [
+          {
+            "root_cause_id": "tangle-network/protocol-solidity/set-membership-zero-initialization",
+            "location": "circuits/set/membership.circom:17-26; product[0] is initialized to element instead of 1",
+            "source_url": "https://github.com/zksecurity/zkbugs/blob/main/reports/documents/veridise-tangle-network-protocol-solidity.pdf",
+            "reported": true,
+            "local_reproduction": "Exact source revision and SetMembership(3) direct wrapper compile in the frozen comparison environment; no v2 backend result is assigned before execution.",
+            "tcct_status": "not-run-controlled-v2",
+            "reachability": "Direct original component only; whole-project caller reachability is reported separately.",
+            "evidence": [
+              "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/contracts.controlled-v2.json",
+              "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/tangle-network/protocol-solidity/veridise_incorrect_initialization_in_membership_circuits/zkbugs_config.json",
+              "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/tangle-network/protocol-solidity/veridise_incorrect_initialization_in_membership_circuits/README.md"
+            ]
+          }
+        ]
+      },
+      "inspection": {
+        "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/vulnerable/project/circuit.circom",
+        "project_root": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/vulnerable/project",
+        "root": {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/vulnerable/project/circuits/set/membership.circom",
+          "template_name": "SetMembership",
+          "concrete_parameters": [
+            "3"
+          ]
+        },
+        "instances": [
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/vulnerable/project/circuits/set/membership.circom",
+            "template_name": "SetMembership",
+            "concrete_parameters": [
+              "3"
+            ]
+          }
+        ],
+        "scopes": [
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/vulnerable/project/circuits/set/membership.circom",
+            "template_name": "SetMembership",
+            "start_line": 14,
+            "end_line": 28
+          }
+        ],
+        "dependency_paths": [
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/vulnerable/project/circuit.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/vulnerable/project/circuits/set/membership.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/vulnerable/project/node_modules/circomlib/circuits/aliascheck.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/vulnerable/project/node_modules/circomlib/circuits/binsum.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/vulnerable/project/node_modules/circomlib/circuits/bitify.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/vulnerable/project/node_modules/circomlib/circuits/comparators.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/vulnerable/project/node_modules/circomlib/circuits/compconstant.circom"
+        ],
+        "complete": true,
+        "unsupported": []
+      },
+      "run_entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0000/sources/circuit.circom",
+      "ranking": {
+        "target_id": "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+        "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/vulnerable/project/circuit.circom",
+        "risk_score": 0,
+        "warning_count": 0,
+        "complexity": 1,
+        "size": 6,
+        "legacy_score": 8.084394115087264
+      },
+      "source_fingerprints": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/vulnerable/project/circuit.circom",
+          "sha256": "04f13d961be1ce9d5ab6a7a64a31dfbb0ddab646e8a46ab7152ccb8cd413141c"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/vulnerable/project/circuits/set/membership.circom",
+          "sha256": "884f3b47b1134607f85f03af91fed2f3eba98a1bf9b5b21b0e7ce8eb309142a0"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/vulnerable/project/node_modules/circomlib/circuits/aliascheck.circom",
+          "sha256": "7df7542461a68c1564a55be8f01d75571c0e2555a08a078abeba43e1ea032eb4"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/vulnerable/project/node_modules/circomlib/circuits/binsum.circom",
+          "sha256": "8aa153baf5791d96d06dce837c1e19b9ecc3a7dc65054132d5dd189b60bfcfc2"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/vulnerable/project/node_modules/circomlib/circuits/bitify.circom",
+          "sha256": "688f121303a2dd0154ceeda8d2f53a9d2d26789d10a69a46acd534642725683e"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/vulnerable/project/node_modules/circomlib/circuits/comparators.circom",
+          "sha256": "fd0c7723ee56e1467df1861131157cbb108e156fe2d9ec64895c8e68de14db20"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/vulnerable/project/node_modules/circomlib/circuits/compconstant.circom",
+          "sha256": "94c5cc93b589a940acbfecdb98babc2efc253ad4298814399fb41109faa3b50d"
+        }
+      ],
+      "snapshot_fingerprints": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0000/sources/circuit.circom",
+          "sha256": "04f13d961be1ce9d5ab6a7a64a31dfbb0ddab646e8a46ab7152ccb8cd413141c"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0000/sources/circuits/set/membership.circom",
+          "sha256": "884f3b47b1134607f85f03af91fed2f3eba98a1bf9b5b21b0e7ce8eb309142a0"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0000/sources/node_modules/circomlib/circuits/aliascheck.circom",
+          "sha256": "7df7542461a68c1564a55be8f01d75571c0e2555a08a078abeba43e1ea032eb4"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0000/sources/node_modules/circomlib/circuits/binsum.circom",
+          "sha256": "8aa153baf5791d96d06dce837c1e19b9ecc3a7dc65054132d5dd189b60bfcfc2"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0000/sources/node_modules/circomlib/circuits/bitify.circom",
+          "sha256": "688f121303a2dd0154ceeda8d2f53a9d2d26789d10a69a46acd534642725683e"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0000/sources/node_modules/circomlib/circuits/comparators.circom",
+          "sha256": "fd0c7723ee56e1467df1861131157cbb108e156fe2d9ec64895c8e68de14db20"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0000/sources/node_modules/circomlib/circuits/compconstant.circom",
+          "sha256": "94c5cc93b589a940acbfecdb98babc2efc253ad4298814399fb41109faa3b50d"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "target_id": "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+      "definition": {
+        "label": "Tangle SetMembership fixed comparator",
+        "project": "https://github.com/tangle-network/protocol-solidity",
+        "revision": "eeb4fc7a4883d513e3fe3adbe2c447133ccd39f2",
+        "project_root": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/fixed/project",
+        "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/fixed/project/circuit.circom",
+        "template_name": "SetMembership",
+        "concrete_parameters": [
+          "3"
+        ],
+        "prime": "bn128",
+        "compile_args": [],
+        "mode": "direct",
+        "input_assumptions": "element and set[0..2] are canonical BN128 field elements. Membership is equality in the field; no narrower integer range or caller-only precondition is imposed.",
+        "known_defects": []
+      },
+      "inspection": {
+        "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/fixed/project/circuit.circom",
+        "project_root": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/fixed/project",
+        "root": {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/fixed/project/circuits/set/membership.circom",
+          "template_name": "SetMembership",
+          "concrete_parameters": [
+            "3"
+          ]
+        },
+        "instances": [
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/fixed/project/circuits/set/membership.circom",
+            "template_name": "SetMembership",
+            "concrete_parameters": [
+              "3"
+            ]
+          }
+        ],
+        "scopes": [
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/fixed/project/circuits/set/membership.circom",
+            "template_name": "SetMembership",
+            "start_line": 14,
+            "end_line": 28
+          }
+        ],
+        "dependency_paths": [
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/fixed/project/circuit.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/fixed/project/circuits/set/membership.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/fixed/project/node_modules/circomlib/circuits/aliascheck.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/fixed/project/node_modules/circomlib/circuits/binsum.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/fixed/project/node_modules/circomlib/circuits/bitify.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/fixed/project/node_modules/circomlib/circuits/comparators.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/fixed/project/node_modules/circomlib/circuits/compconstant.circom"
+        ],
+        "complete": true,
+        "unsupported": []
+      },
+      "run_entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0001/sources/circuit.circom",
+      "ranking": {
+        "target_id": "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+        "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/fixed/project/circuit.circom",
+        "risk_score": 0,
+        "warning_count": 0,
+        "complexity": 1,
+        "size": 6,
+        "legacy_score": 8.084394115087264
+      },
+      "source_fingerprints": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/fixed/project/circuit.circom",
+          "sha256": "04f13d961be1ce9d5ab6a7a64a31dfbb0ddab646e8a46ab7152ccb8cd413141c"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/fixed/project/circuits/set/membership.circom",
+          "sha256": "aa3591a36706b1f90aac449cf6ee3f2433b0e120b13eee7bb5069c335a9aaaa3"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/fixed/project/node_modules/circomlib/circuits/aliascheck.circom",
+          "sha256": "7df7542461a68c1564a55be8f01d75571c0e2555a08a078abeba43e1ea032eb4"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/fixed/project/node_modules/circomlib/circuits/binsum.circom",
+          "sha256": "8aa153baf5791d96d06dce837c1e19b9ecc3a7dc65054132d5dd189b60bfcfc2"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/fixed/project/node_modules/circomlib/circuits/bitify.circom",
+          "sha256": "688f121303a2dd0154ceeda8d2f53a9d2d26789d10a69a46acd534642725683e"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/fixed/project/node_modules/circomlib/circuits/comparators.circom",
+          "sha256": "fd0c7723ee56e1467df1861131157cbb108e156fe2d9ec64895c8e68de14db20"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/fixed/project/node_modules/circomlib/circuits/compconstant.circom",
+          "sha256": "94c5cc93b589a940acbfecdb98babc2efc253ad4298814399fb41109faa3b50d"
+        }
+      ],
+      "snapshot_fingerprints": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0001/sources/circuit.circom",
+          "sha256": "04f13d961be1ce9d5ab6a7a64a31dfbb0ddab646e8a46ab7152ccb8cd413141c"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0001/sources/circuits/set/membership.circom",
+          "sha256": "aa3591a36706b1f90aac449cf6ee3f2433b0e120b13eee7bb5069c335a9aaaa3"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0001/sources/node_modules/circomlib/circuits/aliascheck.circom",
+          "sha256": "7df7542461a68c1564a55be8f01d75571c0e2555a08a078abeba43e1ea032eb4"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0001/sources/node_modules/circomlib/circuits/binsum.circom",
+          "sha256": "8aa153baf5791d96d06dce837c1e19b9ecc3a7dc65054132d5dd189b60bfcfc2"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0001/sources/node_modules/circomlib/circuits/bitify.circom",
+          "sha256": "688f121303a2dd0154ceeda8d2f53a9d2d26789d10a69a46acd534642725683e"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0001/sources/node_modules/circomlib/circuits/comparators.circom",
+          "sha256": "fd0c7723ee56e1467df1861131157cbb108e156fe2d9ec64895c8e68de14db20"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0001/sources/node_modules/circomlib/circuits/compconstant.circom",
+          "sha256": "94c5cc93b589a940acbfecdb98babc2efc253ad4298814399fb41109faa3b50d"
+        }
+      ]
+    }
+  ],
+  "exclusions": [],
+  "manifest_exclusions": [
+    {
+      "label": "Subtract vulnerable/fixed pair",
+      "reason": "controlled-v1.1 outcomes were already observed, so Subtract is a development positive control and is excluded from the held-out metric."
+    },
+    {
+      "label": "Reclaim Add32Bits, XorWords, RotateLeft32Bits and variants",
+      "reason": "Their causes and candidates were used in dev3 development and validation work."
+    },
+    {
+      "label": "SIV ExtractStringFromPoint",
+      "reason": "The pinned fix source uses RShift1(5), while the zkbugs narrative says RShift1(8) and the project encoder permits first-byte values through 60; the fixed comparator contract is therefore ambiguous over the documented caller domain."
+    },
+    {
+      "label": "Aptos Base64DecodedLength",
+      "reason": "Pre-execution preparation rejected the vulnerable source syntax as incomplete in the frozen zkfDO parser, and the fixed source pragma 2.2.2 is rejected by the frozen zkFuzz frontend using Circom 2.2.1."
+    },
+    {
+      "label": "Telepathy ArrayXOR",
+      "reason": "Pre-execution preparation rejected component arrays in the fixed ByteArrayXOR source as unsupported by the frozen zkfDO parser."
+    },
+    {
+      "label": "zk-email FpMul and other local Circom records",
+      "reason": "Not selected after two independent causes met the minimum. No validity or safety judgment is made about unselected records."
+    }
+  ],
+  "limitations": [
+    "The plan freezes a target order; ranking scores are hypotheses, not vulnerability probabilities.",
+    "Preparation time is recorded but excluded from the ranking-separated fuzzing budget."
+  ]
+}

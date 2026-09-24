@@ -1,0 +1,149 @@
+{
+  "schema_version": 1,
+  "result_kind": "bounded_preparation_plan_positive_control_and_connection_smoke",
+  "date": "2026-09-15",
+  "source_head_before_changes": "b686c74e2659f8e1573eb37ffab451d62ace672d",
+  "manifest": "datasets/manifest.dev10.json",
+  "manifest_sha256": "51f4e18d32a7b26322e4af731ea9a111b157434db9c7827a58d0ec3531e5fa3b",
+  "raw_report": "runs/dev10-preparation/prepare-e11d82dd-e508-4b69-ab93-38dbed5345f8/prepared.json",
+  "environment": {
+    "os": "Darwin 25.2.0",
+    "arch": "arm64",
+    "rustc": "1.94.1",
+    "cargo": "1.94.1",
+    "circom": "2.2.3",
+    "zkfuzz": "2.2.1",
+    "zkfuzz_source_revision": "072bf1fbbd1c9ecad58d4f6d2204c3b96e7fec17",
+    "circomspect": "0.9.0",
+    "circomspect_source_revision": "ece9efe0a21e6c422a43ab6f2e1c0ce99678013b",
+    "zkbugs_source_revision": "a0eed744ba1a816acaa2fae597f4e79b4fd01aea"
+  },
+  "preparation_elapsed_seconds": 1.204960125,
+  "manifest_target_count": 3,
+  "eligible_target_count": 3,
+  "ineligible_target_count": 0,
+  "manifest_exclusion_count": 2,
+  "ranking_plan_validation": {
+    "status": "passed_without_fuzz_search",
+    "common_target_count_for_every_strategy": 3,
+    "ranking_config_sha256": "8fed87764b001245d600307f7ba7d8453e88e3b977afda656014eac83ea32d26",
+    "random_ranking_seed": 20260915,
+    "orders": {
+      "path-order": [
+        "reclaim Add32Bits direct",
+        "reclaim XorWords direct",
+        "reclaim RotateLeft32Bits(3) direct"
+      ],
+      "random": [
+        "reclaim Add32Bits direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim XorWords direct"
+      ],
+      "small-first": [
+        "reclaim Add32Bits direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim XorWords direct"
+      ],
+      "legacy": [
+        "reclaim XorWords direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim Add32Bits direct"
+      ],
+      "warning-first": [
+        "reclaim Add32Bits direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim XorWords direct"
+      ],
+      "risk-only": [
+        "reclaim Add32Bits direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim XorWords direct"
+      ],
+      "risk-grouped": [
+        "reclaim Add32Bits direct",
+        "reclaim RotateLeft32Bits(3) direct",
+        "reclaim XorWords direct"
+      ]
+    }
+  },
+  "targets": [
+    {
+      "label": "reclaim Add32Bits direct",
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "compiled_r1cs_constraint_count": 1,
+      "root_ast_if_plus_while": 0,
+      "semantic_complete": true,
+      "risk_feature_presence_sum": 1,
+      "deduplicated_selected_warning_count": 1,
+      "legacy_score": 4.638574590472789
+    },
+    {
+      "label": "reclaim XorWords direct",
+      "target_id": "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d",
+      "compiled_r1cs_constraint_count": 33,
+      "root_ast_if_plus_while": 0,
+      "semantic_complete": true,
+      "risk_feature_presence_sum": 0,
+      "deduplicated_selected_warning_count": 0,
+      "legacy_score": 12.687769572436451
+    },
+    {
+      "label": "reclaim RotateLeft32Bits(3) direct",
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "compiled_r1cs_constraint_count": 2,
+      "root_ast_if_plus_while": 0,
+      "semantic_complete": true,
+      "risk_feature_presence_sum": 0,
+      "deduplicated_selected_warning_count": 0,
+      "legacy_score": 8.484959992514106
+    }
+  ],
+  "positive_control": {
+    "status": "passed_for_backend_adapter",
+    "fixture": "datasets/synthetic/zkfuzz-positive-control.json",
+    "raw_outcome": "runs/positive-control-execution/execution-3a9164e0-cb34-46dc-810f-bde0b863648a/outcome.json",
+    "zkfuzz_seed": 424242,
+    "scheduler_elapsed_seconds": 0.033058583,
+    "backend_status": "bug_found",
+    "preserved_counterexample_count": 1,
+    "confirmed_project_defect_count": 0,
+    "first_confirmed_defect_observed_by_seconds": null,
+    "interpretation": "The real backend, runner classifier, seed adapter, and artifact preservation worked on an upstream synthetic control. This is not a real-project defect confirmation."
+  },
+  "dev3_connection_smoke": {
+    "status": "completed",
+    "strategy": "path-order",
+    "raw_outcome": "runs/dev10-smoke/execution-ebf486be-c22f-4a60-962e-c0c594738137/outcome.json",
+    "reviewed_evaluation": "runs/dev10-smoke/evaluation-reviewed.json",
+    "zkfuzz_seed": 424242,
+    "budget_seconds_per_target": 3,
+    "total_budget_seconds": 10,
+    "scheduler_elapsed_seconds": 0.966163125,
+    "planned_and_actual_order_match": true,
+    "started_target_count": 3,
+    "backend_bug_candidate_count": 3,
+    "preserved_counterexample_count": 3,
+    "reviewed_wrapper_only_count": 1,
+    "reviewed_reachability_unknown_count": 1,
+    "unconfirmed_candidate_count": 1,
+    "confirmed_project_defect_count": 0,
+    "first_confirmed_defect_observed_by_seconds": null
+  },
+  "comparative_pilot": {
+    "status": "completed_as_backend_candidate_order_pilot",
+    "report": "experiments/dev3-ranking-pilot-2026-09-15.json",
+    "raw_root": "runs/dev3-ranking-pilot-2026-09-15",
+    "strategy_count": 7,
+    "repetitions_per_strategy": 7,
+    "strategy_execution_count": 49,
+    "target_attempt_count": 147,
+    "confirmed_project_defect_performance": "inconclusive",
+    "reason": "The repeated run completed, but its evaluations contain no reviewed confirmations and all three structural complexity values are identical. It measures backend-candidate arrival and order throughput, not confirmed project-defect superiority."
+  },
+  "limitations": [
+    "All three targets are isolated direct wrappers from one project family, so this is a development set rather than an independent evaluation corpus.",
+    "Manifest annotations are frozen pre-execution metadata. Backend candidates were observed, and the XorWords direct-wrapper case was reproduced; original-project defect reproduction and reachability remain unconfirmed.",
+    "All three observed root AST complexity values are zero, so risk-grouped has no structural diversification on this set.",
+    "Two reported defects receive zero from the selected semantic presence score; this preparation result is not evidence that they are safe."
+  ]
+}

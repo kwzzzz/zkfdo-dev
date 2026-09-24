@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "name": "controlled-regression-evaluation-v1",
+  "description": "Frozen vulnerable/fixed Subtract component pair for controlled ranking evaluation. Material preparation only; no fuzzing or discovery claim.",
+  "targets": [
+    {
+      "label": "subnet-2-circom Subtract vulnerable",
+      "project": "https://github.com/inference-labs-inc/subnet-2-circom",
+      "revision": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+      "project_root": "controlled-v1/subtract/vulnerable",
+      "entrypoint": "controlled-v1/subtract/vulnerable/circuit.circom",
+      "template_name": "Subtract",
+      "concrete_parameters": [],
+      "prime": "bn128",
+      "compile_args": [],
+      "mode": "direct",
+      "input_assumptions": "a and b are canonical elements of the BN128 scalar field. The property is interpreted in field arithmetic; this direct wrapper adds no range or caller constraints.",
+      "known_defects": [
+        {
+          "root_cause_id": "inference-labs-inc/subnet-2-circom/koukyosyumei_subtract_unconstrained_multiplier",
+          "location": "src/subtractTensor.circom:3-10; signal d is witness-assigned but not constrained",
+          "source_url": "https://github.com/inference-labs-inc/subnet-2-circom/pull/2",
+          "reported": true,
+          "local_reproduction": "Source/provenance and compile readiness prepared only. No fuzzing, counterexample, witness, proof, or original-component candidate validation was run for controlled-v1.",
+          "tcct_status": "not-run-controlled-v1",
+          "reachability": "Direct Subtract wrapper only. Public records name project callers, but original-project reachability is outside controlled-v1 and was not revalidated.",
+          "evidence": [
+            "contracts.controlled-v1.json",
+            "controlled-v1/subtract/vulnerable/subtractTensor.circom",
+            "../.external/zkbugs/dataset/circom/inference-labs-inc/subnet-2-circom/koukyosyumei_subtract_unconstrained_multiplier/zkbugs_config.json",
+            "../.external/zkbugs/dataset/circom/inference-labs-inc/subnet-2-circom/koukyosyumei_subtract_unconstrained_multiplier/README.md"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "subnet-2-circom Subtract fixed comparator",
+      "project": "https://github.com/inference-labs-inc/subnet-2-circom",
+      "revision": "b8f92bdec1694138df0e069921f1aa0bdc94053e",
+      "project_root": "controlled-v1/subtract/fixed",
+      "entrypoint": "controlled-v1/subtract/fixed/circuit.circom",
+      "template_name": "Subtract",
+      "concrete_parameters": [],
+      "prime": "bn128",
+      "compile_args": [],
+      "mode": "direct",
+      "input_assumptions": "a and b are canonical elements of the BN128 scalar field. The property is interpreted in field arithmetic; this direct wrapper adds no range or caller constraints.",
+      "known_defects": []
+    }
+  ],
+  "exclusions": [
+    {
+      "label": "reclaim Add32Bits, XorWords, RotateLeft32Bits",
+      "reason": "Their root causes were already used in manifest.dev10/dev3 development work, so controlled-v1 excludes them to prevent development/evaluation leakage."
+    },
+    {
+      "label": "iden3 MiMCSponge local direct fixture",
+      "reason": "The pinned zkbugs description says the local circuit was modified from a newer version because the original buggy source did not reproduce under Circom 2; it is not an exact original/fixed source pair."
+    },
+    {
+      "label": "remaining local zkbugs Circom records",
+      "reason": "Not selected for v1 because their complete pinned vulnerable and fixed source closures were not already available locally and reviewed within this bounded preparation. This is not a validity or safety judgment."
+    }
+  ]
+}

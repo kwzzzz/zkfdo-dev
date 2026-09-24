@@ -1,0 +1,568 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-09-19T04:39:12.439911+00:00",
+  "question": "At the pinned original revision, does the configured production path instantiate RotateLeft32Bits, and are the actual rotation inputs constrained to unsigned 32-bit values?",
+  "scope": {
+    "kind": "static source and build-configuration review",
+    "counterexample_or_witness_artifacts_opened": [],
+    "counterexample_or_witness_artifacts_evaluated": [],
+    "new_counterexamples_generated": false,
+    "new_witnesses_generated": false,
+    "circuits_compiled": false,
+    "fuzzing_run": false,
+    "existing_source_or_experiment_files_modified": false,
+    "previous_review_files_opened": [
+      "reports/rotateleft-fixture-fidelity-2026-09-15/REPORT.md",
+      "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json"
+    ],
+    "rotateleft_experiment_run_artifacts_opened": []
+  },
+  "version_separation": {
+    "upstream_repository": "https://github.com/reclaim-1/circom-chacha20",
+    "pinned_original_revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+    "rotation_fix_revision": "e5e756375fc1fc8dc48667b00cdf38c79a0fdf50",
+    "rotation_fix_is_direct_child_of_original": true,
+    "exact_audit_snapshot": "unknown; prior review found no project commit hash in the audit report",
+    "source_archive_url": "https://github.com/reclaim-1/circom-chacha20/archive/ef9f5a5ad899d852740a26b30eabe5765673c71f.tar.gz",
+    "downloaded_archive_sha256": "8b81d8fe5d70ae7fb4fb8cb683449bf06b303b9799ad589b95b6a55cff2f399f",
+    "zkfdo_workspace_head": "020ef5bde018f8562a0476e16c5ce58bda36d23e",
+    "workspace_current_tree_used_as_upstream_source": false,
+    "prior_comparison_path": "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json",
+    "prior_comparison_verdict": "constraints_preserved_in_compared_component_scope"
+  },
+  "source_files": [
+    {
+      "path": "package.json",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "git_blob_sha1": "fb2b08bc310ad0f780494f211164e4ae6a81bddb",
+      "sha256": "3109188ee72f48a0dcbd6dfe889ca479b1e674ec501a7b04a0c954b56afb8cd9",
+      "line_count": 37
+    },
+    {
+      "path": "scripts/build-circuit.sh",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "git_blob_sha1": "504dd4f77cd3867486a7a07813ef1e94e6de182e",
+      "sha256": "a4284681163badfe52645960335ecb86ef419eaf855da30279314635913dfe23",
+      "line_count": 17
+    },
+    {
+      "path": "circuits/circuit.circom",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "git_blob_sha1": "6d0c443e7e4af3d007fb5b38882442895e767729",
+      "sha256": "02f6cd24def5cc1a456cfad56ed597e8f078eb1755f467a410f749761f5826f6",
+      "line_count": 5
+    },
+    {
+      "path": "circuits/chacha20.circom",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "git_blob_sha1": "88d975a74771b2127940ea7af257aa80e2886112",
+      "sha256": "f177500856d3456f4fd994a2f1042bd614f539100e25efcdb8f136fbd680f868",
+      "line_count": 221
+    },
+    {
+      "path": "circuits/generics.circom",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "git_blob_sha1": "46ef6207acbd284271f27be9ccd7798e7f26603c",
+      "sha256": "4dca4517b1804c8d3a6c9fa0699bb31633a117ca1f0e6df7a45d352beb94d366",
+      "line_count": 91
+    },
+    {
+      "path": "circuits/tests/rotateLeft32bits.circom",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "git_blob_sha1": "0d9425e10d2edf6fb13ee3886fbf92e3880e568f",
+      "sha256": "d51cfd809a2eeb99a6b164250df9b14c56a9951d76bc837502ca005ce7279fa5",
+      "line_count": 30
+    },
+    {
+      "path": "src/index.ts",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "git_blob_sha1": "ccaa09bdfe6382a50d226341459eaee7ddee219b",
+      "sha256": "66a4b2c4121737267df08ea16bd16b21fb6262691993dde4c1243753f1dd7aa5",
+      "line_count": 4
+    },
+    {
+      "path": "src/zk.ts",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "git_blob_sha1": "4e11af02233ede7811d72b6856d491bbcaf37dcd",
+      "sha256": "1e2a9fda979125e957573b55c4cd611feb3fbccb9de4ff27cfaf1d7215760d9c",
+      "line_count": 137
+    },
+    {
+      "path": "src/utils.ts",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "git_blob_sha1": "13e4e276be932d1d17d9e2949e3b83c5efffc46d",
+      "sha256": "ce025fdceca2d6e0ba110a02fd0c5745f0ce73f02908024e5a7720e56861f8b9",
+      "line_count": 27
+    },
+    {
+      "path": "src/operator.ts",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "git_blob_sha1": "d51e8f5262dc802f406fd0255bed18522f3bb8d9",
+      "sha256": "12fe917a4b432aa1ccb2aa663913d70aa8b9a7a7990c36347a7f3ee4fe031e8e",
+      "line_count": 48
+    },
+    {
+      "path": "src/types.ts",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "git_blob_sha1": "efa200fbd96715e851672f7b77cb94a3046aee47",
+      "sha256": "ec78a3abd20e7582c6d3079d05ca8e4fd5e12bda9d97cd85395c9687ef07d078",
+      "line_count": 75
+    },
+    {
+      "path": "src/tests/circuits.test.ts",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "git_blob_sha1": "4d5230abba12f6517dbd9937417ded38fba99205",
+      "sha256": "72ea04d8b0643283daa722c6a156c263cc191630490fbdd64e80048ca9200650",
+      "line_count": 326
+    },
+    {
+      "path": "jest.config.js",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "git_blob_sha1": "8c601f98fcb8d72b6363f993bf931c5b367a2520",
+      "sha256": "997ffa2715839c2410d117efc6568f5adc59bc29822f5aeb4d4161e583a1bd2c",
+      "line_count": 14
+    },
+    {
+      "path": "readme.md",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "git_blob_sha1": "1c121742db9ce39009186547250ffa75efe9fd95",
+      "sha256": "2e3bb82d379c727aba7c0ae4d994d23b37d9949b6b45078d2bc3eaf10cb58e1a",
+      "line_count": 108
+    }
+  ],
+  "references": [
+    {
+      "id": "package-build-command",
+      "path": "package.json",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 6,
+        "end": 12
+      },
+      "purpose": "npm script selects scripts/build-circuit.sh",
+      "excerpt_sha256": "05528939fcd0411eabca692e7b10058d0c48a1244a7f3f6f6b4ecc60b0d69f24"
+    },
+    {
+      "id": "build-script-circom",
+      "path": "scripts/build-circuit.sh",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 1,
+        "end": 5
+      },
+      "purpose": "configured Circom entrypoint and flags",
+      "excerpt_sha256": "0e2cd00fdc6bc2c27f7eaf8d4e7b8c12f8071a7f3e4b7450854a7902705db96e"
+    },
+    {
+      "id": "build-script-keys",
+      "path": "scripts/build-circuit.sh",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 7,
+        "end": 14
+      },
+      "purpose": "R1CS is used to create the distributed Groth16 key",
+      "excerpt_sha256": "40c51c60848251237cfa83348d63fb3bad89af9c0d5782a7dd746b6c1524f87d"
+    },
+    {
+      "id": "production-entrypoint",
+      "path": "circuits/circuit.circom",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 1,
+        "end": 5
+      },
+      "purpose": "production main is ChaCha20(16)",
+      "excerpt_sha256": "02f6cd24def5cc1a456cfad56ed597e8f078eb1755f467a410f749761f5826f6"
+    },
+    {
+      "id": "chacha-include",
+      "path": "circuits/chacha20.circom",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 1,
+        "end": 6
+      },
+      "purpose": "generics definition is imported",
+      "excerpt_sha256": "6750dc673bfd5825d5995d9808593bd9d21a28bf9b18fb5706b7c04169774697"
+    },
+    {
+      "id": "chacha-block-path",
+      "path": "circuits/chacha20.circom",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 18,
+        "end": 35
+      },
+      "purpose": "ChaCha20(16) creates N/16 blocks and final XOR components",
+      "excerpt_sha256": "064110ed26ab6962c3d3324a7d5115ce373661d834dd3c3f217d289e67c23b97"
+    },
+    {
+      "id": "block-round-shape",
+      "path": "circuits/chacha20.circom",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 39,
+        "end": 62
+      },
+      "purpose": "one block allocates 80 QR components and begins ten rounds",
+      "excerpt_sha256": "09d64720776599bf9acddb06bdc68f7daba2b2ed13c0c145aba4c16af3079cb2"
+    },
+    {
+      "id": "block-diagonal-qrs",
+      "path": "circuits/chacha20.circom",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 76,
+        "end": 132
+      },
+      "purpose": "four diagonal QR components complete eight QR calls per loop iteration",
+      "excerpt_sha256": "61f2ce4776331705b23637f7b7ccf6c5926cb5b9f0dbb4a51ea8f32fa6fbe06b"
+    },
+    {
+      "id": "qr-rot16",
+      "path": "circuits/chacha20.circom",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 152,
+        "end": 167
+      },
+      "purpose": "rot16 input is xor1.out[0]",
+      "excerpt_sha256": "f7ed4dedde8d12823873737677525a5ed008d9908dc5c22fcfdfa059914fcba0"
+    },
+    {
+      "id": "qr-rot12",
+      "path": "circuits/chacha20.circom",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 169,
+        "end": 184
+      },
+      "purpose": "rot12 input is xor2.out[0]",
+      "excerpt_sha256": "93dbf28b34ae346faad782749d5232225caa7547ebb5f95ef2cef7688f74f45a"
+    },
+    {
+      "id": "qr-rot8",
+      "path": "circuits/chacha20.circom",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 186,
+        "end": 201
+      },
+      "purpose": "rot8 input is xor3.out[0]",
+      "excerpt_sha256": "208ad45dc4affdd74363dfea2c9f0d37618925a61beab96062d70a79c3e20a6f"
+    },
+    {
+      "id": "qr-rot7",
+      "path": "circuits/chacha20.circom",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 203,
+        "end": 218
+      },
+      "purpose": "rot7 input is xor4.out[0]",
+      "excerpt_sha256": "8db5ef9064f094119dad617e1594536ca04467ddd944452d99950dda5dcc0a37"
+    },
+    {
+      "id": "rotate-definition",
+      "path": "circuits/generics.circom",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 35,
+        "end": 46
+      },
+      "purpose": "RotateLeft32Bits documents but does not enforce its input precondition itself",
+      "excerpt_sha256": "13a28251b4b1cd7ce1c38ae64e5bd6ea68873e73f098c559ddaea505e1ee5402"
+    },
+    {
+      "id": "xor-bit-witness",
+      "path": "circuits/generics.circom",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 67,
+        "end": 78
+      },
+      "purpose": "bit witnesses are assigned and then constrained Boolean",
+      "excerpt_sha256": "01b4c5070bbcc8dd776ce11aafd1c5628a8c83bac5deb5b733b828fd5c397e7e"
+    },
+    {
+      "id": "xor-reconstruction",
+      "path": "circuits/generics.circom",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 80,
+        "end": 89
+      },
+      "purpose": "input remainders and output weighted sum are constrained",
+      "excerpt_sha256": "5629bdffb14643b06758b62fbdb870e6ffbb7cd65218ec773dc25926a321cc03"
+    },
+    {
+      "id": "rotate-test-wrapper",
+      "path": "circuits/tests/rotateLeft32bits.circom",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 9,
+        "end": 30
+      },
+      "purpose": "test-only wrapper uses L=16,12,8,7 and has no caller range check",
+      "excerpt_sha256": "7c2e39b42e6f921111e611493223bbfa81ce2b1690fba6072fd79762e2b5facd"
+    },
+    {
+      "id": "rotate-test-driver",
+      "path": "src/tests/circuits.test.ts",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 79,
+        "end": 105
+      },
+      "purpose": "Jest test loads the direct rotation test circuit and supplies selected values",
+      "excerpt_sha256": "75eca179131d9c537f58a1c1ccb748295bd5b3b722cd749cb64fff9064432324"
+    },
+    {
+      "id": "test-loader",
+      "path": "src/tests/circuits.test.ts",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 267,
+        "end": 269
+      },
+      "purpose": "test loader resolves circuits/tests, not the production entrypoint",
+      "excerpt_sha256": "4b97daf01f01acb07f666fc22d3a0bd4666a43f2851cfb27b585f4c4a4f18c4d"
+    },
+    {
+      "id": "api-input-preparation",
+      "path": "src/zk.ts",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 26,
+        "end": 55
+      },
+      "purpose": "key and IV lengths are checked, byte arrays are converted, counter is passed directly",
+      "excerpt_sha256": "f79104fbce7b3681014439343678a49f07f4f05c7d0a4b5eccf0c22a03f1c930"
+    },
+    {
+      "id": "ciphertext-normalization",
+      "path": "src/zk.ts",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 117,
+        "end": 136
+      },
+      "purpose": "ciphertext is converted and padded to 16 Uint32 words",
+      "excerpt_sha256": "5474ffd03b16a43271992c36e52d0d156d71cc2b2308a0e6259ea8bc4b16f5bd"
+    },
+    {
+      "id": "uint32-conversion",
+      "path": "src/utils.ts",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 3,
+        "end": 16
+      },
+      "purpose": "bytes are read as UInt32LE and stored in Uint32Array",
+      "excerpt_sha256": "2c5aee8cb7553f96922b55e154ae22173bd15920cf02f1cf3f14759e05193c12"
+    },
+    {
+      "id": "counter-type-comment",
+      "path": "src/types.ts",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 60,
+        "end": 69
+      },
+      "purpose": "counter minimum is a comment/type-level statement, not runtime validation",
+      "excerpt_sha256": "51eec669e04ad731b3911628ce1f9ba9868f236b297be64f617caaf3c443284e"
+    },
+    {
+      "id": "distributed-artifacts",
+      "path": "src/operator.ts",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 10,
+        "end": 22
+      },
+      "purpose": "default operator loads distributed circuit.wasm and circuit_final.zkey",
+      "excerpt_sha256": "a626fe05561d4cf012f52fb26f85b688f3ef6636d787199176e99373124a1da1"
+    },
+    {
+      "id": "full-prove-call",
+      "path": "src/operator.ts",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 28,
+        "end": 45
+      },
+      "purpose": "operator passes prepared inputs to snarkjs fullProve",
+      "excerpt_sha256": "efc7b6ba8961b96caf8462eeab0c05dc3a97069a8d463dcea086ab79b256b38c"
+    },
+    {
+      "id": "readme-build-field",
+      "path": "readme.md",
+      "revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "lines": {
+        "start": 90,
+        "end": 107
+      },
+      "purpose": "documented build command and statement that the project currently uses BN-128",
+      "excerpt_sha256": "f5cf580b83bf42311d653ccde96d727f0e90fd5a9e2ae63ea78253c2ed6e4572"
+    }
+  ],
+  "configured_build": {
+    "status": "confirmed_from_pinned_source",
+    "npm_command": "npm run build:circuit",
+    "shell_command": "circom circuits/circuit.circom --r1cs --wasm --O2 --inspect -o resources",
+    "entrypoint": "circuits/circuit.circom",
+    "main_component": "ChaCha20(16)",
+    "optimization": "O2",
+    "outputs": [
+      "R1CS",
+      "WASM"
+    ],
+    "inspect": true,
+    "prime_explicitly_pinned_by_command": false,
+    "circom_version_pinned_by_repository": false,
+    "documentation_says_current_field_is_bn128": true,
+    "distributed_resource_paths": [
+      "resources/circuit.wasm",
+      "resources/circuit_final.zkey"
+    ],
+    "distributed_resources_proven_to_have_been_built_from_this_exact_snapshot": false
+  },
+  "production_instantiation_path": {
+    "status": "confirmed",
+    "chain": [
+      "package.json build:circuit",
+      "scripts/build-circuit.sh",
+      "circuits/circuit.circom: main = ChaCha20(16)",
+      "ChaCha20(16): block[0] = ChaCha20Block()",
+      "ChaCha20Block(): 10 iterations x 8 QR() = 80 QR instances",
+      "each QR(): RotateLeft32Bits(16), (12), (8), (7)"
+    ],
+    "block_count": 1,
+    "qr_instance_count": 80,
+    "rotate_instance_count_total": 320,
+    "rotate_instances_by_parameter": {
+      "16": 80,
+      "12": 80,
+      "8": 80,
+      "7": 80
+    },
+    "parameter_3_instantiated_in_pinned_snapshot": false,
+    "parameter_search_basis": "all RotateLeft32Bits occurrences in the extracted pinned source snapshot"
+  },
+  "rotation_input_paths": [
+    {
+      "parameter": 16,
+      "producer": "xor1.out[0]",
+      "producer_connection": "chacha20.circom:158-162",
+      "rotation_connection": "chacha20.circom:164-167",
+      "range_verdict": "constrained_unsigned_32_bit_by_circuit"
+    },
+    {
+      "parameter": 12,
+      "producer": "xor2.out[0]",
+      "producer_connection": "chacha20.circom:175-179",
+      "rotation_connection": "chacha20.circom:181-184",
+      "range_verdict": "constrained_unsigned_32_bit_by_circuit"
+    },
+    {
+      "parameter": 8,
+      "producer": "xor3.out[0]",
+      "producer_connection": "chacha20.circom:192-196",
+      "rotation_connection": "chacha20.circom:198-201",
+      "range_verdict": "constrained_unsigned_32_bit_by_circuit"
+    },
+    {
+      "parameter": 7,
+      "producer": "xor4.out[0]",
+      "producer_connection": "chacha20.circom:209-213",
+      "rotation_connection": "chacha20.circom:215-218",
+      "range_verdict": "constrained_unsigned_32_bit_by_circuit"
+    }
+  ],
+  "range_reasoning": {
+    "direct_rotate_component": {
+      "verdict": "does_not_enforce_input_range_itself",
+      "evidence": "generics.circom:35-46",
+      "note": "part1 and part2 use <-- witness assignments; those assignments are not range constraints"
+    },
+    "production_caller": {
+      "verdict": "all_four_actual_QR_rotation_inputs_are_32_bit_constrained",
+      "reason": [
+        "XorWords assigns abits and bbits with <--, but separately constrains every bit Boolean at generics.circom:76-77.",
+        "xors[l] is constrained to the XOR polynomial at generics.circom:78.",
+        "out[i] is constrained to the weighted sum of 32 XOR bits at generics.circom:82,89.",
+        "The weighted sum is in 0..2^32-1 for the documented BN128 field; the four QR connections use that output directly.",
+        "generics.circom:87-88 also constrain each XorWords input to its 32-bit decomposition."
+      ],
+      "witness_assignments_treated_as_constraints": false
+    },
+    "external_library_path": {
+      "key": "runtime length 32 bytes, then readUInt32LE into Uint32Array",
+      "iv": "runtime length 12 bytes, then readUInt32LE into Uint32Array",
+      "ciphertext": "converted with readUInt32LE, padded, and required to be 16 Uint32 words",
+      "start_counter": "passed as a JavaScript number without runtime integer or uint32 range validation; @minimum 1 is only documentation",
+      "classification": "external preparation supplements but is not the circuit-level proof for actual rotation inputs"
+    }
+  },
+  "non_production_occurrences": {
+    "definition_or_import": [
+      {
+        "path": "circuits/generics.circom",
+        "lines": "35-46",
+        "classification": "template definition"
+      },
+      {
+        "path": "circuits/chacha20.circom",
+        "lines": "1-3",
+        "classification": "include/import"
+      }
+    ],
+    "direct_rotation_test": {
+      "path": "circuits/tests/rotateLeft32bits.circom",
+      "lines": "9-30",
+      "parameters": [
+        16,
+        12,
+        8,
+        7
+      ],
+      "loaded_by": "src/tests/circuits.test.ts:79-105,267-269",
+      "range_verdict": "wrapper_does_not_constrain_in_to_32_bits",
+      "test_values_are_evidence_of_test_assumption_not_a_general_constraint": true
+    }
+  },
+  "prior_L3_result_scope": {
+    "dev3_parameter": 3,
+    "dev3_mode": "direct wrapper",
+    "prior_result": "R1CS equality was established for the direct L=3 fixture and pinned original component under the recorded O0 BN128 comparison settings",
+    "applies_to_production_instances_directly": false,
+    "reasons": [
+      "the production source instantiates only L=16,12,8,7",
+      "the production wrapper is ChaCha20(16), not the direct dev3 wrapper",
+      "the configured production build uses O2 and does not explicitly pin --prime, while the prior comparison used O0 and explicit bn128"
+    ]
+  },
+  "verdicts": {
+    "configured_production_use_path": "confirmed",
+    "actual_QR_rotation_input_32_bit_guarantee": "confirmed_by_circuit_constraints",
+    "direct_RotateLeft_component_self_enforces_32_bit": "no",
+    "direct_rotation_test_wrapper_enforces_32_bit": "no",
+    "external_input_validation_complete_for_all_top_level_inputs": "no; startCounter lacks runtime range validation",
+    "L3_reachable_in_inspected_production_source": "no_instantiation_found",
+    "overall_rotateleft_correctness_or_safety": "not_assessed"
+  },
+  "remaining_uncertainties": [
+    "The audit report does not identify the exact full audited project snapshot.",
+    "The repository does not pin a Circom compiler version or an explicit prime in build-circuit.sh.",
+    "The tracked circuit.wasm and circuit_final.zkey were not proven in this review to have been built from the exact pinned source snapshot.",
+    "Downstream applications outside this repository were not inspected.",
+    "No R1CS-equivalence check was performed for L=16,12,8,7 or for the full O2 production entrypoint."
+  ],
+  "recommended_followups": [
+    "If project-context defect counting is intended, prepare or validate targets for L=16,12,8,7 or the full ChaCha20(16) entrypoint rather than treating L=3 as project-reachable.",
+    "Pin the Circom version and prime and record reproducible hashes linking source, R1CS, WASM, and zkey.",
+    "For direct component candidates, enforce or explicitly validate the 32-bit input precondition before counting a defect.",
+    "Add a runtime integer/uint32 check for startCounter if the library API boundary is part of the security claim."
+  ]
+}

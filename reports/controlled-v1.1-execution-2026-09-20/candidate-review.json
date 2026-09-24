@@ -1,0 +1,2362 @@
+{
+  "schema_version": 1,
+  "started_at_utc": "2026-09-20T10:19:21.938083+00:00",
+  "finished_at_utc": "2026-09-20T10:19:21.969076+00:00",
+  "scope": "controlled-v1.1 post-hoc original-component review",
+  "campaign_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z",
+  "campaign_ledger_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/campaign.json",
+  "campaign_ledger_sha256": "86bbfbf1d1088f60f8ab4c5c3eca1a4623a6c97bcb240e7577e971a05f523018",
+  "contract_path": "datasets/contracts.controlled-v1.json",
+  "contract_sha256": "d954de5fe6d8adbeb010f307119b9b3a0207d80b900ed9365d53a16a0f293f9a",
+  "root_cause_id": "inference-labs-inc/subnet-2-circom/koukyosyumei_subtract_unconstrained_multiplier",
+  "component": {
+    "template": "Subtract",
+    "variant": "published-vulnerable-source",
+    "revision": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+    "prime": "bn128",
+    "input_precondition": "a and b are canonical BN128 scalar-field elements; no additional integer range precondition",
+    "predeclared_property": "c = a - b modulo the BN128 scalar-field prime",
+    "r1cs_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/vulnerable-component/compiled/circuit.r1cs",
+    "r1cs_sha256": "14c18b08f5697b259526002cb217552c0a08ddc236fdb357bee2f40409cfb04f",
+    "sym_path": "reports/controlled-v1.1-execution-2026-09-20/evidence/vulnerable-component/compiled/circuit.sym",
+    "sym_sha256": "b378da791b4f4b539188ff2917d0080da58e7a3aefca8973559c22201a421a47",
+    "prepared_r1cs_path": "reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/structure/r1cs/circuit.r1cs",
+    "prepared_r1cs_sha256": "14c18b08f5697b259526002cb217552c0a08ddc236fdb357bee2f40409cfb04f",
+    "review_r1cs_byte_identical_to_prepared": true,
+    "r1cs_counts": {
+      "wires": 5,
+      "public_outputs": 1,
+      "public_inputs": 0,
+      "private_inputs": 2,
+      "labels": 5,
+      "constraints": 1
+    }
+  },
+  "execution_summary": [
+    {
+      "block": 1,
+      "strategy": "risk-only",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-01/attempt-01/01-risk-only/plan.json",
+      "plan_sha256": "85a7495a4fba31438771f66ece0e1471d7b3913205e09da0fe7a94c7eb5ecb49",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-01/attempt-01/01-risk-only/raw/execution-5dc5ede2-8b55-4a10-aec4-10231ff6c541/outcome.json",
+      "outcome_sha256": "fab7e2e9875f5ee5368337e377972bccf47fed2e7e4e29abdf39357c9676f91c",
+      "scheduler_elapsed_seconds": 0.825272583,
+      "backend_statuses": [
+        "bug_found",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 1,
+      "strategy": "random",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-01/attempt-01/02-random/plan.json",
+      "plan_sha256": "797d49984ffec540e59cef3d55a45b6e8957203a4a40cafbbe5455c9d96c64b6",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-01/attempt-01/02-random/raw/execution-e5e52147-d0c2-44df-933a-b1f381cb3f7a/outcome.json",
+      "outcome_sha256": "051b2adf6eb9ac944c7d3c8186f716ef7ec96e513db4f3b5c3aad785a45fa3f8",
+      "scheduler_elapsed_seconds": 0.815277417,
+      "backend_statuses": [
+        "no_counterexample",
+        "bug_found"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 1,
+      "strategy": "small-first",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-01/attempt-01/03-small-first/plan.json",
+      "plan_sha256": "701d09bf55819325d84f057ea5b0f0cef35aac04eeb115f5b0d9067e2fd6d45f",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-01/attempt-01/03-small-first/raw/execution-2089a801-537f-4849-af9d-1bb49793495c/outcome.json",
+      "outcome_sha256": "92c0f1e05225c1f1c2810bcef69d3b61502831301b9ac070a22c007354afab0f",
+      "scheduler_elapsed_seconds": 0.816614584,
+      "backend_statuses": [
+        "bug_found",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 2,
+      "strategy": "random",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-02/attempt-01/01-random/plan.json",
+      "plan_sha256": "28a978c33d1dd84d6bdf3c2a6d3506f647a950123c041fb17c5db27a6a7c8635",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-02/attempt-01/01-random/raw/execution-05bc512e-cc03-4b21-bb94-09a27471d9ff/outcome.json",
+      "outcome_sha256": "d227528b1d2da64648c29753b93a6e8d805b66865ceae1c84f9ef2cb383087be",
+      "scheduler_elapsed_seconds": 0.786930208,
+      "backend_statuses": [
+        "no_counterexample",
+        "bug_found"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 2,
+      "strategy": "small-first",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-02/attempt-01/02-small-first/plan.json",
+      "plan_sha256": "76f0f6702ecd6016adc6648f92ba8fa151ae57131d992e5b407656204b2061a5",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-02/attempt-01/02-small-first/raw/execution-fc090144-cedc-471c-9b1e-0ec98a0a7579/outcome.json",
+      "outcome_sha256": "43a5c7c86d3227e601f0477d123bcabf4736a41f27167ca66636eb4188fff026",
+      "scheduler_elapsed_seconds": 0.786848292,
+      "backend_statuses": [
+        "bug_found",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 2,
+      "strategy": "risk-only",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-02/attempt-01/03-risk-only/plan.json",
+      "plan_sha256": "4002e3ee1638a0377859b2b98d50d37ef7d3e948c8b00702a80179c0ed893fe4",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-02/attempt-01/03-risk-only/raw/execution-bc21645b-6133-4cba-8f0b-2aad7bb59643/outcome.json",
+      "outcome_sha256": "e8748128d69aad70d2b7482e95499f70986c1894a38a7259bf01a36fbc42f9ad",
+      "scheduler_elapsed_seconds": 0.801130584,
+      "backend_statuses": [
+        "bug_found",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 3,
+      "strategy": "small-first",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-03/attempt-01/01-small-first/plan.json",
+      "plan_sha256": "149cc0a6ebd8689085d73f9ab53e9b7130e308a9301cd7d6e7752026f7de134e",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-03/attempt-01/01-small-first/raw/execution-10c68e27-d098-4e12-a5b4-e2c019f9c449/outcome.json",
+      "outcome_sha256": "637949f937c9166908c22d3bccffd4d01bdbf556d4ec39d0639cd0aef3bb826e",
+      "scheduler_elapsed_seconds": 0.794385917,
+      "backend_statuses": [
+        "bug_found",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 3,
+      "strategy": "risk-only",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-03/attempt-01/02-risk-only/plan.json",
+      "plan_sha256": "e984b4a7cf0e18122df4e741bffe3eca5e464ba9b0533f14ad6d8220e9a258a2",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-03/attempt-01/02-risk-only/raw/execution-565822d2-18fc-40e2-ac47-f2dc6111a90b/outcome.json",
+      "outcome_sha256": "95f5d8a065ba20ea52f0f2ff493bf4a2f217a56b4f8930b58e48e7e09bc7ff41",
+      "scheduler_elapsed_seconds": 0.794315416,
+      "backend_statuses": [
+        "bug_found",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 3,
+      "strategy": "random",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-03/attempt-01/03-random/plan.json",
+      "plan_sha256": "c55049d7c732219860c47a5bcad39faaa9d54e1dc73bdbd8531a150d31b9a99e",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-03/attempt-01/03-random/raw/execution-8304c725-fbbd-4876-8dc5-285c06d95f06/outcome.json",
+      "outcome_sha256": "e7e2456dd4adcee87d83ec7806c17a2476da39af81c02f3ceea02df5b68ed1a4",
+      "scheduler_elapsed_seconds": 0.823525375,
+      "backend_statuses": [
+        "no_counterexample",
+        "bug_found"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 4,
+      "strategy": "risk-only",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-04/attempt-01/01-risk-only/plan.json",
+      "plan_sha256": "638c8d824217f40287880fdb3b5d42b512eea468b8e4b878be0377d62d66ae35",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-04/attempt-01/01-risk-only/raw/execution-cb9ee8e2-d881-4445-9718-c883abc35b53/outcome.json",
+      "outcome_sha256": "517569d9edeeda45c460d2f9cd8654afc2fbd496dda6681d0a77661d15d523d0",
+      "scheduler_elapsed_seconds": 0.81158475,
+      "backend_statuses": [
+        "bug_found",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 4,
+      "strategy": "random",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-04/attempt-01/02-random/plan.json",
+      "plan_sha256": "591cb31cb42f4cea7224476eef5da161075bc62c74fde345f8d1db14ed80efd3",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-04/attempt-01/02-random/raw/execution-58ec2fc1-01ef-482b-bd2e-5b963b3c0eec/outcome.json",
+      "outcome_sha256": "f76471d623fca1d7f9a327ac748957a356d6b36ea05ab4354ce0c1eeb5412be5",
+      "scheduler_elapsed_seconds": 0.7944965,
+      "backend_statuses": [
+        "no_counterexample",
+        "bug_found"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 4,
+      "strategy": "small-first",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-04/attempt-01/03-small-first/plan.json",
+      "plan_sha256": "d8bd110f90a14217913562dab2ce846b475fd8659437227c17498e82ac785804",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-04/attempt-01/03-small-first/raw/execution-17808603-ed04-4b58-8944-0b5efadbff42/outcome.json",
+      "outcome_sha256": "c9783184e495c02b41752da5fc9f8e5e0f56f3e2640de0d3ff3a1af057d918e4",
+      "scheduler_elapsed_seconds": 0.82462875,
+      "backend_statuses": [
+        "bug_found",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 5,
+      "strategy": "random",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-05/attempt-01/01-random/plan.json",
+      "plan_sha256": "6d225e5ca2ba5589dd7ce831d33b25c432201942cede7f737f5c571355906797",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-05/attempt-01/01-random/raw/execution-7794ddfe-8a53-4ab1-b5a2-d82b4e5d80a3/outcome.json",
+      "outcome_sha256": "9d98d537a48b0770b156c8f80e82fe7c12873097e4f76a3f6b259a9fbb12a100",
+      "scheduler_elapsed_seconds": 0.819509125,
+      "backend_statuses": [
+        "bug_found",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 5,
+      "strategy": "small-first",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-05/attempt-01/02-small-first/plan.json",
+      "plan_sha256": "a280b8aee2d7ef840c79b9ac493ab3fc32c9d7edbb8a66c60af032a4d10cc558",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-05/attempt-01/02-small-first/raw/execution-cb6886a7-7134-4a7e-bd50-4fcaa6c5c0d1/outcome.json",
+      "outcome_sha256": "56124841bbff37cf04eb0d4bd76edecb07a08aa251623971952ba7696f93ab30",
+      "scheduler_elapsed_seconds": 0.818213417,
+      "backend_statuses": [
+        "bug_found",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 5,
+      "strategy": "risk-only",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-05/attempt-01/03-risk-only/plan.json",
+      "plan_sha256": "74f1dc18077ba5490938aa8cb18fdc69d95ce3a7660a7cd2dadcabbda9d73e1d",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-05/attempt-01/03-risk-only/raw/execution-95d376ea-6ade-4297-9c15-8993738a3eb9/outcome.json",
+      "outcome_sha256": "2a14133e7175af2b33751cf99074ddb8f7864ea6545de57a5dd0c8b8d8bca8f9",
+      "scheduler_elapsed_seconds": 0.859559334,
+      "backend_statuses": [
+        "bug_found",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 6,
+      "strategy": "small-first",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-06/attempt-01/01-small-first/plan.json",
+      "plan_sha256": "d7776f35c7ebcd9a5d9d03203ad87d54f892051bc350ada91bcd15160d0bbd96",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-06/attempt-01/01-small-first/raw/execution-7bd31be7-a91d-4846-852f-596eaa2ab7b3/outcome.json",
+      "outcome_sha256": "d01cd60ac32d77bd890828ac11bbf2177d670d03d336d6dd19d3a940d536422b",
+      "scheduler_elapsed_seconds": 0.829742334,
+      "backend_statuses": [
+        "bug_found",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 6,
+      "strategy": "risk-only",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-06/attempt-01/02-risk-only/plan.json",
+      "plan_sha256": "abe30f10b64580363b78f3dd19d1fdc7433435e3785f35384aa184be9ce4bc7a",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-06/attempt-01/02-risk-only/raw/execution-95941ac1-ce66-45b3-9e1b-256b7b0c9112/outcome.json",
+      "outcome_sha256": "e53710ede9ca8b7b9982d3de4770ea231ae853c611c67aacfe014b408e074067",
+      "scheduler_elapsed_seconds": 0.849249333,
+      "backend_statuses": [
+        "bug_found",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 6,
+      "strategy": "random",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-06/attempt-01/03-random/plan.json",
+      "plan_sha256": "9bfcdf4ce6e39b721ecb75b118dd6d3e60da153fc03682bb90e3cc57077c6c37",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-06/attempt-01/03-random/raw/execution-ec5682f4-249e-444b-85d0-f18690e6ecbb/outcome.json",
+      "outcome_sha256": "7b01c92bd244e4b2622c638db467f74e7c10646c8219ece85b03cf4b71bad17f",
+      "scheduler_elapsed_seconds": 0.911254291,
+      "backend_statuses": [
+        "bug_found",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 7,
+      "strategy": "risk-only",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-07/attempt-01/01-risk-only/plan.json",
+      "plan_sha256": "8ceda46ce3f935d77ce0d79d7c8fd9c94ffbe642f2c31ba27da5e1c071fda499",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-07/attempt-01/01-risk-only/raw/execution-db522329-e72a-4e5c-b183-d4c62c0066bc/outcome.json",
+      "outcome_sha256": "5772015ba10af97966ec5387c802cb527c8b4abcab636329938c478598484f81",
+      "scheduler_elapsed_seconds": 0.876755084,
+      "backend_statuses": [
+        "bug_found",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 7,
+      "strategy": "random",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-07/attempt-01/02-random/plan.json",
+      "plan_sha256": "c021dcf8d5d3e38ab914ded92c35057481fdb2967df4f41c5af5e99166ed2496",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-07/attempt-01/02-random/raw/execution-41663554-55fe-461b-a3fc-777f065afcd2/outcome.json",
+      "outcome_sha256": "dc755407f809b64e484003c8090b801412bfb881c87013a7a5821f07784ae093",
+      "scheduler_elapsed_seconds": 0.823011666,
+      "backend_statuses": [
+        "no_counterexample",
+        "bug_found"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 7,
+      "strategy": "small-first",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-07/attempt-01/03-small-first/plan.json",
+      "plan_sha256": "2362d86e0f2c7744248a03115d4287b51b0cdae8c4afc7076411dfa9eee5e370",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-07/attempt-01/03-small-first/raw/execution-a78336e3-fd70-44ae-812a-3237cbe211c1/outcome.json",
+      "outcome_sha256": "b475d1c12adaa475fe1542717b45ca1ad857eba6e654ae765a5169cc837526a1",
+      "scheduler_elapsed_seconds": 0.868306084,
+      "backend_statuses": [
+        "bug_found",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 8,
+      "strategy": "random",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/01-random/plan.json",
+      "plan_sha256": "e487e1faac832729e6173b7d6cb28ead9b28e4f6dfce8e390ee676c733e3b492",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/01-random/raw/execution-586bbbcf-9282-4d75-8446-6b3c8d7f7365/outcome.json",
+      "outcome_sha256": "e9a706d27eaf8c27f69936d00ef63e1d10405ee043757c360468e3cac3d213c7",
+      "scheduler_elapsed_seconds": 0.860742542,
+      "backend_statuses": [
+        "bug_found",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 8,
+      "strategy": "small-first",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/02-small-first/plan.json",
+      "plan_sha256": "a9cd36345fe6b4aa2cabc25877953c73b22172777b5a6f25b406d49acaa586a0",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/02-small-first/raw/execution-3f0b53bb-4122-4c27-a1ec-4049b430c267/outcome.json",
+      "outcome_sha256": "de8e5c1bea2106cba06c9061f9067bf243840e0e6bc6f1c11161b71fbc7dcf33",
+      "scheduler_elapsed_seconds": 0.848911125,
+      "backend_statuses": [
+        "bug_found",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 8,
+      "strategy": "risk-only",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/03-risk-only/plan.json",
+      "plan_sha256": "9dd6a0d8e2dcb27c11690834c1170ed2399814501231062e6b7240aeecd0ff12",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/03-risk-only/raw/execution-0d365f85-b26b-43fa-bd0a-128a4db7986a/outcome.json",
+      "outcome_sha256": "34294ff3045696f8d901ebd5d897bfb09defdca2ab7fca07775477e608f440e5",
+      "scheduler_elapsed_seconds": 0.853918833,
+      "backend_statuses": [
+        "bug_found",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 9,
+      "strategy": "small-first",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-09/attempt-01/01-small-first/plan.json",
+      "plan_sha256": "6729214692165114f56a1a97225bfc1e5ae12b84f2dc8b7c0d6b13001c2cf03c",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-09/attempt-01/01-small-first/raw/execution-76581dd7-b5ba-41ce-b15b-438d188944d0/outcome.json",
+      "outcome_sha256": "f307b44f2be44a173bb285ce2e385ed9633ae0322448d079b82b0afe781ad8dc",
+      "scheduler_elapsed_seconds": 0.86536575,
+      "backend_statuses": [
+        "bug_found",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 9,
+      "strategy": "risk-only",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-09/attempt-01/02-risk-only/plan.json",
+      "plan_sha256": "209f4e94d34f2e67c4f7264fad4705f56460e4c8655d8cc2a62a5925e317404c",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-09/attempt-01/02-risk-only/raw/execution-e09cb00d-00c4-4f1a-9e38-0703792eba90/outcome.json",
+      "outcome_sha256": "d4f1499816f0113dfb473b33d9b4e8556f0d4f3e8b4fcfe02f460a6525dea8eb",
+      "scheduler_elapsed_seconds": 0.830253292,
+      "backend_statuses": [
+        "bug_found",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 9,
+      "strategy": "random",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-09/attempt-01/03-random/plan.json",
+      "plan_sha256": "fc6b59c44eba2f91952b9b582b183d8c7b1ba6a94596c829a3a681876c048d6f",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-09/attempt-01/03-random/raw/execution-bda58206-f357-43b8-99b9-c290fdfebe24/outcome.json",
+      "outcome_sha256": "c7a716713dcff7a041a6c65d80569580775ce395b02cb199959b2ee5e74efb36",
+      "scheduler_elapsed_seconds": 0.849004208,
+      "backend_statuses": [
+        "bug_found",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 10,
+      "strategy": "risk-only",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-10/attempt-01/01-risk-only/plan.json",
+      "plan_sha256": "93d5aaeb567280915d83b79142376f513fdfcd48bd06b530c5b16b92f3e957ff",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-10/attempt-01/01-risk-only/raw/execution-97c95c56-a784-4e05-8195-c6bcc30000df/outcome.json",
+      "outcome_sha256": "375d5258eebb902c2621042f60b2cda4214d53d3334a0f0d62a3420afc8afd20",
+      "scheduler_elapsed_seconds": 0.84401325,
+      "backend_statuses": [
+        "bug_found",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 10,
+      "strategy": "random",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-10/attempt-01/02-random/plan.json",
+      "plan_sha256": "f8c773db8f5632810a6c076e67868262e3b37f9966a19ac9f743d4328bba7f27",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-10/attempt-01/02-random/raw/execution-85140736-f053-40dc-ad1c-81f0f1a1f822/outcome.json",
+      "outcome_sha256": "9e6bd347c613da4cf670fdf6edbdcb281e887c05f52ba8f0dedb9d5a3c5fccbf",
+      "scheduler_elapsed_seconds": 0.838355833,
+      "backend_statuses": [
+        "no_counterexample",
+        "bug_found"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 10,
+      "strategy": "small-first",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-10/attempt-01/03-small-first/plan.json",
+      "plan_sha256": "725078c395913d4129416cd8f3d2e61e2eb4719c3e02e92de52d0af138ee4e6c",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-10/attempt-01/03-small-first/raw/execution-78483b93-2307-4ed8-a6ef-8268ad1c6397/outcome.json",
+      "outcome_sha256": "765e169727b3434178b9ac9dbac7cde28e944735ee236a92a1aed34134e37cb2",
+      "scheduler_elapsed_seconds": 0.825101292,
+      "backend_statuses": [
+        "bug_found",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 11,
+      "strategy": "random",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-11/attempt-01/01-random/plan.json",
+      "plan_sha256": "cad26bcfb32b3e10b29fa73059922e7b85ed9ee56c8f4aa8b50af38898b3c79d",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-11/attempt-01/01-random/raw/execution-1f53293e-34bc-4379-909b-01c4d599c203/outcome.json",
+      "outcome_sha256": "9c7e77171c90085fef496b3c72d45abb8fa9be36fce1891facba887a3c196279",
+      "scheduler_elapsed_seconds": 0.846542917,
+      "backend_statuses": [
+        "bug_found",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 11,
+      "strategy": "small-first",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-11/attempt-01/02-small-first/plan.json",
+      "plan_sha256": "929f845c103b032b66c2d3019b4dbe4b67be205cab508e22ccfed5caf196ed4e",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-11/attempt-01/02-small-first/raw/execution-0dc471e5-8ccd-4405-83ad-2f57b8a2e220/outcome.json",
+      "outcome_sha256": "caf50889592294ca9efadd3fe6dc0c7a367d65fb5c1147ef6bc0e2fec98aef1b",
+      "scheduler_elapsed_seconds": 0.924109375,
+      "backend_statuses": [
+        "bug_found",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 11,
+      "strategy": "risk-only",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-11/attempt-01/03-risk-only/plan.json",
+      "plan_sha256": "1cdc5c52a33e07204fae98a7c318188533de73685402045e1bb36700fc876775",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-11/attempt-01/03-risk-only/raw/execution-44c96d6d-2836-4013-a067-0f37d35000fa/outcome.json",
+      "outcome_sha256": "c5f44d861728f356b04292639042fb284e163a9f134c02a403541a2d13f1d587",
+      "scheduler_elapsed_seconds": 0.848321625,
+      "backend_statuses": [
+        "bug_found",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 12,
+      "strategy": "small-first",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-12/attempt-01/01-small-first/plan.json",
+      "plan_sha256": "8f278d9ed5ba73153c0180b6adf7da83e8d2d8c8f1b43e15b7cbf888f73fc86f",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-12/attempt-01/01-small-first/raw/execution-55a93dcd-de91-4770-83ca-79e10cd9e2d4/outcome.json",
+      "outcome_sha256": "3553c20deedc724982c1429a54b577d222c6e147f1aee106fed287717f4f0583",
+      "scheduler_elapsed_seconds": 0.858943792,
+      "backend_statuses": [
+        "bug_found",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 12,
+      "strategy": "risk-only",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-12/attempt-01/02-risk-only/plan.json",
+      "plan_sha256": "a96528e6a7b218af030ee29349b9445c1f13e7b200f30fda510441ba37d1c874",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-12/attempt-01/02-risk-only/raw/execution-5a15349d-ef9b-4cc0-ae9d-ea740bd39ddd/outcome.json",
+      "outcome_sha256": "c5564b4ed0ad9e61d7a44f701ce32c0d120a06ca0755fcd3813d3aedee419d8a",
+      "scheduler_elapsed_seconds": 0.855612542,
+      "backend_statuses": [
+        "bug_found",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    },
+    {
+      "block": 12,
+      "strategy": "random",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-12/attempt-01/03-random/plan.json",
+      "plan_sha256": "af0096d179fbc71bdeec9eb73f3553e1fe5d0d5249d5d3cd6d19fb4a59d4f08e",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-12/attempt-01/03-random/raw/execution-fc7c85bd-39a3-4239-a302-7913cec3620a/outcome.json",
+      "outcome_sha256": "ba77aa1034a91da48c813c5ea2a31c123dc175568ace69064b6a9cb232e9f539",
+      "scheduler_elapsed_seconds": 0.87118375,
+      "backend_statuses": [
+        "bug_found",
+        "no_counterexample"
+      ],
+      "backend_candidate_count": 1
+    }
+  ],
+  "candidate_reviews": [
+    {
+      "block": 1,
+      "strategy": "risk-only",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-01/attempt-01/01-risk-only/plan.json",
+      "plan_sha256": "85a7495a4fba31438771f66ece0e1471d7b3913205e09da0fe7a94c7eb5ecb49",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-01/attempt-01/01-risk-only/raw/execution-5dc5ede2-8b55-4a10-aec4-10231ff6c541/outcome.json",
+      "outcome_sha256": "fab7e2e9875f5ee5368337e377972bccf47fed2e7e4e29abdf39357c9676f91c",
+      "run_id": "59078007-d2eb-4c39-aab5-d78a11dd021a",
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.035626375,
+      "candidate_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-01/attempt-01/01-risk-only/raw/execution-5dc5ede2-8b55-4a10-aec4-10231ff6c541/counterexample-candidates/0001/circuit.circom_XbrdLIBRTI_counterexample.json",
+      "candidate_sha256": "eb98a3b7fa679f96de2a5d3d9ed26bab333fc0e1b65ca21562c99d86071bb58e",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_indices_zero_based": [],
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "Both preserved inputs are canonical BN128 scalar-field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v1.1-execution-2026-09-20/evidence/vulnerable-component/compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies the one constraint in the hash-pinned vulnerable revision."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "The preserved output differs from field subtraction under the predeclared property."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T10:19:21.940713+00:00",
+      "review_finished_at_utc": "2026-09-20T10:19:21.941226+00:00",
+      "automated_review_seconds": 0.0005170830118004233,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 1,
+      "strategy": "random",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-01/attempt-01/02-random/plan.json",
+      "plan_sha256": "797d49984ffec540e59cef3d55a45b6e8957203a4a40cafbbe5455c9d96c64b6",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-01/attempt-01/02-random/raw/execution-e5e52147-d0c2-44df-933a-b1f381cb3f7a/outcome.json",
+      "outcome_sha256": "051b2adf6eb9ac944c7d3c8186f716ef7ec96e513db4f3b5c3aad785a45fa3f8",
+      "run_id": "b2ac831a-a897-49e7-8fa1-52694af54c87",
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.815273458,
+      "candidate_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-01/attempt-01/02-random/raw/execution-e5e52147-d0c2-44df-933a-b1f381cb3f7a/counterexample-candidates/0002/circuit.circom_7lY30X57wH_counterexample.json",
+      "candidate_sha256": "40c0c9af7f47f53548454127bb298ab721462f012acb71c58451b76c83670131",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_indices_zero_based": [],
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "Both preserved inputs are canonical BN128 scalar-field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v1.1-execution-2026-09-20/evidence/vulnerable-component/compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies the one constraint in the hash-pinned vulnerable revision."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "The preserved output differs from field subtraction under the predeclared property."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T10:19:21.941702+00:00",
+      "review_finished_at_utc": "2026-09-20T10:19:21.942096+00:00",
+      "automated_review_seconds": 0.00039612501859664917,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 1,
+      "strategy": "small-first",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-01/attempt-01/03-small-first/plan.json",
+      "plan_sha256": "701d09bf55819325d84f057ea5b0f0cef35aac04eeb115f5b0d9067e2fd6d45f",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-01/attempt-01/03-small-first/raw/execution-2089a801-537f-4849-af9d-1bb49793495c/outcome.json",
+      "outcome_sha256": "92c0f1e05225c1f1c2810bcef69d3b61502831301b9ac070a22c007354afab0f",
+      "run_id": "17c10df6-2b6f-48ae-a5af-c1aebe5d6cc6",
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.029905917,
+      "candidate_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-01/attempt-01/03-small-first/raw/execution-2089a801-537f-4849-af9d-1bb49793495c/counterexample-candidates/0001/circuit.circom_xITSKtYsmL_counterexample.json",
+      "candidate_sha256": "f831118e3bb550da695e11a04fb04307ca3732e6371af78b1d572ee57e25200e",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_indices_zero_based": [],
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "Both preserved inputs are canonical BN128 scalar-field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v1.1-execution-2026-09-20/evidence/vulnerable-component/compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies the one constraint in the hash-pinned vulnerable revision."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "The preserved output differs from field subtraction under the predeclared property."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T10:19:21.942523+00:00",
+      "review_finished_at_utc": "2026-09-20T10:19:21.942878+00:00",
+      "automated_review_seconds": 0.00035674998071044683,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 2,
+      "strategy": "random",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-02/attempt-01/01-random/plan.json",
+      "plan_sha256": "28a978c33d1dd84d6bdf3c2a6d3506f647a950123c041fb17c5db27a6a7c8635",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-02/attempt-01/01-random/raw/execution-05bc512e-cc03-4b21-bb94-09a27471d9ff/outcome.json",
+      "outcome_sha256": "d227528b1d2da64648c29753b93a6e8d805b66865ceae1c84f9ef2cb383087be",
+      "run_id": "74a4561a-8410-4b36-93dd-3b1dbab94632",
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.786926208,
+      "candidate_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-02/attempt-01/01-random/raw/execution-05bc512e-cc03-4b21-bb94-09a27471d9ff/counterexample-candidates/0002/circuit.circom_XBFx5GlBiR_counterexample.json",
+      "candidate_sha256": "e1a08fc5a05e2008c3d55e77daa030b34d688aaddb9294c18a593ca6a4e233e1",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_indices_zero_based": [],
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "Both preserved inputs are canonical BN128 scalar-field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v1.1-execution-2026-09-20/evidence/vulnerable-component/compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies the one constraint in the hash-pinned vulnerable revision."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "The preserved output differs from field subtraction under the predeclared property."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T10:19:21.943288+00:00",
+      "review_finished_at_utc": "2026-09-20T10:19:21.943680+00:00",
+      "automated_review_seconds": 0.0003944169729948044,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 2,
+      "strategy": "small-first",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-02/attempt-01/02-small-first/plan.json",
+      "plan_sha256": "76f0f6702ecd6016adc6648f92ba8fa151ae57131d992e5b407656204b2061a5",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-02/attempt-01/02-small-first/raw/execution-fc090144-cedc-471c-9b1e-0ec98a0a7579/outcome.json",
+      "outcome_sha256": "43a5c7c86d3227e601f0477d123bcabf4736a41f27167ca66636eb4188fff026",
+      "run_id": "03e36dab-824f-42a2-960c-915ba611bb11",
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.031945792,
+      "candidate_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-02/attempt-01/02-small-first/raw/execution-fc090144-cedc-471c-9b1e-0ec98a0a7579/counterexample-candidates/0001/circuit.circom_iAJgyQPiep_counterexample.json",
+      "candidate_sha256": "1f48875d930492647a2118e4441539a141b55352a9431959978bfcec2df720a5",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_indices_zero_based": [],
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "Both preserved inputs are canonical BN128 scalar-field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v1.1-execution-2026-09-20/evidence/vulnerable-component/compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies the one constraint in the hash-pinned vulnerable revision."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "The preserved output differs from field subtraction under the predeclared property."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T10:19:21.944097+00:00",
+      "review_finished_at_utc": "2026-09-20T10:19:21.944437+00:00",
+      "automated_review_seconds": 0.00034137500915676355,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 2,
+      "strategy": "risk-only",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-02/attempt-01/03-risk-only/plan.json",
+      "plan_sha256": "4002e3ee1638a0377859b2b98d50d37ef7d3e948c8b00702a80179c0ed893fe4",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-02/attempt-01/03-risk-only/raw/execution-bc21645b-6133-4cba-8f0b-2aad7bb59643/outcome.json",
+      "outcome_sha256": "e8748128d69aad70d2b7482e95499f70986c1894a38a7259bf01a36fbc42f9ad",
+      "run_id": "2f496391-35dc-45a5-918e-d70f251b0ce2",
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.033434209,
+      "candidate_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-02/attempt-01/03-risk-only/raw/execution-bc21645b-6133-4cba-8f0b-2aad7bb59643/counterexample-candidates/0001/circuit.circom_ZoPddXlenj_counterexample.json",
+      "candidate_sha256": "2a95f44977d1547233ef45395c3c2d43eebe2555540dbe3c01e0f19af8da5888",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_indices_zero_based": [],
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "Both preserved inputs are canonical BN128 scalar-field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v1.1-execution-2026-09-20/evidence/vulnerable-component/compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies the one constraint in the hash-pinned vulnerable revision."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "The preserved output differs from field subtraction under the predeclared property."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T10:19:21.944843+00:00",
+      "review_finished_at_utc": "2026-09-20T10:19:21.945198+00:00",
+      "automated_review_seconds": 0.000356167001882568,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 3,
+      "strategy": "small-first",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-03/attempt-01/01-small-first/plan.json",
+      "plan_sha256": "149cc0a6ebd8689085d73f9ab53e9b7130e308a9301cd7d6e7752026f7de134e",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-03/attempt-01/01-small-first/raw/execution-10c68e27-d098-4e12-a5b4-e2c019f9c449/outcome.json",
+      "outcome_sha256": "637949f937c9166908c22d3bccffd4d01bdbf556d4ec39d0639cd0aef3bb826e",
+      "run_id": "f50212be-9fb5-49fd-8879-1a00ff277e47",
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.032981375,
+      "candidate_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-03/attempt-01/01-small-first/raw/execution-10c68e27-d098-4e12-a5b4-e2c019f9c449/counterexample-candidates/0001/circuit.circom_DZsy5SViGT_counterexample.json",
+      "candidate_sha256": "79da25f251162719b530d877cb9af94c9da1e4dd69ef338803b25e230300a3c7",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_indices_zero_based": [],
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "Both preserved inputs are canonical BN128 scalar-field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v1.1-execution-2026-09-20/evidence/vulnerable-component/compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies the one constraint in the hash-pinned vulnerable revision."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "The preserved output differs from field subtraction under the predeclared property."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T10:19:21.945579+00:00",
+      "review_finished_at_utc": "2026-09-20T10:19:21.945915+00:00",
+      "automated_review_seconds": 0.00033725000685080886,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 3,
+      "strategy": "risk-only",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-03/attempt-01/02-risk-only/plan.json",
+      "plan_sha256": "e984b4a7cf0e18122df4e741bffe3eca5e464ba9b0533f14ad6d8220e9a258a2",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-03/attempt-01/02-risk-only/raw/execution-565822d2-18fc-40e2-ac47-f2dc6111a90b/outcome.json",
+      "outcome_sha256": "95f5d8a065ba20ea52f0f2ff493bf4a2f217a56b4f8930b58e48e7e09bc7ff41",
+      "run_id": "a06261bc-cacc-4cdc-94b2-a0983fedbcc4",
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.033467,
+      "candidate_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-03/attempt-01/02-risk-only/raw/execution-565822d2-18fc-40e2-ac47-f2dc6111a90b/counterexample-candidates/0001/circuit.circom_apujE4CPsO_counterexample.json",
+      "candidate_sha256": "ab16b9d489b04fd20ccdbbed6ceb4f6b3bc9dce350d6b6c54d23766398caf094",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_indices_zero_based": [],
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "Both preserved inputs are canonical BN128 scalar-field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v1.1-execution-2026-09-20/evidence/vulnerable-component/compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies the one constraint in the hash-pinned vulnerable revision."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "The preserved output differs from field subtraction under the predeclared property."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T10:19:21.946426+00:00",
+      "review_finished_at_utc": "2026-09-20T10:19:21.946867+00:00",
+      "automated_review_seconds": 0.00044266702025197446,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 3,
+      "strategy": "random",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-03/attempt-01/03-random/plan.json",
+      "plan_sha256": "c55049d7c732219860c47a5bcad39faaa9d54e1dc73bdbd8531a150d31b9a99e",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-03/attempt-01/03-random/raw/execution-8304c725-fbbd-4876-8dc5-285c06d95f06/outcome.json",
+      "outcome_sha256": "e7e2456dd4adcee87d83ec7806c17a2476da39af81c02f3ceea02df5b68ed1a4",
+      "run_id": "a4c4337f-dbc1-4b87-b03c-d427194278ce",
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.82352075,
+      "candidate_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-03/attempt-01/03-random/raw/execution-8304c725-fbbd-4876-8dc5-285c06d95f06/counterexample-candidates/0002/circuit.circom_bvxR7yy1by_counterexample.json",
+      "candidate_sha256": "ce11f90a39b2307ad40cb6f075856a168d329b0deaf9566ffb67d47a47838c74",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_indices_zero_based": [],
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "Both preserved inputs are canonical BN128 scalar-field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v1.1-execution-2026-09-20/evidence/vulnerable-component/compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies the one constraint in the hash-pinned vulnerable revision."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "The preserved output differs from field subtraction under the predeclared property."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T10:19:21.947306+00:00",
+      "review_finished_at_utc": "2026-09-20T10:19:21.947786+00:00",
+      "automated_review_seconds": 0.00048325001262128353,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 4,
+      "strategy": "risk-only",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-04/attempt-01/01-risk-only/plan.json",
+      "plan_sha256": "638c8d824217f40287880fdb3b5d42b512eea468b8e4b878be0377d62d66ae35",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-04/attempt-01/01-risk-only/raw/execution-cb9ee8e2-d881-4445-9718-c883abc35b53/outcome.json",
+      "outcome_sha256": "517569d9edeeda45c460d2f9cd8654afc2fbd496dda6681d0a77661d15d523d0",
+      "run_id": "1a97c4d8-0fac-4edb-a734-a3a85d18729d",
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.028741041,
+      "candidate_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-04/attempt-01/01-risk-only/raw/execution-cb9ee8e2-d881-4445-9718-c883abc35b53/counterexample-candidates/0001/circuit.circom_PjWAr9s64b_counterexample.json",
+      "candidate_sha256": "23536c0667100599b94e6acfe77678fe16fca3a165ef6e79dd368de1f6c68d20",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_indices_zero_based": [],
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "Both preserved inputs are canonical BN128 scalar-field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v1.1-execution-2026-09-20/evidence/vulnerable-component/compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies the one constraint in the hash-pinned vulnerable revision."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "The preserved output differs from field subtraction under the predeclared property."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T10:19:21.948223+00:00",
+      "review_finished_at_utc": "2026-09-20T10:19:21.948572+00:00",
+      "automated_review_seconds": 0.00035050002043135464,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 4,
+      "strategy": "random",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-04/attempt-01/02-random/plan.json",
+      "plan_sha256": "591cb31cb42f4cea7224476eef5da161075bc62c74fde345f8d1db14ed80efd3",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-04/attempt-01/02-random/raw/execution-58ec2fc1-01ef-482b-bd2e-5b963b3c0eec/outcome.json",
+      "outcome_sha256": "f76471d623fca1d7f9a327ac748957a356d6b36ea05ab4354ce0c1eeb5412be5",
+      "run_id": "4209a473-d3b1-4352-88bb-b974c9ef2fab",
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.794492083,
+      "candidate_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-04/attempt-01/02-random/raw/execution-58ec2fc1-01ef-482b-bd2e-5b963b3c0eec/counterexample-candidates/0002/circuit.circom_J2Nbgzu2hm_counterexample.json",
+      "candidate_sha256": "743bca1d9b731b938dacede0a13ca29a7b06653c579635eb03ed645efa32a200",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_indices_zero_based": [],
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "Both preserved inputs are canonical BN128 scalar-field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v1.1-execution-2026-09-20/evidence/vulnerable-component/compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies the one constraint in the hash-pinned vulnerable revision."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "The preserved output differs from field subtraction under the predeclared property."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T10:19:21.948953+00:00",
+      "review_finished_at_utc": "2026-09-20T10:19:21.949299+00:00",
+      "automated_review_seconds": 0.00034758300171233714,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 4,
+      "strategy": "small-first",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-04/attempt-01/03-small-first/plan.json",
+      "plan_sha256": "d8bd110f90a14217913562dab2ce846b475fd8659437227c17498e82ac785804",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-04/attempt-01/03-small-first/raw/execution-17808603-ed04-4b58-8944-0b5efadbff42/outcome.json",
+      "outcome_sha256": "c9783184e495c02b41752da5fc9f8e5e0f56f3e2640de0d3ff3a1af057d918e4",
+      "run_id": "4d4787b2-c58e-4fb6-87bd-d7f22bf468c6",
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.028386625,
+      "candidate_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-04/attempt-01/03-small-first/raw/execution-17808603-ed04-4b58-8944-0b5efadbff42/counterexample-candidates/0001/circuit.circom_AYvivrY3By_counterexample.json",
+      "candidate_sha256": "3d72ee76d1ec4b3321038ad41ebaa820a9ee0ee86eef37ea80903510a16539e6",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_indices_zero_based": [],
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "Both preserved inputs are canonical BN128 scalar-field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v1.1-execution-2026-09-20/evidence/vulnerable-component/compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies the one constraint in the hash-pinned vulnerable revision."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "The preserved output differs from field subtraction under the predeclared property."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T10:19:21.949743+00:00",
+      "review_finished_at_utc": "2026-09-20T10:19:21.950134+00:00",
+      "automated_review_seconds": 0.00039341600495390594,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 5,
+      "strategy": "random",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-05/attempt-01/01-random/plan.json",
+      "plan_sha256": "6d225e5ca2ba5589dd7ce831d33b25c432201942cede7f737f5c571355906797",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-05/attempt-01/01-random/raw/execution-7794ddfe-8a53-4ab1-b5a2-d82b4e5d80a3/outcome.json",
+      "outcome_sha256": "9d98d537a48b0770b156c8f80e82fe7c12873097e4f76a3f6b259a9fbb12a100",
+      "run_id": "839bc114-ecd8-48c1-9af3-1429365a4264",
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.033280083,
+      "candidate_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-05/attempt-01/01-random/raw/execution-7794ddfe-8a53-4ab1-b5a2-d82b4e5d80a3/counterexample-candidates/0001/circuit.circom_pVZeVE8c2o_counterexample.json",
+      "candidate_sha256": "4170d0864d4f5e18a46489717b27c88969206841b9deac96a961d6c6bb571f33",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_indices_zero_based": [],
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "Both preserved inputs are canonical BN128 scalar-field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v1.1-execution-2026-09-20/evidence/vulnerable-component/compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies the one constraint in the hash-pinned vulnerable revision."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "The preserved output differs from field subtraction under the predeclared property."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T10:19:21.950536+00:00",
+      "review_finished_at_utc": "2026-09-20T10:19:21.950894+00:00",
+      "automated_review_seconds": 0.0003591660060919821,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 5,
+      "strategy": "small-first",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-05/attempt-01/02-small-first/plan.json",
+      "plan_sha256": "a280b8aee2d7ef840c79b9ac493ab3fc32c9d7edbb8a66c60af032a4d10cc558",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-05/attempt-01/02-small-first/raw/execution-cb6886a7-7134-4a7e-bd50-4fcaa6c5c0d1/outcome.json",
+      "outcome_sha256": "56124841bbff37cf04eb0d4bd76edecb07a08aa251623971952ba7696f93ab30",
+      "run_id": "e3d5fcae-fc6c-4b07-88f5-7002f5251eb0",
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.032540917,
+      "candidate_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-05/attempt-01/02-small-first/raw/execution-cb6886a7-7134-4a7e-bd50-4fcaa6c5c0d1/counterexample-candidates/0001/circuit.circom_uXOu9ig7mS_counterexample.json",
+      "candidate_sha256": "3e4975e0707d5819ed839589d8dd14427d6eb03401652bf890dfaa57464c5219",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_indices_zero_based": [],
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "Both preserved inputs are canonical BN128 scalar-field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v1.1-execution-2026-09-20/evidence/vulnerable-component/compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies the one constraint in the hash-pinned vulnerable revision."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "The preserved output differs from field subtraction under the predeclared property."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T10:19:21.951289+00:00",
+      "review_finished_at_utc": "2026-09-20T10:19:21.951634+00:00",
+      "automated_review_seconds": 0.00034608301939442754,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 5,
+      "strategy": "risk-only",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-05/attempt-01/03-risk-only/plan.json",
+      "plan_sha256": "74f1dc18077ba5490938aa8cb18fdc69d95ce3a7660a7cd2dadcabbda9d73e1d",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-05/attempt-01/03-risk-only/raw/execution-95d376ea-6ade-4297-9c15-8993738a3eb9/outcome.json",
+      "outcome_sha256": "2a14133e7175af2b33751cf99074ddb8f7864ea6545de57a5dd0c8b8d8bca8f9",
+      "run_id": "91b2ec81-ea0b-4526-9de6-fc4f31bfa906",
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.032491375,
+      "candidate_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-05/attempt-01/03-risk-only/raw/execution-95d376ea-6ade-4297-9c15-8993738a3eb9/counterexample-candidates/0001/circuit.circom_I2Ec2MxVRA_counterexample.json",
+      "candidate_sha256": "9154f660ab50db8d425ed16245bdb358cc5bffdbca8800fa88745f51c85b04fd",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_indices_zero_based": [],
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "Both preserved inputs are canonical BN128 scalar-field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v1.1-execution-2026-09-20/evidence/vulnerable-component/compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies the one constraint in the hash-pinned vulnerable revision."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "The preserved output differs from field subtraction under the predeclared property."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T10:19:21.952024+00:00",
+      "review_finished_at_utc": "2026-09-20T10:19:21.952395+00:00",
+      "automated_review_seconds": 0.00037274998612701893,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 6,
+      "strategy": "small-first",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-06/attempt-01/01-small-first/plan.json",
+      "plan_sha256": "d7776f35c7ebcd9a5d9d03203ad87d54f892051bc350ada91bcd15160d0bbd96",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-06/attempt-01/01-small-first/raw/execution-7bd31be7-a91d-4846-852f-596eaa2ab7b3/outcome.json",
+      "outcome_sha256": "d01cd60ac32d77bd890828ac11bbf2177d670d03d336d6dd19d3a940d536422b",
+      "run_id": "ab2276a4-24f3-43f8-8d2a-afda7b6cfd73",
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.031680375,
+      "candidate_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-06/attempt-01/01-small-first/raw/execution-7bd31be7-a91d-4846-852f-596eaa2ab7b3/counterexample-candidates/0001/circuit.circom_0HNOOiaIyU_counterexample.json",
+      "candidate_sha256": "75fd5e23cef7437cd8ea8781781846e5d37ac4b16b0077f16aa71772f64be7a0",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_indices_zero_based": [],
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "Both preserved inputs are canonical BN128 scalar-field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v1.1-execution-2026-09-20/evidence/vulnerable-component/compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies the one constraint in the hash-pinned vulnerable revision."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "The preserved output differs from field subtraction under the predeclared property."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T10:19:21.952861+00:00",
+      "review_finished_at_utc": "2026-09-20T10:19:21.953278+00:00",
+      "automated_review_seconds": 0.0004192909982521087,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 6,
+      "strategy": "risk-only",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-06/attempt-01/02-risk-only/plan.json",
+      "plan_sha256": "abe30f10b64580363b78f3dd19d1fdc7433435e3785f35384aa184be9ce4bc7a",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-06/attempt-01/02-risk-only/raw/execution-95941ac1-ce66-45b3-9e1b-256b7b0c9112/outcome.json",
+      "outcome_sha256": "e53710ede9ca8b7b9982d3de4770ea231ae853c611c67aacfe014b408e074067",
+      "run_id": "c4112d98-e365-4cd5-9995-66939d443d4e",
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.033275875,
+      "candidate_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-06/attempt-01/02-risk-only/raw/execution-95941ac1-ce66-45b3-9e1b-256b7b0c9112/counterexample-candidates/0001/circuit.circom_XriqShu0tg_counterexample.json",
+      "candidate_sha256": "3cdfa9bb8763b2795f5ef41a9b2d7c34fce004314961f9f61c1930ba09bd90a8",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_indices_zero_based": [],
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "Both preserved inputs are canonical BN128 scalar-field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v1.1-execution-2026-09-20/evidence/vulnerable-component/compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies the one constraint in the hash-pinned vulnerable revision."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "The preserved output differs from field subtraction under the predeclared property."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T10:19:21.953718+00:00",
+      "review_finished_at_utc": "2026-09-20T10:19:21.954094+00:00",
+      "automated_review_seconds": 0.0003768749884329736,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 6,
+      "strategy": "random",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-06/attempt-01/03-random/plan.json",
+      "plan_sha256": "9bfcdf4ce6e39b721ecb75b118dd6d3e60da153fc03682bb90e3cc57077c6c37",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-06/attempt-01/03-random/raw/execution-ec5682f4-249e-444b-85d0-f18690e6ecbb/outcome.json",
+      "outcome_sha256": "7b01c92bd244e4b2622c638db467f74e7c10646c8219ece85b03cf4b71bad17f",
+      "run_id": "2bf71d76-1092-425a-8c55-0ac1d5d57f11",
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.033774833,
+      "candidate_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-06/attempt-01/03-random/raw/execution-ec5682f4-249e-444b-85d0-f18690e6ecbb/counterexample-candidates/0001/circuit.circom_XhO3agzUZn_counterexample.json",
+      "candidate_sha256": "f83d4e8de52f84077a17664a6573988d7ee7963f2b5118056bc0b8804ddeac11",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_indices_zero_based": [],
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "Both preserved inputs are canonical BN128 scalar-field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v1.1-execution-2026-09-20/evidence/vulnerable-component/compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies the one constraint in the hash-pinned vulnerable revision."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "The preserved output differs from field subtraction under the predeclared property."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T10:19:21.954470+00:00",
+      "review_finished_at_utc": "2026-09-20T10:19:21.954877+00:00",
+      "automated_review_seconds": 0.0004080829967278987,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 7,
+      "strategy": "risk-only",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-07/attempt-01/01-risk-only/plan.json",
+      "plan_sha256": "8ceda46ce3f935d77ce0d79d7c8fd9c94ffbe642f2c31ba27da5e1c071fda499",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-07/attempt-01/01-risk-only/raw/execution-db522329-e72a-4e5c-b183-d4c62c0066bc/outcome.json",
+      "outcome_sha256": "5772015ba10af97966ec5387c802cb527c8b4abcab636329938c478598484f81",
+      "run_id": "2111af9a-4aff-4c7e-8b8a-0933ce9b4d75",
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.02961,
+      "candidate_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-07/attempt-01/01-risk-only/raw/execution-db522329-e72a-4e5c-b183-d4c62c0066bc/counterexample-candidates/0001/circuit.circom_Et13noBtBA_counterexample.json",
+      "candidate_sha256": "c482f1e9ebaa1eeb665c642b0a3d63340f1b8d2e6f521f4d2410bfb354059145",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_indices_zero_based": [],
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "Both preserved inputs are canonical BN128 scalar-field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v1.1-execution-2026-09-20/evidence/vulnerable-component/compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies the one constraint in the hash-pinned vulnerable revision."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "The preserved output differs from field subtraction under the predeclared property."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T10:19:21.955516+00:00",
+      "review_finished_at_utc": "2026-09-20T10:19:21.956068+00:00",
+      "automated_review_seconds": 0.0005537089891731739,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 7,
+      "strategy": "random",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-07/attempt-01/02-random/plan.json",
+      "plan_sha256": "c021dcf8d5d3e38ab914ded92c35057481fdb2967df4f41c5af5e99166ed2496",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-07/attempt-01/02-random/raw/execution-41663554-55fe-461b-a3fc-777f065afcd2/outcome.json",
+      "outcome_sha256": "dc755407f809b64e484003c8090b801412bfb881c87013a7a5821f07784ae093",
+      "run_id": "e9167995-98fc-4833-9ceb-9b987719e23c",
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.823006458,
+      "candidate_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-07/attempt-01/02-random/raw/execution-41663554-55fe-461b-a3fc-777f065afcd2/counterexample-candidates/0002/circuit.circom_iUMSnWo85L_counterexample.json",
+      "candidate_sha256": "431362b386838c668550c336c108ba54b1aa19359b8e38a9ebd35ff90aa5a893",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_indices_zero_based": [],
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "Both preserved inputs are canonical BN128 scalar-field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v1.1-execution-2026-09-20/evidence/vulnerable-component/compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies the one constraint in the hash-pinned vulnerable revision."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "The preserved output differs from field subtraction under the predeclared property."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T10:19:21.956551+00:00",
+      "review_finished_at_utc": "2026-09-20T10:19:21.956916+00:00",
+      "automated_review_seconds": 0.0003675420011859387,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 7,
+      "strategy": "small-first",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-07/attempt-01/03-small-first/plan.json",
+      "plan_sha256": "2362d86e0f2c7744248a03115d4287b51b0cdae8c4afc7076411dfa9eee5e370",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-07/attempt-01/03-small-first/raw/execution-a78336e3-fd70-44ae-812a-3237cbe211c1/outcome.json",
+      "outcome_sha256": "b475d1c12adaa475fe1542717b45ca1ad857eba6e654ae765a5169cc837526a1",
+      "run_id": "2b815f34-e1c2-41cd-8c26-9cb1d779bc4c",
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.032805,
+      "candidate_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-07/attempt-01/03-small-first/raw/execution-a78336e3-fd70-44ae-812a-3237cbe211c1/counterexample-candidates/0001/circuit.circom_JZH8VH62KH_counterexample.json",
+      "candidate_sha256": "067701be80ac421e602fa242a7297f3e365419bf3c775d7e966295a85a966db0",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_indices_zero_based": [],
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "Both preserved inputs are canonical BN128 scalar-field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v1.1-execution-2026-09-20/evidence/vulnerable-component/compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies the one constraint in the hash-pinned vulnerable revision."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "The preserved output differs from field subtraction under the predeclared property."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T10:19:21.957325+00:00",
+      "review_finished_at_utc": "2026-09-20T10:19:21.957675+00:00",
+      "automated_review_seconds": 0.00035133399069309235,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 8,
+      "strategy": "random",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/01-random/plan.json",
+      "plan_sha256": "e487e1faac832729e6173b7d6cb28ead9b28e4f6dfce8e390ee676c733e3b492",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/01-random/raw/execution-586bbbcf-9282-4d75-8446-6b3c8d7f7365/outcome.json",
+      "outcome_sha256": "e9a706d27eaf8c27f69936d00ef63e1d10405ee043757c360468e3cac3d213c7",
+      "run_id": "da3bb10e-ba93-4d7f-b1b9-95bb31af3638",
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.033360583,
+      "candidate_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/01-random/raw/execution-586bbbcf-9282-4d75-8446-6b3c8d7f7365/counterexample-candidates/0001/circuit.circom_haNEKgmEwd_counterexample.json",
+      "candidate_sha256": "21145b22d66bcf1bfb6abc9c5378b85bf15c7e60fcd80ce0515cabf6d48adf29",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_indices_zero_based": [],
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "Both preserved inputs are canonical BN128 scalar-field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v1.1-execution-2026-09-20/evidence/vulnerable-component/compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies the one constraint in the hash-pinned vulnerable revision."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "The preserved output differs from field subtraction under the predeclared property."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T10:19:21.958075+00:00",
+      "review_finished_at_utc": "2026-09-20T10:19:21.958417+00:00",
+      "automated_review_seconds": 0.00034333299845457077,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 8,
+      "strategy": "small-first",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/02-small-first/plan.json",
+      "plan_sha256": "a9cd36345fe6b4aa2cabc25877953c73b22172777b5a6f25b406d49acaa586a0",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/02-small-first/raw/execution-3f0b53bb-4122-4c27-a1ec-4049b430c267/outcome.json",
+      "outcome_sha256": "de8e5c1bea2106cba06c9061f9067bf243840e0e6bc6f1c11161b71fbc7dcf33",
+      "run_id": "652ebc1a-8ade-4a3a-bb12-3fdebaa8c8b1",
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.02882675,
+      "candidate_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/02-small-first/raw/execution-3f0b53bb-4122-4c27-a1ec-4049b430c267/counterexample-candidates/0001/circuit.circom_xtLiZQrlno_counterexample.json",
+      "candidate_sha256": "4cc670a265668c41deb4ed964ac67e8734b9fca5d33b7cb3f35a71b0a7cb2a26",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_indices_zero_based": [],
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "Both preserved inputs are canonical BN128 scalar-field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v1.1-execution-2026-09-20/evidence/vulnerable-component/compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies the one constraint in the hash-pinned vulnerable revision."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "The preserved output differs from field subtraction under the predeclared property."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T10:19:21.958791+00:00",
+      "review_finished_at_utc": "2026-09-20T10:19:21.959176+00:00",
+      "automated_review_seconds": 0.00038683300954289734,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 8,
+      "strategy": "risk-only",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/03-risk-only/plan.json",
+      "plan_sha256": "9dd6a0d8e2dcb27c11690834c1170ed2399814501231062e6b7240aeecd0ff12",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/03-risk-only/raw/execution-0d365f85-b26b-43fa-bd0a-128a4db7986a/outcome.json",
+      "outcome_sha256": "34294ff3045696f8d901ebd5d897bfb09defdca2ab7fca07775477e608f440e5",
+      "run_id": "b40e1a07-5284-4f68-86b0-e45e8cc6a1f9",
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.033596875,
+      "candidate_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/03-risk-only/raw/execution-0d365f85-b26b-43fa-bd0a-128a4db7986a/counterexample-candidates/0001/circuit.circom_LFm0tvwtfd_counterexample.json",
+      "candidate_sha256": "aea4b4e8f8e9e3e931aa3f89c14aaa6506abb706ad657e8004492eabc30a09ca",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_indices_zero_based": [],
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "Both preserved inputs are canonical BN128 scalar-field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v1.1-execution-2026-09-20/evidence/vulnerable-component/compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies the one constraint in the hash-pinned vulnerable revision."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "The preserved output differs from field subtraction under the predeclared property."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T10:19:21.959632+00:00",
+      "review_finished_at_utc": "2026-09-20T10:19:21.959978+00:00",
+      "automated_review_seconds": 0.0003478330036159605,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 9,
+      "strategy": "small-first",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-09/attempt-01/01-small-first/plan.json",
+      "plan_sha256": "6729214692165114f56a1a97225bfc1e5ae12b84f2dc8b7c0d6b13001c2cf03c",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-09/attempt-01/01-small-first/raw/execution-76581dd7-b5ba-41ce-b15b-438d188944d0/outcome.json",
+      "outcome_sha256": "f307b44f2be44a173bb285ce2e385ed9633ae0322448d079b82b0afe781ad8dc",
+      "run_id": "a1620fe5-e43c-4a95-bc9b-d2e8616f4231",
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.03217525,
+      "candidate_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-09/attempt-01/01-small-first/raw/execution-76581dd7-b5ba-41ce-b15b-438d188944d0/counterexample-candidates/0001/circuit.circom_At5UuoyW3Q_counterexample.json",
+      "candidate_sha256": "14a64c4a27e407f5e9346d14e1d7b139be6299f59aaa56d34644c2e8818cf756",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_indices_zero_based": [],
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "Both preserved inputs are canonical BN128 scalar-field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v1.1-execution-2026-09-20/evidence/vulnerable-component/compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies the one constraint in the hash-pinned vulnerable revision."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "The preserved output differs from field subtraction under the predeclared property."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T10:19:21.960345+00:00",
+      "review_finished_at_utc": "2026-09-20T10:19:21.960697+00:00",
+      "automated_review_seconds": 0.00035387498792260885,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 9,
+      "strategy": "risk-only",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-09/attempt-01/02-risk-only/plan.json",
+      "plan_sha256": "209f4e94d34f2e67c4f7264fad4705f56460e4c8655d8cc2a62a5925e317404c",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-09/attempt-01/02-risk-only/raw/execution-e09cb00d-00c4-4f1a-9e38-0703792eba90/outcome.json",
+      "outcome_sha256": "d4f1499816f0113dfb473b33d9b4e8556f0d4f3e8b4fcfe02f460a6525dea8eb",
+      "run_id": "6f0bad27-650f-4b14-ac4e-e2953183a8a0",
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.033401625,
+      "candidate_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-09/attempt-01/02-risk-only/raw/execution-e09cb00d-00c4-4f1a-9e38-0703792eba90/counterexample-candidates/0001/circuit.circom_3ChW7NmqTi_counterexample.json",
+      "candidate_sha256": "e581c712a955beab125832543f27b5386a447062c78e3ea70988309c2df3bb86",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_indices_zero_based": [],
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "Both preserved inputs are canonical BN128 scalar-field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v1.1-execution-2026-09-20/evidence/vulnerable-component/compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies the one constraint in the hash-pinned vulnerable revision."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "The preserved output differs from field subtraction under the predeclared property."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T10:19:21.961088+00:00",
+      "review_finished_at_utc": "2026-09-20T10:19:21.961437+00:00",
+      "automated_review_seconds": 0.0003496249846648425,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 9,
+      "strategy": "random",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-09/attempt-01/03-random/plan.json",
+      "plan_sha256": "fc6b59c44eba2f91952b9b582b183d8c7b1ba6a94596c829a3a681876c048d6f",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-09/attempt-01/03-random/raw/execution-bda58206-f357-43b8-99b9-c290fdfebe24/outcome.json",
+      "outcome_sha256": "c7a716713dcff7a041a6c65d80569580775ce395b02cb199959b2ee5e74efb36",
+      "run_id": "482d6094-7bf8-4bbd-a2a4-e6b0a1d8569d",
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.033061,
+      "candidate_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-09/attempt-01/03-random/raw/execution-bda58206-f357-43b8-99b9-c290fdfebe24/counterexample-candidates/0001/circuit.circom_EJzGGfrnvm_counterexample.json",
+      "candidate_sha256": "ef6c2a3a3c73175f0632dbc1c970d74f69c7c41eecd28a50cb27397b483649a4",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_indices_zero_based": [],
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "Both preserved inputs are canonical BN128 scalar-field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v1.1-execution-2026-09-20/evidence/vulnerable-component/compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies the one constraint in the hash-pinned vulnerable revision."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "The preserved output differs from field subtraction under the predeclared property."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T10:19:21.961793+00:00",
+      "review_finished_at_utc": "2026-09-20T10:19:21.962126+00:00",
+      "automated_review_seconds": 0.00033483299193903804,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 10,
+      "strategy": "risk-only",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-10/attempt-01/01-risk-only/plan.json",
+      "plan_sha256": "93d5aaeb567280915d83b79142376f513fdfcd48bd06b530c5b16b92f3e957ff",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-10/attempt-01/01-risk-only/raw/execution-97c95c56-a784-4e05-8195-c6bcc30000df/outcome.json",
+      "outcome_sha256": "375d5258eebb902c2621042f60b2cda4214d53d3334a0f0d62a3420afc8afd20",
+      "run_id": "e9b4fbdb-e767-458e-8e42-5a48d7f3c63c",
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.033185459,
+      "candidate_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-10/attempt-01/01-risk-only/raw/execution-97c95c56-a784-4e05-8195-c6bcc30000df/counterexample-candidates/0001/circuit.circom_9nSet6YCzU_counterexample.json",
+      "candidate_sha256": "8d88b1bfea502da6c02457fe08175572ed18dba5aab165706df225433ce118e1",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_indices_zero_based": [],
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "Both preserved inputs are canonical BN128 scalar-field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v1.1-execution-2026-09-20/evidence/vulnerable-component/compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies the one constraint in the hash-pinned vulnerable revision."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "The preserved output differs from field subtraction under the predeclared property."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T10:19:21.962651+00:00",
+      "review_finished_at_utc": "2026-09-20T10:19:21.963069+00:00",
+      "automated_review_seconds": 0.00041941599920392036,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 10,
+      "strategy": "random",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-10/attempt-01/02-random/plan.json",
+      "plan_sha256": "f8c773db8f5632810a6c076e67868262e3b37f9966a19ac9f743d4328bba7f27",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-10/attempt-01/02-random/raw/execution-85140736-f053-40dc-ad1c-81f0f1a1f822/outcome.json",
+      "outcome_sha256": "9e6bd347c613da4cf670fdf6edbdcb281e887c05f52ba8f0dedb9d5a3c5fccbf",
+      "run_id": "6ae33914-273c-4efd-8e57-d02b1821d8c3",
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.838348208,
+      "candidate_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-10/attempt-01/02-random/raw/execution-85140736-f053-40dc-ad1c-81f0f1a1f822/counterexample-candidates/0002/circuit.circom_VMjBVQKRqD_counterexample.json",
+      "candidate_sha256": "7768528be73a5c998f8293da335f23a4584827f03740b42c088cc40ae6e57cf8",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_indices_zero_based": [],
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "Both preserved inputs are canonical BN128 scalar-field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v1.1-execution-2026-09-20/evidence/vulnerable-component/compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies the one constraint in the hash-pinned vulnerable revision."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "The preserved output differs from field subtraction under the predeclared property."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T10:19:21.963489+00:00",
+      "review_finished_at_utc": "2026-09-20T10:19:21.963931+00:00",
+      "automated_review_seconds": 0.000444125005742535,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 10,
+      "strategy": "small-first",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-10/attempt-01/03-small-first/plan.json",
+      "plan_sha256": "725078c395913d4129416cd8f3d2e61e2eb4719c3e02e92de52d0af138ee4e6c",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-10/attempt-01/03-small-first/raw/execution-78483b93-2307-4ed8-a6ef-8268ad1c6397/outcome.json",
+      "outcome_sha256": "765e169727b3434178b9ac9dbac7cde28e944735ee236a92a1aed34134e37cb2",
+      "run_id": "e58978a1-1f0c-488e-bb48-f103a85c3810",
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.030303625,
+      "candidate_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-10/attempt-01/03-small-first/raw/execution-78483b93-2307-4ed8-a6ef-8268ad1c6397/counterexample-candidates/0001/circuit.circom_rmRZY8CdKL_counterexample.json",
+      "candidate_sha256": "9d64f40ac4e5181559f1d4ce75d6ce2e16ff939085987e08d32cfd75ddd76508",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_indices_zero_based": [],
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "Both preserved inputs are canonical BN128 scalar-field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v1.1-execution-2026-09-20/evidence/vulnerable-component/compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies the one constraint in the hash-pinned vulnerable revision."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "The preserved output differs from field subtraction under the predeclared property."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T10:19:21.964351+00:00",
+      "review_finished_at_utc": "2026-09-20T10:19:21.964703+00:00",
+      "automated_review_seconds": 0.0003531669790390879,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 11,
+      "strategy": "random",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-11/attempt-01/01-random/plan.json",
+      "plan_sha256": "cad26bcfb32b3e10b29fa73059922e7b85ed9ee56c8f4aa8b50af38898b3c79d",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-11/attempt-01/01-random/raw/execution-1f53293e-34bc-4379-909b-01c4d599c203/outcome.json",
+      "outcome_sha256": "9c7e77171c90085fef496b3c72d45abb8fa9be36fce1891facba887a3c196279",
+      "run_id": "30360fd4-2212-4586-8c90-da28fdc454ea",
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.033187208,
+      "candidate_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-11/attempt-01/01-random/raw/execution-1f53293e-34bc-4379-909b-01c4d599c203/counterexample-candidates/0001/circuit.circom_lnlBOjZr4e_counterexample.json",
+      "candidate_sha256": "95b930189b8eb7eeeaf116d485455d74c0a599e572774d77b13ac40ce2f0b1ac",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_indices_zero_based": [],
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "Both preserved inputs are canonical BN128 scalar-field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v1.1-execution-2026-09-20/evidence/vulnerable-component/compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies the one constraint in the hash-pinned vulnerable revision."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "The preserved output differs from field subtraction under the predeclared property."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T10:19:21.965050+00:00",
+      "review_finished_at_utc": "2026-09-20T10:19:21.965392+00:00",
+      "automated_review_seconds": 0.0003434160025790334,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 11,
+      "strategy": "small-first",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-11/attempt-01/02-small-first/plan.json",
+      "plan_sha256": "929f845c103b032b66c2d3019b4dbe4b67be205cab508e22ccfed5caf196ed4e",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-11/attempt-01/02-small-first/raw/execution-0dc471e5-8ccd-4405-83ad-2f57b8a2e220/outcome.json",
+      "outcome_sha256": "caf50889592294ca9efadd3fe6dc0c7a367d65fb5c1147ef6bc0e2fec98aef1b",
+      "run_id": "6dbc6ca2-c43e-42c1-a503-db26ac925c68",
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.031799625,
+      "candidate_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-11/attempt-01/02-small-first/raw/execution-0dc471e5-8ccd-4405-83ad-2f57b8a2e220/counterexample-candidates/0001/circuit.circom_XvK5jfs4xD_counterexample.json",
+      "candidate_sha256": "67bad3f1460a1e5909c1bddc0049b18324acc18c9784dfedd0d327b90a47f9da",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_indices_zero_based": [],
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "Both preserved inputs are canonical BN128 scalar-field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v1.1-execution-2026-09-20/evidence/vulnerable-component/compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies the one constraint in the hash-pinned vulnerable revision."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "The preserved output differs from field subtraction under the predeclared property."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T10:19:21.965762+00:00",
+      "review_finished_at_utc": "2026-09-20T10:19:21.966116+00:00",
+      "automated_review_seconds": 0.0003545829968061298,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 11,
+      "strategy": "risk-only",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-11/attempt-01/03-risk-only/plan.json",
+      "plan_sha256": "1cdc5c52a33e07204fae98a7c318188533de73685402045e1bb36700fc876775",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-11/attempt-01/03-risk-only/raw/execution-44c96d6d-2836-4013-a067-0f37d35000fa/outcome.json",
+      "outcome_sha256": "c5f44d861728f356b04292639042fb284e163a9f134c02a403541a2d13f1d587",
+      "run_id": "0167578a-6261-4a4d-8156-65bccb14d3da",
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.032623375,
+      "candidate_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-11/attempt-01/03-risk-only/raw/execution-44c96d6d-2836-4013-a067-0f37d35000fa/counterexample-candidates/0001/circuit.circom_Of88uJSiC3_counterexample.json",
+      "candidate_sha256": "4c7cb4b033693dd8bc529fa6d58e318d65c76e9337016ceba31ccdd7aa6a608d",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_indices_zero_based": [],
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "Both preserved inputs are canonical BN128 scalar-field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v1.1-execution-2026-09-20/evidence/vulnerable-component/compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies the one constraint in the hash-pinned vulnerable revision."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "The preserved output differs from field subtraction under the predeclared property."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T10:19:21.966510+00:00",
+      "review_finished_at_utc": "2026-09-20T10:19:21.966857+00:00",
+      "automated_review_seconds": 0.0003480419982224703,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 12,
+      "strategy": "small-first",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-12/attempt-01/01-small-first/plan.json",
+      "plan_sha256": "8f278d9ed5ba73153c0180b6adf7da83e8d2d8c8f1b43e15b7cbf888f73fc86f",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-12/attempt-01/01-small-first/raw/execution-55a93dcd-de91-4770-83ca-79e10cd9e2d4/outcome.json",
+      "outcome_sha256": "3553c20deedc724982c1429a54b577d222c6e147f1aee106fed287717f4f0583",
+      "run_id": "443d5d69-d073-44e2-ac20-59b89aa77fec",
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.031995625,
+      "candidate_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-12/attempt-01/01-small-first/raw/execution-55a93dcd-de91-4770-83ca-79e10cd9e2d4/counterexample-candidates/0001/circuit.circom_yMBSASWjiC_counterexample.json",
+      "candidate_sha256": "6a78c19b762c88dee9eb69bc40f3124ca727b1162dce749e8ae2bccc5c4bc2e5",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_indices_zero_based": [],
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "Both preserved inputs are canonical BN128 scalar-field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v1.1-execution-2026-09-20/evidence/vulnerable-component/compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies the one constraint in the hash-pinned vulnerable revision."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "The preserved output differs from field subtraction under the predeclared property."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T10:19:21.967246+00:00",
+      "review_finished_at_utc": "2026-09-20T10:19:21.967585+00:00",
+      "automated_review_seconds": 0.00034062497434206307,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 12,
+      "strategy": "risk-only",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-12/attempt-01/02-risk-only/plan.json",
+      "plan_sha256": "a96528e6a7b218af030ee29349b9445c1f13e7b200f30fda510441ba37d1c874",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-12/attempt-01/02-risk-only/raw/execution-5a15349d-ef9b-4cc0-ae9d-ea740bd39ddd/outcome.json",
+      "outcome_sha256": "c5564b4ed0ad9e61d7a44f701ce32c0d120a06ca0755fcd3813d3aedee419d8a",
+      "run_id": "3b720644-7cd3-460d-b7f8-6ddc6c22beac",
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.032244625,
+      "candidate_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-12/attempt-01/02-risk-only/raw/execution-5a15349d-ef9b-4cc0-ae9d-ea740bd39ddd/counterexample-candidates/0001/circuit.circom_W1iDktyYe2_counterexample.json",
+      "candidate_sha256": "58129b364fd2b1b78d22ec6d9ecab9aec98697f6d0229fc572a6942f4e62ac7a",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_indices_zero_based": [],
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "Both preserved inputs are canonical BN128 scalar-field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v1.1-execution-2026-09-20/evidence/vulnerable-component/compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies the one constraint in the hash-pinned vulnerable revision."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "The preserved output differs from field subtraction under the predeclared property."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T10:19:21.967999+00:00",
+      "review_finished_at_utc": "2026-09-20T10:19:21.968347+00:00",
+      "automated_review_seconds": 0.0003498750156722963,
+      "manual_review_seconds": null
+    },
+    {
+      "block": 12,
+      "strategy": "random",
+      "plan_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-12/attempt-01/03-random/plan.json",
+      "plan_sha256": "af0096d179fbc71bdeec9eb73f3553e1fe5d0d5249d5d3cd6d19fb4a59d4f08e",
+      "outcome_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-12/attempt-01/03-random/raw/execution-fc7c85bd-39a3-4239-a302-7913cec3620a/outcome.json",
+      "outcome_sha256": "ba77aa1034a91da48c813c5ea2a31c123dc175568ace69064b6a9cb232e9f539",
+      "run_id": "8493dfcd-fb59-4d2e-9be4-f7b14f387ad0",
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "backend_status": "bug_found",
+      "completion_time_upper_bound_seconds": 0.031689916,
+      "candidate_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-12/attempt-01/03-random/raw/execution-fc7c85bd-39a3-4239-a302-7913cec3620a/counterexample-candidates/0001/circuit.circom_WCVK22zL5r_counterexample.json",
+      "candidate_sha256": "6b7a16f2138d6e1231051e7f3fe69de4b67b87223d51cdb327eb9dfe14f76429",
+      "candidate_hash_verified": true,
+      "run_target_link_verified": true,
+      "all_candidate_field_values_canonical": true,
+      "failed_original_constraint_indices_zero_based": [],
+      "criteria": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "Both preserved inputs are canonical BN128 scalar-field elements."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "reports/controlled-v1.1-execution-2026-09-20/evidence/vulnerable-component/compiled/circuit.r1cs"
+          ],
+          "note": "The preserved assignment satisfies the one constraint in the hash-pinned vulnerable revision."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+            "datasets/contracts.controlled-v1.json"
+          ],
+          "note": "The preserved output differs from field subtraction under the predeclared property."
+        }
+      },
+      "disposition": "validated",
+      "schema_2_eligible": true,
+      "review_started_at_utc": "2026-09-20T10:19:21.968719+00:00",
+      "review_finished_at_utc": "2026-09-20T10:19:21.969073+00:00",
+      "automated_review_seconds": 0.0003547079977579415,
+      "manual_review_seconds": null
+    }
+  ],
+  "summary": {
+    "strategy_execution_count": 36,
+    "backend_candidate_count": 36,
+    "validated_count": 36,
+    "rejected_count": 0,
+    "unresolved_count": 0,
+    "unreviewed_count": 0,
+    "unique_campaign_root_cause_count": 1,
+    "fixed_variant_backend_candidate_count": 0,
+    "post_hoc_automated_review_seconds": 0.03299095798865892,
+    "post_hoc_manual_review_seconds": null
+  },
+  "raw_candidate_values_persisted_in_this_report": false,
+  "limitations": [
+    "This review establishes only the frozen direct original-component contract, not project caller reachability or impact.",
+    "The same root cause repeated across blocks and strategies is not a new independent defect.",
+    "Scheduler completion offsets are upper bounds on discovery time; post-hoc review time is separate from the fuzzing budget.",
+    "No candidate signal value is copied into this report."
+  ]
+}

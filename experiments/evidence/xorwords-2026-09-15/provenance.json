@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "case_scope": "wrapper-only",
+  "target_id": "sha256:ad316368e69f548873127453f56e34ad4e732a310b8ec19380476d1241031e6d",
+  "original_run_id": "a96a4865-2ea1-4e59-a9d4-02bc8197c23f",
+  "template": "XorWords",
+  "template_arguments": [],
+  "internal_template": "XorBits(32)",
+  "prime": "bn128",
+  "seed": 424242,
+  "zkfuzz_revision": "072bf1fbbd1c9ecad58d4f6d2204c3b96e7fec17",
+  "zkbugs_revision": "a0eed744ba1a816acaa2fae597f4e79b4fd01aea",
+  "declared_project_revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+  "project_source_and_reachability_verified": false,
+  "retained_reproduction_exit_code": 0,
+  "notes": [
+    "Direct fixture and preparation snapshot had matching bytes; this does not establish equivalence to the declared project source.",
+    "Copied raw files are byte-identical; their absolute paths and generated filenames are historical, nonportable provenance.",
+    "Manifest fields describe frozen pre-execution preparation state; no manifest or confirmation was revised for this archive.",
+    "One reproduction is retained here; a separate reviewer replay in a temporary directory is not archived or counted as a benchmark repetition.",
+    "The 49-strategy pilot raw data is not included; this archive supports only this wrapper case."
+  ],
+  "original_paths": {
+    "original/counterexample.json": "runs/dev10-smoke/execution-ebf486be-c22f-4a60-962e-c0c594738137/counterexample-candidates/0002/circuit.circom_wjkTGSo5J8_counterexample.json",
+    "original/stdout.log": "runs/dev10-smoke/execution-ebf486be-c22f-4a60-962e-c0c594738137/ef4000c1-46fc-4e34-a269-3bf971c5a21e/runs/a96a4865-2ea1-4e59-a9d4-02bc8197c23f/stdout.log",
+    "original/stderr.log": "runs/dev10-smoke/execution-ebf486be-c22f-4a60-962e-c0c594738137/ef4000c1-46fc-4e34-a269-3bf971c5a21e/runs/a96a4865-2ea1-4e59-a9d4-02bc8197c23f/stderr.log",
+    "original/result.json": "runs/dev10-smoke/execution-ebf486be-c22f-4a60-962e-c0c594738137/ef4000c1-46fc-4e34-a269-3bf971c5a21e/runs/a96a4865-2ea1-4e59-a9d4-02bc8197c23f/result.json",
+    "reproduction/counterexample.json": "runs/xorwords-case-study-2026-09-15/reproduction/circuit.circom_eI7vt48h2V_counterexample.json",
+    "reproduction/stdout.log": "runs/xorwords-case-study-2026-09-15/reproduction/stdout.log",
+    "reproduction/stderr.log": "runs/xorwords-case-study-2026-09-15/reproduction/stderr.log",
+    "mutation-settings.json": "runs/xorwords-case-study-2026-09-15/reproduction/mutation-settings.json",
+    "fixture/circuit.circom": ".external/zkbugs/dataset/circom/reclaimprotocol/circom-chacha20/zksecurity_Unsound_XOR_gadget/circuit.circom",
+    "fixture/xor.circom": ".external/zkbugs/dataset/circom/reclaimprotocol/circom-chacha20/zksecurity_Unsound_XOR_gadget/xor.circom",
+    "fixture/zkbugs_config.json": ".external/zkbugs/dataset/circom/reclaimprotocol/circom-chacha20/zksecurity_Unsound_XOR_gadget/zkbugs_config.json",
+    "fixture/zkbugs_vars.sh": ".external/zkbugs/dataset/circom/reclaimprotocol/circom-chacha20/zksecurity_Unsound_XOR_gadget/zkbugs_vars.sh",
+    "fixture/LICENSE.zkbugs": ".external/zkbugs/LICENSE"
+  },
+  "upstream_urls": {
+    "fixture/circuit.circom": "https://github.com/zksecurity/zkbugs/blob/a0eed744ba1a816acaa2fae597f4e79b4fd01aea/dataset/circom/reclaimprotocol/circom-chacha20/zksecurity_Unsound_XOR_gadget/circuit.circom",
+    "fixture/xor.circom": "https://github.com/zksecurity/zkbugs/blob/a0eed744ba1a816acaa2fae597f4e79b4fd01aea/dataset/circom/reclaimprotocol/circom-chacha20/zksecurity_Unsound_XOR_gadget/xor.circom",
+    "fixture/zkbugs_config.json": "https://github.com/zksecurity/zkbugs/blob/a0eed744ba1a816acaa2fae597f4e79b4fd01aea/dataset/circom/reclaimprotocol/circom-chacha20/zksecurity_Unsound_XOR_gadget/zkbugs_config.json",
+    "fixture/zkbugs_vars.sh": "https://github.com/zksecurity/zkbugs/blob/a0eed744ba1a816acaa2fae597f4e79b4fd01aea/dataset/circom/reclaimprotocol/circom-chacha20/zksecurity_Unsound_XOR_gadget/zkbugs_vars.sh",
+    "fixture/LICENSE.zkbugs": "https://github.com/zksecurity/zkbugs/blob/a0eed744ba1a816acaa2fae597f4e79b4fd01aea/LICENSE"
+  },
+  "audit_report": {
+    "url": "https://github.com/zksecurity/zkbugs/blob/a0eed744ba1a816acaa2fae597f4e79b4fd01aea/reports/documents/zksecurity-reclaimprotocol.pdf",
+    "sha256": "5da9c42436f5b2212eedb21d43462243432749e096a6e646661b804fde8c23ae",
+    "pages": [
+      2,
+      3,
+      8,
+      9
+    ],
+    "copied": false
+  }
+}

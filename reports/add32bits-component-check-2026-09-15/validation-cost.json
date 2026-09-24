@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "classification": "post-hoc validation cost; separate from the historical search budget",
+  "historical_candidate": {
+    "runner_started_at_utc": "2026-09-15T07:10:29.916707Z",
+    "runner_wall_time_seconds": 0.031548917,
+    "scheduler_completion_offset_seconds": 0.044734208,
+    "backend_reported_execution_time": "7.247666ms",
+    "exact_candidate_creation_timestamp": null,
+    "note": "Runner completion is an upper bound on candidate observation, not an exact discovery timestamp."
+  },
+  "automated_component_check": {
+    "started_at_utc": "2026-09-15T12:36:07.611340+00:00",
+    "finished_at_utc": "2026-09-15T12:36:07.632296+00:00",
+    "compile_seconds": 0.01244895900163101,
+    "post_compile_evaluation_seconds": 0.00026929199520964175,
+    "total_seconds": 0.020969917000911664
+  },
+  "human_assisted_task": {
+    "started_at_utc": "2026-09-15T12:27:28Z",
+    "artifact_and_preservation_check_completed_at_utc": "2026-09-15T12:40:35Z",
+    "wall_clock_seconds": 787,
+    "active_manual_time_separately_instrumented": false,
+    "included_work": [
+      "non-XorWords candidate inventory and deterministic selection",
+      "runner and scheduler timing-boundary inspection",
+      "immutable source, test, commit, and tree retrieval",
+      "audit input-precondition and property review",
+      "fixture-to-original signal and constraint mapping",
+      "validation-code authoring, execution, review, and reporting",
+      "preservation comparison of pre-existing evidence"
+    ],
+    "interpretation": "This wall clock includes tool execution, network/approval wait, parallel inspection, and documentation. It is not a measurement of active reviewer labor."
+  }
+}

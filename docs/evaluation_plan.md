@@ -37,8 +37,9 @@ Can zkfDO make zkFuzz execution more manageable on larger Circom projects than n
 
 ## Metrics
 
-- Time-to-first-bug
-- Bugs found within fixed budget
+- Time to first execution-linked, reviewed original-component defect
+- Unique execution-linked, reviewed original-component defects within a fixed fuzzing budget
+- Project-context-confirmed unique defects, reported separately
 - Bugs per hour
 - Top-K hit rate
 - Timeout rate
@@ -47,6 +48,10 @@ Can zkfDO make zkFuzz execution more manageable on larger Circom projects than n
 - Compile success rate
 - Smoke-to-deep promotion accuracy, later
 - Reproducibility of runs
+
+The primary comparison unit is a unique root cause that was produced by the evaluated execution and subsequently passed the original-component review. That review records three separate judgments with evidence: the input preconditions were satisfied, all constraints of the pinned original component were satisfied, and a property specified before evaluation was violated. Post-run review time is recorded outside the fuzzing budget. A project-context confirmation is a separate, stronger result and retains its own metric.
+
+Backend `bug_found` statuses, counterexample files, static warnings, manual source review, and known-defect annotations are evidence categories rather than interchangeable defects. A completion-time curve uses the scheduler completion time of the earliest qualifying run for each root cause as an upper bound; it is not the human confirmation time. Repeated observations of one root cause across seeds, targets, strategies, or wrappers count once within an evaluation.
 
 ## Datasets
 
@@ -71,7 +76,7 @@ The random strategy should be repeated with multiple seeds and reported with agg
 
 ## Main Expected Graph
 
-The primary graph should show cumulative bugs found over time:
+The primary graph should show cumulative reviewed original-component defects over time:
 
 - x-axis: elapsed time
 - y-axis: cumulative bugs found
@@ -83,7 +88,9 @@ The primary graph should show cumulative bugs found over time:
   - cost-aware
   - adaptive
 
-This graph directly visualizes whether a strategy finds bugs earlier within the same budget.
+This graph visualizes whether a strategy produced subsequently validated defects earlier within the same fuzzing budget. Project-context-confirmed defects should be shown as a separate series or table rather than merged into the component count.
+
+Large target sets create an allocation problem because the total execution budget may not reach every target. Expensive individual targets create a different problem because preparation or execution can consume a large share of the budget. Static ordering can address the first question and may use cost estimates, but it is not assumed to solve both. Preparation, ranking, fuzzing, and post-run validation costs must remain separately visible.
 
 ## Ablation Plan
 

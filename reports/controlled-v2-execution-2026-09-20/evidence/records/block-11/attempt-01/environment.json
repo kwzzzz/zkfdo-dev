@@ -1,0 +1,32 @@
+{
+  "checked_at_utc": "2026-09-20T11:44:24.228197+00:00",
+  "repository_head": "39f87980e2541e4a0a526932c757bc5009a78319",
+  "implementation_commit": "9a8bb0319a8b4e127f73be5f1fa279eafb9156db",
+  "implementation_tree": "4215bea47d73115dd8c5663a5df538803828a746",
+  "working_tree_status": "M README.md\n M src/corpus.rs\n M src/experiment.rs\n M tests/corpus_test.rs\n M tests/experiment_test.rs\n?? datasets/contracts.controlled-v2.json\n?? datasets/controlled-v2/\n?? datasets/manifest.controlled-v2.json\n?? docs/controlled_v1_1_execution_protocol.md\n?? docs/controlled_v2_execution_protocol.md\n?? reports/controlled-v1-execution-preflight-2026-09-19/\n?? reports/controlled-v1.1-execution-2026-09-20/\n?? reports/controlled-v2-preparation-2026-09-20/\n?? reports/rotateleft-candidate-check-2026-09-17/all-candidates-review.json",
+  "hashes": {
+    "/Users/miiz/Desktop/kwzzzz_zkfr/docs/controlled_v2_execution_protocol.md": "4835c9bb340e34a436c71c4e86a91e6ff2c17f9dbd05747852d635ef0f894b76",
+    "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/manifest.controlled-v2.json": "758180ae4827f53adbaa35d8075566a3f3eb3a090be221dbd5183527657c70b7",
+    "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/contracts.controlled-v2.json": "a9f0d595dfee347f0d54a9c2b253ea4da84ae74c76d39cb108ad1151dd2152a0",
+    "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/prepared.json": "967135b38000ee09b1d82aa15cf1bbbdb354fbecf437692e77a9e440f99dd504",
+    "/Users/miiz/Desktop/kwzzzz_zkfr/configs/static-ranking.json": "8fed87764b001245d600307f7ba7d8453e88e3b977afda656014eac83ea32d26",
+    "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkFuzz/target/release/zkfuzz": "ac2d9d16fd97ff803b121b7994aef804b4e191636f3f78660ff6ecd6c9ae4edd",
+    "/Users/miiz/.cargo/bin/circom": "8991887889c2a74d6fc704d5689ada4cc76fba004e866c987de6cbf3b3db6227",
+    "/Users/miiz/Desktop/kwzzzz_zkfr/.external/circomspect/target/release/circomspect": "6acebb5f1c00fd3823e96388cb322cd29bd516f8bacecf855fee5652431c3590",
+    "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/frozen-tools/zkfDO-9a8bb031-debug": "e3472909d3d8de4411ee20a9574a822b9c262e7aff935c9bf38eac8f31a16960"
+  },
+  "device": {
+    "machine_model": "Mac17,2",
+    "chip_type": "Apple M5",
+    "number_processors": "proc 10:4:6",
+    "physical_memory": "24 GB"
+  },
+  "os_version": "26.2",
+  "os_build": "25C56",
+  "darwin_release": "25.2.0",
+  "architecture": "arm64",
+  "ac_power": true,
+  "ac_low_power_mode": false,
+  "disk_free_bytes": 629214072832,
+  "personal_hardware_identifiers_recorded": false
+}

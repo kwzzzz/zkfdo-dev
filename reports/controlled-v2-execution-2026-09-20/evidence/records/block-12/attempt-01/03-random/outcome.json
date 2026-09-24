@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "outcome_id": "cb6afe38-2a15-4375-aa5b-918607be0cb1",
+  "report_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-12/attempt-01/03-random/raw/execution-e76d1d1d-0627-41ac-81c7-df239f19f6a9/outcome.json",
+  "plan_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-12/attempt-01/03-random/plan.json",
+  "plan_sha256": "112b2e3ca0c179788de18195059b0e6c934a5bd5b4f76eecaf385bf009311265",
+  "plan_id": "ed8d9f60-fbd1-4852-a789-6baa08b8d00e",
+  "strategy": "random",
+  "execution_mode": "ranking-separated",
+  "ranking_preparation_excluded_from_fuzzing_budget": true,
+  "started_at": "2026-09-20T11:47:36.143763Z",
+  "finished_at": "2026-09-20T11:48:14.213998Z",
+  "elapsed_seconds": 38.070193833,
+  "budget_seconds_per_target": 30,
+  "total_budget_seconds": 120,
+  "zkfuzz_binary": "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkFuzz/target/release/zkfuzz",
+  "zkfuzz_binary_sha256": "ac2d9d16fd97ff803b121b7994aef804b4e191636f3f78660ff6ecd6c9ae4edd",
+  "mutation_settings": {
+    "source_path": null,
+    "source_sha256": null,
+    "frozen_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-12/attempt-01/03-random/raw/execution-e76d1d1d-0627-41ac-81c7-df239f19f6a9/mutation-settings.json",
+    "frozen_sha256": "f6ff0c49746cd9998b855b132046485c2a4c9cb41d97454af94f012d5207b07c",
+    "requested_seed": 2026092012,
+    "effective_seed": 2026092012,
+    "seed_controlled": true
+  },
+  "scheduler": {
+    "experiment_id": "0893e6f8-437e-4b9e-b831-11dbef279e24",
+    "scheduler": "uniform-ordered",
+    "budget_seconds_per_target": 30,
+    "total_budget_seconds": 120,
+    "planned_target_ids": [
+      "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+      "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+      "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377"
+    ],
+    "started_at": "2026-09-20T11:47:36.361806Z",
+    "finished_at": "2026-09-20T11:48:14.209739Z",
+    "elapsed_seconds": 37.8478955,
+    "runs": [
+      {
+        "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+        "index": 0,
+        "process_start_offset_seconds": 0.000215375,
+        "completion_offset_seconds": 0.028824,
+        "execution_limit_seconds": 30.0,
+        "result": {
+          "run_id": "c46fbb22-0285-4532-8827-7478d19b7576",
+          "target": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom",
+          "command": {
+            "binary": "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkFuzz/target/release/zkfuzz",
+            "args": [
+              "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom",
+              "-l",
+              "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/vulnerable/project",
+              "--prime",
+              "bn128",
+              "--search_mode",
+              "ga",
+              "--save_output",
+              "--path_to_mutation_setting",
+              "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-12/attempt-01/03-random/raw/execution-e76d1d1d-0627-41ac-81c7-df239f19f6a9/mutation-settings.json"
+            ]
+          },
+          "started_at": "2026-09-20T11:47:36.361904Z",
+          "finished_at": "2026-09-20T11:47:36.388078Z",
+          "wall_time_seconds": 0.026181708,
+          "budget_seconds": 30,
+          "execution_limit_seconds": 30.0,
+          "process_start_offset_seconds": 0.000118625,
+          "timed_out": false,
+          "exit_code": 0,
+          "status": "bug_found",
+          "random_seed": 2026092012,
+          "last_generation": 0,
+          "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-12/attempt-01/03-random/raw/execution-e76d1d1d-0627-41ac-81c7-df239f19f6a9/0893e6f8-437e-4b9e-b831-11dbef279e24/runs/c46fbb22-0285-4532-8827-7478d19b7576/stdout.log",
+          "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-12/attempt-01/03-random/raw/execution-e76d1d1d-0627-41ac-81c7-df239f19f6a9/0893e6f8-437e-4b9e-b831-11dbef279e24/runs/c46fbb22-0285-4532-8827-7478d19b7576/stderr.log",
+          "error": null
+        }
+      },
+      {
+        "target_id": "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+        "index": 1,
+        "process_start_offset_seconds": 0.028959375,
+        "completion_offset_seconds": 4.18158675,
+        "execution_limit_seconds": 30.0,
+        "result": {
+          "run_id": "28af7bd8-7444-480e-bca8-58c3ffb2f823",
+          "target": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0000/sources/circuit.circom",
+          "command": {
+            "binary": "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkFuzz/target/release/zkfuzz",
+            "args": [
+              "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0000/sources/circuit.circom",
+              "--prime",
+              "bn128",
+              "--search_mode",
+              "ga",
+              "--save_output",
+              "--path_to_mutation_setting",
+              "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-12/attempt-01/03-random/raw/execution-e76d1d1d-0627-41ac-81c7-df239f19f6a9/mutation-settings.json"
+            ]
+          },
+          "started_at": "2026-09-20T11:47:36.390634Z",
+          "finished_at": "2026-09-20T11:47:40.538050Z",
+          "wall_time_seconds": 4.147413666,
+          "budget_seconds": 30,
+          "execution_limit_seconds": 30.0,
+          "process_start_offset_seconds": 0.000133125,
+          "timed_out": false,
+          "exit_code": 0,
+          "status": "no_counterexample",
+          "random_seed": 2026092012,
+          "last_generation": 499,
+          "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-12/attempt-01/03-random/raw/execution-e76d1d1d-0627-41ac-81c7-df239f19f6a9/0893e6f8-437e-4b9e-b831-11dbef279e24/runs/28af7bd8-7444-480e-bca8-58c3ffb2f823/stdout.log",
+          "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-12/attempt-01/03-random/raw/execution-e76d1d1d-0627-41ac-81c7-df239f19f6a9/0893e6f8-437e-4b9e-b831-11dbef279e24/runs/28af7bd8-7444-480e-bca8-58c3ffb2f823/stderr.log",
+          "error": null
+        }
+      },
+      {
+        "target_id": "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+        "index": 2,
+        "process_start_offset_seconds": 4.181750542,
+        "completion_offset_seconds": 34.188711042,
+        "execution_limit_seconds": 30.0,
+        "result": {
+          "run_id": "ba1a44d4-e702-477f-9a10-244c1c2b38d0",
+          "target": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0003/sources/circuit.circom",
+          "command": {
+            "binary": "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkFuzz/target/release/zkfuzz",
+            "args": [
+              "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0003/sources/circuit.circom",
+              "-l",
+              "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/banyan-check-depth/fixed/project",
+              "--prime",
+              "bn128",
+              "--search_mode",
+              "ga",
+              "--save_output",
+              "--path_to_mutation_setting",
+              "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-12/attempt-01/03-random/raw/execution-e76d1d1d-0627-41ac-81c7-df239f19f6a9/mutation-settings.json"
+            ]
+          },
+          "started_at": "2026-09-20T11:47:40.543403Z",
+          "finished_at": "2026-09-20T11:48:10.546722Z",
+          "wall_time_seconds": 30.003290958,
+          "budget_seconds": 30,
+          "execution_limit_seconds": 30.0,
+          "process_start_offset_seconds": 0.000159458,
+          "timed_out": true,
+          "exit_code": null,
+          "status": "timeout",
+          "random_seed": 2026092012,
+          "last_generation": 383,
+          "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-12/attempt-01/03-random/raw/execution-e76d1d1d-0627-41ac-81c7-df239f19f6a9/0893e6f8-437e-4b9e-b831-11dbef279e24/runs/ba1a44d4-e702-477f-9a10-244c1c2b38d0/stdout.log",
+          "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-12/attempt-01/03-random/raw/execution-e76d1d1d-0627-41ac-81c7-df239f19f6a9/0893e6f8-437e-4b9e-b831-11dbef279e24/runs/ba1a44d4-e702-477f-9a10-244c1c2b38d0/stderr.log",
+          "error": null
+        }
+      },
+      {
+        "target_id": "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377",
+        "index": 3,
+        "process_start_offset_seconds": 34.188841251,
+        "completion_offset_seconds": 37.847892042,
+        "execution_limit_seconds": 30.0,
+        "result": {
+          "run_id": "0335bdf4-cbe0-457a-8917-e9b3e8a08a31",
+          "target": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0001/sources/circuit.circom",
+          "command": {
+            "binary": "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkFuzz/target/release/zkfuzz",
+            "args": [
+              "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0001/sources/circuit.circom",
+              "--prime",
+              "bn128",
+              "--search_mode",
+              "ga",
+              "--save_output",
+              "--path_to_mutation_setting",
+              "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-12/attempt-01/03-random/raw/execution-e76d1d1d-0627-41ac-81c7-df239f19f6a9/mutation-settings.json"
+            ]
+          },
+          "started_at": "2026-09-20T11:48:10.550554Z",
+          "finished_at": "2026-09-20T11:48:14.204694Z",
+          "wall_time_seconds": 3.654138875,
+          "budget_seconds": 30,
+          "execution_limit_seconds": 30.0,
+          "process_start_offset_seconds": 0.000127667,
+          "timed_out": false,
+          "exit_code": 0,
+          "status": "no_counterexample",
+          "random_seed": 2026092012,
+          "last_generation": 499,
+          "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-12/attempt-01/03-random/raw/execution-e76d1d1d-0627-41ac-81c7-df239f19f6a9/0893e6f8-437e-4b9e-b831-11dbef279e24/runs/0335bdf4-cbe0-457a-8917-e9b3e8a08a31/stdout.log",
+          "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-12/attempt-01/03-random/raw/execution-e76d1d1d-0627-41ac-81c7-df239f19f6a9/0893e6f8-437e-4b9e-b831-11dbef279e24/runs/0335bdf4-cbe0-457a-8917-e9b3e8a08a31/stderr.log",
+          "error": null
+        }
+      }
+    ],
+    "failures": [],
+    "skipped": [],
+    "summary_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-12/attempt-01/03-random/raw/execution-e76d1d1d-0627-41ac-81c7-df239f19f6a9/0893e6f8-437e-4b9e-b831-11dbef279e24/summary.json"
+  },
+  "counterexample_candidates": [
+    {
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "run_id": "c46fbb22-0285-4532-8827-7478d19b7576",
+      "original_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0002/sources/circuit.circom_H2tmhtOiGC_counterexample.json",
+      "preserved_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-12/attempt-01/03-random/raw/execution-e76d1d1d-0627-41ac-81c7-df239f19f6a9/counterexample-candidates/0001/circuit.circom_H2tmhtOiGC_counterexample.json",
+      "sha256": "b526533986233d4f3d2e9c4ee7632437a4cb34a0f39fd2d1ea49d9241f5c693b",
+      "classification": "backend-counterexample-candidate-unconfirmed"
+    }
+  ],
+  "limitations": [
+    "The total fuzzing budget starts inside the ordered scheduler after plan/source validation and command construction.",
+    "The scheduler does not let a backend process run beyond the remaining deadline and starts no later target after exhaustion; required log/result persistence is not aborted and can make recorded elapsed time slightly exceed the nominal total.",
+    "A backend NOT SAFE result and saved counterexample are candidates until separately reviewed against project input assumptions and root cause.",
+    "The runner records successful spawn-call order; it cannot observe the exact OS exec timestamp."
+  ]
+}

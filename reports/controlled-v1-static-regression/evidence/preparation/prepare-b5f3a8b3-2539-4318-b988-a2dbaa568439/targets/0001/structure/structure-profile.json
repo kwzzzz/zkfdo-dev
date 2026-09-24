@@ -1,0 +1,112 @@
+{
+  "profile_kind": "structure_only_no_fuzz_search",
+  "complete": true,
+  "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/sources/circuit.circom",
+  "root_template": "Subtract",
+  "prime": "bn128",
+  "compile_args": [],
+  "size": 1,
+  "size_source": "Circom R1CS compiler summary: non-linear constraints + linear constraints under recorded compile settings",
+  "r1cs_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/structure/r1cs/circuit.r1cs",
+  "complexity": 0,
+  "metric": "root_ast_if_plus_while",
+  "parameter_reflected": false,
+  "compile_success": true,
+  "ast_success": true,
+  "ast_requested": true,
+  "ast_stats": {
+    "template_name": "Subtract",
+    "num_statements": 10,
+    "num_if_then_else": 0,
+    "num_while": 0
+  },
+  "compile": {
+    "requested": true,
+    "purpose": "compile-r1cs",
+    "binary": "/Users/miiz/.cargo/bin/circom",
+    "args": [
+      "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/sources/circuit.circom",
+      "--r1cs",
+      "--prime",
+      "bn128",
+      "--output",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/structure/r1cs"
+    ],
+    "started_at": "2026-09-19T05:54:32.286358Z",
+    "finished_at": "2026-09-19T05:54:32.316786Z",
+    "elapsed_seconds": 0.03042875,
+    "timeout_seconds": 60,
+    "exit_code": 0,
+    "success": true,
+    "timed_out": false,
+    "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/structure/compile-r1cs.stdout.log",
+    "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/structure/compile-r1cs.stderr.log",
+    "error": null
+  },
+  "ast": {
+    "requested": true,
+    "purpose": "root-ast-only",
+    "binary": "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkFuzz/target/release/zkfuzz",
+    "args": [
+      "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/sources/circuit.circom",
+      "--show_stats_of_ast",
+      "--prime",
+      "bn128"
+    ],
+    "started_at": "2026-09-19T05:54:32.316829Z",
+    "finished_at": "2026-09-19T05:54:32.347258Z",
+    "elapsed_seconds": 0.030430792,
+    "timeout_seconds": 60,
+    "exit_code": 0,
+    "success": true,
+    "timed_out": false,
+    "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/structure/root-ast-only.stdout.log",
+    "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/structure/root-ast-only.stderr.log",
+    "error": null
+  },
+  "circom_version": {
+    "requested": true,
+    "purpose": "circom-version",
+    "binary": "/Users/miiz/.cargo/bin/circom",
+    "args": [
+      "--version"
+    ],
+    "started_at": "2026-09-19T05:54:32.225636Z",
+    "finished_at": "2026-09-19T05:54:32.256153Z",
+    "elapsed_seconds": 0.030516208,
+    "timeout_seconds": 60,
+    "exit_code": 0,
+    "success": true,
+    "timed_out": false,
+    "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/structure/circom-version.stdout.log",
+    "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/structure/circom-version.stderr.log",
+    "error": null
+  },
+  "zkfuzz_version": {
+    "requested": true,
+    "purpose": "zkfuzz-version",
+    "binary": "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkFuzz/target/release/zkfuzz",
+    "args": [
+      "--version"
+    ],
+    "started_at": "2026-09-19T05:54:32.256181Z",
+    "finished_at": "2026-09-19T05:54:32.286317Z",
+    "elapsed_seconds": 0.030136791,
+    "timeout_seconds": 60,
+    "exit_code": 0,
+    "success": true,
+    "timed_out": false,
+    "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/structure/zkfuzz-version.stdout.log",
+    "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/structure/zkfuzz-version.stderr.log",
+    "error": null
+  },
+  "limitations": [
+    "Complexity counts only IfThenElse and While nodes in the named root template definition, not reachable dependency templates.",
+    "AST control-flow nodes are not expanded for concrete parameters, loop iterations, or Circom constraint optimizations.",
+    "num_statements counts visited AST statement nodes, including blocks; it is not source lines or constraints.",
+    "R1CS constraint count is a separate concrete compiled size measure, not LEOPARD structural complexity.",
+    "zkFuzz --show_stats_of_ast exits after parse/type analysis; this invocation provides no fuzzing or defect-reproduction evidence."
+  ],
+  "errors": [],
+  "profile_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/structure/structure-profile.json"
+}

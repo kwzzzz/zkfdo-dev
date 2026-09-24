@@ -1,0 +1,9 @@
+
+           zkFuzz      
+      ZK Circuit Fuzzer
+    
+Welcome to the zkFuzz
+══════════════════════════════════
+[0m[1m[38;5;9merror[P1003][0m[1m: File "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/preparation/prepare-beff14a8-9a59-4e42-ac81-687a45772b18/targets/0001/sources/circuit.circom" requires pragma version (2, 2, 2) that is not supported by the compiler (version (2, 2, 1))[0m
+
+previous errors were found

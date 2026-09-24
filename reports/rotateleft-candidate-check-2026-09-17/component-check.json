@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "started_at_utc": "2026-09-17T10:00:08.568743+00:00",
+  "finished_at_utc": "2026-09-17T10:00:08.599129+00:00",
+  "scope": "one preselected preserved RotateLeft32Bits(3) candidate",
+  "verdict": "input_precondition_failed",
+  "count_as_valid_original_component_defect": false,
+  "selection": {
+    "started_at": "2026-09-15T07:10:56.404240Z",
+    "run_id": "4f896cbb-0aa5-475a-b485-6b2be66fcbbe",
+    "strategy": "random",
+    "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/random/executions/execution-69fe44a5-430c-4640-81c6-14daf4f16247/outcome.json",
+    "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/random/executions/execution-69fe44a5-430c-4640-81c6-14daf4f16247/counterexample-candidates/0003/circuit.circom_p6UtyhoITh_counterexample.json",
+    "candidate_sha256": "8effd6c717f7ac463f956d9581cf0146eff4a0ba1b01e60bf23327d405cb93e4",
+    "classification": "backend-counterexample-candidate-unconfirmed",
+    "candidate_values_read_during_selection": false
+  },
+  "fidelity_evidence": {
+    "comparison_path": "reports/rotateleft-fixture-fidelity-2026-09-15/comparison.json",
+    "verdict": "constraints_preserved_in_compared_component_scope",
+    "original_revision": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+    "prepared_sha256": "001056ea35a687233e520624f60f439f99a84600f83da64f697d0bb0f563b952",
+    "fixture_and_original_r1cs_identical": true
+  },
+  "component": {
+    "template": "RotateLeft32Bits",
+    "parameters": [
+      3
+    ],
+    "prime": "bn128",
+    "compiler_version": "circom compiler 2.2.3",
+    "compile_command": [
+      "circom",
+      "reports/rotateleft-candidate-check-2026-09-17/component-check/circuit.circom",
+      "--r1cs",
+      "--sym",
+      "--O0",
+      "--prime",
+      "bn128",
+      "-o",
+      "reports/rotateleft-candidate-check-2026-09-17/component-check/compiled"
+    ],
+    "compile_exit_code": 0,
+    "r1cs_sha256": "ca66ddb8e7daaa7499b3764cb41973507b4d80177f0b06918b4a7a3a75f4a42a",
+    "sym_sha256": "f9bf7855ea98a8a28be5b8695b49104d2519856daf00fb3fb0eda5463ad554f3",
+    "r1cs_counts": {
+      "wires": 5,
+      "public_outputs": 1,
+      "public_inputs": 1,
+      "private_inputs": 0,
+      "labels": 5,
+      "constraints": 2
+    },
+    "all_compiled_constraints_matched_to_source": true
+  },
+  "candidate_mapping": {
+    "mapping": "identity for main.{in,out,part1,part2}; main.L is checked as template metadata",
+    "field_value_conversion": "none",
+    "unmapped_r1cs_wires": [],
+    "defaulted_r1cs_wires": [],
+    "assignment": {
+      "main.L": "3",
+      "main.in": "21888242871839275222246405745257275088548364400416034343698204186575808495613",
+      "main.out": "21888242871839275222246405745257275088548364400416034343698204186575808495585",
+      "main.part1": "21888242871839275222246405745257275088548364400416034343698204186575808495585",
+      "main.part2": "0"
+    },
+    "candidate_sha256": "8effd6c717f7ac463f956d9581cf0146eff4a0ba1b01e60bf23327d405cb93e4",
+    "candidate_seed": 2026091502,
+    "candidate_generation": 44,
+    "candidate_backend_execution_time": "691.032333ms"
+  },
+  "input_precondition": {
+    "definition": "0 <= in < 2**32",
+    "input": "21888242871839275222246405745257275088548364400416034343698204186575808495613",
+    "satisfied": false,
+    "enforced_by_component_or_dev3_wrapper": false
+  },
+  "property": {
+    "definition": "out = ((in << 3) & 0xffffffff) | (in >> 29) for unsigned 32-bit in",
+    "applicable": false,
+    "expected_output": null,
+    "candidate_recorded_expected_output": "40770029410420498293352137776570907027550720424234931066072279788679",
+    "candidate_expected_matches_property": null,
+    "actual_output": "21888242871839275222246405745257275088548364400416034343698204186575808495585",
+    "violated": null
+  },
+  "constraint_evaluation": {
+    "all_constraints": [
+      {
+        "constraint_index_zero_based": 0,
+        "source_constraint": "out - part1 - part2 === 0",
+        "A": "0",
+        "B": "0",
+        "C": "0",
+        "A_times_B_minus_C_mod_p": "0",
+        "satisfied": true
+      },
+      {
+        "constraint_index_zero_based": 1,
+        "source_constraint": "part1 / 2**3 + part2 * 2**29 - in === 0",
+        "A": "0",
+        "B": "0",
+        "C": "0",
+        "A_times_B_minus_C_mod_p": "0",
+        "satisfied": true
+      }
+    ],
+    "satisfied_constraints": 2,
+    "failed_constraints": [],
+    "candidate_satisfies_original_component": true
+  },
+  "timing": {
+    "automated_compile_seconds": 0.014712500007590279,
+    "automated_post_compile_evaluation_seconds": 0.00032958301017060876,
+    "automated_check_total_seconds": 0.03038750000996515,
+    "classification": "post-hoc validation cost; excluded from historical search budget"
+  },
+  "interpretation": {
+    "component_metric_count": 0,
+    "project_context_metric_count": 0,
+    "limits": [
+      "Only this exact preselected candidate was evaluated.",
+      "Input-precondition failure does not establish component or project safety.",
+      "No other RotateLeft candidate or project caller was inspected.",
+      "The result does not establish ranking performance."
+    ]
+  }
+}

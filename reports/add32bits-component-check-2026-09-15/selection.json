@@ -1,0 +1,648 @@
+{
+  "selected_at_utc": "2026-09-15T12:28:55.479333+00:00",
+  "task_started_utc": "2026-09-15T12:27:28+00:00",
+  "inventory_scope": "Existing repeated dev3 candidates, excluding XorWords; metadata/file availability only. No RotateLeft witness evaluated.",
+  "non_xor_inventory": [
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:10:29.916707Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-01-seed-2026091501/path-order/executions/execution-d825de18-7f45-4afc-8a35-a76e952cf867/outcome.json",
+      "run_id": "d67912ec-19b0-40d0-ac96-d8e40dc9d2c5",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-01-seed-2026091501/path-order/executions/execution-d825de18-7f45-4afc-8a35-a76e952cf867/counterexample-candidates/0001/circuit.circom_OahflrIIJ2_counterexample.json",
+      "candidate_sha256": "acd36135a4c3324ce2da705079c694d7cd6925e064135a5cc18a8d312815860c",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:10:33.677770Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-01-seed-2026091501/random/executions/execution-b6d07a3b-994b-4f8f-b208-ada8da60cc93/outcome.json",
+      "run_id": "2857254b-769f-48b0-84c9-6b39c78f32d0",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-01-seed-2026091501/random/executions/execution-b6d07a3b-994b-4f8f-b208-ada8da60cc93/counterexample-candidates/0001/circuit.circom_2TatfHbwal_counterexample.json",
+      "candidate_sha256": "3b9b3877392885a1007d24dba27e4c97b32d446d9a20988f501f02206fc5e1dd",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:10:37.419861Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-01-seed-2026091501/small-first/executions/execution-6a27feb8-9975-40f4-aa73-f70e55938ed7/outcome.json",
+      "run_id": "5b9a1899-040a-43ce-92fc-421c4466c5c0",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-01-seed-2026091501/small-first/executions/execution-6a27feb8-9975-40f4-aa73-f70e55938ed7/counterexample-candidates/0001/circuit.circom_KdovJRILgo_counterexample.json",
+      "candidate_sha256": "7841293711034d1aa893af12737c1cabd68bef32fd3da4d4f4179a42337c9127",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:10:44.238608Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-01-seed-2026091501/legacy/executions/execution-c81af446-e628-401c-8392-5b6f36e33277/outcome.json",
+      "run_id": "29340835-af8d-49b4-9581-fb5e508541b7",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-01-seed-2026091501/legacy/executions/execution-c81af446-e628-401c-8392-5b6f36e33277/counterexample-candidates/0003/circuit.circom_wA3cqEauTr_counterexample.json",
+      "candidate_sha256": "99bb5e068e020b0ae2fcfaac35043f6fa7503174849fb91cac3e590081eacb12",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:10:44.992637Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-01-seed-2026091501/warning-first/executions/execution-dd811938-1d36-4614-9a0e-0dc0e00b874c/outcome.json",
+      "run_id": "69fd22ce-50cc-4972-a595-15f216227e53",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-01-seed-2026091501/warning-first/executions/execution-dd811938-1d36-4614-9a0e-0dc0e00b874c/counterexample-candidates/0001/circuit.circom_h5ie9QM2aK_counterexample.json",
+      "candidate_sha256": "55322a5a4f2a1ec80ec882f771cc2bb04f5357395697f3e17970369254541bac",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:10:48.809009Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-01-seed-2026091501/risk-only/executions/execution-cb836742-ac5f-41d3-94f4-d1c78e5a412c/outcome.json",
+      "run_id": "f1423cdd-e2b2-4c04-b020-34559c2a326f",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-01-seed-2026091501/risk-only/executions/execution-cb836742-ac5f-41d3-94f4-d1c78e5a412c/counterexample-candidates/0001/circuit.circom_mhHjo5Jd5t_counterexample.json",
+      "candidate_sha256": "4f49e766c5f6e5a101a5bf3d685644613558b0bff28e4f9dd776d5c0324213f1",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:10:52.550364Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-01-seed-2026091501/risk-grouped/executions/execution-d9f38785-d8ed-49b7-bc5a-3b7202873267/outcome.json",
+      "run_id": "353d06db-e3ea-4a66-a1fd-9b9d2f698902",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-01-seed-2026091501/risk-grouped/executions/execution-d9f38785-d8ed-49b7-bc5a-3b7202873267/counterexample-candidates/0001/circuit.circom_s5UoloVWN4_counterexample.json",
+      "candidate_sha256": "7f3b95d180013203f5c7c3f3f822b7be93f7aeeda3632c0f2cdb383f752640b7",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:10:56.365792Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/random/executions/execution-69fe44a5-430c-4640-81c6-14daf4f16247/outcome.json",
+      "run_id": "102b0eb2-e41c-4738-8e18-5df66ff7e06b",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/random/executions/execution-69fe44a5-430c-4640-81c6-14daf4f16247/counterexample-candidates/0002/circuit.circom_wPwVmbS9Lk_counterexample.json",
+      "candidate_sha256": "e771f170693787be92e77e6211c90afa8c0fbffc8b9df15a64dc3d914c7f0059",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "started_at": "2026-09-15T07:10:56.404240Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/random/executions/execution-69fe44a5-430c-4640-81c6-14daf4f16247/outcome.json",
+      "run_id": "4f896cbb-0aa5-475a-b485-6b2be66fcbbe",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/random/executions/execution-69fe44a5-430c-4640-81c6-14daf4f16247/counterexample-candidates/0003/circuit.circom_p6UtyhoITh_counterexample.json",
+      "candidate_sha256": "8effd6c717f7ac463f956d9581cf0146eff4a0ba1b01e60bf23327d405cb93e4",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:10:57.838455Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/small-first/executions/execution-498c9c6a-e096-4620-8d2c-4e3536527ce8/outcome.json",
+      "run_id": "81d34575-49d1-49bc-a768-2d7cba2e8124",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/small-first/executions/execution-498c9c6a-e096-4620-8d2c-4e3536527ce8/counterexample-candidates/0001/circuit.circom_gRRF34Pufe_counterexample.json",
+      "candidate_sha256": "9775b7df1897c91a0b14b3048992ffeea94238bab79d4acfd4791238c1a7f4a5",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "started_at": "2026-09-15T07:10:57.875002Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/small-first/executions/execution-498c9c6a-e096-4620-8d2c-4e3536527ce8/outcome.json",
+      "run_id": "a462aaf1-5714-48d8-911c-bd63416a19c9",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/small-first/executions/execution-498c9c6a-e096-4620-8d2c-4e3536527ce8/counterexample-candidates/0002/circuit.circom_aMm4ja2g0X_counterexample.json",
+      "candidate_sha256": "b12cce131663ea4d12167e739d06f3a36aa3c3feb4eceb528c00e46b60500766",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "started_at": "2026-09-15T07:10:59.171769Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/legacy/executions/execution-3787a3bf-8509-45c0-a484-ab0ec47b3c50/outcome.json",
+      "run_id": "263ee729-c919-4b02-bd08-763e63389ad5",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/legacy/executions/execution-3787a3bf-8509-45c0-a484-ab0ec47b3c50/counterexample-candidates/0002/circuit.circom_uusdcCJ67K_counterexample.json",
+      "candidate_sha256": "864fb744b0fae1b7157e9e090e57c9dd25843e3bfa890600ee05b5a13c9f7e5c",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:10:59.744455Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/legacy/executions/execution-3787a3bf-8509-45c0-a484-ab0ec47b3c50/outcome.json",
+      "run_id": "f29d7147-925a-44f3-ac65-8fbefe0a2c0d",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/legacy/executions/execution-3787a3bf-8509-45c0-a484-ab0ec47b3c50/counterexample-candidates/0003/circuit.circom_R1EbBcn7YL_counterexample.json",
+      "candidate_sha256": "caeb3c3ae3c0fd29ffbe779bc65cb15a021540dc39e3fd250053f43b91e3af5a",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:11:00.485441Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/warning-first/executions/execution-b5a4fd07-f05c-4a31-a437-bce6e81ce423/outcome.json",
+      "run_id": "43168688-9cbf-4f48-b8e7-20e0c46ebd2d",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/warning-first/executions/execution-b5a4fd07-f05c-4a31-a437-bce6e81ce423/counterexample-candidates/0001/circuit.circom_RYv0QXdRW0_counterexample.json",
+      "candidate_sha256": "31b0ca1f53eb5e5e3ec8916ef73a221e2fbb5b856cac0d8089a39d66f355426e",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "started_at": "2026-09-15T07:11:00.520274Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/warning-first/executions/execution-b5a4fd07-f05c-4a31-a437-bce6e81ce423/outcome.json",
+      "run_id": "31abfb49-2fa2-41ee-9e06-ff974e7630bc",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/warning-first/executions/execution-b5a4fd07-f05c-4a31-a437-bce6e81ce423/counterexample-candidates/0002/circuit.circom_Ehml5wWYOL_counterexample.json",
+      "candidate_sha256": "e387afc79c70aa4aaa3a5a3b3ab0ba693fb05559a626eb77bb8d1a5ac9a9c3d7",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:11:01.791195Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/risk-only/executions/execution-dd73234f-ba9d-4029-afa8-342237146c36/outcome.json",
+      "run_id": "4261d56d-e4d0-4da5-b127-5fbaf4c6a91c",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/risk-only/executions/execution-dd73234f-ba9d-4029-afa8-342237146c36/counterexample-candidates/0001/circuit.circom_AIGF4RqXhb_counterexample.json",
+      "candidate_sha256": "b6f708a3e47203d3b4aefe50f68cd287b735b33de9430f7fc99d194e0ceda41e",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "started_at": "2026-09-15T07:11:01.823973Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/risk-only/executions/execution-dd73234f-ba9d-4029-afa8-342237146c36/outcome.json",
+      "run_id": "19426e6c-574b-4f16-9156-e6c459b34b66",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/risk-only/executions/execution-dd73234f-ba9d-4029-afa8-342237146c36/counterexample-candidates/0002/circuit.circom_FfKF51WDSW_counterexample.json",
+      "candidate_sha256": "176c392327ba4e6f5cd36b0e244d46ff2953ffbe11329d21bb30133503164cec",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:11:03.195796Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/risk-grouped/executions/execution-2acb9fc0-11f5-4c87-85a5-51b84796bfa0/outcome.json",
+      "run_id": "c96a279b-343e-480d-a3c0-e334308465af",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/risk-grouped/executions/execution-2acb9fc0-11f5-4c87-85a5-51b84796bfa0/counterexample-candidates/0001/circuit.circom_e6ouAq1Ilh_counterexample.json",
+      "candidate_sha256": "e0df4dee95f8ebbe25630f01eba36dd4c49a9495ed6ad8522a4be891967442ca",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "started_at": "2026-09-15T07:11:03.227364Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/risk-grouped/executions/execution-2acb9fc0-11f5-4c87-85a5-51b84796bfa0/outcome.json",
+      "run_id": "58228185-c05f-4a9b-ad32-f145cdbeca91",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/risk-grouped/executions/execution-2acb9fc0-11f5-4c87-85a5-51b84796bfa0/counterexample-candidates/0002/circuit.circom_4neavJ74Rn_counterexample.json",
+      "candidate_sha256": "109780f735ac05605e53d02d703890cc6686d7c6faaef5073f994876f1632d99",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:11:04.487853Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/path-order/executions/execution-b6c6e2d8-a270-42c4-90bc-fbb61fb2653e/outcome.json",
+      "run_id": "d1d59b66-44f6-4520-8a8b-193531be0ecd",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/path-order/executions/execution-b6c6e2d8-a270-42c4-90bc-fbb61fb2653e/counterexample-candidates/0001/circuit.circom_AGcLydLjq8_counterexample.json",
+      "candidate_sha256": "b84f406dd2aa8531758d82f7cd2a92f61586b7b8f277412e6a4d66675a630260",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "started_at": "2026-09-15T07:11:04.557713Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/path-order/executions/execution-b6c6e2d8-a270-42c4-90bc-fbb61fb2653e/outcome.json",
+      "run_id": "13af8384-ba46-4376-9803-5d9ecf0f024f",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-02-seed-2026091502/path-order/executions/execution-b6c6e2d8-a270-42c4-90bc-fbb61fb2653e/counterexample-candidates/0003/circuit.circom_QYAwoWQHQ6_counterexample.json",
+      "candidate_sha256": "1d44276ed293cf90d7f48ab7a77f8758160edc582f0889ef5641d349f69e2efb",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:11:05.814595Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-03-seed-2026091503/small-first/executions/execution-e56957f4-f80f-42cc-b14e-f411a89d3d8b/outcome.json",
+      "run_id": "74f619ca-21d2-44ab-9d2b-00b63eb86b44",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-03-seed-2026091503/small-first/executions/execution-e56957f4-f80f-42cc-b14e-f411a89d3d8b/counterexample-candidates/0001/circuit.circom_XIjjJm7uFC_counterexample.json",
+      "candidate_sha256": "c6b0bd355ae5d13236724a2ded9ec7d4f6ad06ff93d6ef417bb1e5a8329e7474",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:11:12.618456Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-03-seed-2026091503/legacy/executions/execution-c025ef91-9833-491e-8405-f94120febae6/outcome.json",
+      "run_id": "88da8722-70be-4104-a005-edf67cec225e",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-03-seed-2026091503/legacy/executions/execution-c025ef91-9833-491e-8405-f94120febae6/counterexample-candidates/0003/circuit.circom_InTaudvJQO_counterexample.json",
+      "candidate_sha256": "5d73e0ea0f130f433508581c54a7f980d5ef35c91d43da5a4b4ee5ee04a5dfd6",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:11:13.309394Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-03-seed-2026091503/warning-first/executions/execution-212b599b-8bc4-4551-9b17-82e8151f67d3/outcome.json",
+      "run_id": "c633c0b7-d97d-4677-bd33-2a88029116e1",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-03-seed-2026091503/warning-first/executions/execution-212b599b-8bc4-4551-9b17-82e8151f67d3/counterexample-candidates/0001/circuit.circom_xPIz7RxfHZ_counterexample.json",
+      "candidate_sha256": "42154607911892963d73d0beae4b96c87735c50564eec9e117501ea1b3864d34",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:11:17.087923Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-03-seed-2026091503/risk-only/executions/execution-d245eaaa-65d9-4663-9a2c-f082604fbb59/outcome.json",
+      "run_id": "028a9d92-907c-4653-9b8e-d0c569c7c898",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-03-seed-2026091503/risk-only/executions/execution-d245eaaa-65d9-4663-9a2c-f082604fbb59/counterexample-candidates/0001/circuit.circom_xsO2d16NCU_counterexample.json",
+      "candidate_sha256": "24f9f33f1abbd624382de28e7a78186bca4c74321ac6dbb3e5710aefe3f6f347",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:11:20.825055Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-03-seed-2026091503/risk-grouped/executions/execution-b95ddedc-38ca-4f6c-897d-9719448a185d/outcome.json",
+      "run_id": "419945cc-dfb2-477c-bdd5-64d4a197f0d8",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-03-seed-2026091503/risk-grouped/executions/execution-b95ddedc-38ca-4f6c-897d-9719448a185d/counterexample-candidates/0001/circuit.circom_p07XMBi1c0_counterexample.json",
+      "candidate_sha256": "50e4dda43a830151d915b84b7846c99d214354308497cfa4d68e302e1bf40267",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:11:24.576683Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-03-seed-2026091503/path-order/executions/execution-e0cafc7d-7432-4ac2-badc-4c4c44f919bc/outcome.json",
+      "run_id": "dda71946-5d75-4878-8701-2020e92a62eb",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-03-seed-2026091503/path-order/executions/execution-e0cafc7d-7432-4ac2-badc-4c4c44f919bc/counterexample-candidates/0001/circuit.circom_UaYgjzGnLW_counterexample.json",
+      "candidate_sha256": "f8d17e0916f74d8a6809706c8ab041e9388e8f8bcf49aaf9149579899dbadfa1",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:11:28.329559Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-03-seed-2026091503/random/executions/execution-84990d75-79f8-41b6-a065-ac567ae2d8f8/outcome.json",
+      "run_id": "36237ad6-f813-486f-b141-297518fb248c",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-03-seed-2026091503/random/executions/execution-84990d75-79f8-41b6-a065-ac567ae2d8f8/counterexample-candidates/0001/circuit.circom_Jw1jC7DKhm_counterexample.json",
+      "candidate_sha256": "37774822344727ab7325ae78b435c62a2fc76241e1157f9ed49068349e19b1cd",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "started_at": "2026-09-15T07:11:32.173657Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/legacy/executions/execution-fc29c1a2-6389-4397-b4ce-e4dadd38159a/outcome.json",
+      "run_id": "98724237-bc01-4e61-8d03-a83daa2a4469",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/legacy/executions/execution-fc29c1a2-6389-4397-b4ce-e4dadd38159a/counterexample-candidates/0002/circuit.circom_wT9bRzaJR7_counterexample.json",
+      "candidate_sha256": "43b7084d1513a5cefcfaeec6b9954cc58537fcc4d06ae353b45ba5b9d23cd0f2",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:11:33.072111Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/legacy/executions/execution-fc29c1a2-6389-4397-b4ce-e4dadd38159a/outcome.json",
+      "run_id": "f9e6ef71-5cce-4fc4-af21-7ababf47e4de",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/legacy/executions/execution-fc29c1a2-6389-4397-b4ce-e4dadd38159a/counterexample-candidates/0003/circuit.circom_18oSXFWano_counterexample.json",
+      "candidate_sha256": "4c6c640648dcee36a267a06b812eb40e20775994961446be25eeb1bacf5798ff",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:11:33.769961Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/warning-first/executions/execution-0d135342-0509-4bd0-884d-8c41d440fb0b/outcome.json",
+      "run_id": "6ead5789-5169-457d-a36b-da8236e2ad2d",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/warning-first/executions/execution-0d135342-0509-4bd0-884d-8c41d440fb0b/counterexample-candidates/0001/circuit.circom_yQfnR28oRA_counterexample.json",
+      "candidate_sha256": "aec9aba2ed8211539f217a6dee657a86e50ab71eccd88330dec44e1379a61aaa",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "started_at": "2026-09-15T07:11:33.806093Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/warning-first/executions/execution-0d135342-0509-4bd0-884d-8c41d440fb0b/outcome.json",
+      "run_id": "09b4df60-2cdb-4624-b290-28c4acd72a99",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/warning-first/executions/execution-0d135342-0509-4bd0-884d-8c41d440fb0b/counterexample-candidates/0002/circuit.circom_SPqtI2Jh4L_counterexample.json",
+      "candidate_sha256": "d64a3545622f4fe9725a09e5ebae5cfaf8b3d5046d390b33d12008365a84b654",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:11:35.372512Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/risk-only/executions/execution-ded6d045-7bc5-4637-afa4-4d49fdf61dc8/outcome.json",
+      "run_id": "82ebe478-ff53-49ed-be27-ab807892e618",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/risk-only/executions/execution-ded6d045-7bc5-4637-afa4-4d49fdf61dc8/counterexample-candidates/0001/circuit.circom_qbkMqEdOzs_counterexample.json",
+      "candidate_sha256": "42ab94a6cb73b042d9f63c76980c229071e04cbb00122727ddf30b2c3d1a736a",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "started_at": "2026-09-15T07:11:35.408384Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/risk-only/executions/execution-ded6d045-7bc5-4637-afa4-4d49fdf61dc8/outcome.json",
+      "run_id": "594030c2-2780-4556-a6f6-700d57a538f5",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/risk-only/executions/execution-ded6d045-7bc5-4637-afa4-4d49fdf61dc8/counterexample-candidates/0002/circuit.circom_9wR2c05DBN_counterexample.json",
+      "candidate_sha256": "7a8d230b7a2ce53eff73ab80670b53fc7436d759b8618ce336345c63baf03f6f",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:11:36.984297Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/risk-grouped/executions/execution-f241172f-2ef1-434d-940d-e948c478a60e/outcome.json",
+      "run_id": "a637e84f-417f-4837-aed8-d484902b208e",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/risk-grouped/executions/execution-f241172f-2ef1-434d-940d-e948c478a60e/counterexample-candidates/0001/circuit.circom_4S995GpZdX_counterexample.json",
+      "candidate_sha256": "9c6cdef6831bbca23dffe66a0349efb58219ca4b921b358e2ca8606ba42f5791",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "started_at": "2026-09-15T07:11:37.016176Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/risk-grouped/executions/execution-f241172f-2ef1-434d-940d-e948c478a60e/outcome.json",
+      "run_id": "9b751c2a-8040-4768-80ad-41840ee1528e",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/risk-grouped/executions/execution-f241172f-2ef1-434d-940d-e948c478a60e/counterexample-candidates/0002/circuit.circom_nONVme8oFs_counterexample.json",
+      "candidate_sha256": "1bd36cc00e6209cc130ba40f04327e9b1a3b59ac7fae210cffc549d6b058ac66",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:11:38.652674Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/path-order/executions/execution-b7ec69b8-aa02-4bff-8515-a39018d6a5fd/outcome.json",
+      "run_id": "fd199d38-3dfa-49ee-995b-8b3788d9daad",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/path-order/executions/execution-b7ec69b8-aa02-4bff-8515-a39018d6a5fd/counterexample-candidates/0001/circuit.circom_ElgygGDiOj_counterexample.json",
+      "candidate_sha256": "5e4ac8297ab70eef48a7784999c2d930e3953f59bc4369895d7cf36bf36f635e",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "started_at": "2026-09-15T07:11:38.723483Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/path-order/executions/execution-b7ec69b8-aa02-4bff-8515-a39018d6a5fd/outcome.json",
+      "run_id": "af4dc3ee-4ca3-493d-b650-384e97e4e74c",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/path-order/executions/execution-b7ec69b8-aa02-4bff-8515-a39018d6a5fd/counterexample-candidates/0003/circuit.circom_OZrQrQhZZG_counterexample.json",
+      "candidate_sha256": "72310ce5719363fbab9e12b2103c49d912e4940046ee3d7d1edad0cefddc2ca5",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "started_at": "2026-09-15T07:11:40.237557Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/random/executions/execution-ad1f82d5-f092-416b-bd3b-0cba4e60f41f/outcome.json",
+      "run_id": "e314d6c1-2e9d-4e7c-ac4a-b6fb20740e82",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/random/executions/execution-ad1f82d5-f092-416b-bd3b-0cba4e60f41f/counterexample-candidates/0001/circuit.circom_Ujmlea5RBp_counterexample.json",
+      "candidate_sha256": "9c163010a1d64ff05144ec2c2b63d6f9bca1648df4021d632193702307fc771e",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:11:41.149074Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/random/executions/execution-ad1f82d5-f092-416b-bd3b-0cba4e60f41f/outcome.json",
+      "run_id": "c65b9f8c-7e12-4372-9eee-49435c247c4d",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/random/executions/execution-ad1f82d5-f092-416b-bd3b-0cba4e60f41f/counterexample-candidates/0003/circuit.circom_ffqHt0MeyT_counterexample.json",
+      "candidate_sha256": "242c2374e67b4f0be2800aefad8dc01ba3f429f66710c958bd5c19d2cc4cdad8",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:11:41.839936Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/small-first/executions/execution-68f52d8a-bd97-44a9-a8b4-cfc1adb0414c/outcome.json",
+      "run_id": "dc50a928-e897-43a7-9e96-62eb88122fdb",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/small-first/executions/execution-68f52d8a-bd97-44a9-a8b4-cfc1adb0414c/counterexample-candidates/0001/circuit.circom_qIaan4Y8dV_counterexample.json",
+      "candidate_sha256": "a193888d7c9dd4d0646ca3d8f37baf4f6c2b0e1980a1fd6e6b431f6244f8f16d",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "started_at": "2026-09-15T07:11:41.873822Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/small-first/executions/execution-68f52d8a-bd97-44a9-a8b4-cfc1adb0414c/outcome.json",
+      "run_id": "88670cbe-7ea7-46f8-bf18-48b832cb88b5",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-04-seed-2026091504/small-first/executions/execution-68f52d8a-bd97-44a9-a8b4-cfc1adb0414c/counterexample-candidates/0002/circuit.circom_OHgHACCmJe_counterexample.json",
+      "candidate_sha256": "2613d95bf70be3553f6386a9320b45b6d42d28425584d1bc74c6687d9be36540",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:11:43.482462Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-05-seed-2026091505/warning-first/executions/execution-403062b7-921e-4f09-81e4-b1fe7fd2ae50/outcome.json",
+      "run_id": "219d2b30-b53b-4dab-ab61-fd54e45723e7",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-05-seed-2026091505/warning-first/executions/execution-403062b7-921e-4f09-81e4-b1fe7fd2ae50/counterexample-candidates/0001/circuit.circom_eOJE26Zxly_counterexample.json",
+      "candidate_sha256": "6055dffadcc1076323b0088ae0a3f07758fbcd27b365c805c7d2f32a8345dd29",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:11:47.298474Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-05-seed-2026091505/risk-only/executions/execution-ee8805d3-10f9-4007-8111-e3fa4d5bc0f6/outcome.json",
+      "run_id": "a03bb758-c75f-4edc-8b03-86364262d536",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-05-seed-2026091505/risk-only/executions/execution-ee8805d3-10f9-4007-8111-e3fa4d5bc0f6/counterexample-candidates/0001/circuit.circom_z1nr6dnHKO_counterexample.json",
+      "candidate_sha256": "1f53565c7038bbdaa111a2e629cdee055293e1f74c5445456a4a187ef19b447f",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:11:51.173526Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-05-seed-2026091505/risk-grouped/executions/execution-b2a8f64f-bdda-4c08-aae6-b0488debb4dc/outcome.json",
+      "run_id": "9103df17-49ad-43bb-86ec-73938fd733d0",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-05-seed-2026091505/risk-grouped/executions/execution-b2a8f64f-bdda-4c08-aae6-b0488debb4dc/counterexample-candidates/0001/circuit.circom_YeFqFnX4uS_counterexample.json",
+      "candidate_sha256": "6acba4496560f7937aaeb285c6f4ef4768e0862a45f72220582f989aad1c11e1",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:11:54.921651Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-05-seed-2026091505/path-order/executions/execution-095f676b-5eda-4b6e-814b-37a7478c818f/outcome.json",
+      "run_id": "04014dea-d189-44d7-adb2-92b20a28012f",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-05-seed-2026091505/path-order/executions/execution-095f676b-5eda-4b6e-814b-37a7478c818f/counterexample-candidates/0001/circuit.circom_8Z2hVUHlw5_counterexample.json",
+      "candidate_sha256": "12909e6fe172cd33989b957f70deff34bca5ef40946102838fb280d18bd111e0",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:11:58.676615Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-05-seed-2026091505/random/executions/execution-17a916c2-5c66-4a58-a8e2-a47347b2d133/outcome.json",
+      "run_id": "0e6a95df-e321-44d9-8262-c26154192030",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-05-seed-2026091505/random/executions/execution-17a916c2-5c66-4a58-a8e2-a47347b2d133/counterexample-candidates/0001/circuit.circom_loOVEktC5L_counterexample.json",
+      "candidate_sha256": "6f35e978b01b8ab7b04972dc910f441b297a77cc0c4e79222e608d829c3c6059",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:12:02.465558Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-05-seed-2026091505/small-first/executions/execution-71593677-4f12-41de-9355-dbc8dad877b4/outcome.json",
+      "run_id": "6e7b9f86-92fc-4c0b-a485-50b06b9b6810",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-05-seed-2026091505/small-first/executions/execution-71593677-4f12-41de-9355-dbc8dad877b4/counterexample-candidates/0001/circuit.circom_Pmqolt2IQM_counterexample.json",
+      "candidate_sha256": "ec6ed6bacd8cba4aa3473b6af59c50ad6c6d53d58b5771945894bacb383c0490",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:12:09.292644Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-05-seed-2026091505/legacy/executions/execution-303c294c-0617-4118-aab1-a6c777597c89/outcome.json",
+      "run_id": "43bd4378-dee6-45b1-8a41-b02dea8e12c2",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-05-seed-2026091505/legacy/executions/execution-303c294c-0617-4118-aab1-a6c777597c89/counterexample-candidates/0003/circuit.circom_u51gFcrmLM_counterexample.json",
+      "candidate_sha256": "0aa70bd82ae511232f9afbb2d3e320868ff18a276967e5193fc920e04f0474e3",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:12:10.008079Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/risk-only/executions/execution-aea04fa5-dd8b-41b6-911d-85735de13aa4/outcome.json",
+      "run_id": "c53d4db9-8e74-443c-9f7f-1a25d602959f",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/risk-only/executions/execution-aea04fa5-dd8b-41b6-911d-85735de13aa4/counterexample-candidates/0001/circuit.circom_CxfgSvtrnq_counterexample.json",
+      "candidate_sha256": "e4f188b77fd4ff42673e3524f03b83878409b87592de00f1c4ac05e32d8c7865",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "started_at": "2026-09-15T07:12:10.043447Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/risk-only/executions/execution-aea04fa5-dd8b-41b6-911d-85735de13aa4/outcome.json",
+      "run_id": "dc66bb94-cc3d-4fad-bc78-1396edb63a7a",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/risk-only/executions/execution-aea04fa5-dd8b-41b6-911d-85735de13aa4/counterexample-candidates/0002/circuit.circom_4T15ad12s5_counterexample.json",
+      "candidate_sha256": "e7cd47b8b7f7b4c5fc052292ebc492eb3a59b7cc90dcdaa8945a94585c544b8e",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:12:11.159344Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/risk-grouped/executions/execution-8cb39e52-6427-4680-b1f0-96fc8a785b7f/outcome.json",
+      "run_id": "adfaeb0e-97ce-4cdf-aaff-d22a4d16e556",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/risk-grouped/executions/execution-8cb39e52-6427-4680-b1f0-96fc8a785b7f/counterexample-candidates/0001/circuit.circom_47RilGMMci_counterexample.json",
+      "candidate_sha256": "3a12a5dd2e2aadd17456f7988740ac82dc06c1e820dfc74da581d17869b3218d",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "started_at": "2026-09-15T07:12:11.194098Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/risk-grouped/executions/execution-8cb39e52-6427-4680-b1f0-96fc8a785b7f/outcome.json",
+      "run_id": "4fe6f3fb-0367-4747-80af-4c4074ddeaf9",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/risk-grouped/executions/execution-8cb39e52-6427-4680-b1f0-96fc8a785b7f/counterexample-candidates/0002/circuit.circom_moOwyotkgv_counterexample.json",
+      "candidate_sha256": "6261fe5b36351664fdca3d003b8a59d66083cccd4e9bfba1cbf559c467e3ee63",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:12:12.288647Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/path-order/executions/execution-b39a7e61-3647-4406-87c7-1dcef6dfc13c/outcome.json",
+      "run_id": "b2f7e536-291f-420d-a9d5-136770050919",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/path-order/executions/execution-b39a7e61-3647-4406-87c7-1dcef6dfc13c/counterexample-candidates/0001/circuit.circom_JSGvdOQZVf_counterexample.json",
+      "candidate_sha256": "ddae2cf9dc41f55c50b92eaa75bd0e9cf422ce9628d6bf673dfa0b779227b65e",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "started_at": "2026-09-15T07:12:12.359625Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/path-order/executions/execution-b39a7e61-3647-4406-87c7-1dcef6dfc13c/outcome.json",
+      "run_id": "51540353-f85c-4f4c-8c23-9aea8fb63825",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/path-order/executions/execution-b39a7e61-3647-4406-87c7-1dcef6dfc13c/counterexample-candidates/0003/circuit.circom_Tuluon3ZZT_counterexample.json",
+      "candidate_sha256": "494eb5a699d16f14d3b6202b262422535a5df088ae8fa2e61b26d1eaf8dadc60",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "started_at": "2026-09-15T07:12:13.445076Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/random/executions/execution-db49174a-d2d3-4366-b042-4e311c60d9c1/outcome.json",
+      "run_id": "bc634b47-d047-4a85-95d2-cf268c0bad04",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/random/executions/execution-db49174a-d2d3-4366-b042-4e311c60d9c1/counterexample-candidates/0001/circuit.circom_UbKQUb20LS_counterexample.json",
+      "candidate_sha256": "24778960023cf4a392fb053c2b8bb6754d706f9f3de83ced4c3ddf52f40f8512",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:12:13.890049Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/random/executions/execution-db49174a-d2d3-4366-b042-4e311c60d9c1/outcome.json",
+      "run_id": "121013a3-cdcb-46a8-ba28-be955f44641e",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/random/executions/execution-db49174a-d2d3-4366-b042-4e311c60d9c1/counterexample-candidates/0003/circuit.circom_kxHqkDA889_counterexample.json",
+      "candidate_sha256": "a1b2878fde4710de04b6d6754bc951fef6e46760f23bef82b034526a3cf025ae",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:12:14.606361Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/small-first/executions/execution-de6cd5da-2390-4802-b201-59a2c6573f9f/outcome.json",
+      "run_id": "cf4e5d96-c539-424d-b056-0c4e43cc38e6",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/small-first/executions/execution-de6cd5da-2390-4802-b201-59a2c6573f9f/counterexample-candidates/0001/circuit.circom_l11uku1k1v_counterexample.json",
+      "candidate_sha256": "125e4bca1f496a016490e71845442f455749d3d74f716b9c4fde4e753c0f8d08",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "started_at": "2026-09-15T07:12:14.640705Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/small-first/executions/execution-de6cd5da-2390-4802-b201-59a2c6573f9f/outcome.json",
+      "run_id": "66694224-57ac-4670-a495-52c229a05d6f",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/small-first/executions/execution-de6cd5da-2390-4802-b201-59a2c6573f9f/counterexample-candidates/0002/circuit.circom_xaNH00pBAk_counterexample.json",
+      "candidate_sha256": "a765c7ac1fe685e7a745509fe49824914300ab013d1bc454317789c31ae8d169",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "started_at": "2026-09-15T07:12:15.756897Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/legacy/executions/execution-4599b932-0093-4ab5-aba1-0fd882939432/outcome.json",
+      "run_id": "f2e676b5-ddba-4a56-b82a-b2f1ffcbfc51",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/legacy/executions/execution-4599b932-0093-4ab5-aba1-0fd882939432/counterexample-candidates/0002/circuit.circom_uRAlo8qJhI_counterexample.json",
+      "candidate_sha256": "3edd77b8a5145c601281352c9ac7d94b108a9b63bbcabcfa21fb904b1524b8a0",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:12:16.175297Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/legacy/executions/execution-4599b932-0093-4ab5-aba1-0fd882939432/outcome.json",
+      "run_id": "31e29a91-4831-432a-8693-956ad1cffc22",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/legacy/executions/execution-4599b932-0093-4ab5-aba1-0fd882939432/counterexample-candidates/0003/circuit.circom_vq8BxxiQJz_counterexample.json",
+      "candidate_sha256": "98024dbc6a9e0767dbe18445cebdf3f346e81fc88bd76dc37320cce6c29ae2eb",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:12:16.887235Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/warning-first/executions/execution-ae71c50f-7253-4a7d-be56-f7f7dcd1f1e7/outcome.json",
+      "run_id": "14f47ee1-5667-4d3f-8ad1-490492ef6777",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/warning-first/executions/execution-ae71c50f-7253-4a7d-be56-f7f7dcd1f1e7/counterexample-candidates/0001/circuit.circom_BVBIzY4ady_counterexample.json",
+      "candidate_sha256": "8fe2e96d206827e9d0f8ef9c97107fb529d1f9a2ffdc13a31a94fd28265f984c",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:76b7b3d1543e77a11a0d9652e29b1547a6b3783de118ac40d4c76702a5805616",
+      "started_at": "2026-09-15T07:12:16.923504Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/warning-first/executions/execution-ae71c50f-7253-4a7d-be56-f7f7dcd1f1e7/outcome.json",
+      "run_id": "d0818fe7-d6d3-459d-ae22-cae172aaecd5",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-06-seed-2026091506/warning-first/executions/execution-ae71c50f-7253-4a7d-be56-f7f7dcd1f1e7/counterexample-candidates/0002/circuit.circom_o7moQlF6oc_counterexample.json",
+      "candidate_sha256": "171b323c9404990fdc63f685af4b678639956c2f44c4b75ffcd2b9a85fbb8c65",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:12:18.024182Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-07-seed-2026091507/risk-grouped/executions/execution-b0986753-13dd-47dd-a078-6ff5a1ea2828/outcome.json",
+      "run_id": "04bd8aae-3884-43f8-ad1a-4edeefecaf69",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-07-seed-2026091507/risk-grouped/executions/execution-b0986753-13dd-47dd-a078-6ff5a1ea2828/counterexample-candidates/0001/circuit.circom_Uejjz9G11P_counterexample.json",
+      "candidate_sha256": "7c851dfac0cb5fd921d17f6c25e7b348fbc9d5349508451d8dcb168ef80961bd",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:12:21.767674Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-07-seed-2026091507/path-order/executions/execution-720be2bb-a96e-495c-87d1-9811d2dc9f1a/outcome.json",
+      "run_id": "14d985c8-9876-4b7d-ab04-cd45e8aa17c0",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-07-seed-2026091507/path-order/executions/execution-720be2bb-a96e-495c-87d1-9811d2dc9f1a/counterexample-candidates/0001/circuit.circom_190gMuYnyr_counterexample.json",
+      "candidate_sha256": "b33d91f647cb583f283a50ec10cf0258f52ced60f945c94d7deb6034fa197b8b",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:12:28.570166Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-07-seed-2026091507/random/executions/execution-1a5e024d-41ec-4111-b09e-0c15c8ce4da2/outcome.json",
+      "run_id": "4d1a6f2d-905e-4fee-bfbd-0165a56a7c7c",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-07-seed-2026091507/random/executions/execution-1a5e024d-41ec-4111-b09e-0c15c8ce4da2/counterexample-candidates/0003/circuit.circom_liTcp5bi2s_counterexample.json",
+      "candidate_sha256": "2ee0f7bfe5b7c361138a162beb29c19a6ddb81e50f57bb9b3464f6f54f82f43b",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:12:29.287315Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-07-seed-2026091507/small-first/executions/execution-ef1b1859-392d-453f-9d2d-485d52e8ec1b/outcome.json",
+      "run_id": "5e501f72-41ab-472c-90a0-023e8e71711c",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-07-seed-2026091507/small-first/executions/execution-ef1b1859-392d-453f-9d2d-485d52e8ec1b/counterexample-candidates/0001/circuit.circom_1STFe0EIWD_counterexample.json",
+      "candidate_sha256": "bf50444314db3fe61e0be1bb8e6d843cae3a0b1d0f0efbd9d68a7dd3a37551af",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:12:36.092427Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-07-seed-2026091507/legacy/executions/execution-335bfe96-dc75-4ae2-a288-1ee6f8784a1b/outcome.json",
+      "run_id": "5d361267-e8e6-41b5-856e-103fa469f989",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-07-seed-2026091507/legacy/executions/execution-335bfe96-dc75-4ae2-a288-1ee6f8784a1b/counterexample-candidates/0003/circuit.circom_cTNDayrdKw_counterexample.json",
+      "candidate_sha256": "79628d095df48ec6a3fc78b833253760c60ce318e9d4583d701450de03ac6ff8",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:12:36.808903Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-07-seed-2026091507/warning-first/executions/execution-62467746-57ca-4d29-8bfc-111b1a903d02/outcome.json",
+      "run_id": "da445be8-917c-4b4a-83b8-b2373378765d",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-07-seed-2026091507/warning-first/executions/execution-62467746-57ca-4d29-8bfc-111b1a903d02/counterexample-candidates/0001/circuit.circom_239cbbHlCK_counterexample.json",
+      "candidate_sha256": "63a0ccb6b7ff152fa27953ffff4777c83542973676a656031e7fd28c25871e8b",
+      "required_files_present": true
+    },
+    {
+      "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+      "started_at": "2026-09-15T07:12:40.564224Z",
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-07-seed-2026091507/risk-only/executions/execution-9410d14a-ab16-49c1-bf97-ba45e0eb12e5/outcome.json",
+      "run_id": "640b9496-1fff-469d-b43c-3f05c41c5e5e",
+      "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-07-seed-2026091507/risk-only/executions/execution-9410d14a-ab16-49c1-bf97-ba45e0eb12e5/counterexample-candidates/0001/circuit.circom_wGT7vbT4RX_counterexample.json",
+      "candidate_sha256": "d5e7a0d72e15276e031729597613ae8c289d0befa8059cfa84087c8ba4ac5d16",
+      "required_files_present": true
+    }
+  ],
+  "selection_reason": "Add32Bits has preserved source, exact candidates and logs, recoverable addition-fix commit lineage, and an explicit 32-bit addition contract in original source. RotateLeft also has logs; neither ranking score nor predicted validity is used. Within Add32Bits select the chronologically earliest run (run_id tie break), before reading its witness.",
+  "original_revision_policy": "Inspect immutable pre-addition-fix parent 9f98e3aaa95e629515883e0cc6e6cfe6aef6d622 if source can be obtained; do not label the XOR-pre-fix 4551ca64 as pre-addition-fix. Manifest ef9f5a5 is after addition fix. Record missing evidence rather than substitute latest source.",
+  "selected": {
+    "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+    "started_at": "2026-09-15T07:10:29.916707Z",
+    "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-01-seed-2026091501/path-order/executions/execution-d825de18-7f45-4afc-8a35-a76e952cf867/outcome.json",
+    "run_id": "d67912ec-19b0-40d0-ac96-d8e40dc9d2c5",
+    "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-01-seed-2026091501/path-order/executions/execution-d825de18-7f45-4afc-8a35-a76e952cf867/counterexample-candidates/0001/circuit.circom_OahflrIIJ2_counterexample.json",
+    "candidate_sha256": "acd36135a4c3324ce2da705079c694d7cd6925e064135a5cc18a8d312815860c",
+    "required_files_present": true
+  }
+}

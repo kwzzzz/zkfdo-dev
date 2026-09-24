@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "set_id": "controlled-v1",
+  "title": "Controlled regression/evaluation contracts v1",
+  "status": {
+    "material_preparation": "complete",
+    "detection_validation": "not_run",
+    "fuzzing_run": "not_run",
+    "confirmed_original_component_defect_count": null,
+    "first_confirmed_original_component_defect_observed_by_seconds": null
+  },
+  "manifest": {
+    "path": "datasets/manifest.controlled-v1.json",
+    "sha256": "ec27dc5f088d85ae63e4f5a8397a4d3e9ad01c390af24498d1fc56c47a0931e8"
+  },
+  "partition_policy": {
+    "role": "held-out-evaluation-candidate",
+    "leakage_group_id": "inference-labs-inc/subnet-2-circom/subtract-unconstrained-d",
+    "root_cause_id": "inference-labs-inc/subnet-2-circom/koukyosyumei_subtract_unconstrained_multiplier",
+    "same_root_cause_in_manifest_dev10": false,
+    "freeze_rule": "Do not move parameter, wrapper, or revision variants of this root cause into a development set, and do not tune ranking weights after observing controlled-v1 outcomes."
+  },
+  "pairs": [
+    {
+      "pair_id": "subnet2-subtract-d-v1",
+      "root_cause_id": "inference-labs-inc/subnet-2-circom/koukyosyumei_subtract_unconstrained_multiplier",
+      "relationship": "The fixed revision is a merge commit whose first parent is the vulnerable revision; both exact file versions are frozen below.",
+      "project": "https://github.com/inference-labs-inc/subnet-2-circom",
+      "public_defect": {
+        "title": "Subtract uses an unconstrained multiplier d",
+        "classification": "under-constrained / assigned but unconstrained / soundness",
+        "description": "The vulnerable template assigns d <-- 1 without constraining d and only constrains c = (a-b)*d, so the R1CS does not bind c to subtraction.",
+        "fix_description": "The fixed template removes d and constrains c <== a-b.",
+        "zkbugs_checkout_revision": "a0eed744ba1a816acaa2fae597f4e79b4fd01aea",
+        "zkbugs_config_path": ".external/zkbugs/dataset/circom/inference-labs-inc/subnet-2-circom/koukyosyumei_subtract_unconstrained_multiplier/zkbugs_config.json",
+        "zkbugs_config_sha256": "891a26062ed8b6f91d60ab951489eb0548d4b9850d1551aa62b9894b6e621f5e",
+        "zkbugs_readme_path": ".external/zkbugs/dataset/circom/inference-labs-inc/subnet-2-circom/koukyosyumei_subtract_unconstrained_multiplier/README.md",
+        "zkbugs_readme_sha256": "15ac12cfe873ad930270011da39712c59a9264bfe94d97729f4cf68f579307c0",
+        "public_pull_request": "https://github.com/inference-labs-inc/subnet-2-circom/pull/2",
+        "fix_commit_api": "https://api.github.com/repos/inference-labs-inc/subnet-2-circom/commits/b8f92bdec1694138df0e069921f1aa0bdc94053e"
+      },
+      "component_contract": {
+        "template": "Subtract",
+        "concrete_parameters": [],
+        "wrapper_scope": "Minimal direct wrapper: include the frozen subtractTensor.circom and instantiate component main = Subtract(); no added constraints or conversions.",
+        "field": "bn128",
+        "inputs": [
+          "a",
+          "b"
+        ],
+        "output": "c",
+        "internal_signals_vulnerable": [
+          "d"
+        ],
+        "input_preconditions": {
+          "statement": "a and b are canonical BN128 scalar-field elements; no additional integer range precondition is imposed.",
+          "basis": "Circom signal field semantics and the template interface. The reviewed property is field subtraction, not bounded signed/unsigned integer subtraction."
+        },
+        "predeclared_property": {
+          "id": "subtract-output-binding",
+          "statement": "For every satisfying assignment, c = a - b modulo the BN128 scalar field prime.",
+          "violation_rule": "A candidate violates the property only when it satisfies every constraint of the selected frozen target and c != a-b mod p while the input preconditions hold."
+        },
+        "review_rule": {
+          "valid_original_component_finding_requires": [
+            "input preconditions satisfied",
+            "all constraints of the selected frozen component revision satisfied",
+            "predeclared property violated",
+            "candidate linked to the same plan run/target with backend status bug_found"
+          ],
+          "known_defect_metadata_is_execution_discovery": false,
+          "static_source_review_is_execution_discovery": false
+        }
+      },
+      "variants": [
+        {
+          "variant_id": "subnet2-subtract-vulnerable",
+          "role": "published-vulnerable-source",
+          "revision": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+          "source_path": "datasets/controlled-v1/subtract/vulnerable/subtractTensor.circom",
+          "source_git_blob_sha1": "f4f07f3c614299a02b97ea64338e4843a608c03c",
+          "source_sha256": "502ee44b70a368066fafcf09cc2d0356479f8a862bfa726bde8097c728c83cc1",
+          "source_url": "https://github.com/inference-labs-inc/subnet-2-circom/blob/d310309c141d36504b3486cebd96ed70ef3a4fdf/src/subtractTensor.circom",
+          "wrapper_path": "datasets/controlled-v1/subtract/vulnerable/circuit.circom",
+          "wrapper_sha256": "5160da57762a5a561cf797a44f2dd6f009126536be476cbcec0926459362e079",
+          "expected_source_classification": "Known vulnerable source according to the public report; this does not predict whether zkFuzz will generate a qualifying candidate.",
+          "source_git_blob_sha1_recomputed": "f4f07f3c614299a02b97ea64338e4843a608c03c",
+          "source_git_blob_matches": true
+        },
+        {
+          "variant_id": "subnet2-subtract-fixed",
+          "role": "patched-regression-comparator",
+          "revision": "b8f92bdec1694138df0e069921f1aa0bdc94053e",
+          "source_path": "datasets/controlled-v1/subtract/fixed/subtractTensor.circom",
+          "source_git_blob_sha1": "ede21538dc3f7a03e68775d1bd2e0ac482f6366e",
+          "source_sha256": "c5d6aa9de7e95f09283e6b014dcbda85e16e583c3e157d7f8fdd95bb001023ba",
+          "source_url": "https://github.com/inference-labs-inc/subnet-2-circom/blob/b8f92bdec1694138df0e069921f1aa0bdc94053e/src/subtractTensor.circom",
+          "wrapper_path": "datasets/controlled-v1/subtract/fixed/circuit.circom",
+          "wrapper_sha256": "5160da57762a5a561cf797a44f2dd6f009126536be476cbcec0926459362e079",
+          "expected_source_classification": "Comparator containing the published fix for this root cause. It is not labeled safe against other defects, and an unexpected qualifying candidate must still be reviewed.",
+          "source_git_blob_sha1_recomputed": "ede21538dc3f7a03e68775d1bd2e0ac482f6366e",
+          "source_git_blob_matches": true
+        }
+      ],
+      "expected_judgment_scope": {
+        "vulnerable_variant": "A qualifying execution-linked candidate counts once for this root_cause_id. The published label alone counts zero discoveries.",
+        "fixed_variant": "The source expresses the frozen subtraction property directly and is a regression comparator for this root cause, not a proof of whole-project or whole-template safety.",
+        "project_context": "not evaluated; no project-level defect count is assigned",
+        "detection_status": "not run; no discovery count or time is assigned"
+      },
+      "unconfirmed": [
+        "original project caller reachability and impact were not revalidated",
+        "the historical compiler/build environment was not reconstructed",
+        "zkFuzz detectability and time-to-discovery are not known",
+        "no candidate, witness, proof, or WASM was generated or evaluated"
+      ],
+      "fix_relationship_verification": {
+        "fix_revision": "b8f92bdec1694138df0e069921f1aa0bdc94053e",
+        "parents": [
+          "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+          "4d9012d84a832bceaf3d9b0c9a09d2a48b3d46d0"
+        ],
+        "vulnerable_revision_is_first_parent": true,
+        "fixed_file_git_blob_sha1": "ede21538dc3f7a03e68775d1bd2e0ac482f6366e",
+        "checked_via": "public GitHub commit/content API",
+        "api_response_sha256": "49f653760d9ca5a3d0fae774926ac61c89779e9c50c160d9ac5b8385fac97229"
+      }
+    }
+  ],
+  "comparison_environment": {
+    "classification": "current controlled comparison environment, not historical deployment environment",
+    "circom": "circom compiler 2.2.3",
+    "prime": "bn128 explicitly selected by corpus preparation",
+    "compile_args": [],
+    "zkfuzz_revision": "072bf1fbbd1c9ecad58d4f6d2204c3b96e7fec17",
+    "zkfuzz_binary_sha256": "ac2d9d16fd97ff803b121b7994aef804b4e191636f3f78660ff6ecd6c9ae4edd",
+    "zkfuzz_version": "ZK Circuit Fuzzer 2.2.1",
+    "historical_environment_claimed": false
+  },
+  "readiness_validation": {
+    "status": "complete",
+    "performed_at_utc": "2026-09-19T05:44:53.620647+00:00",
+    "preparation_mode": "path-order feature preparation and Circom compile only; no fuzz search",
+    "command": "cargo run --offline --quiet --bin zkfDO -- experiment prepare --manifest datasets/manifest.controlled-v1.json --strategy path-order --circom-bin /Users/miiz/.cargo/bin/circom --tool-timeout-seconds 30 --output <temporary-directory>",
+    "temporary_output_retained_in_repository": false,
+    "manifest_sha256": "ec27dc5f088d85ae63e4f5a8397a4d3e9ad01c390af24498d1fc56c47a0931e8",
+    "circom_version": "circom compiler 2.2.3",
+    "circom_binary_sha256": "8991887889c2a74d6fc704d5689ada4cc76fba004e866c987de6cbf3b3db6227",
+    "prime": "bn128",
+    "compile_args": [],
+    "targets": [
+      {
+        "variant_id": "subnet2-subtract-vulnerable",
+        "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+        "eligible": true,
+        "compile_success": true,
+        "constraint_count": 1,
+        "exclusion_reasons": []
+      },
+      {
+        "variant_id": "subnet2-subtract-fixed",
+        "target_id": "sha256:a85819549a69210934d31e3fa4a0ba4e01f1f456bc86b32a480a29c5b18aec91",
+        "eligible": true,
+        "compile_success": true,
+        "constraint_count": 1,
+        "exclusion_reasons": []
+      }
+    ],
+    "interpretation": "Compile readiness in the current comparison environment only; no historical-build equivalence, fuzzing success, candidate validity, or safety result."
+  },
+  "exclusions": [
+    {
+      "case": "Reclaim Add32Bits/XorWords/RotateLeft32Bits",
+      "reason": "Already used in dev3 development and therefore excluded from this held-out candidate set."
+    },
+    {
+      "case": "iden3 MiMCSponge",
+      "reason": "Local metadata says the fixture was modified from a newer source because the historical buggy source was not reproducible under Circom 2."
+    },
+    {
+      "case": "other local zkbugs Circom entries",
+      "reason": "Complete exact vulnerable/fixed source closures were not frozen and reviewed for v1; no safety or invalidity inference is made."
+    }
+  ]
+}

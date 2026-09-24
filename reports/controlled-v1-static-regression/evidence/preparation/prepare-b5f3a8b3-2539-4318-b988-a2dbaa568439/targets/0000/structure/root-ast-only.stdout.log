@@ -1,0 +1,2 @@
+template_name,num_statements,num_variables,num_if_then_else,num_while,num_constraint_equality,num_assign_var,num_assign_constraint_signal,num_assign_signal,avg_loc_constraint_equality,avg_loc_assign_constraint_signal,avg_loc_assign_signal
+Subtract,13,4,0,0,0,0,1,1,0,13,12

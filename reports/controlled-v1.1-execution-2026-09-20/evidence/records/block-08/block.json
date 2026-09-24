@@ -1,0 +1,278 @@
+{
+  "attempt": 1,
+  "started_at_utc": "2026-09-20T10:15:57.078794+00:00",
+  "status": "valid_complete",
+  "environment": {
+    "checked_at_utc": "2026-09-20T10:15:57.216932+00:00",
+    "repository_head": "39f87980e2541e4a0a526932c757bc5009a78319",
+    "implementation_commit": "9a8bb0319a8b4e127f73be5f1fa279eafb9156db",
+    "implementation_tree": "4215bea47d73115dd8c5663a5df538803828a746",
+    "working_tree_status": "M README.md\n M src/corpus.rs\n M src/experiment.rs\n M tests/corpus_test.rs\n M tests/experiment_test.rs\n?? docs/controlled_v1_1_execution_protocol.md\n?? reports/controlled-v1-execution-preflight-2026-09-19/\n?? reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/sources/circuit.circom_0HNOOiaIyU_counterexample.json\n?? reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/sources/circuit.circom_7lY30X57wH_counterexample.json\n?? reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/sources/circuit.circom_AYvivrY3By_counterexample.json\n?? reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/sources/circuit.circom_DZsy5SViGT_counterexample.json\n?? reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/sources/circuit.circom_Et13noBtBA_counterexample.json\n?? reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/sources/circuit.circom_I2Ec2MxVRA_counterexample.json\n?? reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/sources/circuit.circom_J2Nbgzu2hm_counterexample.json\n?? reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/sources/circuit.circom_JZH8VH62KH_counterexample.json\n?? reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/sources/circuit.circom_PjWAr9s64b_counterexample.json\n?? reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/sources/circuit.circom_XBFx5GlBiR_counterexample.json\n?? reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/sources/circuit.circom_XbrdLIBRTI_counterexample.json\n?? reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/sources/circuit.circom_XhO3agzUZn_counterexample.json\n?? reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/sources/circuit.circom_XriqShu0tg_counterexample.json\n?? reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/sources/circuit.circom_ZoPddXlenj_counterexample.json\n?? reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/sources/circuit.circom_apujE4CPsO_counterexample.json\n?? reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/sources/circuit.circom_bvxR7yy1by_counterexample.json\n?? reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/sources/circuit.circom_iAJgyQPiep_counterexample.json\n?? reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/sources/circuit.circom_iUMSnWo85L_counterexample.json\n?? reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/sources/circuit.circom_pVZeVE8c2o_counterexample.json\n?? reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/sources/circuit.circom_uXOu9ig7mS_counterexample.json\n?? reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/sources/circuit.circom_xITSKtYsmL_counterexample.json\n?? reports/rotateleft-candidate-check-2026-09-17/all-candidates-review.json",
+    "hashes": {
+      "/Users/miiz/Desktop/kwzzzz_zkfr/docs/controlled_v1_evaluation_protocol.md": "0552be5557315ecdf1e929ed9b37120d96e3f77004e6d64219675268563665b9",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/docs/controlled_v1_1_execution_protocol.md": "a41ef6f9e75c536477d4f87510a2d043a0a5982b920a8f60519c38d9bcf8dff2",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/manifest.controlled-v1.json": "ec27dc5f088d85ae63e4f5a8397a4d3e9ad01c390af24498d1fc56c47a0931e8",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/contracts.controlled-v1.json": "d954de5fe6d8adbeb010f307119b9b3a0207d80b900ed9365d53a16a0f293f9a",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/prepared.json": "ab180da1918e275d541866b9476728898805df551a9c1457978f62b43c2ebaa1",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/configs/static-ranking.json": "8fed87764b001245d600307f7ba7d8453e88e3b977afda656014eac83ea32d26",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkFuzz/target/release/zkfuzz": "ac2d9d16fd97ff803b121b7994aef804b4e191636f3f78660ff6ecd6c9ae4edd",
+      "/Users/miiz/.cargo/bin/circom": "8991887889c2a74d6fc704d5689ada4cc76fba004e866c987de6cbf3b3db6227",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/.external/circomspect/target/release/circomspect": "6acebb5f1c00fd3823e96388cb322cd29bd516f8bacecf855fee5652431c3590",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/circuit.circom": "5160da57762a5a561cf797a44f2dd6f009126536be476cbcec0926459362e079",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/subtractTensor.circom": "502ee44b70a368066fafcf09cc2d0356479f8a862bfa726bde8097c728c83cc1",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/fixed/circuit.circom": "5160da57762a5a561cf797a44f2dd6f009126536be476cbcec0926459362e079",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/fixed/subtractTensor.circom": "c5d6aa9de7e95f09283e6b014dcbda85e16e583c3e157d7f8fdd95bb001023ba",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/frozen-tools/zkfDO-9a8bb031-debug": "e3472909d3d8de4411ee20a9574a822b9c262e7aff935c9bf38eac8f31a16960"
+    },
+    "device": {
+      "machine_model": "Mac17,2",
+      "chip_type": "Apple M5",
+      "number_processors": "proc 10:4:6",
+      "physical_memory": "24 GB"
+    },
+    "os_version": "26.2",
+    "os_build": "25C56",
+    "darwin_release": "25.2.0",
+    "architecture": "arm64",
+    "ac_power": true,
+    "ac_low_power_mode": false,
+    "disk_free_bytes": 631519666176,
+    "personal_hardware_identifiers_recorded": false
+  },
+  "strategy_runs": [
+    {
+      "position": 1,
+      "strategy": "random",
+      "ranking_seed": 2026092908,
+      "execution_seed": 2026091908,
+      "plan_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/01-random/plan.json",
+      "plan_sha256": "e487e1faac832729e6173b7d6cb28ead9b28e4f6dfce8e390ee676c733e3b492",
+      "plan_id": "857d3a4a-0952-4acc-b5fc-7773762fcb14",
+      "target_order": [
+        "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+        "sha256:a85819549a69210934d31e3fa4a0ba4e01f1f456bc86b32a480a29c5b18aec91"
+      ],
+      "planning_seconds": 0.002806583,
+      "plan_invocation": {
+        "command": [
+          "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/frozen-tools/zkfDO-9a8bb031-debug",
+          "experiment",
+          "plan",
+          "--prepared",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/prepared.json",
+          "--strategy",
+          "random",
+          "--config",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/configs/static-ranking.json",
+          "--output",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/01-random/plan.json",
+          "--ranking-seed",
+          "2026092908"
+        ],
+        "started_at_utc": "2026-09-20T10:15:57.462156+00:00",
+        "finished_at_utc": "2026-09-20T10:15:57.476495+00:00",
+        "wall_seconds": 0.014339042012579739,
+        "exit_code": 0,
+        "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/01-random/plan.stdout.json",
+        "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/01-random/plan.stderr.log"
+      },
+      "run_invocation": {
+        "command": [
+          "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/frozen-tools/zkfDO-9a8bb031-debug",
+          "experiment",
+          "run",
+          "--plan",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/01-random/plan.json",
+          "--zkfuzz-bin",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkFuzz/target/release/zkfuzz",
+          "--budget-seconds",
+          "30",
+          "--total-budget-seconds",
+          "60",
+          "--zkfuzz-seed",
+          "2026091908",
+          "--output",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/01-random/raw"
+        ],
+        "started_at_utc": "2026-09-20T10:15:57.480524+00:00",
+        "finished_at_utc": "2026-09-20T10:15:58.545350+00:00",
+        "wall_seconds": 1.0648489170125686,
+        "exit_code": 0,
+        "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/01-random/run.stdout.json",
+        "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/01-random/run.stderr.log"
+      },
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/01-random/raw/execution-586bbbcf-9282-4d75-8446-6b3c8d7f7365/outcome.json",
+      "outcome_sha256": "e9a706d27eaf8c27f69936d00ef63e1d10405ee043757c360468e3cac3d213c7",
+      "scheduler_summary_files": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/01-random/raw/execution-586bbbcf-9282-4d75-8446-6b3c8d7f7365/38c39e0e-19ea-46ed-a240-67c4a89c0ff9/summary.json",
+          "sha256": "078641199ba88c2eeadcbe0c85a02dbb3eec577010104e3d75bd46dd1caa3bab"
+        }
+      ],
+      "scheduler_elapsed_seconds": 0.860742542,
+      "scheduler_run_statuses": [
+        "bug_found",
+        "no_counterexample"
+      ],
+      "scheduler_failure_count": 0,
+      "not_started_count": 0,
+      "backend_candidate_count": 1,
+      "status": "outcome_saved_and_link_verified"
+    },
+    {
+      "position": 2,
+      "strategy": "small-first",
+      "ranking_seed": null,
+      "execution_seed": 2026091908,
+      "plan_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/02-small-first/plan.json",
+      "plan_sha256": "a9cd36345fe6b4aa2cabc25877953c73b22172777b5a6f25b406d49acaa586a0",
+      "plan_id": "3d212db3-74f1-451a-b822-31adae0b4b4b",
+      "target_order": [
+        "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+        "sha256:a85819549a69210934d31e3fa4a0ba4e01f1f456bc86b32a480a29c5b18aec91"
+      ],
+      "planning_seconds": 0.002541084,
+      "plan_invocation": {
+        "command": [
+          "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/frozen-tools/zkfDO-9a8bb031-debug",
+          "experiment",
+          "plan",
+          "--prepared",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/prepared.json",
+          "--strategy",
+          "small-first",
+          "--config",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/configs/static-ranking.json",
+          "--output",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/02-small-first/plan.json"
+        ],
+        "started_at_utc": "2026-09-20T10:15:58.696026+00:00",
+        "finished_at_utc": "2026-09-20T10:15:58.703279+00:00",
+        "wall_seconds": 0.007253415999002755,
+        "exit_code": 0,
+        "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/02-small-first/plan.stdout.json",
+        "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/02-small-first/plan.stderr.log"
+      },
+      "run_invocation": {
+        "command": [
+          "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/frozen-tools/zkfDO-9a8bb031-debug",
+          "experiment",
+          "run",
+          "--plan",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/02-small-first/plan.json",
+          "--zkfuzz-bin",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkFuzz/target/release/zkfuzz",
+          "--budget-seconds",
+          "30",
+          "--total-budget-seconds",
+          "60",
+          "--zkfuzz-seed",
+          "2026091908",
+          "--output",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/02-small-first/raw"
+        ],
+        "started_at_utc": "2026-09-20T10:15:58.703502+00:00",
+        "finished_at_utc": "2026-09-20T10:15:59.756042+00:00",
+        "wall_seconds": 1.0525766249920707,
+        "exit_code": 0,
+        "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/02-small-first/run.stdout.json",
+        "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/02-small-first/run.stderr.log"
+      },
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/02-small-first/raw/execution-3f0b53bb-4122-4c27-a1ec-4049b430c267/outcome.json",
+      "outcome_sha256": "de8e5c1bea2106cba06c9061f9067bf243840e0e6bc6f1c11161b71fbc7dcf33",
+      "scheduler_summary_files": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/02-small-first/raw/execution-3f0b53bb-4122-4c27-a1ec-4049b430c267/9218f00e-bbd0-4dcb-829c-4086f93f64ac/summary.json",
+          "sha256": "aa46d5845e0a7da8a7427496fef285977c934c4cacd44274c3b48aa2b5dbcd81"
+        }
+      ],
+      "scheduler_elapsed_seconds": 0.848911125,
+      "scheduler_run_statuses": [
+        "bug_found",
+        "no_counterexample"
+      ],
+      "scheduler_failure_count": 0,
+      "not_started_count": 0,
+      "backend_candidate_count": 1,
+      "status": "outcome_saved_and_link_verified"
+    },
+    {
+      "position": 3,
+      "strategy": "risk-only",
+      "ranking_seed": null,
+      "execution_seed": 2026091908,
+      "plan_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/03-risk-only/plan.json",
+      "plan_sha256": "9dd6a0d8e2dcb27c11690834c1170ed2399814501231062e6b7240aeecd0ff12",
+      "plan_id": "34cf81d1-5e99-4af4-aa9a-82f6c2c75ecb",
+      "target_order": [
+        "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+        "sha256:a85819549a69210934d31e3fa4a0ba4e01f1f456bc86b32a480a29c5b18aec91"
+      ],
+      "planning_seconds": 0.002653042,
+      "plan_invocation": {
+        "command": [
+          "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/frozen-tools/zkfDO-9a8bb031-debug",
+          "experiment",
+          "plan",
+          "--prepared",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/prepared.json",
+          "--strategy",
+          "risk-only",
+          "--config",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/configs/static-ranking.json",
+          "--output",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/03-risk-only/plan.json"
+        ],
+        "started_at_utc": "2026-09-20T10:15:59.913991+00:00",
+        "finished_at_utc": "2026-09-20T10:15:59.921869+00:00",
+        "wall_seconds": 0.007880874996772036,
+        "exit_code": 0,
+        "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/03-risk-only/plan.stdout.json",
+        "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/03-risk-only/plan.stderr.log"
+      },
+      "run_invocation": {
+        "command": [
+          "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/frozen-tools/zkfDO-9a8bb031-debug",
+          "experiment",
+          "run",
+          "--plan",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/03-risk-only/plan.json",
+          "--zkfuzz-bin",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkFuzz/target/release/zkfuzz",
+          "--budget-seconds",
+          "30",
+          "--total-budget-seconds",
+          "60",
+          "--zkfuzz-seed",
+          "2026091908",
+          "--output",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/03-risk-only/raw"
+        ],
+        "started_at_utc": "2026-09-20T10:15:59.922211+00:00",
+        "finished_at_utc": "2026-09-20T10:16:00.998611+00:00",
+        "wall_seconds": 1.07642945900443,
+        "exit_code": 0,
+        "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/03-risk-only/run.stdout.json",
+        "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/03-risk-only/run.stderr.log"
+      },
+      "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/03-risk-only/raw/execution-0d365f85-b26b-43fa-bd0a-128a4db7986a/outcome.json",
+      "outcome_sha256": "34294ff3045696f8d901ebd5d897bfb09defdca2ab7fca07775477e608f440e5",
+      "scheduler_summary_files": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/block-08/attempt-01/03-risk-only/raw/execution-0d365f85-b26b-43fa-bd0a-128a4db7986a/46256ab8-f69d-4ed3-b3db-c9af31ca2be2/summary.json",
+          "sha256": "00e19fe75ccfbf1ebe081a67fb590e3ab678f47b4b3c88e72ab4fd774280e682"
+        }
+      ],
+      "scheduler_elapsed_seconds": 0.853918833,
+      "scheduler_run_statuses": [
+        "bug_found",
+        "no_counterexample"
+      ],
+      "scheduler_failure_count": 0,
+      "not_started_count": 0,
+      "backend_candidate_count": 1,
+      "status": "outcome_saved_and_link_verified"
+    }
+  ],
+  "finished_at_utc": "2026-09-20T10:16:01.000597+00:00"
+}

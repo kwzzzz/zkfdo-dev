@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "checked_at_utc": "2026-09-15T12:39:24Z",
+  "baseline": "preservation-before.json",
+  "baseline_entries": 1254,
+  "all_baseline_files_unchanged": true,
+  "missing": [],
+  "changed": [],
+  "scope": "Files inventoried before the Add32Bits source retrieval and component check; newly created evidence files are not baseline entries."
+}

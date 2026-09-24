@@ -1,0 +1,101 @@
+{
+  "sha": "e5e756375fc1fc8dc48667b00cdf38c79a0fdf50",
+  "node_id": "C_kwDOL3dhY9oAKGU1ZTc1NjM3NWZjMWZjOGRjNDg2NjdiMDBjZGYzOGM3OWEwZmRmNTA",
+  "commit": {
+    "author": {
+      "name": "Adhiraj Singh",
+      "email": "adhirajsingh1001@gmail.com",
+      "date": "2023-08-04T06:05:47Z"
+    },
+    "committer": {
+      "name": "Adhiraj Singh",
+      "email": "adhirajsingh1001@gmail.com",
+      "date": "2023-08-04T06:05:47Z"
+    },
+    "message": "fix: rotateleft circuit security",
+    "tree": {
+      "sha": "3fcca343bcb633a1e0b714829accceea607d2444",
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/trees/3fcca343bcb633a1e0b714829accceea607d2444"
+    },
+    "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/git/commits/e5e756375fc1fc8dc48667b00cdf38c79a0fdf50",
+    "comment_count": 0,
+    "verification": {
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
+    }
+  },
+  "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/commits/e5e756375fc1fc8dc48667b00cdf38c79a0fdf50",
+  "html_url": "https://github.com/reclaim-1/circom-chacha20/commit/e5e756375fc1fc8dc48667b00cdf38c79a0fdf50",
+  "comments_url": "https://api.github.com/repos/reclaim-1/circom-chacha20/commits/e5e756375fc1fc8dc48667b00cdf38c79a0fdf50/comments",
+  "author": {
+    "login": "adiwajshing",
+    "id": 8328864,
+    "node_id": "MDQ6VXNlcjgzMjg4NjQ=",
+    "avatar_url": "https://avatars.githubusercontent.com/u/8328864?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/adiwajshing",
+    "html_url": "https://github.com/adiwajshing",
+    "followers_url": "https://api.github.com/users/adiwajshing/followers",
+    "following_url": "https://api.github.com/users/adiwajshing/following{/other_user}",
+    "gists_url": "https://api.github.com/users/adiwajshing/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/adiwajshing/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/adiwajshing/subscriptions",
+    "organizations_url": "https://api.github.com/users/adiwajshing/orgs",
+    "repos_url": "https://api.github.com/users/adiwajshing/repos",
+    "events_url": "https://api.github.com/users/adiwajshing/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/adiwajshing/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "committer": {
+    "login": "adiwajshing",
+    "id": 8328864,
+    "node_id": "MDQ6VXNlcjgzMjg4NjQ=",
+    "avatar_url": "https://avatars.githubusercontent.com/u/8328864?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/adiwajshing",
+    "html_url": "https://github.com/adiwajshing",
+    "followers_url": "https://api.github.com/users/adiwajshing/followers",
+    "following_url": "https://api.github.com/users/adiwajshing/following{/other_user}",
+    "gists_url": "https://api.github.com/users/adiwajshing/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/adiwajshing/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/adiwajshing/subscriptions",
+    "organizations_url": "https://api.github.com/users/adiwajshing/orgs",
+    "repos_url": "https://api.github.com/users/adiwajshing/repos",
+    "events_url": "https://api.github.com/users/adiwajshing/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/adiwajshing/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "parents": [
+    {
+      "sha": "ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "url": "https://api.github.com/repos/reclaim-1/circom-chacha20/commits/ef9f5a5ad899d852740a26b30eabe5765673c71f",
+      "html_url": "https://github.com/reclaim-1/circom-chacha20/commit/ef9f5a5ad899d852740a26b30eabe5765673c71f"
+    }
+  ],
+  "stats": {
+    "total": 19,
+    "additions": 16,
+    "deletions": 3
+  },
+  "files": [
+    {
+      "sha": "6ba242c7a21ab49f759c6eac8035bc5a5df41342",
+      "filename": "circuits/generics.circom",
+      "status": "modified",
+      "additions": 16,
+      "deletions": 3,
+      "changes": 19,
+      "blob_url": "https://github.com/reclaim-1/circom-chacha20/blob/e5e756375fc1fc8dc48667b00cdf38c79a0fdf50/circuits%2Fgenerics.circom",
+      "raw_url": "https://github.com/reclaim-1/circom-chacha20/raw/e5e756375fc1fc8dc48667b00cdf38c79a0fdf50/circuits%2Fgenerics.circom",
+      "contents_url": "https://api.github.com/repos/reclaim-1/circom-chacha20/contents/circuits%2Fgenerics.circom?ref=e5e756375fc1fc8dc48667b00cdf38c79a0fdf50",
+      "patch": "@@ -35,14 +35,27 @@ template Add32Bits() {\n /**\n  * Rotate left a 32-bit integer by L bits\n  * Note: \"in\" must already be a constrained 32-bit integer\n+ * \n  */\n template RotateLeft32Bits(L) {\n \tsignal input in;\n \tsignal output out;\n-\tsignal part1 <-- (in << L) & 0xFFFFFFFF;\n-\tsignal part2 <-- in >> (32 - L);\n+\t// get the most significant L bits\n+\t// and shift them to the least significant L bits\n+\t// eg. if L = 3, and instead of 32 bits it's 10 bits,\n+\t// in = 0101011001, then part1 = 010\n+\tsignal part1 <-- in >> (32 - L);\n+\t// get the least significant 32 - L bits\n+\t// from the above example,\n+\t// in = 0101011001, part1 = 010,\n+\t// tmp = part1 * 2**(32 - L) = 0100000000\n+\t// part2Tmp = in - tmp = 0101011001 - 0100000000 = 0001011001\n+\t// part2 = part2Tmp * 2**L = 01011001000\n+\tsignal part2 <== (in - (part1 * 2**(32 - L))) * 2**L;\n+\t// now, the rotated number is simply part1 + part2\n \tout <== part1 + part2;\n-\t(part1 / 2**L) + (part2 * 2**(32-L)) === in;\n+\t// constraint to ensure that the rotation is correct\n+\t(part2 / 2**L) + (part1 * 2**(32-L)) === in;\n }\n \n /**"
+    }
+  ]
+}

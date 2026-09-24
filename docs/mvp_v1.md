@@ -103,11 +103,13 @@ The constant `1` prevents division by zero and keeps tiny files stable.
 - Unit or integration tests cover scanner, feature extraction, ranking, and CLI smoke behavior.
 - `cargo fmt`, `cargo clippy --all-targets --all-features -- -D warnings`, and `cargo test` pass.
 
-## Next Milestones
+## Post-Milestone Progress
 
-After this milestone works, the next useful milestones are:
+Completed after this milestone:
 
-1. Add budget-aware scheduling from ranked targets.
-2. Add real zkFuzz subprocess execution with timeout handling.
-3. Persist ranking and run results as CSV or SQLite.
-4. Compare ranking strategies against random, small-first, and large-first baselines.
+1. Real zkFuzz subprocess execution with timeout handling.
+2. Uniform per-target budget scheduling and experiment summaries.
+3. Semantic discovery of concrete, reachable template instantiations for a supported Circom subset.
+4. Standalone wrapper generation and optional `circom --inspect` validation.
+
+The current scheduler still consumes file-level scan results. The next integration milestone is to feed successfully validated wrappers into runner/scheduler experiments before comparing random, small-first, static-rank, and adaptive allocation strategies.

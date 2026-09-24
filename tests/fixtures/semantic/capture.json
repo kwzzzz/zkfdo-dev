@@ -1,0 +1,20 @@
+{
+  "tool_version": "0.9.0",
+  "tool_revision": "ece9efe0a21e6c422a43ab6f2e1c0ce99678013b",
+  "curve": "BN254",
+  "exit_code": 1,
+  "timed_out": false,
+  "elapsed_seconds": 0.02562762500019744,
+  "command": [
+    "__REPO_ROOT__/.external/circomspect/target/release/circomspect",
+    "--level",
+    "INFO",
+    "--verbose",
+    "--curve",
+    "BN254",
+    "--sarif-file",
+    "__REPO_ROOT__/tests/fixtures/semantic/actual.sarif",
+    "__REPO_ROOT__/tests/fixtures/semantic/cases.circom"
+  ],
+  "relocation": "Only fixture root path replaced with __FIXTURE_ROOT__; source and diagnostic contents unchanged."
+}

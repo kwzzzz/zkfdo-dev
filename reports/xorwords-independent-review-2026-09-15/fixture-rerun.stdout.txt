@@ -1,0 +1,3 @@
+Verified 16 checksums; candidate assignment, flag, seed and generation match.
+Direct-fixture witness equations hold; expected XOR = 7; out = p - 17179770361.
+Scope: wrapper-only. Original-project source, reachability and proof are unverified.

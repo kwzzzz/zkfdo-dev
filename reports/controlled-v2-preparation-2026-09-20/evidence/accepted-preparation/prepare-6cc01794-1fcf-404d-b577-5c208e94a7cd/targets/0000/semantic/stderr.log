@@ -1,0 +1,39 @@
+ DEBUG circomspect_program_structure::control_flow_graph::lifting > building CFG for template `SetMembership`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg     > propagating variable types for `SetMembership`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg     > computing variable use for `SetMembership`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg     > converting `SetMembership` CFG to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input element` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input set[length]` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal diffs[length]` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal product[(length + 1)]` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `product <== update(product, [0], element)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `var i` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i = 0` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i = φ(i.0)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `if (i < length) then 2 else 3` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `diffs <== update(diffs, [i], (access(set, [i]) - element))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `product <== update(product, [(i + 1)], (access(product, [i]) * access(diffs, [i])))` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `i = (i + 1)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `access(product, [length]) === 0` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `SetMembership`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating constant values for `SetMembership`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating expression degrees for `SetMembership`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `SetMembership`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 0: (predecessors: {}, successors: {1})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input element
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input set[length.0]
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal diffs[length.0]
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal product[(length.0 + 1)]
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     product <== update(product, [0], element)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     var i.2, i.0, i.1
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i.0 = 0
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 1: (predecessors: {2, 0}, successors: {2, 3})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i.1 = φ(i.0, i.2)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     if (i.1 < length.0) then 2 else 3
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 2: (predecessors: {1}, successors: {1})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     diffs <== update(diffs, [i.1], (access(set, [i.1]) - element))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     product <== update(product, [(i.1 + 1)], (access(product, [i.1]) * access(diffs, [i.1])))
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     i.2 = (i.1 + 1)
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 3: (predecessors: {1}, successors: {})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     access(product, [length.0]) === 0
+ TRACE circomspect_program_analysis::analysis_runner               > successfully lifted template `SetMembership`

@@ -1,0 +1,653 @@
+{
+  "schema_version": 1,
+  "status": "complete_all_36_runs_and_candidate_reviews",
+  "protocol_path": "docs/controlled_v1_1_execution_protocol.md",
+  "protocol_sha256": "a41ef6f9e75c536477d4f87510a2d043a0a5982b920a8f60519c38d9bcf8dff2",
+  "campaign_ledger_path": "runs/controlled-v1.1/campaigns/campaign-20260920T101530Z/campaign.json",
+  "campaign_ledger_sha256": "86bbfbf1d1088f60f8ab4c5c3eca1a4623a6c97bcb240e7577e971a05f523018",
+  "candidate_review_path": "reports/controlled-v1.1-execution-2026-09-20/candidate-review.json",
+  "candidate_review_sha256": "65439c22ac466c665bcf81f03c4cd48e3efd1b8443ca1e63edbd372579b2abff",
+  "evaluation_index_path": "reports/controlled-v1.1-execution-2026-09-20/evaluation-index.json",
+  "evaluation_index_sha256": "ab35d4dadf26c4a380b589139c364843d07168aafe16710332fddbda1fb83912",
+  "analysis_horizon_seconds": 60.0,
+  "execution_integrity": {
+    "paired_blocks": 12,
+    "strategy_executions": 36,
+    "valid_first_attempt_blocks": 12,
+    "campaign_invalid_attempts": 0,
+    "missing_plans": 0,
+    "missing_outcomes": 0,
+    "run_target_link_failures": 0,
+    "random_order_split": {
+      "fixed-first": 6,
+      "vulnerable-first": 6
+    }
+  },
+  "adjudication": {
+    "backend_candidate_count": 36,
+    "validated": 36,
+    "rejected": 0,
+    "unresolved": 0,
+    "unreviewed": 0,
+    "unique_original_component_root_causes_in_campaign": 1,
+    "confirmed_project_defect_count": 0
+  },
+  "strategy_results": {
+    "risk-only": {
+      "paired_block_count": 12,
+      "valid_discovery_blocks": 12,
+      "discovery_proportion": 1.0,
+      "wilson_95_interval": [
+        0.7575059933447592,
+        1.0
+      ],
+      "unique_root_causes_per_block": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "mean_unique_root_causes_by_budget": 1.0,
+      "median_unique_root_causes_by_budget": 1.0,
+      "campaign_level_unique_root_causes": 1,
+      "completion_time_upper_bounds_by_block_seconds": [
+        0.035626375,
+        0.033434209,
+        0.033467,
+        0.028741041,
+        0.032491375,
+        0.033275875,
+        0.02961,
+        0.033596875,
+        0.033401625,
+        0.033185459,
+        0.032623375,
+        0.032244625
+      ],
+      "completion_time_summary": {
+        "count": 12,
+        "sum_seconds": 0.391697834,
+        "mean_seconds": 0.032641486166666664,
+        "median_seconds": 0.033230667000000005,
+        "minimum_seconds": 0.028741041,
+        "maximum_seconds": 0.035626375
+      },
+      "kaplan_meier": {
+        "curve": [
+          {
+            "time_seconds": 0.028741041,
+            "events": 1,
+            "survival_probability": 0.9166666666666666,
+            "mean_cumulative_unique_root_causes": 0.08333333333333337
+          },
+          {
+            "time_seconds": 0.02961,
+            "events": 1,
+            "survival_probability": 0.8333333333333333,
+            "mean_cumulative_unique_root_causes": 0.16666666666666674
+          },
+          {
+            "time_seconds": 0.032244625,
+            "events": 1,
+            "survival_probability": 0.75,
+            "mean_cumulative_unique_root_causes": 0.25
+          },
+          {
+            "time_seconds": 0.032491375,
+            "events": 1,
+            "survival_probability": 0.6666666666666666,
+            "mean_cumulative_unique_root_causes": 0.33333333333333337
+          },
+          {
+            "time_seconds": 0.032623375,
+            "events": 1,
+            "survival_probability": 0.5833333333333333,
+            "mean_cumulative_unique_root_causes": 0.41666666666666674
+          },
+          {
+            "time_seconds": 0.033185459,
+            "events": 1,
+            "survival_probability": 0.5,
+            "mean_cumulative_unique_root_causes": 0.5
+          },
+          {
+            "time_seconds": 0.033275875,
+            "events": 1,
+            "survival_probability": 0.4166666666666667,
+            "mean_cumulative_unique_root_causes": 0.5833333333333333
+          },
+          {
+            "time_seconds": 0.033401625,
+            "events": 1,
+            "survival_probability": 0.33333333333333337,
+            "mean_cumulative_unique_root_causes": 0.6666666666666666
+          },
+          {
+            "time_seconds": 0.033434209,
+            "events": 1,
+            "survival_probability": 0.25,
+            "mean_cumulative_unique_root_causes": 0.75
+          },
+          {
+            "time_seconds": 0.033467,
+            "events": 1,
+            "survival_probability": 0.16666666666666669,
+            "mean_cumulative_unique_root_causes": 0.8333333333333333
+          },
+          {
+            "time_seconds": 0.033596875,
+            "events": 1,
+            "survival_probability": 0.08333333333333334,
+            "mean_cumulative_unique_root_causes": 0.9166666666666666
+          },
+          {
+            "time_seconds": 0.035626375,
+            "events": 1,
+            "survival_probability": 0.0,
+            "mean_cumulative_unique_root_causes": 1.0
+          }
+        ],
+        "median_seconds": 0.033185459,
+        "restricted_mean_0_60_seconds": 0.032641486166666664
+      },
+      "backend_status_counts": {
+        "bug_found": 12,
+        "no_counterexample": 12
+      },
+      "backend_candidate_count": 12,
+      "adjudication_counts": {
+        "validated": 12,
+        "rejected": 0,
+        "unresolved": 0,
+        "unreviewed": 0
+      },
+      "post_budget_completion_count": 0,
+      "planning_cost": {
+        "count": 12,
+        "sum_seconds": 0.03384671,
+        "mean_seconds": 0.002820559166666667,
+        "median_seconds": 0.0027164165,
+        "minimum_seconds": 0.002354292,
+        "maximum_seconds": 0.003621167
+      },
+      "scheduler_cost": {
+        "count": 12,
+        "sum_seconds": 10.049986626,
+        "mean_seconds": 0.8374988855,
+        "median_seconds": 0.8461674375,
+        "minimum_seconds": 0.794315416,
+        "maximum_seconds": 0.876755084
+      },
+      "evaluation_cost": {
+        "count": 12,
+        "sum_seconds": 0.055444707999999995,
+        "mean_seconds": 0.004620392333333333,
+        "median_seconds": 0.0045605415,
+        "minimum_seconds": 0.004287625,
+        "maximum_seconds": 0.005896625
+      }
+    },
+    "random": {
+      "paired_block_count": 12,
+      "valid_discovery_blocks": 12,
+      "discovery_proportion": 1.0,
+      "wilson_95_interval": [
+        0.7575059933447592,
+        1.0
+      ],
+      "unique_root_causes_per_block": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "mean_unique_root_causes_by_budget": 1.0,
+      "median_unique_root_causes_by_budget": 1.0,
+      "campaign_level_unique_root_causes": 1,
+      "completion_time_upper_bounds_by_block_seconds": [
+        0.815273458,
+        0.786926208,
+        0.82352075,
+        0.794492083,
+        0.033280083,
+        0.033774833,
+        0.823006458,
+        0.033360583,
+        0.033061,
+        0.838348208,
+        0.033187208,
+        0.031689916
+      ],
+      "completion_time_summary": {
+        "count": 12,
+        "sum_seconds": 5.079920788,
+        "mean_seconds": 0.42332673233333334,
+        "median_seconds": 0.4103505205,
+        "minimum_seconds": 0.031689916,
+        "maximum_seconds": 0.838348208
+      },
+      "kaplan_meier": {
+        "curve": [
+          {
+            "time_seconds": 0.031689916,
+            "events": 1,
+            "survival_probability": 0.9166666666666666,
+            "mean_cumulative_unique_root_causes": 0.08333333333333337
+          },
+          {
+            "time_seconds": 0.033061,
+            "events": 1,
+            "survival_probability": 0.8333333333333333,
+            "mean_cumulative_unique_root_causes": 0.16666666666666674
+          },
+          {
+            "time_seconds": 0.033187208,
+            "events": 1,
+            "survival_probability": 0.75,
+            "mean_cumulative_unique_root_causes": 0.25
+          },
+          {
+            "time_seconds": 0.033280083,
+            "events": 1,
+            "survival_probability": 0.6666666666666666,
+            "mean_cumulative_unique_root_causes": 0.33333333333333337
+          },
+          {
+            "time_seconds": 0.033360583,
+            "events": 1,
+            "survival_probability": 0.5833333333333333,
+            "mean_cumulative_unique_root_causes": 0.41666666666666674
+          },
+          {
+            "time_seconds": 0.033774833,
+            "events": 1,
+            "survival_probability": 0.5,
+            "mean_cumulative_unique_root_causes": 0.5
+          },
+          {
+            "time_seconds": 0.786926208,
+            "events": 1,
+            "survival_probability": 0.4166666666666667,
+            "mean_cumulative_unique_root_causes": 0.5833333333333333
+          },
+          {
+            "time_seconds": 0.794492083,
+            "events": 1,
+            "survival_probability": 0.33333333333333337,
+            "mean_cumulative_unique_root_causes": 0.6666666666666666
+          },
+          {
+            "time_seconds": 0.815273458,
+            "events": 1,
+            "survival_probability": 0.25,
+            "mean_cumulative_unique_root_causes": 0.75
+          },
+          {
+            "time_seconds": 0.823006458,
+            "events": 1,
+            "survival_probability": 0.16666666666666669,
+            "mean_cumulative_unique_root_causes": 0.8333333333333333
+          },
+          {
+            "time_seconds": 0.82352075,
+            "events": 1,
+            "survival_probability": 0.08333333333333334,
+            "mean_cumulative_unique_root_causes": 0.9166666666666666
+          },
+          {
+            "time_seconds": 0.838348208,
+            "events": 1,
+            "survival_probability": 0.0,
+            "mean_cumulative_unique_root_causes": 1.0
+          }
+        ],
+        "median_seconds": 0.033774833,
+        "restricted_mean_0_60_seconds": 0.4233267323333334
+      },
+      "backend_status_counts": {
+        "no_counterexample": 12,
+        "bug_found": 12
+      },
+      "backend_candidate_count": 12,
+      "adjudication_counts": {
+        "validated": 12,
+        "rejected": 0,
+        "unresolved": 0,
+        "unreviewed": 0
+      },
+      "post_budget_completion_count": 0,
+      "planning_cost": {
+        "count": 12,
+        "sum_seconds": 0.032085791,
+        "mean_seconds": 0.0026738159166666666,
+        "median_seconds": 0.0026215624999999998,
+        "minimum_seconds": 0.002382708,
+        "maximum_seconds": 0.003093041
+      },
+      "scheduler_cost": {
+        "count": 12,
+        "sum_seconds": 10.039833832,
+        "mean_seconds": 0.8366528193333334,
+        "median_seconds": 0.830940604,
+        "minimum_seconds": 0.786930208,
+        "maximum_seconds": 0.911254291
+      },
+      "evaluation_cost": {
+        "count": 12,
+        "sum_seconds": 0.056587332,
+        "mean_seconds": 0.004715611,
+        "median_seconds": 0.0046186249999999995,
+        "minimum_seconds": 0.004252125,
+        "maximum_seconds": 0.005468791
+      }
+    },
+    "small-first": {
+      "paired_block_count": 12,
+      "valid_discovery_blocks": 12,
+      "discovery_proportion": 1.0,
+      "wilson_95_interval": [
+        0.7575059933447592,
+        1.0
+      ],
+      "unique_root_causes_per_block": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "mean_unique_root_causes_by_budget": 1.0,
+      "median_unique_root_causes_by_budget": 1.0,
+      "campaign_level_unique_root_causes": 1,
+      "completion_time_upper_bounds_by_block_seconds": [
+        0.029905917,
+        0.031945792,
+        0.032981375,
+        0.028386625,
+        0.032540917,
+        0.031680375,
+        0.032805,
+        0.02882675,
+        0.03217525,
+        0.030303625,
+        0.031799625,
+        0.031995625
+      ],
+      "completion_time_summary": {
+        "count": 12,
+        "sum_seconds": 0.375346876,
+        "mean_seconds": 0.031278906333333335,
+        "median_seconds": 0.0318727085,
+        "minimum_seconds": 0.028386625,
+        "maximum_seconds": 0.032981375
+      },
+      "kaplan_meier": {
+        "curve": [
+          {
+            "time_seconds": 0.028386625,
+            "events": 1,
+            "survival_probability": 0.9166666666666666,
+            "mean_cumulative_unique_root_causes": 0.08333333333333337
+          },
+          {
+            "time_seconds": 0.02882675,
+            "events": 1,
+            "survival_probability": 0.8333333333333333,
+            "mean_cumulative_unique_root_causes": 0.16666666666666674
+          },
+          {
+            "time_seconds": 0.029905917,
+            "events": 1,
+            "survival_probability": 0.75,
+            "mean_cumulative_unique_root_causes": 0.25
+          },
+          {
+            "time_seconds": 0.030303625,
+            "events": 1,
+            "survival_probability": 0.6666666666666666,
+            "mean_cumulative_unique_root_causes": 0.33333333333333337
+          },
+          {
+            "time_seconds": 0.031680375,
+            "events": 1,
+            "survival_probability": 0.5833333333333333,
+            "mean_cumulative_unique_root_causes": 0.41666666666666674
+          },
+          {
+            "time_seconds": 0.031799625,
+            "events": 1,
+            "survival_probability": 0.5,
+            "mean_cumulative_unique_root_causes": 0.5
+          },
+          {
+            "time_seconds": 0.031945792,
+            "events": 1,
+            "survival_probability": 0.4166666666666667,
+            "mean_cumulative_unique_root_causes": 0.5833333333333333
+          },
+          {
+            "time_seconds": 0.031995625,
+            "events": 1,
+            "survival_probability": 0.33333333333333337,
+            "mean_cumulative_unique_root_causes": 0.6666666666666666
+          },
+          {
+            "time_seconds": 0.03217525,
+            "events": 1,
+            "survival_probability": 0.25,
+            "mean_cumulative_unique_root_causes": 0.75
+          },
+          {
+            "time_seconds": 0.032540917,
+            "events": 1,
+            "survival_probability": 0.16666666666666669,
+            "mean_cumulative_unique_root_causes": 0.8333333333333333
+          },
+          {
+            "time_seconds": 0.032805,
+            "events": 1,
+            "survival_probability": 0.08333333333333334,
+            "mean_cumulative_unique_root_causes": 0.9166666666666666
+          },
+          {
+            "time_seconds": 0.032981375,
+            "events": 1,
+            "survival_probability": 0.0,
+            "mean_cumulative_unique_root_causes": 1.0
+          }
+        ],
+        "median_seconds": 0.031799625,
+        "restricted_mean_0_60_seconds": 0.031278906333333335
+      },
+      "backend_status_counts": {
+        "bug_found": 12,
+        "no_counterexample": 12
+      },
+      "backend_candidate_count": 12,
+      "adjudication_counts": {
+        "validated": 12,
+        "rejected": 0,
+        "unresolved": 0,
+        "unreviewed": 0
+      },
+      "post_budget_completion_count": 0,
+      "planning_cost": {
+        "count": 12,
+        "sum_seconds": 0.032065333,
+        "mean_seconds": 0.0026721110833333333,
+        "median_seconds": 0.0026881245,
+        "minimum_seconds": 0.002541084,
+        "maximum_seconds": 0.002790958
+      },
+      "scheduler_cost": {
+        "count": 12,
+        "sum_seconds": 10.061170712000001,
+        "mean_seconds": 0.8384308926666667,
+        "median_seconds": 0.827421813,
+        "minimum_seconds": 0.786848292,
+        "maximum_seconds": 0.924109375
+      },
+      "evaluation_cost": {
+        "count": 12,
+        "sum_seconds": 0.05388071,
+        "mean_seconds": 0.004490059166666667,
+        "median_seconds": 0.004414854,
+        "minimum_seconds": 0.00405375,
+        "maximum_seconds": 0.005178459
+      }
+    }
+  },
+  "paired_comparisons": [
+    {
+      "comparison": "risk-only_vs_random",
+      "paired_discovery_proportion_difference": 0.0,
+      "mcnemar": {
+        "left_only": 0,
+        "right_only": 0,
+        "discordant_pairs": 0,
+        "exact_two_sided_p_value": 1.0
+      },
+      "risk_only_minus_comparator_restricted_mean_seconds": -0.39068524616666667,
+      "paired_bootstrap_95_interval_seconds": [
+        -0.5925101852458333,
+        -0.19249932251666665
+      ],
+      "bootstrap_replicates": 10000,
+      "bootstrap_seed": 2026100101,
+      "holm_adjusted_mcnemar_p_value": 1.0
+    },
+    {
+      "comparison": "risk-only_vs_small-first",
+      "paired_discovery_proportion_difference": 0.0,
+      "mcnemar": {
+        "left_only": 0,
+        "right_only": 0,
+        "discordant_pairs": 0,
+        "exact_two_sided_p_value": 1.0
+      },
+      "risk_only_minus_comparator_restricted_mean_seconds": 0.0013625798333333286,
+      "paired_bootstrap_95_interval_seconds": [
+        0.0001406594937499985,
+        0.0026391104520833296
+      ],
+      "bootstrap_replicates": 10000,
+      "bootstrap_seed": 2026100101,
+      "holm_adjusted_mcnemar_p_value": 1.0
+    }
+  ],
+  "costs": {
+    "shared_preparation_seconds": 1.876862458,
+    "campaign_wall_seconds": 46.522902,
+    "planning_by_strategy": {
+      "risk-only": {
+        "count": 12,
+        "sum_seconds": 0.03384671,
+        "mean_seconds": 0.002820559166666667,
+        "median_seconds": 0.0027164165,
+        "minimum_seconds": 0.002354292,
+        "maximum_seconds": 0.003621167
+      },
+      "random": {
+        "count": 12,
+        "sum_seconds": 0.032085791,
+        "mean_seconds": 0.0026738159166666666,
+        "median_seconds": 0.0026215624999999998,
+        "minimum_seconds": 0.002382708,
+        "maximum_seconds": 0.003093041
+      },
+      "small-first": {
+        "count": 12,
+        "sum_seconds": 0.032065333,
+        "mean_seconds": 0.0026721110833333333,
+        "median_seconds": 0.0026881245,
+        "minimum_seconds": 0.002541084,
+        "maximum_seconds": 0.002790958
+      }
+    },
+    "scheduler_by_strategy": {
+      "risk-only": {
+        "count": 12,
+        "sum_seconds": 10.049986626,
+        "mean_seconds": 0.8374988855,
+        "median_seconds": 0.8461674375,
+        "minimum_seconds": 0.794315416,
+        "maximum_seconds": 0.876755084
+      },
+      "random": {
+        "count": 12,
+        "sum_seconds": 10.039833832,
+        "mean_seconds": 0.8366528193333334,
+        "median_seconds": 0.830940604,
+        "minimum_seconds": 0.786930208,
+        "maximum_seconds": 0.911254291
+      },
+      "small-first": {
+        "count": 12,
+        "sum_seconds": 10.061170712000001,
+        "mean_seconds": 0.8384308926666667,
+        "median_seconds": 0.827421813,
+        "minimum_seconds": 0.786848292,
+        "maximum_seconds": 0.924109375
+      }
+    },
+    "post_hoc_candidate_review_automated_seconds": 0.03299095798865892,
+    "post_hoc_candidate_review_manual_seconds": null,
+    "evaluation_by_strategy": {
+      "risk-only": {
+        "count": 12,
+        "sum_seconds": 0.055444707999999995,
+        "mean_seconds": 0.004620392333333333,
+        "median_seconds": 0.0045605415,
+        "minimum_seconds": 0.004287625,
+        "maximum_seconds": 0.005896625
+      },
+      "random": {
+        "count": 12,
+        "sum_seconds": 0.056587332,
+        "mean_seconds": 0.004715611,
+        "median_seconds": 0.0046186249999999995,
+        "minimum_seconds": 0.004252125,
+        "maximum_seconds": 0.005468791
+      },
+      "small-first": {
+        "count": 12,
+        "sum_seconds": 0.05388071,
+        "mean_seconds": 0.004490059166666667,
+        "median_seconds": 0.004414854,
+        "minimum_seconds": 0.00405375,
+        "maximum_seconds": 0.005178459
+      }
+    },
+    "evaluation_driver_wall_seconds": 0.3703931250202004
+  },
+  "interpretation": [
+    "Every strategy produced a validated original-component candidate in every block; the campaign contains one repeated root cause, not 36 independent defects.",
+    "Risk-only and small-first used the same target order, so their timing difference is execution/system variation rather than evidence of a ranking-algorithm effect.",
+    "Random used vulnerable-first in six blocks and fixed-first in six blocks; its aggregate timing therefore reflects the frozen order randomization in this one-pair controlled set.",
+    "The result is a controlled order-effect regression for one defect pair and does not establish multi-project performance or project-context impact.",
+    "Static risk scores were not counted as discoveries; all events come from linked bug_found runs and completed three-criterion reviews."
+  ]
+}

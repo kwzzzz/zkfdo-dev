@@ -1,0 +1,401 @@
+{
+  "schema_version": 1,
+  "report_kind": "controlled-static-regression",
+  "question": "What differences do the current zkfDO static ranking signals show between the frozen vulnerable and fixed Subtract variants?",
+  "created_at_utc": "2026-09-19T05:56:26.845966+00:00",
+  "status": {
+    "static_preparation_and_analysis": "complete",
+    "fuzzing": "not_run",
+    "counterexample_witness_proof_evaluation": "not_run",
+    "execution_discovery_count": null,
+    "execution_discovery_time_seconds": null
+  },
+  "conclusion": "static_signals_distinguish_pair",
+  "freeze": {
+    "config_path": "reports/controlled-v1-static-regression/run-config.json",
+    "config_sha256": "a721084a096349b60f62e59cb5fb010f0f19bc126a0be993d4977d0ea3bbc532",
+    "frozen_before_analysis": true,
+    "rules_or_weights_changed_after_results": false,
+    "input_sources_changed": false
+  },
+  "analyzer": {
+    "name": "Circomspect",
+    "version": "0.9.0",
+    "source_revision": "ece9efe0a21e6c422a43ab6f2e1c0ce99678013b",
+    "binary_path": "/Users/miiz/Desktop/kwzzzz_zkfr/.external/circomspect/target/release/circomspect",
+    "binary_sha256": "6acebb5f1c00fd3823e96388cb322cd29bd516f8bacecf855fee5652431c3590",
+    "curve": "BN254",
+    "required_rule_ids": [
+      "CS0013",
+      "CS0014",
+      "CS0015",
+      "CS0017",
+      "CS0018"
+    ],
+    "risk_rule": "sum of five complete binary rule-existence features",
+    "warning_count_rule": "deduplicated in-scope diagnostics from the same five rules",
+    "timeout_seconds": 60
+  },
+  "scoring_contract": {
+    "semantic_risk": "sum of complete binary existence features for CS0013, CS0014, CS0015, CS0017, CS0018",
+    "warning_first": "deduplicated in-scope diagnostic count from those five rules",
+    "legacy": {
+      "formula": "(20*<-- + 20*--> + 15*assert + 8*division + 6*modulo + 5*array_access + 5*LessThan + 5*Num2Bits + 5*IsZero + 3*signal_input) / (1 + ln(1+loc) + ln(1+signal_count) + ln(1+component_count) + ln(1+constraint_count_estimate))",
+      "scope": "parsed root template source file"
+    },
+    "size": "compiled R1CS constraint count",
+    "complexity": "root_ast_if_plus_while",
+    "ranking_config_note": "configs/static-ranking.json only defines risk-grouped complexity bins at planning time; preparation did not alter semantic or legacy weights."
+  },
+  "variants": [
+    {
+      "variant": "vulnerable",
+      "label": "subnet-2-circom Subtract vulnerable",
+      "revision": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "source": {
+        "path": "datasets/controlled-v1/subtract/vulnerable/subtractTensor.circom",
+        "sha256": "502ee44b70a368066fafcf09cc2d0356479f8a862bfa726bde8097c728c83cc1"
+      },
+      "analysis": {
+        "status": "success",
+        "complete": true,
+        "failure_reasons": [],
+        "exit_code": 1,
+        "timed_out": false,
+        "execution_error": null,
+        "selected_rule_warning_count": 2,
+        "ignored_out_of_scope_count": 0,
+        "ignored_other_rule_count": 1,
+        "duplicate_warning_count": 0
+      },
+      "selected_features": [
+        {
+          "rule_id": "CS0013",
+          "rule_name": "unnecessary-signal-assignment",
+          "meaning": "single-arrow assignment has a quadratic RHS that could instead use a constraint assignment; separate constraints can still make it correct",
+          "status": "complete",
+          "value": 1,
+          "observed_warning_count": 1,
+          "reasons": []
+        },
+        {
+          "rule_id": "CS0014",
+          "rule_name": "unconstrained-less-than",
+          "meaning": "analyzer could not establish the required input range for a Circomlib LessThan use",
+          "status": "complete",
+          "value": 0,
+          "observed_warning_count": 0,
+          "reasons": []
+        },
+        {
+          "rule_id": "CS0015",
+          "rule_name": "unconstrained-division",
+          "meaning": "analyzer did not find its supported IsZero-based nonzero check for the divisor",
+          "status": "complete",
+          "value": 0,
+          "observed_warning_count": 0,
+          "reasons": []
+        },
+        {
+          "rule_id": "CS0017",
+          "rule_name": "under-constrained-signal",
+          "meaning": "intermediate signal appears in fewer than two separate constraints under this analyzer's analysis",
+          "status": "complete",
+          "value": 1,
+          "observed_warning_count": 1,
+          "reasons": []
+        },
+        {
+          "rule_id": "CS0018",
+          "rule_name": "unused-output-signal",
+          "meaning": "instantiated component output is not used as expected, subject to the analyzer's allowlist and access approximation",
+          "status": "complete",
+          "value": 0,
+          "observed_warning_count": 0,
+          "reasons": []
+        }
+      ],
+      "selected_warnings": [
+        {
+          "rule_id": "CS0013",
+          "message": "Using the signal assignment operator `<--` is not necessary here.",
+          "locations": [
+            {
+              "path": "datasets/controlled-v1/subtract/vulnerable/subtractTensor.circom",
+              "start_line": 8,
+              "end_line": 8,
+              "label": "The expression assigned to `d` is quadratic."
+            }
+          ],
+          "related_locations": [],
+          "raw_result_index": 0,
+          "raw_sarif_path": "reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/semantic/analysis.sarif"
+        },
+        {
+          "rule_id": "CS0017",
+          "message": "Intermediate signals should typically occur in at least two separate constraints.",
+          "locations": [
+            {
+              "path": "datasets/controlled-v1/subtract/vulnerable/subtractTensor.circom",
+              "start_line": 7,
+              "end_line": 7,
+              "label": "The intermediate signal `d` is declared here."
+            }
+          ],
+          "related_locations": [
+            {
+              "path": "datasets/controlled-v1/subtract/vulnerable/subtractTensor.circom",
+              "start_line": 9,
+              "end_line": 9,
+              "label": "The intermediate signal `d` is constrained here."
+            }
+          ],
+          "raw_result_index": 2,
+          "raw_sarif_path": "reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/semantic/analysis.sarif"
+        }
+      ],
+      "ignored_diagnostics": [
+        {
+          "rule_id": "CS0004",
+          "level": "note",
+          "message": "Field element arithmetic could overflow, which may produce unexpected results.",
+          "path": "datasets/controlled-v1/subtract/vulnerable/subtractTensor.circom",
+          "start_line": 9,
+          "reason_not_scored": "rule ID is outside the frozen five-rule ranking feature set",
+          "raw_result_index": 1
+        }
+      ],
+      "unsupported_features": [
+        {
+          "name": "compile-time parameter assertion versus signal-dependent assertion",
+          "status": "unsupported",
+          "reason": "the verified Circomspect release has no dedicated rule that establishes this distinction; assertions are not counted"
+        }
+      ],
+      "ranking_inputs": {
+        "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+        "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/circuit.circom",
+        "risk_score": 2,
+        "warning_count": 2,
+        "complexity": 0,
+        "size": 1,
+        "legacy_score": 4.638574590472789
+      },
+      "legacy_lexical_score_audit": {
+        "basis": "read-only recomputation of the captured legacy score using the frozen src/features.rs and src/ranker.rs formula; the captured prepared ranking value remains authoritative",
+        "counts": {
+          "loc": 9,
+          "signal_count": 4,
+          "signal_input_count": 2,
+          "signal_output_count": 1,
+          "component_count": 0,
+          "constraint_count_estimate": 1,
+          "unsafe_assign_count": 1,
+          "unsafe_assign_rev_count": 0,
+          "assert_count": 0,
+          "division_count": 0,
+          "modulo_count": 0,
+          "array_access_count": 0,
+          "less_than_pattern_count": 0,
+          "num2bits_pattern_count": 0,
+          "iszero_pattern_count": 0,
+          "signal_internal_count": 1
+        },
+        "risk_numerator": 26,
+        "cost_denominator": 5.605170185988092,
+        "recomputed_score": 4.638574590472789,
+        "matches_captured_score": true
+      },
+      "raw_evidence": {
+        "semantic_json": "reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/semantic/semantic.json",
+        "sarif": "reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/semantic/analysis.sarif",
+        "stdout": "reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/semantic/stdout.log",
+        "stderr": "reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/semantic/stderr.log",
+        "capture": "reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/semantic/capture.json"
+      }
+    },
+    {
+      "variant": "fixed",
+      "label": "subnet-2-circom Subtract fixed comparator",
+      "revision": "b8f92bdec1694138df0e069921f1aa0bdc94053e",
+      "target_id": "sha256:a85819549a69210934d31e3fa4a0ba4e01f1f456bc86b32a480a29c5b18aec91",
+      "source": {
+        "path": "datasets/controlled-v1/subtract/fixed/subtractTensor.circom",
+        "sha256": "c5d6aa9de7e95f09283e6b014dcbda85e16e583c3e157d7f8fdd95bb001023ba"
+      },
+      "analysis": {
+        "status": "success",
+        "complete": true,
+        "failure_reasons": [],
+        "exit_code": 1,
+        "timed_out": false,
+        "execution_error": null,
+        "selected_rule_warning_count": 0,
+        "ignored_out_of_scope_count": 0,
+        "ignored_other_rule_count": 1,
+        "duplicate_warning_count": 0
+      },
+      "selected_features": [
+        {
+          "rule_id": "CS0013",
+          "rule_name": "unnecessary-signal-assignment",
+          "meaning": "single-arrow assignment has a quadratic RHS that could instead use a constraint assignment; separate constraints can still make it correct",
+          "status": "complete",
+          "value": 0,
+          "observed_warning_count": 0,
+          "reasons": []
+        },
+        {
+          "rule_id": "CS0014",
+          "rule_name": "unconstrained-less-than",
+          "meaning": "analyzer could not establish the required input range for a Circomlib LessThan use",
+          "status": "complete",
+          "value": 0,
+          "observed_warning_count": 0,
+          "reasons": []
+        },
+        {
+          "rule_id": "CS0015",
+          "rule_name": "unconstrained-division",
+          "meaning": "analyzer did not find its supported IsZero-based nonzero check for the divisor",
+          "status": "complete",
+          "value": 0,
+          "observed_warning_count": 0,
+          "reasons": []
+        },
+        {
+          "rule_id": "CS0017",
+          "rule_name": "under-constrained-signal",
+          "meaning": "intermediate signal appears in fewer than two separate constraints under this analyzer's analysis",
+          "status": "complete",
+          "value": 0,
+          "observed_warning_count": 0,
+          "reasons": []
+        },
+        {
+          "rule_id": "CS0018",
+          "rule_name": "unused-output-signal",
+          "meaning": "instantiated component output is not used as expected, subject to the analyzer's allowlist and access approximation",
+          "status": "complete",
+          "value": 0,
+          "observed_warning_count": 0,
+          "reasons": []
+        }
+      ],
+      "selected_warnings": [],
+      "ignored_diagnostics": [
+        {
+          "rule_id": "CS0004",
+          "level": "note",
+          "message": "Field element arithmetic could overflow, which may produce unexpected results.",
+          "path": "datasets/controlled-v1/subtract/fixed/subtractTensor.circom",
+          "start_line": 7,
+          "reason_not_scored": "rule ID is outside the frozen five-rule ranking feature set",
+          "raw_result_index": 0
+        }
+      ],
+      "unsupported_features": [
+        {
+          "name": "compile-time parameter assertion versus signal-dependent assertion",
+          "status": "unsupported",
+          "reason": "the verified Circomspect release has no dedicated rule that establishes this distinction; assertions are not counted"
+        }
+      ],
+      "ranking_inputs": {
+        "target_id": "sha256:a85819549a69210934d31e3fa4a0ba4e01f1f456bc86b32a480a29c5b18aec91",
+        "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/fixed/circuit.circom",
+        "risk_score": 0,
+        "warning_count": 0,
+        "complexity": 0,
+        "size": 1,
+        "legacy_score": 1.163042446019645
+      },
+      "legacy_lexical_score_audit": {
+        "basis": "read-only recomputation of the captured legacy score using the frozen src/features.rs and src/ranker.rs formula; the captured prepared ranking value remains authoritative",
+        "counts": {
+          "loc": 7,
+          "signal_count": 3,
+          "signal_input_count": 2,
+          "signal_output_count": 1,
+          "component_count": 0,
+          "constraint_count_estimate": 1,
+          "unsafe_assign_count": 0,
+          "unsafe_assign_rev_count": 0,
+          "assert_count": 0,
+          "division_count": 0,
+          "modulo_count": 0,
+          "array_access_count": 0,
+          "less_than_pattern_count": 0,
+          "num2bits_pattern_count": 0,
+          "iszero_pattern_count": 0,
+          "signal_internal_count": 0
+        },
+        "risk_numerator": 6,
+        "cost_denominator": 5.1588830833596715,
+        "recomputed_score": 1.163042446019645,
+        "matches_captured_score": true
+      },
+      "raw_evidence": {
+        "semantic_json": "reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/semantic/semantic.json",
+        "sarif": "reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/semantic/analysis.sarif",
+        "stdout": "reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/semantic/stdout.log",
+        "stderr": "reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/semantic/stderr.log",
+        "capture": "reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/semantic/capture.json"
+      }
+    }
+  ],
+  "comparison": {
+    "semantic_risk_score": {
+      "vulnerable": 2,
+      "fixed": 0,
+      "delta_vulnerable_minus_fixed": 2
+    },
+    "selected_warning_count": {
+      "vulnerable": 2,
+      "fixed": 0,
+      "delta_vulnerable_minus_fixed": 2
+    },
+    "legacy_score": {
+      "vulnerable": 4.638574590472789,
+      "fixed": 1.163042446019645,
+      "delta_vulnerable_minus_fixed": 3.475532144453144
+    },
+    "compiled_size": {
+      "vulnerable": 1,
+      "fixed": 1,
+      "result": "tie"
+    },
+    "structural_complexity": {
+      "vulnerable": 0,
+      "fixed": 0,
+      "result": "tie"
+    },
+    "strategy_effect": {
+      "risk-only": "vulnerable before fixed",
+      "risk-grouped": "same complexity group, then vulnerable before fixed by risk score",
+      "warning-first": "vulnerable before fixed",
+      "legacy": "vulnerable before fixed",
+      "small-first": "tie on size; target-id tie-break decides order",
+      "path-order": "does not use static risk signals",
+      "random": "does not use static risk signals"
+    }
+  },
+  "interpretation_limits": [
+    "Warnings are not execution-validated defects.",
+    "No selected-rule warning is not a proof of safety.",
+    "Equal constraint count does not imply semantic equivalence or safety.",
+    "This one pair does not measure zkFuzz detection performance or strategy superiority.",
+    "If this pair is used to tune tools, rules, or weights after this result, it must be reclassified from held-out evaluation to development data."
+  ],
+  "artifacts": {
+    "prepared_stdout": {
+      "path": "reports/controlled-v1-static-regression/evidence/prepare.stdout.json",
+      "sha256": "5626150810e915b507d841fe7d380964ed90ddafb7fd199fd938462bb781215d"
+    },
+    "prepared_report": {
+      "path": "reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/prepared.json",
+      "sha256": "ab180da1918e275d541866b9476728898805df551a9c1457978f62b43c2ebaa1"
+    }
+  }
+}

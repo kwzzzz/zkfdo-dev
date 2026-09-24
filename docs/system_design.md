@@ -16,7 +16,13 @@ Defines project config, zkFuzz config, and fuzzing profile config structures. La
 
 ### `scanner.rs`
 
-Implements Circom project scanning and target discovery. The first version should discover `.circom` files and identify entrypoint candidates.
+Recursively discovers `.circom` files. It deliberately remains a filesystem scanner and does not claim that every file is a runnable fuzz target.
+
+### `targets.rs`
+
+Implements the semantic target-discovery MVP. It finds a unique top-level `component main`, follows project-local includes, evaluates a supported subset of compile-time parameter expressions, walks reachable scalar component instantiations, generates standalone wrappers, and optionally validates each wrapper with `circom --inspect`.
+
+Unsupported syntax is stored explicitly in the discovery report instead of producing guessed targets. Component arrays, instantiation in control flow, anonymous components, dynamic/unknown parameter expressions, and include dependencies outside the scanned project are not expanded in this MVP.
 
 ### `features.rs`
 
@@ -28,11 +34,11 @@ Implements ranking strategies and priority scoring, including static-risk, cost-
 
 ### `scheduler.rs`
 
-Builds budget-aware fuzzing schedules. This module decides which targets receive smoke fuzzing, deep fuzzing, retries, or no budget.
+Builds and executes budget-aware fuzzing schedules. The current baseline assigns every discovered target the same per-target budget and stores an experiment summary. Later versions will decide which targets receive smoke fuzzing, deep fuzzing, retries, or no budget.
 
 ### `runner.rs`
 
-Builds zkFuzz commands, executes subprocesses, handles timeouts, and captures stdout and stderr. The current implementation starts with command building and dry-run behavior.
+Builds zkFuzz commands, executes subprocesses, enforces per-target timeouts, captures stdout and stderr, and stores structured JSON results. Later versions may add process-group termination and version-specific output adapters.
 
 ### `report.rs`
 
@@ -65,20 +71,18 @@ The initial scaffold does not implement all of these commands yet. They describe
 ## Run Directory Structure
 
 ```text
-runs/<run_id>/
-  metadata.json
-  targets.json
-  features.csv
-  ranking.csv
-  results.csv
-  target-<id>/
+runs/<single-run-id>/
+  result.json
+  stdout.log
+  stderr.log
+
+runs/<experiment-id>/
+  summary.json
+  runs/<target-run-id>/
+    result.json
     stdout.log
     stderr.log
-    result.json
-    generated_settings.json
 ```
-
-`generated_settings.json` is optional and should be used only when zkfDO generates a wrapper, config, or target-specific settings file.
 
 ## Result Schema
 
@@ -90,6 +94,7 @@ runs/<run_id>/
 - `CompileError`
 - `RuntimeError`
 - `ParseError`
+- `SpawnError`
 - `Unknown`
 
 ### RunResult
@@ -124,7 +129,11 @@ Creates `.zkfdo/config.toml` with default project settings.
 
 ### `zkfDO scan`
 
-Discovers `.circom` files and target candidates.
+Discovers `.circom` files.
+
+### `zkfDO targets`
+
+Discovers concrete template-instantiation candidates reachable from a unique project entrypoint, generates isolated wrappers, and records compile-validation results.
 
 ### `zkfDO features`
 
@@ -134,13 +143,15 @@ Extracts static and cost features.
 
 Ranks targets according to the selected strategy.
 
-### `zkfDO fuzz-one`
+### `zkfDO run`
 
 Runs or dry-runs zkFuzz on one target.
 
-### `zkfDO fuzz`
+### `zkfDO schedule`
 
-Executes project-level scheduled fuzzing.
+Executes every discovered project target with a uniform per-target budget and stores an experiment summary.
+
+The current scheduler still consumes the file scanner output. Connecting validated semantic wrappers to scheduling is intentionally a later step.
 
 ### `zkfDO report`
 

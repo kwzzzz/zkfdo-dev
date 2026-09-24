@@ -1,0 +1,748 @@
+{
+  "schema_version": 1,
+  "name": "controlled-regression-evaluation-v1",
+  "description": "Frozen vulnerable/fixed Subtract component pair for controlled ranking evaluation. Material preparation only; no fuzzing or discovery claim.",
+  "manifest_path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/manifest.controlled-v1.json",
+  "manifest_sha256": "ec27dc5f088d85ae63e4f5a8397a4d3e9ad01c390af24498d1fc56c47a0931e8",
+  "output_dir": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439",
+  "report_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/prepared.json",
+  "profile_strategy": null,
+  "options": {
+    "circom_bin": "/Users/miiz/.cargo/bin/circom",
+    "zkfuzz_bin": "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkFuzz/target/release/zkfuzz",
+    "analyzer_bin": "/Users/miiz/Desktop/kwzzzz_zkfr/.external/circomspect/target/release/circomspect",
+    "analyzer_version": "0.9.0",
+    "analyzer_revision": "ece9efe0a21e6c422a43ab6f2e1c0ce99678013b",
+    "timeout_seconds": 60,
+    "strategy": null
+  },
+  "environment": {
+    "arch": "aarch64",
+    "circom_binary": "/Users/miiz/.cargo/bin/circom",
+    "circom_binary_sha256": "8991887889c2a74d6fc704d5689ada4cc76fba004e866c987de6cbf3b3db6227",
+    "circomspect_binary": "/Users/miiz/Desktop/kwzzzz_zkfr/.external/circomspect/target/release/circomspect",
+    "circomspect_binary_sha256": "6acebb5f1c00fd3823e96388cb322cd29bd516f8bacecf855fee5652431c3590",
+    "os": "macos",
+    "working_directory": "/Users/miiz/Desktop/kwzzzz_zkfr",
+    "zkfdo_version": "0.1.0",
+    "zkfuzz_binary": "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkFuzz/target/release/zkfuzz",
+    "zkfuzz_binary_sha256": "ac2d9d16fd97ff803b121b7994aef804b4e191636f3f78660ff6ecd6c9ae4edd"
+  },
+  "started_at": "2026-09-19T05:54:30.520545Z",
+  "finished_at": "2026-09-19T05:54:32.397452Z",
+  "elapsed_seconds": 1.876862458,
+  "targets": [
+    {
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "definition": {
+        "label": "subnet-2-circom Subtract vulnerable",
+        "project": "https://github.com/inference-labs-inc/subnet-2-circom",
+        "revision": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+        "project_root": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable",
+        "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/circuit.circom",
+        "template_name": "Subtract",
+        "concrete_parameters": [],
+        "prime": "bn128",
+        "compile_args": [],
+        "mode": "direct",
+        "input_assumptions": "a and b are canonical elements of the BN128 scalar field. The property is interpreted in field arithmetic; this direct wrapper adds no range or caller constraints.",
+        "known_defects": [
+          {
+            "root_cause_id": "inference-labs-inc/subnet-2-circom/koukyosyumei_subtract_unconstrained_multiplier",
+            "location": "src/subtractTensor.circom:3-10; signal d is witness-assigned but not constrained",
+            "source_url": "https://github.com/inference-labs-inc/subnet-2-circom/pull/2",
+            "reported": true,
+            "local_reproduction": "Source/provenance and compile readiness prepared only. No fuzzing, counterexample, witness, proof, or original-component candidate validation was run for controlled-v1.",
+            "tcct_status": "not-run-controlled-v1",
+            "reachability": "Direct Subtract wrapper only. Public records name project callers, but original-project reachability is outside controlled-v1 and was not revalidated.",
+            "evidence": [
+              "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/contracts.controlled-v1.json",
+              "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/subtractTensor.circom",
+              "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/inference-labs-inc/subnet-2-circom/koukyosyumei_subtract_unconstrained_multiplier/zkbugs_config.json",
+              "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/inference-labs-inc/subnet-2-circom/koukyosyumei_subtract_unconstrained_multiplier/README.md"
+            ]
+          }
+        ]
+      },
+      "inspection": {
+        "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/circuit.circom",
+        "project_root": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable",
+        "root": {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/subtractTensor.circom",
+          "template_name": "Subtract",
+          "concrete_parameters": []
+        },
+        "instances": [
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/subtractTensor.circom",
+            "template_name": "Subtract",
+            "concrete_parameters": []
+          }
+        ],
+        "scopes": [
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/subtractTensor.circom",
+            "template_name": "Subtract",
+            "start_line": 3,
+            "end_line": 10
+          }
+        ],
+        "dependency_paths": [
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/circuit.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/subtractTensor.circom"
+        ],
+        "complete": true,
+        "unsupported": []
+      },
+      "run_entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/sources/circuit.circom",
+      "structure": {
+        "profile_kind": "structure_only_no_fuzz_search",
+        "complete": true,
+        "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/sources/circuit.circom",
+        "root_template": "Subtract",
+        "prime": "bn128",
+        "compile_args": [],
+        "size": 1,
+        "size_source": "Circom R1CS compiler summary: non-linear constraints + linear constraints under recorded compile settings",
+        "r1cs_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/structure/r1cs/circuit.r1cs",
+        "complexity": 0,
+        "metric": "root_ast_if_plus_while",
+        "parameter_reflected": false,
+        "compile_success": true,
+        "ast_success": true,
+        "ast_requested": true,
+        "ast_stats": {
+          "template_name": "Subtract",
+          "num_statements": 13,
+          "num_if_then_else": 0,
+          "num_while": 0
+        },
+        "compile": {
+          "requested": true,
+          "purpose": "compile-r1cs",
+          "binary": "/Users/miiz/.cargo/bin/circom",
+          "args": [
+            "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/sources/circuit.circom",
+            "--r1cs",
+            "--prime",
+            "bn128",
+            "--output",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/structure/r1cs"
+          ],
+          "started_at": "2026-09-19T05:54:32.113369Z",
+          "finished_at": "2026-09-19T05:54:32.143830Z",
+          "elapsed_seconds": 0.0304625,
+          "timeout_seconds": 60,
+          "exit_code": 0,
+          "success": true,
+          "timed_out": false,
+          "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/structure/compile-r1cs.stdout.log",
+          "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/structure/compile-r1cs.stderr.log",
+          "error": null
+        },
+        "ast": {
+          "requested": true,
+          "purpose": "root-ast-only",
+          "binary": "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkFuzz/target/release/zkfuzz",
+          "args": [
+            "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/sources/circuit.circom",
+            "--show_stats_of_ast",
+            "--prime",
+            "bn128"
+          ],
+          "started_at": "2026-09-19T05:54:32.143869Z",
+          "finished_at": "2026-09-19T05:54:32.174254Z",
+          "elapsed_seconds": 0.03038625,
+          "timeout_seconds": 60,
+          "exit_code": 0,
+          "success": true,
+          "timed_out": false,
+          "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/structure/root-ast-only.stdout.log",
+          "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/structure/root-ast-only.stderr.log",
+          "error": null
+        },
+        "circom_version": {
+          "requested": true,
+          "purpose": "circom-version",
+          "binary": "/Users/miiz/.cargo/bin/circom",
+          "args": [
+            "--version"
+          ],
+          "started_at": "2026-09-19T05:54:32.051750Z",
+          "finished_at": "2026-09-19T05:54:32.082765Z",
+          "elapsed_seconds": 0.031014167,
+          "timeout_seconds": 60,
+          "exit_code": 0,
+          "success": true,
+          "timed_out": false,
+          "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/structure/circom-version.stdout.log",
+          "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/structure/circom-version.stderr.log",
+          "error": null
+        },
+        "zkfuzz_version": {
+          "requested": true,
+          "purpose": "zkfuzz-version",
+          "binary": "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkFuzz/target/release/zkfuzz",
+          "args": [
+            "--version"
+          ],
+          "started_at": "2026-09-19T05:54:32.082812Z",
+          "finished_at": "2026-09-19T05:54:32.113312Z",
+          "elapsed_seconds": 0.030501583,
+          "timeout_seconds": 60,
+          "exit_code": 0,
+          "success": true,
+          "timed_out": false,
+          "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/structure/zkfuzz-version.stdout.log",
+          "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/structure/zkfuzz-version.stderr.log",
+          "error": null
+        },
+        "limitations": [
+          "Complexity counts only IfThenElse and While nodes in the named root template definition, not reachable dependency templates.",
+          "AST control-flow nodes are not expanded for concrete parameters, loop iterations, or Circom constraint optimizations.",
+          "num_statements counts visited AST statement nodes, including blocks; it is not source lines or constraints.",
+          "R1CS constraint count is a separate concrete compiled size measure, not LEOPARD structural complexity.",
+          "zkFuzz --show_stats_of_ast exits after parse/type analysis; this invocation provides no fuzzing or defect-reproduction evidence."
+        ],
+        "errors": [],
+        "profile_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/structure/structure-profile.json"
+      },
+      "semantic": {
+        "schema_version": 1,
+        "scopes": [
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/subtractTensor.circom",
+            "template_name": "Subtract",
+            "start_line": 3,
+            "end_line": 10
+          }
+        ],
+        "capture": {
+          "tool_path": "/Users/miiz/Desktop/kwzzzz_zkfr/.external/circomspect/target/release/circomspect",
+          "tool_version": "0.9.0",
+          "tool_revision": "ece9efe0a21e6c422a43ab6f2e1c0ce99678013b",
+          "curve": "BN254",
+          "command": [
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/circomspect/target/release/circomspect",
+            "--level",
+            "INFO",
+            "--verbose",
+            "--curve",
+            "BN254",
+            "--sarif-file",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/semantic/analysis.sarif",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/subtractTensor.circom"
+          ],
+          "sarif_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/semantic/analysis.sarif",
+          "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/semantic/stdout.log",
+          "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/semantic/stderr.log",
+          "exit_code": 1,
+          "timed_out": false,
+          "elapsed_seconds": 0.0129775,
+          "execution_error": null
+        },
+        "complete": true,
+        "features": [
+          {
+            "rule_id": "CS0013",
+            "rule_name": "unnecessary-signal-assignment",
+            "meaning": "single-arrow assignment has a quadratic RHS that could instead use a constraint assignment; separate constraints can still make it correct",
+            "status": "complete",
+            "value": 1,
+            "observed_warning_count": 1,
+            "reasons": []
+          },
+          {
+            "rule_id": "CS0014",
+            "rule_name": "unconstrained-less-than",
+            "meaning": "analyzer could not establish the required input range for a Circomlib LessThan use",
+            "status": "complete",
+            "value": 0,
+            "observed_warning_count": 0,
+            "reasons": []
+          },
+          {
+            "rule_id": "CS0015",
+            "rule_name": "unconstrained-division",
+            "meaning": "analyzer did not find its supported IsZero-based nonzero check for the divisor",
+            "status": "complete",
+            "value": 0,
+            "observed_warning_count": 0,
+            "reasons": []
+          },
+          {
+            "rule_id": "CS0017",
+            "rule_name": "under-constrained-signal",
+            "meaning": "intermediate signal appears in fewer than two separate constraints under this analyzer's analysis",
+            "status": "complete",
+            "value": 1,
+            "observed_warning_count": 1,
+            "reasons": []
+          },
+          {
+            "rule_id": "CS0018",
+            "rule_name": "unused-output-signal",
+            "meaning": "instantiated component output is not used as expected, subject to the analyzer's allowlist and access approximation",
+            "status": "complete",
+            "value": 0,
+            "observed_warning_count": 0,
+            "reasons": []
+          }
+        ],
+        "risk_score": 2,
+        "warning_count": 2,
+        "warnings": [
+          {
+            "rule_id": "CS0013",
+            "message": "Using the signal assignment operator `<--` is not necessary here.",
+            "locations": [
+              {
+                "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/subtractTensor.circom",
+                "start_line": 8,
+                "end_line": 8,
+                "start_column": 5,
+                "end_column": 12,
+                "label": "The expression assigned to `d` is quadratic."
+              }
+            ],
+            "related_locations": [],
+            "attributed_scopes": [
+              {
+                "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/subtractTensor.circom",
+                "template_name": "Subtract",
+                "start_line": 3,
+                "end_line": 10
+              }
+            ],
+            "attribution_basis": "primary source region inside caller-validated reachable template scope",
+            "raw_result_index": 0,
+            "raw_result_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/semantic/analysis.sarif"
+          },
+          {
+            "rule_id": "CS0017",
+            "message": "Intermediate signals should typically occur in at least two separate constraints.",
+            "locations": [
+              {
+                "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/subtractTensor.circom",
+                "start_line": 7,
+                "end_line": 7,
+                "start_column": 5,
+                "end_column": 13,
+                "label": "The intermediate signal `d` is declared here."
+              }
+            ],
+            "related_locations": [
+              {
+                "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/subtractTensor.circom",
+                "start_line": 9,
+                "end_line": 9,
+                "start_column": 5,
+                "end_column": 20,
+                "label": "The intermediate signal `d` is constrained here."
+              }
+            ],
+            "attributed_scopes": [
+              {
+                "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/subtractTensor.circom",
+                "template_name": "Subtract",
+                "start_line": 3,
+                "end_line": 10
+              }
+            ],
+            "attribution_basis": "primary source region inside caller-validated reachable template scope",
+            "raw_result_index": 2,
+            "raw_result_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/semantic/analysis.sarif"
+          }
+        ],
+        "ignored_out_of_scope_count": 0,
+        "ignored_other_rule_count": 1,
+        "duplicate_warning_count": 0,
+        "reasons": [],
+        "unsupported_features": [
+          {
+            "name": "compile-time parameter assertion versus signal-dependent assertion",
+            "status": "unsupported",
+            "reason": "the verified Circomspect release has no dedicated rule that establishes this distinction; assertions are not counted"
+          }
+        ],
+        "limitations": [
+          "Warnings describe template definitions; Circomspect does not specialize templates with this target's concrete parameters.",
+          "The caller must validate reachable template scopes and their full dependency closure; file co-location is not reachability.",
+          "Complete means these analyzer passes ran with no observed analysis failure, not that the circuit is safe or all bugs are detectable.",
+          "Any detected partial analysis conservatively makes every required feature unknown; observed warnings remain available.",
+          "Only the five selected rule IDs count in warning-first; unrelated lint reports remain in raw SARIF."
+        ]
+      },
+      "ranking": {
+        "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+        "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/circuit.circom",
+        "risk_score": 2,
+        "warning_count": 2,
+        "complexity": 0,
+        "size": 1,
+        "legacy_score": 4.638574590472789
+      },
+      "eligible": true,
+      "exclusion_reasons": [],
+      "source_fingerprints": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/circuit.circom",
+          "sha256": "5160da57762a5a561cf797a44f2dd6f009126536be476cbcec0926459362e079"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/vulnerable/subtractTensor.circom",
+          "sha256": "502ee44b70a368066fafcf09cc2d0356479f8a862bfa726bde8097c728c83cc1"
+        }
+      ],
+      "snapshot_fingerprints": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/sources/circuit.circom",
+          "sha256": "5160da57762a5a561cf797a44f2dd6f009126536be476cbcec0926459362e079"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0000/sources/subtractTensor.circom",
+          "sha256": "502ee44b70a368066fafcf09cc2d0356479f8a862bfa726bde8097c728c83cc1"
+        }
+      ],
+      "timings": {
+        "inspection_seconds": 0.003714167,
+        "snapshot_seconds": 0.000635125,
+        "structure_seconds": 0.125494791,
+        "semantic_seconds": 0.014512709,
+        "legacy_seconds": 0.032288125
+      },
+      "elapsed_seconds": 0.177279667,
+      "limitations": [
+        "Semantic locations refer to the fingerprinted original sources; compiler/AST execution and future fuzzing use the copied entrypoint. Absolute includes can retain read-only original dependencies.",
+        "Legacy baseline maps the existing lexical risk/cost formula over the entire root template source file, including unrelated templates in that file; it is not semantic risk."
+      ]
+    },
+    {
+      "target_id": "sha256:a85819549a69210934d31e3fa4a0ba4e01f1f456bc86b32a480a29c5b18aec91",
+      "definition": {
+        "label": "subnet-2-circom Subtract fixed comparator",
+        "project": "https://github.com/inference-labs-inc/subnet-2-circom",
+        "revision": "b8f92bdec1694138df0e069921f1aa0bdc94053e",
+        "project_root": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/fixed",
+        "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/fixed/circuit.circom",
+        "template_name": "Subtract",
+        "concrete_parameters": [],
+        "prime": "bn128",
+        "compile_args": [],
+        "mode": "direct",
+        "input_assumptions": "a and b are canonical elements of the BN128 scalar field. The property is interpreted in field arithmetic; this direct wrapper adds no range or caller constraints.",
+        "known_defects": []
+      },
+      "inspection": {
+        "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/fixed/circuit.circom",
+        "project_root": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/fixed",
+        "root": {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/fixed/subtractTensor.circom",
+          "template_name": "Subtract",
+          "concrete_parameters": []
+        },
+        "instances": [
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/fixed/subtractTensor.circom",
+            "template_name": "Subtract",
+            "concrete_parameters": []
+          }
+        ],
+        "scopes": [
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/fixed/subtractTensor.circom",
+            "template_name": "Subtract",
+            "start_line": 3,
+            "end_line": 8
+          }
+        ],
+        "dependency_paths": [
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/fixed/circuit.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/fixed/subtractTensor.circom"
+        ],
+        "complete": true,
+        "unsupported": []
+      },
+      "run_entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/sources/circuit.circom",
+      "structure": {
+        "profile_kind": "structure_only_no_fuzz_search",
+        "complete": true,
+        "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/sources/circuit.circom",
+        "root_template": "Subtract",
+        "prime": "bn128",
+        "compile_args": [],
+        "size": 1,
+        "size_source": "Circom R1CS compiler summary: non-linear constraints + linear constraints under recorded compile settings",
+        "r1cs_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/structure/r1cs/circuit.r1cs",
+        "complexity": 0,
+        "metric": "root_ast_if_plus_while",
+        "parameter_reflected": false,
+        "compile_success": true,
+        "ast_success": true,
+        "ast_requested": true,
+        "ast_stats": {
+          "template_name": "Subtract",
+          "num_statements": 10,
+          "num_if_then_else": 0,
+          "num_while": 0
+        },
+        "compile": {
+          "requested": true,
+          "purpose": "compile-r1cs",
+          "binary": "/Users/miiz/.cargo/bin/circom",
+          "args": [
+            "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/sources/circuit.circom",
+            "--r1cs",
+            "--prime",
+            "bn128",
+            "--output",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/structure/r1cs"
+          ],
+          "started_at": "2026-09-19T05:54:32.286358Z",
+          "finished_at": "2026-09-19T05:54:32.316786Z",
+          "elapsed_seconds": 0.03042875,
+          "timeout_seconds": 60,
+          "exit_code": 0,
+          "success": true,
+          "timed_out": false,
+          "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/structure/compile-r1cs.stdout.log",
+          "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/structure/compile-r1cs.stderr.log",
+          "error": null
+        },
+        "ast": {
+          "requested": true,
+          "purpose": "root-ast-only",
+          "binary": "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkFuzz/target/release/zkfuzz",
+          "args": [
+            "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/sources/circuit.circom",
+            "--show_stats_of_ast",
+            "--prime",
+            "bn128"
+          ],
+          "started_at": "2026-09-19T05:54:32.316829Z",
+          "finished_at": "2026-09-19T05:54:32.347258Z",
+          "elapsed_seconds": 0.030430792,
+          "timeout_seconds": 60,
+          "exit_code": 0,
+          "success": true,
+          "timed_out": false,
+          "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/structure/root-ast-only.stdout.log",
+          "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/structure/root-ast-only.stderr.log",
+          "error": null
+        },
+        "circom_version": {
+          "requested": true,
+          "purpose": "circom-version",
+          "binary": "/Users/miiz/.cargo/bin/circom",
+          "args": [
+            "--version"
+          ],
+          "started_at": "2026-09-19T05:54:32.225636Z",
+          "finished_at": "2026-09-19T05:54:32.256153Z",
+          "elapsed_seconds": 0.030516208,
+          "timeout_seconds": 60,
+          "exit_code": 0,
+          "success": true,
+          "timed_out": false,
+          "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/structure/circom-version.stdout.log",
+          "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/structure/circom-version.stderr.log",
+          "error": null
+        },
+        "zkfuzz_version": {
+          "requested": true,
+          "purpose": "zkfuzz-version",
+          "binary": "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkFuzz/target/release/zkfuzz",
+          "args": [
+            "--version"
+          ],
+          "started_at": "2026-09-19T05:54:32.256181Z",
+          "finished_at": "2026-09-19T05:54:32.286317Z",
+          "elapsed_seconds": 0.030136791,
+          "timeout_seconds": 60,
+          "exit_code": 0,
+          "success": true,
+          "timed_out": false,
+          "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/structure/zkfuzz-version.stdout.log",
+          "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/structure/zkfuzz-version.stderr.log",
+          "error": null
+        },
+        "limitations": [
+          "Complexity counts only IfThenElse and While nodes in the named root template definition, not reachable dependency templates.",
+          "AST control-flow nodes are not expanded for concrete parameters, loop iterations, or Circom constraint optimizations.",
+          "num_statements counts visited AST statement nodes, including blocks; it is not source lines or constraints.",
+          "R1CS constraint count is a separate concrete compiled size measure, not LEOPARD structural complexity.",
+          "zkFuzz --show_stats_of_ast exits after parse/type analysis; this invocation provides no fuzzing or defect-reproduction evidence."
+        ],
+        "errors": [],
+        "profile_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/structure/structure-profile.json"
+      },
+      "semantic": {
+        "schema_version": 1,
+        "scopes": [
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/fixed/subtractTensor.circom",
+            "template_name": "Subtract",
+            "start_line": 3,
+            "end_line": 8
+          }
+        ],
+        "capture": {
+          "tool_path": "/Users/miiz/Desktop/kwzzzz_zkfr/.external/circomspect/target/release/circomspect",
+          "tool_version": "0.9.0",
+          "tool_revision": "ece9efe0a21e6c422a43ab6f2e1c0ce99678013b",
+          "curve": "BN254",
+          "command": [
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/circomspect/target/release/circomspect",
+            "--level",
+            "INFO",
+            "--verbose",
+            "--curve",
+            "BN254",
+            "--sarif-file",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/semantic/analysis.sarif",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/fixed/subtractTensor.circom"
+          ],
+          "sarif_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/semantic/analysis.sarif",
+          "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/semantic/stdout.log",
+          "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/semantic/stderr.log",
+          "exit_code": 1,
+          "timed_out": false,
+          "elapsed_seconds": 0.0130415,
+          "execution_error": null
+        },
+        "complete": true,
+        "features": [
+          {
+            "rule_id": "CS0013",
+            "rule_name": "unnecessary-signal-assignment",
+            "meaning": "single-arrow assignment has a quadratic RHS that could instead use a constraint assignment; separate constraints can still make it correct",
+            "status": "complete",
+            "value": 0,
+            "observed_warning_count": 0,
+            "reasons": []
+          },
+          {
+            "rule_id": "CS0014",
+            "rule_name": "unconstrained-less-than",
+            "meaning": "analyzer could not establish the required input range for a Circomlib LessThan use",
+            "status": "complete",
+            "value": 0,
+            "observed_warning_count": 0,
+            "reasons": []
+          },
+          {
+            "rule_id": "CS0015",
+            "rule_name": "unconstrained-division",
+            "meaning": "analyzer did not find its supported IsZero-based nonzero check for the divisor",
+            "status": "complete",
+            "value": 0,
+            "observed_warning_count": 0,
+            "reasons": []
+          },
+          {
+            "rule_id": "CS0017",
+            "rule_name": "under-constrained-signal",
+            "meaning": "intermediate signal appears in fewer than two separate constraints under this analyzer's analysis",
+            "status": "complete",
+            "value": 0,
+            "observed_warning_count": 0,
+            "reasons": []
+          },
+          {
+            "rule_id": "CS0018",
+            "rule_name": "unused-output-signal",
+            "meaning": "instantiated component output is not used as expected, subject to the analyzer's allowlist and access approximation",
+            "status": "complete",
+            "value": 0,
+            "observed_warning_count": 0,
+            "reasons": []
+          }
+        ],
+        "risk_score": 0,
+        "warning_count": 0,
+        "warnings": [],
+        "ignored_out_of_scope_count": 0,
+        "ignored_other_rule_count": 1,
+        "duplicate_warning_count": 0,
+        "reasons": [],
+        "unsupported_features": [
+          {
+            "name": "compile-time parameter assertion versus signal-dependent assertion",
+            "status": "unsupported",
+            "reason": "the verified Circomspect release has no dedicated rule that establishes this distinction; assertions are not counted"
+          }
+        ],
+        "limitations": [
+          "Warnings describe template definitions; Circomspect does not specialize templates with this target's concrete parameters.",
+          "The caller must validate reachable template scopes and their full dependency closure; file co-location is not reachability.",
+          "Complete means these analyzer passes ran with no observed analysis failure, not that the circuit is safe or all bugs are detectable.",
+          "Any detected partial analysis conservatively makes every required feature unknown; observed warnings remain available.",
+          "Only the five selected rule IDs count in warning-first; unrelated lint reports remain in raw SARIF."
+        ]
+      },
+      "ranking": {
+        "target_id": "sha256:a85819549a69210934d31e3fa4a0ba4e01f1f456bc86b32a480a29c5b18aec91",
+        "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/fixed/circuit.circom",
+        "risk_score": 0,
+        "warning_count": 0,
+        "complexity": 0,
+        "size": 1,
+        "legacy_score": 1.163042446019645
+      },
+      "eligible": true,
+      "exclusion_reasons": [],
+      "source_fingerprints": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/fixed/circuit.circom",
+          "sha256": "5160da57762a5a561cf797a44f2dd6f009126536be476cbcec0926459362e079"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v1/subtract/fixed/subtractTensor.circom",
+          "sha256": "c5d6aa9de7e95f09283e6b014dcbda85e16e583c3e157d7f8fdd95bb001023ba"
+        }
+      ],
+      "snapshot_fingerprints": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/sources/circuit.circom",
+          "sha256": "5160da57762a5a561cf797a44f2dd6f009126536be476cbcec0926459362e079"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v1-static-regression/evidence/preparation/prepare-b5f3a8b3-2539-4318-b988-a2dbaa568439/targets/0001/sources/subtractTensor.circom",
+          "sha256": "c5d6aa9de7e95f09283e6b014dcbda85e16e583c3e157d7f8fdd95bb001023ba"
+        }
+      ],
+      "timings": {
+        "inspection_seconds": 0.000516833,
+        "snapshot_seconds": 0.000494125,
+        "structure_seconds": 0.123496625,
+        "semantic_seconds": 0.014077042,
+        "legacy_seconds": 0.032053875
+      },
+      "elapsed_seconds": 0.17107025,
+      "limitations": [
+        "Semantic locations refer to the fingerprinted original sources; compiler/AST execution and future fuzzing use the copied entrypoint. Absolute includes can retain read-only original dependencies.",
+        "Legacy baseline maps the existing lexical risk/cost formula over the entire root template source file, including unrelated templates in that file; it is not semantic risk."
+      ]
+    }
+  ],
+  "exclusions": [
+    {
+      "label": "reclaim Add32Bits, XorWords, RotateLeft32Bits",
+      "reason": "Their root causes were already used in manifest.dev10/dev3 development work, so controlled-v1 excludes them to prevent development/evaluation leakage."
+    },
+    {
+      "label": "iden3 MiMCSponge local direct fixture",
+      "reason": "The pinned zkbugs description says the local circuit was modified from a newer version because the original buggy source did not reproduce under Circom 2; it is not an exact original/fixed source pair."
+    },
+    {
+      "label": "remaining local zkbugs Circom records",
+      "reason": "Not selected for v1 because their complete pinned vulnerable and fixed source closures were not already available locally and reviewed within this bounded preparation. This is not a validity or safety judgment."
+    }
+  ],
+  "limitations": [
+    "Manifest defect annotations are user-supplied provenance; preparation does not establish a reproduction or a discovered bug.",
+    "Eligibility requires the supported parser's complete reachable template closure; unsupported syntax remains explicitly excluded.",
+    "Semantic diagnostics analyze template definitions, not concrete parameter-specialized instances.",
+    "Source and snapshot hashes must be rechecked before planning and execution; absolute includes retain read-only references to original files."
+  ]
+}

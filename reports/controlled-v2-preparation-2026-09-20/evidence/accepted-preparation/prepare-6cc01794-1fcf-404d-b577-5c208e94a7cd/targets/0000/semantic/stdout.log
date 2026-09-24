@@ -1,0 +1,58 @@
+circomspect: analyzing template 'SetMembership'
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/vulnerable/project/circuits/set/membership.circom:19:18
+   │
+19 │   signal product[length + 1];
+   │                  ^^^^^^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/vulnerable/project/circuits/set/membership.circom:23:18
+   │
+23 │     diffs[i] <== set[i] - element;
+   │                  ^^^^^^^^^^^^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/vulnerable/project/circuits/set/membership.circom:24:13
+   │
+24 │     product[i + 1] <== product[i] * diffs[i];
+   │             ^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/vulnerable/project/circuits/set/membership.circom:24:24
+   │
+24 │     product[i + 1] <== product[i] * diffs[i];
+   │                        ^^^^^^^^^^^^^^^^^^^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0004]: Field element arithmetic could overflow, which may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/vulnerable/project/circuits/set/membership.circom:22:31
+   │
+22 │   for (var i = 0; i < length; i++) {
+   │                               ^^^ Field element arithmetic here.
+   │
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-arithmetic.
+   = To ignore this type of result, use `--allow CS0004`.
+
+note[CS0003]: Comparisons with field elements greater than `p/2` may produce unexpected results.
+   ┌─ /Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v2/tangle-set-membership/vulnerable/project/circuits/set/membership.circom:22:19
+   │
+22 │   for (var i = 0; i < length; i++) {
+   │                   ^^^^^^^^^^ Field element comparison here.
+   │
+   = Field elements are always normalized to the interval `(-p/2, p/2]` before they are compared.
+   = For more details, see https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#field-element-comparison.
+   = To ignore this type of result, use `--allow CS0003`.
+
+circomspect: Result written to `/Users/miiz/Desktop/kwzzzz_zkfr/reports/controlled-v2-preparation-2026-09-20/evidence/accepted-preparation/prepare-6cc01794-1fcf-404d-b577-5c208e94a7cd/targets/0000/semantic/analysis.sarif`.
+circomspect: 6 issues found.

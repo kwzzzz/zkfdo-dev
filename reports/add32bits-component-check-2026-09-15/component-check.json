@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "started_at_utc": "2026-09-15T12:36:07.611340+00:00",
+  "finished_at_utc": "2026-09-15T12:36:07.632296+00:00",
+  "scope": "one already-preserved Add32Bits candidate; no fuzzing or witness generation",
+  "verdict": "exact_candidate_rejected_by_original_component",
+  "count_as_valid_original_component_defect": false,
+  "selection": {
+    "target_id": "sha256:20bbb44092d11a8ef2e2a2bef5ea77d8a3edf68183e40685cbdd1048172801ff",
+    "started_at": "2026-09-15T07:10:29.916707Z",
+    "outcome_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-01-seed-2026091501/path-order/executions/execution-d825de18-7f45-4afc-8a35-a76e952cf867/outcome.json",
+    "run_id": "d67912ec-19b0-40d0-ac96-d8e40dc9d2c5",
+    "candidate_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev3-ranking-pilot-2026-09-15/rep-01-seed-2026091501/path-order/executions/execution-d825de18-7f45-4afc-8a35-a76e952cf867/counterexample-candidates/0001/circuit.circom_OahflrIIJ2_counterexample.json",
+    "candidate_sha256": "acd36135a4c3324ce2da705079c694d7cd6925e064135a5cc18a8d312815860c",
+    "required_files_present": true
+  },
+  "provenance": {
+    "pre_addition_fix_revision": "9f98e3aaa95e629515883e0cc6e6cfe6aef6d622",
+    "addition_fix_revision": "4551ca64c9fe536b7b9b7498a1feb1ecdc847474",
+    "addition_fix_direct_parent_verified": true,
+    "pre_fix_tree": "53457537f1996e48492f807c3838ff96474cfde5",
+    "commit_query_tree_top_level_sha": "9f98e3aaa95e629515883e0cc6e6cfe6aef6d622",
+    "commit_query_note": "The commit-ish tree query returned the queried commit at top level; entries were checked against the actual tree-object response.",
+    "source_api_record": "reports/add32bits-component-check-2026-09-15/pre-add-generics-content.json",
+    "source_path": "circuits/generics.circom",
+    "source_git_blob_sha1": "a263846f1c934c4ceafafb0421415b242f1277c8",
+    "source_sha256": "7d6d075c3965f63f23914eb9137d83ee1b52dba39c35131a5866767531e8faa0",
+    "upstream_test_path": "circuits/tests/add32bits.circom",
+    "upstream_test_git_blob_sha1": "ecad438bb36663392405c4e7bd07af9358ffe807",
+    "upstream_test_sha256": "860745f31b661dc896b53501e119451e740c79e6937491bcd2a1efd3bc88ced4",
+    "exact_audit_snapshot": "unknown; the report has no project commit hash"
+  },
+  "component": {
+    "template": "Add32Bits",
+    "parameters": [],
+    "dependencies": [
+      "circuits/generics.circom"
+    ],
+    "entrypoint": "unchanged upstream circuits/tests/add32bits.circom",
+    "added_connections_or_constraints": [],
+    "compiler_version": "circom compiler 2.2.3",
+    "compile_command": [
+      "circom",
+      "reports/add32bits-component-check-2026-09-15/component-check/circuits/tests/add32bits.circom",
+      "--r1cs",
+      "--sym",
+      "--O0",
+      "--prime",
+      "bn128",
+      "-o",
+      "reports/add32bits-component-check-2026-09-15/component-check/compiled"
+    ],
+    "compile_exit_code": 0,
+    "r1cs_sha256": "cf45b55ccceb71bd6b456e6466a97e9747739ec29f6befdbc15dbd609118dc97",
+    "sym_sha256": "02a76786ea67b583ec4f1b4e0124ae85cb8afc93db843d57a72c0d1c63bdce7e",
+    "r1cs_counts": {
+      "wires": 5,
+      "public_outputs": 1,
+      "public_inputs": 0,
+      "private_inputs": 2,
+      "labels": 5,
+      "constraints": 2
+    },
+    "all_compiled_constraints_matched_to_source": true
+  },
+  "candidate_mapping": {
+    "mapping": "identity: main.{a,b,out,tmp} to the same four original component signals",
+    "field_value_conversion": "none",
+    "unmapped_wires": [],
+    "defaulted_wires": [],
+    "assignment": {
+      "main.a": "10",
+      "main.b": "8",
+      "main.out": "253403070482",
+      "main.tmp": "21888242871839275222246405745257275088548364400416034343698204186575808495558"
+    },
+    "candidate_sha256": "acd36135a4c3324ce2da705079c694d7cd6925e064135a5cc18a8d312815860c",
+    "candidate_backend_execution_time": "7.247666ms",
+    "candidate_generation": 0,
+    "candidate_seed": 2026091501
+  },
+  "input_precondition": {
+    "definition": "a and b are each unsigned 32-bit values",
+    "sources": [
+      "pre-fix source comment: Add two 32-bit integers",
+      "audit report finding 0: two assumed-to-be-32-bit values"
+    ],
+    "satisfied": true
+  },
+  "property": {
+    "definition": "out = (a + b) mod 2**32",
+    "source": "pre-fix source comments and audit report finding 0",
+    "expected_output": "18",
+    "actual_output": "253403070482",
+    "violated": true
+  },
+  "constraint_evaluation": {
+    "all_constraints": [
+      {
+        "constraint_index_zero_based": 0,
+        "source_constraint": "tmp * (tmp - 1) === 0",
+        "A": "21888242871839275222246405745257275088548364400416034343698204186575808495557",
+        "B": "21888242871839275222246405745257275088548364400416034343698204186575808495558",
+        "C": "0",
+        "A_times_B_minus_C_mod_p": "3540",
+        "satisfied": false
+      },
+      {
+        "constraint_index_zero_based": 1,
+        "source_constraint": "out === a + b - tmp * 2**32",
+        "A": "0",
+        "B": "0",
+        "C": "0",
+        "A_times_B_minus_C_mod_p": "0",
+        "satisfied": true
+      }
+    ],
+    "satisfied_constraints": 1,
+    "failed_constraints": [
+      {
+        "constraint_index_zero_based": 0,
+        "source_constraint": "tmp * (tmp - 1) === 0",
+        "A": "21888242871839275222246405745257275088548364400416034343698204186575808495557",
+        "B": "21888242871839275222246405745257275088548364400416034343698204186575808495558",
+        "C": "0",
+        "A_times_B_minus_C_mod_p": "3540",
+        "satisfied": false
+      }
+    ],
+    "candidate_satisfies_original_component": false
+  },
+  "timing": {
+    "automated_compile_seconds": 0.01244895900163101,
+    "automated_post_compile_evaluation_seconds": 0.00026929199520964175,
+    "automated_check_total_seconds": 0.020969917000911664,
+    "classification": "post-hoc validation cost; excluded from the historical search budget"
+  },
+  "limits": [
+    "Rejection applies only to this exact assignment.",
+    "No other Add32Bits candidate was inspected after selection.",
+    "Original-component or project safety is not established.",
+    "Project entrypoint reachability and full-project witness/proof validity were not checked.",
+    "The exact full audit snapshot and historical compiler artifacts remain unknown."
+  ]
+}

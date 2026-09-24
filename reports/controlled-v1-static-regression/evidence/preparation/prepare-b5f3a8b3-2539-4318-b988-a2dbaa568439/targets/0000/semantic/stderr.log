@@ -1,0 +1,22 @@
+ DEBUG circomspect_program_structure::control_flow_graph::lifting > building CFG for template `Subtract`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg     > propagating variable types for `Subtract`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg     > computing variable use for `Subtract`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg     > converting `Subtract` CFG to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input a` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal input b` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal output c` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `signal d` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `d <-- 1` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::ssa_impl > converting `c <== ((a - b) * d)` to SSA
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating variable types for `Subtract`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating constant values for `Subtract`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > propagating expression degrees for `Subtract`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > computing variable use for `Subtract`
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      > basic block 0: (predecessors: {}, successors: {})
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input a
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal input b
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal output c
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     signal d
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     d <-- 1
+ DEBUG circomspect_program_structure::control_flow_graph::cfg      >     c <== ((a - b) * d)
+ TRACE circomspect_program_analysis::analysis_runner               > successfully lifted template `Subtract`

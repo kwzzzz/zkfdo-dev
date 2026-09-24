@@ -1,0 +1,5 @@
+template_name,num_statements,num_variables,num_if_then_else,num_while,num_constraint_equality,num_assign_var,num_assign_constraint_signal,num_assign_signal,avg_loc_constraint_equality,avg_loc_assign_constraint_signal,avg_loc_assign_signal
+Base64DecodedLength,35,9,0,0,3,3,4,2,27,29,16
+LessThan,13,3,0,0,0,1,2,0,0,12,0
+ControlledBase64DecodedLength,18,4,0,0,1,2,4,0,13,14,0
+Num2Bits,26,5,0,1,2,6,0,1,24,0,21

@@ -1,0 +1,42 @@
+{
+  "pages": 10,
+  "hash_like_text": [],
+  "urls": [
+    {
+      "page": 2,
+      "uri": "https://www.reclaimprotocol.org/"
+    },
+    {
+      "page": 2,
+      "uri": "https://datatracker.ietf.org/doc/html/rfc7539"
+    },
+    {
+      "page": 6,
+      "uri": "https://www.sagemath.org/"
+    },
+    {
+      "page": 7,
+      "uri": "https://circomscribe.dev/"
+    },
+    {
+      "page": 7,
+      "uri": "https://www.zksecurity.xyz/blog/posts/circomscribe/"
+    },
+    {
+      "page": 9,
+      "uri": "https://github.com/iden3/circomlib/blob/master/circuits/bitify.circom#L25"
+    },
+    {
+      "page": 9,
+      "uri": "https://circomscribe.dev/"
+    },
+    {
+      "page": 9,
+      "uri": "https://www.zksecurity.xyz/blog/posts/circomscribe/"
+    },
+    {
+      "page": 10,
+      "uri": "https://datatracker.ietf.org/doc/html/rfc7539#section-2.4"
+    }
+  ]
+}

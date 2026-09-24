@@ -1,6 +1,7 @@
 /target/
 /runs/
 /reports/generated/
+/reports/*/isolated-rerun/
 /.zkfr/
 /.zkfdo/
 
@@ -17,6 +18,9 @@
 .DS_Store
 *.swp
 *.swo
+__pycache__/
+/reports/*/audit-*.png
+/reports/*/audit-pdf.txt
 
 # Local environment files
 .env
@@ -24,3 +28,7 @@
 
 # Local third-party checkouts and tooling
 .external/
+
+# Source surveys excluded from the controlled-v2 evaluation.
+/datasets/controlled-v2/aptos-base64-decoded-length/
+/datasets/controlled-v2/telepathy-array-xor/
