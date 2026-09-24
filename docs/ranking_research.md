@@ -107,10 +107,8 @@ zkFuzz §IV-B는 제약 오차 fitness를 이용한 변이 후보 선택을 이�
 
 추가 경계 사례로 Arguzz(USENIX Security 2026)는 zkVM 내부 명령에 fault를 고르게 주입하기 위한 선택 방식을 다루며, Circuzz(CCS 2025)는 회로 처리 도구의 pipeline을 시험한다. 연구 대상의 층위가 다른 사례이므로 광범위한 ‘ZK scheduling 최초’ 주장에 포함해 검토해야 한다. [Arguzz](https://mariachris.github.io/Pubs/SECURITY-2026.pdf), [Circuzz](https://mariachris.github.io/Pubs/CCS-2025.pdf)
 
-**웹 ChatGPT와 Codex의 역할**
+**외부 문헌 검토 요청**
 
-OpenAI는 ChatGPT의 연구 활용으로 논문·노트의 출처, 상충하는 주장, 방법의 한계를 종합하는 작업을 설명한다. [공식 연구 종합 안내](https://learn.chatgpt.com/use-cases/synthesize-research-evidence)
-
-이 작업에서는 웹 ChatGPT를 독립 문헌 검토에 활용하고, 저장소와 실제 실행 계약의 확인은 현재 작업 환경에서 이어가는 조합을 추천한다. 특정 제품이 더 정확하다는 성능 비교를 확인한 것은 아니다. 검토를 넘긴다면 아래 요청을 사용할 수 있다.
+독립 문헌 검토를 요청한다면 아래 내용을 사용할 수 있다.
 
 > 외부 zkFuzz를 유지하면서 여러 실행 가능한 Circom 템플릿 인스턴스를 고정된 전체 시간 예산 안에서 우선순위화하려 한다. LEOPARD의 정적 타깃 선정과 Fuzzing at Scale의 동적 배분이 적합한지 1차 자료로 반박·검증해 달라. seed/변이 위치 선택과 회로 간 선택을 구분하고, 더 직접적인 선행연구와 zkHydra 같은 인접 구현도 찾아 달라. 현재 runner 관측값은 실행 상태·시간·마지막 generation이며 coverage/fitness 이력과 resume는 없다. zkFuzz 자체에는 AST/제약 통계 옵션·세대별 best fitness 로그·내부 coverage 계산이 있으나 외부 스케줄러용 어댑터는 아직 없다. Circom에서 이미 효과가 증명됐거나 관련 논문이 전혀 없다고 가정하지 말고, 원논문의 방법·필요 데이터·우리의 변경점·검증 실험을 분리해 제시해 달라.
