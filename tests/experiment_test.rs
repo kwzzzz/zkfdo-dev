@@ -767,6 +767,66 @@ fn saved_plan_scores_remain_bound_to_the_prepared_report() {
 }
 
 #[test]
+fn schema_two_plans_reject_a_changed_tie_summary() {
+    let fixture = fixture();
+    let mut plan = plan(&fixture);
+    assert_eq!(plan.schema_version, 2);
+    let mut ties = plan.ties.clone().expect("non-random plan records ties");
+    ties.tie_group_count += 1;
+    plan.ties = Some(ties);
+    write_json(&plan.plan_path, &plan);
+    let options = ExecuteOptions {
+        zkfuzz_bin: fixture.directory.path().join("must-not-start"),
+        budget_seconds: 2,
+        total_budget_seconds: 5,
+        zkfuzz_seed: None,
+        mutation_settings: None,
+        output: fixture.directory.path().join("executions"),
+    };
+    let error = execute_plan(&plan.plan_path, &options).unwrap_err();
+    assert!(error.to_string().contains("tie summary"), "{error:#}");
+    plan.ties = None;
+    write_json(&plan.plan_path, &plan);
+    let error = execute_plan(&plan.plan_path, &options).unwrap_err();
+    assert!(error.to_string().contains("tie summary"), "{error:#}");
+    assert!(!options.output.exists());
+}
+
+#[test]
+fn schema_one_plans_without_ties_remain_valid_but_cannot_add_them() {
+    let fixture = fixture();
+    let mut plan = plan(&fixture);
+    let ties = plan.ties.take();
+    plan.schema_version = 1;
+    let mut value = serde_json::to_value(&plan).unwrap();
+    value.as_object_mut().unwrap().remove("ties");
+    write_json(&plan.plan_path, &value);
+    let options = ExecuteOptions {
+        zkfuzz_bin: fixture.directory.path().join("must-not-start"),
+        budget_seconds: 2,
+        total_budget_seconds: 5,
+        zkfuzz_seed: None,
+        mutation_settings: None,
+        output: fixture.directory.path().join("executions"),
+    };
+    // A legacy plan passes validation and fails only when the missing backend is started.
+    let error = execute_plan(&plan.plan_path, &options).unwrap_err();
+    assert!(
+        error.to_string().contains("zkFuzz binary unavailable"),
+        "{error:#}"
+    );
+    plan.ties = ties;
+    write_json(&plan.plan_path, &plan);
+    let error = execute_plan(&plan.plan_path, &options).unwrap_err();
+    assert!(
+        error
+            .to_string()
+            .contains("schema 1 plan must not carry tie reporting"),
+        "{error:#}"
+    );
+}
+
+#[test]
 fn a_run_without_a_backend_candidate_cannot_be_confirmed() {
     let fixture = fixture();
     let plan = plan(&fixture);

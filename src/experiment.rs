@@ -81,7 +81,7 @@ pub struct ExperimentPlan {
     pub preparation_accounting: PreparationAccounting,
     pub planning_elapsed_seconds: f64,
     pub targets: Vec<PlanTarget>,
-    /// Absent in plans created before tie reporting; None for `random`.
+    /// Absent in schema 1 plans; in schema 2, verified against the ranking and None for `random`.
     #[serde(default)]
     pub ties: Option<TieSummary>,
     pub exclusions: Vec<PlanExclusion>,
@@ -392,7 +392,7 @@ pub fn create_plan(
         );
     }
     let plan = ExperimentPlan {
-        schema_version: 1,
+        schema_version: 2,
         plan_id: Uuid::new_v4().to_string(),
         created_at: Utc::now(),
         plan_path: output_path.clone(),
@@ -935,7 +935,15 @@ fn validate_common_complete_target(target: &corpus::PreparedTarget) -> Result<()
 }
 
 fn validate_plan(plan: &ExperimentPlan) -> Result<()> {
-    ensure!(plan.schema_version == 1, "unsupported plan schema version");
+    // Schema 1 plans were frozen before tie reporting; schema 2 plans must carry verified ties.
+    ensure!(
+        matches!(plan.schema_version, 1 | 2),
+        "unsupported plan schema version"
+    );
+    ensure!(
+        plan.schema_version == 2 || plan.ties.is_none(),
+        "schema 1 plan must not carry tie reporting"
+    );
     ensure!(!plan.targets.is_empty(), "experiment plan has no targets");
     ensure!(
         plan.strategy != RankingStrategy::Random || plan.ranking_seed.is_some(),
@@ -1061,6 +1069,12 @@ fn validate_plan(plan: &ExperimentPlan) -> Result<()> {
             .eq(plan.targets.iter().map(|target| target.target_id.as_str())),
         "stored target order does not match the frozen ranking inputs"
     );
+    if plan.schema_version == 2 {
+        ensure!(
+            plan.ties == tie_summary(&reranked, plan.strategy, &plan.config),
+            "stored tie summary does not match the frozen ranking inputs"
+        );
+    }
     Ok(())
 }
 
