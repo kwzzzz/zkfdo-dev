@@ -2,29 +2,33 @@
 
 이 문서는 2026-09-23까지의 실험 결과를 보고 **남은 계획을 어떻게 바꾸는지**, 그리고 **누가 무엇을 해야 하는지**를 정리한다. 팀원 모두 이 문서를 기준으로 작업한다. 이미 고정된 프로토콜(`docs/controlled_v*_protocol.md`)과 기존 실행 결과는 수정하지 않는다. 현재 결과 요약은 [README](../README.md)의 Status와 각 `reports/*/REPORT.md`를 본다.
 
+같은 날 팀 검토에서 나온 지적(예산 보장 오류, 프로젝트 제외 범위, 검토 형식 차이, 실제 프로젝트 탐색 한계, `ties` 검증)을 반영해 갱신했다.
+
 **용어:** 이 문서에서 **취약본**은 결함이 있는 실제 과거 소스이고, **패치 대조본**은 그 결함을 고친 실제 패치 소스다. 패치 대조본은 다시 **공식 패치**(프로젝트에 병합된 커밋, 예: UniRep `3348caa`)와 **제안 패치**(병합되지 않은 PR, 예: circomlib Decoder의 open PR #81 `9d2918e`)로 나눠 적는다. 두 경우 모두 우리가 코드를 일부러 취약하게 바꾼 것이 아니다. 원본을 변형해 만든 fixture(예: MiMCSponge)는 정확한 원본·패치 쌍이 아니므로 평가에서 제외한다.
 
 ## 1. 왜 수정하는가
 
 지금까지 확인한 것은 **파이프라인이 알려진 결함을 끝까지 재발견하고, 검토 기준까지 통과시킬 수 있다**는 점이다(v1.1, v2, v3에서 각 1건). 연구의 핵심 주장은 **예산이 부족할 때 순위를 매겨 실행하면 무작위나 단순 기준보다 검토를 통과한 결함을 더 빨리 또는 더 많이 찾는다**는 것인데, 이 주장은 아직 시험하지 못했다. 이유는 다음과 같다.
 
-1. **예산이 부족한 상황을 한 번도 만들지 않았다.** 지금까지 실험의 타깃은 2~4개였고, 예산 안에서 모두 끝까지 실행됐다. 이렇게 되면 전략 간 차이는 순서 효과뿐이다(v2 보고서에도 기록됨). 순위가 의미를 가지려면 전체 예산으로 모든 타깃을 다 실행할 수 없어야 한다.
+1. **예산이 부족한 상황을 한 번도 만들지 않았다.** 지금까지 실험의 타깃은 2~4개였고, 예산 안에서 모두 끝까지 실행됐다. 이렇게 되면 전략 간 차이는 순서 효과뿐이다(v2 보고서에도 기록됨). 순위가 의미를 가지려면 모든 타깃을 다 실행할 수 없어야 한다.
 2. **취약본·패치 대조본 쌍은 순위 평가에 맞지 않는다.** 패치는 보통 제약 몇 줄 차이라서 정적 특징이 거의 같다. v3에서 두 쌍 모두 위험점수가 같았다(`0=0`, `1=1`). 동점은 `target_id`(소스·설정의 SHA-256) 오름차순으로 정리되므로([src/static_rank.rs](../src/static_rank.rs) `risk_order`), 패치 대조본이 먼저 실행된 것은 편향이 아니라 해시 순서에 따른 우연이다. 설계의 문제는 패치 대조본을 순위 실행 예산에 함께 넣은 것 하나다. 쌍 설계는 **취약본에서 나온 문제가 패치 대조본에서 사라지는지 확인하는 통제용**이지 순위 평가용이 아니다.
 3. **사례 하나를 검증하는 비용이 크다.** 9/15~9/23 동안 한 번에 결함 1~2개를 검증했다. 이 속도로는 원인 5개 이상·프로젝트 3개 이상으로 여러 전략을 짝지어 비교하기 어렵다.
-4. **계획한 범위가 구현 범위보다 넓다.** `evaluation_plan.md`의 `cost-aware`, `analyzer-aware`, `adaptive` 전략과 RQ4(smoke→deep)는 구현돼 있지 않다. 현재 구현된 전략은 `path-order`, `random`, `small-first`, `warning-first`, `legacy`, `risk-only`, `risk-grouped` 7개다.
+4. **계획한 범위가 구현 범위보다 넓다.** `evaluation_plan.md`의 `analyzer-aware`, `adaptive` 전략과 RQ4(smoke→deep)는 구현돼 있지 않다. `cost-aware`는 T5에서 추가했다.
 
 ## 2. 수정 결정
 
 | 항목 | 기존 계획 | 수정 |
 |---|---|---|
 | 평가 세트 구성 | 알려진 원인마다 취약본·패치 대조본 쌍, 직접 래퍼 중심 | **취약 버전 프로젝트의 실제 `main`에서 도달 가능한 구체 타깃 전부**(결함 타깃 + 결함 없는 타깃)를 한 세트로 둔다. 패치 대조본은 순위 대상에서 빼고, 후보가 나왔을 때 문제가 사라지는지 확인하는 음성 대조로만 쓴다 |
-| 예산 | 모든 타깃을 실행할 수 있는 수준 | **전체 예산 = (타깃 수 × 타깃별 timeout)의 20~40%**. 실행 전에 계산할 수 있고, 반드시 일부 타깃이 실행되지 못하는 조건이다 |
-| 비교 전략 | 계획서의 8개 | 필수: `random`(여러 ranking seed), `small-first`, `path-order`, `risk-only`, `cost-aware`(신규). 선택: `warning-first`(Circomspect 설치 시). `adaptive`, `analyzer-aware`는 제외 |
+| 부족 조건 | 모든 타깃을 실행할 수 있는 수준 | **두 조건을 첫 실행 전에 함께 고정한다.** **조건 A(개수 상한):** 프로젝트마다 순위 상위 `K`개만 시작한다. 순위 품질을 본다(RQ1). **조건 B(시간 예산):** 실제 경과시간을 차감하는 전체 시간 예산만 둔다. `small-first`·`cost-aware`의 비용 효과를 본다(RQ2). B에서 모든 타깃이 시작되면 "부족 조건 조성 실패"로 기록하고 다시 돌리지 않는다 |
+| 실행 단위와 집계 | 여러 타깃을 한 순위로 | **프로젝트별로 순위를 매기고 예산을 적용해 실행한다.** 결과는 프로젝트별로 먼저 제시하고, 프로젝트마다 같은 가중치를 둔 macro 평균으로 모은다. 타깃이 많은 프로젝트가 결과를 지배하지 않게 하기 위해서다 |
+| 분석 | 유의성 비교 | 프로젝트와 결함 수가 적어 검정력이 낮다. **효과 크기와 서술적 결과를 중심**으로 보고하고, 유의성은 주장하지 않는다 |
+| 비교 전략 | 계획서의 8개 | 필수: `random`(여러 ranking seed), `small-first`, `path-order`, `risk-only`, `cost-aware`. 선택: `warning-first`(Circomspect 설치 시). `adaptive`, `analyzer-aware`는 제외 |
 | RQ3 (분석기 경고) | 별도 결합 전략 | `warning-first`와 `risk-only`를 한 번 비교하는 것으로 축소 |
 | RQ4 (smoke→deep) | 핵심 기여 | **향후 과제로 이동.** 시간이 남으면 T8의 최소 형태만 구현 |
-| RQ5 (대형 프로젝트 관리) | 계획만 있음 | **독립된 실행 가능성 연구로 진행**(T6). 결함을 찾지 못해도 결과로 성립한다 |
-| 후보 검토 | 사례마다 수동 스크립트 작성 | **공용 검토 도구로 자동화**(T4). 사람은 사전 속성 정의와 최종 판정 확인만 한다 |
-| 동점 처리 | 문서화 안 됨 | 현재 `target_id` 해시 순서를 유지하고 문서화한다. 계획 출력에 동점 그룹 수를 기록한다(T5) |
+| RQ5 (대형 프로젝트 관리) | naive 실행과 비교 | 현재 절차에는 naive 기준선이 없다. **실제 규모에서의 발견률·준비 성공률·비용 feasibility로 한정**한다(T6). 결함을 찾지 못해도 결과로 성립한다 |
+| 후보 검토 | 사례마다 수동 스크립트 작성 | **공용 검토 엔진과 사례별 속성 predicate를 분리해 자동화**(T4). 사람은 사전 속성 정의와 최종 판정 확인만 한다 |
+| 동점 처리 | 문서화 안 됨 | 각 전략의 주 기준이 같으면 `target_id` 해시 순서로 정한다. 계획 JSON에 `ties`를 기록하고 실행 전에 다시 계산해 검증한다(T5) |
 | 음성 결과 | – | 순위 전략이 이기지 못하면 그대로 보고하고 원인(특징 해상도, 동점, oracle 한계 등)을 분석한다. 가중치를 사후에 바꾸면 그 세트는 개발용으로 강등한다 |
 
 바뀌지 않는 것:
@@ -38,107 +42,127 @@
 
 작업마다 `ID`, 목표, 산출물, 완료 조건, 금지 사항을 적었다. 담당자는 작업을 시작할 때 `담당` 칸에 이름을 적는다.
 
-### 의존 관계
+### 순서
 
 ```
-T1 제외 목록 ─► T2 후보 조사 ─► T3 v4 프로토콜 고정 ─► T7 독립 평가 실행·분석
-                                   ▲                    ▲
-T5 cost-aware·동점 기록 ───────────┘                    │
-T4 검토 자동화 ─────────────────────────────────────────┘
-T6 대형 프로젝트 실행 가능성 (독립, 병행 가능)
-T0 PR 정리 (사람)
+T0 PR 정리 ─► T1·T5 보완·검토 ─► T2a 조사 기준 고정 ─► T2b 후보 전체 조사
+                                                          │
+T4a 검토 형식 결정 ─► T4b 공용 검토 엔진 ─────────────────┤
+T3a 개수 상한(K) 구현 ────────────────────────────────────┤
+                                                          ▼
+                              T3 v4 프로토콜·분석 코드 고정 ─► 계획 생성·해시 고정 ─► T7
+
+T6a 실제 프로젝트 탐색 전용 점검 (병행) ─► T6 실행 가능성 연구 (별도 트랙)
 ```
 
-T1, T4, T5, T6은 지금 바로 병행해서 시작할 수 있다.
+### T0. PR 정리 — 담당: miiz
 
-### T0. PR 정리 — 담당: (사람만)
-
-- **현재 상태(2026-09-24):** main은 `63fae61`(9/8 정적 순위 파이프라인)에서 멈춰 있다. 브랜치는 한 줄로 이어져 있어서 뒤쪽 브랜치가 앞쪽 브랜치를 모두 포함한다.
-  - PR #11 `feat/minimal-runner`: 1커밋
-  - (PR 없음) `feat/uniform-scheduler-target-discovery`: #11 + 3커밋
-  - PR #13 `feat/candidate-validation-evidence`: #11 + 14커밋. 1,088개 파일, 약 40만 줄. 대부분은 증거 스냅샷과 복사한 circomlib이고, `src/`·테스트 변경은 약 1.26만 줄이다
-  - `feat/tangle-v3-validation`(원격에 없음): #13 + 6커밋 + 2026-09-24 계획 문서
-- **정리 순서:**
-  1. **#11은 병합하지 않고 닫는다.** 내용이 #13에 그대로 들어 있다. 닫을 때 "#13에 포함됨"이라고 적는다.
-  2. **#13을 검토한다.** 40만 줄을 다 읽지 않는다. `src/`, `tests/`, `docs/`, 각 `REPORT.md`만 본다. `datasets/**/circomlib`, `node_modules`, `reports/**/evidence/` 아래 파일은 해시로 고정한 증거 사본이므로 수정하지 않고 넘어간다. `cargo test`를 통과하는지 확인한다.
-  3. **#13을 병합할 때 Squash하지 않는다.** "Create a merge commit" 또는 "Rebase and merge"를 쓴다. 보고서에 적힌 커밋 기준(예: `8e1d60f`)이 main 이력에 남아야 재현할 수 있다.
-  4. `feat/tangle-v3-validation`을 push하고 main 대상 새 PR을 연다. 병합한 뒤라서 6커밋과 계획 문서만 보인다.
-  5. 병합이 끝난 브랜치(`feat/minimal-runner`, `feat/uniform-scheduler-target-discovery`, `feat/candidate-validation-evidence`)는 삭제해도 된다. 커밋은 main 이력에 남는다.
-- 앞으로는 T1~T8마다 main에서 짧은 브랜치를 따서 작업 하나당 PR 하나로 올린다. PR이 몇십 개 커밋씩 쌓이지 않게 한다.
+- **완료(2026-09-24):**
+  - #11은 #13에 포함돼 있어 병합 없이 닫았다.
+  - #13은 merge commit으로 main에 병합했다(`508bf8c`).
+  - v3 파일럿과 이 계획 문서가 들어 있는 [#14](https://github.com/kwzzzz/zkfdo-dev/pull/14)는 열려 있다.
+  - 병합이 끝난 브랜치 3개를 삭제했다.
+- **남은 일:** #14를 병합한 뒤, 그 위에 쌓인 `feat/heldout-exclusions`(T1·T5)를 올린다.
+- **병합 방식:** **"Create a merge commit"만 쓴다.** Squash와 "Rebase and merge"는 모두 커밋 SHA를 바꾼다. 증거 파일이 기록한 zkfDO 커밋(예: `39f8798`, `9a8bb03`, `22eb439`, `6d7eaa7`)이 main 이력에 그대로 남아야 재현할 수 있다.
+- 앞으로는 작업마다 main에서 짧은 브랜치를 따서 작업 하나당 PR 하나로 올린다. PR에 커밋이 몇십 개씩 쌓이지 않게 한다.
 
 ### T1. 개발에 사용한 사례의 제외 목록 — 담당: miiz
 
 - **목표:** 지금까지 본 모든 결함 원인과 프로젝트를 기록해서 독립 평가 세트에 섞이지 않게 한다.
-- **산출물:** `datasets/exclusions.development.json` (항목마다 `root_cause_id` 또는 zkbugs 경로, 프로젝트, 처음 사용한 실험, 근거 파일)
-- **포함 범위:** controlled-v1/v1.1(Subtract), v2(Banyan, Tangle 및 v2 준비 단계에서 본 Aptos base64, Telepathy array-xor), v3(Decoder, BigLessThan 및 선정에서 탈락한 bigint-bigmod, rarimo-date-encoder, unirep-epoch-key-lite, zkemail-fpmul), dev3·dev10(reclaimprotocol chacha20의 XorWords, Add32Bits, RotateLeft 계열). 출처: `datasets/manifest.*.json`, `datasets/controlled-v*/`, `reports/*/REPORT.md`
-- **완료 조건:** 위 보고서에서 언급된 모든 사례가 목록에 있고, 누락 여부를 다른 사람이 한 번 확인했다.
+- **산출물:** [datasets/exclusions.development.json](../datasets/exclusions.development.json)
+- **완료 조건:** 보고서와 로컬 조사 흔적에 나온 모든 사례가 목록에 있고, 누락 여부를 다른 사람이 한 번 확인했다.
 - **금지:** 목록을 줄이기 위해 기존 보고서를 해석하지 않는다. 애매하면 제외 쪽으로 둔다.
-- **결과 (2026-09-24, 검토 대기):** [datasets/exclusions.development.json](../datasets/exclusions.development.json)에 21개 원인을 기록했다.
+- **결과 (2026-09-24, 검토 대기):** 원인 21개를 기록했다.
   - 실행 8개: Subtract, Banyan, Tangle, Decoder, BigLessThan, Reclaim 3개
   - 준비·컴파일 7개: Aptos base64, Telepathy ArrayXOR, zk-email FpMul, BigMod, Rarimo DateEncoder, UniRep EpochKeyLite(`veridise_missing_range_checks_on_comparison_circuits`), MiMC
   - 소스 검토 6개: SIV ExtractStringFromPoint, Inference Clamp, Moonsong non-determinism, Self Merkle boolean, Self SMT aliasing, zk-email SHA256
-  - **보고서에 없던 노출:** 9/22 v3 후보 조사 때 `/private/tmp/controlled-v3-work/`에 Moonsong, Self 2건, zk-email SHA256의 취약본·패치 대조본 소스를 받아 검토한 흔적이 있다. v3 사전 점검 보고서에는 이름이 없지만 보수적으로 제외했다. 이 폴더는 `/private/tmp`라 재부팅하면 사라질 수 있다.
-  - **프로젝트 규칙:** 실행한 원인이 있는 6개 프로젝트는 평가 세트에서 완전히 제외한다. 조사만 한 8개 프로젝트는 다른 원인을 쓸 수 있지만 "프로젝트 3개 이상" 조건에는 세지 않는다.
-  - **남은 후보:** zkbugs Circom 70건 중 조건을 통과하는 원인은 42개이고, 처음 보는 프로젝트 13개에 29개가 있다. 그중 under-constrained이면서 패치 커밋(zkbugs `Fix Commit`)이 있는 것은 16개(panther-core 8, zk-regex 2, zkopru 2, Arianee, darkforest, MACI, worm-privacy 각 1)로, 7개 프로젝트에 걸쳐 있다. 실제 사용 가능 여부는 T2에서 판단한다.
+  - **보고서에 없던 노출:** 9/22 v3 후보 조사 때 Moonsong, Self 2건, zk-email SHA256, Inference Clamp의 취약본·패치 대조본 소스를 받아 검토했다. v3 사전 점검 보고서에는 이름이 없다. 로컬 사본은 영구적이지 않으므로, 제외 근거로 공개 저장소 주소, 두 커밋 해시, 확인일(2026-09-22)을 `source_record`에 남겼다. 파일 blob 해시는 기록하지 않았다.
+  - **프로젝트 규칙:** 한 번이라도 본 프로젝트 14개(실행 6개 + 조사 8개)는 **주 평가 세트에서 프로젝트 전체를 제외**한다. 검토하지 않은 다른 원인도 포함해서 뺀다.
+  - **남은 후보:** zkbugs Circom 70건 중 처음 보는 13개 프로젝트에 원인 29개가 남는다. 그중 under-constrained이면서 패치 커밋(zkbugs `Fix Commit`)이 있는 것은 16개(panther-core 8, zk-regex 2, zkopru 2, Arianee, darkforest, MACI, worm-privacy 각 1)로, 7개 프로젝트에 걸쳐 있다. 실제 사용 가능 여부는 T2에서 판단한다.
 
-### T2. 독립 평가 후보 조사 (실행 금지) — 담당:
+### T2a. 후보 조사 기준 고정 — 담당:
 
-- **목표:** zkbugs Circom 사례(`.external/zkbugs/dataset/circom/`, 현재 70건·25개 조직) 중 T1에 없는 것으로 평가 세트 후보를 만든다.
+- **목표:** 조사를 시작하기 전에 포함·제외 기준(rubric)을 문서로 고정한다. 결과를 보고 기준을 바꾸지 않기 위해서다.
+- **기준에 넣을 것:** T1 제외 목록 통과, 취약·패치 커밋 쌍 존재 여부와 종류(공식/제안), 결함 템플릿의 실제 `main` 도달 가능성, 현재 도구의 파싱·컴파일 가능성, TCCT 탐지 가능 유형 여부, 입력 계약과 사전 속성을 정의할 수 있는지, 프로젝트당 도달 가능 타깃 수의 최소값(순위가 의미를 가지려면 `K`보다 충분히 커야 한다)
+- **산출물:** `docs/heldout_selection_rubric.md`와 그 SHA-256을 기록한 커밋
+- **금지:** 기준을 정할 때 후보의 위험점수, 순위 계획, zkFuzz 결과를 보지 않는다.
+
+### T2b. 독립 평가 후보 조사 (실행 금지) — 담당:
+
+- **전제:** T1 검토, T2a 고정
+- **목표:** T1을 통과한 후보 **전부**를 T2a 기준으로 같은 절차에 따라 조사한다.
 - **사례마다 기록할 것:**
   - 프로젝트, 취약 커밋과 패치 커밋(공식 패치인지 제안 패치인지 표시), 결함 위치
-  - 결함 템플릿이 **실제 프로젝트 `main`에서 도달 가능한지**, 그리고 zkfDO `targets`로 그 `main`에서 발견되는 구체 타깃 수
+  - 결함 템플릿이 **실제 프로젝트 `main`에서 도달 가능한지**, 그리고 그 `main`에서 발견되는 구체 타깃 수
   - wrapper 컴파일 성공 여부
   - 입력 계약(`field_only` 또는 `bounded`)과 사전 정의할 속성의 초안
   - **TCCT 탐지 가능성:** 제약 부족(under-constrained) 유형인지, Tangle처럼 소스와 제약이 함께 틀린 의미 결함인지. 후자는 제외 후보로 표시한다([Tangle 진단](../reports/tangle-diagnostic-2026-09-22/REPORT.md) 참고)
 - **산출물:** `reports/heldout-survey-YYYY-MM-DD/SURVEY.md`와 같은 내용의 JSON
 - **완료 조건:** 조건을 만족하는 후보가 원인 5개 이상·프로젝트 3개 이상 되거나, 부족하면 부족하다고 명시한다.
-- **금지:** 후보 사례에 **zkFuzz를 실행하지 않는다**(실행하면 개발용이 된다). 컴파일과 `targets` 탐색은 허용한다. 선택 기준을 결과를 보고 바꾸지 않는다.
+- **금지:** 후보 사례에 **zkFuzz를 실행하지 않는다**(실행하면 개발용이 된다). 컴파일과 `targets` 탐색은 허용한다. 위험점수나 순위 계획을 보고 후보를 고르지 않는다.
+
+### T3a. 개수 상한(`K`) 구현 — 담당:
+
+- **목표:** 조건 A를 위해 실행 단계에 "순위 상위 `K`개만 시작" 옵션을 추가한다. 현재 scheduler는 실제 경과시간만 차감하므로([src/scheduler.rs](../src/scheduler.rs)) 타깃이 빨리 끝나면 전부 실행될 수 있다.
+- **완료 조건:** `K`개 이후의 타깃은 `not_started`로 기록되고 사유가 남는다. `K`가 계획·실행 기록에 저장되고, 실행 전에 검증된다. 기존 시간 예산 동작은 바뀌지 않는다. fmt, clippy, 테스트 통과.
 
 ### T3. controlled-v4 독립 평가 프로토콜 작성·고정 — 담당:
 
-- **전제:** T2와 T5 완료
-- **목표:** 2절의 "예산 부족" 설계를 프로토콜로 고정한다. 기존 `docs/controlled_v2_execution_protocol.md`의 형식을 따른다.
-- **반드시 정할 것:**
-  - 사례와 타깃 목록(프로젝트별 도달 가능 타깃 전부), 결함 타깃과 원인 매핑
-  - 타깃별 timeout, 전체 예산 비율(20~40% 중 하나로 고정)
-  - 전략 목록, `random`의 ranking seed 개수, zkFuzz seed(paired block) 개수
+- **전제:** T2b, T3a, T4b, T5 완료
+- **목표:** 2절의 설계를 프로토콜과 분석 코드로 고정한다. 기존 `docs/controlled_v2_execution_protocol.md`의 형식을 따른다.
+- **반드시 정할 것 (A와 B를 한 번에):**
+  - 프로젝트별 사례와 타깃 목록(도달 가능 타깃 전부), 결함 타깃과 원인 매핑
+  - 조건 A의 `K`(또는 프로젝트별 비율), 조건 B의 시간 예산, 타깃별 timeout
+  - 전략 목록, `random`의 ranking seed 개수, zkFuzz seed(paired block) 개수, 조건·전략·block의 실행 순서
+  - 조건 B에서 부족 조건 조성에 실패했을 때의 기록 방식(재실행 금지)
   - 도구 해시(zkfDO 커밋, zkFuzz, circom 버전), 하드웨어
-  - 주 지표 계산법, 통계 비교 방법, 실패·timeout 처리
-  - 결과를 본 뒤 가중치를 바꾸면 이 세트는 개발용으로 강등된다는 조항
-- **산출물:** `docs/controlled_v4_evaluation_protocol.md`, `datasets/manifest.controlled-v4.json`, `datasets/contracts.controlled-v4.json`, preflight 보고서
-- **완료 조건:** `experiment prepare`와 `plan`이 모든 전략에서 성공하고, 해시가 기록된 커밋이 있다. 팀원 1명 이상이 검토했다.
+  - 주 지표 계산법, 프로젝트별 결과와 동일 가중 macro 집계 방법, 효과 크기 지표, 실패·timeout 처리
+  - 분석 스크립트 자체와 그 해시
+  - 결과를 본 뒤 가중치·예산·분석법을 바꾸면 이 세트는 개발용으로 강등된다는 조항
+- **산출물:** `docs/controlled_v4_evaluation_protocol.md`, `datasets/manifest.controlled-v4.json`, `datasets/contracts.controlled-v4.json`, 분석 스크립트, preflight 보고서
+- **완료 조건:** `experiment prepare`와 `plan`이 모든 전략에서 성공하고, 계획 파일과 해시가 기록된 커밋이 있다. 팀원 1명 이상이 검토했다. **A와 B 중 어느 쪽도 실행하기 전에** 이 모든 것이 고정돼 있어야 한다.
 
-### T4. 후보 검토 자동화 — 담당:
+### T4a. 검토 형식 결정 — 담당:
 
-- **목표:** [review_candidate.py](../reports/controlled-v3-pilot-2026-09-23/review_candidate.py)를 일반화해서 사례마다 새 스크립트를 쓰지 않게 한다.
-- **입력:** 후보 파일, 고정 원본의 R1CS/SYM, 입력 계약, 사전 속성 명세(사례별 작은 predicate 파일)
-- **출력:** 값이 들어가지 않은 판정 JSON(세 판정 + 근거 해시). 형식은 기존 `candidate-review.json`과 호환되어야 한다.
-- **위치 제안:** `tools/review/` (Python) 또는 `zkfDO experiment review` 하위 명령. 둘 중 하나를 골라서 이 문서에 적는다.
-- **완료 조건:** v1.1, v2(Banyan), v3(Decoder)의 기존 후보에 적용했을 때 기존 판정과 같은 결과가 나온다(원시 후보가 있는 로컬에서 확인). 테스트 포함.
+- **배경:** 기존 후보 검토는 형식이 서로 다르다. v1.1·v2는 `review_candidates.py`와 캠페인 ledger 기반 구조이고, v3는 `review_candidate.py`와 plan·outcome 기반 구조다. 단순히 하나를 일반화할 수 없다.
+- **결정할 것:** 검토 명세(review-spec) 형식, 값 없는 출력 schema, R1CS/SYM 해시 고정 방식, 사례별 속성 predicate의 API
+- **산출물:** `docs/candidate_review_design.md`
+
+### T4b. 공용 검토 엔진과 회귀 검증 — 담당:
+
+- **전제:** T4a
+- **내용:**
+  1. 공용 검산 엔진(입력 전제, 고정 원본 제약 전체, 사전 속성)과 사례별 predicate를 구현한다.
+  2. 기존 v1.1, v2(Banyan), v3(Decoder)의 후보 전체에 적용해 기존 판정과 같은지 회귀 검증한다(원시 후보가 있는 로컬에서).
+  3. 결과를 `experiment evaluate --confirmations`가 받는 confirmation schema 2까지 연결한다.
+- **완료 조건:** 기존 판정과 전부 일치, 테스트 포함.
 - **금지:** 기존 보고서의 판정 파일을 덮어쓰지 않는다. 신호 값을 Git에 커밋하지 않는다.
 
 ### T5. `cost-aware` 전략과 동점 기록 — 담당: miiz
 
 - **목표:** `evaluation_plan.md`에는 있지만 구현되지 않은 `cost-aware` 전략을 추가하고, 동점 정보를 계획에 남긴다.
-- **내용:**
-  - `cost-aware`: `risk_score / cost`. cost는 prepare 단계에서 이미 측정되는 값(예: 제약 수 또는 컴파일 시간) 중 하나로 정하고, 이유를 문서에 적는다. 동점은 기존과 같이 `target_id` 순서로 정리한다.
-  - 계획 JSON에 동점 그룹 수와 최대 동점 크기를 기록한다.
-  - `docs/static_ranking_experiment.md`에 전략 목록과 동점 규칙을 갱신한다.
-- **완료 조건:** `cargo fmt`, `cargo clippy --all-targets --all-features -- -D warnings`, `cargo test`를 통과한다. 기존 전략의 계획 출력은 바뀌지 않는다(회귀 테스트).
+- **완료 조건:** `cargo fmt`, `cargo clippy --all-targets --all-features -- -D warnings`, `cargo test`를 통과한다. 기존 전략의 계획 순서는 바뀌지 않는다.
 - **금지:** 기존 전략의 점수나 가중치를 바꾸지 않는다. v1~v3 결과를 보고 가중치를 조정하지 않는다.
 - **결과 (2026-09-24, 검토 대기):**
-  - `cost-aware` = `risk_score / cost_bits(size)` 내림차순. `size`는 prepare 단계에서 이미 측정하는 컴파일 제약 수이고, `cost_bits`는 `size + 1`의 비트 길이(대략 log₂)다. 타깃마다 timeout으로 시간이 제한되기 때문에, 제약 수를 그대로 쓰면 0~5점짜리 위험점수가 묻힌다. 그래서 로그 척도를 썼다. 정수 곱으로 비교해서 플랫폼과 관계없이 같은 순서가 나온다. 비율이 같으면 제약 수가 작은 쪽, 그다음은 `target_id` 순이다.
-  - 모든 계획 JSON에 `ties`(`target_id`로만 순서가 갈린 그룹 수, 해당 타깃 수, 최대 그룹 크기)를 기록한다. `random`은 `null`이다. 예전 계획 파일도 그대로 읽힌다.
-  - **회귀 확인:** 고정된 v3 prepared 파일로 `risk-only` 계획을 다시 만들었을 때 순서가 저장된 계획과 같았다. `ties`는 v3의 두 동점 쌍을 `tie_group_count: 2`로 보고했다.
+  - `cost-aware` = `risk_score / cost_bits(size)` 내림차순. `size`는 prepare 단계에서 이미 측정하는 컴파일 제약 수이고, `cost_bits`는 `size + 1`의 비트 길이(대략 log₂)다. 타깃마다 timeout으로 시간이 제한되기 때문에, 제약 수를 그대로 쓰면 0~5점짜리 위험점수가 묻힌다. 그래서 로그 척도를 썼다. 정수 곱으로 비교해서 플랫폼과 관계없이 같은 순서가 나온다.
+  - **동점 규칙:** 모든 전략은 자신의 주 기준이 같을 때 `target_id` 순으로 정한다. `cost-aware`의 주 기준은 "비율, 그다음 작은 `size`"이므로, 비율이 같으면 제약 수가 작은 쪽, 그것도 같으면 `target_id` 순이다. `ties`는 이 주 기준이 같아서 `target_id`로만 순서가 갈린 그룹을 센다.
+  - **계획 schema 2:** 새 계획은 `schema_version: 2`이고 `ties`(그룹 수, 해당 타깃 수, 최대 그룹 크기)를 반드시 가진다. 실행 전에 다시 계산해서 다르면 거부한다. `random`은 `null`이어야 한다. 기존 고정 계획(schema 1)은 `ties` 없이 그대로 허용하고, schema 1에 `ties`가 붙어 있으면 거부한다. 고정된 v3 계획이 새 검증을 통과하는 것도 확인했다.
+  - **회귀 확인:** 고정된 v3 prepared 파일로 `risk-only` 계획을 다시 만들었을 때 순서가 저장된 계획과 같았다. `ties`는 v3의 두 동점 쌍을 `tie_group_count: 2`로 보고했다. 테스트 146개 통과, 로컬 도구가 필요한 5개는 ignored.
   - **주의:** v3에서 `cost-aware`는 두 쌍 모두 취약본을 먼저 둔다. 제약이 빠진 취약본의 `size`가 더 작기 때문이다. 이는 취약본·패치 대조본 쌍 설계에서 생기는 현상이고 순위 성능의 근거가 아니다. v3는 개발용이며, 이 확인은 공식을 정한 뒤 회귀 점검으로만 했다.
-  - 변경 파일: `src/static_rank.rs`, `src/experiment.rs`, `src/corpus.rs`, `src/cli.rs`, `tests/static_rank_test.rs`, `tests/experiment_test.rs`, `docs/static_ranking_experiment.md`, `README.md`
+
+### T6a. 실제 프로젝트 탐색 전용 점검 — 담당:
+
+- **목표:** 실제 프로젝트 1개에 `targets`만 실행해 현재 도구의 한계를 확인한다. zkFuzz는 실행하지 않는다.
+- **알려진 한계:** 현재 탐색은 저장소 전체에서 `component main`이 정확히 하나여야 한다([src/targets.rs](../src/targets.rs)). 실제 프로젝트는 `main`이 여러 개인 경우가 많다. 라이브러리 경로 지정과 wrapper 컴파일 timeout 처리도 부족하다.
+- **산출물:** 막힌 지점 목록과 필요한 기능(예: entrypoint 지정, 여러 `main` 처리, 라이브러리 경로, 컴파일 timeout). 기능 구현은 별도 작업으로 나눈다.
 
 ### T6. zkbugs 외 대형 프로젝트 실행 가능성 연구 (RQ5) — 담당:
 
-- **목표:** 실제 규모 Circom 프로젝트에서 zkfDO가 타깃을 얼마나 찾고, 비용이 얼마나 드는지 측정한다. 결함을 찾지 못해도 결과로 성립한다.
+- **전제:** T6a에서 나온 필수 기능 구현
+- **목표:** 실제 규모 Circom 프로젝트에서 zkfDO의 타깃 발견률, 준비 성공률, 비용을 측정한다. 비교가 아니라 feasibility 연구다.
 - **절차:**
   1. zkbugs 데이터셋에 **사례로 들어 있지 않은** 공개 Circom 프로젝트 2~3개를 고르고 커밋을 고정한다. 선정 이유와 제외 이유를 기록한다.
-  2. 각 프로젝트의 실제 `main` 파일들에 `zkfDO targets`를 실행한다.
+  2. 각 프로젝트의 실제 `main` 파일들에서 타깃을 탐색한다.
   3. 기록할 항목: 파일·템플릿 수, 발견한 구체 인스턴스 수, 지원하지 않는 구문 때문에 빠진 수, wrapper 컴파일 성공률, 준비 시간, 균일 예산 실행에서 `timeout`, `failure`, `no_counterexample`, `bug_found` 비율, 타깃별 비용 분포.
   4. 실행 전에 예산·seed·도구 해시를 고정한다.
   5. `bug_found` 후보가 나오면 T4 도구로 세 기준을 검토하고, 프로젝트 호출 경로 확인은 별도로 기록한다.
@@ -147,9 +171,9 @@ T1, T4, T5, T6은 지금 바로 병행해서 시작할 수 있다.
 
 ### T7. 독립 평가 실행과 분석 — 담당:
 
-- **전제:** T3, T4 완료
-- **목표:** v4 프로토콜대로 한 번 실행하고, 모든 후보를 검토한 뒤 전략을 비교한다.
-- **산출물:** 누적 발견 곡선(전략별), 최초 발견시간, 예산 내 고유 원인 수, timeout률, 낭비 시간, 준비·순위·퍼징·검토 시간 분리 표, `reports/controlled-v4-execution-YYYY-MM-DD/REPORT.md`
+- **전제:** T3 고정, 계획 파일과 해시 고정
+- **목표:** v4 프로토콜에 고정된 **조건 A·B의 paired-block campaign 전체를 한 번** 수행하고, 모든 후보를 검토한 뒤 고정된 분석 코드로 전략을 비교한다.
+- **산출물:** 프로젝트별 누적 발견 곡선(전략별), 최초 발견시간, 예산 내 고유 원인 수, 동일 가중 macro 집계, 효과 크기, timeout률, 낭비 시간, 준비·순위·퍼징·검토 시간 분리 표, `reports/controlled-v4-execution-YYYY-MM-DD/REPORT.md`
 - **금지:** 실패한 실행을 다시 돌려 교체하지 않는다. 미검토 후보가 남아 있으면 최종 비교를 발표하지 않는다(`provisional`로만 표시).
 
 ### T8. (선택) 최소 적응형 배분 — 담당:
@@ -158,9 +182,9 @@ T1, T4, T5, T6은 지금 바로 병행해서 시작할 수 있다.
 
 ## 4. 공통 작업 규칙
 
-- **Git:** commit, push, PR 병합은 변경 내용을 확인한 뒤 한다. 커밋 메시지와 PR 본문에 `Co-Authored-By` 같은 공동 작성자 표기를 넣지 않는다.
+- **Git:** commit, push, PR 병합은 변경 내용을 확인한 뒤 한다. PR 병합은 merge commit만 쓴다. 커밋 메시지와 PR 본문에 `Co-Authored-By` 같은 공동 작성자 표기를 넣지 않는다.
 - **고정된 자료:** 기존 프로토콜, manifest, contracts, 실행 결과, 판정 파일을 사후 수정하지 않는다. 바꿔야 하면 새 버전 파일을 만든다.
-- **개발용과 평가용 분리:** T1 목록에 있는 사례는 평가 세트에 넣지 않는다. 평가 세트 사례에 zkFuzz를 실행한 순간 그 실행은 기록 대상이 되며, 버리거나 다시 돌리지 않는다.
+- **개발용과 평가용 분리:** T1 목록에 있는 사례와 프로젝트는 평가 세트에 넣지 않는다. 평가 세트 사례에 zkFuzz를 실행한 순간 그 실행은 기록 대상이 되며, 버리거나 다시 돌리지 않는다.
 - **증거 보관:** 원시 후보·R1CS·SYM은 `runs/`(ignored)에 두고, Git에는 경로·해시·판정·시간만 둔다.
 - **코드 변경:** `cargo fmt`, `cargo clippy --all-targets --all-features -- -D warnings`, `cargo test` 통과. 주변 코드 스타일을 따른다.
 - **작업 기록:** 작업을 시작하거나 끝내면 3절의 `담당` 칸과 아래 진행 표를 갱신한다.
@@ -169,12 +193,16 @@ T1, T4, T5, T6은 지금 바로 병행해서 시작할 수 있다.
 
 | ID | 상태 | 담당 | 메모 |
 |---|---|---|---|
-| T0 | 대기 | 사람 | |
-| T1 | 검토 대기 | miiz | 21개 원인 기록. 팀원 1명 확인 필요 |
-| T2 | 대기 | | T1 후 |
-| T3 | 대기 | | T2, T5 후 |
-| T4 | 대기 | | |
-| T5 | 검토 대기 | miiz | cost-aware와 ties 구현, 테스트 통과 |
-| T6 | 대기 | | |
-| T7 | 대기 | | T3, T4 후 |
+| T0 | 거의 완료 | miiz | #14 병합과 후속 브랜치 업로드 남음 |
+| T1 | 검토 대기 | miiz | 원인 21개, 프로젝트 14개 전체 제외. 팀원 1명 확인 필요 |
+| T2a | 대기 | | T1 검토 후 |
+| T2b | 대기 | | T2a 후 |
+| T3a | 대기 | | 병행 가능 |
+| T3 | 대기 | | T2b, T3a, T4b, T5 후 |
+| T4a | 대기 | | 병행 가능 |
+| T4b | 대기 | | T4a 후 |
+| T5 | 검토 대기 | miiz | cost-aware, schema 2 `ties` 검증, 테스트 통과 |
+| T6a | 대기 | | 병행 가능 |
+| T6 | 대기 | | T6a 후 필요 기능 구현 뒤 |
+| T7 | 대기 | | T3 고정 후 |
 | T8 | 보류 | | 선택 |
