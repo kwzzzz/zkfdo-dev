@@ -117,6 +117,15 @@
       ]
     },
     {
+      "zkbugs_case": "succinctlabs/telepathy-circuits/veridise_template_CoreVerifyPubkeyG1_does_not_perform_input_validation_simplified",
+      "exposure": "prepared",
+      "first_used_in": "dev10",
+      "note": "The direct wrapper was checked out and listed in the dev10 manifest, then excluded because its circuits/ dependency tree was missing locally.",
+      "evidence": [
+        "datasets/manifest.dev10.json"
+      ]
+    },
+    {
       "zkbugs_case": "zkemail/zk-email-verify/matterlabs_underconstrained_fpmul_circuit",
       "exposure": "prepared",
       "first_used_in": "controlled-v2-preparation",

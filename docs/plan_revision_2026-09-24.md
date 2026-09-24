@@ -74,11 +74,12 @@ T6a 이후 ─► T6 실행 가능성 연구 (별도 트랙)
 - **산출물:** [datasets/exclusions.development.json](../datasets/exclusions.development.json)
 - **완료 조건:** 보고서와 로컬 조사 흔적에 나온 모든 사례가 목록에 있고, 누락 여부를 miiz가 확인하고 확인일을 진행 표에 적었다.
 - **금지:** 목록을 줄이기 위해 기존 보고서를 해석하지 않는다. 애매하면 제외 쪽으로 둔다.
-- **결과 (2026-09-24, 검토 대기):** 원인 21개를 기록했다.
+- **결과 (2026-09-24):** 원인 22개를 기록했다.
   - 실행 8개: Subtract, Banyan, Tangle, Decoder, BigLessThan, Reclaim 3개
-  - 준비·컴파일 7개: Aptos base64, Telepathy ArrayXOR, zk-email FpMul, BigMod, Rarimo DateEncoder, UniRep EpochKeyLite(`veridise_missing_range_checks_on_comparison_circuits`), MiMC
+  - 준비·컴파일 8개: Aptos base64, Telepathy ArrayXOR, Telepathy CoreVerifyPubkeyG1(dev10에서 direct wrapper 확인 후 의존성 부재로 제외), zk-email FpMul, BigMod, Rarimo DateEncoder, UniRep EpochKeyLite(`veridise_missing_range_checks_on_comparison_circuits`), MiMC
   - 소스 검토 6개: SIV ExtractStringFromPoint, Inference Clamp, Moonsong non-determinism, Self Merkle boolean, Self SMT aliasing, zk-email SHA256
   - **보고서에 없던 노출:** 9/22 v3 후보 조사 때 Moonsong, Self 2건, zk-email SHA256, Inference Clamp의 취약본·패치 대조본 소스를 받아 검토했다. v3 사전 점검 보고서에는 이름이 없다. 로컬 사본은 영구적이지 않으므로, 제외 근거로 공개 저장소 주소, 두 커밋 해시, 확인일(2026-09-22)을 `source_record`에 남겼다. 파일 blob 해시는 기록하지 않았다.
+  - **교차 확인에서 찾은 누락:** 처음에는 manifest의 `targets`만 모아서, `manifest.dev10.json`의 `exclusions`에 있던 Telepathy CoreVerifyPubkeyG1을 놓쳤다. 모든 manifest의 `exclusions` 항목을 다시 대조해 추가했고, 다른 누락은 없었다. Telepathy 프로젝트는 이미 제외돼 있어 프로젝트 수는 그대로다.
   - **프로젝트 규칙:** 한 번이라도 본 프로젝트 14개(실행 6개 + 조사 8개)는 **주 평가 세트에서 프로젝트 전체를 제외**한다. 검토하지 않은 다른 원인도 포함해서 뺀다.
   - **남은 후보:** zkbugs Circom 70건 중 처음 보는 13개 프로젝트에 원인 29개가 남는다. 그중 under-constrained이면서 패치 커밋(zkbugs `Fix Commit`)이 있는 것은 16개(panther-core 8, zk-regex 2, zkopru 2, Arianee, darkforest, MACI, worm-privacy 각 1)로, 7개 프로젝트에 걸쳐 있다. 실제 사용 가능 여부는 T2에서 판단한다.
 
@@ -88,7 +89,7 @@ T6a 이후 ─► T6 실행 가능성 연구 (별도 트랙)
 - **기준에 넣을 것:** T1 제외 목록 통과, 취약·패치 커밋 쌍 존재 여부와 종류(공식/제안), 결함 템플릿의 실제 `main` 도달 가능성, 현재 도구의 파싱·컴파일 가능성, TCCT 탐지 가능 유형 여부, 입력 계약과 사전 속성을 정의할 수 있는지, 프로젝트당 도달 가능 타깃 수의 최소값(순위가 의미를 가지려면 `K`보다 충분히 커야 한다)
 - **산출물:** `docs/heldout_selection_rubric.md`와 그 SHA-256을 기록한 커밋
 - **금지:** 기준을 정할 때 후보의 위험점수, 순위 계획, zkFuzz 결과를 보지 않는다.
-- **결과 (2026-09-24, 초안·검토 중):** [docs/heldout_selection_rubric.md](heldout_selection_rubric.md), 현재 SHA-256 `ded5a145be16d81c3690320c65e8fc210833746bf8916f9b924492620eb2151f`(제외 목록 SHA-256 `179f0311…` 반영). zkbugs revision `a0eed74`를 고정했다. 0~6단계(제외 목록, 메타데이터, 소스, 실제 `main` 도달, 도구 처리, oracle 적합성, 입력 계약·속성), 프로젝트 조건(`N_p ≥ 6`, 공통 평가 집합에서도 충족, `K_p = floor(N_p / 2)`), 조사 중 도구 한계 처리 규칙, 부족할 때의 확장 순서 두 가지를 정했다. **최종 고정은 T6a 뒤에 도구 해시와 하드웨어를 채운 시점**이며, 그때 해시가 다시 바뀐다. 조사 중에는 `experiment prepare`·`plan`을 쓰지 않아 위험점수를 보지 않는다.
+- **결과 (2026-09-24, 초안·검토 중):** [docs/heldout_selection_rubric.md](heldout_selection_rubric.md), 현재 SHA-256 `f66162e8a85132672b06422f7b691318112b455a1ad64bd9005e57385baa5081`(제외 목록 SHA-256 `ae1157e0…` 반영). zkbugs revision `a0eed74`를 고정했다. 0~6단계(제외 목록, 메타데이터, 소스, 실제 `main` 도달, 도구 처리, oracle 적합성, 입력 계약·속성), 프로젝트 조건(`N_p ≥ 6`, 공통 평가 집합에서도 충족, `K_p = floor(N_p / 2)`), 조사 중 도구 한계 처리 규칙, 부족할 때의 확장 순서 두 가지를 정했다. **최종 고정은 T6a 뒤에 도구 해시와 하드웨어를 채운 시점**이며, 그때 해시가 다시 바뀐다. 조사 중에는 `experiment prepare`·`plan`을 쓰지 않아 위험점수를 보지 않는다.
 
 ### T2b. 독립 평가 후보 조사 (실행 금지) — 담당:
 
@@ -205,7 +206,7 @@ T6a 이후 ─► T6 실행 가능성 연구 (별도 트랙)
 | ID | 상태 | 담당 | 메모 |
 |---|---|---|---|
 | T0 | 거의 완료 | miiz | #14 병합과 후속 브랜치 업로드 남음 |
-| T1 | 확인 대기 | miiz | 원인 21개, 프로젝트 14개 전체 제외. miiz 확인 필요 |
+| T1 | 확인 대기 | miiz | 원인 22개(누락 1건 추가), 프로젝트 14개 전체 제외. miiz 확인 필요 |
 | T2a | 초안 | miiz | `K_p` 규칙 반영. T6a 뒤 도구 해시를 채워 최종 고정 |
 | T2b | 대기 | | T6a와 기준 최종 고정 후 |
 | T3a | 대기 | | 병행 가능, 프로젝트별 `K_p` |

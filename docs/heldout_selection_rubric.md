@@ -9,7 +9,7 @@
 | 항목 | 값 |
 |---|---|
 | 후보 출처 | zkbugs `dataset/circom/`, 저장소 revision `a0eed744ba1a816acaa2fae597f4e79b4fd01aea` (`.external/zkbugs`) |
-| 제외 목록 | [datasets/exclusions.development.json](../datasets/exclusions.development.json), SHA-256 `179f03110c6ad96b5cabd0ca5bb3e9ccbaafefc5fed187fc6cb059dec78dd388` |
+| 제외 목록 | [datasets/exclusions.development.json](../datasets/exclusions.development.json), SHA-256 `ae1157e00ca4593d21202a5de275c061e3cf9aaaafe08e376707969c35e359d7` |
 | 컴파일러 | circom 2.2.3, 바이너리 SHA-256: T6a 이후 기록 |
 | 퍼저 | zkFuzz 2.2.1 (**조사 중에는 실행하지 않는다**) |
 | zkfDO | 커밋과 바이너리 SHA-256, 정확한 CLI 인자: T6a 이후 기록 |
