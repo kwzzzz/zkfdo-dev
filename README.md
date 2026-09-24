@@ -23,7 +23,7 @@ Implemented now:
 - real zkFuzz subprocess execution with a per-target timeout
 - raw stdout/stderr logs and structured JSON run results
 - uniform per-target budget scheduling and experiment summaries
-- explicit corpus preparation, seven static ranking strategies, saved plans, and execution in ranked order under a total budget
+- explicit corpus preparation, eight static ranking strategies, saved plans, and execution in ranked order under a total budget
 - evaluation JSON separating backend candidates, reviewed original-component defects, and project-context defects
 - repeated-pilot validation and aggregation over paired backend seeds
 - placeholder modules for reports and database storage

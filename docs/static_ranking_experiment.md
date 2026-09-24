@@ -47,9 +47,9 @@ python3 scripts/summarize_static_ranking_pilot.py \
   --output experiments/dev3-ranking-pilot-2026-09-15.json
 ```
 
-**The seven strategies**
+**The strategies**
 
-All nonrandom score ties use ascending stable target ID. `path-order` sorts by entrypoint path first, then ID. Missing required measurements cause an explicit error or preparation exclusion; they never become zero.
+The dev3 pilot above used the first seven strategies; `cost-aware` was added on 2026-09-24. All nonrandom score ties use ascending stable target ID. `path-order` sorts by entrypoint path first, then ID. Missing required measurements cause an explicit error or preparation exclusion; they never become zero.
 
 | CLI strategy | Ordering | Required ranking measurements |
 |---|---|---|
@@ -60,6 +60,7 @@ All nonrandom score ties use ascending stable target ID. `path-order` sorts by e
 | `warning-first` | Descending deduplicated selected diagnostic count | `warning_count` |
 | `risk-only` | Descending sum of five 0/1 semantic features | `risk_score` |
 | `risk-grouped` | Same risk ordering within structural groups, then fixed round robin across groups | `risk_score`, `complexity`, explicit group configuration |
+| `cost-aware` | Descending `risk_score / cost_bits(size)`, then ascending `size` | `risk_score`, `size` |
 
 `random` uses `splitmix64-fisher-yates-rejection-v1`: SplitMix64, rejection sampling for unbiased indices, and Fisher–Yates. Its ranking seed is independent of the zkFuzz seed. The same target IDs and ranking seed reproduce the permutation regardless of discovery order.
 
@@ -68,6 +69,10 @@ The five risk features are existence indicators for Circomspect rules CS0013, CS
 `legacy` calls the unchanged functions in [src/ranker.rs](../src/ranker.rs): the existing weighted lexical risk divided by `1 + ln(1+LOC) + ln(1+signals) + ln(1+components) + ln(1+estimated constraints)`. In experiments its lexical input is the entire source file containing the root template, including unrelated templates in that file. It is a preserved baseline, not the semantic risk definition.
 
 `size` is the Circom compiler's `non-linear constraints` plus `linear constraints`, requiring successful compilation and the expected R1CS artifact. `complexity` is exactly `root_ast_if_plus_while`: `num_if_then_else + num_while` from the exact root-template row of zkFuzz's `--show_stats_of_ast` CSV. It counts the root template definition, not its parameter-expanded execution, dependency bodies, or total R1CS size. Profiles record `parameter_reflected: false`; `num_statements` is also preserved. AST collection runs no fuzz search.
+
+`cost-aware` uses `cost_bits(size)`, the bit length of `size + 1` (at least 1, roughly log2 of the constraint count). Each target run is capped by the per-target timeout, so raw constraint counts would let cost dominate the 0–5 risk score; the integer log scale keeps both terms visible. Ratios are compared exactly by cross-multiplying integers, so the order does not depend on floating-point behavior. Among equal ratios, fewer constraints go first. The formula was fixed before any held-out case was selected and was not tuned on development results. Because a missing constraint lowers `size`, vulnerable sources can precede their patched comparators in vulnerable/patched pairs; that is a property of the pair design, not evidence of ranking quality.
+
+Every plan records `ties`: the number of groups whose relative order is decided only by target ID, the number of targets in those groups, and the largest group. It is computed from the strategy's primary key (for `risk-grouped`, structural group plus risk) and is `null` for `random`. Plans created before this field existed load with `ties` absent.
 
 For `risk-grouped`, every target is assigned to one structural group; each group is ordered by the same risk score used in `risk-only`. Each round selects one remaining target from each group in configured order and skips exhausted groups. Complexity never changes a risk point or divides the score. This experiment tests grouping as a separate hypothesis.
 

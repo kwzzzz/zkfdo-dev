@@ -826,7 +826,7 @@ fn stored_outcome_cannot_duplicate_a_run_to_inflate_evaluation_counts() {
 
 #[test]
 #[ignore = "requires actual locally installed Circom, zkFuzz AST, and pinned Circomspect; no fuzz search"]
-fn all_seven_strategies_preserve_one_common_complete_target_set() {
+fn all_strategies_preserve_one_common_complete_target_set() {
     let fixture = fixture();
     let manifest_path = fixture.directory.path().join("manifest.json");
     let mut manifest: CorpusManifest =
@@ -884,6 +884,7 @@ fn all_seven_strategies_preserve_one_common_complete_target_set() {
         RankingStrategy::WarningFirst,
         RankingStrategy::RiskOnly,
         RankingStrategy::RiskGrouped,
+        RankingStrategy::CostAware,
     ] {
         let seed = (strategy == RankingStrategy::Random).then_some(77);
         let plan = create_plan(
@@ -907,5 +908,6 @@ fn all_seven_strategies_preserve_one_common_complete_target_set() {
         );
         assert_eq!(plan.exclusions.len(), 1);
         assert_eq!(plan.exclusions[0].label, "C-unsupported");
+        assert_eq!(plan.ties.is_none(), strategy == RankingStrategy::Random);
     }
 }

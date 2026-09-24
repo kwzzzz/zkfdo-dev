@@ -19,7 +19,8 @@ use crate::{
     scheduler::{self, OrderedExperimentSummary, OrderedTarget},
     semantic::SourceScope,
     static_rank::{
-        rank_targets, RankingInput, RankingStrategy, StaticRankingConfig, RANDOM_ALGORITHM,
+        rank_targets, tie_summary, RankingInput, RankingStrategy, StaticRankingConfig, TieSummary,
+        RANDOM_ALGORITHM,
     },
     structure::STRUCTURAL_METRIC,
     targets::EntrypointInspection,
@@ -80,6 +81,9 @@ pub struct ExperimentPlan {
     pub preparation_accounting: PreparationAccounting,
     pub planning_elapsed_seconds: f64,
     pub targets: Vec<PlanTarget>,
+    /// Absent in plans created before tie reporting; None for `random`.
+    #[serde(default)]
+    pub ties: Option<TieSummary>,
     pub exclusions: Vec<PlanExclusion>,
     pub manifest_exclusions: Vec<Exclusion>,
     pub limitations: Vec<String>,
@@ -342,6 +346,7 @@ pub fn create_plan(
         "prepared corpus has no targets eligible for {strategy}"
     );
     let ranked = rank_targets(&candidates, strategy, &config, ranking_seed)?;
+    let ties = tie_summary(&ranked, strategy, &config);
     let by_id = prepared
         .targets
         .iter()
@@ -382,7 +387,7 @@ pub fn create_plan(
     ];
     if prepared.profile_strategy.is_some() {
         limitations.push(
-            "This prepared corpus may not provide the common complete target set required for a seven-strategy comparison."
+            "This prepared corpus may not provide the common complete target set required for a multi-strategy comparison."
                 .to_owned(),
         );
     }
@@ -406,6 +411,7 @@ pub fn create_plan(
         preparation_accounting: preparation_accounting(&prepared),
         planning_elapsed_seconds: timer.elapsed().as_secs_f64(),
         targets,
+        ties,
         exclusions,
         manifest_exclusions: prepared.exclusions,
         limitations,
@@ -810,7 +816,10 @@ fn validate_prepared_target(
 
     if matches!(
         strategy,
-        RankingStrategy::RiskOnly | RankingStrategy::RiskGrouped | RankingStrategy::WarningFirst
+        RankingStrategy::RiskOnly
+            | RankingStrategy::RiskGrouped
+            | RankingStrategy::WarningFirst
+            | RankingStrategy::CostAware
     ) {
         let semantic = target
             .semantic

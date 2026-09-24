@@ -424,6 +424,7 @@ pub fn prepare_manifest(
                 RankingStrategy::RiskOnly
                     | RankingStrategy::RiskGrouped
                     | RankingStrategy::WarningFirst
+                    | RankingStrategy::CostAware
             )
         )
     {
@@ -600,6 +601,7 @@ fn prepare_target(
                 RankingStrategy::RiskOnly
                     | RankingStrategy::RiskGrouped
                     | RankingStrategy::WarningFirst
+                    | RankingStrategy::CostAware
             )
         );
     let collect_legacy =

@@ -187,7 +187,7 @@ pub struct ExperimentPlanArgs {
     #[arg(long)]
     pub prepared: PathBuf,
 
-    /// path-order, random, small-first, legacy, warning-first, risk-only, or risk-grouped.
+    /// path-order, random, small-first, legacy, warning-first, risk-only, risk-grouped, or cost-aware.
     #[arg(long)]
     pub strategy: RankingStrategy,
 
