@@ -1,7 +1,15 @@
-use std::{fs, path::PathBuf, process::Command};
+use std::{
+    fs,
+    path::{Path, PathBuf},
+    process::Command,
+    time::{Duration, Instant},
+};
 
 use tempfile::tempdir;
-use zkfdo::targets::{discover_project_targets, EntrypointStatus, WrapperStatus};
+use zkfdo::targets::{
+    discover_project_targets, discover_project_targets_with, DiscoveryOptions, EntrypointStatus,
+    WrapperStatus,
+};
 
 fn fixture(name: &str) -> PathBuf {
     PathBuf::from(env!("CARGO_MANIFEST_DIR"))
@@ -279,4 +287,279 @@ component main = Root();
         .failure_reason
         .as_deref()
         .is_some_and(|reason| reason.contains("component main")));
+}
+
+fn write(path: &Path, source: &str) {
+    fs::create_dir_all(path.parent().expect("parent")).expect("source dir");
+    fs::write(path, source).expect("source");
+}
+
+#[test]
+fn selected_entrypoint_uses_only_its_include_closure() {
+    let project = tempdir().expect("project");
+    let circuits = project.path().join("circuits");
+    write(
+        &circuits.join("a_main.circom"),
+        "pragma circom 2.1.6;\ninclude \"lib.circom\";\ncomponent main = A();\n",
+    );
+    write(
+        &circuits.join("lib.circom"),
+        "pragma circom 2.1.6;\ntemplate A() { component leaf = Leaf(); }\ntemplate Leaf() {}\n",
+    );
+    write(
+        &circuits.join("b_main.circom"),
+        "pragma circom 2.1.6;\ntemplate B() { component other = Other(); }\ntemplate Other() {}\ncomponent main = B();\n",
+    );
+    write(&circuits.join("broken.circom"), "template ( {");
+
+    let output = tempdir().expect("output");
+    let whole = discover_project_targets(project.path(), output.path(), None).expect("scan");
+    assert_eq!(whole.entrypoint_status, EntrypointStatus::Multiple);
+
+    let options = DiscoveryOptions {
+        entrypoint: Some(circuits.join("a_main.circom")),
+        ..DiscoveryOptions::default()
+    };
+    let report =
+        discover_project_targets_with(project.path(), output.path(), &options).expect("selected");
+    assert_eq!(report.entrypoint_status, EntrypointStatus::Found);
+    assert_eq!(report.entrypoints.len(), 1);
+    assert_eq!(report.entrypoints[0].template_name.as_deref(), Some("A"));
+    assert_eq!(
+        report
+            .targets
+            .iter()
+            .map(|target| target.template_name.as_str())
+            .collect::<Vec<_>>(),
+        ["Leaf"]
+    );
+    assert!(report.unsupported.is_empty(), "{:?}", report.unsupported);
+    assert_eq!(
+        report.selected_entrypoint.as_deref(),
+        Some(
+            fs::canonicalize(circuits.join("a_main.circom"))
+                .unwrap()
+                .as_path()
+        )
+    );
+    assert_eq!(report.compile_timeout_seconds, None);
+}
+
+#[test]
+fn library_paths_resolve_package_includes_in_order() {
+    let project = tempdir().expect("project");
+    let library = tempdir().expect("library");
+    write(
+        &project.path().join("main.circom"),
+        "pragma circom 2.1.6;\ninclude \"pkg/circuits/gadget.circom\";\ntemplate Root() { component gadget = Gadget(); }\ncomponent main = Root();\n",
+    );
+    write(
+        &library.path().join("pkg/circuits/gadget.circom"),
+        "pragma circom 2.1.6;\ntemplate Gadget() { component bit = Bit(); }\ntemplate Bit() {}\n",
+    );
+    let output = tempdir().expect("output");
+    let mut options = DiscoveryOptions {
+        entrypoint: Some(project.path().join("main.circom")),
+        ..DiscoveryOptions::default()
+    };
+    let unresolved =
+        discover_project_targets_with(project.path(), output.path(), &options).expect("no library");
+    assert!(unresolved.targets.is_empty());
+    assert!(unresolved
+        .unsupported
+        .iter()
+        .any(|case| case.construct.contains("pkg/circuits/gadget.circom")));
+
+    options.library_paths = vec![library.path().to_path_buf()];
+    let report =
+        discover_project_targets_with(project.path(), output.path(), &options).expect("library");
+    let mut names = report
+        .targets
+        .iter()
+        .map(|target| target.template_name.as_str())
+        .collect::<Vec<_>>();
+    names.sort();
+    assert_eq!(names, ["Bit", "Gadget"]);
+    assert_eq!(
+        report.library_paths,
+        [fs::canonicalize(library.path()).unwrap()]
+    );
+}
+
+#[test]
+fn invalid_discovery_options_are_rejected() {
+    let project = tempdir().expect("project");
+    let outside = tempdir().expect("outside");
+    write(
+        &project.path().join("main.circom"),
+        "pragma circom 2.1.6; template M() {} component main = M();",
+    );
+    write(
+        &outside.path().join("main.circom"),
+        "pragma circom 2.1.6; template M() {} component main = M();",
+    );
+    let output = tempdir().expect("output");
+    let cases = [
+        DiscoveryOptions {
+            library_paths: vec![outside.path().to_path_buf()],
+            ..DiscoveryOptions::default()
+        },
+        DiscoveryOptions {
+            entrypoint: Some(outside.path().join("main.circom")),
+            ..DiscoveryOptions::default()
+        },
+        DiscoveryOptions {
+            compile_timeout_seconds: 0,
+            ..DiscoveryOptions::default()
+        },
+    ];
+    for options in cases {
+        assert!(discover_project_targets_with(project.path(), output.path(), &options).is_err());
+    }
+}
+
+#[cfg(unix)]
+fn fake_compiler(directory: &Path, body: &str) -> PathBuf {
+    use std::os::unix::fs::PermissionsExt;
+    let path = directory.join("fake-circom.sh");
+    fs::write(&path, format!("#!/bin/sh\n{body}\n")).expect("fake compiler");
+    fs::set_permissions(&path, fs::Permissions::from_mode(0o755)).expect("executable");
+    path
+}
+
+#[cfg(unix)]
+fn gadget_project() -> (tempfile::TempDir, tempfile::TempDir) {
+    let project = tempdir().expect("project");
+    let library = tempdir().expect("library");
+    write(
+        &project.path().join("main.circom"),
+        "pragma circom 2.1.6;\ninclude \"pkg/gadget.circom\";\ntemplate Root() { component gadget = Gadget(); }\ncomponent main = Root();\n",
+    );
+    write(
+        &library.path().join("pkg/gadget.circom"),
+        "pragma circom 2.1.6;\ntemplate Gadget() {}\n",
+    );
+    (project, library)
+}
+
+#[cfg(unix)]
+#[test]
+fn wrapper_compilation_passes_project_and_library_paths_and_records_the_command() {
+    let (project, library) = gadget_project();
+    let tools = tempdir().expect("tools");
+    let args_path = tools.path().join("args.txt");
+    let compiler = fake_compiler(
+        tools.path(),
+        &format!("printf '%s\\n' \"$@\" > '{}'", args_path.display()),
+    );
+    let output = tempdir().expect("output");
+    let options = DiscoveryOptions {
+        entrypoint: Some(project.path().join("main.circom")),
+        library_paths: vec![library.path().to_path_buf()],
+        circom_bin: Some(compiler),
+        compile_timeout_seconds: 30,
+    };
+    let report =
+        discover_project_targets_with(project.path(), output.path(), &options).expect("discovery");
+    assert_eq!(report.targets.len(), 1);
+    let target = &report.targets[0];
+    assert_eq!(target.wrapper_status, WrapperStatus::CompileSucceeded);
+    let compile = target.compile.as_ref().expect("recorded compile");
+    assert!(!compile.timed_out);
+    assert_eq!(compile.timeout_seconds, 30);
+    assert_eq!(report.compile_timeout_seconds, Some(30));
+    let recorded = fs::read_to_string(&args_path).expect("recorded args");
+    let recorded = recorded.lines().collect::<Vec<_>>();
+    assert_eq!(
+        recorded,
+        compile.args.iter().map(String::as_str).collect::<Vec<_>>()
+    );
+    let project_root = fs::canonicalize(project.path()).unwrap();
+    let library_root = fs::canonicalize(library.path()).unwrap();
+    let tail = &recorded[recorded.len() - 4..];
+    assert_eq!(
+        tail,
+        [
+            "-l",
+            project_root.to_str().unwrap(),
+            "-l",
+            library_root.to_str().unwrap()
+        ]
+    );
+}
+
+#[cfg(unix)]
+#[test]
+fn wrapper_compilation_timeout_kills_the_compiler_process_group() {
+    let (project, library) = gadget_project();
+    let tools = tempdir().expect("tools");
+    let pid_path = tools.path().join("grandchild.pid");
+    let compiler = fake_compiler(
+        tools.path(),
+        &format!("sleep 60 &\necho $! > '{}'\nwait", pid_path.display()),
+    );
+    let output = tempdir().expect("output");
+    let options = DiscoveryOptions {
+        entrypoint: Some(project.path().join("main.circom")),
+        library_paths: vec![library.path().to_path_buf()],
+        circom_bin: Some(compiler),
+        compile_timeout_seconds: 1,
+    };
+    let started = Instant::now();
+    let report =
+        discover_project_targets_with(project.path(), output.path(), &options).expect("discovery");
+    assert!(started.elapsed() < Duration::from_secs(20));
+    let target = &report.targets[0];
+    assert_eq!(target.wrapper_status, WrapperStatus::CompileTimedOut);
+    assert!(target
+        .compile
+        .as_ref()
+        .is_some_and(|compile| compile.timed_out));
+    assert!(target
+        .failure_reason
+        .as_deref()
+        .is_some_and(|reason| reason.contains("1 seconds")));
+
+    let grandchild = fs::read_to_string(&pid_path).expect("grandchild pid");
+    let grandchild = grandchild.trim();
+    let deadline = Instant::now() + Duration::from_secs(5);
+    loop {
+        let alive = Command::new("kill")
+            .args(["-0", grandchild])
+            .status()
+            .expect("kill -0")
+            .success();
+        if !alive {
+            break;
+        }
+        assert!(
+            Instant::now() < deadline,
+            "grandchild {grandchild} survived"
+        );
+        std::thread::sleep(Duration::from_millis(50));
+    }
+}
+
+#[test]
+fn lexing_large_symbol_dense_files_is_linear() {
+    let project = tempdir().expect("project");
+    write(
+        &project.path().join("main.circom"),
+        "pragma circom 2.1.6; template M() {} component main = M();",
+    );
+    let mut table =
+        String::from("pragma circom 2.1.6;\nfunction table() {\n    var a = 0;\n    a = 0");
+    for _ in 0..200_000 {
+        table.push_str(" + 1");
+    }
+    table.push_str(";\n    return a;\n}\n");
+    write(&project.path().join("table.circom"), &table);
+    let output = tempdir().expect("output");
+    let started = Instant::now();
+    discover_project_targets(project.path(), output.path(), None).expect("discovery");
+    assert!(
+        started.elapsed() < Duration::from_secs(10),
+        "took {:?}",
+        started.elapsed()
+    );
 }

@@ -2,14 +2,16 @@ use std::{
     collections::{HashMap, HashSet},
     fs,
     path::{Path, PathBuf},
-    process::Command,
 };
 
 use anyhow::{Context, Result};
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
-use crate::scanner;
+use crate::{
+    scanner,
+    structure::{capture_tool, ToolCapture},
+};
 
 const MAX_INSTANTIATION_DEPTH: usize = 64;
 const MAX_COMPILE_TIME_LOOP_ITERATIONS: usize = 100_000;
@@ -70,11 +72,12 @@ pub enum WrapperStatus {
     Generated,
     CompileSucceeded,
     CompileFailed,
+    CompileTimedOut,
     CompilerUnavailable,
     Unsupported,
 }
 
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq)]
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
 pub struct ConcreteFuzzTarget {
     pub identity: String,
     pub source_path: PathBuf,
@@ -86,6 +89,9 @@ pub struct ConcreteFuzzTarget {
     pub compiler_stdout_path: Option<PathBuf>,
     pub compiler_stderr_path: Option<PathBuf>,
     pub failure_reason: Option<String>,
+    /// Exact bounded compiler invocation; absent in reports created before it was recorded.
+    #[serde(default)]
+    pub compile: Option<ToolCapture>,
 }
 
 #[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq)]
@@ -96,7 +102,7 @@ pub struct UnsupportedCase {
     pub reason: String,
 }
 
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq)]
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
 pub struct TargetDiscoveryReport {
     pub discovery_id: String,
     pub project_root: PathBuf,
@@ -107,6 +113,39 @@ pub struct TargetDiscoveryReport {
     pub generated_wrapper_count: usize,
     pub compile_succeeded_count: usize,
     pub unsupported: Vec<UnsupportedCase>,
+    /// The single file discovery started from; absent when the whole project was scanned.
+    #[serde(default)]
+    pub selected_entrypoint: Option<PathBuf>,
+    #[serde(default)]
+    pub library_paths: Vec<PathBuf>,
+    /// Per-wrapper compiler limit; absent when wrappers were not compiled.
+    #[serde(default)]
+    pub compile_timeout_seconds: Option<u64>,
+}
+
+/// Operational cap for one wrapper compilation, not an empirically derived bound.
+pub const DEFAULT_WRAPPER_COMPILE_TIMEOUT_SECONDS: u64 = 600;
+
+#[derive(Debug, Clone)]
+pub struct DiscoveryOptions {
+    /// Discover only from this file's `component main` and its include closure.
+    pub entrypoint: Option<PathBuf>,
+    /// Circom `-l` directories, searched after the including directory and project root.
+    pub library_paths: Vec<PathBuf>,
+    /// None generates wrappers without compiling them.
+    pub circom_bin: Option<PathBuf>,
+    pub compile_timeout_seconds: u64,
+}
+
+impl Default for DiscoveryOptions {
+    fn default() -> Self {
+        Self {
+            entrypoint: None,
+            library_paths: Vec::new(),
+            circom_bin: None,
+            compile_timeout_seconds: DEFAULT_WRAPPER_COMPILE_TIMEOUT_SECONDS,
+        }
+    }
 }
 
 #[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq)]
@@ -759,12 +798,63 @@ pub fn discover_project_targets(
     output_root: impl AsRef<Path>,
     circom_bin: Option<&Path>,
 ) -> Result<TargetDiscoveryReport> {
+    discover_project_targets_with(
+        project,
+        output_root,
+        &DiscoveryOptions {
+            circom_bin: circom_bin.map(Path::to_path_buf),
+            ..DiscoveryOptions::default()
+        },
+    )
+}
+
+pub fn discover_project_targets_with(
+    project: impl AsRef<Path>,
+    output_root: impl AsRef<Path>,
+    options: &DiscoveryOptions,
+) -> Result<TargetDiscoveryReport> {
     let project_root = fs::canonicalize(project.as_ref()).with_context(|| {
         format!(
             "failed to resolve project root: {}",
             project.as_ref().display()
         )
     })?;
+    anyhow::ensure!(
+        options.compile_timeout_seconds > 0,
+        "wrapper compile timeout must be positive"
+    );
+    let library_paths = options
+        .library_paths
+        .iter()
+        .map(|path| {
+            let library = fs::canonicalize(path)
+                .with_context(|| format!("failed to resolve library path: {}", path.display()))?;
+            anyhow::ensure!(
+                library.is_dir(),
+                "library path is not a directory: {}",
+                library.display()
+            );
+            Ok(library)
+        })
+        .collect::<Result<Vec<_>>>()?;
+    let selected_entrypoint = options
+        .entrypoint
+        .as_ref()
+        .map(|path| {
+            let entrypoint = fs::canonicalize(path)
+                .with_context(|| format!("failed to resolve entrypoint: {}", path.display()))?;
+            anyhow::ensure!(
+                entrypoint.is_file() && entrypoint.starts_with(&project_root),
+                "entrypoint must be a file inside the project root: {}",
+                entrypoint.display()
+            );
+            Ok(entrypoint)
+        })
+        .transpose()?;
+    anyhow::ensure!(
+        library_paths.is_empty() || selected_entrypoint.is_some(),
+        "library paths require a selected entrypoint"
+    );
     let discovery_id = Uuid::new_v4().to_string();
     let work_dir = output_root.as_ref().join(&discovery_id);
     fs::create_dir_all(&work_dir).with_context(|| {
@@ -777,22 +867,40 @@ pub fn discover_project_targets(
     let mut parsed_files = HashMap::new();
     let mut unsupported = Vec::new();
 
-    for target in scanner::scan_project(&project_root)? {
-        let path = fs::canonicalize(&target.path)
-            .with_context(|| format!("failed to resolve Circom file: {}", target.path.display()))?;
-        let source = fs::read_to_string(&path)
-            .with_context(|| format!("failed to read Circom file: {}", path.display()))?;
+    if let Some(entrypoint) = &selected_entrypoint {
+        // Only the selected file's include closure is parsed; other mains are not candidates.
+        load_discovery_closure(
+            entrypoint,
+            &project_root,
+            &library_paths,
+            &mut parsed_files,
+            &mut HashSet::new(),
+            &mut unsupported,
+        );
+    } else {
+        for target in scanner::scan_project(&project_root)? {
+            let path = fs::canonicalize(&target.path).with_context(|| {
+                format!("failed to resolve Circom file: {}", target.path.display())
+            })?;
+            let source = fs::read_to_string(&path)
+                .with_context(|| format!("failed to read Circom file: {}", path.display()))?;
 
-        match parse_file(&path, &source) {
-            Ok(parsed) => {
-                parsed_files.insert(path, parsed);
+            match parse_file(&path, &source) {
+                Ok(parsed) => {
+                    parsed_files.insert(path, parsed);
+                }
+                Err(issue) => unsupported.push(issue),
             }
-            Err(issue) => unsupported.push(issue),
         }
     }
 
     let entrypoints = parsed_files
         .values()
+        .filter(|file| {
+            selected_entrypoint
+                .as_ref()
+                .is_none_or(|entrypoint| &file.path == entrypoint)
+        })
         .flat_map(|file| {
             file.mains.iter().map(|main| EntrypointCandidate {
                 source_path: file.path.clone(),
@@ -840,6 +948,7 @@ pub fn discover_project_targets(
             collect_reachable_files(
                 &entrypoint.source_path,
                 &project_root,
+                &library_paths,
                 &parsed_files,
                 &mut reachable_files,
                 &mut unsupported,
@@ -932,8 +1041,10 @@ pub fn discover_project_targets(
         &mut targets,
         &work_dir,
         &project_root,
+        &library_paths,
         &parsed_files,
-        circom_bin,
+        options.circom_bin.as_deref(),
+        options.compile_timeout_seconds,
     )?;
 
     let generated_wrapper_count = targets
@@ -955,6 +1066,12 @@ pub fn discover_project_targets(
         generated_wrapper_count,
         compile_succeeded_count,
         unsupported,
+        compile_timeout_seconds: options
+            .circom_bin
+            .is_some()
+            .then_some(options.compile_timeout_seconds),
+        selected_entrypoint,
+        library_paths,
     };
     write_report(&work_dir, &report)?;
     Ok(report)
@@ -1320,6 +1437,7 @@ fn expand_body(
                     compiler_stdout_path: None,
                     compiler_stderr_path: None,
                     failure_reason: None,
+                    compile: None,
                 });
 
                 let key = (child.name.clone(), parameters.clone());
@@ -1514,8 +1632,10 @@ fn generate_and_validate_wrappers(
     targets: &mut [ConcreteFuzzTarget],
     work_dir: &Path,
     project_root: &Path,
+    library_paths: &[PathBuf],
     parsed_files: &HashMap<PathBuf, ParsedFile>,
     circom_bin: Option<&Path>,
+    compile_timeout_seconds: u64,
 ) -> Result<()> {
     let mut identities = HashSet::new();
     for target in targets.iter() {
@@ -1533,6 +1653,7 @@ fn generate_and_validate_wrappers(
         if include_closure_contains_main(
             &target.source_path,
             project_root,
+            library_paths,
             parsed_files,
             &mut HashSet::new(),
         ) {
@@ -1576,44 +1697,113 @@ fn generate_and_validate_wrappers(
                 compiler_output_dir.display()
             )
         })?;
-        let compiler_stdout_path = target_dir.join("circom.stdout.log");
-        let compiler_stderr_path = target_dir.join("circom.stderr.log");
-        target.compiler_stdout_path = Some(compiler_stdout_path.clone());
-        target.compiler_stderr_path = Some(compiler_stderr_path.clone());
-
-        match Command::new(circom_bin)
-            .arg(&wrapper_path)
-            .arg("--inspect")
-            .arg("--output")
-            .arg(&compiler_output_dir)
-            .output()
+        let mut args = vec![
+            wrapper_path.to_string_lossy().into_owned(),
+            "--inspect".to_owned(),
+            "--output".to_owned(),
+            compiler_output_dir.to_string_lossy().into_owned(),
+        ];
+        // The wrapper includes the target by absolute path, so the compiler needs the same
+        // project-root and library fallbacks that discovery used to resolve nested includes.
+        for library in
+            std::iter::once(project_root).chain(library_paths.iter().map(PathBuf::as_path))
         {
-            Ok(output) => {
-                fs::write(&compiler_stdout_path, &output.stdout)?;
-                fs::write(&compiler_stderr_path, &output.stderr)?;
-                if output.status.success() {
-                    target.wrapper_status = WrapperStatus::CompileSucceeded;
-                } else {
-                    target.wrapper_status = WrapperStatus::CompileFailed;
-                    target.failure_reason =
-                        Some(String::from_utf8_lossy(&output.stderr).trim().to_string());
-                }
-            }
-            Err(error) => {
-                target.wrapper_status = WrapperStatus::CompilerUnavailable;
-                target.failure_reason = Some(format!(
-                    "failed to start Circom compiler {}: {error}",
-                    circom_bin.display()
-                ));
-            }
+            args.push("-l".to_owned());
+            args.push(library.to_string_lossy().into_owned());
         }
+        // Bounded: the compiler runs in its own process group, which is killed at the limit.
+        let capture = capture_tool(
+            circom_bin,
+            args,
+            "circom",
+            &target_dir,
+            compile_timeout_seconds,
+        )?;
+        target.compiler_stdout_path = Some(capture.stdout_path.clone());
+        target.compiler_stderr_path = Some(capture.stderr_path.clone());
+        if capture.timed_out {
+            target.wrapper_status = WrapperStatus::CompileTimedOut;
+            target.failure_reason = Some(format!(
+                "wrapper compilation exceeded {compile_timeout_seconds} seconds and was terminated"
+            ));
+        } else if capture.success {
+            target.wrapper_status = WrapperStatus::CompileSucceeded;
+        } else if capture.exit_code.is_none() && capture.error.is_some() {
+            target.wrapper_status = WrapperStatus::CompilerUnavailable;
+            target.failure_reason = Some(format!(
+                "failed to start Circom compiler {}: {}",
+                circom_bin.display(),
+                capture.error.as_deref().unwrap_or_default()
+            ));
+        } else {
+            target.wrapper_status = WrapperStatus::CompileFailed;
+            target.failure_reason = Some(
+                fs::read_to_string(&capture.stderr_path)
+                    .unwrap_or_default()
+                    .trim()
+                    .to_string(),
+            );
+        }
+        target.compile = Some(capture);
     }
     Ok(())
+}
+
+/// Parses the selected entrypoint and every file its includes resolve to. Unresolved includes
+/// are reported later by `collect_reachable_files`, so they are not duplicated here.
+fn load_discovery_closure(
+    path: &Path,
+    project_root: &Path,
+    library_paths: &[PathBuf],
+    parsed_files: &mut HashMap<PathBuf, ParsedFile>,
+    visited: &mut HashSet<PathBuf>,
+    unsupported: &mut Vec<UnsupportedCase>,
+) {
+    if !visited.insert(path.to_path_buf()) {
+        return;
+    }
+    let source = match fs::read_to_string(path) {
+        Ok(source) => source,
+        Err(error) => {
+            unsupported.push(UnsupportedCase {
+                source_path: path.into(),
+                line: None,
+                construct: "source file".into(),
+                reason: format!("source could not be read: {error}"),
+            });
+            return;
+        }
+    };
+    let file = match parse_file(path, &source) {
+        Ok(file) => file,
+        Err(issue) => {
+            unsupported.push(issue);
+            return;
+        }
+    };
+    let includes = file.includes.clone();
+    parsed_files.insert(path.into(), file);
+    for include in includes {
+        if let Some(included) = include_candidates(path, &include.path, project_root, library_paths)
+            .into_iter()
+            .find_map(|candidate| fs::canonicalize(candidate).ok())
+        {
+            load_discovery_closure(
+                &included,
+                project_root,
+                library_paths,
+                parsed_files,
+                visited,
+                unsupported,
+            );
+        }
+    }
 }
 
 fn collect_reachable_files(
     path: &Path,
     project_root: &Path,
+    library_paths: &[PathBuf],
     parsed_files: &HashMap<PathBuf, ParsedFile>,
     reachable: &mut HashSet<PathBuf>,
     unsupported: &mut Vec<UnsupportedCase>,
@@ -1625,10 +1815,17 @@ fn collect_reachable_files(
         return;
     };
     for include in &file.includes {
-        match resolve_include(path, &include.path, project_root, parsed_files) {
+        match resolve_include(
+            path,
+            &include.path,
+            project_root,
+            library_paths,
+            parsed_files,
+        ) {
             Some(included_path) => collect_reachable_files(
                 &included_path,
                 project_root,
+                library_paths,
                 parsed_files,
                 reachable,
                 unsupported,
@@ -1646,6 +1843,7 @@ fn collect_reachable_files(
 fn include_closure_contains_main(
     path: &Path,
     project_root: &Path,
+    library_paths: &[PathBuf],
     parsed_files: &HashMap<PathBuf, ParsedFile>,
     visited: &mut HashSet<PathBuf>,
 ) -> bool {
@@ -1659,23 +1857,50 @@ fn include_closure_contains_main(
         return true;
     }
     file.includes.iter().any(|include| {
-        resolve_include(path, &include.path, project_root, parsed_files).is_some_and(
-            |included_path| {
-                include_closure_contains_main(&included_path, project_root, parsed_files, visited)
-            },
+        resolve_include(
+            path,
+            &include.path,
+            project_root,
+            library_paths,
+            parsed_files,
         )
+        .is_some_and(|included_path| {
+            include_closure_contains_main(
+                &included_path,
+                project_root,
+                library_paths,
+                parsed_files,
+                visited,
+            )
+        })
     })
+}
+
+/// Circom order: the including file's directory, then the project root, then each
+/// `-l` library path in the order given.
+fn include_candidates(
+    source_path: &Path,
+    include: &str,
+    project_root: &Path,
+    library_paths: &[PathBuf],
+) -> Vec<PathBuf> {
+    source_path
+        .parent()
+        .map(|parent| parent.join(include))
+        .into_iter()
+        .chain(std::iter::once(project_root.join(include)))
+        .chain(library_paths.iter().map(|library| library.join(include)))
+        .collect()
 }
 
 fn resolve_include(
     source_path: &Path,
     include: &str,
     project_root: &Path,
+    library_paths: &[PathBuf],
     parsed_files: &HashMap<PathBuf, ParsedFile>,
 ) -> Option<PathBuf> {
-    let relative_candidate = source_path.parent()?.join(include);
-    let project_candidate = project_root.join(include);
-    [relative_candidate, project_candidate]
+    include_candidates(source_path, include, project_root, library_paths)
         .into_iter()
         .filter_map(|candidate| fs::canonicalize(candidate).ok())
         .find(|candidate| parsed_files.contains_key(candidate))
@@ -2780,7 +3005,11 @@ fn lex(source: &str) -> std::result::Result<Vec<Token>, (usize, String)> {
             continue;
         }
 
-        let remaining = chars[cursor..].iter().collect::<String>();
+        // Operators are at most three characters; copying the whole remaining input here
+        // made lexing quadratic on multi-megabyte constant tables.
+        let remaining = chars[cursor..chars.len().min(cursor + 3)]
+            .iter()
+            .collect::<String>();
         let operator = [
             "<==", "==>", "===", "<--", "-->", "**", "<<", ">>", "==", "!=", "<=", ">=", "&&",
             "||", "++", "--",

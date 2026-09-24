@@ -390,7 +390,7 @@ fn ast_library_args(args: &[String]) -> Result<Vec<String>> {
     Ok(libraries)
 }
 
-fn capture_tool(
+pub(crate) fn capture_tool(
     binary: &Path,
     args: Vec<String>,
     purpose: &str,
