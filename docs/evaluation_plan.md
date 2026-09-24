@@ -1,5 +1,7 @@
 # Evaluation Plan
 
+> **Revised 2026-09-24:** see [plan_revision_2026-09-24.md](plan_revision_2026-09-24.md). The held-out evaluation uses budget-constrained project target sets; the required baselines are `random`, `small-first`, `path-order`, `risk-only`, and a new `cost-aware`; `analyzer-aware` and `adaptive` (RQ4) are moved to future work. The original plan below is kept for reference.
+
 Evaluation will compare target ordering, bug discovery latency, and useful fuzzing progress under equal fuzzing budgets. The goal is to show whether zkfDO makes zkFuzz more effective and manageable on larger Circom projects than naive execution strategies.
 
 ## Research Questions
