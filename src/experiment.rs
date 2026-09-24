@@ -440,9 +440,7 @@ pub fn execute_plan(plan_path: &Path, options: &ExecuteOptions) -> Result<Experi
     let plan_path = fs::canonicalize(plan_path)
         .with_context(|| format!("experiment plan unavailable: {}", plan_path.display()))?;
     let plan_bytes = fs::read(&plan_path)?;
-    let plan: ExperimentPlan =
-        serde_json::from_slice(&plan_bytes).context("invalid experiment plan JSON")?;
-    validate_plan(&plan)?;
+    let plan = load_plan(&plan_bytes)?;
 
     let zkfuzz_binary = resolve_executable(&options.zkfuzz_bin).with_context(|| {
         format!(
@@ -544,8 +542,7 @@ pub fn evaluate(
     let timer = Instant::now();
     let plan_path = fs::canonicalize(plan_path)?;
     let plan_bytes = fs::read(&plan_path)?;
-    let plan: ExperimentPlan = serde_json::from_slice(&plan_bytes)?;
-    validate_plan(&plan)?;
+    let plan = load_plan(&plan_bytes)?;
     let outcome_path = fs::canonicalize(outcome_path)?;
     let outcome: ExperimentOutcome = serde_json::from_slice(&fs::read(&outcome_path)?)?;
     ensure!(
@@ -934,16 +931,29 @@ fn validate_common_complete_target(target: &corpus::PreparedTarget) -> Result<()
     Ok(())
 }
 
-fn validate_plan(plan: &ExperimentPlan) -> Result<()> {
-    // Schema 1 plans were frozen before tie reporting; schema 2 plans must carry verified ties.
+/// Schema 1 plans were frozen before tie reporting and must not contain a `ties` key;
+/// schema 2 plans must contain it (null only for `random`), checked on the raw JSON
+/// because a missing key and an explicit null both deserialize to None.
+fn load_plan(plan_bytes: &[u8]) -> Result<ExperimentPlan> {
+    let value: serde_json::Value =
+        serde_json::from_slice(plan_bytes).context("invalid experiment plan JSON")?;
+    let has_ties = value.get("ties").is_some();
+    let plan: ExperimentPlan =
+        serde_json::from_value(value).context("invalid experiment plan JSON")?;
     ensure!(
         matches!(plan.schema_version, 1 | 2),
         "unsupported plan schema version"
     );
-    ensure!(
-        plan.schema_version == 2 || plan.ties.is_none(),
-        "schema 1 plan must not carry tie reporting"
-    );
+    if plan.schema_version == 1 {
+        ensure!(!has_ties, "schema 1 plan must not carry tie reporting");
+    } else {
+        ensure!(has_ties, "schema 2 plan is missing its tie summary");
+    }
+    validate_plan(&plan)?;
+    Ok(plan)
+}
+
+fn validate_plan(plan: &ExperimentPlan) -> Result<()> {
     ensure!(!plan.targets.is_empty(), "experiment plan has no targets");
     ensure!(
         plan.strategy != RankingStrategy::Random || plan.ranking_seed.is_some(),

@@ -815,13 +815,53 @@ fn schema_one_plans_without_ties_remain_valid_but_cannot_add_them() {
         error.to_string().contains("zkFuzz binary unavailable"),
         "{error:#}"
     );
-    plan.ties = ties;
-    write_json(&plan.plan_path, &plan);
+    for stored in [
+        serde_json::to_value(&ties).unwrap(),
+        serde_json::Value::Null,
+    ] {
+        value
+            .as_object_mut()
+            .unwrap()
+            .insert("ties".to_owned(), stored);
+        write_json(&plan.plan_path, &value);
+        let error = execute_plan(&plan.plan_path, &options).unwrap_err();
+        assert!(
+            error
+                .to_string()
+                .contains("schema 1 plan must not carry tie reporting"),
+            "{error:#}"
+        );
+    }
+}
+
+#[test]
+fn schema_two_random_plans_require_an_explicit_null_tie_summary() {
+    let fixture = fixture();
+    let plan = create_plan(
+        &fixture.prepared.report_path,
+        RankingStrategy::Random,
+        &fixture.config_path,
+        Some(77),
+        &fixture.directory.path().join("random-plan.json"),
+    )
+    .unwrap();
+    assert_eq!(plan.ties, None);
+    let mut value: serde_json::Value =
+        serde_json::from_slice(&fs::read(&plan.plan_path).unwrap()).unwrap();
+    assert!(value.get("ties").is_some_and(serde_json::Value::is_null));
+    value.as_object_mut().unwrap().remove("ties");
+    write_json(&plan.plan_path, &value);
+    let options = ExecuteOptions {
+        zkfuzz_bin: fixture.directory.path().join("must-not-start"),
+        budget_seconds: 2,
+        total_budget_seconds: 5,
+        zkfuzz_seed: None,
+        mutation_settings: None,
+        output: fixture.directory.path().join("executions"),
+    };
     let error = execute_plan(&plan.plan_path, &options).unwrap_err();
     assert!(
-        error
-            .to_string()
-            .contains("schema 1 plan must not carry tie reporting"),
+        error.to_string().contains("missing its tie summary"),
         "{error:#}"
     );
 }
