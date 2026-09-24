@@ -235,7 +235,7 @@
       "zkbugs_case": "zkemail/zk-email-verify/zksecurity_sha256_templates_return_zero_on_arbitrary_inputs",
       "exposure": "inspected",
       "first_used_in": "controlled-v3-preflight",
-      "note": "Vulnerable commit matches the zkbugs case; the checked-out fixed commit differs from the zkbugs Fix Commit. Not named in the preflight report.",
+      "note": "Vulnerable and patched commits match the zkbugs case; zkbugs records the patch as the abbreviated hash ad0ad6. Not named in the preflight report.",
       "evidence": [
         "local-ignored:/private/tmp/controlled-v3-work/zkemail-sha"
       ],
