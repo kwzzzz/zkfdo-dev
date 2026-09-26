@@ -219,6 +219,7 @@ enum BodyItem {
         component_index: Option<Vec<Token>>,
         call: TemplateCall,
         line: usize,
+        anonymous: bool,
     },
     ComponentArray {
         name: String,
@@ -262,6 +263,7 @@ struct TemplateCall {
 struct Token {
     kind: TokenKind,
     line: usize,
+    offset: usize,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -587,6 +589,7 @@ fn collect_resolution_metadata<'a>(
                 component_index,
                 call,
                 line,
+                ..
             } => {
                 components.insert(component_name.clone());
                 parsed_component_assignments.insert((component_name.clone(), *line));
@@ -1306,8 +1309,20 @@ fn expand_body(
                 component_index,
                 call,
                 line,
+                anonymous,
             } => {
-                let concrete_component_name = if let Some(index) = component_index {
+                let concrete_component_name = if *anonymous {
+                    let mut context = bindings.iter().collect::<Vec<_>>();
+                    context.sort_by(|a, b| a.0.cmp(b.0));
+                    format!(
+                        "{component_name}[{}]",
+                        context
+                            .iter()
+                            .map(|(name, value)| format!("{name}={value}"))
+                            .collect::<Vec<_>>()
+                            .join(",")
+                    )
+                } else if let Some(index) = component_index {
                     let index = match evaluate_expression(index, bindings) {
                         Ok(index) => index,
                         Err(reason) => {
@@ -1354,7 +1369,7 @@ fn expand_body(
                 } else {
                     component_name.clone()
                 };
-                if !initialized_components.insert(concrete_component_name.clone()) {
+                if !*anonymous && !initialized_components.insert(concrete_component_name.clone()) {
                     unsupported.push(UnsupportedCase {
                         source_path: definition.source_path.clone(),
                         line: Some(*line),
@@ -2142,6 +2157,7 @@ fn parse_body_block(
 
         let end = find_statement_end(tokens, cursor).unwrap_or(tokens.len());
         let statement = &tokens[cursor..end];
+        let before = items.len();
         if token_is_identifier(&tokens[cursor], "component") {
             parse_component_statement(statement, declared_components, items);
         } else if token_is_identifier(&tokens[cursor], "var") {
@@ -2157,12 +2173,20 @@ fn parse_body_block(
                 statement,
                 items,
             );
-        } else if contains_anonymous_component_call(statement) {
-            items.push(BodyItem::Unsupported {
-                line: tokens[cursor].line,
-                construct: tokens_to_text(statement),
-                reason: "anonymous component calls are unsupported by this MVP".to_string(),
-            });
+        }
+        if contains_anonymous_component_call(statement)
+            && !items[before..]
+                .iter()
+                .any(|item| matches!(item, BodyItem::Unsupported { .. }))
+        {
+            match parse_anonymous_component_calls(statement) {
+                Ok(calls) => items.extend(calls),
+                Err(reason) => items.push(BodyItem::Unsupported {
+                    line: tokens[cursor].line,
+                    construct: tokens_to_text(statement),
+                    reason,
+                }),
+            }
         }
         cursor = if end < tokens.len() { end + 1 } else { end };
     }
@@ -2427,6 +2451,7 @@ fn push_instantiation(
             component_index,
             call,
             line,
+            anonymous: false,
         }),
         Err(reason) => items.push(BodyItem::Unsupported {
             line,
@@ -2798,6 +2823,56 @@ fn contains_anonymous_component_call(tokens: &[Token]) -> bool {
     false
 }
 
+/// Discover anonymous template instances without interpreting their signal expressions.
+/// Template parameters still have to be concrete during expansion. Scanning every call site
+/// also records nested anonymous components used as inputs to another anonymous component.
+fn parse_anonymous_component_calls(
+    statement: &[Token],
+) -> std::result::Result<Vec<BodyItem>, String> {
+    let mut calls = Vec::new();
+    for (index, token) in statement.iter().enumerate() {
+        let Some(template_name) = token_identifier(token) else {
+            continue;
+        };
+        if !statement
+            .get(index + 1)
+            .is_some_and(|next| token_is_symbol(next, '('))
+        {
+            continue;
+        }
+        let Some(parameters_end) = find_matching(statement, index + 1, '(', ')') else {
+            continue;
+        };
+        if !statement
+            .get(parameters_end + 1)
+            .is_some_and(|next| token_is_symbol(next, '('))
+        {
+            continue;
+        }
+        find_matching(statement, parameters_end + 1, '(', ')')
+            .ok_or_else(|| format!("anonymous {template_name} signal arguments are unbalanced"))?;
+        let arguments = split_top_level(&statement[index + 2..parameters_end], ',')?;
+        if arguments.iter().any(Vec::is_empty) {
+            return Err(format!(
+                "anonymous {template_name} has an empty template parameter"
+            ));
+        }
+        calls.push(BodyItem::Instantiation {
+            // The byte-independent character offset is unique within a source file. Line and
+            // statement-local indexes alone can collide for two compact control-flow bodies.
+            component_name: format!("@anonymous:{}:{}", token.line, token.offset),
+            component_index: None,
+            call: TemplateCall {
+                template_name: template_name.to_string(),
+                arguments,
+            },
+            line: token.line,
+            anonymous: true,
+        });
+    }
+    Ok(calls)
+}
+
 fn find_statement_end(tokens: &[Token], start: usize) -> Option<usize> {
     let mut round = 0_usize;
     let mut square = 0_usize;
@@ -2945,6 +3020,7 @@ fn lex(source: &str) -> std::result::Result<Vec<Token>, (usize, String)> {
         }
         if ch == '"' {
             let start_line = line;
+            let start = cursor;
             cursor += 1;
             let mut value = String::new();
             let mut escaped = false;
@@ -2973,6 +3049,7 @@ fn lex(source: &str) -> std::result::Result<Vec<Token>, (usize, String)> {
             tokens.push(Token {
                 kind: TokenKind::StringLiteral(value),
                 line: start_line,
+                offset: start,
             });
             continue;
         }
@@ -2987,6 +3064,7 @@ fn lex(source: &str) -> std::result::Result<Vec<Token>, (usize, String)> {
             tokens.push(Token {
                 kind: TokenKind::Identifier(chars[start..cursor].iter().collect()),
                 line,
+                offset: start,
             });
             continue;
         }
@@ -3001,6 +3079,7 @@ fn lex(source: &str) -> std::result::Result<Vec<Token>, (usize, String)> {
             tokens.push(Token {
                 kind: TokenKind::Number(chars[start..cursor].iter().collect()),
                 line,
+                offset: start,
             });
             continue;
         }
@@ -3020,12 +3099,14 @@ fn lex(source: &str) -> std::result::Result<Vec<Token>, (usize, String)> {
             tokens.push(Token {
                 kind: TokenKind::Operator(operator.to_string()),
                 line,
+                offset: cursor,
             });
             cursor += operator.len();
         } else {
             tokens.push(Token {
                 kind: TokenKind::Symbol(ch),
                 line,
+                offset: cursor,
             });
             cursor += 1;
         }

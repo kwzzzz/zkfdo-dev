@@ -7,8 +7,8 @@ use std::{
 
 use tempfile::tempdir;
 use zkfdo::targets::{
-    discover_project_targets, discover_project_targets_with, DiscoveryOptions, EntrypointStatus,
-    WrapperStatus,
+    discover_project_targets, discover_project_targets_with, inspect_entrypoint, DiscoveryOptions,
+    EntrypointStatus, WrapperStatus,
 };
 
 fn fixture(name: &str) -> PathBuf {
@@ -107,26 +107,175 @@ fn validates_generated_library_wrappers_with_circom_when_available() {
 }
 
 #[test]
-fn expands_concrete_array_targets_and_records_remaining_unsupported_calls() {
+fn expands_concrete_array_and_anonymous_targets() {
     let output = tempdir().expect("output dir");
     let report =
         discover_project_targets(fixture("target_discovery_unsupported"), output.path(), None)
             .expect("target discovery");
 
     assert_eq!(report.entrypoint_status, EntrypointStatus::Found);
-    assert_eq!(report.targets.len(), 3);
+    assert_eq!(report.targets.len(), 4);
     assert_eq!(
         report
             .targets
             .iter()
+            .take(3)
             .map(|target| target.origin.component_name.as_str())
             .collect::<Vec<_>>(),
         ["leaves[0]", "leaves[1]", "leaves[2]"]
     );
+    assert!(report.targets[3]
+        .origin
+        .component_name
+        .starts_with("@anonymous:"));
+    assert!(report.unsupported.is_empty(), "{:?}", report.unsupported);
+    assert_eq!(report.targets[3].template_name, "Leaf");
+    assert_eq!(report.targets[3].concrete_parameters, ["3"]);
+}
+
+#[test]
+fn anonymous_calls_in_loops_and_nested_signal_arguments_are_reachable() {
+    let project = tempdir().expect("project");
+    fs::write(
+        project.path().join("main.circom"),
+        "pragma circom 2.1.6;\n\
+         template Child(k) { signal input in; signal output out; out <== in + k; }\n\
+         template Outer() { signal input in; signal output out; out <== in; }\n\
+         template Root(n) {\n\
+           signal input in[n]; signal output out[n];\n\
+           for (var i = 0; i < n; i++) { out[i] <== Outer()(Child(i)(in[i])); }\n\
+         }\n\
+         component main = Root(3);\n",
+    )
+    .expect("source");
+    let output = tempdir().expect("output");
+    let report = discover_project_targets(project.path(), output.path(), None)
+        .expect("anonymous target discovery");
+
+    assert!(report.unsupported.is_empty(), "{:?}", report.unsupported);
+    assert_eq!(report.targets.len(), 6);
+    let child_parameters = report
+        .targets
+        .iter()
+        .filter(|target| target.template_name == "Child")
+        .map(|target| target.concrete_parameters.clone())
+        .collect::<Vec<_>>();
+    assert_eq!(child_parameters, [["0"], ["1"], ["2"]]);
+    assert_eq!(
+        report
+            .targets
+            .iter()
+            .map(|target| target.identity.as_str())
+            .collect::<std::collections::HashSet<_>>()
+            .len(),
+        6
+    );
+    let inspection = inspect_entrypoint(&project.path().join("main.circom"), project.path())
+        .expect("anonymous entrypoint inspection");
+    assert!(inspection.complete, "{:?}", inspection.unsupported);
+    // Inspection lists unique concrete template/parameter combinations, not call-site copies.
+    assert_eq!(inspection.instances.len(), 5);
+}
+
+#[test]
+fn anonymous_call_with_unresolved_template_parameter_is_not_guessed() {
+    let project = tempdir().expect("project");
+    fs::write(
+        project.path().join("main.circom"),
+        "template Root() { signal input in; signal output out; out <== Child(unknown)(in); }\n\
+         template Child(n) { signal input in; signal output out; out <== in + n; }\n\
+         component main = Root();\n",
+    )
+    .expect("source");
+    let output = tempdir().expect("output");
+    let report = discover_project_targets(project.path(), output.path(), None)
+        .expect("anonymous target discovery");
+
+    assert!(report.targets.is_empty());
     assert!(report
         .unsupported
         .iter()
-        .any(|case| case.reason.contains("anonymous component")));
+        .any(|case| case.reason.contains("template parameters are not concrete")));
+}
+
+#[test]
+fn anonymous_call_sites_on_the_same_line_remain_distinct() {
+    let project = tempdir().expect("project");
+    fs::write(
+        project.path().join("main.circom"),
+        "template Child(k) { signal input in; signal output out; out <== in + k; }\n\
+         template Root(n) { signal input in[n]; signal output left[n]; signal output right[n]; for (var i = 0; i < n; i++) { left[i] <== Child(i)(in[i]); } for (var i = 0; i < n; i++) { right[i] <== Child(i)(in[i]); } }\n\
+         component main = Root(2);\n",
+    )
+    .expect("source");
+    let output = tempdir().expect("output");
+    let report = discover_project_targets(project.path(), output.path(), None)
+        .expect("anonymous target discovery");
+
+    assert!(report.unsupported.is_empty(), "{:?}", report.unsupported);
+    assert_eq!(report.targets.len(), 4);
+    assert_eq!(
+        report
+            .targets
+            .iter()
+            .map(|target| target.identity.as_str())
+            .collect::<std::collections::HashSet<_>>()
+            .len(),
+        4
+    );
+    assert_eq!(
+        report
+            .targets
+            .iter()
+            .filter(|target| target.concrete_parameters == ["0"])
+            .count(),
+        2
+    );
+    assert_eq!(
+        report
+            .targets
+            .iter()
+            .filter(|target| target.concrete_parameters == ["1"])
+            .count(),
+        2
+    );
+}
+
+#[test]
+fn compiles_wrapper_for_anonymous_target_when_circom_is_available() {
+    if Command::new("circom").arg("--version").output().is_err() {
+        return;
+    }
+
+    let project = tempdir().expect("project");
+    fs::write(
+        project.path().join("lib.circom"),
+        "pragma circom 2.1.6;\n\
+         template Child(k) { signal input in; signal output out; out <== in + k; }\n\
+         template Root() { signal input in; signal output out; out <== Child(7)(in); }\n",
+    )
+    .expect("library");
+    fs::write(
+        project.path().join("main.circom"),
+        "pragma circom 2.1.6;\ninclude \"lib.circom\";\ncomponent main = Root();\n",
+    )
+    .expect("entrypoint");
+    let output = tempdir().expect("output");
+    let report = discover_project_targets(
+        project.path(),
+        output.path(),
+        Some(PathBuf::from("circom").as_path()),
+    )
+    .expect("anonymous target discovery");
+
+    assert!(report.unsupported.is_empty(), "{:?}", report.unsupported);
+    assert_eq!(report.targets.len(), 1);
+    assert_eq!(report.targets[0].template_name, "Child");
+    assert_eq!(report.targets[0].concrete_parameters, ["7"]);
+    assert_eq!(
+        report.targets[0].wrapper_status,
+        WrapperStatus::CompileSucceeded
+    );
 }
 
 #[test]
