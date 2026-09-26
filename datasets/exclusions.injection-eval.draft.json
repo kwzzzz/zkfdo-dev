@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "name": "injection-evaluation-exclusions",
+  "status": "draft",
+  "recorded": "2026-09-26",
+  "purpose": "Projects that may not be used as injection-evaluation (B) projects. The frozen development exclusion list and held-out rubric are unchanged; this is a separate snapshot for B.",
+  "finalize_before": "opening the first B evaluation project; T6 projects and development-injection projects must be added at that point",
+  "rules": [
+    "A listed project, its forks and its parent repository are excluded.",
+    "A candidate is in the same circuit family, and therefore excluded, if it contains a .circom file byte-identical to a .circom file of a listed project, ignoring standard dependency libraries such as circomlib.",
+    "Injection sites are limited to the evaluation project's own templates; dependency libraries such as circomlib are never mutated."
+  ],
+  "sources": {
+    "development_exclusions": {
+      "path": "datasets/exclusions.development.json",
+      "sha256": "ae1157e00ca4593d21202a5de275c061e3cf9aaaafe08e376707969c35e359d7"
+    },
+    "heldout_survey": {
+      "path": "reports/heldout-survey-2026-09-26/survey.json",
+      "sha256": "eb5788b755994ba052726c9e5bd4b4f7c801d7db816607c3fbbaa0ce6fcf226c"
+    }
+  },
+  "projects": {
+    "development": [
+      "inference-labs-inc/subnet-2-circom",
+      "banyancomputer/hot-proofs-blake3-circom",
+      "tangle-network/protocol-solidity",
+      "iden3/circomlib",
+      "Unirep/Unirep",
+      "reclaimprotocol/circom-chacha20"
+    ],
+    "surveyed_before_t2b": [
+      "aptos-labs/keyless-zk-proofs",
+      "succinctlabs/telepathy-circuits",
+      "zkemail/zk-email-verify",
+      "0xbok/circom-bigint",
+      "rarimo/passport-zk-circuits",
+      "siv-org/verifiable-private-overrides",
+      "Moonsong-Labs/zksync-social-login-circuit",
+      "selfxyz/self"
+    ],
+    "opened_in_t2b": [
+      "Arianee/arianee-sdk",
+      "darkforest-eth/darkforest-v0.3",
+      "darkforest-eth/circuits",
+      "pantherfoundation/panther-core",
+      "pantherprotocol/panther-core",
+      "vkonst/panther-core",
+      "privacy-scaling-explorations/maci",
+      "worm-privacy/proof-of-burn",
+      "zkemail/zk-regex",
+      "zkopru-network/zkopru"
+    ],
+    "examined_in_t2b_extensions": [
+      "Rate-Limiting-Nullifier/circom-rln",
+      "iden3/circuits",
+      "personaelabs/spartan-ecdsa",
+      "yAudit/spartan-ecdsa",
+      "zBlock-1/spartan-ecdsa",
+      "semaphore-protocol/semaphore"
+    ],
+    "t6_calibration": [],
+    "development_injection": []
+  }
+}
