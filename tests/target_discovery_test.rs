@@ -752,17 +752,25 @@ fn shared_leaf_project() -> tempfile::TempDir {
 }
 
 #[cfg(unix)]
-fn discover_with_compiler(project: &Path, body: &str) -> zkfdo::targets::TargetDiscoveryReport {
-    let tools = tempdir().expect("tools");
-    let compiler = fake_compiler(tools.path(), body);
+fn discover_with(
+    project: &Path,
+    circom_bin: PathBuf,
+    compile_timeout_seconds: u64,
+) -> zkfdo::targets::TargetDiscoveryReport {
     let output = tempdir().expect("output");
     let options = DiscoveryOptions {
         entrypoint: Some(project.join("main.circom")),
-        circom_bin: Some(compiler),
-        compile_timeout_seconds: 30,
+        circom_bin: Some(circom_bin),
+        compile_timeout_seconds,
         ..DiscoveryOptions::default()
     };
     discover_project_targets_with(project, output.path(), &options).expect("discovery")
+}
+
+#[cfg(unix)]
+fn discover_with_compiler(project: &Path, body: &str) -> zkfdo::targets::TargetDiscoveryReport {
+    let tools = tempdir().expect("tools");
+    discover_with(project, fake_compiler(tools.path(), body), 30)
 }
 
 #[cfg(unix)]
@@ -780,7 +788,8 @@ fn repeated_call_sites_share_one_compile_unit_but_keep_their_origins() {
     assert_eq!(report.targets.len(), 5);
     // Three distinct wrappers: Leaf(2), Leaf(3) and Mid().
     assert_eq!(report.compile_units.len(), 3);
-    assert_eq!(report.compile_invocation_count, 3);
+    assert_eq!(report.compile_attempt_count, 3);
+    assert_eq!(report.compile_process_count, 3);
     let invocations = fs::read_to_string(&log_path).expect("invocation log");
     assert_eq!(invocations.lines().count(), 3);
 
@@ -852,7 +861,8 @@ fn repeated_call_sites_share_one_compile_unit_but_keep_their_origins() {
 fn compile_units_record_dependencies_settings_and_shared_failures() {
     let project = shared_leaf_project();
     let report = discover_with_compiler(project.path(), "echo boom >&2\nexit 1");
-    assert_eq!(report.compile_invocation_count, 3);
+    assert_eq!(report.compile_attempt_count, 3);
+    assert_eq!(report.compile_process_count, 3);
     assert!(report.targets.iter().all(|target| target.wrapper_status
         == WrapperStatus::CompileFailed
         && target.failure_reason.as_deref() == Some("boom")));
@@ -888,4 +898,58 @@ fn compile_units_record_dependencies_settings_and_shared_failures() {
         .unresolved_includes
         .iter()
         .any(|include| include.ends_with("missing.circom")));
+}
+
+#[cfg(unix)]
+#[test]
+fn a_timed_out_compile_unit_applies_to_every_call_site_it_serves() {
+    let project = shared_leaf_project();
+    let tools = tempdir().expect("tools");
+    let report = discover_with(project.path(), fake_compiler(tools.path(), "sleep 30"), 1);
+    assert_eq!(report.compile_attempt_count, 3);
+    assert_eq!(report.compile_process_count, 3);
+    assert!(report.targets.iter().all(|target| target.wrapper_status
+        == WrapperStatus::CompileTimedOut
+        && target
+            .compile
+            .as_ref()
+            .is_some_and(|compile| compile.timed_out)
+        && target
+            .failure_reason
+            .as_deref()
+            .is_some_and(|reason| reason.contains("1 seconds"))));
+    let leaf_two = report
+        .targets
+        .iter()
+        .filter(|target| target.template_name == "Leaf" && target.concrete_parameters == ["2"])
+        .collect::<Vec<_>>();
+    assert_eq!(leaf_two.len(), 3);
+    assert_eq!(
+        leaf_two
+            .iter()
+            .filter(|target| target.compile_reused)
+            .count(),
+        2
+    );
+}
+
+#[cfg(unix)]
+#[test]
+fn an_unstartable_compiler_counts_attempts_but_no_processes() {
+    let project = shared_leaf_project();
+    let missing = tempdir().expect("missing").path().join("no-such-circom");
+    let report = discover_with(project.path(), missing, 30);
+    assert_eq!(report.compile_attempt_count, 3);
+    assert_eq!(report.compile_process_count, 0);
+    assert!(report.targets.iter().all(|target| {
+        target.wrapper_status == WrapperStatus::CompilerUnavailable
+            && target
+                .compile
+                .as_ref()
+                .is_some_and(|compile| compile.process_started == Some(false))
+            && target
+                .failure_reason
+                .as_deref()
+                .is_some_and(|reason| reason.contains("failed to start Circom compiler"))
+    }));
 }

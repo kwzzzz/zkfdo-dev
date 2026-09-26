@@ -178,9 +178,12 @@ pub struct TargetDiscoveryReport {
     /// Distinct wrappers; `targets` keeps one entry per call site.
     #[serde(default)]
     pub compile_units: Vec<CompileUnit>,
-    /// Compiler processes actually started, at most one per compile unit.
+    /// Compile units for which compilation was attempted, at most one attempt per unit.
     #[serde(default)]
-    pub compile_invocation_count: usize,
+    pub compile_attempt_count: usize,
+    /// Attempts whose compiler process was actually started.
+    #[serde(default)]
+    pub compile_process_count: usize,
 }
 
 /// Operational cap for one wrapper compilation, not an empirically derived bound.
@@ -1118,9 +1121,17 @@ pub fn discover_project_targets_with(
         options.circom_bin.as_deref(),
         options.compile_timeout_seconds,
     )?;
-    let compile_invocation_count = compile_units
+    let compile_attempt_count = compile_units
         .iter()
         .filter(|unit| unit.compile.is_some())
+        .count();
+    let compile_process_count = compile_units
+        .iter()
+        .filter(|unit| {
+            unit.compile
+                .as_ref()
+                .is_some_and(|compile| compile.process_started == Some(true))
+        })
         .count();
 
     let generated_wrapper_count = targets
@@ -1150,7 +1161,8 @@ pub fn discover_project_targets_with(
         library_paths,
         root_instance_key,
         compile_units,
-        compile_invocation_count,
+        compile_attempt_count,
+        compile_process_count,
     };
     write_report(&work_dir, &report)?;
     Ok(report)
@@ -1887,7 +1899,7 @@ fn generate_and_validate_wrappers(
                 ));
             } else if capture.success {
                 unit.wrapper_status = WrapperStatus::CompileSucceeded;
-            } else if capture.exit_code.is_none() && capture.error.is_some() {
+            } else if capture.process_started == Some(false) {
                 unit.wrapper_status = WrapperStatus::CompilerUnavailable;
                 unit.failure_reason = Some(format!(
                     "failed to start Circom compiler {}: {}",
