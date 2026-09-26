@@ -1,6 +1,6 @@
 # 독립 평가 후보 선정 기준 (T2a)
 
-작성일: 2026-09-24, 버전 3: 2026-09-26([변경 이력](#6-변경-이력)). **상태: 초안(검토 중).** T6a 도구 보완을 마치고 아래 도구 해시를 채운 시점에 최종 고정한다. 이 문서는 controlled-v4 독립 평가 세트의 후보를 **조사하기 전에** 포함·제외 기준을 고정한다. 조사(T2b)는 이 기준을 그대로 적용하며, 조사 결과를 본 뒤 기준을 바꾸지 않는다. 바꿔야 하면 새 버전 문서를 만들고, 그 전에 조사한 결과는 모두 개발용으로 강등한다.
+작성일: 2026-09-24, 버전 3: 2026-09-26([변경 이력](#6-변경-이력)). **상태: 고정(2026-09-26).** T6a 도구 보완을 마치고 아래 도구 해시를 채워 고정했다. 이 문서는 controlled-v4 독립 평가 세트의 후보를 **조사하기 전에** 포함·제외 기준을 고정한다. 조사(T2b)는 이 기준을 그대로 적용하며, 조사 결과를 본 뒤 기준을 바꾸지 않는다. 바꿔야 하면 새 버전 문서를 만들고, 그 전에 조사한 결과는 모두 개발용으로 강등한다.
 
 용어(취약본, 패치 대조본, 공식 패치, 제안 패치)는 [계획 수정 문서](plan_revision_2026-09-24.md)를 따른다.
 
@@ -10,10 +10,22 @@
 |---|---|
 | 후보 출처 | zkbugs `dataset/circom/`, 저장소 revision `a0eed744ba1a816acaa2fae597f4e79b4fd01aea` (`.external/zkbugs`) |
 | 제외 목록 | [datasets/exclusions.development.json](../datasets/exclusions.development.json), SHA-256 `ae1157e00ca4593d21202a5de275c061e3cf9aaaafe08e376707969c35e359d7` |
-| 컴파일러 | circom 2.2.3, 바이너리 SHA-256: T6a 이후 기록 |
-| 퍼저 | zkFuzz 2.2.1 (**조사 중에는 실행하지 않는다**) |
-| zkfDO | 커밋과 바이너리 SHA-256, 정확한 CLI 인자: T6a 이후 기록 |
-| 하드웨어 | T6a 이후 기록 |
+| 컴파일러 | circom 2.2.3 (`~/.cargo/bin/circom`), SHA-256 `8991887889c2a74d6fc704d5689ada4cc76fba004e866c987de6cbf3b3db6227` |
+| 퍼저 | zkFuzz 2.2.1 (`~/.cargo/bin/zkfuzz`), SHA-256 `ac2d9d16fd97ff803b121b7994aef804b4e191636f3f78660ff6ecd6c9ae4edd` (**조사 중에는 실행하지 않는다**) |
+| zkfDO | 코드 커밋 `2f4ad7d` (rustc 1.94.1, `cargo build`). 조사용 바이너리 사본 `runs/heldout-tooling-2026-09-26/zkfDO`(ignored), SHA-256 `750ecb0365a2cc1bedd6cf90e7540f04efd3887aae1c750aefe76d9170ca1bba` |
+| 하드웨어 | Apple M5 (10코어), 메모리 24 GiB, macOS 26.2 |
+
+**조사 명령:** 후보마다 아래 형식만 쓴다. 조사를 시작할 때 바이너리 SHA-256을 확인하고, 다르면 조사하지 않는다.
+
+```sh
+runs/heldout-tooling-2026-09-26/zkfDO targets \
+  --project <취약 커밋 checkout> \
+  --entrypoint <production entrypoint> \
+  --library-path <의존성 경로, 기록한 순서대로 반복> \
+  --circom-bin ~/.cargo/bin/circom \
+  --compile-timeout-seconds 600 \
+  --output runs/heldout-survey-<날짜>/targets
+```
 
 **사전 노출 고지:** 이 문서를 쓰기 전에 T1 작업에서 zkbugs 메타데이터(`zkbugs_config.json`의 `Vulnerability`, `Fix Commit` 유무)만으로 남은 후보 수를 셌다(처음 보는 13개 프로젝트에 29건, 그중 1단계 조건을 만족하는 16건). 어떤 후보의 소스, 위험점수, 경고, 순위 계획, zkFuzz 결과도 보지 않았다.
 
@@ -110,6 +122,7 @@ zkbugs Circom 사례 **전체(70건)**를 zkbugs 경로의 알파벳 순서로 �
 | 2 | 2026-09-26 | `N_p`를 고유 인스턴스(`instance_key`) 기준으로 명확히 하고, 호출 위치 수를 따로 기록 | discovery의 타깃은 호출 위치 단위라서 같은 인스턴스가 수십~수천 번 세어졌다([T6a 진단 정정](../reports/t6a-discovery-diagnostic-2026-09-24/REPORT.md)). v1의 "target identity 기준 중복 제거"는 이 점에서 모호했다 |
 | 3 | 2026-09-26 | 2단계에 공식 패치 판정(기본 브랜치·release tag 도달 여부)과 축약 해시 풀이를 추가. 1단계는 `Fix Commit` 존재만 확인 | `Fix Commit`이 있다는 것만으로는 원래 저장소에 병합된 패치라고 단정할 수 없다 |
 | 3 | 2026-09-26 | 6단계에 입력 계약은 direct wrapper 자체의 계약 하나로 정하고, 호출자별 영향은 따로 판정한다고 명시. `instance_key`를 고유 실행 구성으로 정의 | 같은 구성을 여러 호출자가 다른 입력 범위로 쓸 수 있는데, manifest는 타깃당 계약 하나만 가진다 |
+| 3 (고정) | 2026-09-26 | 1절에 도구 해시, 조사 명령, 하드웨어를 기록하고 상태를 고정으로 바꿈 | T6a 도구 보완(탐색, 익명 호출, 컴파일 재사용, 시도·프로세스 구분)을 마쳤다 |
 
 (버전 2의 마지막 SHA-256: `4bddd44cf78d583441057b3c4df4a0a6aecfc5f0cd09af62f5a368adb51a614a`)
 
