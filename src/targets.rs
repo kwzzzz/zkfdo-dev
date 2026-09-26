@@ -6,6 +6,7 @@ use std::{
 
 use anyhow::{Context, Result};
 use serde::{Deserialize, Serialize};
+use sha2::{Digest, Sha256};
 use uuid::Uuid;
 
 use crate::{
@@ -90,8 +91,58 @@ pub struct ConcreteFuzzTarget {
     pub compiler_stderr_path: Option<PathBuf>,
     pub failure_reason: Option<String>,
     /// Exact bounded compiler invocation; absent in reports created before it was recorded.
+    /// Call sites in one compile unit share the unit's single invocation.
     #[serde(default)]
     pub compile: Option<ToolCapture>,
+    /// `source::Template(params)` of this instance. Together with `parent_instance_key` the
+    /// call sites form a call graph from which every ancestor path can be reconstructed.
+    #[serde(default)]
+    pub instance_key: String,
+    #[serde(default)]
+    pub parent_instance_key: String,
+    /// Key of the compile unit whose wrapper and compiler result this call site uses.
+    #[serde(default)]
+    pub compile_unit: Option<String>,
+    /// True when the result was reused from an earlier call site in the same compile unit.
+    #[serde(default)]
+    pub compile_reused: bool,
+}
+
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq, PartialOrd, Ord)]
+pub struct DependencyFingerprint {
+    pub path: PathBuf,
+    pub sha256: String,
+}
+
+/// Wrapper compilation shared by call sites whose wrapper source, dependency closure, compiler
+/// binary and settings are identical. It carries no caller context or project-level verdict.
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+pub struct CompileUnit {
+    pub key: String,
+    pub instance_key: String,
+    pub wrapper_path: PathBuf,
+    pub dependencies: Vec<DependencyFingerprint>,
+    pub unresolved_includes: Vec<String>,
+    pub compiler_binary: Option<PathBuf>,
+    pub compiler_sha256: Option<String>,
+    pub settings: Vec<String>,
+    pub call_site_identities: Vec<String>,
+    pub wrapper_status: WrapperStatus,
+    pub failure_reason: Option<String>,
+    pub compile: Option<ToolCapture>,
+}
+
+impl CompileUnit {
+    fn apply_to(&self, target: &mut ConcreteFuzzTarget, reused: bool) {
+        target.generated_wrapper_path = Some(self.wrapper_path.clone());
+        target.wrapper_status = self.wrapper_status.clone();
+        target.failure_reason = self.failure_reason.clone();
+        target.compiler_stdout_path = self.compile.as_ref().map(|c| c.stdout_path.clone());
+        target.compiler_stderr_path = self.compile.as_ref().map(|c| c.stderr_path.clone());
+        target.compile = self.compile.clone();
+        target.compile_unit = Some(self.key.clone());
+        target.compile_reused = reused;
+    }
 }
 
 #[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq)]
@@ -121,6 +172,15 @@ pub struct TargetDiscoveryReport {
     /// Per-wrapper compiler limit; absent when wrappers were not compiled.
     #[serde(default)]
     pub compile_timeout_seconds: Option<u64>,
+    /// Instance key of the entrypoint's `component main`.
+    #[serde(default)]
+    pub root_instance_key: Option<String>,
+    /// Distinct wrappers; `targets` keeps one entry per call site.
+    #[serde(default)]
+    pub compile_units: Vec<CompileUnit>,
+    /// Compiler processes actually started, at most one per compile unit.
+    #[serde(default)]
+    pub compile_invocation_count: usize,
 }
 
 /// Operational cap for one wrapper compilation, not an empirically derived bound.
@@ -929,6 +989,7 @@ pub fn discover_project_targets_with(
         _ => EntrypointStatus::Multiple,
     };
     let mut targets = Vec::new();
+    let mut root_instance_key = None;
 
     if entrypoint_status == EntrypointStatus::Found {
         let entrypoint = &entrypoints[0];
@@ -977,6 +1038,14 @@ pub fn discover_project_targets_with(
                         &template_index,
                         &mut unsupported,
                     ) {
+                        root_instance_key = Some(instance_key(
+                            &root.source_path,
+                            &root.name,
+                            &main_parameters
+                                .iter()
+                                .map(ToString::to_string)
+                                .collect::<Vec<_>>(),
+                        ));
                         let mut stack = vec![(root.name.clone(), main_parameters.clone())];
                         let mut expansion_budget = ExpansionBudget::new();
                         let mut seen_target_identities = HashSet::new();
@@ -1040,7 +1109,7 @@ pub fn discover_project_targets_with(
         });
     }
 
-    generate_and_validate_wrappers(
+    let compile_units = generate_and_validate_wrappers(
         &mut targets,
         &work_dir,
         &project_root,
@@ -1049,6 +1118,10 @@ pub fn discover_project_targets_with(
         options.circom_bin.as_deref(),
         options.compile_timeout_seconds,
     )?;
+    let compile_invocation_count = compile_units
+        .iter()
+        .filter(|unit| unit.compile.is_some())
+        .count();
 
     let generated_wrapper_count = targets
         .iter()
@@ -1075,6 +1148,9 @@ pub fn discover_project_targets_with(
             .then_some(options.compile_timeout_seconds),
         selected_entrypoint,
         library_paths,
+        root_instance_key,
+        compile_units,
+        compile_invocation_count,
     };
     write_report(&work_dir, &report)?;
     Ok(report)
@@ -1435,6 +1511,13 @@ fn expand_body(
                     return;
                 }
 
+                let child_instance_key =
+                    instance_key(&child.source_path, &call.template_name, &parameter_strings);
+                let parent_instance_key = instance_key(
+                    &definition.source_path,
+                    &definition.name,
+                    &parent_parameter_strings,
+                );
                 targets.push(ConcreteFuzzTarget {
                     identity,
                     source_path: child.source_path.clone(),
@@ -1453,6 +1536,10 @@ fn expand_body(
                     compiler_stderr_path: None,
                     failure_reason: None,
                     compile: None,
+                    instance_key: child_instance_key,
+                    parent_instance_key,
+                    compile_unit: None,
+                    compile_reused: false,
                 });
 
                 let key = (child.name.clone(), parameters.clone());
@@ -1643,6 +1730,8 @@ fn expand_body(
     }
 }
 
+/// One wrapper and at most one compiler run per compile unit. Call-site entries stay separate:
+/// each keeps its identity, origin and instance keys, so caller context is never merged.
 fn generate_and_validate_wrappers(
     targets: &mut [ConcreteFuzzTarget],
     work_dir: &Path,
@@ -1651,7 +1740,7 @@ fn generate_and_validate_wrappers(
     parsed_files: &HashMap<PathBuf, ParsedFile>,
     circom_bin: Option<&Path>,
     compile_timeout_seconds: u64,
-) -> Result<()> {
+) -> Result<Vec<CompileUnit>> {
     let mut identities = HashSet::new();
     for target in targets.iter() {
         anyhow::ensure!(
@@ -1664,7 +1753,26 @@ fn generate_and_validate_wrappers(
     fs::create_dir_all(&wrappers_dir)
         .with_context(|| format!("failed to create wrapper dir: {}", wrappers_dir.display()))?;
 
-    for (index, target) in targets.iter_mut().enumerate() {
+    // The wrapper includes the target by absolute path, so the compiler needs the same
+    // project-root and library fallbacks that discovery used to resolve nested includes.
+    let mut settings = vec!["--inspect".to_owned()];
+    for library in std::iter::once(project_root).chain(library_paths.iter().map(PathBuf::as_path)) {
+        settings.push("-l".to_owned());
+        settings.push(library.to_string_lossy().into_owned());
+    }
+    let compiler = circom_bin.map(|binary| {
+        let resolved = crate::experiment::resolve_executable(binary).ok();
+        let sha256 = resolved
+            .as_ref()
+            .and_then(|path| fs::read(path).ok())
+            .map(|bytes| sha256_hex(&bytes));
+        (resolved, sha256)
+    });
+    let mut file_hashes = HashMap::new();
+    let mut units: Vec<CompileUnit> = Vec::new();
+    let mut unit_by_key = HashMap::new();
+
+    for target in targets.iter_mut() {
         if include_closure_contains_main(
             &target.source_path,
             project_root,
@@ -1679,14 +1787,6 @@ fn generate_and_validate_wrappers(
             continue;
         }
 
-        let target_dir = wrappers_dir.join(format!(
-            "{index:04}-{}",
-            sanitize_file_component(&target.template_name)
-        ));
-        fs::create_dir_all(&target_dir).with_context(|| {
-            format!("failed to create target work dir: {}", target_dir.display())
-        })?;
-        let wrapper_path = target_dir.join("target.circom");
         let include_path = target
             .source_path
             .to_string_lossy()
@@ -1697,71 +1797,184 @@ fn generate_and_validate_wrappers(
             "pragma circom 2.1.6;\n\ninclude \"{include_path}\";\n\ncomponent main = {}({parameters});\n",
             target.template_name
         );
-        fs::write(&wrapper_path, wrapper)
-            .with_context(|| format!("failed to write wrapper: {}", wrapper_path.display()))?;
-        target.generated_wrapper_path = Some(wrapper_path.clone());
-        target.wrapper_status = WrapperStatus::Generated;
-
-        let Some(circom_bin) = circom_bin else {
-            continue;
-        };
-        let compiler_output_dir = target_dir.join("circom-output");
-        fs::create_dir_all(&compiler_output_dir).with_context(|| {
-            format!(
-                "failed to create compiler output dir: {}",
-                compiler_output_dir.display()
-            )
-        })?;
-        let mut args = vec![
-            wrapper_path.to_string_lossy().into_owned(),
-            "--inspect".to_owned(),
-            "--output".to_owned(),
-            compiler_output_dir.to_string_lossy().into_owned(),
-        ];
-        // The wrapper includes the target by absolute path, so the compiler needs the same
-        // project-root and library fallbacks that discovery used to resolve nested includes.
-        for library in
-            std::iter::once(project_root).chain(library_paths.iter().map(PathBuf::as_path))
-        {
-            args.push("-l".to_owned());
-            args.push(library.to_string_lossy().into_owned());
-        }
-        // Bounded: the compiler runs in its own process group, which is killed at the limit.
-        let capture = capture_tool(
-            circom_bin,
-            args,
-            "circom",
-            &target_dir,
-            compile_timeout_seconds,
+        let mut dependencies = Vec::new();
+        let mut unresolved_includes = Vec::new();
+        collect_dependency_fingerprints(
+            &target.source_path,
+            project_root,
+            library_paths,
+            parsed_files,
+            &mut HashSet::new(),
+            &mut file_hashes,
+            &mut dependencies,
+            &mut unresolved_includes,
         )?;
-        target.compiler_stdout_path = Some(capture.stdout_path.clone());
-        target.compiler_stderr_path = Some(capture.stderr_path.clone());
-        if capture.timed_out {
-            target.wrapper_status = WrapperStatus::CompileTimedOut;
-            target.failure_reason = Some(format!(
-                "wrapper compilation exceeded {compile_timeout_seconds} seconds and was terminated"
-            ));
-        } else if capture.success {
-            target.wrapper_status = WrapperStatus::CompileSucceeded;
-        } else if capture.exit_code.is_none() && capture.error.is_some() {
-            target.wrapper_status = WrapperStatus::CompilerUnavailable;
-            target.failure_reason = Some(format!(
-                "failed to start Circom compiler {}: {}",
-                circom_bin.display(),
-                capture.error.as_deref().unwrap_or_default()
-            ));
-        } else {
-            target.wrapper_status = WrapperStatus::CompileFailed;
-            target.failure_reason = Some(
-                fs::read_to_string(&capture.stderr_path)
-                    .unwrap_or_default()
-                    .trim()
-                    .to_string(),
-            );
+        dependencies.sort();
+        unresolved_includes.sort();
+        unresolved_includes.dedup();
+        let key = sha256_hex(
+            serde_json::to_string(&serde_json::json!({
+                "wrapper": wrapper,
+                "dependencies": dependencies,
+                "unresolved_includes": unresolved_includes,
+                "compiler": compiler,
+                "settings": settings,
+                "compile_timeout_seconds": circom_bin.map(|_| compile_timeout_seconds),
+            }))?
+            .as_bytes(),
+        );
+
+        if let Some(&unit_index) = unit_by_key.get(&key) {
+            let unit: &mut CompileUnit = &mut units[unit_index];
+            unit.call_site_identities.push(target.identity.clone());
+            unit.apply_to(target, true);
+            continue;
         }
-        target.compile = Some(capture);
+
+        let unit_index = units.len();
+        let unit_dir = wrappers_dir.join(format!(
+            "{unit_index:04}-{}",
+            sanitize_file_component(&target.template_name)
+        ));
+        fs::create_dir_all(&unit_dir)
+            .with_context(|| format!("failed to create target work dir: {}", unit_dir.display()))?;
+        let wrapper_path = unit_dir.join("target.circom");
+        fs::write(&wrapper_path, &wrapper)
+            .with_context(|| format!("failed to write wrapper: {}", wrapper_path.display()))?;
+        let mut unit = CompileUnit {
+            key: key.clone(),
+            instance_key: target.instance_key.clone(),
+            wrapper_path: wrapper_path.clone(),
+            dependencies: dependencies
+                .into_iter()
+                .map(|(path, sha256)| DependencyFingerprint { path, sha256 })
+                .collect(),
+            unresolved_includes,
+            compiler_binary: compiler.as_ref().and_then(|(path, _)| path.clone()),
+            compiler_sha256: compiler.as_ref().and_then(|(_, sha256)| sha256.clone()),
+            settings: settings.clone(),
+            call_site_identities: vec![target.identity.clone()],
+            wrapper_status: WrapperStatus::Generated,
+            failure_reason: None,
+            compile: None,
+        };
+
+        if let Some(circom_bin) = circom_bin {
+            let compiler_output_dir = unit_dir.join("circom-output");
+            fs::create_dir_all(&compiler_output_dir).with_context(|| {
+                format!(
+                    "failed to create compiler output dir: {}",
+                    compiler_output_dir.display()
+                )
+            })?;
+            let mut args = vec![wrapper_path.to_string_lossy().into_owned()];
+            args.extend(settings.iter().take(1).cloned());
+            args.push("--output".to_owned());
+            args.push(compiler_output_dir.to_string_lossy().into_owned());
+            args.extend(settings.iter().skip(1).cloned());
+            // Bounded: the compiler runs in its own process group, which is killed at the limit.
+            let capture = capture_tool(
+                circom_bin,
+                args,
+                "circom",
+                &unit_dir,
+                compile_timeout_seconds,
+            )?;
+            if capture.timed_out {
+                unit.wrapper_status = WrapperStatus::CompileTimedOut;
+                unit.failure_reason = Some(format!(
+                    "wrapper compilation exceeded {compile_timeout_seconds} seconds and was terminated"
+                ));
+            } else if capture.success {
+                unit.wrapper_status = WrapperStatus::CompileSucceeded;
+            } else if capture.exit_code.is_none() && capture.error.is_some() {
+                unit.wrapper_status = WrapperStatus::CompilerUnavailable;
+                unit.failure_reason = Some(format!(
+                    "failed to start Circom compiler {}: {}",
+                    circom_bin.display(),
+                    capture.error.as_deref().unwrap_or_default()
+                ));
+            } else {
+                unit.wrapper_status = WrapperStatus::CompileFailed;
+                unit.failure_reason = Some(
+                    fs::read_to_string(&capture.stderr_path)
+                        .unwrap_or_default()
+                        .trim()
+                        .to_string(),
+                );
+            }
+            unit.compile = Some(capture);
+        }
+        unit.apply_to(target, false);
+        unit_by_key.insert(key, unit_index);
+        units.push(unit);
+    }
+    Ok(units)
+}
+
+/// Hashes every file in the include closure of `path`, resolved exactly as discovery resolves it.
+#[allow(clippy::too_many_arguments)]
+fn collect_dependency_fingerprints(
+    path: &Path,
+    project_root: &Path,
+    library_paths: &[PathBuf],
+    parsed_files: &HashMap<PathBuf, ParsedFile>,
+    visited: &mut HashSet<PathBuf>,
+    file_hashes: &mut HashMap<PathBuf, String>,
+    dependencies: &mut Vec<(PathBuf, String)>,
+    unresolved_includes: &mut Vec<String>,
+) -> Result<()> {
+    if !visited.insert(path.to_path_buf()) {
+        return Ok(());
+    }
+    let sha256 = match file_hashes.get(path) {
+        Some(sha256) => sha256.clone(),
+        None => {
+            let bytes = fs::read(path)
+                .with_context(|| format!("failed to hash dependency: {}", path.display()))?;
+            let sha256 = sha256_hex(&bytes);
+            file_hashes.insert(path.to_path_buf(), sha256.clone());
+            sha256
+        }
+    };
+    dependencies.push((path.to_path_buf(), sha256));
+    let Some(file) = parsed_files.get(path) else {
+        return Ok(());
+    };
+    for include in &file.includes {
+        match resolve_include(
+            path,
+            &include.path,
+            project_root,
+            library_paths,
+            parsed_files,
+        ) {
+            Some(included) => collect_dependency_fingerprints(
+                &included,
+                project_root,
+                library_paths,
+                parsed_files,
+                visited,
+                file_hashes,
+                dependencies,
+                unresolved_includes,
+            )?,
+            None => unresolved_includes.push(format!("{}: {}", path.display(), include.path)),
+        }
     }
     Ok(())
+}
+
+fn sha256_hex(bytes: &[u8]) -> String {
+    format!("{:x}", Sha256::digest(bytes))
+}
+
+fn instance_key(source_path: &Path, template_name: &str, parameters: &[String]) -> String {
+    format!(
+        "{}::{template_name}({})",
+        source_path.display(),
+        parameters.join(", ")
+    )
 }
 
 /// Parses the selected entrypoint and every file its includes resolve to. Unresolved includes

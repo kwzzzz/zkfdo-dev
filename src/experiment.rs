@@ -1524,7 +1524,7 @@ fn status_name(status: &RunStatus) -> String {
     .to_owned()
 }
 
-fn resolve_executable(path: &Path) -> Result<PathBuf> {
+pub(crate) fn resolve_executable(path: &Path) -> Result<PathBuf> {
     if path.components().count() > 1 {
         let path = fs::canonicalize(path).context("executable path is unavailable")?;
         ensure!(is_executable_file(&path), "path is not an executable file");

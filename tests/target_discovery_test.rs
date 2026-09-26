@@ -571,8 +571,19 @@ fn invalid_discovery_options_are_rejected() {
 fn fake_compiler(directory: &Path, body: &str) -> PathBuf {
     use std::os::unix::fs::PermissionsExt;
     let path = directory.join("fake-circom.sh");
-    fs::write(&path, format!("#!/bin/sh\n{body}\n")).expect("fake compiler");
+    fs::write(
+        &path,
+        format!("#!/bin/sh\n[ \"$1\" = --warmup ] && exit 0\n{body}\n"),
+    )
+    .expect("fake compiler");
     fs::set_permissions(&path, fs::Permissions::from_mode(0o755)).expect("executable");
+    // macOS can delay the first exec of a newly written executable by hundreds of milliseconds
+    // under parallel tests; absorb it here so timing assertions measure only the compiler call.
+    assert!(Command::new(&path)
+        .arg("--warmup")
+        .status()
+        .expect("warm up fake compiler")
+        .success());
     path
 }
 
@@ -711,4 +722,170 @@ fn lexing_large_symbol_dense_files_is_linear() {
         "took {:?}",
         started.elapsed()
     );
+}
+
+#[cfg(unix)]
+fn shared_leaf_project() -> tempfile::TempDir {
+    let project = tempdir().expect("project");
+    write(
+        &project.path().join("main.circom"),
+        "pragma circom 2.1.6;\ninclude \"lib.circom\";\ncomponent main = Root();\n",
+    );
+    write(
+        &project.path().join("lib.circom"),
+        "pragma circom 2.1.6;\n\
+         include \"leaf.circom\";\n\
+         include \"missing.circom\";\n\
+         template Mid() { component x = Leaf(2); }\n\
+         template Root() {\n\
+           component a = Leaf(2);\n\
+           component b = Leaf(2);\n\
+           component c = Leaf(3);\n\
+           component m = Mid();\n\
+         }\n",
+    );
+    write(
+        &project.path().join("leaf.circom"),
+        "pragma circom 2.1.6;\ntemplate Leaf(n) {}\n",
+    );
+    project
+}
+
+#[cfg(unix)]
+fn discover_with_compiler(project: &Path, body: &str) -> zkfdo::targets::TargetDiscoveryReport {
+    let tools = tempdir().expect("tools");
+    let compiler = fake_compiler(tools.path(), body);
+    let output = tempdir().expect("output");
+    let options = DiscoveryOptions {
+        entrypoint: Some(project.join("main.circom")),
+        circom_bin: Some(compiler),
+        compile_timeout_seconds: 30,
+        ..DiscoveryOptions::default()
+    };
+    discover_project_targets_with(project, output.path(), &options).expect("discovery")
+}
+
+#[cfg(unix)]
+#[test]
+fn repeated_call_sites_share_one_compile_unit_but_keep_their_origins() {
+    let project = shared_leaf_project();
+    let log = tempdir().expect("log");
+    let log_path = log.path().join("invocations.log");
+    let report = discover_with_compiler(
+        project.path(),
+        &format!("echo \"$1\" >> '{}'", log_path.display()),
+    );
+
+    // Five call sites: Root.a, Root.b, Root.c, Root.m and Mid.x.
+    assert_eq!(report.targets.len(), 5);
+    // Three distinct wrappers: Leaf(2), Leaf(3) and Mid().
+    assert_eq!(report.compile_units.len(), 3);
+    assert_eq!(report.compile_invocation_count, 3);
+    let invocations = fs::read_to_string(&log_path).expect("invocation log");
+    assert_eq!(invocations.lines().count(), 3);
+
+    let leaf_two = report
+        .targets
+        .iter()
+        .filter(|target| target.template_name == "Leaf" && target.concrete_parameters == ["2"])
+        .collect::<Vec<_>>();
+    assert_eq!(leaf_two.len(), 3);
+    let unit_key = leaf_two[0].compile_unit.clone().expect("compile unit");
+    assert!(leaf_two
+        .iter()
+        .all(|target| target.compile_unit.as_ref() == Some(&unit_key)
+            && target.wrapper_status == WrapperStatus::CompileSucceeded
+            && target.generated_wrapper_path == leaf_two[0].generated_wrapper_path));
+    assert_eq!(
+        leaf_two
+            .iter()
+            .filter(|target| !target.compile_reused)
+            .count(),
+        1
+    );
+
+    // Caller context is preserved per call site, not merged.
+    let mut origins = leaf_two
+        .iter()
+        .map(|target| {
+            (
+                target.origin.parent_template.as_str(),
+                target.origin.component_name.as_str(),
+            )
+        })
+        .collect::<Vec<_>>();
+    origins.sort();
+    assert_eq!(origins, [("Mid", "x"), ("Root", "a"), ("Root", "b")]);
+    let unit = report
+        .compile_units
+        .iter()
+        .find(|unit| unit.key == unit_key)
+        .expect("unit record");
+    let mut members = unit.call_site_identities.clone();
+    members.sort();
+    let mut expected = leaf_two
+        .iter()
+        .map(|target| target.identity.clone())
+        .collect::<Vec<_>>();
+    expected.sort();
+    assert_eq!(members, expected);
+
+    // Every parent is either the root or another call site's instance, so ancestor paths can be
+    // reconstructed from the call graph.
+    let root = report.root_instance_key.as_deref().expect("root instance");
+    assert!(root.ends_with("::Root()"));
+    for target in &report.targets {
+        assert!(
+            target.parent_instance_key == root
+                || report
+                    .targets
+                    .iter()
+                    .any(|parent| parent.instance_key == target.parent_instance_key),
+            "{}",
+            target.parent_instance_key
+        );
+    }
+}
+
+#[cfg(unix)]
+#[test]
+fn compile_units_record_dependencies_settings_and_shared_failures() {
+    let project = shared_leaf_project();
+    let report = discover_with_compiler(project.path(), "echo boom >&2\nexit 1");
+    assert_eq!(report.compile_invocation_count, 3);
+    assert!(report.targets.iter().all(|target| target.wrapper_status
+        == WrapperStatus::CompileFailed
+        && target.failure_reason.as_deref() == Some("boom")));
+
+    let leaf_unit = report
+        .compile_units
+        .iter()
+        .find(|unit| unit.instance_key.ends_with("::Leaf(2)"))
+        .expect("Leaf(2) unit");
+    let leaf_path = fs::canonicalize(project.path().join("leaf.circom")).unwrap();
+    let leaf_sha = format!(
+        "{:x}",
+        <sha2::Sha256 as sha2::Digest>::digest(fs::read(&leaf_path).unwrap())
+    );
+    assert!(leaf_unit
+        .dependencies
+        .iter()
+        .any(|dependency| dependency.path == leaf_path && dependency.sha256 == leaf_sha));
+    assert!(leaf_unit.unresolved_includes.is_empty());
+    assert!(leaf_unit.compiler_sha256.is_some());
+    let project_root = fs::canonicalize(project.path()).unwrap();
+    assert_eq!(
+        leaf_unit.settings,
+        ["--inspect", "-l", project_root.to_str().unwrap()]
+    );
+
+    let mid_unit = report
+        .compile_units
+        .iter()
+        .find(|unit| unit.instance_key.ends_with("::Mid()"))
+        .expect("Mid unit");
+    assert!(mid_unit
+        .unresolved_includes
+        .iter()
+        .any(|include| include.ends_with("missing.circom")));
 }
