@@ -49,3 +49,11 @@ discovery의 `targets` 목록은 이전처럼 **호출 위치마다 한 항목**
 - 재사용 버전을 먼저 돌렸으므로, 재사용 전 버전은 파일 캐시가 데워진 상태에서 돌았다. 이 순서는 재사용 전 버전에 유리하게 작용하므로 절감량을 과대평가하지 않는 방향이다.
 - 중복 제거는 컴파일 작업을 줄일 뿐이다. 퍼징할 독립 타깃이 몇 개인지와 퍼징 비용은 별도 측정(T6) 대상이다.
 - 원시 측정 기록과 두 바이너리는 ignored `runs/t6a-compile-reuse-2026-09-26/`에 보존했고, 해시는 근거 파일에 적었다.
+
+## 보완 (2026-09-26)
+
+측정 수치와 원시 기록은 바꾸지 않았다.
+
+- **입력 revision 고정.** 측정 스크립트는 `/private/tmp`의 로컬 checkout을 읽는다. 그래서 측정에 쓴 입력을 [evidence.json](evidence.json)의 `inputs`에 따로 기록했다. zk-email `fc9949763858…`, Inference `d310309c141d…`, Moonsong `27cda6e74492…`이고 세 checkout 모두 변경 사항이 없었다. 의존성은 zkbugs `a0eed744ba1a…`의 `dataset/circom/dependencies`(파일 145개, 목록 SHA-256 `16e69aed…`)다. 이 확인은 측정 뒤에 했다. 측정 스크립트는 이제 revision이 다르거나 checkout이 수정돼 있으면 실행을 거부하고, 다시 돌린 결과는 보존된 원본 기록을 덮어쓰지 않도록 `runs/t6a-compile-reuse-2026-09-26/reproduction/`에 쓴다.
+- **필드 이름 변경(커밋 `2f4ad7d`).** 위에서 말한 `compile_invocation_count`는 컴파일러를 띄우지 못한 경우까지 세었다. 그래서 `compile_attempt_count`(컴파일을 시도한 단위 수)와 `compile_process_count`(컴파일러 프로세스가 실제로 시작된 수)로 나눴다. 프로세스 시작 여부는 `ToolCapture.process_started`에 기록되고, 이 필드가 없는 과거 기록은 읽고 다시 써도 바이트가 바뀌지 않는다. 이번 측정의 63회는 모두 프로세스가 실제로 시작된 경우라 수치는 그대로다. 같은 단위의 timeout 결과가 모든 호출 위치에 적용되는지, 컴파일러를 띄우지 못하면 시도만 세고 프로세스는 0으로 세는지 확인하는 테스트 2개를 추가했다(전체 161개 통과).
+- **`instance_key`의 뜻.** `instance_key`는 실행 중의 특정 인스턴스가 아니라 소스·템플릿·구체 인자가 같은 **고유 실행 구성**을 가리킨다. 같은 구성이 여러 호출 위치에서 쓰이면, 호출자마다 보장하는 입력 범위가 다를 수 있다. 주 평가는 direct wrapper 자체의 입력 계약으로 판정하고, 호출자별 영향은 프로젝트 수준에서 따로 판정한다([기준 문서](../../docs/heldout_selection_rubric.md) 6단계).
