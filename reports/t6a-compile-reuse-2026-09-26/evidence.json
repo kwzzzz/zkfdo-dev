@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-26",
+  "purpose": "Wrapper compile counts, time and success before and after compile-unit reuse, on projects already excluded from held-out selection. No zkFuzz execution.",
+  "declared_before_measurement": {
+    "projects": [
+      "zkemail",
+      "inference",
+      "moonsong"
+    ],
+    "entrypoints": "every file declaring component main outside node_modules",
+    "order": "after-run first, then before-run",
+    "fallback": "limit to zkemail and inference if the before-run estimate exceeded 3 hours (not triggered)"
+  },
+  "binaries": {
+    "before": {
+      "commit": "d4f0ea5",
+      "sha256": "39e39c08b5af4b7e50aaaa8a219d5b0d1c3299d60f6040a082a6d89d5dcd4b38"
+    },
+    "after": {
+      "commit": "17eea4c",
+      "sha256": "69ab553d0f8d45c36c9e7cbce5c3f58f35be97cf96251dd85ec753e6d50357c2"
+    },
+    "circom": {
+      "version": "2.2.3",
+      "sha256": "8991887889c2a74d6fc704d5689ada4cc76fba004e866c987de6cbf3b3db6227"
+    }
+  },
+  "settings": {
+    "library_path": ".external/zkbugs/dataset/circom/dependencies",
+    "compile_timeout_seconds": 600
+  },
+  "hardware": {
+    "cpu": "Apple M5",
+    "cores": 10,
+    "memory_bytes": 25769803776,
+    "os": "macOS 26.2"
+  },
+  "projects": {
+    "zkemail": {
+      "entrypoints": 12,
+      "call_sites": 597,
+      "invocations_before": 597,
+      "invocations_after": 22,
+      "compile_seconds_before": 20.62,
+      "compile_seconds_after": 1.67,
+      "wall_seconds_before": 22.59,
+      "wall_seconds_after": 7.54,
+      "succeeded_before": 597,
+      "succeeded_after": 597,
+      "timeouts_before": 0,
+      "timeouts_after": 0,
+      "status_mismatches": 0
+    },
+    "inference": {
+      "entrypoints": 1,
+      "call_sites": 2576,
+      "invocations_before": 2576,
+      "invocations_after": 21,
+      "compile_seconds_before": 76.48,
+      "compile_seconds_after": 0.62,
+      "wall_seconds_before": 77.57,
+      "wall_seconds_after": 1.63,
+      "succeeded_before": 2576,
+      "succeeded_after": 2576,
+      "timeouts_before": 0,
+      "timeouts_after": 0,
+      "status_mismatches": 0
+    },
+    "moonsong": {
+      "entrypoints": 5,
+      "call_sites": 2067,
+      "invocations_before": 2067,
+      "invocations_after": 20,
+      "compile_seconds_before": 62.7,
+      "compile_seconds_after": 1.69,
+      "wall_seconds_before": 64.0,
+      "wall_seconds_after": 4.97,
+      "succeeded_before": 2061,
+      "succeeded_after": 2061,
+      "timeouts_before": 0,
+      "timeouts_after": 0,
+      "status_mismatches": 0
+    }
+  },
+  "raw": {
+    "before": {
+      "path": "runs/t6a-compile-reuse-2026-09-26/measure-before.json",
+      "sha256": "ecd0079d60303b5c00a1b06433a371e8d54879c5514c07ae0c878221a430df21"
+    },
+    "after": {
+      "path": "runs/t6a-compile-reuse-2026-09-26/measure-after.json",
+      "sha256": "e27887f5a56f8e5a43527011d8906ea6953c7eb3874215a52c396b88fcc75e39"
+    }
+  },
+  "count_only_all_excluded_projects": {
+    "note": "--no-validate with the after binary; call sites with a wrapper versus compile units, no compilation",
+    "path": "runs/t6a-compile-reuse-2026-09-26/count-summary.json",
+    "sha256": "66c65b6a17925a98b55c72180528e00c5000ea2bc167d766e654ecb1c72149b8",
+    "call_sites_with_wrapper": 19412,
+    "compile_units": 858
+  },
+  "total": {
+    "entrypoints": 18,
+    "call_sites": 5240,
+    "invocations_before": 5240,
+    "invocations_after": 63,
+    "compile_seconds_before": 159.8,
+    "compile_seconds_after": 3.97,
+    "wall_seconds_before": 164.15,
+    "wall_seconds_after": 14.14,
+    "succeeded_before": 5234,
+    "succeeded_after": 5234,
+    "timeouts_before": 0,
+    "timeouts_after": 0,
+    "status_mismatches": 0
+  }
+}
