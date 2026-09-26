@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "extension": "2 (lower minimum N_p from 6 to 4)",
+  "selection_rubric_sha256": "12ba462acf05fc59143a8da19aec1a891780a7a82ad2971e3c49fccd0fd4d2fb",
+  "input_extension01_sha256": "8f9d444e1e0f6355dbc08b9f2f0f5c7b01f14c82f42cec5eff939692aac40314",
+  "rule": "After extension 1, lower only the project minimum from N_p >= 6 to N_p >= 4; do not relax any earlier source, production-entrypoint, compiler, discovery-completeness, oracle, or contract requirement.",
+  "eligible_projects": [],
+  "ineligible_nearby_project": {
+    "project": "zkopru-network/zkopru",
+    "n_p": null,
+    "reason": "All 16 production entrypoints fail frozen Circom 2.2.3 parsing and all discovery reports are incomplete. The observed zero is only a lower bound, so lowering a numeric N_p threshold cannot admit the project."
+  },
+  "summary": {
+    "projects_reconsidered": 0,
+    "root_causes_added": 0,
+    "projects_added": 0,
+    "outcome": "no effect"
+  }
+}

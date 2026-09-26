@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "stage": "4 (dependency resolution, production compilation, and frozen discovery)",
+  "selection_rubric_sha256": "12ba462acf05fc59143a8da19aec1a891780a7a82ad2971e3c49fccd0fd4d2fb",
+  "input_stage03_sha256": "f4a47f4aedc73ce2defda06293563109d7ae4121df6690288d8d13a0512bdfd7",
+  "project": {
+    "name": "zkopru-network/zkopru",
+    "vulnerable_commit": "4236fc8a5cbf73b7f3860d87a1a447eea8d7abd4",
+    "production_entrypoint_count": 16,
+    "dependency_resolution": {
+      "lockfile": "yarn.lock",
+      "lockfile_sha256": "b4917fbfaf03d02b0d4b91da62640463f23120311511ba60838623f3f03ae277",
+      "manager": "Yarn Classic 1.22.10",
+      "manager_version_basis": "Latest Yarn Classic release published before the 2021-01-14 vulnerable commit; no higher-priority exact-version evidence existed.",
+      "install_scripts": "disabled",
+      "install_outcome": "succeeded",
+      "transport_note": "The first git:// attempt timed out. A command-scoped git://github.com to HTTPS transport rewrite succeeded without changing the lockfile, repository, or pinned ref.",
+      "node_used": "v26.0.0"
+    },
+    "production_compile": {
+      "compiler": "Circom 2.2.3",
+      "entrypoints_attempted": 16,
+      "succeeded": 0,
+      "failed": 16,
+      "timed_out": 0,
+      "failure": "The shared Circom 0.5 declaration `signal private input` in ZkTransaction is rejected by frozen Circom 2.2.3 with P1008/P1012."
+    },
+    "frozen_discovery": {
+      "entrypoints_attempted": 16,
+      "complete": 0,
+      "incomplete": 16,
+      "target_call_count": 0,
+      "unique_target_instance_key_count": 0,
+      "unsupported_record_count": 792,
+      "compile_attempt_count": 0,
+      "compile_process_count": 0,
+      "n_p": null,
+      "n_p_note": "Zero observed targets is only a lower bound because every entrypoint has incomplete discovery; N_p cannot be computed."
+    },
+    "outcome": "excluded",
+    "reason_code": "tool-unsupported"
+  },
+  "cases": [
+    {
+      "zkbugs_case": "zkopru-network/zkopru/leastauthority_Circuit_Does_Not_Check_the_ERC_20_Sum_Correctly_",
+      "project": "zkopru-network/zkopru",
+      "stage": 4,
+      "outcome": "excluded",
+      "reason_code": "tool-unsupported",
+      "reason": "All production entrypoints fail frozen Circom 2.2.3 parsing and frozen discovery is incomplete with zero target calls."
+    },
+    {
+      "zkbugs_case": "zkopru-network/zkopru/leastauthority_previously_correct_ownership_proof_disabled_via_code_changes",
+      "project": "zkopru-network/zkopru",
+      "stage": 4,
+      "outcome": "excluded",
+      "reason_code": "tool-unsupported",
+      "reason": "All production entrypoints fail frozen Circom 2.2.3 parsing, and discovery also marks the OwnershipProof component statement unsupported."
+    }
+  ],
+  "summary": {
+    "input_cases": 2,
+    "passed": 0,
+    "excluded": 2,
+    "passed_projects": 0,
+    "excluded_by_reason": {
+      "tool-unsupported": 2
+    }
+  },
+  "primary_survey_funnel": {
+    "all_zkbugs_cases": 70,
+    "passed_stage_1": 16,
+    "passed_stage_2": 5,
+    "passed_stage_3": 2,
+    "passed_stage_4": 0,
+    "passed_stage_5": 0,
+    "passed_stage_6": 0
+  },
+  "shortage": {
+    "root_cause_minimum": 5,
+    "project_minimum": 3,
+    "root_causes_obtained": 0,
+    "projects_obtained": 0,
+    "minimum_met": false,
+    "next_prespecified_action": "Evaluate expansion 1 separately: cases with a public open proposed patch."
+  },
+  "raw_evidence": [
+    {
+      "path": "runs/heldout-survey-2026-09-26/stage4-evidence/zkopru/findings.json",
+      "sha256": "fbcf3c4bfaa562abf5a9e72f22565338a13c6d0afc8f9e9013d2318aab0da75d"
+    },
+    {
+      "path": "runs/heldout-survey-2026-09-26/stage4-evidence/zkopru/COMMANDS.md",
+      "sha256": "d8dc5db0aadc4d80253590c6ef8066b4cf26209d4409693de3c2942822292a28"
+    }
+  ]
+}

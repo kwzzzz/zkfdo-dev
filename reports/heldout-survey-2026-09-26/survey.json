@@ -1,0 +1,674 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-09-26T06:52:15Z",
+  "status": "complete-insufficient",
+  "frozen_inputs": {
+    "selection_rubric_sha256": "12ba462acf05fc59143a8da19aec1a891780a7a82ad2971e3c49fccd0fd4d2fb",
+    "development_exclusions_sha256": "ae1157e00ca4593d21202a5de275c061e3cf9aaaafe08e376707969c35e359d7",
+    "zkbugs_revision": "a0eed744ba1a816acaa2fae597f4e79b4fd01aea",
+    "zkfdo_sha256": "750ecb0365a2cc1bedd6cf90e7540f04efd3887aae1c750aefe76d9170ca1bba",
+    "circom_version": "2.2.3",
+    "circom_sha256": "8991887889c2a74d6fc704d5689ada4cc76fba004e866c987de6cbf3b3db6227",
+    "zkfuzz_version": "2.2.1",
+    "zkfuzz_sha256": "ac2d9d16fd97ff803b121b7994aef804b4e191636f3f78660ff6ecd6c9ae4edd",
+    "zkfuzz_executed": false
+  },
+  "primary_funnel": [
+    { "stage": 0, "reached": 70, "excluded": 41, "passed": 29 },
+    { "stage": 1, "reached": 29, "excluded": 13, "passed": 16 },
+    { "stage": 2, "reached": 16, "excluded": 11, "passed": 5 },
+    { "stage": 3, "reached": 5, "excluded": 3, "passed": 2 },
+    { "stage": 4, "reached": 2, "excluded": 2, "passed": 0 },
+    { "stage": 5, "reached": 0, "excluded": 0, "passed": 0 },
+    { "stage": 6, "reached": 0, "excluded": 0, "passed": 0 }
+  ],
+  "primary_cases": [
+    {
+      "zkbugs_case": "0xbok/circom-bigint/veridise_missing_range_checks_in_bigmod",
+      "project": "0xbok/circom-bigint",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-root-cause",
+      "reason": "root cause in development exclusion list"
+    },
+    {
+      "zkbugs_case": "Arianee/arianee-sdk/veridise_creditnoteproofs_can_be_stolen",
+      "project": "Arianee/arianee-sdk",
+      "outcome": "excluded",
+      "first_failed_stage": 2,
+      "reason_code": "unreachable-recorded-patch",
+      "reason": "The constraint-changing fix is not reachable from the canonical origin/main or a release tag."
+    },
+    {
+      "zkbugs_case": "Arianee/arianee-sdk/veridise_ownershipproofs_could_identify_issuers",
+      "project": "Arianee/arianee-sdk",
+      "outcome": "excluded",
+      "first_failed_stage": 1,
+      "reason_code": "missing-fix-commit",
+      "reason": "Fix Commit is empty"
+    },
+    {
+      "zkbugs_case": "Moonsong-Labs/zksync-social-login-circuit/openzeppelin_mismatched_base64url_decoding_may_break_completeness",
+      "project": "Moonsong-Labs/zksync-social-login-circuit",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-project",
+      "reason": "project in development exclusion list"
+    },
+    {
+      "zkbugs_case": "Moonsong-Labs/zksync-social-login-circuit/openzeppelin_non_determinism_of_some_inputs",
+      "project": "Moonsong-Labs/zksync-social-login-circuit",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-root-cause",
+      "reason": "root cause in development exclusion list"
+    },
+    {
+      "zkbugs_case": "Rate-Limiting-Nullifier/circom-rln/veridise_spammers_may_slash_themselves",
+      "project": "Rate-Limiting-Nullifier/circom-rln",
+      "outcome": "excluded",
+      "first_failed_stage": 1,
+      "reason_code": "missing-fix-commit",
+      "reason": "Fix Commit is empty"
+    },
+    {
+      "zkbugs_case": "Unirep/Unirep/veridise_missing_range_checks_on_comparison_circuits",
+      "project": "Unirep/Unirep",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-root-cause",
+      "reason": "root cause in development exclusion list"
+    },
+    {
+      "zkbugs_case": "Unirep/Unirep/veridise_underconstrained_circuit_allows_invalid_comparison",
+      "project": "Unirep/Unirep",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-root-cause",
+      "reason": "root cause in development exclusion list"
+    },
+    {
+      "zkbugs_case": "aptos-labs/keyless-zk-proofs/koukyosyumei_unconstrained_base64_decoded_len",
+      "project": "aptos-labs/keyless-zk-proofs",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-root-cause",
+      "reason": "root cause in development exclusion list"
+    },
+    {
+      "zkbugs_case": "banyancomputer/hot-proofs-blake3-circom/koukyosyumei_checkdepth_comparator_overflow",
+      "project": "banyancomputer/hot-proofs-blake3-circom",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-root-cause",
+      "reason": "root cause in development exclusion list"
+    },
+    {
+      "zkbugs_case": "darkforest-eth/darkforest-v0.3/daira_hopwood_darkforest_v0_3_missing_bit_length_check",
+      "project": "darkforest-eth/darkforest-v0.3",
+      "outcome": "excluded",
+      "first_failed_stage": 2,
+      "reason_code": "external-successor-patch",
+      "reason": "The recorded constraint-changing fix is in darkforest-eth/circuits, not the original darkforest-v0.3 canonical repository."
+    },
+    {
+      "zkbugs_case": "iden3/circomlib/kobi_gurkan_mimc_hash_assigned_but_not_constrained",
+      "project": "iden3/circomlib",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-root-cause",
+      "reason": "root cause in development exclusion list"
+    },
+    {
+      "zkbugs_case": "iden3/circomlib/veridise_decoder_accepting_bogus_output_signal",
+      "project": "iden3/circomlib",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-root-cause",
+      "reason": "root cause in development exclusion list"
+    },
+    {
+      "zkbugs_case": "iden3/circomlib/veridise_underconstrained_outputs_in_bitElementMulAny",
+      "project": "iden3/circomlib",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-project",
+      "reason": "project in development exclusion list"
+    },
+    {
+      "zkbugs_case": "iden3/circomlib/veridise_underconstrained_outputs_in_window4",
+      "project": "iden3/circomlib",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-project",
+      "reason": "project in development exclusion list"
+    },
+    {
+      "zkbugs_case": "iden3/circomlib/veridise_underconstrained_outputs_in_windowmulfix",
+      "project": "iden3/circomlib",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-project",
+      "reason": "project in development exclusion list"
+    },
+    {
+      "zkbugs_case": "iden3/circomlib/veridise_underconstrained_points_in_edwards2Montgomery",
+      "project": "iden3/circomlib",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-project",
+      "reason": "project in development exclusion list"
+    },
+    {
+      "zkbugs_case": "iden3/circomlib/veridise_underconstrained_points_in_montgomery2Edwards",
+      "project": "iden3/circomlib",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-project",
+      "reason": "project in development exclusion list"
+    },
+    {
+      "zkbugs_case": "iden3/circomlib/veridise_underconstrained_points_in_montgomeryAdd",
+      "project": "iden3/circomlib",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-project",
+      "reason": "project in development exclusion list"
+    },
+    {
+      "zkbugs_case": "iden3/circomlib/veridise_underconstrained_points_in_montgomeryDouble",
+      "project": "iden3/circomlib",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-project",
+      "reason": "project in development exclusion list"
+    },
+    {
+      "zkbugs_case": "iden3/circuits/trailofbits_unsafe_use_of_num2bits_in_multiple_circuits",
+      "project": "iden3/circuits",
+      "outcome": "excluded",
+      "first_failed_stage": 1,
+      "reason_code": "missing-fix-commit",
+      "reason": "Fix Commit is empty"
+    },
+    {
+      "zkbugs_case": "inference-labs-inc/subnet-2-circom/koukyosyumei_clamp_comparator_overflow",
+      "project": "inference-labs-inc/subnet-2-circom",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-root-cause",
+      "reason": "root cause in development exclusion list"
+    },
+    {
+      "zkbugs_case": "inference-labs-inc/subnet-2-circom/koukyosyumei_subtract_unconstrained_multiplier",
+      "project": "inference-labs-inc/subnet-2-circom",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-root-cause",
+      "reason": "root cause in development exclusion list"
+    },
+    {
+      "zkbugs_case": "pantherfoundation/panther-core/veridise_babyjubjub_suborder_constraints_not_applied_correctly",
+      "project": "pantherfoundation/panther-core",
+      "outcome": "excluded",
+      "first_failed_stage": 2,
+      "reason_code": "patch-commit-unavailable",
+      "reason": "The abbreviated fix ID cannot be resolved or retrieved from the public canonical repository."
+    },
+    {
+      "zkbugs_case": "pantherfoundation/panther-core/veridise_blacklist_states_not_representable_in_field",
+      "project": "pantherfoundation/panther-core",
+      "outcome": "excluded",
+      "first_failed_stage": 1,
+      "reason_code": "metadata-type-ineligible",
+      "reason": "Vulnerability is 'Computational Issues', not Under-Constrained"
+    },
+    {
+      "zkbugs_case": "pantherfoundation/panther-core/veridise_bypassing_internal_transfer_limits_via_swaps",
+      "project": "pantherfoundation/panther-core",
+      "outcome": "excluded",
+      "first_failed_stage": 2,
+      "reason_code": "proposed-patch",
+      "reason": "The historically merged pull-request commit contains the constraint-changing fix, but it is now reachable only through a closed pull-request ref; the frozen stage-2 rule classifies that as proposed."
+    },
+    {
+      "zkbugs_case": "pantherfoundation/panther-core/veridise_data_escrow_encrypted_message_wrong_input",
+      "project": "pantherfoundation/panther-core",
+      "outcome": "excluded",
+      "first_failed_stage": 1,
+      "reason_code": "metadata-type-ineligible",
+      "reason": "Vulnerability is 'Computational Issues', not Under-Constrained"
+    },
+    {
+      "zkbugs_case": "pantherfoundation/panther-core/veridise_fortxreward_abstracted_away_in_reward_calc",
+      "project": "pantherfoundation/panther-core",
+      "outcome": "excluded",
+      "first_failed_stage": 1,
+      "reason_code": "metadata-type-ineligible",
+      "reason": "Vulnerability is 'Computational Issues', not Under-Constrained"
+    },
+    {
+      "zkbugs_case": "pantherfoundation/panther-core/veridise_kyt_signature_verification_fails_nonzero_hash",
+      "project": "pantherfoundation/panther-core",
+      "outcome": "excluded",
+      "first_failed_stage": 1,
+      "reason_code": "metadata-type-ineligible",
+      "reason": "Vulnerability is 'Over-Constrained', not Under-Constrained"
+    },
+    {
+      "zkbugs_case": "pantherfoundation/panther-core/veridise_nullifier_verification_can_be_disabled",
+      "project": "pantherfoundation/panther-core",
+      "outcome": "excluded",
+      "first_failed_stage": 2,
+      "reason_code": "patch-commit-unavailable",
+      "reason": "The abbreviated fix ID cannot be resolved or retrieved from the public canonical repository."
+    },
+    {
+      "zkbugs_case": "pantherfoundation/panther-core/veridise_unsafe_num2bits_254_blacklist_leaf",
+      "project": "pantherfoundation/panther-core",
+      "outcome": "excluded",
+      "first_failed_stage": 2,
+      "reason_code": "patch-commit-unavailable",
+      "reason": "The abbreviated fix ID cannot be resolved or retrieved from the public canonical repository."
+    },
+    {
+      "zkbugs_case": "pantherfoundation/panther-core/veridise_zaccount_renewal_kyc_expiry_not_validated",
+      "project": "pantherfoundation/panther-core",
+      "outcome": "excluded",
+      "first_failed_stage": 2,
+      "reason_code": "patch-commit-unavailable",
+      "reason": "The abbreviated fix ID cannot be resolved or retrieved from the public canonical repository."
+    },
+    {
+      "zkbugs_case": "pantherfoundation/panther-core/veridise_zaccount_renewal_multiple_nullifiers_same_utxo",
+      "project": "pantherfoundation/panther-core",
+      "outcome": "excluded",
+      "first_failed_stage": 2,
+      "reason_code": "patch-commit-unavailable",
+      "reason": "The abbreviated fix ID cannot be resolved or retrieved from the public canonical repository."
+    },
+    {
+      "zkbugs_case": "pantherfoundation/panther-core/veridise_zone_id_inclusion_prover_bypass",
+      "project": "pantherfoundation/panther-core",
+      "outcome": "excluded",
+      "first_failed_stage": 2,
+      "reason_code": "patch-commit-unavailable",
+      "reason": "The abbreviated fix ID cannot be resolved or retrieved from the public canonical repository."
+    },
+    {
+      "zkbugs_case": "pantherfoundation/panther-core/veridise_zone_limits_bypass_zswapv1",
+      "project": "pantherfoundation/panther-core",
+      "outcome": "excluded",
+      "first_failed_stage": 2,
+      "reason_code": "patch-commit-unavailable",
+      "reason": "The abbreviated fix ID cannot be resolved or retrieved from the public canonical repository."
+    },
+    {
+      "zkbugs_case": "personaelabs/spartan-ecdsa/yacademy_Knowledge_of_any_member_signature_allow_to_generate_proof_of_membership",
+      "project": "personaelabs/spartan-ecdsa",
+      "outcome": "excluded",
+      "first_failed_stage": 1,
+      "reason_code": "missing-fix-commit",
+      "reason": "Fix Commit is empty"
+    },
+    {
+      "zkbugs_case": "personaelabs/spartan-ecdsa/yacademy_input_signal_s_is_not_constrained_in_eff_ecdsa_circom",
+      "project": "personaelabs/spartan-ecdsa",
+      "outcome": "excluded",
+      "first_failed_stage": 1,
+      "reason_code": "missing-fix-commit",
+      "reason": "Fix Commit is empty"
+    },
+    {
+      "zkbugs_case": "personaelabs/spartan-ecdsa/yacademy_under_constrained_circuits_compromising_the_soundness_of_the_system",
+      "project": "personaelabs/spartan-ecdsa",
+      "outcome": "excluded",
+      "first_failed_stage": 1,
+      "reason_code": "missing-fix-commit",
+      "reason": "Fix Commit is empty"
+    },
+    {
+      "zkbugs_case": "privacy-scaling-explorations/maci/hashcloak_data_are_not_fully_verified_during_state_update",
+      "project": "privacy-scaling-explorations/maci",
+      "outcome": "excluded",
+      "first_failed_stage": 2,
+      "reason_code": "affected-template-constraints-unchanged",
+      "reason": "The endpoint contains a caller-side partial mitigation, but the affected ResultCommitmentVerifier constraint and its dependencies remain unchanged; the recorded fix itself addresses ProcessMessages."
+    },
+    {
+      "zkbugs_case": "rarimo/passport-zk-circuits/koukyosyumei_under_constrained_date_encoder",
+      "project": "rarimo/passport-zk-circuits",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-root-cause",
+      "reason": "root cause in development exclusion list"
+    },
+    {
+      "zkbugs_case": "reclaimprotocol/circom-chacha20/zksecurity_Unsound_Addition_Gadget",
+      "project": "reclaimprotocol/circom-chacha20",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-root-cause",
+      "reason": "root cause in development exclusion list"
+    },
+    {
+      "zkbugs_case": "reclaimprotocol/circom-chacha20/zksecurity_Unsound_XOR_gadget",
+      "project": "reclaimprotocol/circom-chacha20",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-root-cause",
+      "reason": "root cause in development exclusion list"
+    },
+    {
+      "zkbugs_case": "reclaimprotocol/circom-chacha20/zksecurity_unsound_left_rotation",
+      "project": "reclaimprotocol/circom-chacha20",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-root-cause",
+      "reason": "root cause in development exclusion list"
+    },
+    {
+      "zkbugs_case": "selfxyz/self/zksecurity_an_attacker_can_craft_a_fake_non_inclusion_proof_for_a_given_key_due_to_an_aliasing_bug_in_the_smt_verifier",
+      "project": "selfxyz/self",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-root-cause",
+      "reason": "root cause in development exclusion list"
+    },
+    {
+      "zkbugs_case": "selfxyz/self/zksecurity_big_integer_zero_check_is_not_sound",
+      "project": "selfxyz/self",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-project",
+      "reason": "project in development exclusion list"
+    },
+    {
+      "zkbugs_case": "selfxyz/self/zksecurity_exclusion_check_of_forbidden_countries_is_unsound_and_incomplete_due_to_incorrect_indexing",
+      "project": "selfxyz/self",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-project",
+      "reason": "project in development exclusion list"
+    },
+    {
+      "zkbugs_case": "selfxyz/self/zksecurity_forbidden_country_check_bypass_via_packed_byte_overflow",
+      "project": "selfxyz/self",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-project",
+      "reason": "project in development exclusion list"
+    },
+    {
+      "zkbugs_case": "selfxyz/self/zksecurity_missing_boolean_constraints_in_the_merkle_tree_path_leads_to_an_attacker_being_able_to_craft_a_fake_merkle_proof_for_an_arbitrary_leaf",
+      "project": "selfxyz/self",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-root-cause",
+      "reason": "root cause in development exclusion list"
+    },
+    {
+      "zkbugs_case": "selfxyz/self/zksecurity_missing_byte_range_checks_allows_packed_data_pollution",
+      "project": "selfxyz/self",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-project",
+      "reason": "project in development exclusion list"
+    },
+    {
+      "zkbugs_case": "selfxyz/self/zksecurity_second_pre_image_attacks_on_packbytesandposeidon_may_be_used_to_register_arbitrary_passports_and_dsc_certificates",
+      "project": "selfxyz/self",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-project",
+      "reason": "project in development exclusion list"
+    },
+    {
+      "zkbugs_case": "selfxyz/self/zksecurity_the_registration_and_disclosure_circuits_lack_range_checks_for_the_input_indices",
+      "project": "selfxyz/self",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-project",
+      "reason": "project in development exclusion list"
+    },
+    {
+      "zkbugs_case": "semaphore-protocol/semaphore/veridise_no_zero_value_validation",
+      "project": "semaphore-protocol/semaphore",
+      "outcome": "excluded",
+      "first_failed_stage": 1,
+      "reason_code": "missing-fix-commit",
+      "reason": "Fix Commit is empty"
+    },
+    {
+      "zkbugs_case": "sismo-core/hydra-s2-zkps/veridise_private_information_leakage",
+      "project": "sismo-core/hydra-s2-zkps",
+      "outcome": "excluded",
+      "first_failed_stage": 1,
+      "reason_code": "metadata-type-ineligible",
+      "reason": "Vulnerability is 'Private Information Leakage', not Under-Constrained"
+    },
+    {
+      "zkbugs_case": "siv-org/verifiable-private-overrides/koukyosyumei_emitifinrange_lessthan_overflow",
+      "project": "siv-org/verifiable-private-overrides",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-project",
+      "reason": "project in development exclusion list"
+    },
+    {
+      "zkbugs_case": "siv-org/verifiable-private-overrides/koukyosyumei_extractstringfrompoint_shiftedfirstbyte_unconstrained",
+      "project": "siv-org/verifiable-private-overrides",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-root-cause",
+      "reason": "root cause in development exclusion list"
+    },
+    {
+      "zkbugs_case": "succinctlabs/telepathy-circuits/trailofbits_incorrect_handling_of_point_doubling_can_allow_signature_forgery",
+      "project": "succinctlabs/telepathy-circuits",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-project",
+      "reason": "project in development exclusion list"
+    },
+    {
+      "zkbugs_case": "succinctlabs/telepathy-circuits/trailofbits_prover_can_lock_user_funds_by_including_ill-formed_bigints_in_public_key_commitment",
+      "project": "succinctlabs/telepathy-circuits",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-project",
+      "reason": "project in development exclusion list"
+    },
+    {
+      "zkbugs_case": "succinctlabs/telepathy-circuits/trailofbits_prover_can_lock_user_funds_by_supplying_non-reduced_Y_values_to_G1BigIntToSignFlag",
+      "project": "succinctlabs/telepathy-circuits",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-project",
+      "reason": "project in development exclusion list"
+    },
+    {
+      "zkbugs_case": "succinctlabs/telepathy-circuits/veridise_arrayxor_is_under_constrained",
+      "project": "succinctlabs/telepathy-circuits",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-root-cause",
+      "reason": "root cause in development exclusion list"
+    },
+    {
+      "zkbugs_case": "succinctlabs/telepathy-circuits/veridise_template_CoreVerifyPubkeyG1_does_not_perform_input_validation_simplified",
+      "project": "succinctlabs/telepathy-circuits",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-root-cause",
+      "reason": "root cause in development exclusion list"
+    },
+    {
+      "zkbugs_case": "succinctlabs/telepathy-circuits/veridise_zero_padding_for_sha256_in_ExpandMessageXMD_is_vulnerable_to_an_overflow",
+      "project": "succinctlabs/telepathy-circuits",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-project",
+      "reason": "project in development exclusion list"
+    },
+    {
+      "zkbugs_case": "tangle-network/protocol-solidity/veridise_incorrect_initialization_in_membership_circuits",
+      "project": "tangle-network/protocol-solidity",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-root-cause",
+      "reason": "root cause in development exclusion list"
+    },
+    {
+      "zkbugs_case": "worm-privacy/proof-of-burn/koukyosyumei_spend_missing_range_check",
+      "project": "worm-privacy/proof-of-burn",
+      "outcome": "excluded",
+      "first_failed_stage": 3,
+      "reason_code": "entrypoint-unverified",
+      "reason": "circuits/spend.circom declares main, but the project Makefile and README build only circuits/proof_of_burn.circom and no project build, deployment, script, or documentation connects Spend to an actual artifact."
+    },
+    {
+      "zkbugs_case": "zkemail/ether-email-auth/matterlabs_emailauth_fails_with_overlapping_invitation_code_regex",
+      "project": "zkemail/ether-email-auth",
+      "outcome": "excluded",
+      "first_failed_stage": 1,
+      "reason_code": "metadata-type-ineligible",
+      "reason": "Vulnerability is 'Over-Constrained', not Under-Constrained"
+    },
+    {
+      "zkbugs_case": "zkemail/zk-email-verify/matterlabs_underconstrained_fpmul_circuit",
+      "project": "zkemail/zk-email-verify",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-root-cause",
+      "reason": "root cause in development exclusion list"
+    },
+    {
+      "zkbugs_case": "zkemail/zk-email-verify/zksecurity_sha256_templates_return_zero_on_arbitrary_inputs",
+      "project": "zkemail/zk-email-verify",
+      "outcome": "excluded",
+      "first_failed_stage": 0,
+      "reason_code": "development-root-cause",
+      "reason": "root cause in development exclusion list"
+    },
+    {
+      "zkbugs_case": "zkemail/zk-regex/matterlabs_email_spoofing_via_manipulated_from_header",
+      "project": "zkemail/zk-regex",
+      "outcome": "excluded",
+      "first_failed_stage": 3,
+      "reason_code": "entrypoint-unverified",
+      "reason": "All reachable main declarations are under packages/circom/tests/circuits; no build, workflow, or documentation connects the affected template to a production circuit artifact."
+    },
+    {
+      "zkbugs_case": "zkemail/zk-regex/matterlabs_fromaddrregex_allows_email_address_spoofing",
+      "project": "zkemail/zk-regex",
+      "outcome": "excluded",
+      "first_failed_stage": 3,
+      "reason_code": "entrypoint-unverified",
+      "reason": "The only reachable main is a test circuit and no build, workflow, or documentation connects the affected template to a production circuit artifact."
+    },
+    {
+      "zkbugs_case": "zkopru-network/zkopru/leastauthority_Circuit_Does_Not_Check_the_ERC_20_Sum_Correctly_",
+      "project": "zkopru-network/zkopru",
+      "outcome": "excluded",
+      "first_failed_stage": 4,
+      "reason_code": "tool-unsupported",
+      "reason": "All production entrypoints fail frozen Circom 2.2.3 parsing and frozen discovery is incomplete with zero target calls."
+    },
+    {
+      "zkbugs_case": "zkopru-network/zkopru/leastauthority_previously_correct_ownership_proof_disabled_via_code_changes",
+      "project": "zkopru-network/zkopru",
+      "outcome": "excluded",
+      "first_failed_stage": 4,
+      "reason_code": "tool-unsupported",
+      "reason": "All production entrypoints fail frozen Circom 2.2.3 parsing, and discovery also marks the OwnershipProof component statement unsupported."
+    }
+  ],
+  "passing_root_causes": [],
+  "passing_projects": [],
+  "project_measurements": [
+    {
+      "project": "zkopru-network/zkopru",
+      "production_entrypoints": 16,
+      "production_entrypoints_compiled": 0,
+      "discovery_complete_entrypoints": 0,
+      "target_call_count_observed": 0,
+      "unique_instance_key_count_observed": 0,
+      "n_p": null,
+      "note": "All production entrypoints failed frozen Circom 2.2.3 parsing and every discovery was incomplete; observed zero is a lower bound, not N_p."
+    }
+  ],
+  "detail_coverage": {
+    "metadata_and_development_exclusion": {
+      "record": "reports/heldout-survey-2026-09-26/stage01.json",
+      "contents": "All 70 cases with stages 0 and 1 outcomes, project identity, and first-failure reason."
+    },
+    "source_and_patch_provenance": {
+      "record": "reports/heldout-survey-2026-09-26/stage02.json",
+      "contents": "The 16 stage-2 cases with full vulnerable revisions, resolved full fix revisions or the unresolved recorded ID, patch kind, affected template and file, constraint-change evidence, and first-failure reason."
+    },
+    "production_reachability": {
+      "record": "reports/heldout-survey-2026-09-26/stage03.json",
+      "contents": "The five stage-3 cases with production or test-only entrypoints, call paths, and build/documentation evidence."
+    },
+    "dependency_compile_and_discovery": {
+      "record": "reports/heldout-survey-2026-09-26/stage04.json",
+      "contents": "The two stage-4 cases with lockfile and manager evidence, install result, all production compilation results, discovery completeness, observed call/instance counts, and N_p verdict."
+    },
+    "oracle_contract_and_property": {
+      "cases_reached": 0,
+      "input_contracts": [],
+      "property_drafts": [],
+      "reason": "No case passed stage 4, so stages 5 and 6 were not reached and no oracle or contract was selected post hoc."
+    }
+  },
+  "extensions": {
+    "extension_1": {
+      "input_cases": 7,
+      "eligible_open_proposed_patches": 0,
+      "root_causes_added": 0,
+      "projects_added": 0,
+      "record": "reports/heldout-survey-2026-09-26/extension01.json"
+    },
+    "extension_2": {
+      "projects_reconsidered": 0,
+      "root_causes_added": 0,
+      "projects_added": 0,
+      "record": "reports/heldout-survey-2026-09-26/extension02.json"
+    }
+  },
+  "shortage": {
+    "required_root_causes": 5,
+    "required_projects": 3,
+    "obtained_root_causes": 0,
+    "obtained_projects": 0,
+    "minimum_met": false
+  },
+  "stage_records": [
+    { "path": "reports/heldout-survey-2026-09-26/stage01.json", "sha256": "31c3ad3915fb61bfe3e7f4702ce72f810c0ce1b8e44e4111c9b95e718d978231" },
+    { "path": "reports/heldout-survey-2026-09-26/stage02.json", "sha256": "b7b0bee3b2ab669c8e9cffb662159bee108097ee6440923e2effef148fba7df8" },
+    { "path": "reports/heldout-survey-2026-09-26/stage03.json", "sha256": "f4a47f4aedc73ce2defda06293563109d7ae4121df6690288d8d13a0512bdfd7" },
+    { "path": "reports/heldout-survey-2026-09-26/stage04.json", "sha256": "c69af859b07e442ac59fcf9e43cd18a3b6637a2f2c1e8e7536d94ee6cee9bb92" },
+    { "path": "reports/heldout-survey-2026-09-26/extension01.json", "sha256": "8f9d444e1e0f6355dbc08b9f2f0f5c7b01f14c82f42cec5eff939692aac40314" },
+    { "path": "reports/heldout-survey-2026-09-26/extension02.json", "sha256": "06f10cd80b3d5be56e79a3a797bb6f731b0b119784cec26cb65b29398c049b34" }
+  ],
+  "candidate_detail_resolution": {
+    "join_key": "zkbugs_case",
+    "rule": "For each primary_cases item, read every record whose applies_to_first_failed_stages contains that item's first_failed_stage, then join each record's case by zkbugs_case. Together they are the candidate's cumulative detailed record; fields from later, unreached stages are not applicable.",
+    "records": [
+      { "stage_data": [0, 1], "applies_to_first_failed_stages": [0, 1, 2, 3, 4], "path": "reports/heldout-survey-2026-09-26/stage01.json" },
+      { "stage_data": [2], "applies_to_first_failed_stages": [2, 3, 4], "path": "reports/heldout-survey-2026-09-26/stage02.json" },
+      { "stage_data": [3], "applies_to_first_failed_stages": [3, 4], "path": "reports/heldout-survey-2026-09-26/stage03.json" },
+      { "stage_data": [4], "applies_to_first_failed_stages": [4], "path": "reports/heldout-survey-2026-09-26/stage04.json" }
+    ]
+  },
+  "prohibited_actions_not_performed": [
+    "zkFuzz on held-out candidates",
+    "risk or Circomspect inspection",
+    "ranking inspection",
+    "experiment prepare or plan",
+    "frozen source or tool modification",
+    "installation lifecycle scripts",
+    "immutable backup access"
+  ]
+}
