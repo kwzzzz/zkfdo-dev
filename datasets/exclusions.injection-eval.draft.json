@@ -2,7 +2,7 @@
   "schema_version": 1,
   "name": "injection-evaluation-exclusions",
   "status": "draft",
-  "recorded": "2026-09-26",
+  "recorded": "2026-09-27",
   "purpose": "Projects that may not be used as injection-evaluation (B) projects. The frozen development exclusion list and held-out rubric are unchanged; this is a separate snapshot for B.",
   "finalize_before": "opening the first B evaluation project; T6 projects and development-injection projects must be added at that point",
   "rules": [
@@ -60,6 +60,9 @@
       "semaphore-protocol/semaphore"
     ],
     "t6_calibration": [],
-    "development_injection": []
+    "development_injection": [],
+    "development_dataset": [
+      "zksecurity/zkbugs"
+    ]
   }
 }
