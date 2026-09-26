@@ -179,11 +179,12 @@ B1 설계 초안 ─► T4 검토 엔진·개발용 주입(제외 스냅샷 프�
 - **산출물:** `docs/controlled_v4_evaluation_protocol.md`, `datasets/manifest.controlled-v4.json`, `datasets/contracts.controlled-v4.json`, 분석 스크립트, preflight 보고서
 - **완료 조건:** `experiment prepare`와 `plan`이 모든 전략에서 성공하고, 계획 파일과 해시가 기록된 커밋이 있다. miiz가 4절의 고정 전 점검을 마치고 그 기록을 남겼다. **첫 실행 전에** 이 모든 것이 고정돼 있어야 한다.
 
-### T4a. 검토 형식 결정 — 담당:
+### T4a. 검토 형식 결정 — 담당: miiz
 
 - **배경:** 기존 후보 검토는 형식이 서로 다르다. v1.1·v2는 `review_candidates.py`와 캠페인 ledger 기반 구조이고, v3는 `review_candidate.py`와 plan·outcome 기반 구조다. 단순히 하나를 일반화할 수 없다.
 - **결정할 것:** 검토 명세(review-spec) 형식, 값 없는 출력 schema, R1CS/SYM 해시 고정 방식, 사례별 속성 predicate의 API
 - **산출물:** `docs/candidate_review_design.md`
+- **완료 (2026-09-26):** [공통 형식 설계](candidate_review_design.md)를 작성했다. 사례 의미를 담는 review-spec과 실행·주입 증거를 연결하는 request를 분리하고, 값 없는 report, raw R1CS/SYM SHA-256 고정, 단일 파일 predicate API, 후보 0..N개와 review-error 처리, 교란 쌍둥이의 mutant/twin 동일 R1CS와 named-signal projection·clean relation-exclusion certificate, validated backend 결과에서만 schema 2 confirmation을 자동 생성하는 규칙을 정했다.
 
 ### T4b. 공용 검토 엔진과 회귀 검증 — 담당:
 
@@ -273,8 +274,8 @@ B1 설계 초안 ─► T4 검토 엔진·개발용 주입(제외 스냅샷 프�
 | B2 | 대기 | | T4, T6 후. 첫 B 프로젝트를 열기 전에 고정 |
 | B3 | 대기 | | B2 후 |
 | T3 | 대기 | | T2b는 0건. B+C 결정(2-1절)에 따라 B3 뒤에 B 프로젝트의 manifest·contracts·plan 해시를 고정 |
-| T4a | 대기 | | 다음 작업. 주입 결함 검증(교란 쌍둥이)까지 포함하도록 형식을 정한다 |
-| T4b | 대기 | | T4a 후 |
+| T4a | 완료 (2026-09-26) | miiz | 공통 review-spec/request/report, predicate API, R1CS/SYM 고정, 교란 쌍둥이 검증 형식 결정 |
+| T4b | 대기 | | T4a 설계에 따라 공용 엔진·confirmation adapter 구현 및 v1.1~v3 회귀 검증 |
 | T5 | 완료 (2026-09-26 확인) | miiz | cost-aware(휴리스틱) 유지 확정, schema 2 `ties` 검증 |
 | T6a | 완료 (2026-09-26) | miiz | 탐색·익명 호출·컴파일 재사용·도구 고정 |
 | T6 | 대기 | | T6 풀 프로젝트만. 결함을 주입하지 않은 원본으로 feasibility와 비용 보정 |
@@ -296,5 +297,6 @@ B1 설계 초안 ─► T4 검토 엔진·개발용 주입(제외 스냅샷 프�
 | 2026-09-26 | `cost-aware` 공식 유지 확정, 설명을 휴리스틱으로 정정 | 로그 제약 수는 측정한 실행 시간으로 만든 모델이 아니다 |
 | 2026-09-26 | 도구 해시·조사 명령·하드웨어를 채워 기준 문서를 고정하고, T6a 완료 | T2b를 시작하기 위한 마지막 준비다 |
 | 2026-09-26 | 기준 문서 버전 3, T1 확인 완료 | 공식 패치 판정과 입력 계약 기준을 보완했다. T1은 교차 확인에서 찾은 누락 1건을 반영한 뒤 확인을 마쳤다 |
+| 2026-09-26 | T4a 공통 후보 검토 형식 결정 | 기존 v1.1·v2·v3의 하드코딩·빈 후보 미지원·수작업 confirmation 복사를 없애고, 주입 ground truth도 같은 판정 핵심으로 검증하기 위해서다 |
 
-2026-09-26의 변경은 모두 T2b를 시작하기 전, 독립 평가 후보를 하나도 열어 보지 않은 상태에서 했다.
+도구 해시 고정과 기준 문서 버전 3까지의 **T2b 사전 고정 변경**은 독립 평가 후보를 하나도 열어 보지 않은 상태에서 했다. T2b 0건 결과 뒤의 B+C 결정·B1·T4a 변경은 그 조사 결과와 고정 artifact를 바꾸지 않는 별도 후속 설계다.

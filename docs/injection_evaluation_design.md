@@ -73,11 +73,11 @@
 
 1. **입력 계약 충족:** 반례의 입력이 clean 원본 wrapper의 입력 계약을 만족한다.
 2. **mutant 제약 전체 충족:** 반례 witness가 mutant의 R1CS 제약을 모두 만족한다.
-3. **속성 위반:** 같은 입력에 대해 반례의 출력이 clean 원본의 출력과 다르다. 출력이 없는 템플릿은 4번으로 판정한다.
-4. **clean 원본에서 거부:** 같은 witness를 clean 원본 R1CS에 넣으면 제약이 하나 이상 깨진다.
+3. **속성 위반:** 사전에 정한 property signal에서 불변식 위반을 직접 판정한다. 출력이 있는 경우 같은 입력의 clean 출력과 다른지를 쓸 수 있다. 출력이 없는 경우에도 비트성·범위·보존식처럼 독립적인 속성이 있어야 하며, 4번으로 대신하지 않는다.
+4. **clean relation에서 배제:** 같은 입력의 정상 clean witness가 clean R1CS를 만족하는지 먼저 확인한다. 고정된 signal-name projection으로 만든 disturbance assignment가 주입 관련 clean 제약을 깨뜨리는지 확인한 뒤, 같은 input/property signal을 유지하면서 다른 clean-only wire로 제약을 만족시킬 수도 없음을 기계적으로 확인한다. 방법은 모든 실패 제약 wire가 사전 property signal로 고정되는 경우, 연산자별 proof checker, 또는 검증 가능한 UNSAT certificate 중 하나로 미리 고정한다.
 5. **production 도달:** 주입한 템플릿 인스턴스가 production entrypoint에서 도달 가능하다.
 
-**반례 만드는 방법(교란 쌍둥이):** mutant와 **제약은 같고 witness 계산식만 다른** 쌍둥이 소스를 만든다. 예를 들어 O1이면 `s <-- e`를 `s <-- e + 1`로 바꾼다. 쌍둥이의 R1CS가 mutant와 같은지 해시로 확인한 뒤, 계약을 만족하는 입력으로 circom witness 생성기를 돌리면 나머지 신호가 일관되게 계산된 반례가 나온다. 연산자마다 교란 규칙을 미리 정한다(O2는 비트 값을 2로, O4는 다른 분해를, O5는 틀린 출력을 쓴다). 반례를 만들지 못하면 그 위치는 실패로 기록하고 5절 4번 규칙으로 넘어간다. **zkFuzz로 돌려서 잡히는 결함만 남기지 않는다.**
+**반례 만드는 방법(교란 쌍둥이):** mutant와 **제약은 같고 witness 계산식만 다른** 쌍둥이 소스를 만든다. 예를 들어 O1이면 `s <-- e`를 `s <-- e + 1`로 바꾼다. 쌍둥이의 R1CS와 SYM이 mutant와 같은지 raw hash로 확인한 뒤, 계약을 만족하는 공통 입력으로 clean과 twin witness generator를 모두 다시 실행한다. generator·입력·산출물의 해시를 고정하고, clean witness의 canonical 표현·완전성·clean R1CS 전체 제약 충족을 확인한다. 연산자마다 교란 규칙, clean projection, relation-exclusion 증명 방식을 미리 정한다(O2는 비트 값을 2로, O4는 다른 분해를, O5는 틀린 출력을 쓴다). projected assignment 한 건의 실패만으로 relation 차이를 주장하지 않는다. 독립 property나 relation-exclusion certificate를 만들지 못하면 그 위치는 실패로 기록하고 5절 4번 규칙으로 넘어간다. **zkFuzz로 돌려서 잡히는 결함만 남기지 않는다.**
 
 검증은 T4 공용 검토 엔진(입력 전제, 원본 제약 전체, 사전 속성)을 확장해서 한다.
 
@@ -105,7 +105,7 @@
 
 - 후보 목록의 출처·검색어·조회일, 분할 seed와 T6·B 비율
 - 프로젝트 수 목표와 최소 `N_p`, 프로젝트당 결함 수 `M`
-- 연산자 목록과 가중치, 연산자별 교란 규칙
+- 연산자 목록과 가중치, 연산자별 교란 규칙·clean relation-exclusion 증명 방식
 - 표집 seed
 - 시간 예산과 타깃별 timeout(T6 보정 결과로), 전략 목록, ranking seed와 paired block 수
 - 분석 스크립트와 그 해시
