@@ -119,6 +119,7 @@ enum Fault {
     ReachabilityFabricatedParentEdge,
     BuiltinVerifierUnbound,
     CleanContractSignalMissing,
+    ExtraClosureFile,
 }
 
 struct Fixture {
@@ -270,6 +271,19 @@ impl Fixture {
                     root,
                     &format!("{variant}/closure.json"),
                     &["lib/dependency.circom", "target.circom"],
+                );
+            } else if matches!(fault, Fault::ExtraClosureFile) {
+                // Reachability needs files beyond the wrapper in real projects; this one is
+                // pinned in every closure but not compiled by the direct wrapper.
+                write(
+                    root,
+                    &format!("{variant}/unused.circom"),
+                    b"pragma circom 2.1.6;\ntemplate Unused() { signal output out; out <== 0; }\n",
+                );
+                write_manifest(
+                    root,
+                    &format!("{variant}/closure.json"),
+                    &["target.circom", "unused.circom"],
                 );
             } else {
                 write_manifest(
@@ -1017,6 +1031,25 @@ fn qualified_injection_is_replayed_and_consumed_by_backend_review() {
     assert!(backend.bundle_index_path.is_some());
     assert!(backend.bundle_index_sha256.is_some());
     assert_value_free(&report);
+}
+
+#[test]
+fn backend_binds_an_injected_spec_whose_closure_extends_beyond_the_wrapper() {
+    let fixture = Fixture::new(Fault::ExtraClosureFile);
+    let (qualification, qualification_report) = fixture.run();
+    assert_eq!(
+        qualification.status,
+        ReportStatus::Complete,
+        "{qualification_report:#}"
+    );
+    assert_eq!(
+        qualification_report["reviews"][0]["ground_truth_qualification"],
+        "qualified"
+    );
+    let backend = review(&fixture.backend_options(&qualification)).unwrap();
+    let report: Value = serde_json::from_slice(&fs::read(&backend.report_path).unwrap()).unwrap();
+    assert!(report["failure"].is_null(), "{report:#}");
+    assert_eq!(backend.status, ReportStatus::Complete);
 }
 
 #[test]

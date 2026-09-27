@@ -1386,10 +1386,19 @@ fn validate_spec_plan_source_binding(
                 .map(String::as_str)),
         "review spec template instance differs from the inspected plan root"
     );
-    let (expected_root_path, selected_fingerprints) = if spec.source_closure == source_fingerprints
+    // An injected spec's closure also holds the entrypoint files that production reachability
+    // needs; only the part its direct wrapper compiles corresponds to the prepared target.
+    let spec_target_closure = if spec.spec.subject_kind == SubjectKind::InjectedMutant {
+        injected_wrapper_closure(spec, &plan_target.inspection.project_root)?
+    } else {
+        spec.source_closure.clone()
+    };
+    let (expected_root_path, selected_fingerprints) = if spec_target_closure == source_fingerprints
     {
         (inspected_root_path, &source_fingerprints)
-    } else if spec.source_closure == snapshot_fingerprints {
+    } else if spec.spec.subject_kind != SubjectKind::InjectedMutant
+        && spec_target_closure == snapshot_fingerprints
+    {
         let mut original_base = plan_target.inspection.project_root.as_path();
         let entrypoint_parent = plan_target
             .inspection
@@ -1446,6 +1455,68 @@ fn validate_spec_plan_source_binding(
         );
     }
     Ok(())
+}
+
+/// Files that an injected spec's direct wrapper compiles: the dependency closure of the mutant
+/// compilation entrypoint, inspected with the spec's semantic library paths, each carrying the
+/// hash that the pinned source closure records for it.
+fn injected_wrapper_closure(
+    spec: &LoadedSpec,
+    project_root: &Path,
+) -> Result<BTreeMap<PathBuf, String>> {
+    let injection = spec
+        .spec
+        .injection_ground_truth
+        .as_ref()
+        .context("injected review spec has no injection ground truth")?;
+    let spec_parent = spec.path.parent().context("review spec has no parent")?;
+    let manifest_path = verify_file_ref_from_parent(spec_parent, &injection.compilation_manifest)?;
+    let manifest: CompilationReproductionManifest =
+        serde_json::from_slice(&fs::read(&manifest_path)?)
+            .context("parse strict compilation reproduction manifest schema 1")?;
+    let manifest_parent = manifest_path
+        .parent()
+        .context("compilation reproduction manifest has no parent")?;
+    let closure_path = verify_declared_file(
+        manifest_parent,
+        &manifest.variants.mutant.source_closure_manifest_path,
+        &manifest.variants.mutant.source_closure_manifest_sha256,
+    )?;
+    ensure!(
+        manifest.variants.mutant.source_closure_manifest_sha256
+            == spec.spec.target_binding.source_closure_manifest_sha256,
+        "mutant compilation closure is not the target-binding source closure"
+    );
+    let entries = verify_directory_manifest_entries(&closure_path)?;
+    let wrapper = &entries
+        .get(&manifest.variants.mutant.entrypoint_path)
+        .context("mutant source closure omits the compiled wrapper")?
+        .canonical_path;
+    let mut libraries = Vec::new();
+    let mut arguments = spec.spec.compiler.arguments.iter().peekable();
+    while let Some(argument) = arguments.next() {
+        if argument == "-l" {
+            while let Some(path) = arguments.next_if(|path| !path.starts_with('-')) {
+                libraries.push(PathBuf::from(path));
+            }
+        }
+    }
+    let inspection = targets::inspect_entrypoint_with_libraries(wrapper, project_root, &libraries)?;
+    ensure!(
+        inspection.complete,
+        "injected wrapper closure cannot be inspected completely"
+    );
+    inspection
+        .dependency_paths
+        .iter()
+        .map(|path| {
+            let sha256 = spec
+                .source_closure
+                .get(path)
+                .context("injected wrapper dependency is outside the pinned source closure")?;
+            Ok((path.clone(), sha256.clone()))
+        })
+        .collect()
 }
 
 fn validate_flag_shape(value: &Value) -> Result<()> {
