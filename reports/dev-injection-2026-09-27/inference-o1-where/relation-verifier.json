@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "api_version": 1,
+  "verifier_id": "zkfdo-unique-propagation",
+  "method": "operator-proof",
+  "implementation": {
+    "kind": "external",
+    "executable_path": "../../../runs/dev-injection-2026-09-27/inference-o1-where/verifier/zkfdo-relation-verifier",
+    "executable_sha256": "fddb672537ba6dcc48af2771105d38349e6d66ff8213ad203d8516e92b4a5255",
+    "source_manifest_path": "engine-source-manifest.json",
+    "source_manifest_sha256": "717b01a6e3986db1643d98f7f542b045a1366491d40956caa169d0304f8e3a74"
+  },
+  "certificate_format": "unique-propagation-v1",
+  "allowed_results": [
+    {
+      "verdict": "satisfied",
+      "reason_code": "clean-relation-excluded"
+    },
+    {
+      "verdict": "unknown",
+      "reason_code": "exclusion-proof-incomplete"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "common_input": {
+    "path": "../../../runs/dev-injection-2026-09-27/inference-o1-where/input.json",
+    "sha256": "a2bb94e495bece9b0e4cf74d8b2893c7729afb5f49e1bcb8f94f4fdea0a6e096"
+  },
+  "generators": {
+    "clean": {
+      "runner_path": "/opt/homebrew/Cellar/node/26.0.0/bin/node",
+      "runner_sha256": "08dad0581f00a0cabf4d49ec92ca1f25fdfd01c2c18fa8e92b35f04d4c24c164",
+      "artifact_manifest_path": "../../../runs/dev-injection-2026-09-27/inference-o1-where/generators/clean/artifacts.json",
+      "artifact_manifest_sha256": "9893dc4955027d7acd0851976eedd8009e8e4c16b27ca3668040664d74fb8554",
+      "arguments": [
+        "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-injection-2026-09-27/inference-o1-where/generators/clean/runner.js",
+        "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-injection-2026-09-27/inference-o1-where/generators/clean/zkfdo_injection_target.wasm",
+        "{common_input}",
+        "{witness_output}",
+        "{assignment_output}"
+      ],
+      "witness_path": "../../../runs/dev-injection-2026-09-27/inference-o1-where/witness/clean.wtns",
+      "witness_sha256": "81010f88d9e7ee61225a43049db6f4e0e7ff493a56f113b55501a79dd5e8447f",
+      "assignment_path": "../../../runs/dev-injection-2026-09-27/inference-o1-where/witness/clean.assignment.json",
+      "assignment_sha256": "761f9c07faf942102597dcaf42b9f194341db8668f4b33f06ab64a79b57f03ec"
+    },
+    "disturbance_twin": {
+      "runner_path": "/opt/homebrew/Cellar/node/26.0.0/bin/node",
+      "runner_sha256": "08dad0581f00a0cabf4d49ec92ca1f25fdfd01c2c18fa8e92b35f04d4c24c164",
+      "artifact_manifest_path": "../../../runs/dev-injection-2026-09-27/inference-o1-where/generators/twin/artifacts.json",
+      "artifact_manifest_sha256": "eefbec5ce3d3027304e8b11807ac48ebf5b625b6a0bd3b38123dcc81fc792311",
+      "arguments": [
+        "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-injection-2026-09-27/inference-o1-where/generators/twin/runner.js",
+        "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-injection-2026-09-27/inference-o1-where/generators/twin/zkfdo_injection_target.wasm",
+        "{common_input}",
+        "{witness_output}",
+        "{assignment_output}"
+      ],
+      "witness_path": "../../../runs/dev-injection-2026-09-27/inference-o1-where/witness/twin.wtns",
+      "witness_sha256": "6defb2c6332fbc507cd36eeddbbea00a643f0dd9b0f034114a34e26531b35ef5",
+      "assignment_path": "../../../runs/dev-injection-2026-09-27/inference-o1-where/witness/twin.assignment.json",
+      "assignment_sha256": "1964a8d4d218dec38b02df409b93b5f3227d1c29f1d0515e0aa583b36235894b"
+    }
+  }
+}

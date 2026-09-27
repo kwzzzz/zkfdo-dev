@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "kind": "injection-ground-truth",
+  "injection_id": "dev-inference-o1-where",
+  "review_spec": {
+    "path": "../spec.json",
+    "sha256": "f4109feb5360b2174262e130e3bfc3e2bc1539b69e85655aa091f5dbcd3bbf53"
+  },
+  "review_request": {
+    "path": "../request.json",
+    "sha256": "e1fd01ff0164c42ffe3c0a4de6d5ccdee56232e06747f82602d16d80697f17c2"
+  },
+  "review_report": {
+    "path": "review-report.json",
+    "sha256": "a6b2dc800dc77073cc6adee0c6b9e2e8917001babd95a12988b9d3895ddcfa6e"
+  },
+  "qualification": "qualified"
+}

@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "completion": "complete",
+  "entrypoint_target_id": "sha256:1b2a3d73f79f521cfd4ca8afeb80fc590fe516047d294647618d8127614de13d",
+  "entrypoint_source_sha256": "f1b6abc4987d25cb53f9da6a72ade48703e99ba9499badb8c3dfee242c3a7464",
+  "source_closure_sha256": "31d6cd84334530675f8c32eb7b7381b20a76ec21e50712ac96cf4890f13f7238",
+  "target_instance_key": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-injection-2026-09-27/inference-o1-where/mutant/src/where.circom::Where()",
+  "instances": [
+    {
+      "instance_key": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-injection-2026-09-27/inference-o1-where/mutant/src/where.circom::Where()",
+      "parent_instance_key": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-injection-2026-09-27/inference-o1-where/mutant/src/distanceFromScore.circom::DistanceFromScore(40)",
+      "target_id": "sha256:13f3a59ddd51f7ddbd79b2bf20c9ef90dd545aa946853d5899968d45ba8978fe",
+      "template": "Where",
+      "concrete_parameters": [],
+      "source_path": "../../../runs/dev-injection-2026-09-27/inference-o1-where/mutant/src/where.circom",
+      "source_sha256": "70dd702217de4b0d4aa561768756217f6d448451ff14c39508caf5a5f66a81c1",
+      "start_byte": 22,
+      "end_byte": 350
+    },
+    {
+      "instance_key": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-injection-2026-09-27/inference-o1-where/mutant/src/distanceFromScore.circom::DistanceFromScore(40)",
+      "parent_instance_key": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-injection-2026-09-27/inference-o1-where/mutant/src/circuit.circom::IncentiveMechansim(256, 40)",
+      "target_id": "sha256:3e6ef095e56548e767da8d5e676cb71f24f3f5b0b522740bff4491284a01fd64",
+      "template": "DistanceFromScore",
+      "concrete_parameters": [
+        {
+          "position": 0,
+          "name": "b",
+          "kind": "integer",
+          "value_decimal": "40"
+        }
+      ],
+      "source_path": "../../../runs/dev-injection-2026-09-27/inference-o1-where/mutant/src/distanceFromScore.circom",
+      "source_sha256": "5d832250f7aa30cf9f31f7ccdc7a38fb86d94bc8236203a891dd4c548f790255",
+      "start_byte": 81,
+      "end_byte": 797
+    },
+    {
+      "instance_key": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-injection-2026-09-27/inference-o1-where/mutant/src/circuit.circom::IncentiveMechansim(256, 40)",
+      "parent_instance_key": null,
+      "target_id": "sha256:1b2a3d73f79f521cfd4ca8afeb80fc590fe516047d294647618d8127614de13d",
+      "template": "IncentiveMechansim",
+      "concrete_parameters": [
+        {
+          "position": 0,
+          "name": "batch_size",
+          "kind": "integer",
+          "value_decimal": "256"
+        },
+        {
+          "position": 1,
+          "name": "bits",
+          "kind": "integer",
+          "value_decimal": "40"
+        }
+      ],
+      "source_path": "../../../runs/dev-injection-2026-09-27/inference-o1-where/mutant/src/circuit.circom",
+      "source_sha256": "f1b6abc4987d25cb53f9da6a72ade48703e99ba9499badb8c3dfee242c3a7464",
+      "start_byte": 332,
+      "end_byte": 5885
+    }
+  ],
+  "unsupported": [],
+  "unresolved": []
+}

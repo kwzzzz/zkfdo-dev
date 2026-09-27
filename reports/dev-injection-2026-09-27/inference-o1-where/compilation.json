@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "compiler": {
+    "version": "2.2.3",
+    "runner_path": "../../../runs/dev-injection-2026-09-27/inference-o1-where/compiler/circom",
+    "runner_sha256": "8991887889c2a74d6fc704d5689ada4cc76fba004e866c987de6cbf3b3db6227",
+    "artifact_manifest_path": "../../../runs/dev-injection-2026-09-27/inference-o1-where/compiler/artifacts.json",
+    "artifact_manifest_sha256": "11fdcd26c3522963adf428c7a5528510273559825ea5ecc9e5d7470c823e9671",
+    "arguments": [
+      "{entrypoint}",
+      "--r1cs",
+      "--sym",
+      "-l",
+      "{source_root}",
+      "-o",
+      "{output_dir}"
+    ]
+  },
+  "variants": {
+    "clean": {
+      "source_closure_manifest_path": "../../../runs/dev-injection-2026-09-27/inference-o1-where/clean/closure.json",
+      "source_closure_manifest_sha256": "1fb195162a47f8c065ad1b0554290f8daaad8a97ce03f039fba882b083e30f2c",
+      "entrypoint_path": "zkfdo_injection_target.circom",
+      "r1cs_output_path": "zkfdo_injection_target.r1cs",
+      "sym_output_path": "zkfdo_injection_target.sym"
+    },
+    "mutant": {
+      "source_closure_manifest_path": "../../../runs/dev-injection-2026-09-27/inference-o1-where/mutant/closure.json",
+      "source_closure_manifest_sha256": "31d6cd84334530675f8c32eb7b7381b20a76ec21e50712ac96cf4890f13f7238",
+      "entrypoint_path": "zkfdo_injection_target.circom",
+      "r1cs_output_path": "zkfdo_injection_target.r1cs",
+      "sym_output_path": "zkfdo_injection_target.sym"
+    },
+    "disturbance_twin": {
+      "source_closure_manifest_path": "../../../runs/dev-injection-2026-09-27/inference-o1-where/twin/closure.json",
+      "source_closure_manifest_sha256": "d1a64c1a325a60da41d4ab64d564e99cb22ab8887c7dc7346c5ea88d14bdd5dd",
+      "entrypoint_path": "zkfdo_injection_target.circom",
+      "r1cs_output_path": "zkfdo_injection_target.r1cs",
+      "sym_output_path": "zkfdo_injection_target.sym"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "kind": "injection-ground-truth",
+  "schema_version": 1,
+  "request_id": "dev-inference-o1-where/qualification",
+  "review_spec": {
+    "path": "spec.json",
+    "sha256": "f4109feb5360b2174262e130e3bfc3e2bc1539b69e85655aa091f5dbcd3bbf53"
+  },
+  "generation_manifest": {
+    "path": "generation.json",
+    "sha256": "5364dd59c5ac0700e55fbeb4fca3fc3826cb6b4c9cde12f8d21b50d04cf248cf"
+  },
+  "disturbance_assignment": {
+    "origin": "disturbance-twin",
+    "format": "wtns-json-v1",
+    "path": "../../../runs/dev-injection-2026-09-27/inference-o1-where/witness/twin.assignment.json",
+    "sha256": "1964a8d4d218dec38b02df409b93b5f3227d1c29f1d0515e0aa583b36235894b",
+    "adapter_implementation_sha256": "7d0f123d84079048b28822011c380791725dcb049c88239253b27bd214875138"
+  },
+  "clean_reference_assignment": {
+    "origin": "clean-witness-generator",
+    "format": "wtns-json-v1",
+    "path": "../../../runs/dev-injection-2026-09-27/inference-o1-where/witness/clean.assignment.json",
+    "sha256": "761f9c07faf942102597dcaf42b9f194341db8668f4b33f06ab64a79b57f03ec",
+    "adapter_implementation_sha256": "7d0f123d84079048b28822011c380791725dcb049c88239253b27bd214875138"
+  }
+}
