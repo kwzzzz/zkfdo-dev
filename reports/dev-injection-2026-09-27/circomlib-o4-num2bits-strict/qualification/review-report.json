@@ -1,0 +1,371 @@
+{
+  "schema_version": 1,
+  "report_id": "dev-circomlib-o4-num2bits-strict/qualification",
+  "kind": "injection-ground-truth",
+  "status": "complete",
+  "review_request": {
+    "path": "../request.json",
+    "sha256": "eb73ebb1273f1bb4da0bf43086e758a3bbe0503c121713a90c6e6b6393729c74"
+  },
+  "review_specs": [
+    {
+      "path": "../spec.json",
+      "sha256": "694bff623df930189459a79aa9805d7a0d5499f9b6ac4559fb6dd3127255d72a"
+    }
+  ],
+  "engine": {
+    "version": "candidate-review-schema1",
+    "source_revision": "worktree-engine-manifest:6add67113743f003996e4dd159b28950327bd64eb3f4cafcdd3220caf51d006c",
+    "source_manifest_path": "../engine-source-manifest.json",
+    "source_manifest_sha256": "6add67113743f003996e4dd159b28950327bd64eb3f4cafcdd3220caf51d006c",
+    "executable_path": "../../../../runs/dev-injection-2026-09-27/bin-dev/zkfDO",
+    "executable_sha256": "793c46229a71a72fab12abeaa71656683594a350b56de13416c70384da50992a",
+    "predicate_runner_path": "../../../../../../../../opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+    "predicate_runner_sha256": "87d4df53fd91304be5bac391fb204643c36b7df2023c04a0953bcbc7d4fdf634"
+  },
+  "adapters": [
+    {
+      "id": "wtns-json-v1",
+      "implementation_sha256": "7d0f123d84079048b28822011c380791725dcb049c88239253b27bd214875138"
+    }
+  ],
+  "failure": null,
+  "candidate_inventory": null,
+  "executions": [],
+  "candidate_errors": [],
+  "unreviewed_candidates": [],
+  "reviews": [
+    {
+      "review_kind": "injection-ground-truth",
+      "candidate_record_id": null,
+      "candidate": null,
+      "binding": null,
+      "assignments": {
+        "disturbance": {
+          "path": "../../../../runs/dev-injection-2026-09-27/circomlib-o4-num2bits-strict/witness/twin.assignment.json",
+          "sha256": "1b13f6b1b0966e25e0c0a74a2882b6618dd27c448edeb9f2f15e8663b7d1056d"
+        },
+        "clean_reference": {
+          "path": "../../../../runs/dev-injection-2026-09-27/circomlib-o4-num2bits-strict/witness/clean.assignment.json",
+          "sha256": "e826295a64f34ffd75656f70d6461d0c4cd8f375e6b1e8a78ddc3d7cb2641885"
+        }
+      },
+      "review_spec": {
+        "id": "dev-circomlib-o4-num2bits-strict/spec",
+        "path": "../spec.json",
+        "sha256": "694bff623df930189459a79aa9805d7a0d5499f9b6ac4559fb6dd3127255d72a"
+      },
+      "root_cause_id": "dev-injection/iden3/circomlib/o4-num2bits-strict-alias",
+      "injection_id": "dev-circomlib-o4-num2bits-strict",
+      "artifact_verification": {
+        "mutant_r1cs": true,
+        "mutant_sym": true,
+        "clean_r1cs": true,
+        "clean_sym": true,
+        "twin_r1cs": true,
+        "twin_sym": true,
+        "generation_reproduced": true
+      },
+      "failed_target_constraint_count": 0,
+      "failed_target_constraint_indices": [],
+      "failed_clean_constraint_count": 79,
+      "failed_clean_constraint_indices": [
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        26,
+        27,
+        28,
+        31,
+        32,
+        34,
+        35,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        49,
+        51,
+        53,
+        54,
+        55,
+        56,
+        58,
+        61,
+        62,
+        64,
+        65,
+        66,
+        67,
+        69,
+        70,
+        71,
+        72,
+        75,
+        76,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        87,
+        90,
+        91,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        102,
+        103,
+        104,
+        106,
+        108,
+        110,
+        111,
+        112,
+        114,
+        115,
+        116,
+        117,
+        119,
+        121,
+        122,
+        123,
+        126
+      ],
+      "criteria": {
+        "assignment_encoding": {
+          "verdict": "satisfied",
+          "reason_code": "canonical",
+          "evidence": [
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/circomlib-o4-num2bits-strict/witness/twin.assignment.json",
+              "sha256": "1b13f6b1b0966e25e0c0a74a2882b6618dd27c448edeb9f2f15e8663b7d1056d"
+            }
+          ],
+          "note": "All field-valued disturbance assignment entries are canonical."
+        },
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "reason_code": "contract-satisfied",
+          "evidence": [
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/circomlib-o4-num2bits-strict/witness/twin.assignment.json",
+              "sha256": "1b13f6b1b0966e25e0c0a74a2882b6618dd27c448edeb9f2f15e8663b7d1056d"
+            },
+            {
+              "path": "../contract.json",
+              "sha256": "2958b038de80ce1cb52a5bdda9f31d9a1615355008c96f79ef5487bf64ed7377"
+            }
+          ],
+          "note": "The input is a canonical field element."
+        },
+        "fixed_target_constraints": {
+          "verdict": "satisfied",
+          "reason_code": "all-constraints-satisfied",
+          "evidence": [
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/circomlib-o4-num2bits-strict/witness/twin.assignment.json",
+              "sha256": "1b13f6b1b0966e25e0c0a74a2882b6618dd27c448edeb9f2f15e8663b7d1056d"
+            },
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/circomlib-o4-num2bits-strict/compiled/mutant/zkfdo_injection_target.r1cs",
+              "sha256": "4fa7ee51784926120c4893e47bf92865079b39f4687f5450dfbd6a87c7c71b30"
+            }
+          ],
+          "note": "All constraints in the fixed injected-mutant R1CS are satisfied."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "reason_code": "property-violated",
+          "evidence": [
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/circomlib-o4-num2bits-strict/witness/twin.assignment.json",
+              "sha256": "1b13f6b1b0966e25e0c0a74a2882b6618dd27c448edeb9f2f15e8663b7d1056d"
+            },
+            {
+              "path": "../contract.json",
+              "sha256": "2958b038de80ce1cb52a5bdda9f31d9a1615355008c96f79ef5487bf64ed7377"
+            }
+          ],
+          "note": "The output bits are not the canonical representation of the input."
+        }
+      },
+      "qualification_criteria": {
+        "twin_r1cs_identity": {
+          "verdict": "satisfied",
+          "reason_code": "twin-r1cs-identical",
+          "evidence": [
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/circomlib-o4-num2bits-strict/compiled/mutant/zkfdo_injection_target.r1cs",
+              "sha256": "4fa7ee51784926120c4893e47bf92865079b39f4687f5450dfbd6a87c7c71b30"
+            },
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/circomlib-o4-num2bits-strict/compiled/twin/zkfdo_injection_target.r1cs",
+              "sha256": "4fa7ee51784926120c4893e47bf92865079b39f4687f5450dfbd6a87c7c71b30"
+            }
+          ],
+          "note": "The disturbance twin and mutant R1CS raw hashes are identical."
+        },
+        "twin_sym_identity": {
+          "verdict": "satisfied",
+          "reason_code": "twin-sym-identical",
+          "evidence": [
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/circomlib-o4-num2bits-strict/compiled/mutant/zkfdo_injection_target.sym",
+              "sha256": "f62d4b4a2b22b2de2570a176b8bd395adc8b9742cf12582bbb47e89be684a9f4"
+            },
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/circomlib-o4-num2bits-strict/compiled/twin/zkfdo_injection_target.sym",
+              "sha256": "f62d4b4a2b22b2de2570a176b8bd395adc8b9742cf12582bbb47e89be684a9f4"
+            }
+          ],
+          "note": "The disturbance twin and mutant SYM raw hashes are identical."
+        },
+        "generation_reproducibility": {
+          "verdict": "satisfied",
+          "reason_code": "generation-reproduced",
+          "evidence": [
+            {
+              "path": "../generation.json",
+              "sha256": "48ed8af50d07b753e4d680a262187b097983bc2d6c07904bcbd8d1c6e6dfb801"
+            }
+          ],
+          "note": "Both pinned generators reproduced their witness and assignment hashes."
+        },
+        "clean_reference_assignment_encoding": {
+          "verdict": "satisfied",
+          "reason_code": "canonical",
+          "evidence": [
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/circomlib-o4-num2bits-strict/witness/clean.assignment.json",
+              "sha256": "e826295a64f34ffd75656f70d6461d0c4cd8f375e6b1e8a78ddc3d7cb2641885"
+            }
+          ],
+          "note": "The clean reference assignment is complete and canonical."
+        },
+        "clean_reference_constraints": {
+          "verdict": "satisfied",
+          "reason_code": "clean-reference-satisfies-constraints",
+          "evidence": [
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/circomlib-o4-num2bits-strict/witness/clean.assignment.json",
+              "sha256": "e826295a64f34ffd75656f70d6461d0c4cd8f375e6b1e8a78ddc3d7cb2641885"
+            },
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/circomlib-o4-num2bits-strict/compiled/clean/zkfdo_injection_target.r1cs",
+              "sha256": "a7539757a69e56967a33baadc28a6ca30c21a3614bd6acdfa15569ac14352c1a"
+            },
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/circomlib-o4-num2bits-strict/compiled/clean/zkfdo_injection_target.sym",
+              "sha256": "97fd1ebd0cd01cc1148ef06a017dc867bed4c6e29a375316da7d118b55c4c616"
+            }
+          ],
+          "note": "The same-input clean reference satisfies every clean R1CS constraint."
+        },
+        "clean_input_equivalence": {
+          "verdict": "satisfied",
+          "reason_code": "clean-inputs-equal",
+          "evidence": [
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/circomlib-o4-num2bits-strict/witness/twin.assignment.json",
+              "sha256": "1b13f6b1b0966e25e0c0a74a2882b6618dd27c448edeb9f2f15e8663b7d1056d"
+            },
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/circomlib-o4-num2bits-strict/witness/clean.assignment.json",
+              "sha256": "e826295a64f34ffd75656f70d6461d0c4cd8f375e6b1e8a78ddc3d7cb2641885"
+            }
+          ],
+          "note": "The clean and disturbance assignments have identical contract inputs."
+        },
+        "clean_rejection": {
+          "verdict": "satisfied",
+          "reason_code": "clean-projection-rejected",
+          "evidence": [
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/circomlib-o4-num2bits-strict/witness/twin.assignment.json",
+              "sha256": "1b13f6b1b0966e25e0c0a74a2882b6618dd27c448edeb9f2f15e8663b7d1056d"
+            },
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/circomlib-o4-num2bits-strict/compiled/clean/zkfdo_injection_target.r1cs",
+              "sha256": "a7539757a69e56967a33baadc28a6ca30c21a3614bd6acdfa15569ac14352c1a"
+            },
+            {
+              "path": "../projection.json",
+              "sha256": "91ba9db9b0000ab5bcd8d3efdb6c28d7cd13a5d0070cc6dec2b79229d9b0a1d7"
+            }
+          ],
+          "note": "The projected disturbance fails a predeclared injection-related clean constraint."
+        },
+        "clean_relation_exclusion": {
+          "verdict": "satisfied",
+          "reason_code": "clean-relation-excluded",
+          "evidence": [
+            {
+              "path": "../certificate.json",
+              "sha256": "abf92f4b0c1fdce28667db27c8d1a0be7285b028c36a4d24eab73b7477ceed44"
+            },
+            {
+              "path": "../relation-verifier.json",
+              "sha256": "51432c70d1b4d7156baca077393c009a467cfdc54ec1b82a3be174b8e0b52381"
+            }
+          ],
+          "note": "A pinned verifier excludes every clean extension for the fixed contract signals."
+        },
+        "production_reachability": {
+          "verdict": "unknown",
+          "reason_code": "production-reachability-unknown",
+          "evidence": [
+            {
+              "path": "../spec.json",
+              "sha256": "694bff623df930189459a79aa9805d7a0d5499f9b6ac4559fb6dd3127255d72a"
+            }
+          ],
+          "note": "Production reachability has not been established by a complete pinned discovery."
+        }
+      },
+      "disposition": "validated",
+      "cause_attribution": {
+        "verdict": "matched",
+        "reason_code": "injection-source-transition-matched",
+        "evidence": [
+          {
+            "path": "../single.diff",
+            "sha256": "8cfcf9be4b836baf5baba75d61b10a707973990870209a6376cdb1a58f277ffd"
+          }
+        ]
+      },
+      "ground_truth_qualification": "unresolved",
+      "violation_class": "non-canonical-bit-decomposition",
+      "confirmation_eligible": false,
+      "automated_review_seconds": 0.838005875,
+      "predicate_stream_nonempty": false
+    }
+  ],
+  "summary": {
+    "validated": 1,
+    "rejected": 0,
+    "unresolved": 0,
+    "review_error": 0,
+    "qualified": 0
+  },
+  "semantic_result_sha256": "b0d17e50bbb941eafed8b3705b7ce38c4e0d4720b35087dc11d0c774b44e1187",
+  "raw_values_persisted": false
+}

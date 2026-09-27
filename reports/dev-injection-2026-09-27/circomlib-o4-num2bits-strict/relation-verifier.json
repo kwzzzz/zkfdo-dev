@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "api_version": 1,
+  "verifier_id": "zkfdo-unique-propagation",
+  "method": "operator-proof",
+  "implementation": {
+    "kind": "external",
+    "executable_path": "../../../runs/dev-injection-2026-09-27/circomlib-o4-num2bits-strict/verifier/zkfdo-relation-verifier",
+    "executable_sha256": "e6a2c5b9e890eb21cf5c857d29db69e3046253d08cba4d28041a3ec94326a8a3",
+    "source_manifest_path": "engine-source-manifest.json",
+    "source_manifest_sha256": "6add67113743f003996e4dd159b28950327bd64eb3f4cafcdd3220caf51d006c"
+  },
+  "certificate_format": "unique-propagation-v1",
+  "allowed_results": [
+    {
+      "verdict": "satisfied",
+      "reason_code": "clean-relation-excluded"
+    },
+    {
+      "verdict": "unknown",
+      "reason_code": "exclusion-proof-incomplete"
+    }
+  ]
+}

@@ -1,0 +1,4143 @@
+{
+  "schema_version": 1,
+  "operator_id": "O4",
+  "operator_justification": "O4 replaces the strict decomposition of Num2Bits_strict (Num2Bits(254) with AliasCheck) by a 254-bit field-size decomposition without the alias check. The disturbance twin decomposes in + p instead of in, which has the same weighted sum modulo p but is not the canonical representation.",
+  "mappings": [
+    {
+      "clean_wire_index": 1,
+      "clean_signal_names": [
+        "main.out[0]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[0]"
+    },
+    {
+      "clean_wire_index": 2,
+      "clean_signal_names": [
+        "main.out[1]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[1]"
+    },
+    {
+      "clean_wire_index": 3,
+      "clean_signal_names": [
+        "main.out[2]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[2]"
+    },
+    {
+      "clean_wire_index": 4,
+      "clean_signal_names": [
+        "main.out[3]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[3]"
+    },
+    {
+      "clean_wire_index": 5,
+      "clean_signal_names": [
+        "main.out[4]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[4]"
+    },
+    {
+      "clean_wire_index": 6,
+      "clean_signal_names": [
+        "main.out[5]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[5]"
+    },
+    {
+      "clean_wire_index": 7,
+      "clean_signal_names": [
+        "main.out[6]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[6]"
+    },
+    {
+      "clean_wire_index": 8,
+      "clean_signal_names": [
+        "main.out[7]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[7]"
+    },
+    {
+      "clean_wire_index": 9,
+      "clean_signal_names": [
+        "main.out[8]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[8]"
+    },
+    {
+      "clean_wire_index": 10,
+      "clean_signal_names": [
+        "main.out[9]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[9]"
+    },
+    {
+      "clean_wire_index": 11,
+      "clean_signal_names": [
+        "main.out[10]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[10]"
+    },
+    {
+      "clean_wire_index": 12,
+      "clean_signal_names": [
+        "main.out[11]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[11]"
+    },
+    {
+      "clean_wire_index": 13,
+      "clean_signal_names": [
+        "main.out[12]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[12]"
+    },
+    {
+      "clean_wire_index": 14,
+      "clean_signal_names": [
+        "main.out[13]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[13]"
+    },
+    {
+      "clean_wire_index": 15,
+      "clean_signal_names": [
+        "main.out[14]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[14]"
+    },
+    {
+      "clean_wire_index": 16,
+      "clean_signal_names": [
+        "main.out[15]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[15]"
+    },
+    {
+      "clean_wire_index": 17,
+      "clean_signal_names": [
+        "main.out[16]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[16]"
+    },
+    {
+      "clean_wire_index": 18,
+      "clean_signal_names": [
+        "main.out[17]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[17]"
+    },
+    {
+      "clean_wire_index": 19,
+      "clean_signal_names": [
+        "main.out[18]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[18]"
+    },
+    {
+      "clean_wire_index": 20,
+      "clean_signal_names": [
+        "main.out[19]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[19]"
+    },
+    {
+      "clean_wire_index": 21,
+      "clean_signal_names": [
+        "main.out[20]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[20]"
+    },
+    {
+      "clean_wire_index": 22,
+      "clean_signal_names": [
+        "main.out[21]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[21]"
+    },
+    {
+      "clean_wire_index": 23,
+      "clean_signal_names": [
+        "main.out[22]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[22]"
+    },
+    {
+      "clean_wire_index": 24,
+      "clean_signal_names": [
+        "main.out[23]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[23]"
+    },
+    {
+      "clean_wire_index": 25,
+      "clean_signal_names": [
+        "main.out[24]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[24]"
+    },
+    {
+      "clean_wire_index": 26,
+      "clean_signal_names": [
+        "main.out[25]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[25]"
+    },
+    {
+      "clean_wire_index": 27,
+      "clean_signal_names": [
+        "main.out[26]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[26]"
+    },
+    {
+      "clean_wire_index": 28,
+      "clean_signal_names": [
+        "main.out[27]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[27]"
+    },
+    {
+      "clean_wire_index": 29,
+      "clean_signal_names": [
+        "main.out[28]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[28]"
+    },
+    {
+      "clean_wire_index": 30,
+      "clean_signal_names": [
+        "main.out[29]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[29]"
+    },
+    {
+      "clean_wire_index": 31,
+      "clean_signal_names": [
+        "main.out[30]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[30]"
+    },
+    {
+      "clean_wire_index": 32,
+      "clean_signal_names": [
+        "main.out[31]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[31]"
+    },
+    {
+      "clean_wire_index": 33,
+      "clean_signal_names": [
+        "main.out[32]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[32]"
+    },
+    {
+      "clean_wire_index": 34,
+      "clean_signal_names": [
+        "main.out[33]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[33]"
+    },
+    {
+      "clean_wire_index": 35,
+      "clean_signal_names": [
+        "main.out[34]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[34]"
+    },
+    {
+      "clean_wire_index": 36,
+      "clean_signal_names": [
+        "main.out[35]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[35]"
+    },
+    {
+      "clean_wire_index": 37,
+      "clean_signal_names": [
+        "main.out[36]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[36]"
+    },
+    {
+      "clean_wire_index": 38,
+      "clean_signal_names": [
+        "main.out[37]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[37]"
+    },
+    {
+      "clean_wire_index": 39,
+      "clean_signal_names": [
+        "main.out[38]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[38]"
+    },
+    {
+      "clean_wire_index": 40,
+      "clean_signal_names": [
+        "main.out[39]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[39]"
+    },
+    {
+      "clean_wire_index": 41,
+      "clean_signal_names": [
+        "main.out[40]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[40]"
+    },
+    {
+      "clean_wire_index": 42,
+      "clean_signal_names": [
+        "main.out[41]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[41]"
+    },
+    {
+      "clean_wire_index": 43,
+      "clean_signal_names": [
+        "main.out[42]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[42]"
+    },
+    {
+      "clean_wire_index": 44,
+      "clean_signal_names": [
+        "main.out[43]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[43]"
+    },
+    {
+      "clean_wire_index": 45,
+      "clean_signal_names": [
+        "main.out[44]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[44]"
+    },
+    {
+      "clean_wire_index": 46,
+      "clean_signal_names": [
+        "main.out[45]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[45]"
+    },
+    {
+      "clean_wire_index": 47,
+      "clean_signal_names": [
+        "main.out[46]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[46]"
+    },
+    {
+      "clean_wire_index": 48,
+      "clean_signal_names": [
+        "main.out[47]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[47]"
+    },
+    {
+      "clean_wire_index": 49,
+      "clean_signal_names": [
+        "main.out[48]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[48]"
+    },
+    {
+      "clean_wire_index": 50,
+      "clean_signal_names": [
+        "main.out[49]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[49]"
+    },
+    {
+      "clean_wire_index": 51,
+      "clean_signal_names": [
+        "main.out[50]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[50]"
+    },
+    {
+      "clean_wire_index": 52,
+      "clean_signal_names": [
+        "main.out[51]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[51]"
+    },
+    {
+      "clean_wire_index": 53,
+      "clean_signal_names": [
+        "main.out[52]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[52]"
+    },
+    {
+      "clean_wire_index": 54,
+      "clean_signal_names": [
+        "main.out[53]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[53]"
+    },
+    {
+      "clean_wire_index": 55,
+      "clean_signal_names": [
+        "main.out[54]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[54]"
+    },
+    {
+      "clean_wire_index": 56,
+      "clean_signal_names": [
+        "main.out[55]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[55]"
+    },
+    {
+      "clean_wire_index": 57,
+      "clean_signal_names": [
+        "main.out[56]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[56]"
+    },
+    {
+      "clean_wire_index": 58,
+      "clean_signal_names": [
+        "main.out[57]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[57]"
+    },
+    {
+      "clean_wire_index": 59,
+      "clean_signal_names": [
+        "main.out[58]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[58]"
+    },
+    {
+      "clean_wire_index": 60,
+      "clean_signal_names": [
+        "main.out[59]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[59]"
+    },
+    {
+      "clean_wire_index": 61,
+      "clean_signal_names": [
+        "main.out[60]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[60]"
+    },
+    {
+      "clean_wire_index": 62,
+      "clean_signal_names": [
+        "main.out[61]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[61]"
+    },
+    {
+      "clean_wire_index": 63,
+      "clean_signal_names": [
+        "main.out[62]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[62]"
+    },
+    {
+      "clean_wire_index": 64,
+      "clean_signal_names": [
+        "main.out[63]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[63]"
+    },
+    {
+      "clean_wire_index": 65,
+      "clean_signal_names": [
+        "main.out[64]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[64]"
+    },
+    {
+      "clean_wire_index": 66,
+      "clean_signal_names": [
+        "main.out[65]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[65]"
+    },
+    {
+      "clean_wire_index": 67,
+      "clean_signal_names": [
+        "main.out[66]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[66]"
+    },
+    {
+      "clean_wire_index": 68,
+      "clean_signal_names": [
+        "main.out[67]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[67]"
+    },
+    {
+      "clean_wire_index": 69,
+      "clean_signal_names": [
+        "main.out[68]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[68]"
+    },
+    {
+      "clean_wire_index": 70,
+      "clean_signal_names": [
+        "main.out[69]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[69]"
+    },
+    {
+      "clean_wire_index": 71,
+      "clean_signal_names": [
+        "main.out[70]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[70]"
+    },
+    {
+      "clean_wire_index": 72,
+      "clean_signal_names": [
+        "main.out[71]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[71]"
+    },
+    {
+      "clean_wire_index": 73,
+      "clean_signal_names": [
+        "main.out[72]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[72]"
+    },
+    {
+      "clean_wire_index": 74,
+      "clean_signal_names": [
+        "main.out[73]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[73]"
+    },
+    {
+      "clean_wire_index": 75,
+      "clean_signal_names": [
+        "main.out[74]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[74]"
+    },
+    {
+      "clean_wire_index": 76,
+      "clean_signal_names": [
+        "main.out[75]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[75]"
+    },
+    {
+      "clean_wire_index": 77,
+      "clean_signal_names": [
+        "main.out[76]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[76]"
+    },
+    {
+      "clean_wire_index": 78,
+      "clean_signal_names": [
+        "main.out[77]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[77]"
+    },
+    {
+      "clean_wire_index": 79,
+      "clean_signal_names": [
+        "main.out[78]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[78]"
+    },
+    {
+      "clean_wire_index": 80,
+      "clean_signal_names": [
+        "main.out[79]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[79]"
+    },
+    {
+      "clean_wire_index": 81,
+      "clean_signal_names": [
+        "main.out[80]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[80]"
+    },
+    {
+      "clean_wire_index": 82,
+      "clean_signal_names": [
+        "main.out[81]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[81]"
+    },
+    {
+      "clean_wire_index": 83,
+      "clean_signal_names": [
+        "main.out[82]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[82]"
+    },
+    {
+      "clean_wire_index": 84,
+      "clean_signal_names": [
+        "main.out[83]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[83]"
+    },
+    {
+      "clean_wire_index": 85,
+      "clean_signal_names": [
+        "main.out[84]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[84]"
+    },
+    {
+      "clean_wire_index": 86,
+      "clean_signal_names": [
+        "main.out[85]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[85]"
+    },
+    {
+      "clean_wire_index": 87,
+      "clean_signal_names": [
+        "main.out[86]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[86]"
+    },
+    {
+      "clean_wire_index": 88,
+      "clean_signal_names": [
+        "main.out[87]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[87]"
+    },
+    {
+      "clean_wire_index": 89,
+      "clean_signal_names": [
+        "main.out[88]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[88]"
+    },
+    {
+      "clean_wire_index": 90,
+      "clean_signal_names": [
+        "main.out[89]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[89]"
+    },
+    {
+      "clean_wire_index": 91,
+      "clean_signal_names": [
+        "main.out[90]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[90]"
+    },
+    {
+      "clean_wire_index": 92,
+      "clean_signal_names": [
+        "main.out[91]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[91]"
+    },
+    {
+      "clean_wire_index": 93,
+      "clean_signal_names": [
+        "main.out[92]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[92]"
+    },
+    {
+      "clean_wire_index": 94,
+      "clean_signal_names": [
+        "main.out[93]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[93]"
+    },
+    {
+      "clean_wire_index": 95,
+      "clean_signal_names": [
+        "main.out[94]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[94]"
+    },
+    {
+      "clean_wire_index": 96,
+      "clean_signal_names": [
+        "main.out[95]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[95]"
+    },
+    {
+      "clean_wire_index": 97,
+      "clean_signal_names": [
+        "main.out[96]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[96]"
+    },
+    {
+      "clean_wire_index": 98,
+      "clean_signal_names": [
+        "main.out[97]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[97]"
+    },
+    {
+      "clean_wire_index": 99,
+      "clean_signal_names": [
+        "main.out[98]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[98]"
+    },
+    {
+      "clean_wire_index": 100,
+      "clean_signal_names": [
+        "main.out[99]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[99]"
+    },
+    {
+      "clean_wire_index": 101,
+      "clean_signal_names": [
+        "main.out[100]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[100]"
+    },
+    {
+      "clean_wire_index": 102,
+      "clean_signal_names": [
+        "main.out[101]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[101]"
+    },
+    {
+      "clean_wire_index": 103,
+      "clean_signal_names": [
+        "main.out[102]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[102]"
+    },
+    {
+      "clean_wire_index": 104,
+      "clean_signal_names": [
+        "main.out[103]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[103]"
+    },
+    {
+      "clean_wire_index": 105,
+      "clean_signal_names": [
+        "main.out[104]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[104]"
+    },
+    {
+      "clean_wire_index": 106,
+      "clean_signal_names": [
+        "main.out[105]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[105]"
+    },
+    {
+      "clean_wire_index": 107,
+      "clean_signal_names": [
+        "main.out[106]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[106]"
+    },
+    {
+      "clean_wire_index": 108,
+      "clean_signal_names": [
+        "main.out[107]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[107]"
+    },
+    {
+      "clean_wire_index": 109,
+      "clean_signal_names": [
+        "main.out[108]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[108]"
+    },
+    {
+      "clean_wire_index": 110,
+      "clean_signal_names": [
+        "main.out[109]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[109]"
+    },
+    {
+      "clean_wire_index": 111,
+      "clean_signal_names": [
+        "main.out[110]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[110]"
+    },
+    {
+      "clean_wire_index": 112,
+      "clean_signal_names": [
+        "main.out[111]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[111]"
+    },
+    {
+      "clean_wire_index": 113,
+      "clean_signal_names": [
+        "main.out[112]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[112]"
+    },
+    {
+      "clean_wire_index": 114,
+      "clean_signal_names": [
+        "main.out[113]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[113]"
+    },
+    {
+      "clean_wire_index": 115,
+      "clean_signal_names": [
+        "main.out[114]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[114]"
+    },
+    {
+      "clean_wire_index": 116,
+      "clean_signal_names": [
+        "main.out[115]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[115]"
+    },
+    {
+      "clean_wire_index": 117,
+      "clean_signal_names": [
+        "main.out[116]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[116]"
+    },
+    {
+      "clean_wire_index": 118,
+      "clean_signal_names": [
+        "main.out[117]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[117]"
+    },
+    {
+      "clean_wire_index": 119,
+      "clean_signal_names": [
+        "main.out[118]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[118]"
+    },
+    {
+      "clean_wire_index": 120,
+      "clean_signal_names": [
+        "main.out[119]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[119]"
+    },
+    {
+      "clean_wire_index": 121,
+      "clean_signal_names": [
+        "main.out[120]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[120]"
+    },
+    {
+      "clean_wire_index": 122,
+      "clean_signal_names": [
+        "main.out[121]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[121]"
+    },
+    {
+      "clean_wire_index": 123,
+      "clean_signal_names": [
+        "main.out[122]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[122]"
+    },
+    {
+      "clean_wire_index": 124,
+      "clean_signal_names": [
+        "main.out[123]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[123]"
+    },
+    {
+      "clean_wire_index": 125,
+      "clean_signal_names": [
+        "main.out[124]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[124]"
+    },
+    {
+      "clean_wire_index": 126,
+      "clean_signal_names": [
+        "main.out[125]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[125]"
+    },
+    {
+      "clean_wire_index": 127,
+      "clean_signal_names": [
+        "main.out[126]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[126]"
+    },
+    {
+      "clean_wire_index": 128,
+      "clean_signal_names": [
+        "main.out[127]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[127]"
+    },
+    {
+      "clean_wire_index": 129,
+      "clean_signal_names": [
+        "main.out[128]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[128]"
+    },
+    {
+      "clean_wire_index": 130,
+      "clean_signal_names": [
+        "main.out[129]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[129]"
+    },
+    {
+      "clean_wire_index": 131,
+      "clean_signal_names": [
+        "main.out[130]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[130]"
+    },
+    {
+      "clean_wire_index": 132,
+      "clean_signal_names": [
+        "main.out[131]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[131]"
+    },
+    {
+      "clean_wire_index": 133,
+      "clean_signal_names": [
+        "main.out[132]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[132]"
+    },
+    {
+      "clean_wire_index": 134,
+      "clean_signal_names": [
+        "main.out[133]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[133]"
+    },
+    {
+      "clean_wire_index": 135,
+      "clean_signal_names": [
+        "main.out[134]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[134]"
+    },
+    {
+      "clean_wire_index": 136,
+      "clean_signal_names": [
+        "main.out[135]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[135]"
+    },
+    {
+      "clean_wire_index": 137,
+      "clean_signal_names": [
+        "main.out[136]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[136]"
+    },
+    {
+      "clean_wire_index": 138,
+      "clean_signal_names": [
+        "main.out[137]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[137]"
+    },
+    {
+      "clean_wire_index": 139,
+      "clean_signal_names": [
+        "main.out[138]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[138]"
+    },
+    {
+      "clean_wire_index": 140,
+      "clean_signal_names": [
+        "main.out[139]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[139]"
+    },
+    {
+      "clean_wire_index": 141,
+      "clean_signal_names": [
+        "main.out[140]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[140]"
+    },
+    {
+      "clean_wire_index": 142,
+      "clean_signal_names": [
+        "main.out[141]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[141]"
+    },
+    {
+      "clean_wire_index": 143,
+      "clean_signal_names": [
+        "main.out[142]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[142]"
+    },
+    {
+      "clean_wire_index": 144,
+      "clean_signal_names": [
+        "main.out[143]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[143]"
+    },
+    {
+      "clean_wire_index": 145,
+      "clean_signal_names": [
+        "main.out[144]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[144]"
+    },
+    {
+      "clean_wire_index": 146,
+      "clean_signal_names": [
+        "main.out[145]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[145]"
+    },
+    {
+      "clean_wire_index": 147,
+      "clean_signal_names": [
+        "main.out[146]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[146]"
+    },
+    {
+      "clean_wire_index": 148,
+      "clean_signal_names": [
+        "main.out[147]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[147]"
+    },
+    {
+      "clean_wire_index": 149,
+      "clean_signal_names": [
+        "main.out[148]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[148]"
+    },
+    {
+      "clean_wire_index": 150,
+      "clean_signal_names": [
+        "main.out[149]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[149]"
+    },
+    {
+      "clean_wire_index": 151,
+      "clean_signal_names": [
+        "main.out[150]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[150]"
+    },
+    {
+      "clean_wire_index": 152,
+      "clean_signal_names": [
+        "main.out[151]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[151]"
+    },
+    {
+      "clean_wire_index": 153,
+      "clean_signal_names": [
+        "main.out[152]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[152]"
+    },
+    {
+      "clean_wire_index": 154,
+      "clean_signal_names": [
+        "main.out[153]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[153]"
+    },
+    {
+      "clean_wire_index": 155,
+      "clean_signal_names": [
+        "main.out[154]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[154]"
+    },
+    {
+      "clean_wire_index": 156,
+      "clean_signal_names": [
+        "main.out[155]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[155]"
+    },
+    {
+      "clean_wire_index": 157,
+      "clean_signal_names": [
+        "main.out[156]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[156]"
+    },
+    {
+      "clean_wire_index": 158,
+      "clean_signal_names": [
+        "main.out[157]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[157]"
+    },
+    {
+      "clean_wire_index": 159,
+      "clean_signal_names": [
+        "main.out[158]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[158]"
+    },
+    {
+      "clean_wire_index": 160,
+      "clean_signal_names": [
+        "main.out[159]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[159]"
+    },
+    {
+      "clean_wire_index": 161,
+      "clean_signal_names": [
+        "main.out[160]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[160]"
+    },
+    {
+      "clean_wire_index": 162,
+      "clean_signal_names": [
+        "main.out[161]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[161]"
+    },
+    {
+      "clean_wire_index": 163,
+      "clean_signal_names": [
+        "main.out[162]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[162]"
+    },
+    {
+      "clean_wire_index": 164,
+      "clean_signal_names": [
+        "main.out[163]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[163]"
+    },
+    {
+      "clean_wire_index": 165,
+      "clean_signal_names": [
+        "main.out[164]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[164]"
+    },
+    {
+      "clean_wire_index": 166,
+      "clean_signal_names": [
+        "main.out[165]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[165]"
+    },
+    {
+      "clean_wire_index": 167,
+      "clean_signal_names": [
+        "main.out[166]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[166]"
+    },
+    {
+      "clean_wire_index": 168,
+      "clean_signal_names": [
+        "main.out[167]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[167]"
+    },
+    {
+      "clean_wire_index": 169,
+      "clean_signal_names": [
+        "main.out[168]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[168]"
+    },
+    {
+      "clean_wire_index": 170,
+      "clean_signal_names": [
+        "main.out[169]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[169]"
+    },
+    {
+      "clean_wire_index": 171,
+      "clean_signal_names": [
+        "main.out[170]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[170]"
+    },
+    {
+      "clean_wire_index": 172,
+      "clean_signal_names": [
+        "main.out[171]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[171]"
+    },
+    {
+      "clean_wire_index": 173,
+      "clean_signal_names": [
+        "main.out[172]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[172]"
+    },
+    {
+      "clean_wire_index": 174,
+      "clean_signal_names": [
+        "main.out[173]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[173]"
+    },
+    {
+      "clean_wire_index": 175,
+      "clean_signal_names": [
+        "main.out[174]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[174]"
+    },
+    {
+      "clean_wire_index": 176,
+      "clean_signal_names": [
+        "main.out[175]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[175]"
+    },
+    {
+      "clean_wire_index": 177,
+      "clean_signal_names": [
+        "main.out[176]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[176]"
+    },
+    {
+      "clean_wire_index": 178,
+      "clean_signal_names": [
+        "main.out[177]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[177]"
+    },
+    {
+      "clean_wire_index": 179,
+      "clean_signal_names": [
+        "main.out[178]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[178]"
+    },
+    {
+      "clean_wire_index": 180,
+      "clean_signal_names": [
+        "main.out[179]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[179]"
+    },
+    {
+      "clean_wire_index": 181,
+      "clean_signal_names": [
+        "main.out[180]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[180]"
+    },
+    {
+      "clean_wire_index": 182,
+      "clean_signal_names": [
+        "main.out[181]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[181]"
+    },
+    {
+      "clean_wire_index": 183,
+      "clean_signal_names": [
+        "main.out[182]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[182]"
+    },
+    {
+      "clean_wire_index": 184,
+      "clean_signal_names": [
+        "main.out[183]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[183]"
+    },
+    {
+      "clean_wire_index": 185,
+      "clean_signal_names": [
+        "main.out[184]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[184]"
+    },
+    {
+      "clean_wire_index": 186,
+      "clean_signal_names": [
+        "main.out[185]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[185]"
+    },
+    {
+      "clean_wire_index": 187,
+      "clean_signal_names": [
+        "main.out[186]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[186]"
+    },
+    {
+      "clean_wire_index": 188,
+      "clean_signal_names": [
+        "main.out[187]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[187]"
+    },
+    {
+      "clean_wire_index": 189,
+      "clean_signal_names": [
+        "main.out[188]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[188]"
+    },
+    {
+      "clean_wire_index": 190,
+      "clean_signal_names": [
+        "main.out[189]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[189]"
+    },
+    {
+      "clean_wire_index": 191,
+      "clean_signal_names": [
+        "main.out[190]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[190]"
+    },
+    {
+      "clean_wire_index": 192,
+      "clean_signal_names": [
+        "main.out[191]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[191]"
+    },
+    {
+      "clean_wire_index": 193,
+      "clean_signal_names": [
+        "main.out[192]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[192]"
+    },
+    {
+      "clean_wire_index": 194,
+      "clean_signal_names": [
+        "main.out[193]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[193]"
+    },
+    {
+      "clean_wire_index": 195,
+      "clean_signal_names": [
+        "main.out[194]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[194]"
+    },
+    {
+      "clean_wire_index": 196,
+      "clean_signal_names": [
+        "main.out[195]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[195]"
+    },
+    {
+      "clean_wire_index": 197,
+      "clean_signal_names": [
+        "main.out[196]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[196]"
+    },
+    {
+      "clean_wire_index": 198,
+      "clean_signal_names": [
+        "main.out[197]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[197]"
+    },
+    {
+      "clean_wire_index": 199,
+      "clean_signal_names": [
+        "main.out[198]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[198]"
+    },
+    {
+      "clean_wire_index": 200,
+      "clean_signal_names": [
+        "main.out[199]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[199]"
+    },
+    {
+      "clean_wire_index": 201,
+      "clean_signal_names": [
+        "main.out[200]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[200]"
+    },
+    {
+      "clean_wire_index": 202,
+      "clean_signal_names": [
+        "main.out[201]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[201]"
+    },
+    {
+      "clean_wire_index": 203,
+      "clean_signal_names": [
+        "main.out[202]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[202]"
+    },
+    {
+      "clean_wire_index": 204,
+      "clean_signal_names": [
+        "main.out[203]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[203]"
+    },
+    {
+      "clean_wire_index": 205,
+      "clean_signal_names": [
+        "main.out[204]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[204]"
+    },
+    {
+      "clean_wire_index": 206,
+      "clean_signal_names": [
+        "main.out[205]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[205]"
+    },
+    {
+      "clean_wire_index": 207,
+      "clean_signal_names": [
+        "main.out[206]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[206]"
+    },
+    {
+      "clean_wire_index": 208,
+      "clean_signal_names": [
+        "main.out[207]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[207]"
+    },
+    {
+      "clean_wire_index": 209,
+      "clean_signal_names": [
+        "main.out[208]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[208]"
+    },
+    {
+      "clean_wire_index": 210,
+      "clean_signal_names": [
+        "main.out[209]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[209]"
+    },
+    {
+      "clean_wire_index": 211,
+      "clean_signal_names": [
+        "main.out[210]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[210]"
+    },
+    {
+      "clean_wire_index": 212,
+      "clean_signal_names": [
+        "main.out[211]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[211]"
+    },
+    {
+      "clean_wire_index": 213,
+      "clean_signal_names": [
+        "main.out[212]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[212]"
+    },
+    {
+      "clean_wire_index": 214,
+      "clean_signal_names": [
+        "main.out[213]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[213]"
+    },
+    {
+      "clean_wire_index": 215,
+      "clean_signal_names": [
+        "main.out[214]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[214]"
+    },
+    {
+      "clean_wire_index": 216,
+      "clean_signal_names": [
+        "main.out[215]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[215]"
+    },
+    {
+      "clean_wire_index": 217,
+      "clean_signal_names": [
+        "main.out[216]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[216]"
+    },
+    {
+      "clean_wire_index": 218,
+      "clean_signal_names": [
+        "main.out[217]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[217]"
+    },
+    {
+      "clean_wire_index": 219,
+      "clean_signal_names": [
+        "main.out[218]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[218]"
+    },
+    {
+      "clean_wire_index": 220,
+      "clean_signal_names": [
+        "main.out[219]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[219]"
+    },
+    {
+      "clean_wire_index": 221,
+      "clean_signal_names": [
+        "main.out[220]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[220]"
+    },
+    {
+      "clean_wire_index": 222,
+      "clean_signal_names": [
+        "main.out[221]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[221]"
+    },
+    {
+      "clean_wire_index": 223,
+      "clean_signal_names": [
+        "main.out[222]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[222]"
+    },
+    {
+      "clean_wire_index": 224,
+      "clean_signal_names": [
+        "main.out[223]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[223]"
+    },
+    {
+      "clean_wire_index": 225,
+      "clean_signal_names": [
+        "main.out[224]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[224]"
+    },
+    {
+      "clean_wire_index": 226,
+      "clean_signal_names": [
+        "main.out[225]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[225]"
+    },
+    {
+      "clean_wire_index": 227,
+      "clean_signal_names": [
+        "main.out[226]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[226]"
+    },
+    {
+      "clean_wire_index": 228,
+      "clean_signal_names": [
+        "main.out[227]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[227]"
+    },
+    {
+      "clean_wire_index": 229,
+      "clean_signal_names": [
+        "main.out[228]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[228]"
+    },
+    {
+      "clean_wire_index": 230,
+      "clean_signal_names": [
+        "main.out[229]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[229]"
+    },
+    {
+      "clean_wire_index": 231,
+      "clean_signal_names": [
+        "main.out[230]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[230]"
+    },
+    {
+      "clean_wire_index": 232,
+      "clean_signal_names": [
+        "main.out[231]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[231]"
+    },
+    {
+      "clean_wire_index": 233,
+      "clean_signal_names": [
+        "main.out[232]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[232]"
+    },
+    {
+      "clean_wire_index": 234,
+      "clean_signal_names": [
+        "main.out[233]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[233]"
+    },
+    {
+      "clean_wire_index": 235,
+      "clean_signal_names": [
+        "main.out[234]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[234]"
+    },
+    {
+      "clean_wire_index": 236,
+      "clean_signal_names": [
+        "main.out[235]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[235]"
+    },
+    {
+      "clean_wire_index": 237,
+      "clean_signal_names": [
+        "main.out[236]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[236]"
+    },
+    {
+      "clean_wire_index": 238,
+      "clean_signal_names": [
+        "main.out[237]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[237]"
+    },
+    {
+      "clean_wire_index": 239,
+      "clean_signal_names": [
+        "main.out[238]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[238]"
+    },
+    {
+      "clean_wire_index": 240,
+      "clean_signal_names": [
+        "main.out[239]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[239]"
+    },
+    {
+      "clean_wire_index": 241,
+      "clean_signal_names": [
+        "main.out[240]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[240]"
+    },
+    {
+      "clean_wire_index": 242,
+      "clean_signal_names": [
+        "main.out[241]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[241]"
+    },
+    {
+      "clean_wire_index": 243,
+      "clean_signal_names": [
+        "main.out[242]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[242]"
+    },
+    {
+      "clean_wire_index": 244,
+      "clean_signal_names": [
+        "main.out[243]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[243]"
+    },
+    {
+      "clean_wire_index": 245,
+      "clean_signal_names": [
+        "main.out[244]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[244]"
+    },
+    {
+      "clean_wire_index": 246,
+      "clean_signal_names": [
+        "main.out[245]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[245]"
+    },
+    {
+      "clean_wire_index": 247,
+      "clean_signal_names": [
+        "main.out[246]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[246]"
+    },
+    {
+      "clean_wire_index": 248,
+      "clean_signal_names": [
+        "main.out[247]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[247]"
+    },
+    {
+      "clean_wire_index": 249,
+      "clean_signal_names": [
+        "main.out[248]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[248]"
+    },
+    {
+      "clean_wire_index": 250,
+      "clean_signal_names": [
+        "main.out[249]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[249]"
+    },
+    {
+      "clean_wire_index": 251,
+      "clean_signal_names": [
+        "main.out[250]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[250]"
+    },
+    {
+      "clean_wire_index": 252,
+      "clean_signal_names": [
+        "main.out[251]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[251]"
+    },
+    {
+      "clean_wire_index": 253,
+      "clean_signal_names": [
+        "main.out[252]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[252]"
+    },
+    {
+      "clean_wire_index": 254,
+      "clean_signal_names": [
+        "main.out[253]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[253]"
+    },
+    {
+      "clean_wire_index": 255,
+      "clean_signal_names": [
+        "main.in"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.in"
+    },
+    {
+      "clean_wire_index": 256,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[0]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 257,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[1]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 258,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[2]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 259,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[3]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 260,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[4]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 261,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[5]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 262,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[6]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 263,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[7]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 264,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[8]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 265,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[9]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 266,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[10]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 267,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[11]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 268,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[12]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 269,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[13]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 270,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[14]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 271,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[15]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 272,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[16]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 273,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[17]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 274,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[18]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 275,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[19]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 276,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[20]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 277,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[21]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 278,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[22]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 279,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[23]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 280,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[24]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 281,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[25]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 282,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[26]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 283,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[27]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 284,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[28]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 285,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[29]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 286,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[30]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 287,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[31]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 288,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[32]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 289,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[33]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 290,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[34]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 291,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[35]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 292,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[36]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 293,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[37]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 294,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[38]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 295,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[39]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 296,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[40]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 297,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[41]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 298,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[42]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 299,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[43]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 300,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[44]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 301,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[45]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 302,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[46]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 303,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[47]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 304,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[48]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 305,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[49]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 306,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[50]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 307,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[51]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 308,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[52]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 309,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[53]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 310,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[54]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 311,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[55]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 312,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[56]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 313,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[57]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 314,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[58]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 315,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[59]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 316,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[60]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 317,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[61]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 318,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[62]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 319,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[63]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 320,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[64]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 321,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[65]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 322,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[66]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 323,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[67]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 324,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[68]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 325,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[69]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 326,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[70]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 327,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[71]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 328,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[72]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 329,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[73]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 330,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[74]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 331,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[75]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 332,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[76]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 333,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[77]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 334,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[78]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 335,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[79]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 336,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[80]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 337,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[81]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 338,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[82]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 339,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[83]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 340,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[84]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 341,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[85]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 342,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[86]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 343,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[87]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 344,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[88]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 345,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[89]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 346,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[90]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 347,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[91]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 348,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[92]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 349,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[93]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 350,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[94]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 351,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[95]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 352,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[96]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 353,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[97]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 354,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[98]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 355,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[99]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 356,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[100]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 357,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[101]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 358,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[102]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 359,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[103]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 360,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[104]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 361,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[105]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 362,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[106]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 363,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[107]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 364,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[108]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 365,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[109]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 366,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[110]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 367,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[111]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 368,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[112]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 369,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[113]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 370,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[114]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 371,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[115]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 372,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[116]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 373,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[117]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 374,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[118]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 375,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[119]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 376,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[120]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 377,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[121]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 378,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[122]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 379,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[123]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 380,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[124]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 381,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[125]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 382,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.parts[126]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 383,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.sout"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 384,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[0]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 385,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[1]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 386,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[2]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 387,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[3]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 388,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[4]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 389,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[5]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 390,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[6]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 391,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[7]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 392,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[8]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 393,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[9]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 394,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[10]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 395,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[11]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 396,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[12]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 397,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[13]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 398,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[14]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 399,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[15]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 400,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[16]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 401,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[17]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 402,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[18]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 403,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[19]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 404,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[20]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 405,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[21]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 406,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[22]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 407,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[23]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 408,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[24]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 409,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[25]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 410,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[26]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 411,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[27]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 412,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[28]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 413,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[29]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 414,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[30]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 415,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[31]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 416,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[32]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 417,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[33]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 418,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[34]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 419,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[35]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 420,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[36]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 421,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[37]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 422,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[38]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 423,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[39]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 424,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[40]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 425,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[41]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 426,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[42]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 427,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[43]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 428,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[44]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 429,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[45]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 430,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[46]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 431,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[47]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 432,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[48]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 433,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[49]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 434,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[50]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 435,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[51]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 436,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[52]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 437,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[53]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 438,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[54]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 439,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[55]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 440,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[56]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 441,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[57]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 442,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[58]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 443,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[59]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 444,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[60]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 445,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[61]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 446,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[62]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 447,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[63]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 448,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[64]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 449,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[65]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 450,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[66]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 451,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[67]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 452,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[68]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 453,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[69]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 454,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[70]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 455,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[71]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 456,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[72]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 457,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[73]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 458,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[74]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 459,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[75]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 460,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[76]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 461,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[77]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 462,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[78]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 463,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[79]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 464,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[80]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 465,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[81]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 466,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[82]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 467,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[83]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 468,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[84]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 469,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[85]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 470,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[86]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 471,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[87]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 472,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[88]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 473,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[89]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 474,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[90]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 475,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[91]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 476,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[92]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 477,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[93]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 478,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[94]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 479,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[95]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 480,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[96]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 481,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[97]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 482,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[98]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 483,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[99]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 484,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[100]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 485,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[101]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 486,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[102]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 487,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[103]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 488,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[104]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 489,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[105]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 490,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[106]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 491,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[107]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 492,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[108]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 493,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[109]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 494,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[110]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 495,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[111]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 496,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[112]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 497,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[113]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 498,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[114]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 499,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[115]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 500,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[116]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 501,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[117]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 502,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[118]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 503,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[119]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 504,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[120]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 505,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[121]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 506,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[122]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 507,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[123]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 508,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[124]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 509,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[125]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 510,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[126]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 511,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[128]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 512,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[129]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 513,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[130]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 514,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[131]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 515,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[132]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 516,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[133]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 517,
+      "clean_signal_names": [
+        "main.aliasCheck.compConstant.num2bits.out[134]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    }
+  ]
+}

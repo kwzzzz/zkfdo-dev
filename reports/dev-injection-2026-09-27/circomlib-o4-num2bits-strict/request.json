@@ -1,0 +1,27 @@
+{
+  "kind": "injection-ground-truth",
+  "schema_version": 1,
+  "request_id": "dev-circomlib-o4-num2bits-strict/qualification",
+  "review_spec": {
+    "path": "spec.json",
+    "sha256": "694bff623df930189459a79aa9805d7a0d5499f9b6ac4559fb6dd3127255d72a"
+  },
+  "generation_manifest": {
+    "path": "generation.json",
+    "sha256": "48ed8af50d07b753e4d680a262187b097983bc2d6c07904bcbd8d1c6e6dfb801"
+  },
+  "disturbance_assignment": {
+    "origin": "disturbance-twin",
+    "format": "wtns-json-v1",
+    "path": "../../../runs/dev-injection-2026-09-27/circomlib-o4-num2bits-strict/witness/twin.assignment.json",
+    "sha256": "1b13f6b1b0966e25e0c0a74a2882b6618dd27c448edeb9f2f15e8663b7d1056d",
+    "adapter_implementation_sha256": "7d0f123d84079048b28822011c380791725dcb049c88239253b27bd214875138"
+  },
+  "clean_reference_assignment": {
+    "origin": "clean-witness-generator",
+    "format": "wtns-json-v1",
+    "path": "../../../runs/dev-injection-2026-09-27/circomlib-o4-num2bits-strict/witness/clean.assignment.json",
+    "sha256": "e826295a64f34ffd75656f70d6461d0c4cd8f375e6b1e8a78ddc3d7cb2641885",
+    "adapter_implementation_sha256": "7d0f123d84079048b28822011c380791725dcb049c88239253b27bd214875138"
+  }
+}
