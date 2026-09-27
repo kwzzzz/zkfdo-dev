@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "injection_id": "dev-bigint-o3-split",
+  "root_cause_id": "dev-injection/0xbok/circom-bigint/o3-split-low-limb-range",
+  "operator": {
+    "id": "O3",
+    "justification": "O3 removes the Num2Bits range check on the prover-chosen low limb of Split. The disturbance twin moves one unit of the high limb into the low limb, so small + big * 2^n still equals the input while the low limb leaves its n-bit range."
+  },
+  "project": {
+    "name": "0xbok/circom-bigint",
+    "revision": "436665bf01728ae8c581fdb39e8428cb6b835c37",
+    "checkout": "../../../runs/dev-projects/bigint",
+    "entrypoint": null,
+    "library_paths": []
+  },
+  "target": {
+    "source_path": "circuits/bigint.circom",
+    "template": "Split",
+    "concrete_parameters": [
+      {
+        "position": 0,
+        "name": "n",
+        "kind": "integer",
+        "value_decimal": "64"
+      },
+      {
+        "position": 1,
+        "name": "m",
+        "kind": "integer",
+        "value_decimal": "64"
+      }
+    ]
+  },
+  "mutant_edit": {
+    "find": "    component n2b_small = Num2Bits(n);\n    n2b_small.in <== small;\n",
+    "replace": ""
+  },
+  "twin_edit": {
+    "find": "    small <-- in % (1 << n);\n    big <-- in \\ (1 << n);\n",
+    "replace": "    small <-- in % (1 << n) + (1 << n);\n    big <-- in \\ (1 << n) - 1;\n"
+  },
+  "contract": {
+    "input_contract_id": "split-input-below-2-pow-n-plus-m",
+    "property_id": "split-returns-canonical-limbs",
+    "input_contract_statement": "main.in is a canonical field element below 2^(n+m) with at least one unit in the high limb.",
+    "property_statement": "main.small is below 2^n, main.big is below 2^m, and main.small + main.big * 2^n equals main.in as integers.",
+    "input_contract": {
+      "kind": "bounded",
+      "enforcement": "unverified"
+    },
+    "input_signal_names": [
+      "main.in"
+    ],
+    "property_signal_names": [
+      "main.big",
+      "main.small"
+    ],
+    "predicate": {
+      "path": "../predicates/canonical_split.py",
+      "config": {
+        "low_bits": 64,
+        "high_bits": 64,
+        "input": "main.in",
+        "small": "main.small",
+        "big": "main.big"
+      },
+      "allowed_results": [
+        {
+          "criterion": "input_preconditions",
+          "verdict": "satisfied",
+          "reason_code": "contract-satisfied",
+          "note": "The input is a canonical field element below 2^(n+m)."
+        },
+        {
+          "criterion": "input_preconditions",
+          "verdict": "not-satisfied",
+          "reason_code": "input-out-of-range",
+          "note": "The input is not a canonical field element below 2^(n+m)."
+        },
+        {
+          "criterion": "specified_property_violation",
+          "verdict": "satisfied",
+          "reason_code": "property-violated",
+          "note": "The limbs are not the canonical split of the input."
+        },
+        {
+          "criterion": "specified_property_violation",
+          "verdict": "not-satisfied",
+          "reason_code": "property-holds",
+          "note": "The limbs are the canonical split of the input."
+        },
+        {
+          "criterion": "specified_property_violation",
+          "verdict": "unknown",
+          "reason_code": "input-precondition-unresolved",
+          "note": "The property is not evaluated because the input precondition failed."
+        }
+      ],
+      "allowed_violation_classes": [
+        "non-canonical-limb-split"
+      ]
+    }
+  },
+  "common_input": "../../../runs/dev-injection-2026-09-27/inputs/bigint-o3-split.json",
+  "relation_exclusion": "operator-proof",
+  "workspace": "../../../runs/dev-injection-2026-09-27/bigint-o3-split",
+  "output": "."
+}

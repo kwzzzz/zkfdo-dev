@@ -1,0 +1,13 @@
+{
+  "contradiction_constraint_indices": [
+    130
+  ],
+  "fixed_signal_names": [
+    "main.big",
+    "main.in",
+    "main.small"
+  ],
+  "format": "unique-propagation-v1",
+  "method": "operator-proof",
+  "schema_version": 1
+}

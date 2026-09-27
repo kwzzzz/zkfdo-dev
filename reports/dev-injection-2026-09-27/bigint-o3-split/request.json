@@ -1,0 +1,27 @@
+{
+  "kind": "injection-ground-truth",
+  "schema_version": 1,
+  "request_id": "dev-bigint-o3-split/qualification",
+  "review_spec": {
+    "path": "spec.json",
+    "sha256": "4bc1e008f548619d8a8a49da09fee098ff650a4f470732c9d2bcb021fc651c64"
+  },
+  "generation_manifest": {
+    "path": "generation.json",
+    "sha256": "453cfcb4057180ff23e17932432f06d2d765dff98a150fa86fee17b3a9d64f3f"
+  },
+  "disturbance_assignment": {
+    "origin": "disturbance-twin",
+    "format": "wtns-json-v1",
+    "path": "../../../runs/dev-injection-2026-09-27/bigint-o3-split/witness/twin.assignment.json",
+    "sha256": "ea3e24a06d682810f9dcceaaf6cf61822436435f2c1758666c800f742ff243af",
+    "adapter_implementation_sha256": "7d0f123d84079048b28822011c380791725dcb049c88239253b27bd214875138"
+  },
+  "clean_reference_assignment": {
+    "origin": "clean-witness-generator",
+    "format": "wtns-json-v1",
+    "path": "../../../runs/dev-injection-2026-09-27/bigint-o3-split/witness/clean.assignment.json",
+    "sha256": "7e4b0032bf2439f88a0701879397374d3a139c3d04b07aa1b35e9c618fd7d2d8",
+    "adapter_implementation_sha256": "7d0f123d84079048b28822011c380791725dcb049c88239253b27bd214875138"
+  }
+}

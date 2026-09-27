@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "compiler": {
+    "version": "2.2.3",
+    "runner_path": "../../../runs/dev-injection-2026-09-27/bigint-o3-split/compiler/circom",
+    "runner_sha256": "8991887889c2a74d6fc704d5689ada4cc76fba004e866c987de6cbf3b3db6227",
+    "artifact_manifest_path": "../../../runs/dev-injection-2026-09-27/bigint-o3-split/compiler/artifacts.json",
+    "artifact_manifest_sha256": "11fdcd26c3522963adf428c7a5528510273559825ea5ecc9e5d7470c823e9671",
+    "arguments": [
+      "{entrypoint}",
+      "--r1cs",
+      "--sym",
+      "-l",
+      "{source_root}",
+      "-o",
+      "{output_dir}"
+    ]
+  },
+  "variants": {
+    "clean": {
+      "source_closure_manifest_path": "../../../runs/dev-injection-2026-09-27/bigint-o3-split/clean/closure.json",
+      "source_closure_manifest_sha256": "ca21dc120fd065dc7b2e84d0ef5d2bc9198cbb2ff1c4e62d382c316794f365d0",
+      "entrypoint_path": "zkfdo_injection_target.circom",
+      "r1cs_output_path": "zkfdo_injection_target.r1cs",
+      "sym_output_path": "zkfdo_injection_target.sym"
+    },
+    "mutant": {
+      "source_closure_manifest_path": "../../../runs/dev-injection-2026-09-27/bigint-o3-split/mutant/closure.json",
+      "source_closure_manifest_sha256": "49980e7887372a4c07c50fcd4cd59d1295c1de998bdc164286f7a68b7e26f951",
+      "entrypoint_path": "zkfdo_injection_target.circom",
+      "r1cs_output_path": "zkfdo_injection_target.r1cs",
+      "sym_output_path": "zkfdo_injection_target.sym"
+    },
+    "disturbance_twin": {
+      "source_closure_manifest_path": "../../../runs/dev-injection-2026-09-27/bigint-o3-split/twin/closure.json",
+      "source_closure_manifest_sha256": "0bbd43874746aad9176043fc021433139f45aef952dea98409ae08bb84c355f9",
+      "entrypoint_path": "zkfdo_injection_target.circom",
+      "r1cs_output_path": "zkfdo_injection_target.r1cs",
+      "sym_output_path": "zkfdo_injection_target.sym"
+    }
+  }
+}

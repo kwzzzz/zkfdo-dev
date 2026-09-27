@@ -1,0 +1,288 @@
+{
+  "schema_version": 1,
+  "review_spec_id": "dev-bigint-o3-split/spec",
+  "root_cause_id": "dev-injection/0xbok/circom-bigint/o3-split-low-limb-range",
+  "subject_kind": "injected-mutant",
+  "expected_scope": "original-component",
+  "target_binding": {
+    "target_id": "sha256:9018924578bfb09d8e8de2a41be7859471695f3025276c8c581ecc11886dee50",
+    "instance_key": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-injection-2026-09-27/bigint-o3-split/mutant/circuits/bigint.circom::Split(64, 64)",
+    "template": "Split",
+    "concrete_parameters": [
+      {
+        "position": 0,
+        "name": "n",
+        "kind": "integer",
+        "value_decimal": "64"
+      },
+      {
+        "position": 1,
+        "name": "m",
+        "kind": "integer",
+        "value_decimal": "64"
+      }
+    ],
+    "source_path": "../../../runs/dev-injection-2026-09-27/bigint-o3-split/mutant/circuits/bigint.circom",
+    "source_sha256": "9db7092e88881f6cbca47b064d83717a5a07704846e5531ca4eeeaae959d209f",
+    "source_closure_manifest_path": "../../../runs/dev-injection-2026-09-27/bigint-o3-split/mutant/closure.json",
+    "source_closure_manifest_sha256": "49980e7887372a4c07c50fcd4cd59d1295c1de998bdc164286f7a68b7e26f951"
+  },
+  "field": {
+    "name": "bn128",
+    "modulus_decimal": "21888242871839275222246405745257275088548364400416034343698204186575808495617",
+    "assignment_encoding": "canonical-field-elements"
+  },
+  "compiled_subject": {
+    "r1cs_path": "../../../runs/dev-injection-2026-09-27/bigint-o3-split/compiled/mutant/zkfdo_injection_target.r1cs",
+    "r1cs_sha256": "4ea769648ea37572821f188925853e795473de2717691c7010a4ccbafa40f03c",
+    "sym_path": "../../../runs/dev-injection-2026-09-27/bigint-o3-split/compiled/mutant/zkfdo_injection_target.sym",
+    "sym_sha256": "6fe8203d6030bcb36385b83daa7de083dd257b820bc0f1d91dd2d0bb01de6c0a",
+    "expected_shape": {
+      "wires": 68,
+      "labels": 69,
+      "public_outputs": 2,
+      "public_inputs": 0,
+      "private_inputs": 1,
+      "constraints": 66
+    }
+  },
+  "compiler": {
+    "version": "2.2.3",
+    "binary_sha256": "8991887889c2a74d6fc704d5689ada4cc76fba004e866c987de6cbf3b3db6227",
+    "arguments": [],
+    "library_manifest_path": "../../../runs/dev-injection-2026-09-27/bigint-o3-split/mutant/closure.json",
+    "library_manifest_sha256": "49980e7887372a4c07c50fcd4cd59d1295c1de998bdc164286f7a68b7e26f951"
+  },
+  "contract": {
+    "definition_path": "contract.json",
+    "definition_sha256": "86e12ac18774b0039fb5a16d6c9aae0243f4b8943287d3c2c796dbfbb7d34d5e",
+    "input_contract_id": "split-input-below-2-pow-n-plus-m",
+    "property_id": "split-returns-canonical-limbs",
+    "input_contract_statement": "main.in is a canonical field element below 2^(n+m) with at least one unit in the high limb.",
+    "property_statement": "main.small is below 2^n, main.big is below 2^m, and main.small + main.big * 2^n equals main.in as integers.",
+    "input_signal_names": [
+      "main.in"
+    ],
+    "property_signal_names": [
+      "main.big",
+      "main.small"
+    ],
+    "predicate": {
+      "api_version": 1,
+      "path": "../predicates/canonical_split.py",
+      "sha256": "9a568f0826b5bbb42c94bdcddc1de79fa88076faee261da3d6821c1e7690ef9d",
+      "entrypoint": "evaluate",
+      "config": {
+        "big": "main.big",
+        "high_bits": 64,
+        "input": "main.in",
+        "low_bits": 64,
+        "small": "main.small"
+      },
+      "allowed_results": [
+        {
+          "criterion": "input_preconditions",
+          "verdict": "satisfied",
+          "reason_code": "contract-satisfied",
+          "note": "The input is a canonical field element below 2^(n+m)."
+        },
+        {
+          "criterion": "input_preconditions",
+          "verdict": "not-satisfied",
+          "reason_code": "input-out-of-range",
+          "note": "The input is not a canonical field element below 2^(n+m)."
+        },
+        {
+          "criterion": "specified_property_violation",
+          "verdict": "satisfied",
+          "reason_code": "property-violated",
+          "note": "The limbs are not the canonical split of the input."
+        },
+        {
+          "criterion": "specified_property_violation",
+          "verdict": "not-satisfied",
+          "reason_code": "property-holds",
+          "note": "The limbs are the canonical split of the input."
+        },
+        {
+          "criterion": "specified_property_violation",
+          "verdict": "unknown",
+          "reason_code": "input-precondition-unresolved",
+          "note": "The property is not evaluated because the input precondition failed."
+        }
+      ],
+      "allowed_violation_classes": [
+        "non-canonical-limb-split"
+      ]
+    }
+  },
+  "attribution": {
+    "method": "injection-single-diff",
+    "evidence_path": "single.diff",
+    "evidence_sha256": "5c93008bc9d68a5420b6ab3f67f9b03718a2272564c7ced2b545ac98aebc956b"
+  },
+  "production_reachability": {
+    "verdict": "unknown",
+    "entrypoint_target_id": null,
+    "instance_key": null,
+    "evidence_path": null,
+    "evidence_sha256": null,
+    "verifier_manifest_path": null,
+    "verifier_manifest_sha256": null
+  },
+  "injection_ground_truth": {
+    "injection_id": "dev-bigint-o3-split",
+    "operator_id": "O3",
+    "source_location": {
+      "path": "../../../runs/dev-injection-2026-09-27/bigint-o3-split/mutant/circuits/bigint.circom",
+      "source_sha256": "9db7092e88881f6cbca47b064d83717a5a07704846e5531ca4eeeaae959d209f",
+      "start_byte": 2537,
+      "end_byte": 2631
+    },
+    "clean_revision": "436665bf01728ae8c581fdb39e8428cb6b835c37",
+    "single_diff": {
+      "path": "single.diff",
+      "sha256": "5c93008bc9d68a5420b6ab3f67f9b03718a2272564c7ced2b545ac98aebc956b"
+    },
+    "source_closures": {
+      "clean": {
+        "path": "../../../runs/dev-injection-2026-09-27/bigint-o3-split/clean/closure.json",
+        "sha256": "ca21dc120fd065dc7b2e84d0ef5d2bc9198cbb2ff1c4e62d382c316794f365d0"
+      },
+      "mutant": {
+        "path": "../../../runs/dev-injection-2026-09-27/bigint-o3-split/mutant/closure.json",
+        "sha256": "49980e7887372a4c07c50fcd4cd59d1295c1de998bdc164286f7a68b7e26f951"
+      },
+      "disturbance_twin": {
+        "path": "../../../runs/dev-injection-2026-09-27/bigint-o3-split/twin/closure.json",
+        "sha256": "0bbd43874746aad9176043fc021433139f45aef952dea98409ae08bb84c355f9"
+      }
+    },
+    "compiled_variants": {
+      "clean": {
+        "r1cs_path": "../../../runs/dev-injection-2026-09-27/bigint-o3-split/compiled/clean/zkfdo_injection_target.r1cs",
+        "r1cs_sha256": "6cdd58be502079163613a250ddcc9b92b8f65ff41227aee6da33c8ae12e64eef",
+        "sym_path": "../../../runs/dev-injection-2026-09-27/bigint-o3-split/compiled/clean/zkfdo_injection_target.sym",
+        "sym_sha256": "b1e2e96eeebdcd2c678e9a5068dd172a5c3b06a621998947d49137bfaf0e98c0",
+        "shape": {
+          "wires": 132,
+          "labels": 134,
+          "public_outputs": 2,
+          "public_inputs": 0,
+          "private_inputs": 1,
+          "constraints": 131
+        }
+      },
+      "mutant": {
+        "r1cs_path": "../../../runs/dev-injection-2026-09-27/bigint-o3-split/compiled/mutant/zkfdo_injection_target.r1cs",
+        "r1cs_sha256": "4ea769648ea37572821f188925853e795473de2717691c7010a4ccbafa40f03c",
+        "sym_path": "../../../runs/dev-injection-2026-09-27/bigint-o3-split/compiled/mutant/zkfdo_injection_target.sym",
+        "sym_sha256": "6fe8203d6030bcb36385b83daa7de083dd257b820bc0f1d91dd2d0bb01de6c0a",
+        "shape": {
+          "wires": 68,
+          "labels": 69,
+          "public_outputs": 2,
+          "public_inputs": 0,
+          "private_inputs": 1,
+          "constraints": 66
+        }
+      },
+      "disturbance_twin": {
+        "r1cs_path": "../../../runs/dev-injection-2026-09-27/bigint-o3-split/compiled/twin/zkfdo_injection_target.r1cs",
+        "r1cs_sha256": "4ea769648ea37572821f188925853e795473de2717691c7010a4ccbafa40f03c",
+        "sym_path": "../../../runs/dev-injection-2026-09-27/bigint-o3-split/compiled/twin/zkfdo_injection_target.sym",
+        "sym_sha256": "6fe8203d6030bcb36385b83daa7de083dd257b820bc0f1d91dd2d0bb01de6c0a",
+        "shape": {
+          "wires": 68,
+          "labels": 69,
+          "public_outputs": 2,
+          "public_inputs": 0,
+          "private_inputs": 1,
+          "constraints": 66
+        }
+      }
+    },
+    "compilation_manifest": {
+      "path": "compilation.json",
+      "sha256": "2b1b79bf487521bed6b736fb7cd2da54e68551a4a96988f84c65981ed34e40cd"
+    },
+    "projection_manifest": {
+      "path": "projection.json",
+      "sha256": "f6f8a4b4aa4fa2e8cd965590c52defe74a5bd2a6e2f9eb73916872d0649ef02c"
+    },
+    "expected_clean_constraint_indices": [
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127,
+      130
+    ],
+    "clean_relation_exclusion": {
+      "method": "operator-proof",
+      "certificate_path": "certificate.json",
+      "certificate_sha256": "d7c6f804310db5a7b32a9644b8425fd2328cacc0bb39b1224b69f944352b261d",
+      "verifier_manifest_path": "relation-verifier.json",
+      "verifier_manifest_sha256": "0889588f3f753d0d2328eb1d338a1e31b4b5a1cb23e110a57c4a265f90e3a53f"
+    }
+  }
+}

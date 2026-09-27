@@ -1,0 +1,293 @@
+{
+  "schema_version": 1,
+  "report_id": "dev-bigint-o3-split/qualification",
+  "kind": "injection-ground-truth",
+  "status": "complete",
+  "review_request": {
+    "path": "../request.json",
+    "sha256": "3258f271b92bb81d72099bee676e041293c09e3d4d737717b71f82f60fe12781"
+  },
+  "review_specs": [
+    {
+      "path": "../spec.json",
+      "sha256": "4bc1e008f548619d8a8a49da09fee098ff650a4f470732c9d2bcb021fc651c64"
+    }
+  ],
+  "engine": {
+    "version": "candidate-review-schema1",
+    "source_revision": "worktree-engine-manifest:aecb52ee821153c9d200f79dca6c092a753d9c7fdee3b5dea7bb7f3c013e88f6",
+    "source_manifest_path": "../engine-source-manifest.json",
+    "source_manifest_sha256": "aecb52ee821153c9d200f79dca6c092a753d9c7fdee3b5dea7bb7f3c013e88f6",
+    "executable_path": "../../../../runs/dev-injection-2026-09-27/bin-dev/zkfDO",
+    "executable_sha256": "7ff5c85c033d823f674599528bf3f09469bb5c0795ec25a970a9fc95b1b0e7ef",
+    "predicate_runner_path": "../../../../../../../../opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+    "predicate_runner_sha256": "87d4df53fd91304be5bac391fb204643c36b7df2023c04a0953bcbc7d4fdf634"
+  },
+  "adapters": [
+    {
+      "id": "wtns-json-v1",
+      "implementation_sha256": "7d0f123d84079048b28822011c380791725dcb049c88239253b27bd214875138"
+    }
+  ],
+  "failure": null,
+  "candidate_inventory": null,
+  "executions": [],
+  "candidate_errors": [],
+  "unreviewed_candidates": [],
+  "reviews": [
+    {
+      "review_kind": "injection-ground-truth",
+      "candidate_record_id": null,
+      "candidate": null,
+      "binding": null,
+      "assignments": {
+        "disturbance": {
+          "path": "../../../../runs/dev-injection-2026-09-27/bigint-o3-split/witness/twin.assignment.json",
+          "sha256": "ea3e24a06d682810f9dcceaaf6cf61822436435f2c1758666c800f742ff243af"
+        },
+        "clean_reference": {
+          "path": "../../../../runs/dev-injection-2026-09-27/bigint-o3-split/witness/clean.assignment.json",
+          "sha256": "7e4b0032bf2439f88a0701879397374d3a139c3d04b07aa1b35e9c618fd7d2d8"
+        }
+      },
+      "review_spec": {
+        "id": "dev-bigint-o3-split/spec",
+        "path": "../spec.json",
+        "sha256": "4bc1e008f548619d8a8a49da09fee098ff650a4f470732c9d2bcb021fc651c64"
+      },
+      "root_cause_id": "dev-injection/0xbok/circom-bigint/o3-split-low-limb-range",
+      "injection_id": "dev-bigint-o3-split",
+      "artifact_verification": {
+        "mutant_r1cs": true,
+        "mutant_sym": true,
+        "clean_r1cs": true,
+        "clean_sym": true,
+        "twin_r1cs": true,
+        "twin_sym": true,
+        "generation_reproduced": true
+      },
+      "failed_target_constraint_count": 0,
+      "failed_target_constraint_indices": [],
+      "failed_clean_constraint_count": 1,
+      "failed_clean_constraint_indices": [
+        130
+      ],
+      "criteria": {
+        "assignment_encoding": {
+          "verdict": "satisfied",
+          "reason_code": "canonical",
+          "evidence": [
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/bigint-o3-split/witness/twin.assignment.json",
+              "sha256": "ea3e24a06d682810f9dcceaaf6cf61822436435f2c1758666c800f742ff243af"
+            }
+          ],
+          "note": "All field-valued disturbance assignment entries are canonical."
+        },
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "reason_code": "contract-satisfied",
+          "evidence": [
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/bigint-o3-split/witness/twin.assignment.json",
+              "sha256": "ea3e24a06d682810f9dcceaaf6cf61822436435f2c1758666c800f742ff243af"
+            },
+            {
+              "path": "../contract.json",
+              "sha256": "86e12ac18774b0039fb5a16d6c9aae0243f4b8943287d3c2c796dbfbb7d34d5e"
+            }
+          ],
+          "note": "The input is a canonical field element below 2^(n+m)."
+        },
+        "fixed_target_constraints": {
+          "verdict": "satisfied",
+          "reason_code": "all-constraints-satisfied",
+          "evidence": [
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/bigint-o3-split/witness/twin.assignment.json",
+              "sha256": "ea3e24a06d682810f9dcceaaf6cf61822436435f2c1758666c800f742ff243af"
+            },
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/bigint-o3-split/compiled/mutant/zkfdo_injection_target.r1cs",
+              "sha256": "4ea769648ea37572821f188925853e795473de2717691c7010a4ccbafa40f03c"
+            }
+          ],
+          "note": "All constraints in the fixed injected-mutant R1CS are satisfied."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "reason_code": "property-violated",
+          "evidence": [
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/bigint-o3-split/witness/twin.assignment.json",
+              "sha256": "ea3e24a06d682810f9dcceaaf6cf61822436435f2c1758666c800f742ff243af"
+            },
+            {
+              "path": "../contract.json",
+              "sha256": "86e12ac18774b0039fb5a16d6c9aae0243f4b8943287d3c2c796dbfbb7d34d5e"
+            }
+          ],
+          "note": "The limbs are not the canonical split of the input."
+        }
+      },
+      "qualification_criteria": {
+        "twin_r1cs_identity": {
+          "verdict": "satisfied",
+          "reason_code": "twin-r1cs-identical",
+          "evidence": [
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/bigint-o3-split/compiled/mutant/zkfdo_injection_target.r1cs",
+              "sha256": "4ea769648ea37572821f188925853e795473de2717691c7010a4ccbafa40f03c"
+            },
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/bigint-o3-split/compiled/twin/zkfdo_injection_target.r1cs",
+              "sha256": "4ea769648ea37572821f188925853e795473de2717691c7010a4ccbafa40f03c"
+            }
+          ],
+          "note": "The disturbance twin and mutant R1CS raw hashes are identical."
+        },
+        "twin_sym_identity": {
+          "verdict": "satisfied",
+          "reason_code": "twin-sym-identical",
+          "evidence": [
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/bigint-o3-split/compiled/mutant/zkfdo_injection_target.sym",
+              "sha256": "6fe8203d6030bcb36385b83daa7de083dd257b820bc0f1d91dd2d0bb01de6c0a"
+            },
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/bigint-o3-split/compiled/twin/zkfdo_injection_target.sym",
+              "sha256": "6fe8203d6030bcb36385b83daa7de083dd257b820bc0f1d91dd2d0bb01de6c0a"
+            }
+          ],
+          "note": "The disturbance twin and mutant SYM raw hashes are identical."
+        },
+        "generation_reproducibility": {
+          "verdict": "satisfied",
+          "reason_code": "generation-reproduced",
+          "evidence": [
+            {
+              "path": "../generation.json",
+              "sha256": "453cfcb4057180ff23e17932432f06d2d765dff98a150fa86fee17b3a9d64f3f"
+            }
+          ],
+          "note": "Both pinned generators reproduced their witness and assignment hashes."
+        },
+        "clean_reference_assignment_encoding": {
+          "verdict": "satisfied",
+          "reason_code": "canonical",
+          "evidence": [
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/bigint-o3-split/witness/clean.assignment.json",
+              "sha256": "7e4b0032bf2439f88a0701879397374d3a139c3d04b07aa1b35e9c618fd7d2d8"
+            }
+          ],
+          "note": "The clean reference assignment is complete and canonical."
+        },
+        "clean_reference_constraints": {
+          "verdict": "satisfied",
+          "reason_code": "clean-reference-satisfies-constraints",
+          "evidence": [
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/bigint-o3-split/witness/clean.assignment.json",
+              "sha256": "7e4b0032bf2439f88a0701879397374d3a139c3d04b07aa1b35e9c618fd7d2d8"
+            },
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/bigint-o3-split/compiled/clean/zkfdo_injection_target.r1cs",
+              "sha256": "6cdd58be502079163613a250ddcc9b92b8f65ff41227aee6da33c8ae12e64eef"
+            },
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/bigint-o3-split/compiled/clean/zkfdo_injection_target.sym",
+              "sha256": "b1e2e96eeebdcd2c678e9a5068dd172a5c3b06a621998947d49137bfaf0e98c0"
+            }
+          ],
+          "note": "The same-input clean reference satisfies every clean R1CS constraint."
+        },
+        "clean_input_equivalence": {
+          "verdict": "satisfied",
+          "reason_code": "clean-inputs-equal",
+          "evidence": [
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/bigint-o3-split/witness/twin.assignment.json",
+              "sha256": "ea3e24a06d682810f9dcceaaf6cf61822436435f2c1758666c800f742ff243af"
+            },
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/bigint-o3-split/witness/clean.assignment.json",
+              "sha256": "7e4b0032bf2439f88a0701879397374d3a139c3d04b07aa1b35e9c618fd7d2d8"
+            }
+          ],
+          "note": "The clean and disturbance assignments have identical contract inputs."
+        },
+        "clean_rejection": {
+          "verdict": "satisfied",
+          "reason_code": "clean-projection-rejected",
+          "evidence": [
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/bigint-o3-split/witness/twin.assignment.json",
+              "sha256": "ea3e24a06d682810f9dcceaaf6cf61822436435f2c1758666c800f742ff243af"
+            },
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/bigint-o3-split/compiled/clean/zkfdo_injection_target.r1cs",
+              "sha256": "6cdd58be502079163613a250ddcc9b92b8f65ff41227aee6da33c8ae12e64eef"
+            },
+            {
+              "path": "../projection.json",
+              "sha256": "f6f8a4b4aa4fa2e8cd965590c52defe74a5bd2a6e2f9eb73916872d0649ef02c"
+            }
+          ],
+          "note": "The projected disturbance fails a predeclared injection-related clean constraint."
+        },
+        "clean_relation_exclusion": {
+          "verdict": "satisfied",
+          "reason_code": "clean-relation-excluded",
+          "evidence": [
+            {
+              "path": "../certificate.json",
+              "sha256": "d7c6f804310db5a7b32a9644b8425fd2328cacc0bb39b1224b69f944352b261d"
+            },
+            {
+              "path": "../relation-verifier.json",
+              "sha256": "0889588f3f753d0d2328eb1d338a1e31b4b5a1cb23e110a57c4a265f90e3a53f"
+            }
+          ],
+          "note": "A pinned verifier excludes every clean extension for the fixed contract signals."
+        },
+        "production_reachability": {
+          "verdict": "unknown",
+          "reason_code": "production-reachability-unknown",
+          "evidence": [
+            {
+              "path": "../spec.json",
+              "sha256": "4bc1e008f548619d8a8a49da09fee098ff650a4f470732c9d2bcb021fc651c64"
+            }
+          ],
+          "note": "Production reachability has not been established by a complete pinned discovery."
+        }
+      },
+      "disposition": "validated",
+      "cause_attribution": {
+        "verdict": "matched",
+        "reason_code": "injection-source-transition-matched",
+        "evidence": [
+          {
+            "path": "../single.diff",
+            "sha256": "5c93008bc9d68a5420b6ab3f67f9b03718a2272564c7ced2b545ac98aebc956b"
+          }
+        ]
+      },
+      "ground_truth_qualification": "unresolved",
+      "violation_class": "non-canonical-limb-split",
+      "confirmation_eligible": false,
+      "automated_review_seconds": 0.701509209,
+      "predicate_stream_nonempty": false
+    }
+  ],
+  "summary": {
+    "validated": 1,
+    "rejected": 0,
+    "unresolved": 0,
+    "review_error": 0,
+    "qualified": 0
+  },
+  "semantic_result_sha256": "0012fad5cf19c04e4ad4aaf07ab46c5dfe0b951f3565e2e7cde63e9310812ddf",
+  "raw_values_persisted": false
+}

@@ -1,0 +1,1055 @@
+{
+  "schema_version": 1,
+  "operator_id": "O3",
+  "operator_justification": "O3 removes the Num2Bits range check on the prover-chosen low limb of Split. The disturbance twin moves one unit of the high limb into the low limb, so small + big * 2^n still equals the input while the low limb leaves its n-bit range.",
+  "mappings": [
+    {
+      "clean_wire_index": 1,
+      "clean_signal_names": [
+        "main.small"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.small"
+    },
+    {
+      "clean_wire_index": 2,
+      "clean_signal_names": [
+        "main.big"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.big"
+    },
+    {
+      "clean_wire_index": 3,
+      "clean_signal_names": [
+        "main.in"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.in"
+    },
+    {
+      "clean_wire_index": 4,
+      "clean_signal_names": [
+        "main.n2b_big.out[0]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[0]"
+    },
+    {
+      "clean_wire_index": 5,
+      "clean_signal_names": [
+        "main.n2b_big.out[1]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[1]"
+    },
+    {
+      "clean_wire_index": 6,
+      "clean_signal_names": [
+        "main.n2b_big.out[2]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[2]"
+    },
+    {
+      "clean_wire_index": 7,
+      "clean_signal_names": [
+        "main.n2b_big.out[3]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[3]"
+    },
+    {
+      "clean_wire_index": 8,
+      "clean_signal_names": [
+        "main.n2b_big.out[4]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[4]"
+    },
+    {
+      "clean_wire_index": 9,
+      "clean_signal_names": [
+        "main.n2b_big.out[5]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[5]"
+    },
+    {
+      "clean_wire_index": 10,
+      "clean_signal_names": [
+        "main.n2b_big.out[6]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[6]"
+    },
+    {
+      "clean_wire_index": 11,
+      "clean_signal_names": [
+        "main.n2b_big.out[7]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[7]"
+    },
+    {
+      "clean_wire_index": 12,
+      "clean_signal_names": [
+        "main.n2b_big.out[8]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[8]"
+    },
+    {
+      "clean_wire_index": 13,
+      "clean_signal_names": [
+        "main.n2b_big.out[9]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[9]"
+    },
+    {
+      "clean_wire_index": 14,
+      "clean_signal_names": [
+        "main.n2b_big.out[10]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[10]"
+    },
+    {
+      "clean_wire_index": 15,
+      "clean_signal_names": [
+        "main.n2b_big.out[11]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[11]"
+    },
+    {
+      "clean_wire_index": 16,
+      "clean_signal_names": [
+        "main.n2b_big.out[12]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[12]"
+    },
+    {
+      "clean_wire_index": 17,
+      "clean_signal_names": [
+        "main.n2b_big.out[13]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[13]"
+    },
+    {
+      "clean_wire_index": 18,
+      "clean_signal_names": [
+        "main.n2b_big.out[14]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[14]"
+    },
+    {
+      "clean_wire_index": 19,
+      "clean_signal_names": [
+        "main.n2b_big.out[15]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[15]"
+    },
+    {
+      "clean_wire_index": 20,
+      "clean_signal_names": [
+        "main.n2b_big.out[16]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[16]"
+    },
+    {
+      "clean_wire_index": 21,
+      "clean_signal_names": [
+        "main.n2b_big.out[17]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[17]"
+    },
+    {
+      "clean_wire_index": 22,
+      "clean_signal_names": [
+        "main.n2b_big.out[18]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[18]"
+    },
+    {
+      "clean_wire_index": 23,
+      "clean_signal_names": [
+        "main.n2b_big.out[19]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[19]"
+    },
+    {
+      "clean_wire_index": 24,
+      "clean_signal_names": [
+        "main.n2b_big.out[20]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[20]"
+    },
+    {
+      "clean_wire_index": 25,
+      "clean_signal_names": [
+        "main.n2b_big.out[21]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[21]"
+    },
+    {
+      "clean_wire_index": 26,
+      "clean_signal_names": [
+        "main.n2b_big.out[22]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[22]"
+    },
+    {
+      "clean_wire_index": 27,
+      "clean_signal_names": [
+        "main.n2b_big.out[23]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[23]"
+    },
+    {
+      "clean_wire_index": 28,
+      "clean_signal_names": [
+        "main.n2b_big.out[24]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[24]"
+    },
+    {
+      "clean_wire_index": 29,
+      "clean_signal_names": [
+        "main.n2b_big.out[25]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[25]"
+    },
+    {
+      "clean_wire_index": 30,
+      "clean_signal_names": [
+        "main.n2b_big.out[26]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[26]"
+    },
+    {
+      "clean_wire_index": 31,
+      "clean_signal_names": [
+        "main.n2b_big.out[27]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[27]"
+    },
+    {
+      "clean_wire_index": 32,
+      "clean_signal_names": [
+        "main.n2b_big.out[28]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[28]"
+    },
+    {
+      "clean_wire_index": 33,
+      "clean_signal_names": [
+        "main.n2b_big.out[29]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[29]"
+    },
+    {
+      "clean_wire_index": 34,
+      "clean_signal_names": [
+        "main.n2b_big.out[30]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[30]"
+    },
+    {
+      "clean_wire_index": 35,
+      "clean_signal_names": [
+        "main.n2b_big.out[31]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[31]"
+    },
+    {
+      "clean_wire_index": 36,
+      "clean_signal_names": [
+        "main.n2b_big.out[32]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[32]"
+    },
+    {
+      "clean_wire_index": 37,
+      "clean_signal_names": [
+        "main.n2b_big.out[33]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[33]"
+    },
+    {
+      "clean_wire_index": 38,
+      "clean_signal_names": [
+        "main.n2b_big.out[34]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[34]"
+    },
+    {
+      "clean_wire_index": 39,
+      "clean_signal_names": [
+        "main.n2b_big.out[35]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[35]"
+    },
+    {
+      "clean_wire_index": 40,
+      "clean_signal_names": [
+        "main.n2b_big.out[36]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[36]"
+    },
+    {
+      "clean_wire_index": 41,
+      "clean_signal_names": [
+        "main.n2b_big.out[37]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[37]"
+    },
+    {
+      "clean_wire_index": 42,
+      "clean_signal_names": [
+        "main.n2b_big.out[38]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[38]"
+    },
+    {
+      "clean_wire_index": 43,
+      "clean_signal_names": [
+        "main.n2b_big.out[39]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[39]"
+    },
+    {
+      "clean_wire_index": 44,
+      "clean_signal_names": [
+        "main.n2b_big.out[40]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[40]"
+    },
+    {
+      "clean_wire_index": 45,
+      "clean_signal_names": [
+        "main.n2b_big.out[41]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[41]"
+    },
+    {
+      "clean_wire_index": 46,
+      "clean_signal_names": [
+        "main.n2b_big.out[42]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[42]"
+    },
+    {
+      "clean_wire_index": 47,
+      "clean_signal_names": [
+        "main.n2b_big.out[43]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[43]"
+    },
+    {
+      "clean_wire_index": 48,
+      "clean_signal_names": [
+        "main.n2b_big.out[44]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[44]"
+    },
+    {
+      "clean_wire_index": 49,
+      "clean_signal_names": [
+        "main.n2b_big.out[45]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[45]"
+    },
+    {
+      "clean_wire_index": 50,
+      "clean_signal_names": [
+        "main.n2b_big.out[46]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[46]"
+    },
+    {
+      "clean_wire_index": 51,
+      "clean_signal_names": [
+        "main.n2b_big.out[47]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[47]"
+    },
+    {
+      "clean_wire_index": 52,
+      "clean_signal_names": [
+        "main.n2b_big.out[48]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[48]"
+    },
+    {
+      "clean_wire_index": 53,
+      "clean_signal_names": [
+        "main.n2b_big.out[49]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[49]"
+    },
+    {
+      "clean_wire_index": 54,
+      "clean_signal_names": [
+        "main.n2b_big.out[50]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[50]"
+    },
+    {
+      "clean_wire_index": 55,
+      "clean_signal_names": [
+        "main.n2b_big.out[51]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[51]"
+    },
+    {
+      "clean_wire_index": 56,
+      "clean_signal_names": [
+        "main.n2b_big.out[52]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[52]"
+    },
+    {
+      "clean_wire_index": 57,
+      "clean_signal_names": [
+        "main.n2b_big.out[53]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[53]"
+    },
+    {
+      "clean_wire_index": 58,
+      "clean_signal_names": [
+        "main.n2b_big.out[54]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[54]"
+    },
+    {
+      "clean_wire_index": 59,
+      "clean_signal_names": [
+        "main.n2b_big.out[55]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[55]"
+    },
+    {
+      "clean_wire_index": 60,
+      "clean_signal_names": [
+        "main.n2b_big.out[56]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[56]"
+    },
+    {
+      "clean_wire_index": 61,
+      "clean_signal_names": [
+        "main.n2b_big.out[57]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[57]"
+    },
+    {
+      "clean_wire_index": 62,
+      "clean_signal_names": [
+        "main.n2b_big.out[58]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[58]"
+    },
+    {
+      "clean_wire_index": 63,
+      "clean_signal_names": [
+        "main.n2b_big.out[59]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[59]"
+    },
+    {
+      "clean_wire_index": 64,
+      "clean_signal_names": [
+        "main.n2b_big.out[60]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[60]"
+    },
+    {
+      "clean_wire_index": 65,
+      "clean_signal_names": [
+        "main.n2b_big.out[61]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[61]"
+    },
+    {
+      "clean_wire_index": 66,
+      "clean_signal_names": [
+        "main.n2b_big.out[62]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[62]"
+    },
+    {
+      "clean_wire_index": 67,
+      "clean_signal_names": [
+        "main.n2b_big.out[63]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.n2b_big.out[63]"
+    },
+    {
+      "clean_wire_index": 68,
+      "clean_signal_names": [
+        "main.n2b_small.out[0]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 69,
+      "clean_signal_names": [
+        "main.n2b_small.out[1]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 70,
+      "clean_signal_names": [
+        "main.n2b_small.out[2]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 71,
+      "clean_signal_names": [
+        "main.n2b_small.out[3]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 72,
+      "clean_signal_names": [
+        "main.n2b_small.out[4]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 73,
+      "clean_signal_names": [
+        "main.n2b_small.out[5]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 74,
+      "clean_signal_names": [
+        "main.n2b_small.out[6]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 75,
+      "clean_signal_names": [
+        "main.n2b_small.out[7]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 76,
+      "clean_signal_names": [
+        "main.n2b_small.out[8]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 77,
+      "clean_signal_names": [
+        "main.n2b_small.out[9]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 78,
+      "clean_signal_names": [
+        "main.n2b_small.out[10]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 79,
+      "clean_signal_names": [
+        "main.n2b_small.out[11]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 80,
+      "clean_signal_names": [
+        "main.n2b_small.out[12]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 81,
+      "clean_signal_names": [
+        "main.n2b_small.out[13]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 82,
+      "clean_signal_names": [
+        "main.n2b_small.out[14]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 83,
+      "clean_signal_names": [
+        "main.n2b_small.out[15]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 84,
+      "clean_signal_names": [
+        "main.n2b_small.out[16]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 85,
+      "clean_signal_names": [
+        "main.n2b_small.out[17]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 86,
+      "clean_signal_names": [
+        "main.n2b_small.out[18]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 87,
+      "clean_signal_names": [
+        "main.n2b_small.out[19]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 88,
+      "clean_signal_names": [
+        "main.n2b_small.out[20]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 89,
+      "clean_signal_names": [
+        "main.n2b_small.out[21]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 90,
+      "clean_signal_names": [
+        "main.n2b_small.out[22]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 91,
+      "clean_signal_names": [
+        "main.n2b_small.out[23]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 92,
+      "clean_signal_names": [
+        "main.n2b_small.out[24]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 93,
+      "clean_signal_names": [
+        "main.n2b_small.out[25]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 94,
+      "clean_signal_names": [
+        "main.n2b_small.out[26]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 95,
+      "clean_signal_names": [
+        "main.n2b_small.out[27]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 96,
+      "clean_signal_names": [
+        "main.n2b_small.out[28]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 97,
+      "clean_signal_names": [
+        "main.n2b_small.out[29]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 98,
+      "clean_signal_names": [
+        "main.n2b_small.out[30]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 99,
+      "clean_signal_names": [
+        "main.n2b_small.out[31]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 100,
+      "clean_signal_names": [
+        "main.n2b_small.out[32]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 101,
+      "clean_signal_names": [
+        "main.n2b_small.out[33]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 102,
+      "clean_signal_names": [
+        "main.n2b_small.out[34]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 103,
+      "clean_signal_names": [
+        "main.n2b_small.out[35]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 104,
+      "clean_signal_names": [
+        "main.n2b_small.out[36]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 105,
+      "clean_signal_names": [
+        "main.n2b_small.out[37]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 106,
+      "clean_signal_names": [
+        "main.n2b_small.out[38]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 107,
+      "clean_signal_names": [
+        "main.n2b_small.out[39]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 108,
+      "clean_signal_names": [
+        "main.n2b_small.out[40]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 109,
+      "clean_signal_names": [
+        "main.n2b_small.out[41]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 110,
+      "clean_signal_names": [
+        "main.n2b_small.out[42]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 111,
+      "clean_signal_names": [
+        "main.n2b_small.out[43]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 112,
+      "clean_signal_names": [
+        "main.n2b_small.out[44]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 113,
+      "clean_signal_names": [
+        "main.n2b_small.out[45]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 114,
+      "clean_signal_names": [
+        "main.n2b_small.out[46]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 115,
+      "clean_signal_names": [
+        "main.n2b_small.out[47]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 116,
+      "clean_signal_names": [
+        "main.n2b_small.out[48]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 117,
+      "clean_signal_names": [
+        "main.n2b_small.out[49]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 118,
+      "clean_signal_names": [
+        "main.n2b_small.out[50]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 119,
+      "clean_signal_names": [
+        "main.n2b_small.out[51]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 120,
+      "clean_signal_names": [
+        "main.n2b_small.out[52]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 121,
+      "clean_signal_names": [
+        "main.n2b_small.out[53]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 122,
+      "clean_signal_names": [
+        "main.n2b_small.out[54]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 123,
+      "clean_signal_names": [
+        "main.n2b_small.out[55]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 124,
+      "clean_signal_names": [
+        "main.n2b_small.out[56]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 125,
+      "clean_signal_names": [
+        "main.n2b_small.out[57]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 126,
+      "clean_signal_names": [
+        "main.n2b_small.out[58]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 127,
+      "clean_signal_names": [
+        "main.n2b_small.out[59]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 128,
+      "clean_signal_names": [
+        "main.n2b_small.out[60]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 129,
+      "clean_signal_names": [
+        "main.n2b_small.out[61]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 130,
+      "clean_signal_names": [
+        "main.n2b_small.out[62]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    },
+    {
+      "clean_wire_index": 131,
+      "clean_signal_names": [
+        "main.n2b_small.out[63]"
+      ],
+      "source_kind": "clean-reference-wire",
+      "source_signal_name": null
+    }
+  ]
+}

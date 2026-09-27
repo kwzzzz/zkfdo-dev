@@ -1,0 +1,11 @@
+--- a/circuits/bigint.circom
++++ b/circuits/bigint.circom
+@@ -114,8 +114,6 @@
+     small <-- in % (1 << n);
+     big <-- in \ (1 << n);
+ 
+-    component n2b_small = Num2Bits(n);
+-    n2b_small.in <== small;
+     component n2b_big = Num2Bits(m);
+     n2b_big.in <== big;
+ 

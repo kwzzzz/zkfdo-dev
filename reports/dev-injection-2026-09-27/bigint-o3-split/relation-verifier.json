@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "api_version": 1,
+  "verifier_id": "zkfdo-unique-propagation",
+  "method": "operator-proof",
+  "implementation": {
+    "kind": "external",
+    "executable_path": "../../../runs/dev-injection-2026-09-27/bigint-o3-split/verifier/zkfdo-relation-verifier",
+    "executable_sha256": "e8d8b2462d52940d068002989532a9a09a94113e36352dffd4698ad846a1b9e5",
+    "source_manifest_path": "engine-source-manifest.json",
+    "source_manifest_sha256": "aecb52ee821153c9d200f79dca6c092a753d9c7fdee3b5dea7bb7f3c013e88f6"
+  },
+  "certificate_format": "unique-propagation-v1",
+  "allowed_results": [
+    {
+      "verdict": "satisfied",
+      "reason_code": "clean-relation-excluded"
+    },
+    {
+      "verdict": "unknown",
+      "reason_code": "exclusion-proof-incomplete"
+    }
+  ]
+}

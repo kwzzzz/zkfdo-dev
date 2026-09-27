@@ -1,0 +1,20 @@
+{
+  "injection_id": "dev-bigint-o3-split",
+  "input_contract": {
+    "enforcement": "unverified",
+    "kind": "bounded"
+  },
+  "input_contract_id": "split-input-below-2-pow-n-plus-m",
+  "input_contract_statement": "main.in is a canonical field element below 2^(n+m) with at least one unit in the high limb.",
+  "input_signal_names": [
+    "main.in"
+  ],
+  "operator_id": "O3",
+  "property_id": "split-returns-canonical-limbs",
+  "property_signal_names": [
+    "main.big",
+    "main.small"
+  ],
+  "property_statement": "main.small is below 2^n, main.big is below 2^m, and main.small + main.big * 2^n equals main.in as integers.",
+  "schema_version": 1
+}
