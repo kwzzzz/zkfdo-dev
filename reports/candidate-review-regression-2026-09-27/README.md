@@ -20,19 +20,56 @@ The required substantive regression is:
 Each pair gets a schema-2 confirmation file and a real evaluator output. Campaign summaries
 deduplicate the repeated candidates to one root cause per case.
 
-The 2026-09-27 final regeneration used the source snapshot recorded by
+The final 2026-09-27 regeneration used the source snapshot recorded by
 `provenance/engine-source-manifest.json`; the report `source_revision` stores that manifest's full
-SHA-256 rather than claiming that the then-uncommitted worktree was an existing Git commit.
-Each report also binds the canonical Python predicate runner path and raw executable SHA-256; the
-verifier rechecks that reference and includes the runner hash in the semantic-result digest.
+SHA-256 rather than claiming that the then-uncommitted worktree was an existing Git commit. The
+reports were produced by a copy of the executable preserved at the ignored path
+`runs/candidate-review-regression-2026-09-27/zkfDO` (not the mutable `target/` build output), and
+each report binds that copy and the canonical Python predicate runner by path and raw SHA-256.
+The runner hash is part of the semantic-result digest.
+
+This regeneration followed a fix that made the tests runnable in a clean checkout: two engine test
+and robustness edits changed the snapshot, and the semantic content of all three reports (status,
+summary, inventory, execution rows, reviews, adapters, request and spec bindings) is identical to
+the earlier same-day run. Only the four engine provenance fields changed.
+
 `verify_regression.py` checks all 73 plan/outcome pairs against the frozen reviews and evaluator
 records, all 220 execution rows (including 147 non-candidate rows), confirmation contents,
 campaign root-cause deduplication, internal path/hash links, exact result-file inventory, and the
-absence of raw assignment keys from every generated JSON file.
+absence of raw assignment keys from every generated JSON file. It has two modes:
 
-Run the deterministic checks with:
+- **Tracked evidence (default).** Every reference that resolves to a Git-tracked file must exist
+  with its recorded hash. References to ignored or external local evidence (raw candidates,
+  compiled R1CS/SYM, the preserved executable, the predicate interpreter) are counted in
+  `local_references_skipped` and not opened. The recorded engine snapshot is not compared with the
+  working tree, which may have moved on. This is the mode that `cargo test` and CI run.
+- **Local evidence (`--require-local-evidence`).** Additionally every skipped reference must exist
+  with its recorded hash, the working tree must equal the recorded engine snapshot, and the
+  candidate adapter hash is recomputed from `engine.rs`. This only passes on a machine that holds
+  the preserved raw evidence, at the recorded source snapshot.
+
+Run the checks with:
 
 ```sh
 python3 reports/candidate-review-regression-2026-09-27/build_inputs.py
 python3 reports/candidate-review-regression-2026-09-27/verify_regression.py
+python3 reports/candidate-review-regression-2026-09-27/verify_regression.py --require-local-evidence
 ```
+
+The results were regenerated into fresh directories with:
+
+```sh
+R=reports/candidate-review-regression-2026-09-27
+M=$R/provenance/engine-source-manifest.json
+for c in v1.1 v2 v3; do
+  runs/candidate-review-regression-2026-09-27/zkfDO experiment review \
+    --request $R/inputs/$c-request.json --output $R/results/$c \
+    --source-revision "worktree-engine-manifest:$(shasum -a 256 $M | cut -d' ' -f1)" \
+    --engine-source-manifest $M
+done
+```
+
+Tests that need the gitignored evidence are marked `#[ignore]` and do not run in CI:
+`cargo test --lib -- --ignored`, `cargo test --test candidate_review_backend_failure_test -- --ignored`,
+and `cargo test --test candidate_review_schema_test -- --ignored`. Moving the backend boundary tests
+onto synthetic fixtures, so that CI covers them, is a follow-up.

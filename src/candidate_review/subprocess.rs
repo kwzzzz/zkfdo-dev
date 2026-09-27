@@ -105,11 +105,21 @@ fn kill_process_group(child: &mut Child) -> Result<()> {
     {
         let group = i32::try_from(child.id()).context("subprocess ID exceeds pid_t")?;
         // The child was spawned in its own group, so a negative PID cannot signal this process.
-        if unsafe { libc::kill(-group, libc::SIGKILL) } == -1 {
+        // macOS can refuse the signal with EPERM while a just-forked member is still in execve,
+        // so that transient refusal is retried briefly before it is reported.
+        let mut attempts = 0;
+        while unsafe { libc::kill(-group, libc::SIGKILL) } == -1 {
             let error = io::Error::last_os_error();
-            if error.raw_os_error() != Some(libc::ESRCH) {
-                let _ = child.kill();
-                return Err(error).context("kill bounded subprocess group");
+            match error.raw_os_error() {
+                Some(libc::ESRCH) => break,
+                Some(libc::EPERM) if attempts < 50 => {
+                    attempts += 1;
+                    thread::sleep(Duration::from_millis(2));
+                }
+                _ => {
+                    let _ = child.kill();
+                    return Err(error).context("kill bounded subprocess group");
+                }
             }
         }
         Ok(())

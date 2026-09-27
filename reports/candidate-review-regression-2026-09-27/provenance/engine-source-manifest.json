@@ -28,8 +28,8 @@
     },
     {
       "path": "../../../src/candidate_review/r1cs.rs",
-      "size": 25747,
-      "sha256": "bf0e03926097ddf51270568f803ebed42bfeb0daaf3fca4a79b1fe6fb0eb08f2"
+      "size": 26088,
+      "sha256": "62b7a2c98e1817109396105c7ce84f9cc2cbb2facca53abfb1286d63897a9944"
     },
     {
       "path": "../../../src/candidate_review/schema.rs",
@@ -38,8 +38,8 @@
     },
     {
       "path": "../../../src/candidate_review/subprocess.rs",
-      "size": 6573,
-      "sha256": "fdcc260aa3f979b8381ad20138ac6296691cdd937a829cefad14b26680b480ca"
+      "size": 7027,
+      "sha256": "2877a59d0b6fc1d8b57be177e8b2ae30c1db459ac529a85259eddc1956ce69b6"
     },
     {
       "path": "../../../src/cli.rs",

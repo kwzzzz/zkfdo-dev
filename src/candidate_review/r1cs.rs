@@ -581,11 +581,17 @@ mod tests {
         }
     }
 
+    fn preserved_artifact(relative: &str) -> Vec<u8> {
+        let path = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join(relative);
+        std::fs::read(&path).unwrap_or_else(|error| panic!("read {}: {error}", path.display()))
+    }
+
     #[test]
+    #[ignore = "requires gitignored compiled v1.1/v2 evidence; run cargo test --lib -- --ignored"]
     fn parses_preserved_v1_and_v2_artifacts() {
-        let v1_r1cs = R1cs::parse(include_bytes!(
-            "../../reports/controlled-v1.1-execution-2026-09-20/evidence/\
-             vulnerable-component/compiled/circuit.r1cs"
+        let v1_r1cs = R1cs::parse(&preserved_artifact(
+            "reports/controlled-v1.1-execution-2026-09-20/evidence/\
+             vulnerable-component/compiled/circuit.r1cs",
         ))
         .unwrap();
         v1_r1cs
@@ -599,9 +605,9 @@ mod tests {
             })
             .unwrap();
         let v1_symbols = SymbolTable::parse(
-            include_bytes!(
-                "../../reports/controlled-v1.1-execution-2026-09-20/evidence/\
-                 vulnerable-component/compiled/circuit.sym"
+            &preserved_artifact(
+                "reports/controlled-v1.1-execution-2026-09-20/evidence/\
+                 vulnerable-component/compiled/circuit.sym",
             ),
             &v1_r1cs,
         )
@@ -609,9 +615,9 @@ mod tests {
         assert_eq!(v1_symbols.by_name.len(), 4);
         assert!(v1_symbols.eliminated_names.is_empty());
 
-        let v2_r1cs = R1cs::parse(include_bytes!(
-            "../../reports/controlled-v2-execution-2026-09-20/evidence/\
-             banyan-vulnerable-compiled/circuit.r1cs"
+        let v2_r1cs = R1cs::parse(&preserved_artifact(
+            "reports/controlled-v2-execution-2026-09-20/evidence/\
+             banyan-vulnerable-compiled/circuit.r1cs",
         ))
         .unwrap();
         v2_r1cs
@@ -625,9 +631,9 @@ mod tests {
             })
             .unwrap();
         let v2_symbols = SymbolTable::parse(
-            include_bytes!(
-                "../../reports/controlled-v2-execution-2026-09-20/evidence/\
-                 banyan-vulnerable-compiled/circuit.sym"
+            &preserved_artifact(
+                "reports/controlled-v2-execution-2026-09-20/evidence/\
+                 banyan-vulnerable-compiled/circuit.sym",
             ),
             &v2_r1cs,
         )

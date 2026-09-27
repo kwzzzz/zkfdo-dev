@@ -125,11 +125,26 @@ fn checked_in_regressions_are_complete_value_free_and_substantively_identical() 
         assert_eq!(inventory.matched_candidate_count, candidates);
     }
 
+    let verified = run_regression_verifier(&[]);
+    assert_eq!(verified["mode"], "tracked-evidence");
+}
+
+#[test]
+#[ignore = "requires the recorded engine source snapshot, preserved executable, and gitignored raw evidence; run cargo test --test candidate_review_schema_test -- --ignored"]
+fn checked_in_regressions_match_preserved_local_evidence() {
+    let verified = run_regression_verifier(&["--require-local-evidence"]);
+    assert_eq!(verified["mode"], "local-evidence");
+    assert_eq!(verified["local_references_skipped"], 0);
+}
+
+fn run_regression_verifier(arguments: &[&str]) -> Value {
     let verifier = Path::new(env!("CARGO_MANIFEST_DIR"))
         .join(ROOT)
         .join("verify_regression.py");
     let output = Command::new("python3")
+        .arg("-B")
         .arg(&verifier)
+        .args(arguments)
         .output()
         .unwrap_or_else(|error| panic!("failed to run {}: {error}", verifier.display()));
     assert!(
@@ -145,9 +160,11 @@ fn checked_in_regressions_are_complete_value_free_and_substantively_identical() 
     assert_eq!(verified["totals"]["execution_rows"], 220);
     assert_eq!(verified["totals"]["validated"], 73);
     assert_eq!(verified["totals"]["noncandidate_rows"], 147);
+    verified
 }
 
 #[test]
+#[ignore = "requires gitignored controlled-v3 compiled evidence; run cargo test --test candidate_review_schema_test -- --ignored"]
 fn zero_candidate_outcome_is_a_complete_negative_review() {
     let repository = Path::new(env!("CARGO_MANIFEST_DIR"));
     let temporary = tempdir().unwrap();

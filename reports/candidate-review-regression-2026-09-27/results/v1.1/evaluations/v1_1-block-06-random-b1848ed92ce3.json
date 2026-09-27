@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "report_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/candidate-review-regression-2026-09-27/results/.zkfdo-candidate-review-d981705d-eb0d-4ecd-9e84-60c2660d84f9.staging/evaluations/v1_1-block-06-random-b1848ed92ce3.json",
+  "report_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/candidate-review-regression-2026-09-27/results/.zkfdo-candidate-review-7c678fad-0bbe-4219-9994-7d46c171acbe.staging/evaluations/v1_1-block-06-random-b1848ed92ce3.json",
   "plan_id": "3e5aa6c5-179e-419a-b345-73048673182c",
   "outcome_id": "6c3e4797-d578-42ec-8229-afcf8b030af2",
   "strategy": "random",
@@ -85,8 +85,8 @@
     },
     "planning_seconds": 0.003093041,
     "fuzzing_scheduler_seconds": 0.911254291,
-    "evaluation_seconds": 0.003702458,
-    "separate_phase_sum_seconds": 2.7949122479999997
+    "evaluation_seconds": 0.003431584,
+    "separate_phase_sum_seconds": 2.794641374
   },
   "limitations": [
     "Recall@K uses the target as its unit and only manifest-annotated known-defect targets as its denominator; unlabeled targets are not safe negatives.",

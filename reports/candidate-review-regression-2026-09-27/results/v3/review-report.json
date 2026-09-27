@@ -15,11 +15,11 @@
   ],
   "engine": {
     "version": "candidate-review-schema1",
-    "source_revision": "worktree-engine-manifest:3242ec81e125a8c968bb816dff65a852f9911a1f8923687fed5f33b4a4a15af7",
+    "source_revision": "worktree-engine-manifest:bb25987ed3f6455b8a60c029b5dcb7985d733baa2b305a68398727d77f39f7e6",
     "source_manifest_path": "../../provenance/engine-source-manifest.json",
-    "source_manifest_sha256": "3242ec81e125a8c968bb816dff65a852f9911a1f8923687fed5f33b4a4a15af7",
-    "executable_path": "../../../../target/debug/zkfDO",
-    "executable_sha256": "7b459a396ed0ce6f1cb2710cdafb5e783d6e8d94b94853edbd653005808b6a1c",
+    "source_manifest_sha256": "bb25987ed3f6455b8a60c029b5dcb7985d733baa2b305a68398727d77f39f7e6",
+    "executable_path": "../../../../runs/candidate-review-regression-2026-09-27/zkfDO",
+    "executable_sha256": "f3d9c8977521af10107200d3fac8bb35d3b786da5c64a9a175966da1ea95ebbf",
     "predicate_runner_path": "../../../../../../../../opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
     "predicate_runner_sha256": "87d4df53fd91304be5bac391fb204643c36b7df2023c04a0953bcbc7d4fdf634"
   },
@@ -181,7 +181,7 @@
       "ground_truth_qualification": null,
       "violation_class": "one-hot-output-equivalence",
       "confirmation_eligible": true,
-      "automated_review_seconds": 0.028826791,
+      "automated_review_seconds": 0.03182125,
       "predicate_stream_nonempty": false
     }
   ],
@@ -194,6 +194,6 @@
     "attributed_validated": 1,
     "unique_validated_root_causes": 1
   },
-  "semantic_result_sha256": "707afe9d63dd4e4ca8baca7cc202b5b0ad7be05b14e49ffd600c3e38118266ca",
+  "semantic_result_sha256": "cd9cb0c98ec3ffbd08c1b280402dc5874eca2e7cb5ae05098a8375cbe63ab8e3",
   "raw_values_persisted": false
 }

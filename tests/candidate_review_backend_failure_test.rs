@@ -215,6 +215,7 @@ fn original_spec() -> PathBuf {
 }
 
 #[test]
+#[ignore = "requires gitignored controlled-v3 evidence (compiled R1CS/SYM and preserved candidate); run cargo test --test candidate_review_backend_failure_test -- --ignored"]
 fn multiple_candidates_and_specs_keep_all_reviews_but_deduplicate_confirmation() {
     let temporary = tempfile::tempdir().unwrap();
     let mut outcome = original_outcome();
@@ -259,6 +260,7 @@ fn multiple_candidates_and_specs_keep_all_reviews_but_deduplicate_confirmation()
 }
 
 #[test]
+#[ignore = "requires gitignored controlled-v3 evidence (compiled R1CS/SYM and preserved candidate); run cargo test --test candidate_review_backend_failure_test -- --ignored"]
 fn unavailable_candidate_is_an_incomplete_inventory_error() {
     let temporary = tempfile::tempdir().unwrap();
     let mut outcome = original_outcome();
@@ -282,6 +284,7 @@ fn unavailable_candidate_is_an_incomplete_inventory_error() {
 }
 
 #[test]
+#[ignore = "requires gitignored controlled-v3 evidence (compiled R1CS/SYM and preserved candidate); run cargo test --test candidate_review_backend_failure_test -- --ignored"]
 fn malformed_verified_candidate_is_a_pair_review_error() {
     let temporary = tempfile::tempdir().unwrap();
     let mut outcome = original_outcome();
@@ -302,6 +305,7 @@ fn malformed_verified_candidate_is_a_pair_review_error() {
 }
 
 #[test]
+#[ignore = "requires gitignored controlled-v3 evidence (compiled R1CS/SYM and preserved candidate); run cargo test --test candidate_review_backend_failure_test -- --ignored"]
 fn shared_inventory_or_spec_hash_damage_is_a_failed_report() {
     for damage_spec_hash in [false, true] {
         let temporary = tempfile::tempdir().unwrap();
@@ -323,6 +327,7 @@ fn shared_inventory_or_spec_hash_damage_is_a_failed_report() {
 }
 
 #[test]
+#[ignore = "requires gitignored controlled-v3 evidence (compiled R1CS/SYM and preserved candidate); run cargo test --test candidate_review_backend_failure_test -- --ignored"]
 fn duplicated_or_mislabeled_campaign_evidence_is_rejected() {
     let scenarios: [fn(&TempDir, &mut Value); 6] = [
         |temporary, request| {
@@ -439,6 +444,7 @@ fn duplicated_or_mislabeled_campaign_evidence_is_rejected() {
 }
 
 #[test]
+#[ignore = "requires gitignored controlled-v3 evidence (compiled R1CS/SYM and preserved candidate); run cargo test --test candidate_review_backend_failure_test -- --ignored"]
 fn project_scope_without_satisfied_reachability_is_rejected() {
     let temporary = tempfile::tempdir().unwrap();
     let spec_path = absolute_spec_copy(&temporary);
@@ -455,6 +461,7 @@ fn project_scope_without_satisfied_reachability_is_rejected() {
 }
 
 #[test]
+#[ignore = "requires gitignored controlled-v3 evidence (compiled R1CS/SYM and preserved candidate); run cargo test --test candidate_review_backend_failure_test -- --ignored"]
 fn every_backend_spec_must_bind_a_target_in_a_supplied_plan() {
     let temporary = tempfile::tempdir().unwrap();
     let spec_path = absolute_spec_copy(&temporary);
@@ -472,6 +479,7 @@ fn every_backend_spec_must_bind_a_target_in_a_supplied_plan() {
 }
 
 #[test]
+#[ignore = "requires gitignored controlled-v3 evidence (compiled R1CS/SYM and preserved candidate); run cargo test --test candidate_review_backend_failure_test -- --ignored"]
 fn qualification_bundle_set_must_exactly_match_injected_backend_specs() {
     let temporary = tempfile::tempdir().unwrap();
     let result = run_case(
@@ -495,6 +503,7 @@ fn qualification_bundle_set_must_exactly_match_injected_backend_specs() {
 }
 
 #[test]
+#[ignore = "requires gitignored controlled-v3 evidence (compiled R1CS/SYM and preserved candidate); run cargo test --test candidate_review_backend_failure_test -- --ignored"]
 fn review_spec_source_closure_must_match_the_plan_target() {
     let temporary = tempfile::tempdir().unwrap();
     let spec_path = absolute_spec_copy(&temporary);
@@ -531,6 +540,7 @@ fn review_spec_source_closure_must_match_the_plan_target() {
 }
 
 #[test]
+#[ignore = "requires gitignored controlled-v3 evidence (compiled R1CS/SYM and preserved candidate); run cargo test --test candidate_review_backend_failure_test -- --ignored"]
 fn review_spec_cannot_bind_another_file_from_the_same_plan_closure() {
     let temporary = tempfile::tempdir().unwrap();
     let spec_path = absolute_spec_copy(&temporary);
@@ -552,6 +562,7 @@ fn review_spec_cannot_bind_another_file_from_the_same_plan_closure() {
 }
 
 #[test]
+#[ignore = "requires gitignored controlled-v3 evidence (compiled R1CS/SYM and preserved candidate); run cargo test --test candidate_review_backend_failure_test -- --ignored"]
 fn review_spec_compilation_must_match_the_frozen_prepared_target() {
     for scenario in ["arguments", "binary", "r1cs"] {
         let temporary = tempfile::tempdir().unwrap();
@@ -587,6 +598,7 @@ fn review_spec_compilation_must_match_the_frozen_prepared_target() {
 
 #[cfg(unix)]
 #[test]
+#[ignore = "requires gitignored controlled-v3 evidence (compiled R1CS/SYM and preserved candidate); run cargo test --test candidate_review_backend_failure_test -- --ignored"]
 fn review_spec_accepts_the_matching_snapshot_root_and_closure() {
     use std::os::unix::fs::symlink;
 

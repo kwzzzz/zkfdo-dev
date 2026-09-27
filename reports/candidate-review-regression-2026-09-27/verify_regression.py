@@ -1,10 +1,20 @@
 #!/usr/bin/env python3
-"""Cross-check value-free common-review outputs against the frozen v1.1-v3 records."""
+"""Cross-check value-free common-review outputs against the frozen v1.1-v3 records.
 
+The default tracked-evidence mode verifies every reference that resolves to a Git-tracked
+file and skips references to ignored or external local evidence (raw candidates, compiled
+artifacts, the preserved executable, the predicate interpreter). It also leaves the current
+engine sources unchecked, because the reports bind the recorded source snapshot rather than
+the working tree. `--require-local-evidence` additionally requires every such reference to
+exist with its recorded hash and the working tree to equal the recorded engine snapshot.
+"""
+
+import argparse
 import hashlib
 import json
 import os
 import re
+import subprocess
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -102,6 +112,41 @@ REQUIRED_ENGINE_SOURCES = (
 )
 
 
+class Evidence:
+    """Which references must be present and hash-identical in the current checkout."""
+
+    def __init__(self, require_local):
+        self.require_local = require_local
+        self.tracked = None if require_local else tracked_files()
+        self.skipped = set()
+
+    @property
+    def mode(self):
+        return "local-evidence" if self.require_local else "tracked-evidence"
+
+    def must_verify(self, target):
+        if self.require_local or target in self.tracked:
+            return True
+        self.skipped.add(target)
+        return False
+
+
+def tracked_files():
+    listing = subprocess.run(
+        ["git", "-C", str(ROOT), "ls-files", "-z"],
+        check=True,
+        capture_output=True,
+    ).stdout
+    return {
+        (ROOT / os.fsdecode(entry)).resolve()
+        for entry in listing.split(b"\0")
+        if entry
+    }
+
+
+EVIDENCE = None
+
+
 def load(path):
     return json.loads(path.read_text())
 
@@ -121,8 +166,9 @@ def equal(actual, expected, context):
 
 def resolve_reference(declaring_file, reference):
     target = (declaring_file.parent / reference["path"]).resolve()
-    require(target.is_file(), f"missing referenced file: {target}")
-    equal(digest(target), reference["sha256"], f"SHA-256 for {target}")
+    if EVIDENCE.must_verify(target):
+        require(target.is_file(), f"missing referenced file: {target}")
+        equal(digest(target), reference["sha256"], f"SHA-256 for {target}")
     return target
 
 
@@ -132,8 +178,9 @@ def reference_identity(declaring_file, reference):
 
 def resolve_root_record(path, sha256, context):
     target = (ROOT / path).resolve()
-    require(target.is_file(), f"{context} is missing: {target}")
-    equal(digest(target), sha256, f"{context} SHA-256")
+    if EVIDENCE.must_verify(target):
+        require(target.is_file(), f"{context} is missing: {target}")
+        equal(digest(target), sha256, f"{context} SHA-256")
     return target
 
 
@@ -180,7 +227,7 @@ def verify_review_references(report_path, report):
             resolve_reference(report_path, evidence)
 
 
-def verify_directory_manifest(path):
+def verify_directory_manifest(path, check_files=True):
     manifest = load(path)
     equal(set(manifest), {"schema_version", "files"}, f"directory manifest fields for {path}")
     equal(manifest["schema_version"], 1, f"directory manifest schema for {path}")
@@ -200,11 +247,13 @@ def verify_directory_manifest(path):
         )
         logical_paths.append(logical)
         target = (path.parent / logical).resolve()
+        require(target not in entries, f"duplicate resolved manifest file: {target}")
+        entries[target] = entry["sha256"]
+        if not check_files:
+            continue
         require(target.is_file(), f"missing manifest file: {target}")
         equal(target.stat().st_size, entry["size"], f"size for {target}")
         equal(digest(target), entry["sha256"], f"SHA-256 for {target}")
-        require(target not in entries, f"duplicate resolved manifest file: {target}")
-        entries[target] = entry["sha256"]
     equal(logical_paths, sorted(set(logical_paths)), f"sorted unique manifest paths for {path}")
     return entries
 
@@ -319,9 +368,20 @@ def verify_report_bindings(bundle_path, bundle, request_path, request, report_pa
             "sha256": engine["source_manifest_sha256"],
         },
     )
-    engine_files = verify_directory_manifest(engine_manifest_path)
+    # The manifest records the engine snapshot that produced these reports. Only local-evidence
+    # mode compares that snapshot with the working tree, which may have moved on since.
+    engine_files = verify_directory_manifest(
+        engine_manifest_path,
+        check_files=EVIDENCE.require_local,
+    )
     engine_source = (ROOT / "src/candidate_review/engine.rs").resolve()
-    verify_required_engine_sources(engine_files)
+    for relative_source in REQUIRED_ENGINE_SOURCES:
+        require(
+            (ROOT / relative_source).resolve() in engine_files,
+            f"engine source manifest omits {relative_source}",
+        )
+    if EVIDENCE.require_local:
+        verify_required_engine_sources(engine_files)
     resolve_reference(
         report_path,
         {
@@ -342,14 +402,16 @@ def verify_report_bindings(bundle_path, bundle, request_path, request, report_pa
         "engine source revision binding",
     )
 
-    expected_adapter = {
-        "id": "zkfuzz-counterexample-v1",
-        "implementation_sha256": hashlib.sha256(
-            engine_source.read_bytes() + b"\0" + CANDIDATE_ADAPTER_DESCRIPTOR
-        ).hexdigest(),
-    }
-    equal(request["candidate_adapter"], expected_adapter, "request candidate adapter")
-    equal(report["adapters"], [expected_adapter], "report candidate adapters")
+    equal(request["candidate_adapter"]["id"], "zkfuzz-counterexample-v1", "request adapter id")
+    equal(report["adapters"], [request["candidate_adapter"]], "report candidate adapters")
+    if EVIDENCE.require_local:
+        expected_adapter = {
+            "id": "zkfuzz-counterexample-v1",
+            "implementation_sha256": hashlib.sha256(
+                engine_source.read_bytes() + b"\0" + CANDIDATE_ADAPTER_DESCRIPTOR
+            ).hexdigest(),
+        }
+        equal(request["candidate_adapter"], expected_adapter, "request candidate adapter")
     equal(
         semantic_result_sha256(report),
         report["semantic_result_sha256"],
@@ -426,6 +488,8 @@ def candidate_value_guard(report_path, report):
         if candidate is None:
             continue
         candidate_path = resolve_reference(report_path, candidate)
+        if not EVIDENCE.must_verify(candidate_path):
+            continue
         raw = load(candidate_path)
         assignment = raw.get("7_assignment")
         require(isinstance(assignment, dict), f"candidate lacks assignment object: {candidate_path}")
@@ -556,10 +620,16 @@ def load_frozen_pairs(case, expected):
                 evaluation_row[field],
                 f"{case} frozen {coordinates} {field}",
             )
-        evaluation_output_path = ROOT / evaluation_row["evaluation_path"]
+        # The per-pair evaluator outputs were kept under ignored runs/; the tracked index pins
+        # their hashes. Without them only the tracked review and index fields are compared.
+        evaluation_output_path = (ROOT / evaluation_row["evaluation_path"]).resolve()
         pairs[coordinates] = {
             "review": review_row,
-            "evaluation": load(evaluation_output_path),
+            "evaluation": (
+                load(evaluation_output_path)
+                if EVIDENCE.must_verify(evaluation_output_path)
+                else None
+            ),
             "evaluation_record": evaluation_row,
         }
     return pairs
@@ -755,11 +825,12 @@ def verify_evaluation(evaluation, plan, outcome, frozen, expected, context):
     )
     equal(evaluation["first_confirmed_defect_observed_by_seconds"], None, f"{context} first project time")
 
-    equal(set(evaluation), set(frozen_evaluation), f"{context} frozen evaluator fields")
-    equal(frozen_evaluation["schema_version"], 2, f"{context} frozen evaluator schema")
-    semantic_fields = set(frozen_evaluation) - EVALUATOR_NONSEMANTIC_FIELDS - {"schema_version"}
-    for field in sorted(semantic_fields):
-        equal(evaluation[field], frozen_evaluation[field], f"{context} frozen evaluator {field}")
+    if frozen_evaluation is not None:
+        equal(set(evaluation), set(frozen_evaluation), f"{context} frozen evaluator fields")
+        equal(frozen_evaluation["schema_version"], 2, f"{context} frozen evaluator schema")
+        semantic_fields = set(frozen_evaluation) - EVALUATOR_NONSEMANTIC_FIELDS - {"schema_version"}
+        for field in sorted(semantic_fields):
+            equal(evaluation[field], frozen_evaluation[field], f"{context} frozen evaluator {field}")
 
     expected_statuses = Counter(
         run["result"]["status"] for run in outcome["scheduler"]["runs"] if run["result"] is not None
@@ -924,6 +995,16 @@ def verify_case(case, expected):
 
 
 def main():
+    global EVIDENCE
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument(
+        "--require-local-evidence",
+        action="store_true",
+        help="also require ignored raw evidence, the preserved executable, and the recorded "
+        "engine source snapshot",
+    )
+    arguments = parser.parse_args()
+    EVIDENCE = Evidence(arguments.require_local_evidence)
     verify_semanticize_ordering()
     verify_raw_value_guard()
     verify_provenance_negative_checks()
@@ -934,7 +1015,18 @@ def main():
         "validated": sum(row["validated"] for row in cases),
         "noncandidate_rows": sum(row["noncandidate_rows"] for row in cases),
     }
-    print(json.dumps({"status": "pass", "cases": cases, "totals": totals}, sort_keys=True))
+    print(
+        json.dumps(
+            {
+                "status": "pass",
+                "mode": EVIDENCE.mode,
+                "local_references_skipped": len(EVIDENCE.skipped),
+                "cases": cases,
+                "totals": totals,
+            },
+            sort_keys=True,
+        )
+    )
 
 
 if __name__ == "__main__":
