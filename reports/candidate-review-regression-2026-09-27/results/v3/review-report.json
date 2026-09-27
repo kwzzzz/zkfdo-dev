@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "report_id": "candidate-review-regression-v3",
+  "kind": "backend-candidates",
+  "status": "complete",
+  "review_request": {
+    "path": "../../inputs/v3-request.json",
+    "sha256": "fbd702282035313eb2e2e2c64e495ffa94f4a18de01f7e7b717ea67b1f58a880"
+  },
+  "review_specs": [
+    {
+      "path": "../../inputs/v3-spec.json",
+      "sha256": "3d27ae23465e5cd350ce22a694ac9e3b974d20ab66959a2bc52bc8ff156b9ad7"
+    }
+  ],
+  "engine": {
+    "version": "candidate-review-schema1",
+    "source_revision": "worktree-engine-manifest:3242ec81e125a8c968bb816dff65a852f9911a1f8923687fed5f33b4a4a15af7",
+    "source_manifest_path": "../../provenance/engine-source-manifest.json",
+    "source_manifest_sha256": "3242ec81e125a8c968bb816dff65a852f9911a1f8923687fed5f33b4a4a15af7",
+    "executable_path": "../../../../target/debug/zkfDO",
+    "executable_sha256": "7b459a396ed0ce6f1cb2710cdafb5e783d6e8d94b94853edbd653005808b6a1c",
+    "predicate_runner_path": "../../../../../../../../opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+    "predicate_runner_sha256": "87d4df53fd91304be5bac391fb204643c36b7df2023c04a0953bcbc7d4fdf634"
+  },
+  "adapters": [
+    {
+      "id": "zkfuzz-counterexample-v1",
+      "implementation_sha256": "3a266f8bf9d7a06fc740ad32e0d1e1fcefd87794ca649620c55a76751a3dced2"
+    }
+  ],
+  "failure": null,
+  "candidate_inventory": {
+    "outcome_candidate_count": 1,
+    "matched_candidate_count": 1,
+    "unmatched_candidate_count": 0,
+    "candidate_error_count": 0,
+    "review_pair_count": 1,
+    "terminal_review_pair_count": 1,
+    "complete": true
+  },
+  "executions": [
+    {
+      "execution_id": "v3-risk-only",
+      "plan_index": 0,
+      "run_id": "506a5350-dc89-4b92-9ab3-32f565c9cdc1",
+      "target_id": "sha256:6f2c43c5a4a81b1a77099f29be2a769c06075f817315f3ee0e8f12c12e3d8352",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "v3-risk-only",
+      "plan_index": 1,
+      "run_id": "5d668afb-95d7-48ae-9205-6c645dfb66c4",
+      "target_id": "sha256:7aa9cb58574b90108bca0ca60b88ea35e81320f887aa5bac39503980ce2c2d61",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "v3-risk-only",
+      "plan_index": 2,
+      "run_id": "b39fb010-bc6d-4d07-8717-fff7900db602",
+      "target_id": "sha256:1c00a72631bc6e31451c6fca4a5b21827784504727eb1648e3dd90376e530be6",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "v3-risk-only",
+      "plan_index": 3,
+      "run_id": "3aeddcd0-c608-4449-93c9-515d57d3e019",
+      "target_id": "sha256:593ebf069393e830a57a6cf4f611cee14562ae6b351e218495ea86b38530fd21",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    }
+  ],
+  "candidate_errors": [],
+  "unreviewed_candidates": [],
+  "reviews": [
+    {
+      "review_kind": "backend-candidate",
+      "candidate_record_id": "v3-risk-only/0000",
+      "candidate": {
+        "path": "../../../../runs/controlled-v3-development/pilot-2026-09-23/execution/execution-aa47e6bc-8901-443b-b921-7e7d0f664464/counterexample-candidates/0004/circuit.circom_VF1ZAmVHFu_counterexample.json",
+        "sha256": "d5a3d6f233b26b487390341912e3af70d6176900d5be4b33ae2aabf0817fa5c7"
+      },
+      "binding": {
+        "execution_id": "v3-risk-only",
+        "plan_index": 3,
+        "run_id": "3aeddcd0-c608-4449-93c9-515d57d3e019",
+        "target_id": "sha256:593ebf069393e830a57a6cf4f611cee14562ae6b351e218495ea86b38530fd21",
+        "candidate_hash_verified": true,
+        "candidate_metadata_verified": true
+      },
+      "review_spec": {
+        "id": "regression/v3/decoder",
+        "path": "../../inputs/v3-spec.json",
+        "sha256": "3d27ae23465e5cd350ce22a694ac9e3b974d20ab66959a2bc52bc8ff156b9ad7"
+      },
+      "root_cause_id": "iden3/circomlib/decoder-unconstrained-one-hot-output",
+      "expected_scope": "original-component",
+      "artifact_verification": {
+        "r1cs_sha256_verified": true,
+        "sym_sha256_verified": true,
+        "assignment_complete": true
+      },
+      "failed_target_constraint_count": 0,
+      "failed_target_constraint_indices": [],
+      "criteria": {
+        "assignment_encoding": {
+          "verdict": "satisfied",
+          "reason_code": "canonical",
+          "evidence": [
+            {
+              "path": "../../../../runs/controlled-v3-development/pilot-2026-09-23/execution/execution-aa47e6bc-8901-443b-b921-7e7d0f664464/counterexample-candidates/0004/circuit.circom_VF1ZAmVHFu_counterexample.json",
+              "sha256": "d5a3d6f233b26b487390341912e3af70d6176900d5be4b33ae2aabf0817fa5c7"
+            }
+          ],
+          "note": "All field-valued assignment entries are canonical."
+        },
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "reason_code": "contract-satisfied",
+          "evidence": [
+            {
+              "path": "../../../../runs/controlled-v3-development/pilot-2026-09-23/execution/execution-aa47e6bc-8901-443b-b921-7e7d0f664464/counterexample-candidates/0004/circuit.circom_VF1ZAmVHFu_counterexample.json",
+              "sha256": "d5a3d6f233b26b487390341912e3af70d6176900d5be4b33ae2aabf0817fa5c7"
+            },
+            {
+              "path": "../../../../datasets/contracts.controlled-v3-development.json",
+              "sha256": "5bfd409ab5d748a82c7dc0448a1c776a4d85107294e2988f752769d0026357ea"
+            }
+          ],
+          "note": "The predeclared input contract is satisfied."
+        },
+        "fixed_target_constraints": {
+          "verdict": "satisfied",
+          "reason_code": "all-constraints-satisfied",
+          "evidence": [
+            {
+              "path": "../../../../runs/controlled-v3-development/pilot-2026-09-23/execution/execution-aa47e6bc-8901-443b-b921-7e7d0f664464/counterexample-candidates/0004/circuit.circom_VF1ZAmVHFu_counterexample.json",
+              "sha256": "d5a3d6f233b26b487390341912e3af70d6176900d5be4b33ae2aabf0817fa5c7"
+            },
+            {
+              "path": "../../../../runs/controlled-v3-development/pilot-2026-09-23/review-decoder-r1cs/circuit.r1cs",
+              "sha256": "89627dd5739a231818cf2f06f45413741e0fdbd951a6cfbad6f89e2ccb81ccb9"
+            }
+          ],
+          "note": "All constraints in the fixed target R1CS are satisfied."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "reason_code": "property-violated",
+          "evidence": [
+            {
+              "path": "../../../../runs/controlled-v3-development/pilot-2026-09-23/execution/execution-aa47e6bc-8901-443b-b921-7e7d0f664464/counterexample-candidates/0004/circuit.circom_VF1ZAmVHFu_counterexample.json",
+              "sha256": "d5a3d6f233b26b487390341912e3af70d6176900d5be4b33ae2aabf0817fa5c7"
+            },
+            {
+              "path": "../../../../datasets/contracts.controlled-v3-development.json",
+              "sha256": "5bfd409ab5d748a82c7dc0448a1c776a4d85107294e2988f752769d0026357ea"
+            }
+          ],
+          "note": "The predeclared property is violated."
+        }
+      },
+      "disposition": "validated",
+      "cause_attribution": {
+        "verdict": "matched",
+        "reason_code": "known-defect-binding-matched",
+        "evidence": [
+          {
+            "path": "../../../../datasets/contracts.controlled-v3-development.json",
+            "sha256": "5bfd409ab5d748a82c7dc0448a1c776a4d85107294e2988f752769d0026357ea"
+          }
+        ]
+      },
+      "ground_truth_qualification": null,
+      "violation_class": "one-hot-output-equivalence",
+      "confirmation_eligible": true,
+      "automated_review_seconds": 0.028826791,
+      "predicate_stream_nonempty": false
+    }
+  ],
+  "summary": {
+    "validated": 1,
+    "rejected": 0,
+    "unresolved": 0,
+    "review_error": 0,
+    "unreviewed_candidates": 0,
+    "attributed_validated": 1,
+    "unique_validated_root_causes": 1
+  },
+  "semantic_result_sha256": "707afe9d63dd4e4ca8baca7cc202b5b0ad7be05b14e49ffd600c3e38118266ca",
+  "raw_values_persisted": false
+}

@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "files": [
+    {
+      "path": "../../../Cargo.lock",
+      "size": 40047,
+      "sha256": "da028060f7d0ad7ce6fb8b93f8657715ce79f3f84c58f6f758264c3b62addf87"
+    },
+    {
+      "path": "../../../Cargo.toml",
+      "size": 964,
+      "sha256": "87b748c379bd4db4809336b5eab3ce7fd99d78a709773c39417663099d667007"
+    },
+    {
+      "path": "../../../src/candidate_review/engine.rs",
+      "size": 252216,
+      "sha256": "8491d926b2742a1b97b4b5728623faa11a1e3e6879cb0efc2a98d8da52742031"
+    },
+    {
+      "path": "../../../src/candidate_review/mod.rs",
+      "size": 125,
+      "sha256": "cb7d852a01d694ec01dcd95740329b33097aecdcab8b568f3e2e6464c38794de"
+    },
+    {
+      "path": "../../../src/candidate_review/predicate.rs",
+      "size": 10317,
+      "sha256": "726376231664d9f7c60aae1c6ad0edd35a6e51becac2c094ea4eac5f23db9cdc"
+    },
+    {
+      "path": "../../../src/candidate_review/r1cs.rs",
+      "size": 25747,
+      "sha256": "bf0e03926097ddf51270568f803ebed42bfeb0daaf3fca4a79b1fe6fb0eb08f2"
+    },
+    {
+      "path": "../../../src/candidate_review/schema.rs",
+      "size": 30835,
+      "sha256": "2fbe28bd88fb6609ca3c28be558ac668529a5cfb9076d1f75e548e3789cbdc7a"
+    },
+    {
+      "path": "../../../src/candidate_review/subprocess.rs",
+      "size": 6573,
+      "sha256": "fdcc260aa3f979b8381ad20138ac6296691cdd937a829cefad14b26680b480ca"
+    },
+    {
+      "path": "../../../src/cli.rs",
+      "size": 14636,
+      "sha256": "d525bf86392287bc2a42d2433d039d55b34660cf7838a365938171cb84b94048"
+    },
+    {
+      "path": "../../../src/experiment.rs",
+      "size": 58541,
+      "sha256": "e784376db8cb8a3e6f6a3e7c286c06be86e202b0b0bf1e7a8288ac771fb02ed0"
+    },
+    {
+      "path": "../../../src/structure.rs",
+      "size": 18089,
+      "sha256": "ac0cee8da2590a1052af24b5a1b392fcd7f1d8866e19ddc0ff37373bad0ffc93"
+    },
+    {
+      "path": "../../../src/targets.rs",
+      "size": 130337,
+      "sha256": "667cbb89f88f37588985d5235ca09c3c1ac648ffe46d26391ca4a0e822b8056a"
+    },
+    {
+      "path": "../build_inputs.py",
+      "size": 13813,
+      "sha256": "b6d6ad32af9e48b4dbdf84483b3a254b8a20daefcfd4eec779f139d34a0ead4a"
+    }
+  ]
+}

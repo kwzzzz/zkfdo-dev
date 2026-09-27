@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "review_spec_id": "regression/v1.1/subtract",
+  "root_cause_id": "inference-labs-inc/subnet-2-circom/koukyosyumei_subtract_unconstrained_multiplier",
+  "subject_kind": "published-vulnerable-source",
+  "expected_scope": "original-component",
+  "target_binding": {
+    "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+    "instance_key": null,
+    "template": "Subtract",
+    "concrete_parameters": [],
+    "source_path": "../../../datasets/controlled-v1/subtract/vulnerable/subtractTensor.circom",
+    "source_sha256": "502ee44b70a368066fafcf09cc2d0356479f8a862bfa726bde8097c728c83cc1",
+    "source_closure_manifest_path": "../provenance/v1.1-source-closure.json",
+    "source_closure_manifest_sha256": "de0267c43e13af5ebe6b6dce0cee51692294d1ebf1c4ebfd048f1143e9e85c9c"
+  },
+  "field": {
+    "name": "bn128",
+    "modulus_decimal": "21888242871839275222246405745257275088548364400416034343698204186575808495617",
+    "assignment_encoding": "canonical-field-elements"
+  },
+  "compiled_subject": {
+    "r1cs_path": "../../controlled-v1.1-execution-2026-09-20/evidence/vulnerable-component/compiled/circuit.r1cs",
+    "r1cs_sha256": "14c18b08f5697b259526002cb217552c0a08ddc236fdb357bee2f40409cfb04f",
+    "sym_path": "../../controlled-v1.1-execution-2026-09-20/evidence/vulnerable-component/compiled/circuit.sym",
+    "sym_sha256": "b378da791b4f4b539188ff2917d0080da58e7a3aefca8973559c22201a421a47",
+    "expected_shape": {
+      "wires": 5,
+      "labels": 5,
+      "public_outputs": 1,
+      "public_inputs": 0,
+      "private_inputs": 2,
+      "constraints": 1
+    }
+  },
+  "compiler": {
+    "version": "2.2.3",
+    "binary_sha256": "8991887889c2a74d6fc704d5689ada4cc76fba004e866c987de6cbf3b3db6227",
+    "arguments": [],
+    "library_manifest_path": "../provenance/v1.1-source-closure.json",
+    "library_manifest_sha256": "de0267c43e13af5ebe6b6dce0cee51692294d1ebf1c4ebfd048f1143e9e85c9c"
+  },
+  "contract": {
+    "definition_path": "../../../datasets/contracts.controlled-v1.json",
+    "definition_sha256": "d954de5fe6d8adbeb010f307119b9b3a0207d80b900ed9365d53a16a0f293f9a",
+    "input_contract_id": "v1.1-preserved-input-contract",
+    "property_id": "v1.1-preserved-property",
+    "input_contract_statement": "a and b are canonical BN128 field elements.",
+    "property_statement": "The constrained subtraction output equals a minus b modulo the field.",
+    "input_signal_names": [
+      "main.a",
+      "main.b"
+    ],
+    "property_signal_names": [
+      "main.c"
+    ],
+    "predicate": {
+      "api_version": 1,
+      "path": "../predicates/subtract.py",
+      "sha256": "0187e46467b9a95486643bf6d82e9e5819926d3df6101e9ed1c737538038aa55",
+      "entrypoint": "evaluate",
+      "config": {},
+      "allowed_results": [
+        {
+          "criterion": "input_preconditions",
+          "verdict": "satisfied",
+          "reason_code": "contract-satisfied",
+          "note": "The predeclared input contract is satisfied."
+        },
+        {
+          "criterion": "input_preconditions",
+          "verdict": "not-satisfied",
+          "reason_code": "input-noncanonical",
+          "note": "At least one declared input is not a canonical field element."
+        },
+        {
+          "criterion": "specified_property_violation",
+          "verdict": "satisfied",
+          "reason_code": "property-violated",
+          "note": "The predeclared property is violated."
+        },
+        {
+          "criterion": "specified_property_violation",
+          "verdict": "not-satisfied",
+          "reason_code": "property-holds",
+          "note": "The predeclared property holds for this assignment."
+        },
+        {
+          "criterion": "specified_property_violation",
+          "verdict": "unknown",
+          "reason_code": "input-precondition-unresolved",
+          "note": "The property cannot be interpreted because its input precondition is unresolved."
+        }
+      ],
+      "allowed_violation_classes": [
+        "subtraction-output-mismatch"
+      ]
+    }
+  },
+  "attribution": {
+    "method": "known-defect-single-target",
+    "evidence_path": "../../../datasets/contracts.controlled-v1.json",
+    "evidence_sha256": "d954de5fe6d8adbeb010f307119b9b3a0207d80b900ed9365d53a16a0f293f9a"
+  },
+  "production_reachability": {
+    "verdict": "unknown",
+    "entrypoint_target_id": null,
+    "instance_key": null,
+    "evidence_path": null,
+    "evidence_sha256": null,
+    "verifier_manifest_path": null,
+    "verifier_manifest_sha256": null
+  },
+  "injection_ground_truth": null
+}

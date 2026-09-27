@@ -1,0 +1,99 @@
+{
+  "schema_version": 2,
+  "report_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/candidate-review-regression-2026-09-27/results/.zkfdo-candidate-review-d981705d-eb0d-4ecd-9e84-60c2660d84f9.staging/evaluations/v1_1-block-06-random-b1848ed92ce3.json",
+  "plan_id": "3e5aa6c5-179e-419a-b345-73048673182c",
+  "outcome_id": "6c3e4797-d578-42ec-8229-afcf8b030af2",
+  "strategy": "random",
+  "target_count": 2,
+  "preparation_excluded_target_count": 0,
+  "manifest_exclusion_count": 3,
+  "planned_target_ids": [
+    "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+    "sha256:a85819549a69210934d31e3fa4a0ba4e01f1f456bc86b32a480a29c5b18aec91"
+  ],
+  "actual_process_start_target_ids": [
+    "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+    "sha256:a85819549a69210934d31e3fa4a0ba4e01f1f456bc86b32a480a29c5b18aec91"
+  ],
+  "status_counts": {
+    "bug_found": 1,
+    "no_counterexample": 1,
+    "not_started": 0,
+    "runner_failure": 0
+  },
+  "known_defect_target_count": 1,
+  "known_defect_root_cause_count": 1,
+  "known_target_ranks": [
+    {
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "rank": 1,
+      "root_cause_ids": [
+        "inference-labs-inc/subnet-2-circom/koukyosyumei_subtract_unconstrained_multiplier"
+      ]
+    }
+  ],
+  "recall_at_k": [
+    {
+      "k": 1,
+      "retrieved_known_targets": 1,
+      "total_known_targets": 1,
+      "recall": 1.0
+    },
+    {
+      "k": 2,
+      "retrieved_known_targets": 1,
+      "total_known_targets": 1,
+      "recall": 1.0
+    }
+  ],
+  "backend_bug_candidate_count": 1,
+  "preserved_counterexample_count": 1,
+  "reviewed_confirmation_count": 1,
+  "confirmed_project_defect_count": 0,
+  "confirmed_original_component_defect_count": 1,
+  "wrapper_only_confirmation_count": 0,
+  "reachability_unknown_confirmation_count": 0,
+  "evidence_origin_counts": {
+    "backend-execution": 1
+  },
+  "confirmed_project_root_causes": [],
+  "confirmed_original_component_root_causes": [
+    "inference-labs-inc/subnet-2-circom/koukyosyumei_subtract_unconstrained_multiplier"
+  ],
+  "detection_curve": [],
+  "original_component_detection_curve": [
+    {
+      "root_cause_id": "inference-labs-inc/subnet-2-circom/koukyosyumei_subtract_unconstrained_multiplier",
+      "target_id": "sha256:1fdbf2dbcb8c5be4cad2ef0937cdc95c1b36cc8321e2d02f1b820f46c1b91474",
+      "run_id": "2bf71d76-1092-425a-8c55-0ac1d5d57f11",
+      "observed_by_seconds": 0.033774833,
+      "cumulative_confirmed_original_component_defects": 1
+    }
+  ],
+  "first_confirmed_defect_observed_by_seconds": null,
+  "first_confirmed_original_component_defect_observed_by_seconds": 0.033774833,
+  "timings": {
+    "preparation_seconds": 1.876862458,
+    "preparation_accounting": {
+      "inspection_seconds": 0.004231,
+      "snapshot_seconds": 0.00112925,
+      "structure_seconds": 0.248991416,
+      "semantic_seconds": 0.028589751,
+      "legacy_seconds": 0.06434200000000001,
+      "excluded_target_elapsed_seconds": 0.0,
+      "orchestration_overhead_seconds": 1.528512541
+    },
+    "planning_seconds": 0.003093041,
+    "fuzzing_scheduler_seconds": 0.911254291,
+    "evaluation_seconds": 0.003702458,
+    "separate_phase_sum_seconds": 2.7949122479999997
+  },
+  "limitations": [
+    "Recall@K uses the target as its unit and only manifest-annotated known-defect targets as its denominator; unlabeled targets are not safe negatives.",
+    "Original-component execution metrics require backend-execution evidence plus satisfied reviews of input preconditions, fixed-original constraints, and the pre-specified property violation; file existence and reviewer declarations are validated structurally, not independently proven.",
+    "Legacy project metrics retain their schema-1 meaning. A project record contributes to the original-component metric only when it also supplies the complete satisfied component review.",
+    "Static warnings, manual source review, known-defect annotations, crashes, and counterexample files do not contribute to execution-discovered defect curves.",
+    "Detection timestamps are scheduler completion upper bounds for linked runs, not exact discovery or human confirmation times; post-run review time is not part of the fuzzing budget.",
+    "Separate phase durations may have occurred in different invocations; their sum is accounting, not a single uninterrupted wall-clock measurement."
+  ]
+}

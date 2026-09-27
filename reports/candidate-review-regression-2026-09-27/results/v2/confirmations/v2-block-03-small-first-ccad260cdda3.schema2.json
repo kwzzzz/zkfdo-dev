@@ -1,0 +1,43 @@
+{
+  "schema_version": 2,
+  "confirmations": [
+    {
+      "run_id": "1037d952-9ffa-4c1c-93ed-2d41e5fcaf25",
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "root_cause_id": "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range",
+      "scope": "original-component",
+      "evidence_origin": "backend-execution",
+      "original_component_review": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "../../../../../datasets/contracts.controlled-v2.json",
+            "../../../../../runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-03/attempt-01/01-small-first/raw/execution-5c58eca8-6c16-40b1-a76e-1a3a77d3570a/counterexample-candidates/0003/circuit.circom_RBwqIdAIGI_counterexample.json"
+          ],
+          "note": "The predeclared input contract is satisfied."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "../../../../../runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-03/attempt-01/01-small-first/raw/execution-5c58eca8-6c16-40b1-a76e-1a3a77d3570a/counterexample-candidates/0003/circuit.circom_RBwqIdAIGI_counterexample.json",
+            "../../../../controlled-v2-execution-2026-09-20/evidence/banyan-vulnerable-compiled/circuit.r1cs"
+          ],
+          "note": "All constraints in the fixed target R1CS are satisfied."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "../../../../../datasets/contracts.controlled-v2.json",
+            "../../../../../runs/controlled-v2/campaigns/campaign-20260920T112512Z/block-03/attempt-01/01-small-first/raw/execution-5c58eca8-6c16-40b1-a76e-1a3a77d3570a/counterexample-candidates/0003/circuit.circom_RBwqIdAIGI_counterexample.json"
+          ],
+          "note": "The predeclared property is violated."
+        }
+      },
+      "evidence": [
+        "../review-report.json",
+        "../../../inputs/v2-spec.json"
+      ],
+      "note": "Automated review validated the fixed candidate contract and cause binding."
+    }
+  ]
+}

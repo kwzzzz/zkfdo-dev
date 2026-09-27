@@ -1,0 +1,560 @@
+{
+  "schema_version": 1,
+  "request_id": "candidate-review-regression-v1.1",
+  "kind": "backend-candidates",
+  "review_specs": [
+    {
+      "path": "v1.1-spec.json",
+      "sha256": "60b2ae0882a2ee6ba680b6b178d9a0ab02011a9eb777c678c6ff1cd885f50015"
+    }
+  ],
+  "executions": [
+    {
+      "execution_id": "v1.1-block-01-risk-only",
+      "campaign_coordinates": {
+        "block": 1,
+        "strategy": "risk-only"
+      },
+      "plan": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-01/attempt-01/01-risk-only/plan.json",
+        "sha256": "85a7495a4fba31438771f66ece0e1471d7b3913205e09da0fe7a94c7eb5ecb49"
+      },
+      "outcome": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-01/attempt-01/01-risk-only/outcome.json",
+        "sha256": "fab7e2e9875f5ee5368337e377972bccf47fed2e7e4e29abdf39357c9676f91c"
+      }
+    },
+    {
+      "execution_id": "v1.1-block-01-random",
+      "campaign_coordinates": {
+        "block": 1,
+        "strategy": "random"
+      },
+      "plan": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-01/attempt-01/02-random/plan.json",
+        "sha256": "797d49984ffec540e59cef3d55a45b6e8957203a4a40cafbbe5455c9d96c64b6"
+      },
+      "outcome": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-01/attempt-01/02-random/outcome.json",
+        "sha256": "051b2adf6eb9ac944c7d3c8186f716ef7ec96e513db4f3b5c3aad785a45fa3f8"
+      }
+    },
+    {
+      "execution_id": "v1.1-block-01-small-first",
+      "campaign_coordinates": {
+        "block": 1,
+        "strategy": "small-first"
+      },
+      "plan": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-01/attempt-01/03-small-first/plan.json",
+        "sha256": "701d09bf55819325d84f057ea5b0f0cef35aac04eeb115f5b0d9067e2fd6d45f"
+      },
+      "outcome": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-01/attempt-01/03-small-first/outcome.json",
+        "sha256": "92c0f1e05225c1f1c2810bcef69d3b61502831301b9ac070a22c007354afab0f"
+      }
+    },
+    {
+      "execution_id": "v1.1-block-02-random",
+      "campaign_coordinates": {
+        "block": 2,
+        "strategy": "random"
+      },
+      "plan": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-02/attempt-01/01-random/plan.json",
+        "sha256": "28a978c33d1dd84d6bdf3c2a6d3506f647a950123c041fb17c5db27a6a7c8635"
+      },
+      "outcome": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-02/attempt-01/01-random/outcome.json",
+        "sha256": "d227528b1d2da64648c29753b93a6e8d805b66865ceae1c84f9ef2cb383087be"
+      }
+    },
+    {
+      "execution_id": "v1.1-block-02-small-first",
+      "campaign_coordinates": {
+        "block": 2,
+        "strategy": "small-first"
+      },
+      "plan": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-02/attempt-01/02-small-first/plan.json",
+        "sha256": "76f0f6702ecd6016adc6648f92ba8fa151ae57131d992e5b407656204b2061a5"
+      },
+      "outcome": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-02/attempt-01/02-small-first/outcome.json",
+        "sha256": "43a5c7c86d3227e601f0477d123bcabf4736a41f27167ca66636eb4188fff026"
+      }
+    },
+    {
+      "execution_id": "v1.1-block-02-risk-only",
+      "campaign_coordinates": {
+        "block": 2,
+        "strategy": "risk-only"
+      },
+      "plan": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-02/attempt-01/03-risk-only/plan.json",
+        "sha256": "4002e3ee1638a0377859b2b98d50d37ef7d3e948c8b00702a80179c0ed893fe4"
+      },
+      "outcome": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-02/attempt-01/03-risk-only/outcome.json",
+        "sha256": "e8748128d69aad70d2b7482e95499f70986c1894a38a7259bf01a36fbc42f9ad"
+      }
+    },
+    {
+      "execution_id": "v1.1-block-03-small-first",
+      "campaign_coordinates": {
+        "block": 3,
+        "strategy": "small-first"
+      },
+      "plan": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-03/attempt-01/01-small-first/plan.json",
+        "sha256": "149cc0a6ebd8689085d73f9ab53e9b7130e308a9301cd7d6e7752026f7de134e"
+      },
+      "outcome": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-03/attempt-01/01-small-first/outcome.json",
+        "sha256": "637949f937c9166908c22d3bccffd4d01bdbf556d4ec39d0639cd0aef3bb826e"
+      }
+    },
+    {
+      "execution_id": "v1.1-block-03-risk-only",
+      "campaign_coordinates": {
+        "block": 3,
+        "strategy": "risk-only"
+      },
+      "plan": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-03/attempt-01/02-risk-only/plan.json",
+        "sha256": "e984b4a7cf0e18122df4e741bffe3eca5e464ba9b0533f14ad6d8220e9a258a2"
+      },
+      "outcome": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-03/attempt-01/02-risk-only/outcome.json",
+        "sha256": "95f5d8a065ba20ea52f0f2ff493bf4a2f217a56b4f8930b58e48e7e09bc7ff41"
+      }
+    },
+    {
+      "execution_id": "v1.1-block-03-random",
+      "campaign_coordinates": {
+        "block": 3,
+        "strategy": "random"
+      },
+      "plan": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-03/attempt-01/03-random/plan.json",
+        "sha256": "c55049d7c732219860c47a5bcad39faaa9d54e1dc73bdbd8531a150d31b9a99e"
+      },
+      "outcome": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-03/attempt-01/03-random/outcome.json",
+        "sha256": "e7e2456dd4adcee87d83ec7806c17a2476da39af81c02f3ceea02df5b68ed1a4"
+      }
+    },
+    {
+      "execution_id": "v1.1-block-04-risk-only",
+      "campaign_coordinates": {
+        "block": 4,
+        "strategy": "risk-only"
+      },
+      "plan": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-04/attempt-01/01-risk-only/plan.json",
+        "sha256": "638c8d824217f40287880fdb3b5d42b512eea468b8e4b878be0377d62d66ae35"
+      },
+      "outcome": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-04/attempt-01/01-risk-only/outcome.json",
+        "sha256": "517569d9edeeda45c460d2f9cd8654afc2fbd496dda6681d0a77661d15d523d0"
+      }
+    },
+    {
+      "execution_id": "v1.1-block-04-random",
+      "campaign_coordinates": {
+        "block": 4,
+        "strategy": "random"
+      },
+      "plan": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-04/attempt-01/02-random/plan.json",
+        "sha256": "591cb31cb42f4cea7224476eef5da161075bc62c74fde345f8d1db14ed80efd3"
+      },
+      "outcome": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-04/attempt-01/02-random/outcome.json",
+        "sha256": "f76471d623fca1d7f9a327ac748957a356d6b36ea05ab4354ce0c1eeb5412be5"
+      }
+    },
+    {
+      "execution_id": "v1.1-block-04-small-first",
+      "campaign_coordinates": {
+        "block": 4,
+        "strategy": "small-first"
+      },
+      "plan": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-04/attempt-01/03-small-first/plan.json",
+        "sha256": "d8bd110f90a14217913562dab2ce846b475fd8659437227c17498e82ac785804"
+      },
+      "outcome": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-04/attempt-01/03-small-first/outcome.json",
+        "sha256": "c9783184e495c02b41752da5fc9f8e5e0f56f3e2640de0d3ff3a1af057d918e4"
+      }
+    },
+    {
+      "execution_id": "v1.1-block-05-random",
+      "campaign_coordinates": {
+        "block": 5,
+        "strategy": "random"
+      },
+      "plan": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-05/attempt-01/01-random/plan.json",
+        "sha256": "6d225e5ca2ba5589dd7ce831d33b25c432201942cede7f737f5c571355906797"
+      },
+      "outcome": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-05/attempt-01/01-random/outcome.json",
+        "sha256": "9d98d537a48b0770b156c8f80e82fe7c12873097e4f76a3f6b259a9fbb12a100"
+      }
+    },
+    {
+      "execution_id": "v1.1-block-05-small-first",
+      "campaign_coordinates": {
+        "block": 5,
+        "strategy": "small-first"
+      },
+      "plan": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-05/attempt-01/02-small-first/plan.json",
+        "sha256": "a280b8aee2d7ef840c79b9ac493ab3fc32c9d7edbb8a66c60af032a4d10cc558"
+      },
+      "outcome": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-05/attempt-01/02-small-first/outcome.json",
+        "sha256": "56124841bbff37cf04eb0d4bd76edecb07a08aa251623971952ba7696f93ab30"
+      }
+    },
+    {
+      "execution_id": "v1.1-block-05-risk-only",
+      "campaign_coordinates": {
+        "block": 5,
+        "strategy": "risk-only"
+      },
+      "plan": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-05/attempt-01/03-risk-only/plan.json",
+        "sha256": "74f1dc18077ba5490938aa8cb18fdc69d95ce3a7660a7cd2dadcabbda9d73e1d"
+      },
+      "outcome": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-05/attempt-01/03-risk-only/outcome.json",
+        "sha256": "2a14133e7175af2b33751cf99074ddb8f7864ea6545de57a5dd0c8b8d8bca8f9"
+      }
+    },
+    {
+      "execution_id": "v1.1-block-06-small-first",
+      "campaign_coordinates": {
+        "block": 6,
+        "strategy": "small-first"
+      },
+      "plan": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-06/attempt-01/01-small-first/plan.json",
+        "sha256": "d7776f35c7ebcd9a5d9d03203ad87d54f892051bc350ada91bcd15160d0bbd96"
+      },
+      "outcome": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-06/attempt-01/01-small-first/outcome.json",
+        "sha256": "d01cd60ac32d77bd890828ac11bbf2177d670d03d336d6dd19d3a940d536422b"
+      }
+    },
+    {
+      "execution_id": "v1.1-block-06-risk-only",
+      "campaign_coordinates": {
+        "block": 6,
+        "strategy": "risk-only"
+      },
+      "plan": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-06/attempt-01/02-risk-only/plan.json",
+        "sha256": "abe30f10b64580363b78f3dd19d1fdc7433435e3785f35384aa184be9ce4bc7a"
+      },
+      "outcome": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-06/attempt-01/02-risk-only/outcome.json",
+        "sha256": "e53710ede9ca8b7b9982d3de4770ea231ae853c611c67aacfe014b408e074067"
+      }
+    },
+    {
+      "execution_id": "v1.1-block-06-random",
+      "campaign_coordinates": {
+        "block": 6,
+        "strategy": "random"
+      },
+      "plan": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-06/attempt-01/03-random/plan.json",
+        "sha256": "9bfcdf4ce6e39b721ecb75b118dd6d3e60da153fc03682bb90e3cc57077c6c37"
+      },
+      "outcome": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-06/attempt-01/03-random/outcome.json",
+        "sha256": "7b01c92bd244e4b2622c638db467f74e7c10646c8219ece85b03cf4b71bad17f"
+      }
+    },
+    {
+      "execution_id": "v1.1-block-07-risk-only",
+      "campaign_coordinates": {
+        "block": 7,
+        "strategy": "risk-only"
+      },
+      "plan": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-07/attempt-01/01-risk-only/plan.json",
+        "sha256": "8ceda46ce3f935d77ce0d79d7c8fd9c94ffbe642f2c31ba27da5e1c071fda499"
+      },
+      "outcome": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-07/attempt-01/01-risk-only/outcome.json",
+        "sha256": "5772015ba10af97966ec5387c802cb527c8b4abcab636329938c478598484f81"
+      }
+    },
+    {
+      "execution_id": "v1.1-block-07-random",
+      "campaign_coordinates": {
+        "block": 7,
+        "strategy": "random"
+      },
+      "plan": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-07/attempt-01/02-random/plan.json",
+        "sha256": "c021dcf8d5d3e38ab914ded92c35057481fdb2967df4f41c5af5e99166ed2496"
+      },
+      "outcome": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-07/attempt-01/02-random/outcome.json",
+        "sha256": "dc755407f809b64e484003c8090b801412bfb881c87013a7a5821f07784ae093"
+      }
+    },
+    {
+      "execution_id": "v1.1-block-07-small-first",
+      "campaign_coordinates": {
+        "block": 7,
+        "strategy": "small-first"
+      },
+      "plan": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-07/attempt-01/03-small-first/plan.json",
+        "sha256": "2362d86e0f2c7744248a03115d4287b51b0cdae8c4afc7076411dfa9eee5e370"
+      },
+      "outcome": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-07/attempt-01/03-small-first/outcome.json",
+        "sha256": "b475d1c12adaa475fe1542717b45ca1ad857eba6e654ae765a5169cc837526a1"
+      }
+    },
+    {
+      "execution_id": "v1.1-block-08-random",
+      "campaign_coordinates": {
+        "block": 8,
+        "strategy": "random"
+      },
+      "plan": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-08/attempt-01/01-random/plan.json",
+        "sha256": "e487e1faac832729e6173b7d6cb28ead9b28e4f6dfce8e390ee676c733e3b492"
+      },
+      "outcome": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-08/attempt-01/01-random/outcome.json",
+        "sha256": "e9a706d27eaf8c27f69936d00ef63e1d10405ee043757c360468e3cac3d213c7"
+      }
+    },
+    {
+      "execution_id": "v1.1-block-08-small-first",
+      "campaign_coordinates": {
+        "block": 8,
+        "strategy": "small-first"
+      },
+      "plan": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-08/attempt-01/02-small-first/plan.json",
+        "sha256": "a9cd36345fe6b4aa2cabc25877953c73b22172777b5a6f25b406d49acaa586a0"
+      },
+      "outcome": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-08/attempt-01/02-small-first/outcome.json",
+        "sha256": "de8e5c1bea2106cba06c9061f9067bf243840e0e6bc6f1c11161b71fbc7dcf33"
+      }
+    },
+    {
+      "execution_id": "v1.1-block-08-risk-only",
+      "campaign_coordinates": {
+        "block": 8,
+        "strategy": "risk-only"
+      },
+      "plan": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-08/attempt-01/03-risk-only/plan.json",
+        "sha256": "9dd6a0d8e2dcb27c11690834c1170ed2399814501231062e6b7240aeecd0ff12"
+      },
+      "outcome": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-08/attempt-01/03-risk-only/outcome.json",
+        "sha256": "34294ff3045696f8d901ebd5d897bfb09defdca2ab7fca07775477e608f440e5"
+      }
+    },
+    {
+      "execution_id": "v1.1-block-09-small-first",
+      "campaign_coordinates": {
+        "block": 9,
+        "strategy": "small-first"
+      },
+      "plan": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-09/attempt-01/01-small-first/plan.json",
+        "sha256": "6729214692165114f56a1a97225bfc1e5ae12b84f2dc8b7c0d6b13001c2cf03c"
+      },
+      "outcome": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-09/attempt-01/01-small-first/outcome.json",
+        "sha256": "f307b44f2be44a173bb285ce2e385ed9633ae0322448d079b82b0afe781ad8dc"
+      }
+    },
+    {
+      "execution_id": "v1.1-block-09-risk-only",
+      "campaign_coordinates": {
+        "block": 9,
+        "strategy": "risk-only"
+      },
+      "plan": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-09/attempt-01/02-risk-only/plan.json",
+        "sha256": "209f4e94d34f2e67c4f7264fad4705f56460e4c8655d8cc2a62a5925e317404c"
+      },
+      "outcome": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-09/attempt-01/02-risk-only/outcome.json",
+        "sha256": "d4f1499816f0113dfb473b33d9b4e8556f0d4f3e8b4fcfe02f460a6525dea8eb"
+      }
+    },
+    {
+      "execution_id": "v1.1-block-09-random",
+      "campaign_coordinates": {
+        "block": 9,
+        "strategy": "random"
+      },
+      "plan": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-09/attempt-01/03-random/plan.json",
+        "sha256": "fc6b59c44eba2f91952b9b582b183d8c7b1ba6a94596c829a3a681876c048d6f"
+      },
+      "outcome": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-09/attempt-01/03-random/outcome.json",
+        "sha256": "c7a716713dcff7a041a6c65d80569580775ce395b02cb199959b2ee5e74efb36"
+      }
+    },
+    {
+      "execution_id": "v1.1-block-10-risk-only",
+      "campaign_coordinates": {
+        "block": 10,
+        "strategy": "risk-only"
+      },
+      "plan": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-10/attempt-01/01-risk-only/plan.json",
+        "sha256": "93d5aaeb567280915d83b79142376f513fdfcd48bd06b530c5b16b92f3e957ff"
+      },
+      "outcome": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-10/attempt-01/01-risk-only/outcome.json",
+        "sha256": "375d5258eebb902c2621042f60b2cda4214d53d3334a0f0d62a3420afc8afd20"
+      }
+    },
+    {
+      "execution_id": "v1.1-block-10-random",
+      "campaign_coordinates": {
+        "block": 10,
+        "strategy": "random"
+      },
+      "plan": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-10/attempt-01/02-random/plan.json",
+        "sha256": "f8c773db8f5632810a6c076e67868262e3b37f9966a19ac9f743d4328bba7f27"
+      },
+      "outcome": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-10/attempt-01/02-random/outcome.json",
+        "sha256": "9e6bd347c613da4cf670fdf6edbdcb281e887c05f52ba8f0dedb9d5a3c5fccbf"
+      }
+    },
+    {
+      "execution_id": "v1.1-block-10-small-first",
+      "campaign_coordinates": {
+        "block": 10,
+        "strategy": "small-first"
+      },
+      "plan": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-10/attempt-01/03-small-first/plan.json",
+        "sha256": "725078c395913d4129416cd8f3d2e61e2eb4719c3e02e92de52d0af138ee4e6c"
+      },
+      "outcome": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-10/attempt-01/03-small-first/outcome.json",
+        "sha256": "765e169727b3434178b9ac9dbac7cde28e944735ee236a92a1aed34134e37cb2"
+      }
+    },
+    {
+      "execution_id": "v1.1-block-11-random",
+      "campaign_coordinates": {
+        "block": 11,
+        "strategy": "random"
+      },
+      "plan": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-11/attempt-01/01-random/plan.json",
+        "sha256": "cad26bcfb32b3e10b29fa73059922e7b85ed9ee56c8f4aa8b50af38898b3c79d"
+      },
+      "outcome": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-11/attempt-01/01-random/outcome.json",
+        "sha256": "9c7e77171c90085fef496b3c72d45abb8fa9be36fce1891facba887a3c196279"
+      }
+    },
+    {
+      "execution_id": "v1.1-block-11-small-first",
+      "campaign_coordinates": {
+        "block": 11,
+        "strategy": "small-first"
+      },
+      "plan": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-11/attempt-01/02-small-first/plan.json",
+        "sha256": "929f845c103b032b66c2d3019b4dbe4b67be205cab508e22ccfed5caf196ed4e"
+      },
+      "outcome": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-11/attempt-01/02-small-first/outcome.json",
+        "sha256": "caf50889592294ca9efadd3fe6dc0c7a367d65fb5c1147ef6bc0e2fec98aef1b"
+      }
+    },
+    {
+      "execution_id": "v1.1-block-11-risk-only",
+      "campaign_coordinates": {
+        "block": 11,
+        "strategy": "risk-only"
+      },
+      "plan": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-11/attempt-01/03-risk-only/plan.json",
+        "sha256": "1cdc5c52a33e07204fae98a7c318188533de73685402045e1bb36700fc876775"
+      },
+      "outcome": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-11/attempt-01/03-risk-only/outcome.json",
+        "sha256": "c5f44d861728f356b04292639042fb284e163a9f134c02a403541a2d13f1d587"
+      }
+    },
+    {
+      "execution_id": "v1.1-block-12-small-first",
+      "campaign_coordinates": {
+        "block": 12,
+        "strategy": "small-first"
+      },
+      "plan": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-12/attempt-01/01-small-first/plan.json",
+        "sha256": "8f278d9ed5ba73153c0180b6adf7da83e8d2d8c8f1b43e15b7cbf888f73fc86f"
+      },
+      "outcome": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-12/attempt-01/01-small-first/outcome.json",
+        "sha256": "3553c20deedc724982c1429a54b577d222c6e147f1aee106fed287717f4f0583"
+      }
+    },
+    {
+      "execution_id": "v1.1-block-12-risk-only",
+      "campaign_coordinates": {
+        "block": 12,
+        "strategy": "risk-only"
+      },
+      "plan": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-12/attempt-01/02-risk-only/plan.json",
+        "sha256": "a96528e6a7b218af030ee29349b9445c1f13e7b200f30fda510441ba37d1c874"
+      },
+      "outcome": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-12/attempt-01/02-risk-only/outcome.json",
+        "sha256": "c5564b4ed0ad9e61d7a44f701ce32c0d120a06ca0755fcd3813d3aedee419d8a"
+      }
+    },
+    {
+      "execution_id": "v1.1-block-12-random",
+      "campaign_coordinates": {
+        "block": 12,
+        "strategy": "random"
+      },
+      "plan": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-12/attempt-01/03-random/plan.json",
+        "sha256": "af0096d179fbc71bdeec9eb73f3553e1fe5d0d5249d5d3cd6d19fb4a59d4f08e"
+      },
+      "outcome": {
+        "path": "../../controlled-v1.1-execution-2026-09-20/evidence/records/block-12/attempt-01/03-random/outcome.json",
+        "sha256": "ba77aa1034a91da48c813c5ea2a31c123dc175568ace69064b6a9cb232e9f539"
+      }
+    }
+  ],
+  "candidate_adapter": {
+    "id": "zkfuzz-counterexample-v1",
+    "implementation_sha256": "3a266f8bf9d7a06fc740ad32e0d1e1fcefd87794ca649620c55a76751a3dced2"
+  },
+  "candidate_policy": "all-outcome-candidates",
+  "unmatched_candidate_policy": "record-unreviewed",
+  "qualification_bundles": []
+}
