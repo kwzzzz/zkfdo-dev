@@ -1,0 +1,248 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-24",
+  "purpose": "T6a discovery diagnostic on projects already excluded from held-out selection. No zkFuzz execution.",
+  "tool": {
+    "zkfdo_commit": "87c799fcc6256f45202d87c9bb7b6a5e9e79e4a1",
+    "zkfdo_binary": "target/debug/zkfDO",
+    "zkfdo_binary_sha256": "144ff466118f7c4f4e498081b021dd57990fb20b3359bd5f1aa1a2fe2e9c0f27",
+    "circom_version": "2.2.3",
+    "circom_binary_sha256": "8991887889c2a74d6fc704d5689ada4cc76fba004e866c987de6cbf3b3db6227",
+    "library_path": ".external/zkbugs/dataset/circom/dependencies"
+  },
+  "hardware": {
+    "cpu": "Apple M5",
+    "cores": 10,
+    "memory_bytes": 25769803776,
+    "os": "macOS 26.2"
+  },
+  "before_changes": {
+    "zkemail": "multiple mains (12), 0 targets",
+    "moonsong": "multiple mains (5), 0 targets",
+    "inference": "1 main, 2325 targets, 1587 anonymous-call issues",
+    "rarimo": "discovery did not finish in over 5 minutes without compilation; stack sample showed the lexer; 8 files (7 of 3-32 MB constant tables) each exceeded 3 s alone"
+  },
+  "projects": {
+    "zkemail": {
+      "repository": "zkemail/zk-email-verify",
+      "vulnerable_commit": "fc9949763858ca363a73a2764d9c1d26ef227478",
+      "entrypoints": 12,
+      "status": {
+        "found": 12
+      },
+      "entrypoints_with_targets_and_no_issue": 3,
+      "entrypoints_with_targets_and_issues": 5,
+      "entrypoints_without_targets": 4,
+      "discovered_targets_total": 2834,
+      "max_discovery_seconds": 0.41,
+      "top_issue_reasons_by_entrypoint": [
+        [
+          "compile-time variable is not supported: unsupported expression \\ _",
+          8
+        ],
+        [
+          "compile-time variable arrays are unsupported by this MVP",
+          7
+        ],
+        [
+          "anonymous component calls are unsupported by this MVP",
+          7
+        ],
+        [
+          "template parameters are not concrete: unknown compile-time value log_ceil",
+          6
+        ],
+        [
+          "component array length is not concrete: unsupported expression \\ _",
+          6
+        ],
+        [
+          "component array index is not concrete: unknown compile-time value idx",
+          6
+        ]
+      ]
+    },
+    "moonsong": {
+      "repository": "Moonsong-Labs/zksync-social-login-circuit",
+      "vulnerable_commit": "27cda6e74492fbad4aa3ca37ff5084ed391b534b",
+      "entrypoints": 5,
+      "status": {
+        "found": 5
+      },
+      "entrypoints_with_targets_and_no_issue": 0,
+      "entrypoints_with_targets_and_issues": 0,
+      "entrypoints_without_targets": 5,
+      "discovered_targets_total": 0,
+      "max_discovery_seconds": 0.06,
+      "top_issue_reasons_by_entrypoint": [
+        [
+          "anonymous component calls are unsupported by this MVP",
+          5
+        ],
+        [
+          "include could not be resolved inside the scanned project",
+          5
+        ],
+        [
+          "template parameters are not concrete: unknown compile-time value MAX_BYTES_FIELD",
+          1
+        ]
+      ]
+    },
+    "rarimo": {
+      "repository": "rarimo/passport-zk-circuits",
+      "vulnerable_commit": "9143bc77eb2bdbd174eaa61b25b11adb5ee99f61",
+      "entrypoints": 64,
+      "status": {
+        "found": 64
+      },
+      "entrypoints_with_targets_and_no_issue": 0,
+      "entrypoints_with_targets_and_issues": 24,
+      "entrypoints_without_targets": 40,
+      "discovered_targets_total": 4382,
+      "max_discovery_seconds": 5.15,
+      "top_issue_reasons_by_entrypoint": [
+        [
+          "compile-time variable arrays are unsupported by this MVP",
+          44
+        ],
+        [
+          "direct component array initialization is unsupported",
+          35
+        ],
+        [
+          "component array index is not concrete: unsupported expression \\ _ - _",
+          28
+        ],
+        [
+          "compile-time variable is not supported: unknown compile-time value N_ROUNDS_P",
+          25
+        ],
+        [
+          "loop condition is not concrete: unsupported expression \\ _ - _",
+          25
+        ],
+        [
+          "template parameters are not concrete: unknown compile-time value M",
+          25
+        ]
+      ]
+    },
+    "self": {
+      "repository": "selfxyz/self",
+      "vulnerable_commit": "4f18c75041bb47c1862169eef82c22067642a83a",
+      "entrypoints": 90,
+      "status": {
+        "found": 90
+      },
+      "entrypoints_with_targets_and_no_issue": 3,
+      "entrypoints_with_targets_and_issues": 33,
+      "entrypoints_without_targets": 54,
+      "discovered_targets_total": 676,
+      "max_discovery_seconds": 5.34,
+      "top_issue_reasons_by_entrypoint": [
+        [
+          "include could not be resolved inside the scanned project",
+          87
+        ],
+        [
+          "anonymous component calls are unsupported by this MVP",
+          86
+        ],
+        [
+          "loop condition is not concrete: unknown compile-time value MAX_DSC_LENGTH",
+          19
+        ],
+        [
+          "compile-time variable is not supported: unknown compile-time value getMaxDSCLength",
+          19
+        ],
+        [
+          "component array length is not concrete: unknown compile-time value MAX_DSC_LENGTH",
+          19
+        ],
+        [
+          "compile-time variable arrays are unsupported by this MVP",
+          5
+        ]
+      ]
+    },
+    "bigint": {
+      "repository": "0xbok/circom-bigint",
+      "vulnerable_commit": "436665bf01728ae8c581fdb39e8428cb6b835c37",
+      "entrypoints": 19,
+      "status": {
+        "found": 19
+      },
+      "entrypoints_with_targets_and_no_issue": 0,
+      "entrypoints_with_targets_and_issues": 15,
+      "entrypoints_without_targets": 4,
+      "discovered_targets_total": 1286,
+      "max_discovery_seconds": 0.54,
+      "top_issue_reasons_by_entrypoint": [
+        [
+          "include could not be resolved inside the scanned project",
+          19
+        ],
+        [
+          "template definition is not reachable from the project entrypoint",
+          18
+        ],
+        [
+          "compile-time variable arrays are unsupported by this MVP",
+          12
+        ],
+        [
+          "template parameters are not concrete: unknown compile-time value log_ceil",
+          7
+        ],
+        [
+          "loop condition is not concrete: unknown compile-time value num_strides",
+          6
+        ],
+        [
+          "compile-time variable is not supported: unknown compile-time value div_ceil",
+          6
+        ]
+      ]
+    },
+    "inference": {
+      "repository": "inference-labs-inc/subnet-2-circom",
+      "vulnerable_commit": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+      "entrypoints": 1,
+      "status": {
+        "found": 1
+      },
+      "entrypoints_with_targets_and_no_issue": 0,
+      "entrypoints_with_targets_and_issues": 1,
+      "entrypoints_without_targets": 0,
+      "discovered_targets_total": 2325,
+      "max_discovery_seconds": 0.4,
+      "top_issue_reasons_by_entrypoint": [
+        [
+          "anonymous component calls are unsupported by this MVP",
+          1
+        ]
+      ]
+    }
+  },
+  "compile_sample": [
+    {
+      "project": "zkemail",
+      "entrypoint": "packages/circuits/tests/test-circuits/base64-test.circom",
+      "targets": 11,
+      "compile_succeeded": 11,
+      "max_compile_seconds": 0.03,
+      "timeout_seconds": 600
+    },
+    {
+      "project": "self",
+      "entrypoint": "circuits/circuits/tests/utils/isOlderThan_tester.circom",
+      "targets": 17,
+      "compile_succeeded": 17,
+      "max_compile_seconds": 0.03,
+      "timeout_seconds": 600
+    }
+  ],
+  "unresolved_include_cause": "Missing npm dependencies in the local checkouts (for example @zk-email/circuits, @openpassport/zk-email-circuits, @zk-kit/binary-merkle-root.circom, ../node_modules/circomlib). Not a resolver defect."
+}

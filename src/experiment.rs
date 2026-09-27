@@ -19,7 +19,8 @@ use crate::{
     scheduler::{self, OrderedExperimentSummary, OrderedTarget},
     semantic::SourceScope,
     static_rank::{
-        rank_targets, RankingInput, RankingStrategy, StaticRankingConfig, RANDOM_ALGORITHM,
+        rank_targets, tie_summary, RankingInput, RankingStrategy, StaticRankingConfig, TieSummary,
+        RANDOM_ALGORITHM,
     },
     structure::STRUCTURAL_METRIC,
     targets::EntrypointInspection,
@@ -80,6 +81,9 @@ pub struct ExperimentPlan {
     pub preparation_accounting: PreparationAccounting,
     pub planning_elapsed_seconds: f64,
     pub targets: Vec<PlanTarget>,
+    /// Absent in schema 1 plans; in schema 2, verified against the ranking and None for `random`.
+    #[serde(default)]
+    pub ties: Option<TieSummary>,
     pub exclusions: Vec<PlanExclusion>,
     pub manifest_exclusions: Vec<Exclusion>,
     pub limitations: Vec<String>,
@@ -342,6 +346,7 @@ pub fn create_plan(
         "prepared corpus has no targets eligible for {strategy}"
     );
     let ranked = rank_targets(&candidates, strategy, &config, ranking_seed)?;
+    let ties = tie_summary(&ranked, strategy, &config);
     let by_id = prepared
         .targets
         .iter()
@@ -382,12 +387,12 @@ pub fn create_plan(
     ];
     if prepared.profile_strategy.is_some() {
         limitations.push(
-            "This prepared corpus may not provide the common complete target set required for a seven-strategy comparison."
+            "This prepared corpus may not provide the common complete target set required for a multi-strategy comparison."
                 .to_owned(),
         );
     }
     let plan = ExperimentPlan {
-        schema_version: 1,
+        schema_version: 2,
         plan_id: Uuid::new_v4().to_string(),
         created_at: Utc::now(),
         plan_path: output_path.clone(),
@@ -406,6 +411,7 @@ pub fn create_plan(
         preparation_accounting: preparation_accounting(&prepared),
         planning_elapsed_seconds: timer.elapsed().as_secs_f64(),
         targets,
+        ties,
         exclusions,
         manifest_exclusions: prepared.exclusions,
         limitations,
@@ -434,9 +440,7 @@ pub fn execute_plan(plan_path: &Path, options: &ExecuteOptions) -> Result<Experi
     let plan_path = fs::canonicalize(plan_path)
         .with_context(|| format!("experiment plan unavailable: {}", plan_path.display()))?;
     let plan_bytes = fs::read(&plan_path)?;
-    let plan: ExperimentPlan =
-        serde_json::from_slice(&plan_bytes).context("invalid experiment plan JSON")?;
-    validate_plan(&plan)?;
+    let plan = load_plan(&plan_bytes)?;
 
     let zkfuzz_binary = resolve_executable(&options.zkfuzz_bin).with_context(|| {
         format!(
@@ -538,8 +542,7 @@ pub fn evaluate(
     let timer = Instant::now();
     let plan_path = fs::canonicalize(plan_path)?;
     let plan_bytes = fs::read(&plan_path)?;
-    let plan: ExperimentPlan = serde_json::from_slice(&plan_bytes)?;
-    validate_plan(&plan)?;
+    let plan = load_plan(&plan_bytes)?;
     let outcome_path = fs::canonicalize(outcome_path)?;
     let outcome: ExperimentOutcome = serde_json::from_slice(&fs::read(&outcome_path)?)?;
     ensure!(
@@ -810,7 +813,10 @@ fn validate_prepared_target(
 
     if matches!(
         strategy,
-        RankingStrategy::RiskOnly | RankingStrategy::RiskGrouped | RankingStrategy::WarningFirst
+        RankingStrategy::RiskOnly
+            | RankingStrategy::RiskGrouped
+            | RankingStrategy::WarningFirst
+            | RankingStrategy::CostAware
     ) {
         let semantic = target
             .semantic
@@ -925,8 +931,29 @@ fn validate_common_complete_target(target: &corpus::PreparedTarget) -> Result<()
     Ok(())
 }
 
+/// Schema 1 plans were frozen before tie reporting and must not contain a `ties` key;
+/// schema 2 plans must contain it (null only for `random`), checked on the raw JSON
+/// because a missing key and an explicit null both deserialize to None.
+fn load_plan(plan_bytes: &[u8]) -> Result<ExperimentPlan> {
+    let value: serde_json::Value =
+        serde_json::from_slice(plan_bytes).context("invalid experiment plan JSON")?;
+    let has_ties = value.get("ties").is_some();
+    let plan: ExperimentPlan =
+        serde_json::from_value(value).context("invalid experiment plan JSON")?;
+    ensure!(
+        matches!(plan.schema_version, 1 | 2),
+        "unsupported plan schema version"
+    );
+    if plan.schema_version == 1 {
+        ensure!(!has_ties, "schema 1 plan must not carry tie reporting");
+    } else {
+        ensure!(has_ties, "schema 2 plan is missing its tie summary");
+    }
+    validate_plan(&plan)?;
+    Ok(plan)
+}
+
 fn validate_plan(plan: &ExperimentPlan) -> Result<()> {
-    ensure!(plan.schema_version == 1, "unsupported plan schema version");
     ensure!(!plan.targets.is_empty(), "experiment plan has no targets");
     ensure!(
         plan.strategy != RankingStrategy::Random || plan.ranking_seed.is_some(),
@@ -1052,6 +1079,12 @@ fn validate_plan(plan: &ExperimentPlan) -> Result<()> {
             .eq(plan.targets.iter().map(|target| target.target_id.as_str())),
         "stored target order does not match the frozen ranking inputs"
     );
+    if plan.schema_version == 2 {
+        ensure!(
+            plan.ties == tie_summary(&reranked, plan.strategy, &plan.config),
+            "stored tie summary does not match the frozen ranking inputs"
+        );
+    }
     Ok(())
 }
 
@@ -1491,7 +1524,7 @@ fn status_name(status: &RunStatus) -> String {
     .to_owned()
 }
 
-fn resolve_executable(path: &Path) -> Result<PathBuf> {
+pub(crate) fn resolve_executable(path: &Path) -> Result<PathBuf> {
     if path.components().count() > 1 {
         let path = fs::canonicalize(path).context("executable path is unavailable")?;
         ensure!(is_executable_file(&path), "path is not an executable file");

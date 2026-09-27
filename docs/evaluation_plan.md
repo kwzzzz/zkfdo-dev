@@ -1,6 +1,6 @@
 # Evaluation Plan
 
-> **Revised 2026-09-24:** see [plan_revision_2026-09-24.md](plan_revision_2026-09-24.md). The held-out evaluation uses budget-constrained project target sets; the required baselines are `random`, `small-first`, `path-order`, `risk-only`, and a new `cost-aware`; `analyzer-aware` and `adaptive` (RQ4) are moved to future work. The original plan below is kept for reference.
+> **Revised 2026-09-24:** see [plan_revision_2026-09-24.md](plan_revision_2026-09-24.md). The held-out evaluation uses budget-constrained project target sets; the required baselines are `random`, `small-first`, `path-order`, `risk-only`, and a new `cost-aware`; `analyzer-aware` and `adaptive` (RQ4) are moved to future work. Scarcity is created by one elapsed-time budget per project run in a single campaign (the separate top-K start-limit condition was cancelled on 2026-09-26); ranking quality is analyzed separately as planned placement of known defects and as execution-verified discoveries within the first k targets. Runs are per project, and results are aggregated with equal project weight and reported descriptively. The original plan below is kept for reference.
 
 Evaluation will compare target ordering, bug discovery latency, and useful fuzzing progress under equal fuzzing budgets. The goal is to show whether zkfDO makes zkFuzz more effective and manageable on larger Circom projects than naive execution strategies.
 

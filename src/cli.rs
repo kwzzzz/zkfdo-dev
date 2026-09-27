@@ -88,6 +88,18 @@ pub struct TargetDiscoveryArgs {
     /// Generate wrappers without invoking the Circom compiler.
     #[arg(long)]
     pub no_validate: bool,
+
+    /// Discover only from this file's component main and its include closure.
+    #[arg(long)]
+    pub entrypoint: Option<PathBuf>,
+
+    /// Circom library directory (-l); repeatable, searched in the given order.
+    #[arg(long = "library-path", requires = "entrypoint")]
+    pub library_paths: Vec<PathBuf>,
+
+    /// Per-wrapper compile limit; the compiler process group is killed when it expires.
+    #[arg(long, default_value_t = targets::DEFAULT_WRAPPER_COMPILE_TIMEOUT_SECONDS)]
+    pub compile_timeout_seconds: u64,
 }
 
 #[derive(Debug, Args)]
@@ -187,7 +199,7 @@ pub struct ExperimentPlanArgs {
     #[arg(long)]
     pub prepared: PathBuf,
 
-    /// path-order, random, small-first, legacy, warning-first, risk-only, or risk-grouped.
+    /// path-order, random, small-first, legacy, warning-first, risk-only, risk-grouped, or cost-aware.
     #[arg(long)]
     pub strategy: RankingStrategy,
 
@@ -273,9 +285,14 @@ pub fn handle(cli: Cli) -> Result<()> {
             println!("{}", serde_json::to_string_pretty(&targets)?);
         }
         Commands::Targets(args) => {
-            let circom_bin = (!args.no_validate).then_some(args.circom_bin.as_path());
+            let options = targets::DiscoveryOptions {
+                entrypoint: args.entrypoint,
+                library_paths: args.library_paths,
+                circom_bin: (!args.no_validate).then_some(args.circom_bin),
+                compile_timeout_seconds: args.compile_timeout_seconds,
+            };
             let report =
-                targets::discover_project_targets(&args.project, &args.output, circom_bin)?;
+                targets::discover_project_targets_with(&args.project, &args.output, &options)?;
             println!("{}", serde_json::to_string_pretty(&report)?);
         }
         Commands::Features(args) => {

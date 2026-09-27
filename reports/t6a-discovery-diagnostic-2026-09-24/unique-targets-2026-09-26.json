@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-26",
+  "key": [
+    "source_path",
+    "template_name",
+    "concrete_parameters"
+  ],
+  "diagnosis_reports": 191,
+  "diagnosis_compiled_wrappers": false,
+  "diagnosis_manifest_sha256": "f0e3f7a267fd1b4977e02545053e326cc28c28f16ec2aa78b7d8478e6cf6047e",
+  "compile_manifest_sha256": "676038a241803a5de553c73f878942d84a3fd6de6f3e11ca50369e2e25bc43e8",
+  "projects": {
+    "zkemail": {
+      "entrypoints": 12,
+      "call_sites": 2834,
+      "unique_per_entrypoint_median_nonzero": 12,
+      "unique_per_entrypoint_max": 16,
+      "unique_per_entrypoint_sum": 78,
+      "unique_in_project": 21,
+      "call_sites_per_unique_within_entrypoint": 36.3,
+      "call_sites_per_unique_in_project": 135.0
+    },
+    "moonsong": {
+      "entrypoints": 5,
+      "call_sites": 0,
+      "unique_per_entrypoint_median_nonzero": 0,
+      "unique_per_entrypoint_max": 0,
+      "unique_per_entrypoint_sum": 0,
+      "unique_in_project": 0,
+      "call_sites_per_unique_within_entrypoint": null,
+      "call_sites_per_unique_in_project": null
+    },
+    "rarimo": {
+      "entrypoints": 64,
+      "call_sites": 4382,
+      "unique_per_entrypoint_median_nonzero": 11,
+      "unique_per_entrypoint_max": 17,
+      "unique_per_entrypoint_sum": 218,
+      "unique_in_project": 95,
+      "call_sites_per_unique_within_entrypoint": 20.1,
+      "call_sites_per_unique_in_project": 46.1
+    },
+    "self": {
+      "entrypoints": 90,
+      "call_sites": 676,
+      "unique_per_entrypoint_median_nonzero": 1,
+      "unique_per_entrypoint_max": 10,
+      "unique_per_entrypoint_sum": 83,
+      "unique_in_project": 49,
+      "call_sites_per_unique_within_entrypoint": 8.1,
+      "call_sites_per_unique_in_project": 13.8
+    },
+    "bigint": {
+      "entrypoints": 19,
+      "call_sites": 1286,
+      "unique_per_entrypoint_median_nonzero": 6,
+      "unique_per_entrypoint_max": 40,
+      "unique_per_entrypoint_sum": 151,
+      "unique_in_project": 93,
+      "call_sites_per_unique_within_entrypoint": 8.5,
+      "call_sites_per_unique_in_project": 13.8
+    },
+    "inference": {
+      "entrypoints": 1,
+      "call_sites": 2325,
+      "unique_per_entrypoint_median_nonzero": 15,
+      "unique_per_entrypoint_max": 15,
+      "unique_per_entrypoint_sum": 15,
+      "unique_in_project": 15,
+      "call_sites_per_unique_within_entrypoint": 155.0,
+      "call_sites_per_unique_in_project": 155.0
+    }
+  },
+  "compile_sample": [
+    {
+      "entrypoint": "isOlderThan_tester.circom",
+      "call_sites": 17,
+      "unique": 9,
+      "wrapper_compilations": 17,
+      "compile_succeeded": 17
+    },
+    {
+      "entrypoint": "base64-test.circom",
+      "call_sites": 11,
+      "unique": 4,
+      "wrapper_compilations": 11,
+      "compile_succeeded": 11
+    }
+  ]
+}

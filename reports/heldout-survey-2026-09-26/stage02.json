@@ -1,0 +1,257 @@
+{
+  "schema_version": 1,
+  "stage": "2 (source and patch provenance)",
+  "selection_rubric_sha256": "12ba462acf05fc59143a8da19aec1a891780a7a82ad2971e3c49fccd0fd4d2fb",
+  "input_stage01_sha256": "31c3ad3915fb61bfe3e7f4702ce72f810c0ce1b8e44e4111c9b95e718d978231",
+  "cases": [
+    {
+      "zkbugs_case": "Arianee/arianee-sdk/veridise_creditnoteproofs_can_be_stolen",
+      "project": "Arianee/arianee-sdk",
+      "stage": 2,
+      "outcome": "excluded",
+      "reason_code": "unreachable-recorded-patch",
+      "reason": "The constraint-changing fix is not reachable from the canonical origin/main or a release tag.",
+      "vulnerable_commit": "b7da01e0c81b9cccdc257040997c3500eb59db4f",
+      "fix_commit": "095a366101c50ba46601402805c0935650558aab",
+      "patch_kind": "proposed",
+      "affected_template": "CreditVerifier",
+      "affected_file": "packages/privacy-circuits/src/circom/creditVerifier/creditVerifier.circom"
+    },
+    {
+      "zkbugs_case": "darkforest-eth/darkforest-v0.3/daira_hopwood_darkforest_v0_3_missing_bit_length_check",
+      "project": "darkforest-eth/darkforest-v0.3",
+      "stage": 2,
+      "outcome": "excluded",
+      "reason_code": "external-successor-patch",
+      "reason": "The recorded constraint-changing fix is in darkforest-eth/circuits, not the original darkforest-v0.3 canonical repository.",
+      "vulnerable_commit": "1c83685e22e0463d5481c83e21616745b3204c9c",
+      "fix_commit": "1b5c8440a487614d4a3e6ed523df0aee71a05b6e",
+      "patch_kind": "proposed",
+      "affected_template": "RangeProof",
+      "affected_file": "circuits/range_proof/circuit.circom"
+    },
+    {
+      "zkbugs_case": "pantherfoundation/panther-core/veridise_babyjubjub_suborder_constraints_not_applied_correctly",
+      "project": "pantherfoundation/panther-core",
+      "stage": 2,
+      "outcome": "excluded",
+      "reason_code": "patch-commit-unavailable",
+      "reason": "The abbreviated fix ID cannot be resolved or retrieved from the public canonical repository.",
+      "vulnerable_commit": "b464348b33155a5877f67c085c7206dc29ad7cb7",
+      "fix_commit_recorded": "8fdab18",
+      "fix_commit": null,
+      "affected_template": "BabyJubJubSubOrderTag",
+      "affected_file": "circuits/circuits/templates/utils.circom"
+    },
+    {
+      "zkbugs_case": "pantherfoundation/panther-core/veridise_bypassing_internal_transfer_limits_via_swaps",
+      "project": "pantherfoundation/panther-core",
+      "stage": 2,
+      "outcome": "excluded",
+      "reason_code": "proposed-patch",
+      "reason": "The historically merged pull-request commit contains the constraint-changing fix, but it is now reachable only through a closed pull-request ref; the frozen stage-2 rule classifies that as proposed.",
+      "vulnerable_commit": "06a818632053719b56ace37ef12c9b31904af1e2",
+      "fix_commit": "39b770de49db47fcea361cf515b61e43dff36b65",
+      "patch_kind": "proposed",
+      "affected_template": "ZSwapV1",
+      "affected_file": "circuits/circuits/zSwapV1.circom"
+    },
+    {
+      "zkbugs_case": "pantherfoundation/panther-core/veridise_nullifier_verification_can_be_disabled",
+      "project": "pantherfoundation/panther-core",
+      "stage": 2,
+      "outcome": "excluded",
+      "reason_code": "patch-commit-unavailable",
+      "reason": "The abbreviated fix ID cannot be resolved or retrieved from the public canonical repository.",
+      "vulnerable_commit": "b464348b33155a5877f67c085c7206dc29ad7cb7",
+      "fix_commit_recorded": "69db60e",
+      "fix_commit": null,
+      "affected_template": "ZSwapV1",
+      "affected_file": "circuits/circuits/zSwapV1.circom"
+    },
+    {
+      "zkbugs_case": "pantherfoundation/panther-core/veridise_unsafe_num2bits_254_blacklist_leaf",
+      "project": "pantherfoundation/panther-core",
+      "stage": 2,
+      "outcome": "excluded",
+      "reason_code": "patch-commit-unavailable",
+      "reason": "The abbreviated fix ID cannot be resolved or retrieved from the public canonical repository.",
+      "vulnerable_commit": "b464348b33155a5877f67c085c7206dc29ad7cb7",
+      "fix_commit_recorded": "6dfcc56",
+      "fix_commit": null,
+      "affected_template": "ZAccountBlackListLeafInclusionProver",
+      "affected_file": "circuits/circuits/templates/zAccountBlackListLeafInclusionProver.circom"
+    },
+    {
+      "zkbugs_case": "pantherfoundation/panther-core/veridise_zaccount_renewal_kyc_expiry_not_validated",
+      "project": "pantherfoundation/panther-core",
+      "stage": 2,
+      "outcome": "excluded",
+      "reason_code": "patch-commit-unavailable",
+      "reason": "The abbreviated fix ID cannot be resolved or retrieved from the public canonical repository.",
+      "vulnerable_commit": "b464348b33155a5877f67c085c7206dc29ad7cb7",
+      "fix_commit_recorded": "3375335",
+      "fix_commit": null,
+      "affected_template": "ZAccountRenewalV1",
+      "affected_file": "circuits/circuits/zAccountRenewalV1.circom"
+    },
+    {
+      "zkbugs_case": "pantherfoundation/panther-core/veridise_zaccount_renewal_multiple_nullifiers_same_utxo",
+      "project": "pantherfoundation/panther-core",
+      "stage": 2,
+      "outcome": "excluded",
+      "reason_code": "patch-commit-unavailable",
+      "reason": "The abbreviated fix ID cannot be resolved or retrieved from the public canonical repository.",
+      "vulnerable_commit": "b464348b33155a5877f67c085c7206dc29ad7cb7",
+      "fix_commit_recorded": "903edd3",
+      "fix_commit": null,
+      "affected_template": "ZAccountRenewalV1",
+      "affected_file": "circuits/circuits/zAccountRenewalV1.circom"
+    },
+    {
+      "zkbugs_case": "pantherfoundation/panther-core/veridise_zone_id_inclusion_prover_bypass",
+      "project": "pantherfoundation/panther-core",
+      "stage": 2,
+      "outcome": "excluded",
+      "reason_code": "patch-commit-unavailable",
+      "reason": "The abbreviated fix ID cannot be resolved or retrieved from the public canonical repository.",
+      "vulnerable_commit": "b464348b33155a5877f67c085c7206dc29ad7cb7",
+      "fix_commit_recorded": "0621e84",
+      "fix_commit": null,
+      "affected_template": "ZoneIdInclusionProver",
+      "affected_file": "circuits/circuits/templates/zoneIdInclusionProver.circom"
+    },
+    {
+      "zkbugs_case": "pantherfoundation/panther-core/veridise_zone_limits_bypass_zswapv1",
+      "project": "pantherfoundation/panther-core",
+      "stage": 2,
+      "outcome": "excluded",
+      "reason_code": "patch-commit-unavailable",
+      "reason": "The abbreviated fix ID cannot be resolved or retrieved from the public canonical repository.",
+      "vulnerable_commit": "b464348b33155a5877f67c085c7206dc29ad7cb7",
+      "fix_commit_recorded": "54d4d0a",
+      "fix_commit": null,
+      "affected_template": "ZSwapV1",
+      "affected_file": "circuits/circuits/zSwapV1.circom"
+    },
+    {
+      "zkbugs_case": "privacy-scaling-explorations/maci/hashcloak_data_are_not_fully_verified_during_state_update",
+      "project": "privacy-scaling-explorations/maci",
+      "stage": 2,
+      "outcome": "excluded",
+      "reason_code": "affected-template-constraints-unchanged",
+      "reason": "The endpoint contains a caller-side partial mitigation, but the affected ResultCommitmentVerifier constraint and its dependencies remain unchanged; the recorded fix itself addresses ProcessMessages.",
+      "vulnerable_commit": "2db5f625b67a6b810bd851950d7a42c26189088b",
+      "fix_commit": "6df6a4054da926b07f35c5befab4f1f8af33dcc6",
+      "patch_kind": "official",
+      "affected_template": "ResultCommitmentVerifier",
+      "affected_file": "circuits/circom/tallyVotes.circom"
+    },
+    {
+      "zkbugs_case": "worm-privacy/proof-of-burn/koukyosyumei_spend_missing_range_check",
+      "project": "worm-privacy/proof-of-burn",
+      "stage": 2,
+      "outcome": "passed",
+      "vulnerable_commit": "0802485d24fed18fe063e51bcbb0bc830585855f",
+      "fix_commit": "90772b1c9fe73d1452e047fe49ca4fdc346472a0",
+      "patch_kind": "official",
+      "affected_template": "Spend",
+      "affected_file": "circuits/spend.circom"
+    },
+    {
+      "zkbugs_case": "zkemail/zk-regex/matterlabs_email_spoofing_via_manipulated_from_header",
+      "project": "zkemail/zk-regex",
+      "stage": 2,
+      "outcome": "passed",
+      "vulnerable_commit": "531575345558ba938675d725bd54df45c866ef74",
+      "fix_commit": "7002a2179e076449b84e3e7e8ba94e88d0a2dc2f",
+      "patch_kind": "official",
+      "affected_template": "EmailAddrWithNameRegex",
+      "affected_file": "packages/circom/circuits/common/email_addr_with_name_regex.circom",
+      "actual_constraint_change_commits": [
+        "81d0299ed2b405c72138125385ea7f6bb6a680b2",
+        "77541563c36075a0a5e817656d4613b5fb7ff548"
+      ]
+    },
+    {
+      "zkbugs_case": "zkemail/zk-regex/matterlabs_fromaddrregex_allows_email_address_spoofing",
+      "project": "zkemail/zk-regex",
+      "stage": 2,
+      "outcome": "passed",
+      "vulnerable_commit": "531575345558ba938675d725bd54df45c866ef74",
+      "fix_commit": "7002a2179e076449b84e3e7e8ba94e88d0a2dc2f",
+      "patch_kind": "official",
+      "affected_template": "FromAllRegex",
+      "affected_file": "packages/circom/circuits/common/from_all_regex.circom",
+      "actual_constraint_change_commits": [
+        "81d0299ed2b405c72138125385ea7f6bb6a680b2",
+        "77541563c36075a0a5e817656d4613b5fb7ff548"
+      ]
+    },
+    {
+      "zkbugs_case": "zkopru-network/zkopru/leastauthority_Circuit_Does_Not_Check_the_ERC_20_Sum_Correctly_",
+      "project": "zkopru-network/zkopru",
+      "stage": 2,
+      "outcome": "passed",
+      "vulnerable_commit": "4236fc8a5cbf73b7f3860d87a1a447eea8d7abd4",
+      "fix_commit": "30a19913ce1a018ce26a34d3d6621fcd38579171",
+      "patch_kind": "official",
+      "affected_template": "ZkTransaction",
+      "affected_file": "packages/circuits/lib/zk_transaction.circom"
+    },
+    {
+      "zkbugs_case": "zkopru-network/zkopru/leastauthority_previously_correct_ownership_proof_disabled_via_code_changes",
+      "project": "zkopru-network/zkopru",
+      "stage": 2,
+      "outcome": "passed",
+      "vulnerable_commit": "4236fc8a5cbf73b7f3860d87a1a447eea8d7abd4",
+      "fix_commit": "6458fe4ef384d2f2198aae00e719a7f94c30f090",
+      "patch_kind": "official",
+      "affected_template": "OwnershipProof",
+      "affected_file": "packages/circuits/lib/ownership_proof.circom"
+    }
+  ],
+  "summary": {
+    "input_cases": 16,
+    "passed": 5,
+    "excluded": 11,
+    "passed_projects": 3,
+    "excluded_by_reason": {
+      "patch-commit-unavailable": 7,
+      "proposed-patch": 1,
+      "unreachable-recorded-patch": 1,
+      "external-successor-patch": 1,
+      "affected-template-constraints-unchanged": 1
+    }
+  },
+  "raw_evidence": [
+    {
+      "path": "runs/heldout-survey-2026-09-26/stage2-evidence/panther-core/result.json",
+      "sha256": "e9b4ff0452bc5430e620106b868975ec76e672579084fe1aca667699313ed2fb"
+    },
+    {
+      "path": "runs/heldout-survey-2026-09-26/stage2-evidence/panther-core/FINDINGS.md",
+      "sha256": "3d5e2d263241f1dc3533812e65f00efe0f684920d90a7f54dd3e2030b5256f47"
+    },
+    {
+      "path": "runs/heldout-survey-2026-09-26/stage2-evidence/panther-core/COMMANDS.md",
+      "sha256": "87fcef91d3984360fe48155c8d086a12b87b05e4b9f1c2a78edce796a38ff58b"
+    },
+    {
+      "path": "runs/heldout-survey-2026-09-26/stage2-evidence/zk-projects/findings.json",
+      "sha256": "8b9d6c0c4e56afca9217574dc4f6f1d44f120678e0c1d34478a0d465bbb4ca1e"
+    },
+    {
+      "path": "runs/heldout-survey-2026-09-26/stage2-evidence/zk-projects/COMMANDS.md",
+      "sha256": "e29d4f3b4305ab4201cb5b748448bdef9e92ef8effe76b8b0f2445fa8c36e457"
+    },
+    {
+      "path": "runs/heldout-survey-2026-09-26/stage2-evidence/misc/findings.json",
+      "sha256": "09bedc5d5900d8b11b69e9460cadee6bb6450cc7abf58e78fdfabfa268833d8e"
+    },
+    {
+      "path": "runs/heldout-survey-2026-09-26/stage2-evidence/misc/COMMANDS.md",
+      "sha256": "d394b47364afb6a4e340e3d8a44fce7917fa119a8ea0350f914cd541df598291"
+    }
+  ]
+}

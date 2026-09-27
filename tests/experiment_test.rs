@@ -767,6 +767,106 @@ fn saved_plan_scores_remain_bound_to_the_prepared_report() {
 }
 
 #[test]
+fn schema_two_plans_reject_a_changed_tie_summary() {
+    let fixture = fixture();
+    let mut plan = plan(&fixture);
+    assert_eq!(plan.schema_version, 2);
+    let mut ties = plan.ties.clone().expect("non-random plan records ties");
+    ties.tie_group_count += 1;
+    plan.ties = Some(ties);
+    write_json(&plan.plan_path, &plan);
+    let options = ExecuteOptions {
+        zkfuzz_bin: fixture.directory.path().join("must-not-start"),
+        budget_seconds: 2,
+        total_budget_seconds: 5,
+        zkfuzz_seed: None,
+        mutation_settings: None,
+        output: fixture.directory.path().join("executions"),
+    };
+    let error = execute_plan(&plan.plan_path, &options).unwrap_err();
+    assert!(error.to_string().contains("tie summary"), "{error:#}");
+    plan.ties = None;
+    write_json(&plan.plan_path, &plan);
+    let error = execute_plan(&plan.plan_path, &options).unwrap_err();
+    assert!(error.to_string().contains("tie summary"), "{error:#}");
+    assert!(!options.output.exists());
+}
+
+#[test]
+fn schema_one_plans_without_ties_remain_valid_but_cannot_add_them() {
+    let fixture = fixture();
+    let mut plan = plan(&fixture);
+    let ties = plan.ties.take();
+    plan.schema_version = 1;
+    let mut value = serde_json::to_value(&plan).unwrap();
+    value.as_object_mut().unwrap().remove("ties");
+    write_json(&plan.plan_path, &value);
+    let options = ExecuteOptions {
+        zkfuzz_bin: fixture.directory.path().join("must-not-start"),
+        budget_seconds: 2,
+        total_budget_seconds: 5,
+        zkfuzz_seed: None,
+        mutation_settings: None,
+        output: fixture.directory.path().join("executions"),
+    };
+    // A legacy plan passes validation and fails only when the missing backend is started.
+    let error = execute_plan(&plan.plan_path, &options).unwrap_err();
+    assert!(
+        error.to_string().contains("zkFuzz binary unavailable"),
+        "{error:#}"
+    );
+    for stored in [
+        serde_json::to_value(&ties).unwrap(),
+        serde_json::Value::Null,
+    ] {
+        value
+            .as_object_mut()
+            .unwrap()
+            .insert("ties".to_owned(), stored);
+        write_json(&plan.plan_path, &value);
+        let error = execute_plan(&plan.plan_path, &options).unwrap_err();
+        assert!(
+            error
+                .to_string()
+                .contains("schema 1 plan must not carry tie reporting"),
+            "{error:#}"
+        );
+    }
+}
+
+#[test]
+fn schema_two_random_plans_require_an_explicit_null_tie_summary() {
+    let fixture = fixture();
+    let plan = create_plan(
+        &fixture.prepared.report_path,
+        RankingStrategy::Random,
+        &fixture.config_path,
+        Some(77),
+        &fixture.directory.path().join("random-plan.json"),
+    )
+    .unwrap();
+    assert_eq!(plan.ties, None);
+    let mut value: serde_json::Value =
+        serde_json::from_slice(&fs::read(&plan.plan_path).unwrap()).unwrap();
+    assert!(value.get("ties").is_some_and(serde_json::Value::is_null));
+    value.as_object_mut().unwrap().remove("ties");
+    write_json(&plan.plan_path, &value);
+    let options = ExecuteOptions {
+        zkfuzz_bin: fixture.directory.path().join("must-not-start"),
+        budget_seconds: 2,
+        total_budget_seconds: 5,
+        zkfuzz_seed: None,
+        mutation_settings: None,
+        output: fixture.directory.path().join("executions"),
+    };
+    let error = execute_plan(&plan.plan_path, &options).unwrap_err();
+    assert!(
+        error.to_string().contains("missing its tie summary"),
+        "{error:#}"
+    );
+}
+
+#[test]
 fn a_run_without_a_backend_candidate_cannot_be_confirmed() {
     let fixture = fixture();
     let plan = plan(&fixture);
@@ -826,7 +926,7 @@ fn stored_outcome_cannot_duplicate_a_run_to_inflate_evaluation_counts() {
 
 #[test]
 #[ignore = "requires actual locally installed Circom, zkFuzz AST, and pinned Circomspect; no fuzz search"]
-fn all_seven_strategies_preserve_one_common_complete_target_set() {
+fn all_strategies_preserve_one_common_complete_target_set() {
     let fixture = fixture();
     let manifest_path = fixture.directory.path().join("manifest.json");
     let mut manifest: CorpusManifest =
@@ -884,6 +984,7 @@ fn all_seven_strategies_preserve_one_common_complete_target_set() {
         RankingStrategy::WarningFirst,
         RankingStrategy::RiskOnly,
         RankingStrategy::RiskGrouped,
+        RankingStrategy::CostAware,
     ] {
         let seed = (strategy == RankingStrategy::Random).then_some(77);
         let plan = create_plan(
@@ -907,5 +1008,6 @@ fn all_seven_strategies_preserve_one_common_complete_target_set() {
         );
         assert_eq!(plan.exclusions.len(), 1);
         assert_eq!(plan.exclusions[0].label, "C-unsupported");
+        assert_eq!(plan.ties.is_none(), strategy == RankingStrategy::Random);
     }
 }

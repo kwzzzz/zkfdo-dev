@@ -1,0 +1,289 @@
+{
+  "schema_version": 1,
+  "name": "development-exclusions",
+  "recorded": "2026-09-24",
+  "purpose": "Known zkbugs Circom cases and projects that were executed, prepared, compiled or source-inspected during development. None of these root causes may enter a held-out evaluation set.",
+  "exposure_levels": {
+    "executed": "zkFuzz was run on a target containing the cause.",
+    "prepared": "Included in a zkfDO manifest or preparation, or compiled, but no zkFuzz run on the cause.",
+    "inspected": "Vulnerable and fixed sources were checked out and reviewed for selection; not compiled into a recorded corpus."
+  },
+  "rules": [
+    "Every root cause listed in cases is excluded from held-out sets regardless of exposure level.",
+    "Every project in projects.development or projects.surveyed is excluded entirely from the primary held-out set, including causes that were never inspected.",
+    "When a case is ambiguous, treat it as excluded."
+  ],
+  "cases": [
+    {
+      "zkbugs_case": "inference-labs-inc/subnet-2-circom/koukyosyumei_subtract_unconstrained_multiplier",
+      "root_cause_id": "inference-labs-inc/subnet-2-circom/koukyosyumei_subtract_unconstrained_multiplier",
+      "exposure": "executed",
+      "first_used_in": "controlled-v1",
+      "evidence": [
+        "datasets/manifest.controlled-v1.json",
+        "reports/controlled-v1.1-execution-2026-09-20/REPORT.md"
+      ]
+    },
+    {
+      "zkbugs_case": "banyancomputer/hot-proofs-blake3-circom/koukyosyumei_checkdepth_comparator_overflow",
+      "root_cause_id": "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range",
+      "exposure": "executed",
+      "first_used_in": "controlled-v2",
+      "evidence": [
+        "datasets/manifest.controlled-v2.json",
+        "reports/controlled-v2-execution-2026-09-20/REPORT.md"
+      ]
+    },
+    {
+      "zkbugs_case": "tangle-network/protocol-solidity/veridise_incorrect_initialization_in_membership_circuits",
+      "root_cause_id": "tangle-network/protocol-solidity/set-membership-zero-initialization",
+      "exposure": "executed",
+      "first_used_in": "controlled-v2",
+      "evidence": [
+        "datasets/manifest.controlled-v2.json",
+        "reports/controlled-v2-execution-2026-09-20/REPORT.md",
+        "reports/tangle-diagnostic-2026-09-22/REPORT.md"
+      ]
+    },
+    {
+      "zkbugs_case": "iden3/circomlib/veridise_decoder_accepting_bogus_output_signal",
+      "root_cause_id": "iden3/circomlib/decoder-unconstrained-one-hot-output",
+      "exposure": "executed",
+      "first_used_in": "controlled-v3-development",
+      "evidence": [
+        "datasets/manifest.controlled-v3-development.json",
+        "reports/controlled-v3-pilot-2026-09-23/REPORT.md"
+      ]
+    },
+    {
+      "zkbugs_case": "Unirep/Unirep/veridise_underconstrained_circuit_allows_invalid_comparison",
+      "root_cause_id": "unirep/unirep/big-less-than-num2bits-alias",
+      "exposure": "executed",
+      "first_used_in": "controlled-v3-development",
+      "evidence": [
+        "datasets/manifest.controlled-v3-development.json",
+        "reports/controlled-v3-pilot-2026-09-23/REPORT.md"
+      ]
+    },
+    {
+      "zkbugs_case": "reclaimprotocol/circom-chacha20/zksecurity_Unsound_Addition_Gadget",
+      "root_cause_id": "reclaimprotocol/circom-chacha20/zksecurity_Unsound_Addition_Gadget",
+      "exposure": "executed",
+      "first_used_in": "dev3",
+      "evidence": [
+        "datasets/manifest.dev10.json",
+        "experiments/dev3-ranking-pilot-2026-09-15.json",
+        "reports/add32bits-component-check-2026-09-15/REPORT.md"
+      ]
+    },
+    {
+      "zkbugs_case": "reclaimprotocol/circom-chacha20/zksecurity_Unsound_XOR_gadget",
+      "root_cause_id": "reclaimprotocol/circom-chacha20/zksecurity_Unsound_XOR_gadget",
+      "exposure": "executed",
+      "first_used_in": "dev3",
+      "evidence": [
+        "datasets/manifest.dev10.json",
+        "experiments/dev3-ranking-pilot-2026-09-15.json",
+        "reports/xorwords-independent-review-2026-09-15/REVIEW.md"
+      ]
+    },
+    {
+      "zkbugs_case": "reclaimprotocol/circom-chacha20/zksecurity_unsound_left_rotation",
+      "root_cause_id": "reclaimprotocol/circom-chacha20/zksecurity-1",
+      "exposure": "executed",
+      "first_used_in": "dev3",
+      "evidence": [
+        "datasets/manifest.dev10.json",
+        "experiments/dev3-ranking-pilot-2026-09-15.json",
+        "reports/rotateleft-candidate-check-2026-09-17/REPORT.md"
+      ]
+    },
+    {
+      "zkbugs_case": "aptos-labs/keyless-zk-proofs/koukyosyumei_unconstrained_base64_decoded_len",
+      "exposure": "prepared",
+      "first_used_in": "controlled-v2-preparation",
+      "evidence": [
+        "datasets/controlled-v2/aptos-base64-decoded-length",
+        "reports/controlled-v2-preparation-2026-09-20/REPORT.md"
+      ]
+    },
+    {
+      "zkbugs_case": "succinctlabs/telepathy-circuits/veridise_arrayxor_is_under_constrained",
+      "exposure": "prepared",
+      "first_used_in": "controlled-v2-preparation",
+      "evidence": [
+        "datasets/controlled-v2/telepathy-array-xor",
+        "reports/controlled-v2-preparation-2026-09-20/REPORT.md"
+      ]
+    },
+    {
+      "zkbugs_case": "succinctlabs/telepathy-circuits/veridise_template_CoreVerifyPubkeyG1_does_not_perform_input_validation_simplified",
+      "exposure": "prepared",
+      "first_used_in": "dev10",
+      "note": "The direct wrapper was checked out and listed in the dev10 manifest, then excluded because its circuits/ dependency tree was missing locally.",
+      "evidence": [
+        "datasets/manifest.dev10.json"
+      ]
+    },
+    {
+      "zkbugs_case": "zkemail/zk-email-verify/matterlabs_underconstrained_fpmul_circuit",
+      "exposure": "prepared",
+      "first_used_in": "controlled-v2-preparation",
+      "evidence": [
+        "reports/controlled-v2-preparation-2026-09-20/REPORT.md",
+        "reports/controlled-v3-preflight-2026-09-23/REPORT.md"
+      ]
+    },
+    {
+      "zkbugs_case": "0xbok/circom-bigint/veridise_missing_range_checks_in_bigmod",
+      "exposure": "prepared",
+      "first_used_in": "controlled-v3-preflight",
+      "evidence": [
+        "reports/controlled-v3-preflight-2026-09-23/REPORT.md"
+      ]
+    },
+    {
+      "zkbugs_case": "rarimo/passport-zk-circuits/koukyosyumei_under_constrained_date_encoder",
+      "exposure": "prepared",
+      "first_used_in": "controlled-v3-preflight",
+      "evidence": [
+        "reports/controlled-v3-preflight-2026-09-23/REPORT.md"
+      ]
+    },
+    {
+      "zkbugs_case": "Unirep/Unirep/veridise_missing_range_checks_on_comparison_circuits",
+      "exposure": "prepared",
+      "first_used_in": "controlled-v3-preflight",
+      "note": "Surveyed as UniRep EpochKeyLite.",
+      "evidence": [
+        "reports/controlled-v3-preflight-2026-09-23/REPORT.md"
+      ]
+    },
+    {
+      "zkbugs_case": "iden3/circomlib/kobi_gurkan_mimc_hash_assigned_but_not_constrained",
+      "exposure": "prepared",
+      "first_used_in": "controlled-v3-preflight",
+      "note": "Historical source failed to compile in the current environment.",
+      "evidence": [
+        "reports/controlled-v3-preflight-2026-09-23/REPORT.md"
+      ]
+    },
+    {
+      "zkbugs_case": "siv-org/verifiable-private-overrides/koukyosyumei_extractstringfrompoint_shiftedfirstbyte_unconstrained",
+      "exposure": "inspected",
+      "first_used_in": "controlled-v2-preparation",
+      "evidence": [
+        "reports/controlled-v2-preparation-2026-09-20/REPORT.md"
+      ]
+    },
+    {
+      "zkbugs_case": "inference-labs-inc/subnet-2-circom/koukyosyumei_clamp_comparator_overflow",
+      "exposure": "inspected",
+      "first_used_in": "controlled-v3-preflight",
+      "note": "Shares the vulnerable/fixed commit pair with the executed Subtract case. Source snapshot kept in ignored local runs.",
+      "evidence": [
+        "local-ignored:runs/controlled-v3-preflight/excluded-source-snapshots/inference-clamp"
+      ],
+      "source_record": {
+        "repository": "https://github.com/inference-labs-inc/subnet-2-circom",
+        "vulnerable_commit": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+        "patched_commit": "b8f92bdec1694138df0e069921f1aa0bdc94053e",
+        "accessed": "2026-09-22",
+        "note": "Local checkout is not durable; these public commits are the exclusion record. File blob hashes were not recorded."
+      }
+    },
+    {
+      "zkbugs_case": "Moonsong-Labs/zksync-social-login-circuit/openzeppelin_non_determinism_of_some_inputs",
+      "exposure": "inspected",
+      "first_used_in": "controlled-v3-preflight",
+      "note": "Vulnerable/fixed sources checked out on 2026-09-22; not named in the preflight report.",
+      "evidence": [
+        "local-ignored:/private/tmp/controlled-v3-work/moonsong"
+      ],
+      "source_record": {
+        "repository": "https://github.com/Moonsong-Labs/zksync-social-login-circuit",
+        "vulnerable_commit": "27cda6e74492fbad4aa3ca37ff5084ed391b534b",
+        "patched_commit": "5d02de9e550b6e671b732a432c590c02cb8bab3d",
+        "accessed": "2026-09-22",
+        "note": "Local checkout is not durable; these public commits are the exclusion record. File blob hashes were not recorded."
+      }
+    },
+    {
+      "zkbugs_case": "selfxyz/self/zksecurity_missing_boolean_constraints_in_the_merkle_tree_path_leads_to_an_attacker_being_able_to_craft_a_fake_merkle_proof_for_an_arbitrary_leaf",
+      "exposure": "inspected",
+      "first_used_in": "controlled-v3-preflight",
+      "note": "Vulnerable/fixed sources checked out on 2026-09-22; not named in the preflight report.",
+      "evidence": [
+        "local-ignored:/private/tmp/controlled-v3-work/self"
+      ],
+      "source_record": {
+        "repository": "https://github.com/selfxyz/self",
+        "vulnerable_commit": "4f18c75041bb47c1862169eef82c22067642a83a",
+        "patched_commit": "8801c6c1d793896a778c4b597531bc710995d30c",
+        "accessed": "2026-09-22",
+        "note": "Local checkout is not durable; these public commits are the exclusion record. File blob hashes were not recorded."
+      }
+    },
+    {
+      "zkbugs_case": "selfxyz/self/zksecurity_an_attacker_can_craft_a_fake_non_inclusion_proof_for_a_given_key_due_to_an_aliasing_bug_in_the_smt_verifier",
+      "exposure": "inspected",
+      "first_used_in": "controlled-v3-preflight",
+      "note": "Vulnerable/fixed sources checked out on 2026-09-22; not named in the preflight report.",
+      "evidence": [
+        "local-ignored:/private/tmp/controlled-v3-work/self-alias"
+      ],
+      "source_record": {
+        "repository": "https://github.com/selfxyz/self",
+        "vulnerable_commit": "4f18c75041bb47c1862169eef82c22067642a83a",
+        "patched_commit": "99e8eece5e0867017ca076731fba63ed96ae4711",
+        "accessed": "2026-09-22",
+        "note": "Local checkout is not durable; these public commits are the exclusion record. File blob hashes were not recorded."
+      }
+    },
+    {
+      "zkbugs_case": "zkemail/zk-email-verify/zksecurity_sha256_templates_return_zero_on_arbitrary_inputs",
+      "exposure": "inspected",
+      "first_used_in": "controlled-v3-preflight",
+      "note": "Vulnerable and patched commits match the zkbugs case; zkbugs records the patch as the abbreviated hash ad0ad6. Not named in the preflight report.",
+      "evidence": [
+        "local-ignored:/private/tmp/controlled-v3-work/zkemail-sha"
+      ],
+      "source_record": {
+        "repository": "https://github.com/zkemail/zk-email-verify",
+        "vulnerable_commit": "f2fb77c6ab49f4e85c424c3334ce69c018648fa7",
+        "patched_commit": "ad0ad676e3928e5a02951f74c77ff94babb9a039",
+        "accessed": "2026-09-22",
+        "note": "Local checkout is not durable; these public commits are the exclusion record. File blob hashes were not recorded."
+      }
+    }
+  ],
+  "projects": {
+    "development": [
+      "inference-labs-inc/subnet-2-circom",
+      "banyancomputer/hot-proofs-blake3-circom",
+      "tangle-network/protocol-solidity",
+      "iden3/circomlib",
+      "Unirep/Unirep",
+      "reclaimprotocol/circom-chacha20"
+    ],
+    "surveyed": [
+      "aptos-labs/keyless-zk-proofs",
+      "succinctlabs/telepathy-circuits",
+      "zkemail/zk-email-verify",
+      "0xbok/circom-bigint",
+      "rarimo/passport-zk-circuits",
+      "siv-org/verifiable-private-overrides",
+      "Moonsong-Labs/zksync-social-login-circuit",
+      "selfxyz/self"
+    ]
+  },
+  "non_zkbugs": [
+    {
+      "name": "synthetic zkFuzz positive control",
+      "evidence": [
+        "datasets/synthetic/zkfuzz-positive-control.json"
+      ],
+      "note": "Synthetic development control; never part of a held-out set."
+    }
+  ]
+}

@@ -47,6 +47,10 @@ pub struct ToolCapture {
     pub stdout_path: PathBuf,
     pub stderr_path: PathBuf,
     pub error: Option<String>,
+    /// Whether the tool process was spawned. Absent in captures recorded before this field
+    /// existed and skipped when absent, so those records serialize unchanged.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub process_started: Option<bool>,
 }
 
 #[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
@@ -390,7 +394,7 @@ fn ast_library_args(args: &[String]) -> Result<Vec<String>> {
     Ok(libraries)
 }
 
-fn capture_tool(
+pub(crate) fn capture_tool(
     binary: &Path,
     args: Vec<String>,
     purpose: &str,
@@ -416,37 +420,41 @@ fn capture_tool(
     let mut success = false;
     let mut timed_out = false;
     let mut error = None;
+    let mut process_started = false;
     match command.spawn() {
         Err(problem) => error = Some(format!("failed to spawn tool: {problem}")),
-        Ok(mut child) => loop {
-            match child.try_wait() {
-                Ok(Some(status)) => {
-                    exit_code = status.code();
-                    success = status.success();
+        Ok(mut child) => {
+            process_started = true;
+            loop {
+                match child.try_wait() {
+                    Ok(Some(status)) => {
+                        exit_code = status.code();
+                        success = status.success();
+                        break;
+                    }
+                    Err(problem) => {
+                        error = Some(format!("failed to poll tool: {problem}"));
+                        let _ = kill_group(&mut child);
+                        let _ = child.wait();
+                        break;
+                    }
+                    Ok(None) => {}
+                }
+                let remaining = timeout.saturating_sub(timer.elapsed());
+                if remaining.is_zero() {
+                    timed_out = true;
+                    if let Err(problem) = kill_group(&mut child) {
+                        error = Some(format!("failed to terminate tool: {problem:#}"));
+                    }
+                    match child.wait() {
+                        Ok(status) => exit_code = status.code(),
+                        Err(problem) => error = Some(format!("failed to reap tool: {problem}")),
+                    }
                     break;
                 }
-                Err(problem) => {
-                    error = Some(format!("failed to poll tool: {problem}"));
-                    let _ = kill_group(&mut child);
-                    let _ = child.wait();
-                    break;
-                }
-                Ok(None) => {}
+                thread::sleep(Duration::from_millis(25).min(remaining));
             }
-            let remaining = timeout.saturating_sub(timer.elapsed());
-            if remaining.is_zero() {
-                timed_out = true;
-                if let Err(problem) = kill_group(&mut child) {
-                    error = Some(format!("failed to terminate tool: {problem:#}"));
-                }
-                match child.wait() {
-                    Ok(status) => exit_code = status.code(),
-                    Err(problem) => error = Some(format!("failed to reap tool: {problem}")),
-                }
-                break;
-            }
-            thread::sleep(Duration::from_millis(25).min(remaining));
-        },
+        }
     }
     Ok(ToolCapture {
         requested: true,
@@ -463,6 +471,7 @@ fn capture_tool(
         stdout_path,
         stderr_path,
         error,
+        process_started: Some(process_started),
     })
 }
 
@@ -483,6 +492,7 @@ fn not_requested(binary: &Path, purpose: &str, output_dir: &Path) -> ToolCapture
         stdout_path: output_dir.join(format!("{purpose}.stdout.log")),
         stderr_path: output_dir.join(format!("{purpose}.stderr.log")),
         error: Some("not requested; no process or log files created".to_owned()),
+        process_started: Some(false),
     }
 }
 

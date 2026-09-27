@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "stage": "3 (production entrypoint reachability)",
+  "selection_rubric_sha256": "12ba462acf05fc59143a8da19aec1a891780a7a82ad2971e3c49fccd0fd4d2fb",
+  "input_stage02_sha256": "b7b0bee3b2ab669c8e9cffb662159bee108097ee6440923e2effef148fba7df8",
+  "cases": [
+    {
+      "zkbugs_case": "worm-privacy/proof-of-burn/koukyosyumei_spend_missing_range_check",
+      "project": "worm-privacy/proof-of-burn",
+      "stage": 3,
+      "outcome": "excluded",
+      "reason_code": "entrypoint-unverified",
+      "reason": "circuits/spend.circom declares main, but the project Makefile and README build only circuits/proof_of_burn.circom and no project build, deployment, script, or documentation connects Spend to an actual artifact.",
+      "affected_template": "Spend",
+      "production_entrypoints": []
+    },
+    {
+      "zkbugs_case": "zkemail/zk-regex/matterlabs_email_spoofing_via_manipulated_from_header",
+      "project": "zkemail/zk-regex",
+      "stage": 3,
+      "outcome": "excluded",
+      "reason_code": "entrypoint-unverified",
+      "reason": "All reachable main declarations are under packages/circom/tests/circuits; no build, workflow, or documentation connects the affected template to a production circuit artifact.",
+      "affected_template": "EmailAddrWithNameRegex",
+      "production_entrypoints": [],
+      "test_only_call_paths": [
+        "packages/circom/tests/circuits/test_from_addr_regex.circom:main -> FromAddrRegex(1024) -> EmailAddrWithNameRegex(1024)",
+        "packages/circom/tests/circuits/test_to_addr_regex.circom:main -> ToAddrRegex(1024) -> EmailAddrWithNameRegex(1024)"
+      ]
+    },
+    {
+      "zkbugs_case": "zkemail/zk-regex/matterlabs_fromaddrregex_allows_email_address_spoofing",
+      "project": "zkemail/zk-regex",
+      "stage": 3,
+      "outcome": "excluded",
+      "reason_code": "entrypoint-unverified",
+      "reason": "The only reachable main is a test circuit and no build, workflow, or documentation connects the affected template to a production circuit artifact.",
+      "affected_template": "FromAllRegex",
+      "production_entrypoints": [],
+      "test_only_call_paths": [
+        "packages/circom/tests/circuits/test_from_addr_regex.circom:main -> FromAddrRegex(1024) -> FromAllRegex(1024)"
+      ]
+    },
+    {
+      "zkbugs_case": "zkopru-network/zkopru/leastauthority_Circuit_Does_Not_Check_the_ERC_20_Sum_Correctly_",
+      "project": "zkopru-network/zkopru",
+      "stage": 3,
+      "outcome": "passed",
+      "affected_template": "ZkTransaction",
+      "production_entrypoint_pattern": "packages/circuits/impls/zk_transaction_{n_i}_{n_o}.circom for n_i,n_o in 1..4",
+      "production_entrypoint_count": 16,
+      "call_path": "main -> ZkTransaction(48, n_i, n_o)",
+      "production_evidence": "compile_circuits.sh compiles every impls/*.circom entrypoint, and key-builder.ts copies all 16 circuit, proving-key, and verification-key artifacts."
+    },
+    {
+      "zkbugs_case": "zkopru-network/zkopru/leastauthority_previously_correct_ownership_proof_disabled_via_code_changes",
+      "project": "zkopru-network/zkopru",
+      "stage": 3,
+      "outcome": "passed",
+      "affected_template": "OwnershipProof",
+      "production_entrypoint_pattern": "packages/circuits/impls/zk_transaction_{n_i}_{n_o}.circom for n_i,n_o in 1..4",
+      "production_entrypoint_count": 16,
+      "call_path": "main -> ZkTransaction(48, n_i, n_o) -> ownership_proof[i] = OwnershipProof()",
+      "production_evidence": "compile_circuits.sh compiles every impls/*.circom entrypoint, and key-builder.ts copies all 16 circuit, proving-key, and verification-key artifacts."
+    }
+  ],
+  "summary": {
+    "input_cases": 5,
+    "passed": 2,
+    "excluded": 3,
+    "passed_projects": 1,
+    "excluded_by_reason": {
+      "entrypoint-unverified": 3
+    }
+  },
+  "raw_evidence": [
+    {
+      "path": "runs/heldout-survey-2026-09-26/stage3-evidence/worm-proof-of-burn/findings.json",
+      "sha256": "84da25f3dcd1c2322f1f1ecc6e109e1a13b9439870f35af1e469fc22efd764e4"
+    },
+    {
+      "path": "runs/heldout-survey-2026-09-26/stage3-evidence/worm-proof-of-burn/COMMANDS.md",
+      "sha256": "79789ec5094df775dffc7ea5eebc382adcb6bc84e65485f56642db2a65d7a6fd"
+    },
+    {
+      "path": "runs/heldout-survey-2026-09-26/stage3-evidence/zk-regex/findings.json",
+      "sha256": "eee0ccdf3f9ce6835802541cb77453b2c35825b8c3964766ec3b3403114ab108"
+    },
+    {
+      "path": "runs/heldout-survey-2026-09-26/stage3-evidence/zk-regex/COMMANDS.md",
+      "sha256": "7f32f8a5dcbc50f209ce36ba35333497920fe8f7b8b5ec25d8f5c3a9da4b0b5d"
+    },
+    {
+      "path": "runs/heldout-survey-2026-09-26/stage3-evidence/zkopru/findings.json",
+      "sha256": "1a2187f1f0f54099b44a9a89e9fc2de5b866a9c9ffbf8ad61691ebea4916aff7"
+    },
+    {
+      "path": "runs/heldout-survey-2026-09-26/stage3-evidence/zkopru/COMMANDS.md",
+      "sha256": "4d723de1fe8b28a09cf15ad101da4fe572a9c969104fc8e1950562988d103bef"
+    }
+  ]
+}

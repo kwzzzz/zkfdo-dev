@@ -47,9 +47,9 @@ python3 scripts/summarize_static_ranking_pilot.py \
   --output experiments/dev3-ranking-pilot-2026-09-15.json
 ```
 
-**The seven strategies**
+**The strategies**
 
-All nonrandom score ties use ascending stable target ID. `path-order` sorts by entrypoint path first, then ID. Missing required measurements cause an explicit error or preparation exclusion; they never become zero.
+The dev3 pilot above used the first seven strategies; `cost-aware` was added on 2026-09-24. All nonrandom score ties use ascending stable target ID. `path-order` sorts by entrypoint path first, then ID. Missing required measurements cause an explicit error or preparation exclusion; they never become zero.
 
 | CLI strategy | Ordering | Required ranking measurements |
 |---|---|---|
@@ -60,6 +60,7 @@ All nonrandom score ties use ascending stable target ID. `path-order` sorts by e
 | `warning-first` | Descending deduplicated selected diagnostic count | `warning_count` |
 | `risk-only` | Descending sum of five 0/1 semantic features | `risk_score` |
 | `risk-grouped` | Same risk ordering within structural groups, then fixed round robin across groups | `risk_score`, `complexity`, explicit group configuration |
+| `cost-aware` | Descending `risk_score / cost_bits(size)`, then ascending `size` | `risk_score`, `size` |
 
 `random` uses `splitmix64-fisher-yates-rejection-v1`: SplitMix64, rejection sampling for unbiased indices, and Fisher–Yates. Its ranking seed is independent of the zkFuzz seed. The same target IDs and ranking seed reproduce the permutation regardless of discovery order.
 
@@ -68,6 +69,10 @@ The five risk features are existence indicators for Circomspect rules CS0013, CS
 `legacy` calls the unchanged functions in [src/ranker.rs](../src/ranker.rs): the existing weighted lexical risk divided by `1 + ln(1+LOC) + ln(1+signals) + ln(1+components) + ln(1+estimated constraints)`. In experiments its lexical input is the entire source file containing the root template, including unrelated templates in that file. It is a preserved baseline, not the semantic risk definition.
 
 `size` is the Circom compiler's `non-linear constraints` plus `linear constraints`, requiring successful compilation and the expected R1CS artifact. `complexity` is exactly `root_ast_if_plus_while`: `num_if_then_else + num_while` from the exact root-template row of zkFuzz's `--show_stats_of_ast` CSV. It counts the root template definition, not its parameter-expanded execution, dependency bodies, or total R1CS size. Profiles record `parameter_reflected: false`; `num_statements` is also preserved. AST collection runs no fuzz search.
+
+`cost-aware` uses `cost_bits(size)`, the bit length of `size + 1` (at least 1, roughly log2 of the constraint count). This is a heuristic that lets target size lower the priority gently; it is not a cost model fitted to measured runtimes, and the per-target timeout alone does not justify the logarithm. With raw constraint counts, size would dominate the 0–5 risk score; the integer log scale keeps both terms visible. Ratios are compared exactly by cross-multiplying integers, so the order does not depend on floating-point behavior. Among equal ratios, fewer constraints go first. The formula was fixed before any held-out case was selected and was not tuned on development results. Because a missing constraint lowers `size`, vulnerable sources can precede their patched comparators in vulnerable/patched pairs; that is a property of the pair design, not evidence of ranking quality.
+
+Every plan records `ties`: the number of groups whose relative order is decided only by target ID, the number of targets in those groups, and the largest group. It is computed from the strategy's primary key (for `risk-grouped`, structural group plus risk; for `cost-aware`, ratio then size) and is `null` for `random`. New plans use plan schema 2: the `ties` key must be present (explicit `null` for `random`), and execution recomputes it and rejects a plan whose stored value differs. Schema 1 plans, frozen before tie reporting, remain valid only without a `ties` key; a schema 1 plan that contains the key, even as `null`, is rejected.
 
 For `risk-grouped`, every target is assigned to one structural group; each group is ordered by the same risk score used in `risk-only`. Each round selects one remaining target from each group in configured order and skips exhausted groups. Complexity never changes a risk point or divides the score. This experiment tests grouping as a separate hypothesis.
 
@@ -82,10 +87,11 @@ A manifest specifies concrete entrypoints, their parsed root templates and param
 | `--strategy legacy` | Yes | No | No | Yes |
 | `--strategy warning-first` or `risk-only` | Yes | No | Yes | No |
 | `--strategy risk-grouped` | Yes | Yes | Yes | No |
+| `--strategy cost-aware` | Yes | No | Yes | No |
 
 For a comparison that isolates ordering, prepare once **without `--strategy`** and create all plans from the same prepared JSON. Only targets complete for all collected features are eligible. Keep the same target IDs, backend/settings, fuzzing seed, per-target budget, and overall budget across compared strategies; record random ranking seeds separately.
 
-Strategy-specific preparation measures the features that strategy requests and records its own cost, but can produce a different eligible set. Plans label this `strategy-specific-preparation` and include a warning. The CLI does not automatically intersect separately prepared sets or make them a valid seven-strategy comparison. The implemented execution mode is `ranking-separated`; a timed end-to-end comparison with an explicitly fixed common eligible set remains separate experimental work.
+Strategy-specific preparation measures the features that strategy requests and records its own cost, but can produce a different eligible set. Plans label this `strategy-specific-preparation` and include a warning. The CLI does not automatically intersect separately prepared sets or make them a valid multi-strategy comparison. The implemented execution mode is `ranking-separated`; a timed end-to-end comparison with an explicitly fixed common eligible set remains separate experimental work.
 
 Preparation stores the supported Circomspect package/revision contract. Its default binary is `.external/circomspect/target/release/circomspect`. See the semantic document for the local pinned build. `--circom-bin`, `--zkfuzz-bin`, and `--circomspect-bin` select tool paths; `--tool-timeout-seconds` defaults to 60 and applies to each tool invocation. An unavailable analyzer is harmless only when semantic analysis was not requested.
 

@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "extension": "1 (public currently open proposed patches)",
+  "selection_rubric_sha256": "12ba462acf05fc59143a8da19aec1a891780a7a82ad2971e3c49fccd0fd4d2fb",
+  "input_primary_stage04_sha256": "c69af859b07e442ac59fcf9e43cd18a3b6637a2f2c1e8e7536d94ee6cee9bb92",
+  "rule": "Reconsider the seven stage-1 cases with no recorded Fix Commit only when the canonical public repository currently has an open pull request proposing a patch for the recorded root cause.",
+  "cases": [
+    {
+      "zkbugs_case": "Arianee/arianee-sdk/veridise_ownershipproofs_could_identify_issuers",
+      "vulnerable_commit": "b7da01e0c81b9cccdc257040997c3500eb59db4f",
+      "affected_template": "OwnershipVerifier",
+      "affected_file": "packages/privacy-circuits/src/circom/ownershipVerifier/ownershipVerifier.circom",
+      "outcome": "excluded",
+      "reason_code": "no-open-proposed-patch",
+      "reason": "All six currently open canonical pull requests are dependency updates; none proposes the audit's token-binding constraint."
+    },
+    {
+      "zkbugs_case": "Rate-Limiting-Nullifier/circom-rln/veridise_spammers_may_slash_themselves",
+      "vulnerable_commit": "022b690b5615d1e26874013cf216136875d8f3ab",
+      "affected_template": "Withdraw",
+      "affected_file": "circuits/withdraw.circom",
+      "outcome": "excluded",
+      "reason_code": "no-open-proposed-patch",
+      "reason": "Open PR #14 changes the hash primitive and adds an incidental address constraint, but it implements neither documented self-slashing mitigation."
+    },
+    {
+      "zkbugs_case": "iden3/circuits/trailofbits_unsafe_use_of_num2bits_in_multiple_circuits",
+      "vulnerable_commit": "7a1e04de3e5f3a9f0cfb27a43c9f41c986c1b9ed",
+      "affected_templates": [
+        "getClaimHeader",
+        "getClaimRevNonce",
+        "getClaimExpiration",
+        "TakeNBits",
+        "cutId",
+        "cutState",
+        "LessThan254"
+      ],
+      "outcome": "excluded",
+      "reason_code": "no-open-proposed-patch",
+      "reason": "The matching constraint patch was PR #131, merged and closed on 2024-04-17; none of the four current open pull requests changes the affected files."
+    },
+    {
+      "zkbugs_case": "personaelabs/spartan-ecdsa/yacademy_Knowledge_of_any_member_signature_allow_to_generate_proof_of_membership",
+      "vulnerable_commit": "3386b30d9b5b62d8a60735cbeab42bfe42e80429",
+      "affected_template": "PubKeyMembership",
+      "affected_file": "packages/circuits/eff_ecdsa_membership/pubkey_membership.circom",
+      "outcome": "excluded",
+      "reason_code": "no-open-proposed-patch",
+      "reason": "No current canonical or audit-link fork pull request proposes the required message/signature binding constraint."
+    },
+    {
+      "zkbugs_case": "personaelabs/spartan-ecdsa/yacademy_input_signal_s_is_not_constrained_in_eff_ecdsa_circom",
+      "vulnerable_commit": "3386b30d9b5b62d8a60735cbeab42bfe42e80429",
+      "affected_template": "EfficientECDSA",
+      "affected_file": "packages/circuits/eff_ecdsa_membership/eff_ecdsa.circom",
+      "outcome": "excluded",
+      "reason_code": "no-open-proposed-patch",
+      "reason": "No current public pull request adds a constraint on s; the nearby open changes only add an include or remove an unused variable."
+    },
+    {
+      "zkbugs_case": "personaelabs/spartan-ecdsa/yacademy_under_constrained_circuits_compromising_the_soundness_of_the_system",
+      "vulnerable_commit": "3386b30d9b5b62d8a60735cbeab42bfe42e80429",
+      "affected_template": "K",
+      "affected_file": "packages/circuits/eff_ecdsa_membership/secp256k1/mul.circom",
+      "outcome": "excluded",
+      "reason_code": "no-open-proposed-patch",
+      "reason": "No current public pull request changes K or mul.circom to constrain slo/shi or remove K."
+    },
+    {
+      "zkbugs_case": "semaphore-protocol/semaphore/veridise_no_zero_value_validation",
+      "vulnerable_commit": "27320f17233b18de477a74919084fba76513470f",
+      "affected_template": "Semaphore",
+      "affected_file": "packages/circuits/semaphore.circom",
+      "outcome": "excluded",
+      "reason_code": "no-open-proposed-patch",
+      "reason": "None of 31 current canonical open pull requests changes a Circom circuit path; zero-related PRs #1032, #1036, and #1092 modify only TypeScript data/group code and tests."
+    }
+  ],
+  "summary": {
+    "input_cases": 7,
+    "eligible_open_proposed_patches": 0,
+    "excluded": 7,
+    "stage_2_reached": 0,
+    "stage_3_or_later_reached": 0
+  },
+  "raw_evidence": [
+    {
+      "path": "runs/heldout-survey-2026-09-26/extension1-evidence/group-a/findings.json",
+      "sha256": "0c478d82b51ca7ac9673a3d77209c5f35e87af4e8f68b87ce970a4752929d345"
+    },
+    {
+      "path": "runs/heldout-survey-2026-09-26/extension1-evidence/group-a/COMMANDS.md",
+      "sha256": "694cf6d3fdd10ae829c9b878d2e67f4269316fdc66b115177e48e308b57c86f0"
+    },
+    {
+      "path": "runs/heldout-survey-2026-09-26/extension1-evidence/group-a/KEY_SHA256SUMS.txt",
+      "sha256": "960999e66dabe2398f632331a4a39082c0b5613f4430fb0590de6cfb74e5f91e"
+    },
+    {
+      "path": "runs/heldout-survey-2026-09-26/extension1-evidence/group-b/findings.json",
+      "sha256": "917827f10d3534cd58fdf70bb2682a856639513e83e179381e492a3cb88fd4d3"
+    },
+    {
+      "path": "runs/heldout-survey-2026-09-26/extension1-evidence/group-b/open_pr_inventory.json",
+      "sha256": "4787f1de038f2adaf2ee89b87159a45afc9af4a45e0febb87fa454462a9b37f1"
+    },
+    {
+      "path": "runs/heldout-survey-2026-09-26/extension1-evidence/group-b/COMMANDS.md",
+      "sha256": "4d724e9dec167f20ddfeb8ae0bf3625d75d4d923c1b7b9946233504b9458652b"
+    },
+    {
+      "path": "runs/heldout-survey-2026-09-26/extension1-evidence/group-b/api/spartan-open-prs.json",
+      "sha256": "22d133138a91da362e18fd5c0ba00a94fe8fce3deb210feccf1e0e466b6e867b"
+    },
+    {
+      "path": "runs/heldout-survey-2026-09-26/extension1-evidence/group-b/api/yaudit-spartan-open-prs.json",
+      "sha256": "88328bb4a60db005eff31c377e5f0110760595cfab34579003d2713080eb9c41"
+    },
+    {
+      "path": "runs/heldout-survey-2026-09-26/extension1-evidence/group-b/api/semaphore-open-prs.json",
+      "sha256": "fb604705d185b2782ed9af4a412e4c88ac128747ae202c0f909f62f7c273217f"
+    },
+    {
+      "path": "runs/heldout-survey-2026-09-26/extension1-evidence/group-b/spartan-open-pr-diffs.tar",
+      "sha256": "01bd4b9be14555ee0fb3f1d87be0699670e0fb88aae70c8ebb1c501e2db83f8c",
+      "archive_format": "uncompressed tar",
+      "contained_diff_files": 3
+    },
+    {
+      "path": "runs/heldout-survey-2026-09-26/extension1-evidence/group-b/yaudit-spartan-open-pr-diffs.tar",
+      "sha256": "a77402cb607a4bf2fe707264b61827e30ba8f943735e1632d8f88bec4da36107",
+      "archive_format": "uncompressed tar",
+      "contained_diff_files": 3
+    },
+    {
+      "path": "runs/heldout-survey-2026-09-26/extension1-evidence/group-b/semaphore-open-pr-diffs.tar",
+      "sha256": "8def58123bc9f7524bc0a72b2eb43de4a07477f5717af6f44301c56f9118db7b",
+      "archive_format": "uncompressed tar",
+      "contained_diff_files": 31
+    }
+  ]
+}

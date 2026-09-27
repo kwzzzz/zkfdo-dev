@@ -15,6 +15,7 @@ pub enum RankingStrategy {
     WarningFirst,
     RiskOnly,
     RiskGrouped,
+    CostAware,
 }
 
 impl fmt::Display for RankingStrategy {
@@ -27,6 +28,7 @@ impl fmt::Display for RankingStrategy {
             Self::WarningFirst => "warning-first",
             Self::RiskOnly => "risk-only",
             Self::RiskGrouped => "risk-grouped",
+            Self::CostAware => "cost-aware",
         })
     }
 }
@@ -43,6 +45,7 @@ impl FromStr for RankingStrategy {
             "warning-first" => Ok(Self::WarningFirst),
             "risk-only" => Ok(Self::RiskOnly),
             "risk-grouped" => Ok(Self::RiskGrouped),
+            "cost-aware" => Ok(Self::CostAware),
             _ => bail!("unknown static ranking strategy: {value}"),
         }
     }
@@ -157,15 +160,22 @@ pub fn rank_targets(
         let required = match strategy {
             RankingStrategy::SmallFirst => Some(("size", target.size)),
             RankingStrategy::WarningFirst => Some(("warning_count", target.warning_count)),
-            RankingStrategy::RiskOnly | RankingStrategy::RiskGrouped => {
-                Some(("risk_score", target.risk_score))
-            }
+            RankingStrategy::RiskOnly
+            | RankingStrategy::RiskGrouped
+            | RankingStrategy::CostAware => Some(("risk_score", target.risk_score)),
             _ => None,
         };
         if let Some((name, value)) = required {
             ensure!(
                 value.is_some(),
                 "{strategy}: target {} is missing {name}",
+                target.target_id
+            );
+        }
+        if strategy == RankingStrategy::CostAware {
+            ensure!(
+                target.size.is_some(),
+                "cost-aware: target {} is missing size",
                 target.target_id
             );
         }
@@ -218,6 +228,8 @@ pub fn rank_targets(
                 .then_with(|| a.target_id.cmp(&b.target_id))
         }),
         RankingStrategy::RiskOnly => ranked.sort_by(risk_order),
+        RankingStrategy::CostAware => ranked
+            .sort_by(|a, b| cost_aware_key_order(a, b).then_with(|| a.target_id.cmp(&b.target_id))),
         RankingStrategy::RiskGrouped => {
             let settings = config
                 .complexity_groups
@@ -251,6 +263,84 @@ fn risk_order(a: &RankingInput, b: &RankingInput) -> std::cmp::Ordering {
     b.risk_score
         .cmp(&a.risk_score)
         .then_with(|| a.target_id.cmp(&b.target_id))
+}
+
+/// Integer log-scale cost: the bit length of `size + 1`, so it is at least 1.
+/// Per-target runs are capped by a timeout, so raw constraint counts would overstate cost.
+pub fn cost_bits(size: u64) -> u64 {
+    u64::from(u64::BITS - size.saturating_add(1).leading_zeros())
+}
+
+/// Descending `risk_score / cost_bits(size)`, compared exactly by cross-multiplication,
+/// then ascending size. Target ID is left to the caller as the final tie-break.
+fn cost_aware_key_order(a: &RankingInput, b: &RankingInput) -> std::cmp::Ordering {
+    let key = |target: &RankingInput| {
+        (
+            u128::from(target.risk_score.expect("validated risk score")),
+            u128::from(cost_bits(target.size.expect("validated size"))),
+        )
+    };
+    let (a_risk, a_cost) = key(a);
+    let (b_risk, b_cost) = key(b);
+    (b_risk * a_cost)
+        .cmp(&(a_risk * b_cost))
+        .then_with(|| a.size.cmp(&b.size))
+}
+
+/// Groups of targets whose relative order is decided only by target ID.
+#[derive(Debug, Clone, Default, Deserialize, Serialize, PartialEq, Eq)]
+#[serde(deny_unknown_fields)]
+pub struct TieSummary {
+    pub tie_group_count: usize,
+    pub tied_target_count: usize,
+    pub largest_tie_group: usize,
+}
+
+/// Returns None for `random`, whose order does not use a primary key.
+pub fn tie_summary(
+    ranked: &[RankingInput],
+    strategy: RankingStrategy,
+    config: &StaticRankingConfig,
+) -> Option<TieSummary> {
+    use std::cmp::Ordering;
+    let group = |target: &RankingInput| {
+        config
+            .complexity_groups
+            .as_ref()
+            .zip(target.complexity)
+            .map(|(groups, complexity)| groups.group_index(complexity))
+    };
+    let key_order = |a: &RankingInput, b: &RankingInput| -> Ordering {
+        match strategy {
+            RankingStrategy::PathOrder => a.path.cmp(&b.path),
+            RankingStrategy::SmallFirst => a.size.cmp(&b.size),
+            RankingStrategy::WarningFirst => b.warning_count.cmp(&a.warning_count),
+            RankingStrategy::Legacy => b
+                .legacy_score
+                .partial_cmp(&a.legacy_score)
+                .unwrap_or(Ordering::Equal),
+            RankingStrategy::RiskOnly => b.risk_score.cmp(&a.risk_score),
+            RankingStrategy::RiskGrouped => group(a)
+                .cmp(&group(b))
+                .then_with(|| b.risk_score.cmp(&a.risk_score)),
+            RankingStrategy::CostAware => cost_aware_key_order(a, b),
+            RankingStrategy::Random => unreachable!("random has no primary key"),
+        }
+    };
+    if strategy == RankingStrategy::Random {
+        return None;
+    }
+    let mut sorted = ranked.iter().collect::<Vec<_>>();
+    sorted.sort_by(|a, b| key_order(a, b));
+    let mut summary = TieSummary::default();
+    for chunk in sorted.chunk_by(|a, b| key_order(a, b) == Ordering::Equal) {
+        if chunk.len() > 1 {
+            summary.tie_group_count += 1;
+            summary.tied_target_count += chunk.len();
+            summary.largest_tie_group = summary.largest_tie_group.max(chunk.len());
+        }
+    }
+    Some(summary)
 }
 
 // SplitMix64 with its standard fixed constants; wrapping arithmetic is intentional.

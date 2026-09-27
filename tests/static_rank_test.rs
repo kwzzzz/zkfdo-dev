@@ -1,11 +1,11 @@
 use std::{collections::BTreeSet, path::PathBuf};
 
 use zkfdo::static_rank::{
-    rank_targets, ComplexityGroups, RankingInput, RankingStrategy, StaticRankingConfig,
-    RANDOM_ALGORITHM,
+    cost_bits, rank_targets, tie_summary, ComplexityGroups, RankingInput, RankingStrategy,
+    StaticRankingConfig, TieSummary, RANDOM_ALGORITHM,
 };
 
-const STRATEGIES: [RankingStrategy; 7] = [
+const STRATEGIES: [RankingStrategy; 8] = [
     RankingStrategy::PathOrder,
     RankingStrategy::Random,
     RankingStrategy::SmallFirst,
@@ -13,6 +13,7 @@ const STRATEGIES: [RankingStrategy; 7] = [
     RankingStrategy::WarningFirst,
     RankingStrategy::RiskOnly,
     RankingStrategy::RiskGrouped,
+    RankingStrategy::CostAware,
 ];
 
 fn target(id: &str, risk: u64, complexity: u64) -> RankingInput {
@@ -184,6 +185,8 @@ fn missing_required_features_fail_instead_of_becoming_zero() {
         (RankingStrategy::RiskGrouped, "risk_score"),
         (RankingStrategy::RiskGrouped, "complexity"),
         (RankingStrategy::Legacy, "legacy_score"),
+        (RankingStrategy::CostAware, "risk_score"),
+        (RankingStrategy::CostAware, "size"),
     ];
     for (strategy, field) in cases {
         let mut incomplete = target("unknown", 1, 5);
@@ -326,4 +329,63 @@ fn strategies_and_config_serialize_without_implicit_group_defaults() {
         r#"{"schema_version":1,"complexity_groups":null,"unknown":1}"#
     )
     .is_err());
+}
+
+#[test]
+fn cost_bits_is_an_integer_log_scale_of_size() {
+    for (size, expected) in [(0, 1), (1, 2), (2, 2), (3, 3), (1000, 10), (u64::MAX, 64)] {
+        assert_eq!(cost_bits(size), expected, "size {size}");
+    }
+}
+
+#[test]
+fn cost_aware_orders_by_exact_risk_per_cost_then_size_then_id() {
+    let with = |id: &str, risk: u64, size: u64| {
+        let mut value = target(id, risk, 0);
+        value.size = Some(size);
+        value
+    };
+    // Ratios: E 1/1, F 2/2, D 2/3, B 1/3, A 2/10, C 0/1.
+    let targets = vec![
+        with("A", 2, 1000),
+        with("B", 1, 3),
+        with("C", 0, 0),
+        with("D", 2, 3),
+        with("E", 1, 0),
+        with("F", 2, 1),
+    ];
+    let ranked = rank(&targets, RankingStrategy::CostAware);
+    assert_eq!(ids(&ranked), ["E", "F", "D", "B", "A", "C"]);
+    let mut reversed = targets.clone();
+    reversed.reverse();
+    assert_eq!(rank(&reversed, RankingStrategy::CostAware), ranked);
+}
+
+#[test]
+fn tie_summary_counts_groups_decided_only_by_target_id() {
+    let targets = [
+        target("A", 2, 1),
+        target("B", 2, 1),
+        target("C", 1, 1),
+        target("D", 1, 1),
+        target("E", 1, 1),
+        target("F", 0, 1),
+    ];
+    let ranked = rank(&targets, RankingStrategy::RiskOnly);
+    assert_eq!(
+        tie_summary(&ranked, RankingStrategy::RiskOnly, &config()),
+        Some(TieSummary {
+            tie_group_count: 2,
+            tied_target_count: 5,
+            largest_tie_group: 3,
+        })
+    );
+    assert_eq!(
+        tie_summary(&ranked, RankingStrategy::PathOrder, &config()),
+        Some(TieSummary::default())
+    );
+    assert_eq!(
+        tie_summary(&ranked, RankingStrategy::Random, &config()),
+        None
+    );
 }
