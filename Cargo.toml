@@ -14,6 +14,10 @@ path = "src/lib.rs"
 name = "zkfDO"
 path = "src/main.rs"
 
+[[bin]]
+name = "zkfdo-relation-verifier"
+path = "src/bin/relation_verifier.rs"
+
 [dependencies]
 anyhow = "1.0"
 chrono = { version = "0.4", features = ["serde"] }

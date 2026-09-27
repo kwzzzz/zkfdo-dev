@@ -93,6 +93,7 @@ const ENGINE_SOURCES: &[&str] = &[
     "src/candidate_review/r1cs.rs",
     "src/candidate_review/schema.rs",
     "src/candidate_review/subprocess.rs",
+    "src/bin/relation_verifier.rs",
     "src/cli.rs",
     "src/corpus.rs",
     "src/experiment.rs",
@@ -186,7 +187,28 @@ pub struct InjectOptions {
     pub plan: PathBuf,
     pub circom_bin: PathBuf,
     pub node_bin: PathBuf,
+    /// Pinned external verifier used for `operator-proof` relation exclusion.
+    pub relation_verifier_bin: PathBuf,
 }
+
+/// Certificate checked by the pinned `zkfdo-relation-verifier` executable.
+///
+/// Unique propagation fixes the contract input and property signals, then repeatedly
+/// solves any clean constraint with exactly one undetermined wire that appears linearly
+/// with a nonzero coefficient. Every value it derives is forced in every clean assignment
+/// that agrees on the fixed signals, so a listed constraint whose wires are all derived and
+/// that is violated proves that no such clean assignment exists.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct PropagationCertificate {
+    pub schema_version: u32,
+    pub method: RelationExclusionMethod,
+    pub format: String,
+    pub contradiction_constraint_indices: Vec<usize>,
+    pub fixed_signal_names: Vec<String>,
+}
+
+pub const PROPAGATION_FORMAT: &str = "unique-propagation-v1";
 
 #[derive(Debug, Clone, Serialize)]
 pub struct InjectOutput {
@@ -515,16 +537,56 @@ pub fn build(options: &InjectOptions) -> Result<InjectOutput> {
         &mutant_symbols,
     )?;
     ensure!(
-        plan.relation_exclusion == RelationExclusionMethod::FullyFixedConstraint,
-        "only the built-in fully-fixed-constraint method is supported by this builder"
+        clean_r1cs
+            .failed_constraint_indices(&projected)?
+            .iter()
+            .any(|index| expected.contains(index)),
+        "the projected disturbance fails no injection-related clean constraint"
     );
-    let certificate = fully_fixed_certificate(
-        &clean_r1cs,
-        &projection.mappings,
-        &projected,
-        &expected,
-        &preferred,
-    )?;
+    let (certificate, certificate_constraint_count): (Value, usize) = match plan.relation_exclusion
+    {
+        RelationExclusionMethod::FullyFixedConstraint => {
+            let certificate = fully_fixed_certificate(
+                &clean_r1cs,
+                &projection.mappings,
+                &projected,
+                &expected,
+                &preferred,
+            )?;
+            let count = certificate.clean_constraint_indices.len();
+            (serde_json::to_value(certificate)?, count)
+        }
+        RelationExclusionMethod::OperatorProof => {
+            let fixed = preferred
+                .iter()
+                .map(|name| {
+                    let wire = mutant_symbols
+                        .by_name
+                        .get(name)
+                        .and_then(|symbol| usize::try_from(symbol.wire).ok())
+                        .with_context(|| format!("contract signal {name} is not a mutant wire"))?;
+                    Ok((name.clone(), twin_assignment[wire].clone()))
+                })
+                .collect::<Result<BTreeMap<_, _>>>()?;
+            let known = unique_propagation(&clean_r1cs, &clean_symbols, &fixed)?;
+            let contradictions = propagation_contradictions(&clean_r1cs, &known, &expected);
+            ensure!(
+                !contradictions.is_empty(),
+                "unique propagation does not determine a violated injection-related constraint"
+            );
+            let certificate = PropagationCertificate {
+                schema_version: 1,
+                method: RelationExclusionMethod::OperatorProof,
+                format: PROPAGATION_FORMAT.to_owned(),
+                contradiction_constraint_indices: contradictions.clone(),
+                fixed_signal_names: fixed.keys().cloned().collect(),
+            };
+            (serde_json::to_value(certificate)?, contradictions.len())
+        }
+        RelationExclusionMethod::SolverUnsatCertificate => {
+            bail!("solver certificates are not produced by this builder")
+        }
+    };
 
     // 5. Reachability from the entrypoint inside the mutant tree, as the engine reruns it.
     let mutant_root = fs::canonicalize(&variants[1].tree)?;
@@ -651,9 +713,8 @@ pub fn build(options: &InjectOptions) -> Result<InjectOutput> {
     let certificate_path = output.join("certificate.json");
     write_json_new(&certificate_path, &certificate)?;
     let relation_verifier_path = output.join("relation-verifier.json");
-    write_json_new(
-        &relation_verifier_path,
-        &RelationVerifierManifest {
+    let relation_verifier = match plan.relation_exclusion {
+        RelationExclusionMethod::FullyFixedConstraint => RelationVerifierManifest {
             schema_version: 1,
             api_version: 1,
             verifier_id: "zkfdo-builtin-fully-fixed-constraint".to_owned(),
@@ -677,7 +738,43 @@ pub fn build(options: &InjectOptions) -> Result<InjectOutput> {
                 },
             ],
         },
-    )?;
+        _ => {
+            let verifier_dir = workspace.join("verifier");
+            fs::create_dir_all(&verifier_dir)?;
+            let executable = verifier_dir.join("zkfdo-relation-verifier");
+            fs::copy(
+                resolve_program(&options.relation_verifier_bin)?,
+                &executable,
+            )
+            .context("copy the relation verifier")?;
+            let executable_ref = file_ref(&output, &executable)?;
+            RelationVerifierManifest {
+                schema_version: 1,
+                api_version: 1,
+                verifier_id: "zkfdo-unique-propagation".to_owned(),
+                method: RelationExclusionMethod::OperatorProof,
+                implementation: VerifierImplementation {
+                    kind: VerifierImplementationKind::External,
+                    executable_path: Some(executable_ref.path),
+                    executable_sha256: Some(executable_ref.sha256),
+                    source_manifest_path: engine_manifest_ref.path.clone(),
+                    source_manifest_sha256: engine_manifest_ref.sha256.clone(),
+                },
+                certificate_format: PROPAGATION_FORMAT.to_owned(),
+                allowed_results: vec![
+                    AllowedVerifierResult {
+                        verdict: CriterionVerdict::Satisfied,
+                        reason_code: "clean-relation-excluded".to_owned(),
+                    },
+                    AllowedVerifierResult {
+                        verdict: CriterionVerdict::Unknown,
+                        reason_code: "exclusion-proof-incomplete".to_owned(),
+                    },
+                ],
+            }
+        }
+    };
+    write_json_new(&relation_verifier_path, &relation_verifier)?;
 
     let reachability_path = output.join("reachability.json");
     let root = instances.last().context("reachability chain is empty")?;
@@ -908,7 +1005,7 @@ pub fn build(options: &InjectOptions) -> Result<InjectOutput> {
             projection_manifest: file_ref(&output, &projection_path)?,
             expected_clean_constraint_indices: expected.iter().copied().collect(),
             clean_relation_exclusion: CleanRelationExclusion {
-                method: RelationExclusionMethod::FullyFixedConstraint,
+                method: plan.relation_exclusion,
                 certificate_path: relative_path(&output, &certificate_path)?,
                 certificate_sha256: sha256_file(&certificate_path)?,
                 verifier_manifest_path: relative_path(&output, &relation_verifier_path)?,
@@ -961,7 +1058,7 @@ pub fn build(options: &InjectOptions) -> Result<InjectOutput> {
             sha256_file(&engine_manifest)?
         ),
         expected_clean_constraint_count: expected.len(),
-        certificate_constraint_count: certificate.clean_constraint_indices.len(),
+        certificate_constraint_count,
     })
 }
 
@@ -1462,6 +1559,229 @@ fn fully_fixed_certificate(
     })
 }
 
+/// Values forced by the fixed signals under unique linear propagation (see
+/// [`PropagationCertificate`]); `None` for wires the propagation leaves undetermined.
+pub(crate) fn unique_propagation(
+    r1cs: &R1cs,
+    symbols: &SymbolTable,
+    fixed: &BTreeMap<String, BigUint>,
+) -> Result<Vec<Option<BigUint>>> {
+    let prime = &r1cs.prime;
+    let mut known = vec![None; r1cs.shape.wires];
+    known[0] = Some(BigUint::one());
+    for (name, value) in fixed {
+        let wire = symbols
+            .by_name
+            .get(name)
+            .and_then(|symbol| usize::try_from(symbol.wire).ok())
+            .with_context(|| format!("fixed signal {name} is not a clean wire"))?;
+        ensure!(value < prime, "fixed signal {name} is not canonical");
+        match &known[wire] {
+            Some(existing) => ensure!(existing == value, "fixed aliases of {name} disagree"),
+            None => known[wire] = Some(value.clone()),
+        }
+    }
+    loop {
+        let mut progress = false;
+        for constraint in &r1cs.constraints {
+            let unknown = constraint
+                .a
+                .keys()
+                .chain(constraint.b.keys())
+                .chain(constraint.c.keys())
+                .filter(|wire| known[**wire as usize].is_none())
+                .copied()
+                .collect::<BTreeSet<_>>();
+            let [wire] = unknown.into_iter().collect::<Vec<_>>()[..] else {
+                continue;
+            };
+            let (a0, a1) = split_combination(&constraint.a, wire, &known, prime);
+            let (b0, b1) = split_combination(&constraint.b, wire, &known, prime);
+            let (c0, c1) = split_combination(&constraint.c, wire, &known, prime);
+            // (a0 + a1 x)(b0 + b1 x) = c0 + c1 x is solved only when it is linear in x.
+            if !((&a1 * &b1) % prime).is_zero() {
+                continue;
+            }
+            let slope = ((&a0 * &b1) % prime + (&a1 * &b0) % prime + prime - &c1) % prime;
+            if slope.is_zero() {
+                continue;
+            }
+            let offset = (&c0 + prime - (&a0 * &b0) % prime) % prime;
+            let inverse = slope.modpow(&(prime - 2u32), prime);
+            known[wire as usize] = Some((offset * inverse) % prime);
+            progress = true;
+        }
+        if !progress {
+            return Ok(known);
+        }
+    }
+}
+
+fn split_combination(
+    combination: &LinearCombination,
+    unknown: u32,
+    known: &[Option<BigUint>],
+    prime: &BigUint,
+) -> (BigUint, BigUint) {
+    let mut constant = BigUint::zero();
+    let mut coefficient = BigUint::zero();
+    for (wire, value) in combination {
+        if *wire == unknown {
+            coefficient = (coefficient + value) % prime;
+        } else if let Some(assigned) = &known[*wire as usize] {
+            constant = (constant + value * assigned) % prime;
+        }
+    }
+    (constant, coefficient)
+}
+
+/// Candidate constraints whose wires are all determined and that are violated.
+pub(crate) fn propagation_contradictions(
+    r1cs: &R1cs,
+    known: &[Option<BigUint>],
+    candidates: &BTreeSet<usize>,
+) -> Vec<usize> {
+    let prime = &r1cs.prime;
+    let evaluate = |combination: &LinearCombination| {
+        combination
+            .iter()
+            .try_fold(BigUint::zero(), |sum, (wire, value)| {
+                known[*wire as usize]
+                    .as_ref()
+                    .map(|assigned| (sum + value * assigned) % prime)
+            })
+    };
+    candidates
+        .iter()
+        .copied()
+        .filter(|index| {
+            let constraint = &r1cs.constraints[*index];
+            matches!(
+                (evaluate(&constraint.a), evaluate(&constraint.b), evaluate(&constraint.c)),
+                (Some(a), Some(b), Some(c)) if (&a * &b) % prime != c
+            )
+        })
+        .collect()
+}
+
+/// Entry point of the pinned external verifier: reads the engine's ephemeral context,
+/// re-derives the unique propagation and writes a value-free result.
+pub fn run_relation_verifier(context_path: &Path, result_path: &Path) -> Result<()> {
+    let context: Value = serde_json::from_slice(&fs::read(context_path)?)?;
+    let file = |key: &str| -> Result<PathBuf> {
+        let path = PathBuf::from(
+            context[key]["path"]
+                .as_str()
+                .with_context(|| format!("context {key} has no path"))?,
+        );
+        let expected = context[key]["sha256"]
+            .as_str()
+            .with_context(|| format!("context {key} has no hash"))?;
+        ensure!(
+            sha256_file(&path)? == expected,
+            "context {key} hash mismatch"
+        );
+        Ok(path)
+    };
+    ensure!(
+        context["schema_version"] == 1 && context["method"] == "operator-proof",
+        "unsupported verifier context"
+    );
+    let certificate_path = file("certificate")?;
+    let certificate_sha256 = sha256_file(&certificate_path)?;
+    let certificate: PropagationCertificate =
+        serde_json::from_slice(&fs::read(&certificate_path)?)?;
+    ensure!(
+        certificate.schema_version == 1
+            && certificate.method == RelationExclusionMethod::OperatorProof
+            && certificate.format == PROPAGATION_FORMAT,
+        "unsupported propagation certificate"
+    );
+    for list in [
+        certificate
+            .contradiction_constraint_indices
+            .iter()
+            .map(ToString::to_string)
+            .collect::<Vec<_>>(),
+        certificate.fixed_signal_names.clone(),
+    ] {
+        ensure!(!list.is_empty(), "certificate lists must not be empty");
+    }
+    ensure!(
+        certificate
+            .contradiction_constraint_indices
+            .windows(2)
+            .all(|pair| pair[0] < pair[1])
+            && certificate
+                .fixed_signal_names
+                .windows(2)
+                .all(|pair| pair[0] < pair[1]),
+        "certificate lists must be sorted and unique"
+    );
+    let expected = context["expected_clean_constraint_indices"]
+        .as_array()
+        .context("context has no expected constraint list")?
+        .iter()
+        .map(|value| {
+            value
+                .as_u64()
+                .map(|index| index as usize)
+                .context("invalid expected index")
+        })
+        .collect::<Result<BTreeSet<_>>>()?;
+    let claimed = certificate
+        .contradiction_constraint_indices
+        .iter()
+        .copied()
+        .collect::<BTreeSet<_>>();
+    ensure!(
+        claimed.is_subset(&expected),
+        "certificate names a constraint outside the injection-related set"
+    );
+    let supplied = context["fixed_signals"]
+        .as_object()
+        .context("context has no fixed signals")?;
+    let fixed = certificate
+        .fixed_signal_names
+        .iter()
+        .map(|name| {
+            let text = supplied
+                .get(name)
+                .and_then(Value::as_str)
+                .with_context(|| format!("fixed signal {name} is not supplied"))?;
+            let value =
+                BigUint::parse_bytes(text.as_bytes(), 10).context("fixed signal is not decimal")?;
+            Ok((name.clone(), value))
+        })
+        .collect::<Result<BTreeMap<_, _>>>()?;
+    let r1cs = R1cs::parse(&fs::read(file("clean_r1cs")?)?)?;
+    ensure!(
+        context["field_modulus_decimal"].as_str() == Some(r1cs.prime.to_str_radix(10).as_str()),
+        "clean R1CS uses another field"
+    );
+    let symbols = SymbolTable::parse(&fs::read(file("clean_sym")?)?, &r1cs)?;
+    let known = unique_propagation(&r1cs, &symbols, &fixed)?;
+    let proven = propagation_contradictions(&r1cs, &known, &claimed);
+    let excluded = proven.len() == claimed.len();
+    fs::write(
+        result_path,
+        serde_json::to_vec(&serde_json::json!({
+            "schema_version": 1,
+            "method": "operator-proof",
+            "verdict": if excluded { "satisfied" } else { "unknown" },
+            "reason_code": if excluded {
+                "clean-relation-excluded"
+            } else {
+                "exclusion-proof-incomplete"
+            },
+            "checked_clean_constraint_indices": certificate.contradiction_constraint_indices,
+            "fixed_signal_names": certificate.fixed_signal_names,
+            "certificate_sha256": certificate_sha256,
+        }))?,
+    )?;
+    Ok(())
+}
+
 #[derive(Debug, Clone)]
 struct ChainInstance {
     key: String,
@@ -1897,6 +2217,80 @@ mod tests {
             injection_related_constraints(&clean, &mutant, &[None, Some(2), Some(1), Some(3)])
                 .unwrap();
         assert_eq!(related, BTreeSet::from([1]));
+    }
+
+    fn propagation_fixture(constraints: Vec<Constraint>) -> (R1cs, SymbolTable) {
+        let r1cs = R1cs {
+            prime: BigUint::from(97u32),
+            shape: R1csShape {
+                wires: 4,
+                labels: 4,
+                public_outputs: 1,
+                public_inputs: 0,
+                private_inputs: 1,
+                constraints: constraints.len(),
+            },
+            constraints,
+            wire_labels: vec![0, 1, 2, 3],
+        };
+        let symbols =
+            SymbolTable::parse(b"1,1,0,main.out\n2,2,0,main.in\n3,3,0,main.t\n", &r1cs).unwrap();
+        (r1cs, symbols)
+    }
+
+    fn term(wire: u32, value: u32) -> LinearCombination {
+        LinearCombination::from([(wire, BigUint::from(value))])
+    }
+
+    fn fixed(values: &[(&str, u32)]) -> BTreeMap<String, BigUint> {
+        values
+            .iter()
+            .map(|(name, value)| ((*name).to_owned(), BigUint::from(*value)))
+            .collect()
+    }
+
+    #[test]
+    fn propagation_derives_internal_wires_and_finds_the_contradiction() {
+        // t = 3 * in, then out = t: fixing in and a wrong out violates the second constraint.
+        let (r1cs, symbols) = propagation_fixture(vec![
+            Constraint {
+                a: term(2, 3),
+                b: term(0, 1),
+                c: term(3, 1),
+            },
+            Constraint {
+                a: term(3, 1),
+                b: term(0, 1),
+                c: term(1, 1),
+            },
+        ]);
+        let known =
+            unique_propagation(&r1cs, &symbols, &fixed(&[("main.in", 5), ("main.out", 16)]))
+                .unwrap();
+        assert_eq!(known[3], Some(BigUint::from(15u32)));
+        let candidates = BTreeSet::from([0, 1]);
+        assert_eq!(
+            propagation_contradictions(&r1cs, &known, &candidates),
+            vec![1]
+        );
+        let consistent =
+            unique_propagation(&r1cs, &symbols, &fixed(&[("main.in", 5), ("main.out", 15)]))
+                .unwrap();
+        assert!(propagation_contradictions(&r1cs, &consistent, &candidates).is_empty());
+    }
+
+    #[test]
+    fn propagation_does_not_solve_a_quadratic_unknown() {
+        // t * t = in has two roots, so t stays undetermined and the constraint proves nothing,
+        // even for a nonsquare input.
+        let (r1cs, symbols) = propagation_fixture(vec![Constraint {
+            a: term(3, 1),
+            b: term(3, 1),
+            c: term(2, 1),
+        }]);
+        let known = unique_propagation(&r1cs, &symbols, &fixed(&[("main.in", 5)])).unwrap();
+        assert_eq!(known[3], None);
+        assert!(propagation_contradictions(&r1cs, &known, &BTreeSet::from([0])).is_empty());
     }
 
     #[test]

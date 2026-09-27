@@ -306,6 +306,10 @@ pub struct ExperimentInjectArgs {
     /// Node.js runtime used by the pinned witness generators.
     #[arg(long, default_value = "node")]
     pub node_bin: PathBuf,
+
+    /// External relation verifier; defaults to the one built next to this executable.
+    #[arg(long)]
+    pub relation_verifier_bin: Option<PathBuf>,
 }
 
 pub fn run() -> Result<()> {
@@ -454,10 +458,18 @@ fn handle_experiment(args: ExperimentArgs) -> Result<()> {
             println!("{}", serde_json::to_string_pretty(&output)?);
         }
         ExperimentCommands::Inject(args) => {
+            let relation_verifier_bin = match args.relation_verifier_bin {
+                Some(path) => path,
+                None => std::env::current_exe()?
+                    .parent()
+                    .map(|directory| directory.join("zkfdo-relation-verifier"))
+                    .ok_or_else(|| anyhow::anyhow!("executable has no parent directory"))?,
+            };
             let output = crate::injection::build(&crate::injection::InjectOptions {
                 plan: args.plan,
                 circom_bin: args.circom_bin,
                 node_bin: args.node_bin,
+                relation_verifier_bin,
             })?;
             println!("{}", serde_json::to_string_pretty(&output)?);
         }
