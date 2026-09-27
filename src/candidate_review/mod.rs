@@ -1,7 +1,7 @@
 mod engine;
 mod predicate;
-mod r1cs;
+pub(crate) mod r1cs;
 pub mod schema;
-mod subprocess;
+pub(crate) mod subprocess;
 
 pub use engine::{review, ReviewOptions, ReviewOutput};

@@ -105,9 +105,11 @@ fn run_predicate_inner(
     let tmp = scratch.0.join("tmp");
     fs::create_dir(&tmp).context("create predicate temporary directory")?;
     let mut command = Command::new(python_bin);
+    // -B keeps the import of a pinned predicate from writing bytecode next to it.
     command
         .arg("-I")
         .arg("-S")
+        .arg("-B")
         .arg(&worker_path)
         .arg(predicate_path)
         .arg(&context_path)

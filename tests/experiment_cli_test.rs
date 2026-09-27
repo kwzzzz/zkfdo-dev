@@ -3,7 +3,7 @@ use predicates::prelude::*;
 use tempfile::tempdir;
 
 #[test]
-fn nested_experiment_help_exposes_the_five_explicit_stages() {
+fn nested_experiment_help_exposes_the_six_explicit_stages() {
     Command::cargo_bin("zkfDO")
         .unwrap()
         .args(["experiment", "--help"])
@@ -14,9 +14,10 @@ fn nested_experiment_help_exposes_the_five_explicit_stages() {
                 .and(predicate::str::contains("plan"))
                 .and(predicate::str::contains("run"))
                 .and(predicate::str::contains("evaluate"))
-                .and(predicate::str::contains("review")),
+                .and(predicate::str::contains("review"))
+                .and(predicate::str::contains("inject")),
         );
-    for stage in ["prepare", "plan", "run", "evaluate", "review"] {
+    for stage in ["prepare", "plan", "run", "evaluate", "review", "inject"] {
         Command::cargo_bin("zkfDO")
             .unwrap()
             .args(["experiment", stage, "--help"])

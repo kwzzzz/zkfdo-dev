@@ -6,6 +6,7 @@ pub mod db;
 pub mod error;
 pub mod experiment;
 pub mod features;
+pub mod injection;
 pub mod ranker;
 pub mod report;
 pub mod runner;

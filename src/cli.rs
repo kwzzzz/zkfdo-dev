@@ -154,6 +154,8 @@ pub enum ExperimentCommands {
     Evaluate(ExperimentEvaluateArgs),
     /// Review preserved backend candidates or qualify injected ground truth.
     Review(ExperimentReviewArgs),
+    /// Build the review inputs that qualify one planned development injection.
+    Inject(ExperimentInjectArgs),
 }
 
 #[derive(Debug, Args)]
@@ -289,6 +291,21 @@ pub struct ExperimentReviewArgs {
     /// Sorted source-file manifest that fixes the review engine implementation.
     #[arg(long)]
     pub engine_source_manifest: PathBuf,
+}
+
+#[derive(Debug, Args)]
+pub struct ExperimentInjectArgs {
+    /// Strict schema-1 injection plan.
+    #[arg(long)]
+    pub plan: PathBuf,
+
+    /// Circom compiler that is copied into the workspace and pinned.
+    #[arg(long, default_value = "circom")]
+    pub circom_bin: PathBuf,
+
+    /// Node.js runtime used by the pinned witness generators.
+    #[arg(long, default_value = "node")]
+    pub node_bin: PathBuf,
 }
 
 pub fn run() -> Result<()> {
@@ -434,6 +451,14 @@ fn handle_experiment(args: ExperimentArgs) -> Result<()> {
                     engine_source_manifest: args.engine_source_manifest,
                     executable: std::env::current_exe()?,
                 })?;
+            println!("{}", serde_json::to_string_pretty(&output)?);
+        }
+        ExperimentCommands::Inject(args) => {
+            let output = crate::injection::build(&crate::injection::InjectOptions {
+                plan: args.plan,
+                circom_bin: args.circom_bin,
+                node_bin: args.node_bin,
+            })?;
             println!("{}", serde_json::to_string_pretty(&output)?);
         }
     }
