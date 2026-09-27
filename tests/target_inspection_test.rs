@@ -1,7 +1,7 @@
 use std::{fs, path::PathBuf, process::Command};
 
 use tempfile::tempdir;
-use zkfdo::targets::inspect_entrypoint;
+use zkfdo::targets::{inspect_entrypoint, inspect_entrypoint_with_libraries};
 
 fn assert_circom_compiles_when_available(entry: &std::path::Path, output: &std::path::Path) {
     if Command::new("circom").arg("--version").output().is_err() {
@@ -598,4 +598,52 @@ fn recursive_concrete_instantiation_is_not_complete() {
         .unsupported
         .iter()
         .any(|u| u.reason.contains("recursive concrete")));
+}
+
+#[test]
+fn library_paths_resolve_only_includes_that_do_not_resolve_without_them() {
+    let project = tempdir().unwrap();
+    let root = project.path();
+    fs::create_dir_all(root.join("circuits")).unwrap();
+    fs::create_dir_all(root.join("node_modules/lib/circuits")).unwrap();
+    // `local.circom` resolves next to the including file; the library also has a file with the
+    // same logical name, which must not replace it.
+    fs::write(
+        root.join("circuits/main.circom"),
+        "pragma circom 2.1.6;\ninclude \"local.circom\";\ninclude \"lib/circuits/dep.circom\";\ntemplate Main() { component a = Local(); component b = Dep(); }\ncomponent main = Main();\n",
+    )
+    .unwrap();
+    fs::write(root.join("circuits/local.circom"), "template Local() {}\n").unwrap();
+    fs::write(
+        root.join("node_modules/local.circom"),
+        "template Local() { signal x; }\n",
+    )
+    .unwrap();
+    fs::write(
+        root.join("node_modules/lib/circuits/dep.circom"),
+        "template Dep() {}\n",
+    )
+    .unwrap();
+    let entry = root.join("circuits/main.circom");
+
+    let without = inspect_entrypoint(&entry, root).unwrap();
+    assert!(!without.complete);
+    assert!(without
+        .unsupported
+        .iter()
+        .any(|case| case.construct == "include \"lib/circuits/dep.circom\""));
+
+    let with =
+        inspect_entrypoint_with_libraries(&entry, root, &[root.join("node_modules")]).unwrap();
+    assert!(with.complete, "{:?}", with.unsupported);
+    let canonical = fs::canonicalize(root).unwrap();
+    assert_eq!(
+        with.dependency_paths,
+        [
+            canonical.join("circuits/local.circom"),
+            canonical.join("circuits/main.circom"),
+            canonical.join("node_modules/lib/circuits/dep.circom"),
+        ]
+    );
+    assert!(inspect_entrypoint_with_libraries(&entry, root, &[root.join("missing")]).is_err());
 }

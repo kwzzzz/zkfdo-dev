@@ -1930,7 +1930,11 @@ fn chain_definition(
 }
 
 fn target_identity(definition: &CorpusTarget) -> Result<String> {
-    let inspection = targets::inspect_entrypoint(&definition.entrypoint, &definition.project_root)?;
+    let inspection = targets::inspect_entrypoint_with_libraries(
+        &definition.entrypoint,
+        &definition.project_root,
+        &corpus::compile_library_paths(definition),
+    )?;
     ensure!(
         inspection.complete,
         "target identity inspection is incomplete for {}",

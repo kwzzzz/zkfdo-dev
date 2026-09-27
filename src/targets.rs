@@ -346,6 +346,18 @@ enum TokenKind {
 /// Inspect one existing entrypoint using the same supported syntax as target discovery.
 /// The selected file may be an external wrapper; every included dependency must be in project_root.
 pub fn inspect_entrypoint(entrypoint: &Path, project_root: &Path) -> Result<EntrypointInspection> {
+    inspect_entrypoint_with_libraries(entrypoint, project_root, &[])
+}
+
+/// Inspects like [`inspect_entrypoint`], and also resolves includes through circom `-l`
+/// library directories. They are searched in the given order after the including file's
+/// directory and the project root, so every include that resolves without them resolves to
+/// the same file.
+pub fn inspect_entrypoint_with_libraries(
+    entrypoint: &Path,
+    project_root: &Path,
+    library_paths: &[PathBuf],
+) -> Result<EntrypointInspection> {
     let entrypoint = fs::canonicalize(entrypoint)
         .with_context(|| format!("resolve selected entrypoint {}", entrypoint.display()))?;
     let project_root = fs::canonicalize(project_root)
@@ -354,12 +366,26 @@ pub fn inspect_entrypoint(entrypoint: &Path, project_root: &Path) -> Result<Entr
         project_root.is_dir(),
         "inspection project root must be a directory"
     );
+    let library_paths = library_paths
+        .iter()
+        .map(|path| {
+            let library = fs::canonicalize(path)
+                .with_context(|| format!("resolve inspection library path {}", path.display()))?;
+            anyhow::ensure!(
+                library.is_dir(),
+                "inspection library path is not a directory: {}",
+                library.display()
+            );
+            Ok(library)
+        })
+        .collect::<Result<Vec<_>>>()?;
     let mut parsed_files = HashMap::new();
     let mut visited = HashSet::new();
     let mut unsupported = Vec::new();
     load_inspection_files(
         &entrypoint,
         &project_root,
+        &library_paths,
         &mut parsed_files,
         &mut visited,
         &mut unsupported,
@@ -904,6 +930,7 @@ fn extend_identifiers(needed: &mut HashSet<String>, tokens: &[Token]) {
 fn load_inspection_files(
     path: &Path,
     project_root: &Path,
+    library_paths: &[PathBuf],
     parsed_files: &mut HashMap<PathBuf, ParsedFile>,
     visited: &mut HashSet<PathBuf>,
     unsupported: &mut Vec<UnsupportedCase>,
@@ -942,16 +969,30 @@ fn load_inspection_files(
         let candidates = [
             path.parent().unwrap_or(project_root).join(&include.path),
             project_root.join(&include.path),
-        ];
+        ]
+        .into_iter()
+        .chain(
+            library_paths
+                .iter()
+                .map(|library| library.join(&include.path)),
+        );
         let existing = candidates
-            .into_iter()
             .filter_map(|p| fs::canonicalize(p).ok())
             .collect::<Vec<_>>();
-        if let Some(included) = existing
-            .iter()
-            .find(|candidate| candidate.starts_with(project_root))
-        {
-            load_inspection_files(included, project_root, parsed_files, visited, unsupported);
+        if let Some(included) = existing.iter().find(|candidate| {
+            candidate.starts_with(project_root)
+                || library_paths
+                    .iter()
+                    .any(|library| candidate.starts_with(library))
+        }) {
+            load_inspection_files(
+                included,
+                project_root,
+                library_paths,
+                parsed_files,
+                visited,
+                unsupported,
+            );
         } else {
             unsupported.push(UnsupportedCase {
                 source_path: path.into(),

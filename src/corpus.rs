@@ -18,7 +18,7 @@ use crate::{
     semantic::{self, AnalysisOptions, SemanticAnalysis, SourceScope},
     static_rank::{RankingInput, RankingStrategy},
     structure::{profile_target_with_ast, StructureProfile},
-    targets::{inspect_entrypoint, EntrypointInspection},
+    targets::{inspect_entrypoint_with_libraries, EntrypointInspection},
 };
 
 fn schema_version() -> u32 {
@@ -538,9 +538,10 @@ fn prepare_target(
         );
     }
     let start = Instant::now();
-    let inspection = inspect_entrypoint(
+    let inspection = inspect_entrypoint_with_libraries(
         &target.definition.entrypoint,
         &target.definition.project_root,
+        &compile_library_paths(&target.definition),
     )?;
     target.timings.inspection_seconds = start.elapsed().as_secs_f64();
     if !inspection.complete {
@@ -907,6 +908,26 @@ fn map_library_paths(args: &mut [String], map: impl Fn(&Path) -> PathBuf) {
             index += 1;
         }
     }
+}
+
+/// The `-l` operands of the semantic compile arguments, in compiler search order.
+pub fn compile_library_paths(definition: &CorpusTarget) -> Vec<PathBuf> {
+    let mut paths = Vec::new();
+    let mut index = 0;
+    while index < definition.compile_args.len() {
+        if definition.compile_args[index] == "-l" {
+            index += 1;
+            while index < definition.compile_args.len()
+                && !definition.compile_args[index].starts_with('-')
+            {
+                paths.push(PathBuf::from(&definition.compile_args[index]));
+                index += 1;
+            }
+        } else {
+            index += 1;
+        }
+    }
+    paths
 }
 
 fn semantic_library_paths(definition: &CorpusTarget) -> Vec<PathBuf> {
