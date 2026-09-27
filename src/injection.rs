@@ -1200,24 +1200,24 @@ fn discovery_options(entrypoint: &Path, libraries: &[PathBuf]) -> DiscoveryOptio
     }
 }
 
-/// Replaces the single occurrence of `edit.find`, which must lie inside `scope`.
+/// Replaces `edit.find`, which must occur exactly once inside `scope`, the target template
+/// definition. The same text elsewhere in the file (for example in a sibling template) is
+/// left unchanged.
 fn apply_edit(text: &str, edit: &SourceEdit, scope: Range<usize>, label: &str) -> Result<String> {
-    let occurrences = text.match_indices(&edit.find).collect::<Vec<_>>();
+    let occurrences = text[scope.clone()]
+        .match_indices(&edit.find)
+        .collect::<Vec<_>>();
     ensure!(
         occurrences.len() == 1,
-        "{label} edit text occurs {} times in the target source; it must occur exactly once",
+        "{label} edit text occurs {} times in the target template; it must occur exactly once",
         occurrences.len()
-    );
-    let start = occurrences[0].0;
-    let end = start + edit.find.len();
-    ensure!(
-        scope.start <= start && end <= scope.end,
-        "{label} edit is outside the target template definition"
     );
     ensure!(
         edit.find != edit.replace,
         "{label} edit does not change the source"
     );
+    let start = scope.start + occurrences[0].0;
+    let end = start + edit.find.len();
     Ok(format!(
         "{}{}{}",
         &text[..start],
@@ -2330,25 +2330,27 @@ mod tests {
     use crate::candidate_review::schema::R1csShape;
 
     #[test]
-    fn edit_must_be_unique_and_inside_the_template() {
-        let text = "template A() { x <== y; }\ntemplate B() { x <== y; z <== w; }\n";
+    fn edit_must_occur_once_inside_the_target_template() {
+        let text = "template A() { x <== y; }\ntemplate B() { x <== y; z <== w; z <== w; }\n";
         let scope = text.find("template B").unwrap()..text.len();
-        let duplicate = SourceEdit {
-            find: "x <== y;".into(),
-            replace: "x <-- y;".into(),
+        let repeated = SourceEdit {
+            find: "z <== w;".into(),
+            replace: "z <-- w;".into(),
         };
-        assert!(apply_edit(text, &duplicate, scope.clone(), "mutant").is_err());
+        assert!(apply_edit(text, &repeated, scope.clone(), "mutant").is_err());
         let outside = SourceEdit {
             find: "template A".into(),
             replace: "template C".into(),
         };
         assert!(apply_edit(text, &outside, scope.clone(), "mutant").is_err());
-        let unique = SourceEdit {
-            find: "z <== w;".into(),
-            replace: "z <-- w;".into(),
+        // The same text in a sibling template does not make the target occurrence ambiguous.
+        let shared = SourceEdit {
+            find: "x <== y;".into(),
+            replace: "x <-- y;".into(),
         };
-        let edited = apply_edit(text, &unique, scope, "mutant").unwrap();
-        assert!(edited.contains("z <-- w;") && edited.contains("x <== y; z"));
+        let edited = apply_edit(text, &shared, scope, "mutant").unwrap();
+        assert!(edited.starts_with("template A() { x <== y; }"));
+        assert!(edited.contains("template B() { x <-- y; z <== w;"));
     }
 
     #[test]
