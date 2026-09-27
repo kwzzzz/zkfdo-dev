@@ -1,0 +1,23 @@
+{
+ "label": "o1-mutant",
+ "status": "killed-at-limit",
+ "exit_code": -9,
+ "elapsed_seconds": 1801.4,
+ "max_rss_mb": 1279,
+ "first_marker_seconds": {
+  "Loading": 0.03,
+  "Parsing Templates": 0.03,
+  "Parsing Function": 0.03,
+  "Gathering": 0.03,
+  "Generation:": 907.78
+ },
+ "first_generation": [
+  907.7771608829498,
+  0
+ ],
+ "last_generation": [
+  1787.7089819908142,
+  2
+ ],
+ "verification": []
+}

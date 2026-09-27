@@ -1,0 +1,23 @@
+{
+ "label": "clean-original",
+ "status": "killed-at-limit",
+ "exit_code": -9,
+ "elapsed_seconds": 1801.4,
+ "max_rss_mb": 1214,
+ "first_marker_seconds": {
+  "Loading": 0.03,
+  "Parsing Templates": 0.03,
+  "Parsing Function": 0.03,
+  "Gathering": 0.03,
+  "Generation:": 903.11
+ },
+ "first_generation": [
+  903.1118667125702,
+  0
+ ],
+ "last_generation": [
+  1782.7344198226929,
+  2
+ ],
+ "verification": []
+}
