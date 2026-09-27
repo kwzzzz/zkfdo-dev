@@ -147,7 +147,7 @@ B1 설계 초안 ─► T4 검토 엔진·개발용 주입(제외 스냅샷 프�
 ### B2. B 설계 최종 고정 — 담당:
 
 - **전제:** T4(검토 엔진·개발용 주입), T6(비용 보정) 완료
-- **목표:** 첫 B 프로젝트를 열기 전에 설계 문서 9절의 값(후보 목록 출처, 분할 seed, 연산자와 가중치, 표집 seed, `M`, 최소 `N_p`, 예산, timeout, 분석 스크립트)과 도구 해시를 채워 고정한다. 제외 스냅샷에 T6·개발 주입 프로젝트를 추가해 고정한다.
+- **목표:** 첫 B 프로젝트를 열기 전에 설계 문서 9절의 값(후보 목록 출처, 분할 seed, 연산자와 가중치, 표집 seed, `M`, 최소 `N_p`, 예산, timeout, 분석 스크립트)과 도구 해시를 채워 고정한다. 제외 스냅샷에 T6·개발 주입 프로젝트를 추가해 고정한다. 프로젝트별 provenance에는 upstream checkout과 clean closure, 실제 적용 patch, selected entrypoint가 build·deploy·공식 문서에서 production으로 지정된 근거의 path/hash를 함께 묶는다. 이 근거가 없으면 project scope나 production 도달을 주장하지 않는다.
 
 ### B3. B 프로젝트 선정·주입·독립 검증 — 담당:
 
@@ -186,7 +186,7 @@ B1 설계 초안 ─► T4 검토 엔진·개발용 주입(제외 스냅샷 프�
 - **산출물:** `docs/candidate_review_design.md`
 - **완료 (2026-09-26):** [공통 형식 설계](candidate_review_design.md)를 작성했다. 사례 의미를 담는 review-spec과 실행·주입 증거를 연결하는 request를 분리하고, 값 없는 report, raw R1CS/SYM SHA-256 고정, 단일 파일 predicate API, 후보 0..N개와 review-error 처리, 교란 쌍둥이의 mutant/twin 동일 R1CS와 named-signal projection·clean relation-exclusion certificate, validated backend 결과에서만 schema 2 confirmation을 자동 생성하는 규칙을 정했다.
 
-### T4b. 공용 검토 엔진과 회귀 검증 — 담당:
+### T4b. 공용 검토 엔진과 회귀 검증 — 담당: miiz
 
 - **전제:** T4a
 - **내용:**
@@ -195,6 +195,7 @@ B1 설계 초안 ─► T4 검토 엔진·개발용 주입(제외 스냅샷 프�
   3. 결과를 `experiment evaluate --confirmations`가 받는 confirmation schema 2까지 연결한다.
 - **완료 조건:** 기존 판정과 전부 일치, 테스트 포함.
 - **금지:** 기존 보고서의 판정 파일을 덮어쓰지 않는다. 신호 값을 Git에 커밋하지 않는다.
+- **완료 (2026-09-27):** strict schema 1 spec/request/report/index, raw R1CS·SYM·assignment 검증, 고정 timeout의 predicate·generator·compiler·외부 verifier, backend·주입 검토, selected-entrypoint reachability와 clean relation-exclusion 검증, schema 2 confirmation·실제 evaluator 연결을 구현했다. backend spec은 frozen prepared corpus의 R1CS·compiler·semantic arguments와 결속하고, 주입 qualification은 별도 full reproduction argv로 닫힌 `-l` include 순서와 exact wrapper instance를 재검증한다. qualification bundle은 현재 엔진으로 다시 실행해 원본 review와 일치해야 하며, 같은 spec의 backend request가 이를 실제 소비하는 통합 시험을 통과한다. final output은 staging 완성 뒤 atomic rename한다. 보존된 v1.1 36쌍·v2 36쌍·v3 1쌍의 후보 73개가 모두 기존 판정과 일치했고, 220개 실행 행(비후보 147개), 원인 중복 제거, 값 비보존과 frozen oracle·내부 evidence hash를 자동 교차 검증했다. 합성 시험으로 후보 0개, 복수 후보·복수 spec, 후보 파일·adapter·공유 입력 오류 경계와 주입 qualification의 정상·generator·compiler library·assignment·hash·parse·binding 경로를 검증했다. `clean_revision`의 upstream checkout, `single_diff` patch 적용, production entrypoint 지정은 B2 프로젝트 provenance의 별도 필수 gate로 남긴다.
 
 ### T5. `cost-aware` 전략과 동점 기록 — 담당: miiz
 
@@ -275,7 +276,7 @@ B1 설계 초안 ─► T4 검토 엔진·개발용 주입(제외 스냅샷 프�
 | B3 | 대기 | | B2 후 |
 | T3 | 대기 | | T2b는 0건. B+C 결정(2-1절)에 따라 B3 뒤에 B 프로젝트의 manifest·contracts·plan 해시를 고정 |
 | T4a | 완료 (2026-09-26) | miiz | 공통 review-spec/request/report, predicate API, R1CS/SYM 고정, 교란 쌍둥이 검증 형식 결정 |
-| T4b | 대기 | | T4a 설계에 따라 공용 엔진·confirmation adapter 구현 및 v1.1~v3 회귀 검증 |
+| T4b | 완료 (2026-09-27) | miiz | 공용 엔진·confirmation adapter 구현, v1.1~v3 후보 73개와 220개 실행 행 회귀, backend·주입 실패 경계 시험 완료 |
 | T5 | 완료 (2026-09-26 확인) | miiz | cost-aware(휴리스틱) 유지 확정, schema 2 `ties` 검증 |
 | T6a | 완료 (2026-09-26) | miiz | 탐색·익명 호출·컴파일 재사용·도구 고정 |
 | T6 | 대기 | | T6 풀 프로젝트만. 결함을 주입하지 않은 원본으로 feasibility와 비용 보정 |

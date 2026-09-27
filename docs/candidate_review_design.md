@@ -1,6 +1,8 @@
 # 후보 검토 공통 형식 설계
 
-작성일: 2026-09-26. **상태: T4a 결정, T4b 구현 전.** 이 문서는 기존 v1.1·v2·v3 판정 파일을 바꾸지 않고, 이후 backend 후보 검토와 주입 결함 ground truth 검증에 쓸 공통 형식을 정한다. 구현 중 의미를 바꿔야 하면 이 문서를 조용히 고치지 않고 새 버전과 변경 이유를 남긴다.
+작성일: 2026-09-26. **상태: T4a 결정, T4b 구현·회귀 완료 — 구현 부속 규약 v1(2026-09-27).** 이 문서는 기존 v1.1·v2·v3 판정 파일을 바꾸지 않고, 이후 backend 후보 검토와 주입 결함 ground truth 검증에 쓸 공통 형식을 정한다. 구현 중 의미를 바꿔야 하면 이 문서를 조용히 고치지 않고 새 버전과 변경 이유를 남긴다.
+
+> **T4b 보강(2026-09-27):** T4a의 판정 기준이나 주장 범위를 바꾸지 않고, 구현에서 모호할 수 있었던 wire schema의 필수 필드, directory manifest, generator placeholder, adapter 구현 해시, 주입 실패 경계, revision·source-closure 불변식을 아래에 고정했다. 보강 이유는 동일 입력을 다른 구현이 읽어도 같은 검증 경계와 provenance를 재현하게 하기 위해서다.
 
 ## 1. 목표와 경계
 
@@ -28,7 +30,7 @@
 | 후보 수 | 정확히 36개를 요구 | 정확히 1개를 요구 | 모든 outcome의 후보 0..N개를 전부 열거한다 |
 | 결과 배열 | `candidate_reviews` | `reviews` | `reviews` 하나로 통일한다 |
 | 세 기준 | evidence·note 포함 | confirmation에 evidence·note를 수작업 복사 | report에서 한 번 만들고 confirmation을 기계적으로 파생한다 |
-| R1CS | review와 prepared의 현재 파일 해시를 비교 | 같은 방식 | 실행 전 기대 raw SHA-256을 spec에 고정한다 |
+| R1CS | spec hash와 prepared artifact를 비교하고, 새 주입 평가는 prepared corpus 내부의 기록 hash까지 대조 | 같은 방식 | 실행 전 기대 raw SHA-256을 spec과 prepared corpus에 고정한다 |
 | SYM | 현재 파일 해시만 기록 | 현재 파일 해시만 기록 | 기대 raw SHA-256과 signal/wire 대응 규칙을 함께 고정한다 |
 | field 값 | canonical 여부를 기록하지만 v1.1·v2 disposition에는 미사용 | canonical 여부를 제약 판정에 포함 | 모든 실제 R1CS wire 값에 canonical 표현을 요구한다 |
 | 빈 결과 | 전체 스크립트 실패 또는 행 없음 | 전체 스크립트 실패 | 후보가 없는 run을 정상적인 `no-candidate` 실행 행으로 기록한다 |
@@ -48,6 +50,19 @@
 해시 의존성은 반드시 `원시 artifact → spec → request → report → index`의 비순환 방향이다. 주입 spec은 아직 생기지 않은 ground-truth report를 참조하지 않는다. 주입 검증 뒤 만드는 ground-truth index가 spec·request·report를 참조하고, 나중 B 실행의 request나 manifest가 이 index를 참조한다.
 
 모든 경로는 그 경로를 적은 JSON 파일을 기준으로 한 상대경로를 기본으로 한다. SHA-256은 파일 raw bytes에 대한 소문자 64자리 hex다. 디렉터리는 정렬된 상대경로·파일 크기·raw SHA-256을 담은 manifest를 만들고 그 manifest의 raw SHA-256을 고정한다. 새 schema의 JSON parser는 unknown field를 거부한다. 아래 구조의 필드는 모두 필수이며, 해당하지 않는 값만 명시적으로 `null`을 쓴다.
+
+T4b가 읽는 모든 directory manifest는 다음 strict schema 1을 쓴다.
+
+```json
+{
+  "schema_version": 1,
+  "files": [
+    {"path": "relative/path", "size": 0, "sha256": "HEX"}
+  ]
+}
+```
+
+`files`는 비어 있으면 안 된다. 각 항목은 위 세 필드만 가지며 unknown field를 거부한다. `path`는 manifest 파일의 parent를 기준으로 한 상대경로이고, 배열은 logical path의 엄격한 오름차순이라 중복도 허용하지 않는다. resolve한 대상은 실제 파일이어야 하며 `size`와 raw-bytes SHA-256이 모두 정확히 일치해야 한다. 이 검사를 통과한 manifest 자체의 raw SHA-256도 그것을 참조하는 spec·request 또는 engine provenance에 고정한다.
 
 새 raw candidate, assignment, R1CS, SYM, compiler 출력은 ignored `runs/` 아래에 둔다. tracked spec·report·index에는 상대경로와 해시만 남긴다. 기존에 이미 고정·추적된 과거 artifact는 이동하거나 다시 쓰지 않는다.
 
@@ -154,12 +169,14 @@ review-spec 하나는 root cause 하나와 컴파일된 target 하나의 계약�
 
 `expected_scope`는 `project`, `original-component`, `wrapper-only`, `reachability-unknown` 중 하나다. compile-time parameter는 field wire 값이 아니므로 위치·이름·type·정확한 정수 표현을 별도로 검사한다. adapter가 발견한 비-wire 항목은 spec에 선언된 parameter와 정확히 일치해야 하며, 예상 밖 항목은 후보별 review error다.
 
+review spec의 `compiler.arguments`는 준비된 plan target에 고정되고 zkFuzz 실행에도 전달되는 **semantic compile setting**이다. 현재 허용 범위는 literal `-l` library path뿐이며 placeholder를 허용하지 않는다. 주입 artifact를 재현하기 위한 runner의 full argv template은 4.1절 `compilation_manifest.compiler.arguments`에 별도로 둔다.
+
 실제 spec의 `allowed_results`는 predicate가 정상적으로 낼 수 있는 `satisfied`·`not-satisfied`·`unknown` 조합을 모두 열거한다. 위 배열은 구조를 보여 주는 최소 예시다. 목록에 없는 verdict/reason code/class는 과학적 음성이 아니라 predicate 계약 위반이다.
 
 `attribution.method`는 처음에는 다음 세 값만 쓴다.
 
-- `known-defect-single-target`: 고정된 취약 revision·패치 근거, target binding, root-cause 전용 property가 모두 일치할 때만 `matched`다.
-- `injection-single-diff`: qualification request에서는 아직 index가 없으므로 고정된 단일 주입 diff, source closure, injection ID, target binding이 모두 일치할 때 `matched`다. 이후 backend request에서는 여기에 같은 spec을 가리키는 qualified ground-truth index까지 있어야 `matched`다.
+- `known-defect-single-target`: hash-pinned 근거와 target binding, root-cause 전용 property가 내부적으로 일치할 때만 `matched`다. 취약 revision·패치가 실제 원인이라는 근거의 의미는 사전 수동 검토를 거친 trusted input이며, 엔진이 patch를 parse하거나 인과를 독립 증명하는 것은 아니다.
+- `injection-single-diff`: qualification request에서는 아직 index가 없으므로 기계적으로 확인한 단일-file source transition, hash-pinned 사람이 읽는 diff evidence, source closure, injection ID, target binding이 모두 일치할 때 `matched`다. diff text 자체의 parse/apply는 아래 trust boundary처럼 B2 provenance가 맡는다. 이후 backend request에서는 여기에 같은 spec을 가리키고 현재 엔진으로 replay된 qualified ground-truth index까지 있어야 `matched`다.
 - `unattributed`: 후보의 substantive 판정은 할 수 있지만 알려진 원인으로 귀속하지 않으며 attribution은 `unknown`이다.
 
 root-cause attribution은 predicate가 스스로 주장하지 않는다. 엔진이 고정 evidence와 binding으로 별도 판정한다. 따라서 사전 property를 위반하지만 알려진 원인과 맞지 않는 후보도 `validated` finding으로 남길 수 있고, 알려진 원인의 confirmation에는 넣지 않을 수 있다.
@@ -208,6 +225,7 @@ root-cause attribution은 predicate가 스스로 주장하지 않는다. 엔진�
       "shape": {"wires": 0, "labels": 0, "public_outputs": 0, "public_inputs": 0, "private_inputs": 0, "constraints": 0}
     }
   },
+  "compilation_manifest": {"path": "PATH", "sha256": "HEX"},
   "projection_manifest": {"path": "PATH", "sha256": "HEX"},
   "expected_clean_constraint_indices": [0],
   "clean_relation_exclusion": {
@@ -220,9 +238,54 @@ root-cause attribution은 predicate가 스스로 주장하지 않는다. 엔진�
 }
 ```
 
-`source_location`은 half-open byte range다. 세 shape의 key와 type은 `compiled_subject.expected_shape`와 같다. `expected_clean_constraint_indices`는 정렬되고 중복이 없어야 한다.
+`source_location`은 half-open byte range다. 경로와 source hash는 `target_binding.source_path`·`source_sha256`의 바로 그 mutant target source와 같아야 한다. 세 shape의 key와 type은 `compiled_subject.expected_shape`와 같다. `expected_clean_constraint_indices`는 정렬되고 중복이 없어야 한다.
+
+`clean_revision`은 축약 해시가 아니라 40자리(SHA-1 저장소) 또는 64자리(SHA-256 저장소)의 **소문자 hex 전체 Git object ID**여야 한다. `0x` prefix, 대문자, 다른 길이는 허용하지 않는다. 다만 이 필드만으로 그 object가 어느 원격 저장소의 clean closure를 만들었다는 사실까지 증명하지는 않는다. `single_diff` 파일도 path/hash가 고정된 사람이 읽는 근거이며, 엔진이 그 patch text를 parse·apply하지는 않는다. 엔진이 기계적으로 보장하는 것은 아래의 hash-pinned clean→mutant→twin source 전이와 재컴파일이고, 그래서 판정 reason도 `injection-source-transition-matched`로 한정한다. B2 고정 전에는 별도의 프로젝트 provenance 기록에서 저장소 URL, checkout revision, clean closure와 적용 patch를 서로 묶어야 하며, 그 기록 없이 `clean_revision`이나 `single_diff`만으로 upstream Git ancestry·patch 적용을 주장하지 않는다.
+
+세 `source_closures`는 3절의 strict directory manifest이고 logical `files[].path` 집합이 정확히 같아야 한다. mutant closure의 manifest path/hash는 `target_binding.source_closure_manifest_path`·`source_closure_manifest_sha256`와 같고, 그 closure 안에는 bound target source가 있어야 한다. clean→mutant에서 SHA-256이 달라지는 logical entry와 mutant→disturbance-twin에서 달라지는 logical entry는 각각 정확히 하나이며, 둘 다 그 **같은 bound target-source logical path**여야 한다. 두 전이에서 공통 prefix·suffix로 계산한 mutant 쪽 최소 변경 구간도 선언한 `source_location` 안에 들어와야 한다. 따라서 의존성 추가·삭제, 다른 source의 동시 변경, 선언 범위 밖 변경은 single-diff ground truth로 받지 않는다.
 
 `compiled_subject`는 이 안의 mutant R1CS/SYM과 같아야 한다. ground-truth report나 그 해시는 spec에 넣지 않는다.
+
+`compilation_manifest`는 다음 strict schema 1 파일을 가리킨다. 세 variant 각각의 source closure reference는 위 `source_closures`의 같은 역할과 정확히 같은 파일·hash여야 한다.
+
+```json
+{
+  "schema_version": 1,
+  "compiler": {
+    "version": "VERSION",
+    "runner_path": "PATH",
+    "runner_sha256": "HEX",
+    "artifact_manifest_path": "PATH",
+    "artifact_manifest_sha256": "HEX",
+    "arguments": ["{entrypoint}", "--r1cs", "--sym", "-l", "{source_root}", "-o", "{output_dir}"]
+  },
+  "variants": {
+    "clean": {
+      "source_closure_manifest_path": "PATH",
+      "source_closure_manifest_sha256": "HEX",
+      "entrypoint_path": "RELATIVE_PATH",
+      "r1cs_output_path": "RELATIVE_PATH",
+      "sym_output_path": "RELATIVE_PATH"
+    },
+    "mutant": {
+      "source_closure_manifest_path": "PATH",
+      "source_closure_manifest_sha256": "HEX",
+      "entrypoint_path": "RELATIVE_PATH",
+      "r1cs_output_path": "RELATIVE_PATH",
+      "sym_output_path": "RELATIVE_PATH"
+    },
+    "disturbance_twin": {
+      "source_closure_manifest_path": "PATH",
+      "source_closure_manifest_sha256": "HEX",
+      "entrypoint_path": "RELATIVE_PATH",
+      "r1cs_output_path": "RELATIVE_PATH",
+      "sym_output_path": "RELATIVE_PATH"
+    }
+  }
+}
+```
+
+compiler version과 runner hash는 review spec의 `compiler`와 같아야 한다. review spec의 semantic `arguments`와 달리 이 manifest의 `arguments`는 entrypoint와 출력 위치를 가진 full invocation template이다. 두 provenance는 runner hash와, 재생성된 R1CS/SYM raw hash가 spec의 `compiled_variants`와 정확히 같다는 사실로 결속한다. 세 variant는 같은 logical entrypoint와 output layout을 써야 한다. 엔진은 각 closure의 hash-verified 파일을 새 scratch source tree에 복사하고, entrypoint에서 시작하는 모든 Circom `include`가 그 tree 안의 manifest entry로만 닫히는지 같은 parser로 확인한 다음, 고정 runner와 argv를 shell 없이 세 번 실행한다. Circom에는 source root가 암묵적 library가 아니므로 full argv는 첫 library로 `-l {source_root}`를 반드시 선언해야 한다. 그 뒤 include 탐색은 compiler와 같이 including file의 directory → argv에 선언한 `-l` directory 순서가 되며, `-l` 순서를 바꾸거나 source root 밖 library를 허용하지 않는다. direct wrapper의 `component main`은 target binding의 source·template·concrete parameter와 같은 instance key로 다시 탐색돼야 한다. 각 compile은 600초 안에 끝나야 하며, timeout이면 process group을 종료·회수하고 shared-input preflight를 `failed`로 끝낸다. stdout·stderr는 내용이나 크기를 보존하지 않고 끝까지 버리면서 읽는다. absolute include, source root 밖으로 빠지는 include, manifest에 없는 include는 거부한다. `{entrypoint}`, `{source_root}`, `{output_dir}`, `{r1cs_output}`, `{sym_output}`, `{artifact_manifest}`, `{artifact_root}`, `{variant}`만 허용하며 entrypoint와 출력 위치는 반드시 argv에 결속한다. literal existing file은 runner·compiler artifact·materialized source 중 하나여야 하고, literal existing directory는 닫힌 scratch source/output/tmp root만 허용한다. 생성된 R1CS/SYM의 raw SHA-256이 각 `compiled_variants`와 같아야 preflight를 통과한다. 따라서 저장된 artifact의 hash만 맞거나 다른 template/parameter wrapper에서 만들어진 쌍은 ground truth로 받지 않는다.
 
 projection manifest schema 1은 모든 nonconstant clean wire에 대해 다음 항목을 정확히 하나 가진다.
 
@@ -331,7 +394,7 @@ verifier 결과 schema 1은 value-free다.
 }
 ```
 
-엔진은 method, clean artifact hash, projection hash, certificate hash, 정렬·중복 없는 index/name 목록, allowed result를 교차 확인한다. `fully-fixed-constraint`는 satisfied를 내기 전에 checked constraint 하나 이상의 모든 nonconstant wire가 `fixed_signals`의 SYM wire에 속하고 실제 대입에서 실패함을 직접 재계산한다. 외부 verifier도 predicate worker와 같은 격리·빈 stdout/stderr 규칙을 따르며, result channel 외 출력은 review error다. solver는 `UNSAT` 문자열만 반환해서는 안 되고 manifest에 고정된 proof format을 verifier가 검증해야 한다.
+엔진은 method, clean artifact hash, projection hash, certificate hash, 정렬·중복 없는 index/name 목록, allowed result를 교차 확인한다. `fully-fixed-constraint`는 satisfied를 내기 전에 checked constraint 하나 이상의 모든 nonconstant wire가 `fixed_signals`의 SYM wire에 속하고 실제 대입에서 실패함을 직접 재계산한다. 외부 verifier도 predicate worker와 같은 격리·빈 stdout/stderr 규칙을 따르며, result channel 외 출력은 review error다. 실행 상한은 600초이고 timeout이면 process group을 종료·회수한 뒤 해당 review를 `review-error`로 분류한다. solver는 `UNSAT` 문자열만 반환해서는 안 되고 manifest에 고정된 proof format을 verifier가 검증해야 한다.
 
 ### 4.2 production 도달 증거
 
@@ -342,7 +405,7 @@ verifier 결과 schema 1은 value-free다.
 - 각 단계의 template, concrete parameter, source 위치
 - 탐색 completion 상태와 unsupported/unresolved 항목
 
-엔진은 evidence와 verifier manifest의 해시, source closure 해시, 중복·cycle 없는 parent chain, chain의 entrypoint 종결, target/spec binding, `complete` 상태를 다시 검사한다. 하나라도 확인할 수 없으면 project scope로 올리지 않는다. 기존 v1.1·v2·v3처럼 direct component만 검토한 사례는 `original-component` 또는 `reachability-unknown`을 유지한다.
+엔진은 evidence와 verifier manifest의 해시, source closure 해시, 중복·cycle 없는 parent chain, chain의 **고정된 selected entrypoint** 종결, target/spec binding, `complete` 상태를 다시 검사한다. chain의 모든 instance source는 고정된 target source closure 안의 같은 canonical path·hash여야 하고, 선언한 주입 byte range는 target instance의 half-open byte range 안에 완전히 들어가야 한다. 따라서 같은 파일의 다른 template를 바꾸거나 closure 밖 source를 parent chain에 끼워도 selected-entrypoint-reachable로 인정하지 않는다. 다만 엔진은 그 selected entrypoint가 실제 build·deploy·공식 문서에서 production으로 쓰인다는 사실까지 판정하지 않는다. B2 프로젝트 provenance가 그 지정 근거의 path/hash와 수동 검토를 별도로 고정해야 하며, 없으면 `project` scope나 production 도달을 주장하지 않는다. 기존 v1.1·v2·v3처럼 direct component만 검토한 사례는 `original-component` 또는 `reachability-unknown`을 유지한다.
 
 ## 5. Review-request schema 1
 
@@ -378,9 +441,11 @@ v1.1·v2의 36개 plan/outcome도 한 번에 검토할 수 있도록 backend req
 }
 ```
 
-단일 pilot처럼 campaign 좌표가 없으면 `campaign_coordinates`는 `null`, 주입 평가가 아니면 `qualification_bundles`는 빈 배열이다. bundle을 쓸 때 엔진은 index의 kind, spec/request/report hash, report `complete`, `ground_truth_qualification: qualified`, injection ID 일치를 다시 검증한다.
+단일 pilot처럼 campaign 좌표가 없으면 `campaign_coordinates`는 `null`, 주입 평가가 아니면 `qualification_bundles`는 빈 배열이다. execution이 둘 이상이면 모든 execution에 좌표가 있어야 하며 `(block, strategy)`는 중복될 수 없고 `strategy`는 실제 plan strategy와 같아야 한다. bundle 집합은 backend의 injected spec 집합과 정확히 같아야 하며, extra bundle은 worker를 실행하기 전에 거부한다. 각 bundle은 index/spec/request/report hash뿐 아니라 engine source·실행 파일·predicate runner, adapter, 모든 assignment·criterion·attribution evidence FileRef를 다시 검증한다. 이어 같은 고정 엔진과 runner로 원래 injection request를 재실행하고, path와 측정 시간만 제외한 review 전체 및 summary가 원본과 정확히 같고 다시 `qualified`일 때만 backend attribution에 쓴다.
 
-엔진은 각 plan ID와 outcome의 plan ID·hash, 모든 target ID, backend status, candidate record와 파일 hash, target의 plan 포함 여부를 확인한다. execution ID, plan/outcome pair, 존재하는 run ID, candidate path는 request 안에서 유일해야 한다. plan의 target 순서와 outcome의 `planned_target_ids`가 같아야 하고, 각 `(index, target_id)`는 `runs + failures + skipped` 전체에서 정확히 한 번 accounting돼야 한다.
+엔진은 각 plan ID와 outcome의 plan ID·hash, 모든 target ID, backend status, candidate record와 파일 hash, target의 plan 포함 여부를 확인한다. execution ID, raw plan/outcome hash pair, plan/outcome ID pair, outcome ID, 존재하는 run ID, candidate path는 request 전체에서 유일해야 한다. 따라서 같은 evidence bytes를 다른 경로와 execution label로 복사해 반복 수를 늘릴 수 없다. plan의 target 순서와 outcome의 `planned_target_ids`가 같아야 하고, 각 `(index, target_id)`는 `runs + failures + skipped` 전체에서 정확히 한 번 accounting돼야 한다.
+
+target ID·template·concrete parameter뿐 아니라 spec의 target source와 source closure도 plan target의 고정 `source_fingerprints` 또는 `snapshot_fingerprints` canonical path/hash map과 정확히 같아야 한다. plan이 hash로 고정한 prepared corpus를 다시 읽어, 해당 target의 성공한 structural compile R1CS raw SHA-256, prepared environment의 compiler binary SHA-256, `compile_args`도 spec과 정확히 대조한다. 새 structure profile은 R1CS raw SHA-256을 prepared JSON 안에도 기록하며, 주입 backend spec은 이 내부 hash가 없거나 현재 artifact/spec과 다르면 거부한다. 이 필드 도입 전 고정된 v1.1~v3 published-source 회귀는 qualification용 자료가 아니므로 기존 current-artifact/spec/oracle hash 교차 검증으로만 읽는다. 같은 target ID를 다른 source/R1CS/compiler spec에 잘못 붙인 경우는 후보 판정으로 내려가지 않고 공유 입력 실패다. `expected_scope: project`는 고정 reachability verdict와 재검증 criterion이 모두 `satisfied`일 때만 허용하며, 그렇지 않으면 scope를 조용히 낮추지 않고 공유 입력 실패로 처리한다.
 
 각 outcome의 모든 run·failure·skipped target과 모든 candidate record를 열거한다.
 
@@ -434,7 +499,7 @@ generation manifest의 schema 1은 다음 구조다.
       "runner_sha256": "HEX",
       "artifact_manifest_path": "PATH",
       "artifact_manifest_sha256": "HEX",
-      "arguments": [],
+      "arguments": ["{common_input}", "{witness_output}", "{assignment_output}", "{artifact_manifest}"],
       "witness_path": "PATH",
       "witness_sha256": "HEX",
       "assignment_path": "PATH",
@@ -445,7 +510,7 @@ generation manifest의 schema 1은 다음 구조다.
       "runner_sha256": "HEX",
       "artifact_manifest_path": "PATH",
       "artifact_manifest_sha256": "HEX",
-      "arguments": [],
+      "arguments": ["{common_input}", "{witness_output}", "{assignment_output}", "{artifact_manifest}"],
       "witness_path": "PATH",
       "witness_sha256": "HEX",
       "assignment_path": "PATH",
@@ -455,7 +520,9 @@ generation manifest의 schema 1은 다음 구조다.
 }
 ```
 
-공통 raw input과 생성 artifact는 ignored `runs/`에 두고 tracked request에는 manifest path/hash만 둔다. 엔진은 qualification 때 manifest를 검증하고 같은 input으로 두 generator를 다시 실행해 witness와 assignment hash가 재현되는지 확인한다.
+공통 raw input과 생성 artifact는 ignored `runs/`에 두고 tracked request에는 manifest path/hash만 둔다. 각 `artifact_manifest_path`는 3절의 strict directory manifest를 가리킨다. 엔진은 qualification 때 manifest를 검증하고 같은 input으로 두 generator를 다시 실행해 witness와 assignment hash가 재현되는지 확인한다.
+
+generator `arguments`의 placeholder는 argv 문자열 안에서 치환하며 shell을 거치지 않는다. `{common_input}`은 hash-verified 공통 입력, `{witness_output}`과 `{assignment_output}`은 새 scratch directory의 출력 경로, `{artifact_manifest}`는 hash-verified artifact manifest 경로로 치환한다. 앞의 세 placeholder는 각 generator의 argument 배열에 반드시 하나 이상 나타나야 한다. `{artifact_manifest}`는 지원하지만 runner가 고정 artifact 위치를 인자로 받을 때만 쓰는 선택 placeholder다. 치환 전·후 argv에서 실제로 존재하는 literal file argument는 runner, 검증된 artifact manifest entry, hash-verified 공통 입력 중 하나여야 하고, literal directory는 scratch root/tmp만 허용한다. placeholder와 unpinned path를 한 argv에 섞는 것도 이 사후 검증을 우회하지 못한다. runner는 기존 환경을 지운 뒤 scratch `TMPDIR`·`LANG=C`·`LC_ALL=C`만 고정하고 scratch working directory에서 실행한다. 실행 상한은 600초이고 timeout이면 process group을 종료·회수한 뒤 해당 review를 `review-error`로 분류한다. stdout·stderr가 비어 있고 성공 종료한 뒤 두 출력 파일의 hash가 manifest의 고정값과 일치해야 재현 성공이다. stream은 내용이나 크기를 보존하지 않고 끝까지 버리면서 읽으며, 비어 있지 않았다는 boolean만 판정에 쓴다.
 
 두 assignment의 외부 입력은 이름과 값이 같아야 한다. disturbance assignment는 mutant 제약과 property 검증에 쓴다. clean reference는 canonical·complete해야 하고 clean R1CS 전체 제약을 만족해야 한다. 이것을 확인한 뒤에만 같은 입력의 정상 의미 비교와 projection의 clean-only wire 보충에 쓴다. 공유 signal은 disturbance 값을 우선하며, projection 출처와 충돌 규칙을 manifest에 고정한다.
 
@@ -467,6 +534,8 @@ generation manifest의 schema 1은 다음 구조다.
 4. 어느 범주에도 들지 않는 `unexpected-entry`
 
 `eliminated-signal`은 Banyan처럼 raw 후보에 실제로 들어올 수 있다. 이름은 고정 SYM의 negative-label 집합과 정확히 대조하고 값은 canonical field element인지 확인하지만 R1CS wire vector나 제약 계산에는 넣지 않는다. predicate context에서도 wire signal과 분리한다. `unexpected-entry`는 review error다.
+
+T4b 내장 adapter의 `implementation_sha256`은 설명 문자열만의 해시가 아니다. 정확한 식은 `SHA-256(engine.rs의 UTF-8 source bytes || 0x00 || descriptor의 UTF-8 bytes)`다. descriptor는 candidate adapter에 `zkfDO candidate adapter zkfuzz-counterexample-v1 schema 1\n`, assignment adapter에 각각 `zkfDO assignment adapter zkfuzz-assignment-v1 schema 1\n`과 `zkfDO assignment adapter wtns-json-v1 schema 1\n`을 쓴다. backend request의 `candidate_adapter.implementation_sha256`과 주입 request의 각 `adapter_implementation_sha256`은 이 값과 같아야 한다. 따라서 adapter descriptor뿐 아니라 adapter가 들어 있는 engine source bytes가 바뀌어도 provenance hash가 바뀐다.
 
 ## 6. 공용 엔진과 binding 검증
 
@@ -487,6 +556,10 @@ adapter는 R1CS witness vector, SYM-declared eliminated signal, compile-time par
 R1CS constant wire 0은 엔진이 field one으로 채운다. raw assignment에 명시돼 있지 않아도 누락으로 세지 않으며, 명시돼 있다면 canonical `1`과 같아야 한다.
 
 공유 spec/request/plan/outcome/R1CS/SYM/predicate/reachability artifact의 hash·parse·binding 실패는 inventory 전체를 신뢰할 수 없으므로 top-level `failed`다. 개별 candidate 파일 자체의 누락·hash 오류는 candidate inventory의 `candidate_error`, usable candidate를 읽은 뒤의 adapter·predicate 호출 실패는 candidate-spec pair의 `review-error`이고 둘 다 top-level `incomplete`다.
+
+주입 request에서는 이 경계를 두 단계로 고정한다. strict request를 파싱한 뒤, spec과 모든 고정 참조, assignment origin과 adapter hash, generation manifest·공통 입력·runner·artifact manifest·보존 출력, request assignment hash의 generation manifest 일치, **세 compiled variant의 고정 compiler 재현**, projection shape, relation-verifier artifact, production reachability를 **preflight shared input**으로 먼저 검증한다. 이 단계의 오류는 `status: failed`, `failure.stage: shared-input-validation`, `reason_code: shared-input-invalid`, 빈 `reviews`가 된다. request JSON 자체가 strict schema로 파싱되지 않으면 report를 만들기 전 호출 오류다.
+
+preflight를 통과해 injection ID와 두 assignment 및 spec을 신뢰할 수 있게 된 뒤의 assignment 정규화, generator 재실행, predicate·projection·constraint 계산, relation-exclusion verifier 실행 같은 평가 오류는 공유 입력 실패로 되돌리지 않는다. 이 경우 review를 정확히 하나 남기고 실행하지 못한 criteria를 `null`로 두며 `disposition`과 `ground_truth_qualification`을 `review-error`, `confirmation_eligible: false`, report를 `status: incomplete`로 만든다. 반대로 평가가 정상 실행되어 criterion이 `not-satisfied`나 `unknown`인 것은 도구 오류가 아니므로 각각 `rejected`나 `unresolved`로 보고할 수 있다.
 
 ## 7. 사례별 predicate API
 
@@ -524,11 +597,12 @@ def evaluate(context):
 predicate는 고정·검토한 연구 코드이며 적대적 코드를 안전하게 실행하는 보안 경계로 주장하지 않는다. 그래도 우발적인 값 유출과 환경 의존을 줄이기 위해 다음을 강제한다.
 
 - 단일 파일, local import 없음, 사전 source audit와 raw SHA-256 고정
-- 격리된 worker process, `python -I -S`, 정리한 환경변수, 빈 임시 cwd, stdin 없음
+- 실행할 Python을 PATH에서 한 번 해석해 canonical path와 raw SHA-256을 report와 semantic digest에 고정
+- 격리된 worker process, `python -I -S`, 정리한 환경변수, 빈 임시 cwd, stdin 없음, 60초 실행 상한과 timeout 때 process-group 종료·회수
 - 결과는 전용 result channel로만 받고 stdout·stderr는 모두 비어 있어야 함
 - stdout·stderr가 한 byte라도 있거나 허용되지 않은 결과가 나오면 후보별 `review-error`; stream 내용·길이·hash는 보존하지 않고 tracked report에는 `predicate_stream_nonempty: true`만 기록
 
-이는 kernel-level filesystem/network sandbox를 뜻하지 않는다. 최종 고정 전 predicate source를 검토하고 hash를 고정하는 것이 신뢰 경계다.
+이는 kernel-level filesystem/network sandbox를 뜻하지 않는다. predicate, generator, compiler, external verifier는 모두 사전 검토하고 hash를 고정한 **신뢰하는 worker**여야 한다. `env_clear`, scratch cwd, argv/path binding, timeout은 재현성과 우발적 영향 제한을 위한 것이지, 임의의 적대적 코드가 filesystem이나 network에 접근하지 못하게 하는 OS sandbox가 아니다. timeout의 종료 범위도 시작한 process group이다. worker가 새 session/process group으로 이탈해 stdout·stderr pipe를 계속 잡는 적대적 동작까지 hard wall-clock으로 봉쇄한다고 주장하지 않는다.
 
 ## 8. Criterion, disposition, attribution
 
@@ -570,7 +644,7 @@ backend 후보의 `disposition`은 네 criterion이 모두 `satisfied`면 `valid
 - `clean_relation_exclusion`
 - `production_reachability`
 
-공통 disposition이 `validated`이고 추가 criterion과 qualification 단계의 single-diff attribution이 모두 `satisfied`/`matched`일 때만 `ground_truth_qualification: qualified`다. 이 최초 판정은 아직 존재하지 않는 ground-truth index를 요구하지 않는다. 정상적인 `not-satisfied`가 있으면 `rejected`, `unknown`이 있으면 `unresolved`, 도구 오류면 `review-error`다. B에는 `qualified`만 넣고, 이후 backend attribution에서 그 결과 index를 요구한다.
+공통 disposition이 `validated`이고 추가 criterion과 qualification 단계의 source-transition attribution이 모두 `satisfied`/`matched`일 때만 `ground_truth_qualification: qualified`다. 이 최초 판정은 아직 존재하지 않는 ground-truth index를 요구하지 않는다. 정상적인 `not-satisfied`가 있으면 `rejected`, `unknown`이 있으면 `unresolved`, 도구 오류면 `review-error`다. B에는 `qualified`만 넣고, 이후 backend attribution에서 그 결과 index를 요구한다.
 
 ## 9. 값 없는 Review-report schema 1
 
@@ -590,7 +664,9 @@ tracked report에는 signal·input·output·witness 값을 넣지 않는다. raw
     "source_manifest_path": "PATH",
     "source_manifest_sha256": "HEX",
     "executable_path": "PATH",
-    "executable_sha256": "HEX"
+    "executable_sha256": "HEX",
+    "predicate_runner_path": "PATH",
+    "predicate_runner_sha256": "HEX"
   },
   "adapters": [
     {"id": "zkfuzz-counterexample-v1", "implementation_sha256": "HEX"}
@@ -661,6 +737,8 @@ backend `reviews[]` 항목의 정확한 구조는 다음과 같다. criterion �
     "candidate_metadata_verified": true
   },
   "review_spec": {"id": "ID", "path": "PATH", "sha256": "HEX"},
+  "root_cause_id": "PROJECT/CAUSE",
+  "expected_scope": "original-component",
   "artifact_verification": {
     "r1cs_sha256_verified": true,
     "sym_sha256_verified": true,
@@ -683,7 +761,8 @@ backend `reviews[]` 항목의 정확한 구조는 다음과 같다. criterion �
   "ground_truth_qualification": null,
   "violation_class": null,
   "confirmation_eligible": true,
-  "automated_review_seconds": 0.0
+  "automated_review_seconds": 0.0,
+  "predicate_stream_nonempty": false
 }
 ```
 
@@ -692,16 +771,18 @@ backend `reviews[]` 항목의 정확한 구조는 다음과 같다. criterion �
 후보 review 하나는 다음 필드를 모두 가진다.
 
 - candidate path/hash와 execution/run/target binding
-- spec ID/hash와 raw candidate metadata binding 결과
+- spec ID/hash, `root_cause_id`, `expected_scope`와 raw candidate metadata binding 결과
 - R1CS/SYM/assignment 검증 결과
 - 실패한 target constraint의 **개수와 zero-based index**(값은 제외)
 - 네 substantive criteria와 disposition
 - cause attribution, confirmation eligibility, optional value-free violation class
-- automated review time
+- automated review time과 `predicate_stream_nonempty`
 
 `status`는 모든 inventory와 review가 완전하면 `complete`, 후보별 `review-error`나 `unreviewed`가 하나라도 있으면 `incomplete`, 공유 입력이나 inventory 무결성을 신뢰할 수 없으면 `failed`다. `complete`·`incomplete`에서는 `failure`가 `null`이다. `failed` variant는 `failure`에 stage, stable reason code, 값 없는 path/hash evidence를 넣고, 만들 수 없는 `candidate_inventory`는 `null`, `executions`와 `reviews`는 빈 배열로 둔다. `incomplete`나 `failed` report로 최종 전략 비교를 발표하지 않는다.
 
-`kind: injection-ground-truth` report는 같은 envelope과 engine/adapters/failure 형식을 쓴다. `candidate_inventory`는 `null`, `executions`, `candidate_errors`, `unreviewed_candidates`는 빈 배열이다. `status`가 `complete` 또는 `incomplete`이면 `reviews`는 항목 정확히 하나이고, 공유 입력 검증 전 실패한 `failed`이면 `reviews`는 빈 배열이다. review 항목은 `review_kind: injection-ground-truth`, `candidate_record_id: null`, `candidate: null`, 두 assignment의 path/hash, spec link, artifact verification, 공통 네 criteria, `qualification_criteria`의 아홉 criterion, attribution, disposition, `ground_truth_qualification`, `violation_class`, `confirmation_eligible: false`, automated time을 가진다. backend 전용 `binding`은 `null`이다. summary는 `{validated, rejected, unresolved, review_error, qualified}` 정수 필드만 가진다. 이 tagged union 외의 필드는 허용하지 않는다.
+엔진은 final output의 형제 staging directory에서 report와 index 전체를 먼저 만든다. 모든 hash와 index 생성이 끝난 뒤에만 directory rename으로 final output을 한 번에 공개하며, 그 전 오류에서는 staging을 지우고 final path를 만들지 않는다. 따라서 `status: complete` report만 남고 index가 없는 부분 결과를 완료 산출물로 오인할 수 없다.
+
+`kind: injection-ground-truth` report는 같은 envelope과 engine/adapters/failure 형식을 쓴다. `candidate_inventory`는 `null`, `executions`, `candidate_errors`, `unreviewed_candidates`는 빈 배열이다. `status`가 `complete` 또는 `incomplete`이면 `reviews`는 항목 정확히 하나이고, 공유 입력 검증 전 실패한 `failed`이면 `reviews`는 빈 배열이다. review 항목은 `review_kind: injection-ground-truth`, `candidate_record_id: null`, `candidate: null`, `binding: null`, 두 assignment의 path/hash, spec link, `root_cause_id`, `injection_id`, artifact verification, 공통 네 criteria, `qualification_criteria`의 아홉 criterion, attribution, disposition, `ground_truth_qualification`, `violation_class`, `confirmation_eligible: false`, automated time, `predicate_stream_nonempty`를 모두 필수로 가진다. summary는 `{validated, rejected, unresolved, review_error, qualified}` 정수 필드만 가진다. 이 tagged union 외의 필드는 허용하지 않는다.
 
 injection review의 nested object도 다음처럼 고정한다.
 
@@ -712,6 +793,7 @@ injection review의 nested object도 다음처럼 고정한다.
 - `criteria`: 공통 네 criterion key를 정확히 한 번씩 가진 object
 - `qualification_criteria`: `twin_r1cs_identity`, `twin_sym_identity`, `generation_reproducibility`, `clean_reference_assignment_encoding`, `clean_reference_constraints`, `clean_input_equivalence`, `clean_rejection`, `clean_relation_exclusion`, `production_reachability`를 정확히 한 번씩 가진 object
 - `ground_truth_qualification`: `qualified`, `rejected`, `unresolved`, `review-error` 중 하나
+- `predicate_stream_nonempty`: predicate worker가 stdout 또는 stderr에 한 byte라도 썼는지만 나타내는 boolean이며 stream 값·길이·hash는 기록하지 않음
 
 공통 `FileRef`는 `{path: string, sha256: 64자리 소문자 hex}`, `SpecRef`는 `{id: string, path: string, sha256: 64자리 소문자 hex}`다. enum과 key spelling은 이 문서에 적힌 문자열 그대로이며 alias를 허용하지 않는다.
 
@@ -723,7 +805,11 @@ injection review의 nested object도 다음처럼 고정한다.
   "kind": "backend-candidates",
   "request_sha256": "HEX",
   "spec_sha256s": ["HEX"],
-  "engine": {"source_manifest_sha256": "HEX", "executable_sha256": "HEX"},
+  "engine": {
+    "source_manifest_sha256": "HEX",
+    "executable_sha256": "HEX",
+    "predicate_runner_sha256": "HEX"
+  },
   "adapters": [{"id": "ID", "implementation_sha256": "HEX"}],
   "candidate_inventory": {},
   "executions": [],
@@ -753,6 +839,7 @@ R1CS identity는 raw bytes SHA-256이다. constraint 수나 구조가 같다는 
 - R1CS wire 전체는 index vector로 검증한다. 모든 wire가 사람이 읽을 수 있는 SYM 이름을 가져야 한다고 가정하지 않는다.
 - source closure, dependency/library closure, compiler binary와 compile arguments를 manifest로 고정한다.
 - 주입 검증에서는 twin/mutant R1CS raw SHA-256과 twin/mutant SYM raw SHA-256이 각각 같아야 한다.
+- contract의 모든 input/property signal은 mutant SYM뿐 아니라 clean SYM에도 존재해야 한다. 이 고정 결속 실패는 assignment 실행 전 공유 입력 실패다.
 - clean 비교는 wire index가 아니라 고정 projection의 SYM signal 이름을 쓴다. clean-only wire는 canonical이고 clean R1CS를 만족한다고 먼저 확인한 같은-input clean reference에서만 가져온다.
 - clean에서 실패한 제약 중 하나 이상이 사전 고정한 주입 관련 index 집합에 들어야 한다. 대응이 불완전하면 `clean_rejection: unknown`이다.
 
@@ -792,6 +879,7 @@ evaluator는 plan/outcome 한 쌍씩 받으므로 confirmation도 execution pair
 {
   "schema_version": 1,
   "kind": "injection-ground-truth",
+  "injection_id": "ID",
   "review_spec": {"path": "PATH", "sha256": "HEX"},
   "review_request": {"path": "PATH", "sha256": "HEX"},
   "review_report": {"path": "PATH", "sha256": "HEX"},
@@ -845,6 +933,7 @@ B의 backend request와 manifest는 이 index의 path/hash를 `qualification_bun
 | v3 Decoder, 1 plan/outcome pair | 후보 1개 validated+attributed, 고유 root cause 1개 |
 | 같은 outcome 안의 fixed/Tangle/timeout 등 비후보 run | execution 행은 `no-candidate`, 그 run에서 나온 confirmation 0개 |
 | 별도 zero-candidate fixture | complete report, 빈 schema 2 confirmation |
+| qualified injection index를 같은 spec의 backend request에 입력 | current-engine replay·prepared binding 뒤 complete report |
 
 새 pair별 confirmation을 실제 `experiment evaluate`에 넣어야 한다. 기존과 같은 project/original-component count, root-cause 중복 제거, run/target, completion-time upper bound가 나와야 한다. 캠페인 index에서 반복 strategy·seed의 같은 root cause는 하나로 집계한다.
 
@@ -882,3 +971,10 @@ T4b는 다음을 모두 만족해야 끝난다.
 9. `cargo fmt`, `cargo clippy --all-targets --all-features -- -D warnings`, `cargo test` 통과(구현 언어가 추가되면 해당 테스트도 함께 실행)
 
 T4b가 끝나기 전에는 주입 평가 spec을 최종 고정하지 않는다. 개발용 주입은 B 전용 제외 스냅샷에 이미 있는 프로젝트에서만 수행한다.
+
+## 14. 변경 이력
+
+| 날짜 | 상태 | 변경과 이유 |
+|---|---|---|
+| 2026-09-26 | T4a 결정 | 기존 세 검토 형식을 합친 공통 의미, 판정 기준, report·confirmation 방향을 결정했다. |
+| 2026-09-27 | T4b 완료 | 구현과 문서가 서로 다른 schema를 만들지 않도록 필수 필드, strict directory manifest, semantic prepared compiler setting과 full reproduction argv의 분리, generator placeholder, engine-source-bound adapter hash, bounded trusted worker, atomic publication, frozen prepared compile binding, qualification replay, 주입 실패 경계와 source-closure single-diff 불변식을 명시했다. 공용 엔진, confirmation/evaluator adapter, 보존 사례 73쌍과 합성 backend·주입 실패·qualification→backend 통합 시험을 통과했다. `clean_revision`·production entrypoint 지정·known-defect 근거 의미는 B2/사전 수동 검토 provenance의 별도 gate로 남겼다. T4a의 substantive criterion·eligibility·주장 범위는 바꾸지 않았다. |
