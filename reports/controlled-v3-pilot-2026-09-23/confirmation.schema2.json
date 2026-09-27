@@ -1,0 +1,31 @@
+{
+  "schema_version": 2,
+  "confirmations": [
+    {
+      "run_id": "3aeddcd0-c608-4449-93c9-515d57d3e019",
+      "target_id": "sha256:593ebf069393e830a57a6cf4f611cee14562ae6b351e218495ea86b38530fd21",
+      "root_cause_id": "iden3/circomlib/decoder-unconstrained-one-hot-output",
+      "scope": "original-component",
+      "evidence_origin": "backend-execution",
+      "original_component_review": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": ["candidate-review.json", "../../datasets/contracts.controlled-v3-development.json"],
+          "note": "The linked Decoder input is a canonical BN128 field element."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": ["candidate-review.json", "../../runs/controlled-v3-development/pilot-2026-09-23/review-decoder-r1cs/circuit.r1cs"],
+          "note": "Every constraint in the six-constraint original Decoder R1CS is satisfied; the review R1CS is byte-identical to preparation."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": ["candidate-review.json", "../../datasets/contracts.controlled-v3-development.json"],
+          "note": "The satisfying assignment violates the predeclared Decoder output equivalence."
+        }
+      },
+      "evidence": ["candidate-review.json", "../../datasets/contracts.controlled-v3-development.json"],
+      "note": "Validated against the frozen direct Decoder(4) component; no larger project caller or project-level impact is claimed."
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "set_id": "controlled-v3-development",
+  "classification": "one development compatibility pilot, not a held-out strategy comparison",
+  "preflight_commit": "6d7eaa7",
+  "frozen_plan_id": "117a6076-a970-4b72-94ec-46e319296445",
+  "frozen_plan_sha256": "cf4e11f82b5dd2fc5fbc608cbe8b9c9b758c4d4ee13103d79c8230193a8e781e",
+  "execution_seed": 2026092301,
+  "per_target_budget_seconds": 30,
+  "total_budget_seconds": 120,
+  "target_attempt_count": 4,
+  "status_counts": {
+    "bug_found": 1,
+    "no_counterexample": 1,
+    "timeout": 2,
+    "runner_failure": 0,
+    "not_started": 0
+  },
+  "preserved_candidate_count": 1,
+  "validated_candidate_count": 1,
+  "rejected_candidate_count": 0,
+  "unresolved_candidate_count": 0,
+  "confirmed_original_component_root_causes": [
+    "iden3/circomlib/decoder-unconstrained-one-hot-output"
+  ],
+  "confirmed_project_defect_count": 0,
+  "first_confirmed_completion_upper_bound_seconds": 74.155606875,
+  "raw_candidate": {
+    "preserved_sha256": "d5a3d6f233b26b487390341912e3af70d6176900d5be4b33ae2aabf0817fa5c7",
+    "storage": "ignored local runs/controlled-v3-development tree only",
+    "signal_values_in_git_visible_records": false
+  },
+  "review_r1cs": {
+    "prepared_sha256": "89627dd5739a231818cf2f06f45413741e0fdbd951a6cfbad6f89e2ccb81ccb9",
+    "recompiled_sha256": "89627dd5739a231818cf2f06f45413741e0fdbd951a6cfbad6f89e2ccb81ccb9",
+    "sym_sha256": "3c84c8a5923020d0dd58005b8e9a13d088f35661efb34a1b4823121d8e56f9af",
+    "constraint_count": 6,
+    "failed_constraint_count": 0
+  },
+  "records": [
+    {
+      "path": "reports/controlled-v3-pilot-2026-09-23/evidence/outcome.json",
+      "sha256": "42049cf693223a328598cd82b4c3e6bbb08519c5b9d0d1459b4fe7e4e7226a4d"
+    },
+    {
+      "path": "reports/controlled-v3-pilot-2026-09-23/evidence/mutation-settings.json",
+      "sha256": "0fcf6d4d377d659b105eeccc1f72135050346cc4f2df5f761f1e8fce793a5c2c"
+    },
+    {
+      "path": "reports/controlled-v3-pilot-2026-09-23/evidence/run-01.json",
+      "sha256": "b17d81bd5a57a1cea0f3ae54782f9adb45e0a9cbd2a333fd4d6d351708fc24b3"
+    },
+    {
+      "path": "reports/controlled-v3-pilot-2026-09-23/evidence/run-02.json",
+      "sha256": "ec209427ecc74d43529732a29799b311f0fd1926efbb12686525497dd40bce36"
+    },
+    {
+      "path": "reports/controlled-v3-pilot-2026-09-23/evidence/run-03.json",
+      "sha256": "7eed3f69ee21578d61da4cdef4ec092560eade95d2f531fadc3fc330d6c4b29d"
+    },
+    {
+      "path": "reports/controlled-v3-pilot-2026-09-23/evidence/run-04.json",
+      "sha256": "24d39bf42f51e851a995481fff0c4746baca631dedf118de81bbc4c68233b109"
+    },
+    {
+      "path": "reports/controlled-v3-pilot-2026-09-23/candidate-review.json",
+      "sha256": "a6e79b617fec6742ea75220d5e520509773d72d3952a436536e2bf5fad8c7d9a"
+    },
+    {
+      "path": "reports/controlled-v3-pilot-2026-09-23/confirmation.schema2.json",
+      "sha256": "d4fc747758bd2ad42fb78faa32f96ea3615a2056bbe540a3906dfb34e67252aa"
+    },
+    {
+      "path": "reports/controlled-v3-pilot-2026-09-23/evaluation.json",
+      "sha256": "2a0c19a73f6352c7a1b9eae393c05e4865efc9931e5a2011f4e33a842fbde917"
+    }
+  ]
+}

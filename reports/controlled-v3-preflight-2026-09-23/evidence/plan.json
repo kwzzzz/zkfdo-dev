@@ -1,0 +1,832 @@
+{
+  "schema_version": 1,
+  "plan_id": "117a6076-a970-4b72-94ec-46e319296445",
+  "created_at": "2026-09-23T07:10:03.815475Z",
+  "plan_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/pilot-2026-09-23/plan.json",
+  "prepared_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/prepared.json",
+  "prepared_sha256": "2669bd3cf1616b03c52b4c986b6083755f2797d08bda59915e1b4d3e2d4ac443",
+  "preparation_profile_strategy": null,
+  "strategy": "risk-only",
+  "ranking_seed": null,
+  "random_algorithm": null,
+  "config_path": "/Users/miiz/Desktop/kwzzzz_zkfr/configs/static-ranking.json",
+  "config_sha256": "8fed87764b001245d600307f7ba7d8453e88e3b977afda656014eac83ea32d26",
+  "config": {
+    "schema_version": 1,
+    "complexity_groups": {
+      "metric": "root_ast_if_plus_while",
+      "upper_bounds": [
+        0
+      ],
+      "group_order": [
+        0,
+        1
+      ],
+      "provenance": "Frozen before fuzzing from datasets/manifest.dev10.json on 2026-09-15: all three complete root-template profiles measured 0; group 0 is exactly 0 and group 1 is the reserved positive-complexity overflow bin. This tiny development set does not validate the boundary."
+    }
+  },
+  "comparison_target_set": "common-complete-feature-set",
+  "preparation_elapsed_seconds": 1.62043375,
+  "preparation_accounting": {
+    "inspection_seconds": 0.06995462599999999,
+    "snapshot_seconds": 0.00741675,
+    "structure_seconds": 0.5618697069999999,
+    "semantic_seconds": 0.11012687400000001,
+    "legacy_seconds": 0.073920125,
+    "excluded_target_elapsed_seconds": 0.0,
+    "orchestration_overhead_seconds": 0.7896377909999999
+  },
+  "planning_elapsed_seconds": 0.017085833,
+  "targets": [
+    {
+      "rank": 1,
+      "target_id": "sha256:6f2c43c5a4a81b1a77099f29be2a769c06075f817315f3ee0e8f12c12e3d8352",
+      "definition": {
+        "label": "UniRep BigLessThan fixed comparator",
+        "project": "https://github.com/Unirep/Unirep",
+        "revision": "3348caa362d5d632d29c532ffa88023d55628eab",
+        "project_root": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project",
+        "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circuit.circom",
+        "template_name": "BigLessThan",
+        "concrete_parameters": [],
+        "prime": "bn128",
+        "compile_args": [
+          "-l",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project"
+        ],
+        "mode": "direct",
+        "input_assumptions": "in[0] and in[1] are canonical BN128 field elements interpreted by their canonical integer representatives in [0, p-1].",
+        "input_contract": {
+          "kind": "field_only"
+        },
+        "known_defects": []
+      },
+      "inspection": {
+        "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circuit.circom",
+        "project_root": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project",
+        "root": {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/packages/circuits/circuits/bigComparators.circom",
+          "template_name": "BigLessThan",
+          "concrete_parameters": []
+        },
+        "instances": [
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/aliascheck.circom",
+            "template_name": "AliasCheck",
+            "concrete_parameters": []
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/bitify.circom",
+            "template_name": "Bits2Num",
+            "concrete_parameters": [
+              "127"
+            ]
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/bitify.circom",
+            "template_name": "Num2Bits",
+            "concrete_parameters": [
+              "128"
+            ]
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/bitify.circom",
+            "template_name": "Num2Bits",
+            "concrete_parameters": [
+              "135"
+            ]
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/bitify.circom",
+            "template_name": "Num2Bits",
+            "concrete_parameters": [
+              "254"
+            ]
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/bitify.circom",
+            "template_name": "Num2Bits_strict",
+            "concrete_parameters": []
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/comparators.circom",
+            "template_name": "IsEqual",
+            "concrete_parameters": []
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/comparators.circom",
+            "template_name": "IsZero",
+            "concrete_parameters": []
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/comparators.circom",
+            "template_name": "LessThan",
+            "concrete_parameters": [
+              "127"
+            ]
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/compconstant.circom",
+            "template_name": "CompConstant",
+            "concrete_parameters": [
+              "-1"
+            ]
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/mux1.circom",
+            "template_name": "MultiMux1",
+            "concrete_parameters": [
+              "1"
+            ]
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/mux1.circom",
+            "template_name": "Mux1",
+            "concrete_parameters": []
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/packages/circuits/circuits/bigComparators.circom",
+            "template_name": "BigLessThan",
+            "concrete_parameters": []
+          }
+        ],
+        "scopes": [
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/aliascheck.circom",
+            "template_name": "AliasCheck",
+            "start_line": 24,
+            "end_line": 33
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/bitify.circom",
+            "template_name": "Num2Bits",
+            "start_line": 25,
+            "end_line": 39
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/bitify.circom",
+            "template_name": "Num2Bits_strict",
+            "start_line": 41,
+            "end_line": 53
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/bitify.circom",
+            "template_name": "Bits2Num",
+            "start_line": 55,
+            "end_line": 67
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/comparators.circom",
+            "template_name": "IsZero",
+            "start_line": 24,
+            "end_line": 34
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/comparators.circom",
+            "template_name": "IsEqual",
+            "start_line": 37,
+            "end_line": 46
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/comparators.circom",
+            "template_name": "LessThan",
+            "start_line": 89,
+            "end_line": 99
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/compconstant.circom",
+            "template_name": "CompConstant",
+            "start_line": 25,
+            "end_line": 74
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/mux1.circom",
+            "template_name": "MultiMux1",
+            "start_line": 21,
+            "end_line": 31
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/mux1.circom",
+            "template_name": "Mux1",
+            "start_line": 33,
+            "end_line": 48
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/packages/circuits/circuits/bigComparators.circom",
+            "template_name": "BigLessThan",
+            "start_line": 63,
+            "end_line": 109
+          }
+        ],
+        "dependency_paths": [
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/aliascheck.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/binsum.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/bitify.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/comparators.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/compconstant.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/mux1.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circuit.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/packages/circuits/circuits/bigComparators.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/packages/circuits/circuits/modulo.circom"
+        ],
+        "complete": true,
+        "unsupported": []
+      },
+      "run_entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/sources/circuit.circom",
+      "ranking": {
+        "target_id": "sha256:6f2c43c5a4a81b1a77099f29be2a769c06075f817315f3ee0e8f12c12e3d8352",
+        "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circuit.circom",
+        "risk_score": 1,
+        "warning_count": 4,
+        "complexity": 3,
+        "size": 1306,
+        "legacy_score": 31.704735059110984
+      },
+      "source_fingerprints": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/aliascheck.circom",
+          "sha256": "7df7542461a68c1564a55be8f01d75571c0e2555a08a078abeba43e1ea032eb4"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/binsum.circom",
+          "sha256": "8aa153baf5791d96d06dce837c1e19b9ecc3a7dc65054132d5dd189b60bfcfc2"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/bitify.circom",
+          "sha256": "688f121303a2dd0154ceeda8d2f53a9d2d26789d10a69a46acd534642725683e"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/comparators.circom",
+          "sha256": "fd0c7723ee56e1467df1861131157cbb108e156fe2d9ec64895c8e68de14db20"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/compconstant.circom",
+          "sha256": "94c5cc93b589a940acbfecdb98babc2efc253ad4298814399fb41109faa3b50d"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/mux1.circom",
+          "sha256": "eaa61d34d40b03a1695212c012f5793c06f6d0db634878a0246249ba12a40922"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circuit.circom",
+          "sha256": "2992c336a44b2631c1e5cc1fae2db8a9383f052cc6407cf02fef227a9ff67526"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/packages/circuits/circuits/bigComparators.circom",
+          "sha256": "53dbdbadb47d742fb838cc8428354ec39b162a40c1d851fa9e010c4002696f26"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/packages/circuits/circuits/modulo.circom",
+          "sha256": "2ed79b9e57d592490b03cf0b01cae88619b1044abd7c26ed8cfcb47de6e89a47"
+        }
+      ],
+      "snapshot_fingerprints": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/sources/circomlib/circuits/aliascheck.circom",
+          "sha256": "7df7542461a68c1564a55be8f01d75571c0e2555a08a078abeba43e1ea032eb4"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/sources/circomlib/circuits/binsum.circom",
+          "sha256": "8aa153baf5791d96d06dce837c1e19b9ecc3a7dc65054132d5dd189b60bfcfc2"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/sources/circomlib/circuits/bitify.circom",
+          "sha256": "688f121303a2dd0154ceeda8d2f53a9d2d26789d10a69a46acd534642725683e"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/sources/circomlib/circuits/comparators.circom",
+          "sha256": "fd0c7723ee56e1467df1861131157cbb108e156fe2d9ec64895c8e68de14db20"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/sources/circomlib/circuits/compconstant.circom",
+          "sha256": "94c5cc93b589a940acbfecdb98babc2efc253ad4298814399fb41109faa3b50d"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/sources/circomlib/circuits/mux1.circom",
+          "sha256": "eaa61d34d40b03a1695212c012f5793c06f6d0db634878a0246249ba12a40922"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/sources/circuit.circom",
+          "sha256": "2992c336a44b2631c1e5cc1fae2db8a9383f052cc6407cf02fef227a9ff67526"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/sources/packages/circuits/circuits/bigComparators.circom",
+          "sha256": "53dbdbadb47d742fb838cc8428354ec39b162a40c1d851fa9e010c4002696f26"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/sources/packages/circuits/circuits/modulo.circom",
+          "sha256": "2ed79b9e57d592490b03cf0b01cae88619b1044abd7c26ed8cfcb47de6e89a47"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "target_id": "sha256:7aa9cb58574b90108bca0ca60b88ea35e81320f887aa5bac39503980ce2c2d61",
+      "definition": {
+        "label": "UniRep BigLessThan vulnerable",
+        "project": "https://github.com/Unirep/Unirep",
+        "revision": "0985a28c38c8b2e7b7a9e80f43e63179fdd08b89",
+        "project_root": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project",
+        "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circuit.circom",
+        "template_name": "BigLessThan",
+        "concrete_parameters": [],
+        "prime": "bn128",
+        "compile_args": [
+          "-l",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project"
+        ],
+        "mode": "direct",
+        "input_assumptions": "in[0] and in[1] are canonical BN128 field elements interpreted by their canonical integer representatives in [0, p-1].",
+        "input_contract": {
+          "kind": "field_only"
+        },
+        "known_defects": [
+          {
+            "root_cause_id": "unirep/unirep/big-less-than-num2bits-alias",
+            "location": "packages/circuits/circuits/bigComparators.circom:41-45; Num2Bits(254) admits a non-canonical decomposition",
+            "source_url": "https://github.com/zksecurity/zkbugs/blob/main/reports/documents/veridise-unirep.pdf",
+            "reported": true,
+            "local_reproduction": "Exact vulnerable source and BigLessThan() wrapper compile under the frozen development environment; backend discovery is not established by this annotation.",
+            "tcct_status": "not-run-at-manifest-freeze",
+            "reachability": "The public repository supplies packages/circuits/generated/bigComparators.circom as an original entrypoint; broader production-caller impact is not established.",
+            "evidence": [
+              "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/contracts.controlled-v3-development.json",
+              "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/Unirep/Unirep/veridise_underconstrained_circuit_allows_invalid_comparison/README.md"
+            ]
+          }
+        ]
+      },
+      "inspection": {
+        "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circuit.circom",
+        "project_root": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project",
+        "root": {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/packages/circuits/circuits/bigComparators.circom",
+          "template_name": "BigLessThan",
+          "concrete_parameters": []
+        },
+        "instances": [
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/bitify.circom",
+            "template_name": "Bits2Num",
+            "concrete_parameters": [
+              "127"
+            ]
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/bitify.circom",
+            "template_name": "Num2Bits",
+            "concrete_parameters": [
+              "128"
+            ]
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/bitify.circom",
+            "template_name": "Num2Bits",
+            "concrete_parameters": [
+              "254"
+            ]
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/comparators.circom",
+            "template_name": "IsEqual",
+            "concrete_parameters": []
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/comparators.circom",
+            "template_name": "IsZero",
+            "concrete_parameters": []
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/comparators.circom",
+            "template_name": "LessThan",
+            "concrete_parameters": [
+              "127"
+            ]
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/mux1.circom",
+            "template_name": "MultiMux1",
+            "concrete_parameters": [
+              "1"
+            ]
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/mux1.circom",
+            "template_name": "Mux1",
+            "concrete_parameters": []
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/packages/circuits/circuits/bigComparators.circom",
+            "template_name": "BigLessThan",
+            "concrete_parameters": []
+          }
+        ],
+        "scopes": [
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/bitify.circom",
+            "template_name": "Num2Bits",
+            "start_line": 25,
+            "end_line": 39
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/bitify.circom",
+            "template_name": "Bits2Num",
+            "start_line": 55,
+            "end_line": 67
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/comparators.circom",
+            "template_name": "IsZero",
+            "start_line": 24,
+            "end_line": 34
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/comparators.circom",
+            "template_name": "IsEqual",
+            "start_line": 37,
+            "end_line": 46
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/comparators.circom",
+            "template_name": "LessThan",
+            "start_line": 89,
+            "end_line": 99
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/mux1.circom",
+            "template_name": "MultiMux1",
+            "start_line": 21,
+            "end_line": 31
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/mux1.circom",
+            "template_name": "Mux1",
+            "start_line": 33,
+            "end_line": 48
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/packages/circuits/circuits/bigComparators.circom",
+            "template_name": "BigLessThan",
+            "start_line": 34,
+            "end_line": 80
+          }
+        ],
+        "dependency_paths": [
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/aliascheck.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/binsum.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/bitify.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/comparators.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/compconstant.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/mux1.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circuit.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/packages/circuits/circuits/bigComparators.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/packages/circuits/circuits/modulo.circom"
+        ],
+        "complete": true,
+        "unsupported": []
+      },
+      "run_entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/sources/circuit.circom",
+      "ranking": {
+        "target_id": "sha256:7aa9cb58574b90108bca0ca60b88ea35e81320f887aa5bac39503980ce2c2d61",
+        "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circuit.circom",
+        "risk_score": 1,
+        "warning_count": 4,
+        "complexity": 3,
+        "size": 780,
+        "legacy_score": 24.55845862338826
+      },
+      "source_fingerprints": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/aliascheck.circom",
+          "sha256": "7df7542461a68c1564a55be8f01d75571c0e2555a08a078abeba43e1ea032eb4"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/binsum.circom",
+          "sha256": "8aa153baf5791d96d06dce837c1e19b9ecc3a7dc65054132d5dd189b60bfcfc2"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/bitify.circom",
+          "sha256": "688f121303a2dd0154ceeda8d2f53a9d2d26789d10a69a46acd534642725683e"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/comparators.circom",
+          "sha256": "fd0c7723ee56e1467df1861131157cbb108e156fe2d9ec64895c8e68de14db20"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/compconstant.circom",
+          "sha256": "94c5cc93b589a940acbfecdb98babc2efc253ad4298814399fb41109faa3b50d"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/mux1.circom",
+          "sha256": "eaa61d34d40b03a1695212c012f5793c06f6d0db634878a0246249ba12a40922"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circuit.circom",
+          "sha256": "2992c336a44b2631c1e5cc1fae2db8a9383f052cc6407cf02fef227a9ff67526"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/packages/circuits/circuits/bigComparators.circom",
+          "sha256": "b61b956506f95477033ec14d30adde2e10676f94f1128096ed759145725761fa"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/packages/circuits/circuits/modulo.circom",
+          "sha256": "7999a295f0d84ec3c459f9aa5e02d825a122a634215afd6b0dc9f609e4cf2ee4"
+        }
+      ],
+      "snapshot_fingerprints": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/sources/circomlib/circuits/aliascheck.circom",
+          "sha256": "7df7542461a68c1564a55be8f01d75571c0e2555a08a078abeba43e1ea032eb4"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/sources/circomlib/circuits/binsum.circom",
+          "sha256": "8aa153baf5791d96d06dce837c1e19b9ecc3a7dc65054132d5dd189b60bfcfc2"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/sources/circomlib/circuits/bitify.circom",
+          "sha256": "688f121303a2dd0154ceeda8d2f53a9d2d26789d10a69a46acd534642725683e"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/sources/circomlib/circuits/comparators.circom",
+          "sha256": "fd0c7723ee56e1467df1861131157cbb108e156fe2d9ec64895c8e68de14db20"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/sources/circomlib/circuits/compconstant.circom",
+          "sha256": "94c5cc93b589a940acbfecdb98babc2efc253ad4298814399fb41109faa3b50d"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/sources/circomlib/circuits/mux1.circom",
+          "sha256": "eaa61d34d40b03a1695212c012f5793c06f6d0db634878a0246249ba12a40922"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/sources/circuit.circom",
+          "sha256": "2992c336a44b2631c1e5cc1fae2db8a9383f052cc6407cf02fef227a9ff67526"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/sources/packages/circuits/circuits/bigComparators.circom",
+          "sha256": "b61b956506f95477033ec14d30adde2e10676f94f1128096ed759145725761fa"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/sources/packages/circuits/circuits/modulo.circom",
+          "sha256": "7999a295f0d84ec3c459f9aa5e02d825a122a634215afd6b0dc9f609e4cf2ee4"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "target_id": "sha256:1c00a72631bc6e31451c6fca4a5b21827784504727eb1648e3dd90376e530be6",
+      "definition": {
+        "label": "circomlib Decoder fixed comparator",
+        "project": "https://github.com/iden3/circomlib",
+        "revision": "9d2918e5972dbcfb9e435add2043df4ff2c5cc97",
+        "project_root": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project",
+        "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuit.circom",
+        "template_name": "Decoder",
+        "concrete_parameters": [
+          "4"
+        ],
+        "prime": "bn128",
+        "compile_args": [
+          "-l",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project"
+        ],
+        "mode": "direct",
+        "input_assumptions": "inp is a canonical BN128 field element. Decoder(4) is defined for every field element; no narrower caller precondition is imposed.",
+        "input_contract": {
+          "kind": "field_only"
+        },
+        "known_defects": []
+      },
+      "inspection": {
+        "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuit.circom",
+        "project_root": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project",
+        "root": {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuits/multiplexer.circom",
+          "template_name": "Decoder",
+          "concrete_parameters": [
+            "4"
+          ]
+        },
+        "instances": [
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuits/comparators.circom",
+            "template_name": "IsZero",
+            "concrete_parameters": []
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuits/multiplexer.circom",
+            "template_name": "Decoder",
+            "concrete_parameters": [
+              "4"
+            ]
+          }
+        ],
+        "scopes": [
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuits/comparators.circom",
+            "template_name": "IsZero",
+            "start_line": 24,
+            "end_line": 34
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuits/multiplexer.circom",
+            "template_name": "Decoder",
+            "start_line": 80,
+            "end_line": 96
+          }
+        ],
+        "dependency_paths": [
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuit.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuits/aliascheck.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuits/binsum.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuits/bitify.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuits/comparators.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuits/compconstant.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuits/multiplexer.circom"
+        ],
+        "complete": true,
+        "unsupported": []
+      },
+      "run_entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0001/sources/circuit.circom",
+      "ranking": {
+        "target_id": "sha256:1c00a72631bc6e31451c6fca4a5b21827784504727eb1648e3dd90376e530be6",
+        "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuit.circom",
+        "risk_score": 0,
+        "warning_count": 0,
+        "complexity": 1,
+        "size": 12,
+        "legacy_score": 14.475333506471516
+      },
+      "source_fingerprints": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuit.circom",
+          "sha256": "6bc3815b73ef588fb6fb08e82e663baba305820df680332b37636e1145b58d2d"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuits/aliascheck.circom",
+          "sha256": "7df7542461a68c1564a55be8f01d75571c0e2555a08a078abeba43e1ea032eb4"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuits/binsum.circom",
+          "sha256": "8aa153baf5791d96d06dce837c1e19b9ecc3a7dc65054132d5dd189b60bfcfc2"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuits/bitify.circom",
+          "sha256": "688f121303a2dd0154ceeda8d2f53a9d2d26789d10a69a46acd534642725683e"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuits/comparators.circom",
+          "sha256": "fd0c7723ee56e1467df1861131157cbb108e156fe2d9ec64895c8e68de14db20"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuits/compconstant.circom",
+          "sha256": "94c5cc93b589a940acbfecdb98babc2efc253ad4298814399fb41109faa3b50d"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuits/multiplexer.circom",
+          "sha256": "ef3639bd88fc868b8e9f22ffdcd38b1c74445a0ae6ccbc0faa69e9ccc686a02c"
+        }
+      ],
+      "snapshot_fingerprints": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0001/sources/circuit.circom",
+          "sha256": "6bc3815b73ef588fb6fb08e82e663baba305820df680332b37636e1145b58d2d"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0001/sources/circuits/aliascheck.circom",
+          "sha256": "7df7542461a68c1564a55be8f01d75571c0e2555a08a078abeba43e1ea032eb4"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0001/sources/circuits/binsum.circom",
+          "sha256": "8aa153baf5791d96d06dce837c1e19b9ecc3a7dc65054132d5dd189b60bfcfc2"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0001/sources/circuits/bitify.circom",
+          "sha256": "688f121303a2dd0154ceeda8d2f53a9d2d26789d10a69a46acd534642725683e"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0001/sources/circuits/comparators.circom",
+          "sha256": "fd0c7723ee56e1467df1861131157cbb108e156fe2d9ec64895c8e68de14db20"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0001/sources/circuits/compconstant.circom",
+          "sha256": "94c5cc93b589a940acbfecdb98babc2efc253ad4298814399fb41109faa3b50d"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0001/sources/circuits/multiplexer.circom",
+          "sha256": "ef3639bd88fc868b8e9f22ffdcd38b1c74445a0ae6ccbc0faa69e9ccc686a02c"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "target_id": "sha256:593ebf069393e830a57a6cf4f611cee14562ae6b351e218495ea86b38530fd21",
+      "definition": {
+        "label": "circomlib Decoder vulnerable",
+        "project": "https://github.com/iden3/circomlib",
+        "revision": "cff5ab6288b55ef23602221694a6a38a0239dcc0",
+        "project_root": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/vulnerable/project",
+        "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/vulnerable/project/circuit.circom",
+        "template_name": "Decoder",
+        "concrete_parameters": [
+          "4"
+        ],
+        "prime": "bn128",
+        "compile_args": [
+          "-l",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/vulnerable/project"
+        ],
+        "mode": "direct",
+        "input_assumptions": "inp is a canonical BN128 field element. Decoder(4) is defined for every field element; no narrower caller precondition is imposed.",
+        "input_contract": {
+          "kind": "field_only"
+        },
+        "known_defects": [
+          {
+            "root_cause_id": "iden3/circomlib/decoder-unconstrained-one-hot-output",
+            "location": "circuits/multiplexer.circom:80-94; witness-only output selection permits out[i]=0 when inp=i",
+            "source_url": "https://github.com/zksecurity/zkbugs/blob/main/reports/documents/veridise-circomlib.pdf",
+            "reported": true,
+            "local_reproduction": "Exact vulnerable source and Decoder(4) wrapper compile under the frozen development environment; backend discovery is not established by this annotation.",
+            "tcct_status": "not-run-at-manifest-freeze",
+            "reachability": "The public metadata's original entrypoint is the same direct wrapper; a larger project caller is not established.",
+            "evidence": [
+              "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/contracts.controlled-v3-development.json",
+              "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/iden3/circomlib/veridise_decoder_accepting_bogus_output_signal/README.md"
+            ]
+          }
+        ]
+      },
+      "inspection": {
+        "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/vulnerable/project/circuit.circom",
+        "project_root": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/vulnerable/project",
+        "root": {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/vulnerable/project/circuits/multiplexer.circom",
+          "template_name": "Decoder",
+          "concrete_parameters": [
+            "4"
+          ]
+        },
+        "instances": [
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/vulnerable/project/circuits/multiplexer.circom",
+            "template_name": "Decoder",
+            "concrete_parameters": [
+              "4"
+            ]
+          }
+        ],
+        "scopes": [
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/vulnerable/project/circuits/multiplexer.circom",
+            "template_name": "Decoder",
+            "start_line": 78,
+            "end_line": 92
+          }
+        ],
+        "dependency_paths": [
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/vulnerable/project/circuit.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/vulnerable/project/circuits/multiplexer.circom"
+        ],
+        "complete": true,
+        "unsupported": []
+      },
+      "run_entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0000/sources/circuit.circom",
+      "ranking": {
+        "target_id": "sha256:593ebf069393e830a57a6cf4f611cee14562ae6b351e218495ea86b38530fd21",
+        "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/vulnerable/project/circuit.circom",
+        "risk_score": 0,
+        "warning_count": 0,
+        "complexity": 1,
+        "size": 6,
+        "legacy_score": 14.921135878663652
+      },
+      "source_fingerprints": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/vulnerable/project/circuit.circom",
+          "sha256": "6bc3815b73ef588fb6fb08e82e663baba305820df680332b37636e1145b58d2d"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/vulnerable/project/circuits/multiplexer.circom",
+          "sha256": "d955fa5da40c3066442f2a4b5688f3e2985bca4cec0607b20310babc97f97116"
+        }
+      ],
+      "snapshot_fingerprints": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0000/sources/circuit.circom",
+          "sha256": "6bc3815b73ef588fb6fb08e82e663baba305820df680332b37636e1145b58d2d"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0000/sources/circuits/multiplexer.circom",
+          "sha256": "d955fa5da40c3066442f2a4b5688f3e2985bca4cec0607b20310babc97f97116"
+        }
+      ]
+    }
+  ],
+  "exclusions": [],
+  "manifest_exclusions": [],
+  "limitations": [
+    "The plan freezes a target order; ranking scores are hypotheses, not vulnerability probabilities.",
+    "Preparation time is recorded but excluded from the ranking-separated fuzzing budget."
+  ]
+}

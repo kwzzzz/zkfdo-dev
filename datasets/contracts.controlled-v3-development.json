@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "set_id": "controlled-v3-development",
+  "classification": "development compatibility and backend pilot; not held-out performance evaluation",
+  "frozen_before_backend_execution": true,
+  "status_at_freeze": {
+    "material_preparation": "complete",
+    "backend_execution": "not_run",
+    "candidate_review": "not_run",
+    "confirmed_original_component_defect_count": null
+  },
+  "selection": {
+    "selected_independent_causes": 2,
+    "selected_projects": 2,
+    "held_out_v3_goal_met": false,
+    "reason_not_held_out": "Both cases were inspected while extending target parsing and checking the current static signals. Their outcomes must not be used as an unbiased ranking benchmark.",
+    "other_survey_copies": "BigMod, Rarimo DateEncoder, UniRep EpochKeyLite and zk-email FpMul remain ignored local surveys; they are not selected targets or execution attempts."
+  },
+  "manifest": {
+    "path": "datasets/manifest.controlled-v3-development.json",
+    "sha256": "4c52bc101a2b3d3dc7a193c4dded8f15778639e4294946b0adb5f222fa73304d"
+  },
+  "prepared": {
+    "path": "runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/prepared.json",
+    "sha256": "2669bd3cf1616b03c52b4c986b6083755f2797d08bda59915e1b4d3e2d4ac443",
+    "all_four_targets_eligible": true
+  },
+  "environment": {
+    "classification": "current development comparison environment, not historical deployment",
+    "zkfdo_commit": "22eb43934aa942be874f29f8c88ec4b27c3e3211",
+    "zkfdo_tree": "dd9902880fa288857e17b4f16def7d7f45d6c156",
+    "zkfdo_binary_path": "runs/controlled-v3-development/frozen-tools/zkfDO-22eb439-debug",
+    "zkfdo_binary_sha256": "11f0b41bd5a8ef819a19be16a3b0fd882fa6640e49cfbd9dadaac6d0af31cc27",
+    "circom_version": "2.2.3",
+    "circom_binary_sha256": "8991887889c2a74d6fc704d5689ada4cc76fba004e866c987de6cbf3b3db6227",
+    "prime": "bn128",
+    "zkfuzz_version": "2.2.1",
+    "zkfuzz_binary_sha256": "ac2d9d16fd97ff803b121b7994aef804b4e191636f3f78660ff6ecd6c9ae4edd",
+    "circomspect_version": "0.9.0",
+    "circomspect_revision": "ece9efe0a21e6c422a43ab6f2e1c0ce99678013b",
+    "circomspect_binary_sha256": "6acebb5f1c00fd3823e96388cb322cd29bd516f8bacecf855fee5652431c3590",
+    "ranking_config_path": "configs/static-ranking.json",
+    "ranking_config_sha256": "8fed87764b001245d600307f7ba7d8453e88e3b977afda656014eac83ea32d26"
+  },
+  "review_rule": {
+    "valid_execution_finding_requires": [
+      "candidate hash and run/target link match the saved plan and outcome",
+      "the linked backend status is bug_found",
+      "candidate inputs satisfy the predeclared input contract",
+      "the complete assignment satisfies every constraint in the frozen original R1CS",
+      "the assignment violates the predeclared component property"
+    ],
+    "known_defect_metadata_is_execution_discovery": false,
+    "static_diagnostics_are_execution_discovery": false,
+    "review_time_is_search_time": false,
+    "fixed_variant_scope": "paired comparator for the named cause only"
+  },
+  "pairs": [
+    {
+      "pair_id": "circomlib-decoder-development",
+      "project": "https://github.com/iden3/circomlib",
+      "root_cause_id": "iden3/circomlib/decoder-unconstrained-one-hot-output",
+      "independence_class": "witness-only output selection / omitted equivalence constraint",
+      "public_case_readme": ".external/zkbugs/dataset/circom/iden3/circomlib/veridise_decoder_accepting_bogus_output_signal/README.md",
+      "public_case_readme_sha256": "57a84b49395e64313014c696038ad5f74ba4d46e69a1271cdded1f57b200aeea",
+      "public_case_config_sha256": "4b9fdafe80039e082edae89ebe29bdc18b216a446bc2ca274b8a0b3821710939",
+      "revision_relationship": "The fixed revision is a direct child of the vulnerable revision, and its Decoder change adds the IsZero constraints. The public zkbugs README has no Fix Commit entry; this relationship was checked from the circomlib history.",
+      "input_preconditions": "inp is a canonical BN128 field element; no narrower caller domain is assumed.",
+      "predeclared_property": "For Decoder(4), each out[i] equals 1 exactly when inp equals i, otherwise 0, for i in 0..3; success equals the sum of those four outputs.",
+      "violation_rule": "A complete satisfying assignment for the vulnerable frozen target meets the input precondition but breaks any of the four output equivalences or the success relation.",
+      "project_reachability": "The published original entrypoint is the same as the direct wrapper; no larger project caller is established here.",
+      "variants": [
+        {
+          "role": "published-vulnerable-source",
+          "revision": "cff5ab6288b55ef23602221694a6a38a0239dcc0",
+          "source_path": "datasets/controlled-v3/circomlib-decoder/vulnerable/project/circuits/multiplexer.circom",
+          "source_git_blob_sha1": "848e31e4351ffc837bfc794c8b896a465fb27abd",
+          "source_sha256": "d955fa5da40c3066442f2a4b5688f3e2985bca4cec0607b20310babc97f97116",
+          "wrapper_sha256": "6bc3815b73ef588fb6fb08e82e663baba305820df680332b37636e1145b58d2d",
+          "target_id": "sha256:593ebf069393e830a57a6cf4f611cee14562ae6b351e218495ea86b38530fd21",
+          "constraint_count": 6,
+          "risk_score": 0,
+          "warning_count": 0,
+          "eligible": true
+        },
+        {
+          "role": "patched-regression-comparator",
+          "revision": "9d2918e5972dbcfb9e435add2043df4ff2c5cc97",
+          "source_path": "datasets/controlled-v3/circomlib-decoder/fixed/project/circuits/multiplexer.circom",
+          "source_git_blob_sha1": "b26922e1682077a5331a7051b21cc8afb14e3eca",
+          "source_sha256": "ef3639bd88fc868b8e9f22ffdcd38b1c74445a0ae6ccbc0faa69e9ccc686a02c",
+          "wrapper_sha256": "6bc3815b73ef588fb6fb08e82e663baba305820df680332b37636e1145b58d2d",
+          "target_id": "sha256:1c00a72631bc6e31451c6fca4a5b21827784504727eb1648e3dd90376e530be6",
+          "constraint_count": 12,
+          "risk_score": 0,
+          "warning_count": 0,
+          "eligible": true
+        }
+      ]
+    },
+    {
+      "pair_id": "unirep-big-less-than-development",
+      "project": "https://github.com/Unirep/Unirep",
+      "root_cause_id": "unirep/unirep/big-less-than-num2bits-alias",
+      "independence_class": "noncanonical bit decomposition / field alias",
+      "public_case_readme": ".external/zkbugs/dataset/circom/Unirep/Unirep/veridise_underconstrained_circuit_allows_invalid_comparison/README.md",
+      "public_case_readme_sha256": "8df2a807a81101dc2008b249b712278739070a02e6f55f526543e435f9104e15",
+      "public_case_config_sha256": "81b119671f92e129be9a0077fd2712bfc03a195e115ff352861bc451febe58e3",
+      "revision_relationship": "The vulnerable revision is an ancestor of the public Fix Commit. In BigLessThan, Num2Bits(254) is replaced by Num2Bits_strict; other source changes in the fix do not count as separate cases.",
+      "input_preconditions": "Both inputs are canonical BN128 field elements interpreted as integers in [0,p-1]. A noncanonical internal Num2Bits decomposition remains a valid object of review.",
+      "predeclared_property": "BigLessThan.out equals 1 exactly when the canonical integer representative of in[0] is less than that of in[1], otherwise 0.",
+      "violation_rule": "A complete satisfying assignment for the vulnerable frozen target meets the input precondition but BigLessThan.out disagrees with the canonical integer comparison.",
+      "project_reachability": "The published original entrypoint is packages/circuits/generated/bigComparators.circom; a broader production caller is not established here.",
+      "dependency_layout_adapter": "The relative circomlib symlink in each variant recreates the source's ./circomlib include layout; reviewed source bytes are unchanged.",
+      "variants": [
+        {
+          "role": "published-vulnerable-source",
+          "revision": "0985a28c38c8b2e7b7a9e80f43e63179fdd08b89",
+          "source_path": "datasets/controlled-v3/unirep-big-less-than/vulnerable/project/packages/circuits/circuits/bigComparators.circom",
+          "source_git_blob_sha1": "a04a32519ad5d3ca461276449cf30fc97e1991c7",
+          "source_sha256": "b61b956506f95477033ec14d30adde2e10676f94f1128096ed759145725761fa",
+          "wrapper_sha256": "2992c336a44b2631c1e5cc1fae2db8a9383f052cc6407cf02fef227a9ff67526",
+          "target_id": "sha256:7aa9cb58574b90108bca0ca60b88ea35e81320f887aa5bac39503980ce2c2d61",
+          "constraint_count": 780,
+          "risk_score": 1,
+          "warning_count": 4,
+          "eligible": true
+        },
+        {
+          "role": "patched-regression-comparator",
+          "revision": "3348caa362d5d632d29c532ffa88023d55628eab",
+          "source_path": "datasets/controlled-v3/unirep-big-less-than/fixed/project/packages/circuits/circuits/bigComparators.circom",
+          "source_git_blob_sha1": "54c32496a58975696b92e5091813f33150bad335",
+          "source_sha256": "53dbdbadb47d742fb838cc8428354ec39b162a40c1d851fa9e010c4002696f26",
+          "wrapper_sha256": "2992c336a44b2631c1e5cc1fae2db8a9383f052cc6407cf02fef227a9ff67526",
+          "target_id": "sha256:6f2c43c5a4a81b1a77099f29be2a769c06075f817315f3ee0e8f12c12e3d8352",
+          "constraint_count": 1306,
+          "risk_score": 1,
+          "warning_count": 4,
+          "eligible": true
+        }
+      ]
+    }
+  ]
+}

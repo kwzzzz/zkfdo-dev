@@ -1,0 +1,33 @@
+{
+  "run_id": "b39fb010-bc6d-4d07-8717-fff7900db602",
+  "target": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0001/sources/circuit.circom",
+  "command": {
+    "binary": "/Users/miiz/.cargo/bin/zkfuzz",
+    "args": [
+      "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0001/sources/circuit.circom",
+      "-l",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project",
+      "--prime",
+      "bn128",
+      "--search_mode",
+      "ga",
+      "--save_output",
+      "--path_to_mutation_setting",
+      "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/pilot-2026-09-23/execution/execution-aa47e6bc-8901-443b-b921-7e7d0f664464/mutation-settings.json"
+    ]
+  },
+  "started_at": "2026-09-23T07:15:36.449620Z",
+  "finished_at": "2026-09-23T07:15:50.529666Z",
+  "wall_time_seconds": 14.0801495,
+  "budget_seconds": 30,
+  "execution_limit_seconds": 30.0,
+  "process_start_offset_seconds": 0.000125708,
+  "timed_out": false,
+  "exit_code": 0,
+  "status": "no_counterexample",
+  "random_seed": 2026092301,
+  "last_generation": 499,
+  "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/pilot-2026-09-23/execution/execution-aa47e6bc-8901-443b-b921-7e7d0f664464/69491da1-9bf1-4e6a-b702-5171791348c8/runs/b39fb010-bc6d-4d07-8717-fff7900db602/stdout.log",
+  "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/pilot-2026-09-23/execution/execution-aa47e6bc-8901-443b-b921-7e7d0f664464/69491da1-9bf1-4e6a-b702-5171791348c8/runs/b39fb010-bc6d-4d07-8717-fff7900db602/stderr.log",
+  "error": null
+}

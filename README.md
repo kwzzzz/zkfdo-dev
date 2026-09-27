@@ -8,7 +8,7 @@ The project does not reimplement zkFuzz. It scans Circom projects, extracts targ
 
 ## Status
 
-This repository has static ranking experiments over explicit Circom targets, a single-target runner, a uniform scheduling baseline, and an MVP for semantic fuzz-target discovery. A bounded seven-strategy dev3 backend-candidate pilot has been completed. Confirmed real-project ranking performance and a confirmed real-project positive control have not yet been established.
+As of 2026-09-23, the explicit prepare → plan → run → evaluate pipeline has rediscovered and reviewed one distinct known original-component cause in each of the controlled-v1.1, controlled-v2, and controlled-v3 development campaigns. These campaigns have different targets and protocols, so their findings are not a pooled performance score. No project-caller defect is confirmed. Controlled-v3's static risk scores tied within both vulnerable/fixed pairs and its fixed variants were ordered first; general ranking superiority is unproven. A non-zkbugs large-project study and a broader held-out evaluation remain open. See the [research goal](docs/problem_statement.md), [evaluation plan](docs/evaluation_plan.md), and [controlled-v3 development pilot](reports/controlled-v3-pilot-2026-09-23/REPORT.md).
 
 Implemented now:
 
@@ -35,7 +35,7 @@ Not implemented yet:
 - adaptive scheduling and runtime re-ranking
 - SQLite persistence
 - general CSV/HTML report generation and implementation of the legacy `report` command
-- confirmed-defect performance evaluation on a held-out multi-project corpus and a confirmed real-project positive control
+- a sufficiently broad held-out confirmed-defect comparison and project-caller-confirmed positive control
 
 ## Quick Start
 

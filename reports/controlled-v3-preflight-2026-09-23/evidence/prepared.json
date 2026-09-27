@@ -1,0 +1,2106 @@
+{
+  "schema_version": 1,
+  "name": "controlled-v3-development",
+  "description": "Development compatibility corpus for target-inspection and backend preflight. These cases were inspected while extending parser support and are not a held-out performance set.",
+  "manifest_path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/manifest.controlled-v3-development.json",
+  "manifest_sha256": "4c52bc101a2b3d3dc7a193c4dded8f15778639e4294946b0adb5f222fa73304d",
+  "output_dir": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472",
+  "report_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/prepared.json",
+  "profile_strategy": null,
+  "options": {
+    "circom_bin": "/Users/miiz/.cargo/bin/circom",
+    "zkfuzz_bin": "/Users/miiz/.cargo/bin/zkfuzz",
+    "analyzer_bin": "/Users/miiz/Desktop/kwzzzz_zkfr/.external/circomspect/target/release/circomspect",
+    "analyzer_version": "0.9.0",
+    "analyzer_revision": "ece9efe0a21e6c422a43ab6f2e1c0ce99678013b",
+    "timeout_seconds": 120,
+    "strategy": null
+  },
+  "environment": {
+    "arch": "aarch64",
+    "circom_binary": "/Users/miiz/.cargo/bin/circom",
+    "circom_binary_sha256": "8991887889c2a74d6fc704d5689ada4cc76fba004e866c987de6cbf3b3db6227",
+    "circomspect_binary": "/Users/miiz/Desktop/kwzzzz_zkfr/.external/circomspect/target/release/circomspect",
+    "circomspect_binary_sha256": "6acebb5f1c00fd3823e96388cb322cd29bd516f8bacecf855fee5652431c3590",
+    "os": "macos",
+    "working_directory": "/Users/miiz/Desktop/kwzzzz_zkfr",
+    "zkfdo_version": "0.1.0",
+    "zkfuzz_binary": "/Users/miiz/.cargo/bin/zkfuzz",
+    "zkfuzz_binary_sha256": "ac2d9d16fd97ff803b121b7994aef804b4e191636f3f78660ff6ecd6c9ae4edd"
+  },
+  "started_at": "2026-09-23T07:08:20.208170Z",
+  "finished_at": "2026-09-23T07:08:21.828616Z",
+  "elapsed_seconds": 1.6204337500000001,
+  "targets": [
+    {
+      "target_id": "sha256:593ebf069393e830a57a6cf4f611cee14562ae6b351e218495ea86b38530fd21",
+      "definition": {
+        "label": "circomlib Decoder vulnerable",
+        "project": "https://github.com/iden3/circomlib",
+        "revision": "cff5ab6288b55ef23602221694a6a38a0239dcc0",
+        "project_root": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/vulnerable/project",
+        "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/vulnerable/project/circuit.circom",
+        "template_name": "Decoder",
+        "concrete_parameters": [
+          "4"
+        ],
+        "prime": "bn128",
+        "compile_args": [
+          "-l",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/vulnerable/project"
+        ],
+        "mode": "direct",
+        "input_assumptions": "inp is a canonical BN128 field element. Decoder(4) is defined for every field element; no narrower caller precondition is imposed.",
+        "input_contract": {
+          "kind": "field_only"
+        },
+        "known_defects": [
+          {
+            "root_cause_id": "iden3/circomlib/decoder-unconstrained-one-hot-output",
+            "location": "circuits/multiplexer.circom:80-94; witness-only output selection permits out[i]=0 when inp=i",
+            "source_url": "https://github.com/zksecurity/zkbugs/blob/main/reports/documents/veridise-circomlib.pdf",
+            "reported": true,
+            "local_reproduction": "Exact vulnerable source and Decoder(4) wrapper compile under the frozen development environment; backend discovery is not established by this annotation.",
+            "tcct_status": "not-run-at-manifest-freeze",
+            "reachability": "The public metadata's original entrypoint is the same direct wrapper; a larger project caller is not established.",
+            "evidence": [
+              "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/contracts.controlled-v3-development.json",
+              "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/iden3/circomlib/veridise_decoder_accepting_bogus_output_signal/README.md"
+            ]
+          }
+        ]
+      },
+      "inspection": {
+        "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/vulnerable/project/circuit.circom",
+        "project_root": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/vulnerable/project",
+        "root": {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/vulnerable/project/circuits/multiplexer.circom",
+          "template_name": "Decoder",
+          "concrete_parameters": [
+            "4"
+          ]
+        },
+        "instances": [
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/vulnerable/project/circuits/multiplexer.circom",
+            "template_name": "Decoder",
+            "concrete_parameters": [
+              "4"
+            ]
+          }
+        ],
+        "scopes": [
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/vulnerable/project/circuits/multiplexer.circom",
+            "template_name": "Decoder",
+            "start_line": 78,
+            "end_line": 92
+          }
+        ],
+        "dependency_paths": [
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/vulnerable/project/circuit.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/vulnerable/project/circuits/multiplexer.circom"
+        ],
+        "complete": true,
+        "unsupported": []
+      },
+      "run_entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0000/sources/circuit.circom",
+      "structure": {
+        "profile_kind": "structure_only_no_fuzz_search",
+        "complete": true,
+        "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0000/sources/circuit.circom",
+        "root_template": "Decoder",
+        "prime": "bn128",
+        "compile_args": [
+          "-l",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/vulnerable/project"
+        ],
+        "size": 6,
+        "size_source": "Circom R1CS compiler summary: non-linear constraints + linear constraints under recorded compile settings",
+        "r1cs_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0000/structure/r1cs/circuit.r1cs",
+        "complexity": 1,
+        "metric": "root_ast_if_plus_while",
+        "parameter_reflected": false,
+        "compile_success": true,
+        "ast_success": true,
+        "ast_requested": true,
+        "ast_stats": {
+          "template_name": "Decoder",
+          "num_statements": 25,
+          "num_if_then_else": 0,
+          "num_while": 1
+        },
+        "compile": {
+          "requested": true,
+          "purpose": "compile-r1cs",
+          "binary": "/Users/miiz/.cargo/bin/circom",
+          "args": [
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0000/sources/circuit.circom",
+            "--r1cs",
+            "--prime",
+            "bn128",
+            "--output",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0000/structure/r1cs",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/vulnerable/project"
+          ],
+          "started_at": "2026-09-23T07:08:21.057576Z",
+          "finished_at": "2026-09-23T07:08:21.087078Z",
+          "elapsed_seconds": 0.029504292,
+          "timeout_seconds": 120,
+          "exit_code": 0,
+          "success": true,
+          "timed_out": false,
+          "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0000/structure/compile-r1cs.stdout.log",
+          "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0000/structure/compile-r1cs.stderr.log",
+          "error": null
+        },
+        "ast": {
+          "requested": true,
+          "purpose": "root-ast-only",
+          "binary": "/Users/miiz/.cargo/bin/zkfuzz",
+          "args": [
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0000/sources/circuit.circom",
+            "--show_stats_of_ast",
+            "--prime",
+            "bn128",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/vulnerable/project"
+          ],
+          "started_at": "2026-09-23T07:08:21.087224Z",
+          "finished_at": "2026-09-23T07:08:21.117701Z",
+          "elapsed_seconds": 0.030479167,
+          "timeout_seconds": 120,
+          "exit_code": 0,
+          "success": true,
+          "timed_out": false,
+          "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0000/structure/root-ast-only.stdout.log",
+          "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0000/structure/root-ast-only.stderr.log",
+          "error": null
+        },
+        "circom_version": {
+          "requested": true,
+          "purpose": "circom-version",
+          "binary": "/Users/miiz/.cargo/bin/circom",
+          "args": [
+            "--version"
+          ],
+          "started_at": "2026-09-23T07:08:21.001841Z",
+          "finished_at": "2026-09-23T07:08:21.028700Z",
+          "elapsed_seconds": 0.026860208,
+          "timeout_seconds": 120,
+          "exit_code": 0,
+          "success": true,
+          "timed_out": false,
+          "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0000/structure/circom-version.stdout.log",
+          "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0000/structure/circom-version.stderr.log",
+          "error": null
+        },
+        "zkfuzz_version": {
+          "requested": true,
+          "purpose": "zkfuzz-version",
+          "binary": "/Users/miiz/.cargo/bin/zkfuzz",
+          "args": [
+            "--version"
+          ],
+          "started_at": "2026-09-23T07:08:21.028803Z",
+          "finished_at": "2026-09-23T07:08:21.057472Z",
+          "elapsed_seconds": 0.0286715,
+          "timeout_seconds": 120,
+          "exit_code": 0,
+          "success": true,
+          "timed_out": false,
+          "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0000/structure/zkfuzz-version.stdout.log",
+          "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0000/structure/zkfuzz-version.stderr.log",
+          "error": null
+        },
+        "limitations": [
+          "Complexity counts only IfThenElse and While nodes in the named root template definition, not reachable dependency templates.",
+          "AST control-flow nodes are not expanded for concrete parameters, loop iterations, or Circom constraint optimizations.",
+          "num_statements counts visited AST statement nodes, including blocks; it is not source lines or constraints.",
+          "R1CS constraint count is a separate concrete compiled size measure, not LEOPARD structural complexity.",
+          "zkFuzz --show_stats_of_ast exits after parse/type analysis; this invocation provides no fuzzing or defect-reproduction evidence."
+        ],
+        "errors": [],
+        "profile_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0000/structure/structure-profile.json"
+      },
+      "semantic": {
+        "schema_version": 1,
+        "scopes": [
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/vulnerable/project/circuits/multiplexer.circom",
+            "template_name": "Decoder",
+            "start_line": 78,
+            "end_line": 92
+          }
+        ],
+        "capture": {
+          "tool_path": "/Users/miiz/Desktop/kwzzzz_zkfr/.external/circomspect/target/release/circomspect",
+          "tool_version": "0.9.0",
+          "tool_revision": "ece9efe0a21e6c422a43ab6f2e1c0ce99678013b",
+          "curve": "BN254",
+          "command": [
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/circomspect/target/release/circomspect",
+            "--level",
+            "INFO",
+            "--verbose",
+            "--curve",
+            "BN254",
+            "--sarif-file",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0000/semantic/analysis.sarif",
+            "--library",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/vulnerable/project",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/vulnerable/project/circuits/multiplexer.circom"
+          ],
+          "sarif_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0000/semantic/analysis.sarif",
+          "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0000/semantic/stdout.log",
+          "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0000/semantic/stderr.log",
+          "exit_code": 1,
+          "timed_out": false,
+          "elapsed_seconds": 0.012470125,
+          "execution_error": null
+        },
+        "complete": true,
+        "features": [
+          {
+            "rule_id": "CS0013",
+            "rule_name": "unnecessary-signal-assignment",
+            "meaning": "single-arrow assignment has a quadratic RHS that could instead use a constraint assignment; separate constraints can still make it correct",
+            "status": "complete",
+            "value": 0,
+            "observed_warning_count": 0,
+            "reasons": []
+          },
+          {
+            "rule_id": "CS0014",
+            "rule_name": "unconstrained-less-than",
+            "meaning": "analyzer could not establish the required input range for a Circomlib LessThan use",
+            "status": "complete",
+            "value": 0,
+            "observed_warning_count": 0,
+            "reasons": []
+          },
+          {
+            "rule_id": "CS0015",
+            "rule_name": "unconstrained-division",
+            "meaning": "analyzer did not find its supported IsZero-based nonzero check for the divisor",
+            "status": "complete",
+            "value": 0,
+            "observed_warning_count": 0,
+            "reasons": []
+          },
+          {
+            "rule_id": "CS0017",
+            "rule_name": "under-constrained-signal",
+            "meaning": "intermediate signal appears in fewer than two separate constraints under this analyzer's analysis",
+            "status": "complete",
+            "value": 0,
+            "observed_warning_count": 0,
+            "reasons": []
+          },
+          {
+            "rule_id": "CS0018",
+            "rule_name": "unused-output-signal",
+            "meaning": "instantiated component output is not used as expected, subject to the analyzer's allowlist and access approximation",
+            "status": "complete",
+            "value": 0,
+            "observed_warning_count": 0,
+            "reasons": []
+          }
+        ],
+        "risk_score": 0,
+        "warning_count": 0,
+        "warnings": [],
+        "ignored_out_of_scope_count": 0,
+        "ignored_other_rule_count": 16,
+        "duplicate_warning_count": 0,
+        "reasons": [],
+        "unsupported_features": [
+          {
+            "name": "compile-time parameter assertion versus signal-dependent assertion",
+            "status": "unsupported",
+            "reason": "the verified Circomspect release has no dedicated rule that establishes this distinction; assertions are not counted"
+          }
+        ],
+        "limitations": [
+          "Warnings describe template definitions; Circomspect does not specialize templates with this target's concrete parameters.",
+          "The caller must validate reachable template scopes and their full dependency closure; file co-location is not reachability.",
+          "Complete means these analyzer passes ran with no observed analysis failure, not that the circuit is safe or all bugs are detectable.",
+          "Any detected partial analysis conservatively makes every required feature unknown; observed warnings remain available.",
+          "Only the five selected rule IDs count in warning-first; unrelated lint reports remain in raw SARIF."
+        ]
+      },
+      "ranking": {
+        "target_id": "sha256:593ebf069393e830a57a6cf4f611cee14562ae6b351e218495ea86b38530fd21",
+        "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/vulnerable/project/circuit.circom",
+        "risk_score": 0,
+        "warning_count": 0,
+        "complexity": 1,
+        "size": 6,
+        "legacy_score": 14.921135878663653
+      },
+      "eligible": true,
+      "exclusion_reasons": [],
+      "source_fingerprints": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/vulnerable/project/circuit.circom",
+          "sha256": "6bc3815b73ef588fb6fb08e82e663baba305820df680332b37636e1145b58d2d"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/vulnerable/project/circuits/multiplexer.circom",
+          "sha256": "d955fa5da40c3066442f2a4b5688f3e2985bca4cec0607b20310babc97f97116"
+        }
+      ],
+      "snapshot_fingerprints": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0000/sources/circuit.circom",
+          "sha256": "6bc3815b73ef588fb6fb08e82e663baba305820df680332b37636e1145b58d2d"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0000/sources/circuits/multiplexer.circom",
+          "sha256": "d955fa5da40c3066442f2a4b5688f3e2985bca4cec0607b20310babc97f97116"
+        }
+      ],
+      "timings": {
+        "inspection_seconds": 0.00664175,
+        "snapshot_seconds": 0.000520042,
+        "structure_seconds": 0.118037208,
+        "semantic_seconds": 0.013625833,
+        "legacy_seconds": 0.019836042
+      },
+      "elapsed_seconds": 0.1594035,
+      "limitations": [
+        "Semantic locations refer to the fingerprinted original sources; compiler/AST execution and future fuzzing use the copied entrypoint. Absolute includes can retain read-only original dependencies.",
+        "Legacy baseline maps the existing lexical risk/cost formula over the entire root template source file, including unrelated templates in that file; it is not semantic risk."
+      ]
+    },
+    {
+      "target_id": "sha256:1c00a72631bc6e31451c6fca4a5b21827784504727eb1648e3dd90376e530be6",
+      "definition": {
+        "label": "circomlib Decoder fixed comparator",
+        "project": "https://github.com/iden3/circomlib",
+        "revision": "9d2918e5972dbcfb9e435add2043df4ff2c5cc97",
+        "project_root": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project",
+        "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuit.circom",
+        "template_name": "Decoder",
+        "concrete_parameters": [
+          "4"
+        ],
+        "prime": "bn128",
+        "compile_args": [
+          "-l",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project"
+        ],
+        "mode": "direct",
+        "input_assumptions": "inp is a canonical BN128 field element. Decoder(4) is defined for every field element; no narrower caller precondition is imposed.",
+        "input_contract": {
+          "kind": "field_only"
+        },
+        "known_defects": []
+      },
+      "inspection": {
+        "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuit.circom",
+        "project_root": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project",
+        "root": {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuits/multiplexer.circom",
+          "template_name": "Decoder",
+          "concrete_parameters": [
+            "4"
+          ]
+        },
+        "instances": [
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuits/comparators.circom",
+            "template_name": "IsZero",
+            "concrete_parameters": []
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuits/multiplexer.circom",
+            "template_name": "Decoder",
+            "concrete_parameters": [
+              "4"
+            ]
+          }
+        ],
+        "scopes": [
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuits/comparators.circom",
+            "template_name": "IsZero",
+            "start_line": 24,
+            "end_line": 34
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuits/multiplexer.circom",
+            "template_name": "Decoder",
+            "start_line": 80,
+            "end_line": 96
+          }
+        ],
+        "dependency_paths": [
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuit.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuits/aliascheck.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuits/binsum.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuits/bitify.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuits/comparators.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuits/compconstant.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuits/multiplexer.circom"
+        ],
+        "complete": true,
+        "unsupported": []
+      },
+      "run_entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0001/sources/circuit.circom",
+      "structure": {
+        "profile_kind": "structure_only_no_fuzz_search",
+        "complete": true,
+        "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0001/sources/circuit.circom",
+        "root_template": "Decoder",
+        "prime": "bn128",
+        "compile_args": [
+          "-l",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project"
+        ],
+        "size": 12,
+        "size_source": "Circom R1CS compiler summary: non-linear constraints + linear constraints under recorded compile settings",
+        "r1cs_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0001/structure/r1cs/circuit.r1cs",
+        "complexity": 1,
+        "metric": "root_ast_if_plus_while",
+        "parameter_reflected": false,
+        "compile_success": true,
+        "ast_success": true,
+        "ast_requested": true,
+        "ast_stats": {
+          "template_name": "Decoder",
+          "num_statements": 27,
+          "num_if_then_else": 0,
+          "num_while": 1
+        },
+        "compile": {
+          "requested": true,
+          "purpose": "compile-r1cs",
+          "binary": "/Users/miiz/.cargo/bin/circom",
+          "args": [
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0001/sources/circuit.circom",
+            "--r1cs",
+            "--prime",
+            "bn128",
+            "--output",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0001/structure/r1cs",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project"
+          ],
+          "started_at": "2026-09-23T07:08:21.226192Z",
+          "finished_at": "2026-09-23T07:08:21.256731Z",
+          "elapsed_seconds": 0.030542833,
+          "timeout_seconds": 120,
+          "exit_code": 0,
+          "success": true,
+          "timed_out": false,
+          "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0001/structure/compile-r1cs.stdout.log",
+          "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0001/structure/compile-r1cs.stderr.log",
+          "error": null
+        },
+        "ast": {
+          "requested": true,
+          "purpose": "root-ast-only",
+          "binary": "/Users/miiz/.cargo/bin/zkfuzz",
+          "args": [
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0001/sources/circuit.circom",
+            "--show_stats_of_ast",
+            "--prime",
+            "bn128",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project"
+          ],
+          "started_at": "2026-09-23T07:08:21.256848Z",
+          "finished_at": "2026-09-23T07:08:21.287083Z",
+          "elapsed_seconds": 0.030242166,
+          "timeout_seconds": 120,
+          "exit_code": 0,
+          "success": true,
+          "timed_out": false,
+          "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0001/structure/root-ast-only.stdout.log",
+          "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0001/structure/root-ast-only.stderr.log",
+          "error": null
+        },
+        "circom_version": {
+          "requested": true,
+          "purpose": "circom-version",
+          "binary": "/Users/miiz/.cargo/bin/circom",
+          "args": [
+            "--version"
+          ],
+          "started_at": "2026-09-23T07:08:21.166894Z",
+          "finished_at": "2026-09-23T07:08:21.195407Z",
+          "elapsed_seconds": 0.02851575,
+          "timeout_seconds": 120,
+          "exit_code": 0,
+          "success": true,
+          "timed_out": false,
+          "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0001/structure/circom-version.stdout.log",
+          "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0001/structure/circom-version.stderr.log",
+          "error": null
+        },
+        "zkfuzz_version": {
+          "requested": true,
+          "purpose": "zkfuzz-version",
+          "binary": "/Users/miiz/.cargo/bin/zkfuzz",
+          "args": [
+            "--version"
+          ],
+          "started_at": "2026-09-23T07:08:21.195532Z",
+          "finished_at": "2026-09-23T07:08:21.226105Z",
+          "elapsed_seconds": 0.030573792,
+          "timeout_seconds": 120,
+          "exit_code": 0,
+          "success": true,
+          "timed_out": false,
+          "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0001/structure/zkfuzz-version.stdout.log",
+          "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0001/structure/zkfuzz-version.stderr.log",
+          "error": null
+        },
+        "limitations": [
+          "Complexity counts only IfThenElse and While nodes in the named root template definition, not reachable dependency templates.",
+          "AST control-flow nodes are not expanded for concrete parameters, loop iterations, or Circom constraint optimizations.",
+          "num_statements counts visited AST statement nodes, including blocks; it is not source lines or constraints.",
+          "R1CS constraint count is a separate concrete compiled size measure, not LEOPARD structural complexity.",
+          "zkFuzz --show_stats_of_ast exits after parse/type analysis; this invocation provides no fuzzing or defect-reproduction evidence."
+        ],
+        "errors": [],
+        "profile_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0001/structure/structure-profile.json"
+      },
+      "semantic": {
+        "schema_version": 1,
+        "scopes": [
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuits/comparators.circom",
+            "template_name": "IsZero",
+            "start_line": 24,
+            "end_line": 34
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuits/multiplexer.circom",
+            "template_name": "Decoder",
+            "start_line": 80,
+            "end_line": 96
+          }
+        ],
+        "capture": {
+          "tool_path": "/Users/miiz/Desktop/kwzzzz_zkfr/.external/circomspect/target/release/circomspect",
+          "tool_version": "0.9.0",
+          "tool_revision": "ece9efe0a21e6c422a43ab6f2e1c0ce99678013b",
+          "curve": "BN254",
+          "command": [
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/circomspect/target/release/circomspect",
+            "--level",
+            "INFO",
+            "--verbose",
+            "--curve",
+            "BN254",
+            "--sarif-file",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0001/semantic/analysis.sarif",
+            "--library",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuits/comparators.circom",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuits/multiplexer.circom"
+          ],
+          "sarif_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0001/semantic/analysis.sarif",
+          "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0001/semantic/stdout.log",
+          "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0001/semantic/stderr.log",
+          "exit_code": 1,
+          "timed_out": false,
+          "elapsed_seconds": 0.023265625,
+          "execution_error": null
+        },
+        "complete": true,
+        "features": [
+          {
+            "rule_id": "CS0013",
+            "rule_name": "unnecessary-signal-assignment",
+            "meaning": "single-arrow assignment has a quadratic RHS that could instead use a constraint assignment; separate constraints can still make it correct",
+            "status": "complete",
+            "value": 0,
+            "observed_warning_count": 0,
+            "reasons": []
+          },
+          {
+            "rule_id": "CS0014",
+            "rule_name": "unconstrained-less-than",
+            "meaning": "analyzer could not establish the required input range for a Circomlib LessThan use",
+            "status": "complete",
+            "value": 0,
+            "observed_warning_count": 0,
+            "reasons": []
+          },
+          {
+            "rule_id": "CS0015",
+            "rule_name": "unconstrained-division",
+            "meaning": "analyzer did not find its supported IsZero-based nonzero check for the divisor",
+            "status": "complete",
+            "value": 0,
+            "observed_warning_count": 0,
+            "reasons": []
+          },
+          {
+            "rule_id": "CS0017",
+            "rule_name": "under-constrained-signal",
+            "meaning": "intermediate signal appears in fewer than two separate constraints under this analyzer's analysis",
+            "status": "complete",
+            "value": 0,
+            "observed_warning_count": 0,
+            "reasons": []
+          },
+          {
+            "rule_id": "CS0018",
+            "rule_name": "unused-output-signal",
+            "meaning": "instantiated component output is not used as expected, subject to the analyzer's allowlist and access approximation",
+            "status": "complete",
+            "value": 0,
+            "observed_warning_count": 0,
+            "reasons": []
+          }
+        ],
+        "risk_score": 0,
+        "warning_count": 0,
+        "warnings": [],
+        "ignored_out_of_scope_count": 6,
+        "ignored_other_rule_count": 28,
+        "duplicate_warning_count": 0,
+        "reasons": [],
+        "unsupported_features": [
+          {
+            "name": "compile-time parameter assertion versus signal-dependent assertion",
+            "status": "unsupported",
+            "reason": "the verified Circomspect release has no dedicated rule that establishes this distinction; assertions are not counted"
+          }
+        ],
+        "limitations": [
+          "Warnings describe template definitions; Circomspect does not specialize templates with this target's concrete parameters.",
+          "The caller must validate reachable template scopes and their full dependency closure; file co-location is not reachability.",
+          "Complete means these analyzer passes ran with no observed analysis failure, not that the circuit is safe or all bugs are detectable.",
+          "Any detected partial analysis conservatively makes every required feature unknown; observed warnings remain available.",
+          "Only the five selected rule IDs count in warning-first; unrelated lint reports remain in raw SARIF."
+        ]
+      },
+      "ranking": {
+        "target_id": "sha256:1c00a72631bc6e31451c6fca4a5b21827784504727eb1648e3dd90376e530be6",
+        "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuit.circom",
+        "risk_score": 0,
+        "warning_count": 0,
+        "complexity": 1,
+        "size": 12,
+        "legacy_score": 14.475333506471515
+      },
+      "eligible": true,
+      "exclusion_reasons": [],
+      "source_fingerprints": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuit.circom",
+          "sha256": "6bc3815b73ef588fb6fb08e82e663baba305820df680332b37636e1145b58d2d"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuits/aliascheck.circom",
+          "sha256": "7df7542461a68c1564a55be8f01d75571c0e2555a08a078abeba43e1ea032eb4"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuits/binsum.circom",
+          "sha256": "8aa153baf5791d96d06dce837c1e19b9ecc3a7dc65054132d5dd189b60bfcfc2"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuits/bitify.circom",
+          "sha256": "688f121303a2dd0154ceeda8d2f53a9d2d26789d10a69a46acd534642725683e"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuits/comparators.circom",
+          "sha256": "fd0c7723ee56e1467df1861131157cbb108e156fe2d9ec64895c8e68de14db20"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuits/compconstant.circom",
+          "sha256": "94c5cc93b589a940acbfecdb98babc2efc253ad4298814399fb41109faa3b50d"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/circomlib-decoder/fixed/project/circuits/multiplexer.circom",
+          "sha256": "ef3639bd88fc868b8e9f22ffdcd38b1c74445a0ae6ccbc0faa69e9ccc686a02c"
+        }
+      ],
+      "snapshot_fingerprints": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0001/sources/circuit.circom",
+          "sha256": "6bc3815b73ef588fb6fb08e82e663baba305820df680332b37636e1145b58d2d"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0001/sources/circuits/aliascheck.circom",
+          "sha256": "7df7542461a68c1564a55be8f01d75571c0e2555a08a078abeba43e1ea032eb4"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0001/sources/circuits/binsum.circom",
+          "sha256": "8aa153baf5791d96d06dce837c1e19b9ecc3a7dc65054132d5dd189b60bfcfc2"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0001/sources/circuits/bitify.circom",
+          "sha256": "688f121303a2dd0154ceeda8d2f53a9d2d26789d10a69a46acd534642725683e"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0001/sources/circuits/comparators.circom",
+          "sha256": "fd0c7723ee56e1467df1861131157cbb108e156fe2d9ec64895c8e68de14db20"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0001/sources/circuits/compconstant.circom",
+          "sha256": "94c5cc93b589a940acbfecdb98babc2efc253ad4298814399fb41109faa3b50d"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0001/sources/circuits/multiplexer.circom",
+          "sha256": "ef3639bd88fc868b8e9f22ffdcd38b1c74445a0ae6ccbc0faa69e9ccc686a02c"
+        }
+      ],
+      "timings": {
+        "inspection_seconds": 0.010328084,
+        "snapshot_seconds": 0.001832167,
+        "structure_seconds": 0.121810208,
+        "semantic_seconds": 0.025610125,
+        "legacy_seconds": 0.01960975
+      },
+      "elapsed_seconds": 0.181336417,
+      "limitations": [
+        "Semantic locations refer to the fingerprinted original sources; compiler/AST execution and future fuzzing use the copied entrypoint. Absolute includes can retain read-only original dependencies.",
+        "Legacy baseline maps the existing lexical risk/cost formula over the entire root template source file, including unrelated templates in that file; it is not semantic risk."
+      ]
+    },
+    {
+      "target_id": "sha256:7aa9cb58574b90108bca0ca60b88ea35e81320f887aa5bac39503980ce2c2d61",
+      "definition": {
+        "label": "UniRep BigLessThan vulnerable",
+        "project": "https://github.com/Unirep/Unirep",
+        "revision": "0985a28c38c8b2e7b7a9e80f43e63179fdd08b89",
+        "project_root": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project",
+        "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circuit.circom",
+        "template_name": "BigLessThan",
+        "concrete_parameters": [],
+        "prime": "bn128",
+        "compile_args": [
+          "-l",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project"
+        ],
+        "mode": "direct",
+        "input_assumptions": "in[0] and in[1] are canonical BN128 field elements interpreted by their canonical integer representatives in [0, p-1].",
+        "input_contract": {
+          "kind": "field_only"
+        },
+        "known_defects": [
+          {
+            "root_cause_id": "unirep/unirep/big-less-than-num2bits-alias",
+            "location": "packages/circuits/circuits/bigComparators.circom:41-45; Num2Bits(254) admits a non-canonical decomposition",
+            "source_url": "https://github.com/zksecurity/zkbugs/blob/main/reports/documents/veridise-unirep.pdf",
+            "reported": true,
+            "local_reproduction": "Exact vulnerable source and BigLessThan() wrapper compile under the frozen development environment; backend discovery is not established by this annotation.",
+            "tcct_status": "not-run-at-manifest-freeze",
+            "reachability": "The public repository supplies packages/circuits/generated/bigComparators.circom as an original entrypoint; broader production-caller impact is not established.",
+            "evidence": [
+              "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/contracts.controlled-v3-development.json",
+              "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/Unirep/Unirep/veridise_underconstrained_circuit_allows_invalid_comparison/README.md"
+            ]
+          }
+        ]
+      },
+      "inspection": {
+        "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circuit.circom",
+        "project_root": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project",
+        "root": {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/packages/circuits/circuits/bigComparators.circom",
+          "template_name": "BigLessThan",
+          "concrete_parameters": []
+        },
+        "instances": [
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/bitify.circom",
+            "template_name": "Bits2Num",
+            "concrete_parameters": [
+              "127"
+            ]
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/bitify.circom",
+            "template_name": "Num2Bits",
+            "concrete_parameters": [
+              "128"
+            ]
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/bitify.circom",
+            "template_name": "Num2Bits",
+            "concrete_parameters": [
+              "254"
+            ]
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/comparators.circom",
+            "template_name": "IsEqual",
+            "concrete_parameters": []
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/comparators.circom",
+            "template_name": "IsZero",
+            "concrete_parameters": []
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/comparators.circom",
+            "template_name": "LessThan",
+            "concrete_parameters": [
+              "127"
+            ]
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/mux1.circom",
+            "template_name": "MultiMux1",
+            "concrete_parameters": [
+              "1"
+            ]
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/mux1.circom",
+            "template_name": "Mux1",
+            "concrete_parameters": []
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/packages/circuits/circuits/bigComparators.circom",
+            "template_name": "BigLessThan",
+            "concrete_parameters": []
+          }
+        ],
+        "scopes": [
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/bitify.circom",
+            "template_name": "Num2Bits",
+            "start_line": 25,
+            "end_line": 39
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/bitify.circom",
+            "template_name": "Bits2Num",
+            "start_line": 55,
+            "end_line": 67
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/comparators.circom",
+            "template_name": "IsZero",
+            "start_line": 24,
+            "end_line": 34
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/comparators.circom",
+            "template_name": "IsEqual",
+            "start_line": 37,
+            "end_line": 46
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/comparators.circom",
+            "template_name": "LessThan",
+            "start_line": 89,
+            "end_line": 99
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/mux1.circom",
+            "template_name": "MultiMux1",
+            "start_line": 21,
+            "end_line": 31
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/mux1.circom",
+            "template_name": "Mux1",
+            "start_line": 33,
+            "end_line": 48
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/packages/circuits/circuits/bigComparators.circom",
+            "template_name": "BigLessThan",
+            "start_line": 34,
+            "end_line": 80
+          }
+        ],
+        "dependency_paths": [
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/aliascheck.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/binsum.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/bitify.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/comparators.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/compconstant.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/mux1.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circuit.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/packages/circuits/circuits/bigComparators.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/packages/circuits/circuits/modulo.circom"
+        ],
+        "complete": true,
+        "unsupported": []
+      },
+      "run_entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/sources/circuit.circom",
+      "structure": {
+        "profile_kind": "structure_only_no_fuzz_search",
+        "complete": true,
+        "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/sources/circuit.circom",
+        "root_template": "BigLessThan",
+        "prime": "bn128",
+        "compile_args": [
+          "-l",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project"
+        ],
+        "size": 780,
+        "size_source": "Circom R1CS compiler summary: non-linear constraints + linear constraints under recorded compile settings",
+        "r1cs_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/structure/r1cs/circuit.r1cs",
+        "complexity": 3,
+        "metric": "root_ast_if_plus_while",
+        "parameter_reflected": false,
+        "compile_success": true,
+        "ast_success": true,
+        "ast_requested": true,
+        "ast_stats": {
+          "template_name": "BigLessThan",
+          "num_statements": 65,
+          "num_if_then_else": 0,
+          "num_while": 3
+        },
+        "compile": {
+          "requested": true,
+          "purpose": "compile-r1cs",
+          "binary": "/Users/miiz/.cargo/bin/circom",
+          "args": [
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/sources/circuit.circom",
+            "--r1cs",
+            "--prime",
+            "bn128",
+            "--output",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/structure/r1cs",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project"
+          ],
+          "started_at": "2026-09-23T07:08:21.421561Z",
+          "finished_at": "2026-09-23T07:08:21.478846Z",
+          "elapsed_seconds": 0.057290667,
+          "timeout_seconds": 120,
+          "exit_code": 0,
+          "success": true,
+          "timed_out": false,
+          "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/structure/compile-r1cs.stdout.log",
+          "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/structure/compile-r1cs.stderr.log",
+          "error": null
+        },
+        "ast": {
+          "requested": true,
+          "purpose": "root-ast-only",
+          "binary": "/Users/miiz/.cargo/bin/zkfuzz",
+          "args": [
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/sources/circuit.circom",
+            "--show_stats_of_ast",
+            "--prime",
+            "bn128",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project"
+          ],
+          "started_at": "2026-09-23T07:08:21.478933Z",
+          "finished_at": "2026-09-23T07:08:21.509416Z",
+          "elapsed_seconds": 0.030485583,
+          "timeout_seconds": 120,
+          "exit_code": 0,
+          "success": true,
+          "timed_out": false,
+          "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/structure/root-ast-only.stdout.log",
+          "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/structure/root-ast-only.stderr.log",
+          "error": null
+        },
+        "circom_version": {
+          "requested": true,
+          "purpose": "circom-version",
+          "binary": "/Users/miiz/.cargo/bin/circom",
+          "args": [
+            "--version"
+          ],
+          "started_at": "2026-09-23T07:08:21.362677Z",
+          "finished_at": "2026-09-23T07:08:21.393138Z",
+          "elapsed_seconds": 0.030462459,
+          "timeout_seconds": 120,
+          "exit_code": 0,
+          "success": true,
+          "timed_out": false,
+          "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/structure/circom-version.stdout.log",
+          "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/structure/circom-version.stderr.log",
+          "error": null
+        },
+        "zkfuzz_version": {
+          "requested": true,
+          "purpose": "zkfuzz-version",
+          "binary": "/Users/miiz/.cargo/bin/zkfuzz",
+          "args": [
+            "--version"
+          ],
+          "started_at": "2026-09-23T07:08:21.393212Z",
+          "finished_at": "2026-09-23T07:08:21.421466Z",
+          "elapsed_seconds": 0.0282575,
+          "timeout_seconds": 120,
+          "exit_code": 0,
+          "success": true,
+          "timed_out": false,
+          "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/structure/zkfuzz-version.stdout.log",
+          "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/structure/zkfuzz-version.stderr.log",
+          "error": null
+        },
+        "limitations": [
+          "Complexity counts only IfThenElse and While nodes in the named root template definition, not reachable dependency templates.",
+          "AST control-flow nodes are not expanded for concrete parameters, loop iterations, or Circom constraint optimizations.",
+          "num_statements counts visited AST statement nodes, including blocks; it is not source lines or constraints.",
+          "R1CS constraint count is a separate concrete compiled size measure, not LEOPARD structural complexity.",
+          "zkFuzz --show_stats_of_ast exits after parse/type analysis; this invocation provides no fuzzing or defect-reproduction evidence."
+        ],
+        "errors": [],
+        "profile_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/structure/structure-profile.json"
+      },
+      "semantic": {
+        "schema_version": 1,
+        "scopes": [
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/bitify.circom",
+            "template_name": "Num2Bits",
+            "start_line": 25,
+            "end_line": 39
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/bitify.circom",
+            "template_name": "Bits2Num",
+            "start_line": 55,
+            "end_line": 67
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/comparators.circom",
+            "template_name": "IsZero",
+            "start_line": 24,
+            "end_line": 34
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/comparators.circom",
+            "template_name": "IsEqual",
+            "start_line": 37,
+            "end_line": 46
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/comparators.circom",
+            "template_name": "LessThan",
+            "start_line": 89,
+            "end_line": 99
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/mux1.circom",
+            "template_name": "MultiMux1",
+            "start_line": 21,
+            "end_line": 31
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/mux1.circom",
+            "template_name": "Mux1",
+            "start_line": 33,
+            "end_line": 48
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/packages/circuits/circuits/bigComparators.circom",
+            "template_name": "BigLessThan",
+            "start_line": 34,
+            "end_line": 80
+          }
+        ],
+        "capture": {
+          "tool_path": "/Users/miiz/Desktop/kwzzzz_zkfr/.external/circomspect/target/release/circomspect",
+          "tool_version": "0.9.0",
+          "tool_revision": "ece9efe0a21e6c422a43ab6f2e1c0ce99678013b",
+          "curve": "BN254",
+          "command": [
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/circomspect/target/release/circomspect",
+            "--level",
+            "INFO",
+            "--verbose",
+            "--curve",
+            "BN254",
+            "--sarif-file",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/semantic/analysis.sarif",
+            "--library",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/bitify.circom",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/comparators.circom",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/mux1.circom",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/packages/circuits/circuits/bigComparators.circom"
+          ],
+          "sarif_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/semantic/analysis.sarif",
+          "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/semantic/stdout.log",
+          "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/semantic/stderr.log",
+          "exit_code": 1,
+          "timed_out": false,
+          "elapsed_seconds": 0.025622708,
+          "execution_error": null
+        },
+        "complete": true,
+        "features": [
+          {
+            "rule_id": "CS0013",
+            "rule_name": "unnecessary-signal-assignment",
+            "meaning": "single-arrow assignment has a quadratic RHS that could instead use a constraint assignment; separate constraints can still make it correct",
+            "status": "complete",
+            "value": 0,
+            "observed_warning_count": 0,
+            "reasons": []
+          },
+          {
+            "rule_id": "CS0014",
+            "rule_name": "unconstrained-less-than",
+            "meaning": "analyzer could not establish the required input range for a Circomlib LessThan use",
+            "status": "complete",
+            "value": 1,
+            "observed_warning_count": 4,
+            "reasons": []
+          },
+          {
+            "rule_id": "CS0015",
+            "rule_name": "unconstrained-division",
+            "meaning": "analyzer did not find its supported IsZero-based nonzero check for the divisor",
+            "status": "complete",
+            "value": 0,
+            "observed_warning_count": 0,
+            "reasons": []
+          },
+          {
+            "rule_id": "CS0017",
+            "rule_name": "under-constrained-signal",
+            "meaning": "intermediate signal appears in fewer than two separate constraints under this analyzer's analysis",
+            "status": "complete",
+            "value": 0,
+            "observed_warning_count": 0,
+            "reasons": []
+          },
+          {
+            "rule_id": "CS0018",
+            "rule_name": "unused-output-signal",
+            "meaning": "instantiated component output is not used as expected, subject to the analyzer's allowlist and access approximation",
+            "status": "complete",
+            "value": 0,
+            "observed_warning_count": 0,
+            "reasons": []
+          }
+        ],
+        "risk_score": 1,
+        "warning_count": 4,
+        "warnings": [
+          {
+            "rule_id": "CS0014",
+            "message": "Inputs to `LessThan` need to be constrained to ensure that they are non-negative",
+            "locations": [
+              {
+                "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/packages/circuits/circuits/bigComparators.circom",
+                "start_line": 59,
+                "end_line": 59,
+                "start_column": 23,
+                "end_column": 34,
+                "label": "`high[0].out` needs to be constrained to ensure that it is <= p/2."
+              }
+            ],
+            "related_locations": [],
+            "attributed_scopes": [
+              {
+                "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/packages/circuits/circuits/bigComparators.circom",
+                "template_name": "BigLessThan",
+                "start_line": 34,
+                "end_line": 80
+              }
+            ],
+            "attribution_basis": "primary source region inside caller-validated reachable template scope",
+            "raw_result_index": 57,
+            "raw_result_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/semantic/analysis.sarif"
+          },
+          {
+            "rule_id": "CS0014",
+            "message": "Inputs to `LessThan` need to be constrained to ensure that they are non-negative",
+            "locations": [
+              {
+                "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/packages/circuits/circuits/bigComparators.circom",
+                "start_line": 60,
+                "end_line": 60,
+                "start_column": 23,
+                "end_column": 34,
+                "label": "`high[1].out` needs to be constrained to ensure that it is <= p/2."
+              }
+            ],
+            "related_locations": [],
+            "attributed_scopes": [
+              {
+                "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/packages/circuits/circuits/bigComparators.circom",
+                "template_name": "BigLessThan",
+                "start_line": 34,
+                "end_line": 80
+              }
+            ],
+            "attribution_basis": "primary source region inside caller-validated reachable template scope",
+            "raw_result_index": 60,
+            "raw_result_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/semantic/analysis.sarif"
+          },
+          {
+            "rule_id": "CS0014",
+            "message": "Inputs to `LessThan` need to be constrained to ensure that they are non-negative",
+            "locations": [
+              {
+                "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/packages/circuits/circuits/bigComparators.circom",
+                "start_line": 63,
+                "end_line": 63,
+                "start_column": 22,
+                "end_column": 32,
+                "label": "`low[0].out` needs to be constrained to ensure that it is <= p/2."
+              }
+            ],
+            "related_locations": [],
+            "attributed_scopes": [
+              {
+                "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/packages/circuits/circuits/bigComparators.circom",
+                "template_name": "BigLessThan",
+                "start_line": 34,
+                "end_line": 80
+              }
+            ],
+            "attribution_basis": "primary source region inside caller-validated reachable template scope",
+            "raw_result_index": 58,
+            "raw_result_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/semantic/analysis.sarif"
+          },
+          {
+            "rule_id": "CS0014",
+            "message": "Inputs to `LessThan` need to be constrained to ensure that they are non-negative",
+            "locations": [
+              {
+                "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/packages/circuits/circuits/bigComparators.circom",
+                "start_line": 64,
+                "end_line": 64,
+                "start_column": 22,
+                "end_column": 32,
+                "label": "`low[1].out` needs to be constrained to ensure that it is <= p/2."
+              }
+            ],
+            "related_locations": [],
+            "attributed_scopes": [
+              {
+                "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/packages/circuits/circuits/bigComparators.circom",
+                "template_name": "BigLessThan",
+                "start_line": 34,
+                "end_line": 80
+              }
+            ],
+            "attribution_basis": "primary source region inside caller-validated reachable template scope",
+            "raw_result_index": 59,
+            "raw_result_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/semantic/analysis.sarif"
+          }
+        ],
+        "ignored_out_of_scope_count": 8,
+        "ignored_other_rule_count": 62,
+        "duplicate_warning_count": 0,
+        "reasons": [],
+        "unsupported_features": [
+          {
+            "name": "compile-time parameter assertion versus signal-dependent assertion",
+            "status": "unsupported",
+            "reason": "the verified Circomspect release has no dedicated rule that establishes this distinction; assertions are not counted"
+          }
+        ],
+        "limitations": [
+          "Warnings describe template definitions; Circomspect does not specialize templates with this target's concrete parameters.",
+          "The caller must validate reachable template scopes and their full dependency closure; file co-location is not reachability.",
+          "Complete means these analyzer passes ran with no observed analysis failure, not that the circuit is safe or all bugs are detectable.",
+          "Any detected partial analysis conservatively makes every required feature unknown; observed warnings remain available.",
+          "Only the five selected rule IDs count in warning-first; unrelated lint reports remain in raw SARIF."
+        ]
+      },
+      "ranking": {
+        "target_id": "sha256:7aa9cb58574b90108bca0ca60b88ea35e81320f887aa5bac39503980ce2c2d61",
+        "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circuit.circom",
+        "risk_score": 1,
+        "warning_count": 4,
+        "complexity": 3,
+        "size": 780,
+        "legacy_score": 24.55845862338826
+      },
+      "eligible": true,
+      "exclusion_reasons": [],
+      "source_fingerprints": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/aliascheck.circom",
+          "sha256": "7df7542461a68c1564a55be8f01d75571c0e2555a08a078abeba43e1ea032eb4"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/binsum.circom",
+          "sha256": "8aa153baf5791d96d06dce837c1e19b9ecc3a7dc65054132d5dd189b60bfcfc2"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/bitify.circom",
+          "sha256": "688f121303a2dd0154ceeda8d2f53a9d2d26789d10a69a46acd534642725683e"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/comparators.circom",
+          "sha256": "fd0c7723ee56e1467df1861131157cbb108e156fe2d9ec64895c8e68de14db20"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/compconstant.circom",
+          "sha256": "94c5cc93b589a940acbfecdb98babc2efc253ad4298814399fb41109faa3b50d"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circomlib/circuits/mux1.circom",
+          "sha256": "eaa61d34d40b03a1695212c012f5793c06f6d0db634878a0246249ba12a40922"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/circuit.circom",
+          "sha256": "2992c336a44b2631c1e5cc1fae2db8a9383f052cc6407cf02fef227a9ff67526"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/packages/circuits/circuits/bigComparators.circom",
+          "sha256": "b61b956506f95477033ec14d30adde2e10676f94f1128096ed759145725761fa"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/vulnerable/project/packages/circuits/circuits/modulo.circom",
+          "sha256": "7999a295f0d84ec3c459f9aa5e02d825a122a634215afd6b0dc9f609e4cf2ee4"
+        }
+      ],
+      "snapshot_fingerprints": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/sources/circomlib/circuits/aliascheck.circom",
+          "sha256": "7df7542461a68c1564a55be8f01d75571c0e2555a08a078abeba43e1ea032eb4"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/sources/circomlib/circuits/binsum.circom",
+          "sha256": "8aa153baf5791d96d06dce837c1e19b9ecc3a7dc65054132d5dd189b60bfcfc2"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/sources/circomlib/circuits/bitify.circom",
+          "sha256": "688f121303a2dd0154ceeda8d2f53a9d2d26789d10a69a46acd534642725683e"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/sources/circomlib/circuits/comparators.circom",
+          "sha256": "fd0c7723ee56e1467df1861131157cbb108e156fe2d9ec64895c8e68de14db20"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/sources/circomlib/circuits/compconstant.circom",
+          "sha256": "94c5cc93b589a940acbfecdb98babc2efc253ad4298814399fb41109faa3b50d"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/sources/circomlib/circuits/mux1.circom",
+          "sha256": "eaa61d34d40b03a1695212c012f5793c06f6d0db634878a0246249ba12a40922"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/sources/circuit.circom",
+          "sha256": "2992c336a44b2631c1e5cc1fae2db8a9383f052cc6407cf02fef227a9ff67526"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/sources/packages/circuits/circuits/bigComparators.circom",
+          "sha256": "b61b956506f95477033ec14d30adde2e10676f94f1128096ed759145725761fa"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0002/sources/packages/circuits/circuits/modulo.circom",
+          "sha256": "7999a295f0d84ec3c459f9aa5e02d825a122a634215afd6b0dc9f609e4cf2ee4"
+        }
+      ],
+      "timings": {
+        "inspection_seconds": 0.023159375,
+        "snapshot_seconds": 0.002756125,
+        "structure_seconds": 0.14819475,
+        "semantic_seconds": 0.028992208,
+        "legacy_seconds": 0.017326667
+      },
+      "elapsed_seconds": 0.222740042,
+      "limitations": [
+        "Semantic locations refer to the fingerprinted original sources; compiler/AST execution and future fuzzing use the copied entrypoint. Absolute includes can retain read-only original dependencies.",
+        "Legacy baseline maps the existing lexical risk/cost formula over the entire root template source file, including unrelated templates in that file; it is not semantic risk."
+      ]
+    },
+    {
+      "target_id": "sha256:6f2c43c5a4a81b1a77099f29be2a769c06075f817315f3ee0e8f12c12e3d8352",
+      "definition": {
+        "label": "UniRep BigLessThan fixed comparator",
+        "project": "https://github.com/Unirep/Unirep",
+        "revision": "3348caa362d5d632d29c532ffa88023d55628eab",
+        "project_root": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project",
+        "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circuit.circom",
+        "template_name": "BigLessThan",
+        "concrete_parameters": [],
+        "prime": "bn128",
+        "compile_args": [
+          "-l",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project"
+        ],
+        "mode": "direct",
+        "input_assumptions": "in[0] and in[1] are canonical BN128 field elements interpreted by their canonical integer representatives in [0, p-1].",
+        "input_contract": {
+          "kind": "field_only"
+        },
+        "known_defects": []
+      },
+      "inspection": {
+        "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circuit.circom",
+        "project_root": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project",
+        "root": {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/packages/circuits/circuits/bigComparators.circom",
+          "template_name": "BigLessThan",
+          "concrete_parameters": []
+        },
+        "instances": [
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/aliascheck.circom",
+            "template_name": "AliasCheck",
+            "concrete_parameters": []
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/bitify.circom",
+            "template_name": "Bits2Num",
+            "concrete_parameters": [
+              "127"
+            ]
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/bitify.circom",
+            "template_name": "Num2Bits",
+            "concrete_parameters": [
+              "128"
+            ]
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/bitify.circom",
+            "template_name": "Num2Bits",
+            "concrete_parameters": [
+              "135"
+            ]
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/bitify.circom",
+            "template_name": "Num2Bits",
+            "concrete_parameters": [
+              "254"
+            ]
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/bitify.circom",
+            "template_name": "Num2Bits_strict",
+            "concrete_parameters": []
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/comparators.circom",
+            "template_name": "IsEqual",
+            "concrete_parameters": []
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/comparators.circom",
+            "template_name": "IsZero",
+            "concrete_parameters": []
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/comparators.circom",
+            "template_name": "LessThan",
+            "concrete_parameters": [
+              "127"
+            ]
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/compconstant.circom",
+            "template_name": "CompConstant",
+            "concrete_parameters": [
+              "-1"
+            ]
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/mux1.circom",
+            "template_name": "MultiMux1",
+            "concrete_parameters": [
+              "1"
+            ]
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/mux1.circom",
+            "template_name": "Mux1",
+            "concrete_parameters": []
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/packages/circuits/circuits/bigComparators.circom",
+            "template_name": "BigLessThan",
+            "concrete_parameters": []
+          }
+        ],
+        "scopes": [
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/aliascheck.circom",
+            "template_name": "AliasCheck",
+            "start_line": 24,
+            "end_line": 33
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/bitify.circom",
+            "template_name": "Num2Bits",
+            "start_line": 25,
+            "end_line": 39
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/bitify.circom",
+            "template_name": "Num2Bits_strict",
+            "start_line": 41,
+            "end_line": 53
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/bitify.circom",
+            "template_name": "Bits2Num",
+            "start_line": 55,
+            "end_line": 67
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/comparators.circom",
+            "template_name": "IsZero",
+            "start_line": 24,
+            "end_line": 34
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/comparators.circom",
+            "template_name": "IsEqual",
+            "start_line": 37,
+            "end_line": 46
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/comparators.circom",
+            "template_name": "LessThan",
+            "start_line": 89,
+            "end_line": 99
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/compconstant.circom",
+            "template_name": "CompConstant",
+            "start_line": 25,
+            "end_line": 74
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/mux1.circom",
+            "template_name": "MultiMux1",
+            "start_line": 21,
+            "end_line": 31
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/mux1.circom",
+            "template_name": "Mux1",
+            "start_line": 33,
+            "end_line": 48
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/packages/circuits/circuits/bigComparators.circom",
+            "template_name": "BigLessThan",
+            "start_line": 63,
+            "end_line": 109
+          }
+        ],
+        "dependency_paths": [
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/aliascheck.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/binsum.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/bitify.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/comparators.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/compconstant.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/mux1.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circuit.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/packages/circuits/circuits/bigComparators.circom",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/packages/circuits/circuits/modulo.circom"
+        ],
+        "complete": true,
+        "unsupported": []
+      },
+      "run_entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/sources/circuit.circom",
+      "structure": {
+        "profile_kind": "structure_only_no_fuzz_search",
+        "complete": true,
+        "entrypoint": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/sources/circuit.circom",
+        "root_template": "BigLessThan",
+        "prime": "bn128",
+        "compile_args": [
+          "-l",
+          "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project"
+        ],
+        "size": 1306,
+        "size_source": "Circom R1CS compiler summary: non-linear constraints + linear constraints under recorded compile settings",
+        "r1cs_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/structure/r1cs/circuit.r1cs",
+        "complexity": 3,
+        "metric": "root_ast_if_plus_while",
+        "parameter_reflected": false,
+        "compile_success": true,
+        "ast_success": true,
+        "ast_requested": true,
+        "ast_stats": {
+          "template_name": "BigLessThan",
+          "num_statements": 65,
+          "num_if_then_else": 0,
+          "num_while": 3
+        },
+        "compile": {
+          "requested": true,
+          "purpose": "compile-r1cs",
+          "binary": "/Users/miiz/.cargo/bin/circom",
+          "args": [
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/sources/circuit.circom",
+            "--r1cs",
+            "--prime",
+            "bn128",
+            "--output",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/structure/r1cs",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project"
+          ],
+          "started_at": "2026-09-23T07:08:21.649224Z",
+          "finished_at": "2026-09-23T07:08:21.733792Z",
+          "elapsed_seconds": 0.08457025,
+          "timeout_seconds": 120,
+          "exit_code": 0,
+          "success": true,
+          "timed_out": false,
+          "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/structure/compile-r1cs.stdout.log",
+          "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/structure/compile-r1cs.stderr.log",
+          "error": null
+        },
+        "ast": {
+          "requested": true,
+          "purpose": "root-ast-only",
+          "binary": "/Users/miiz/.cargo/bin/zkfuzz",
+          "args": [
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/sources/circuit.circom",
+            "--show_stats_of_ast",
+            "--prime",
+            "bn128",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project"
+          ],
+          "started_at": "2026-09-23T07:08:21.733863Z",
+          "finished_at": "2026-09-23T07:08:21.764260Z",
+          "elapsed_seconds": 0.030398583,
+          "timeout_seconds": 120,
+          "exit_code": 0,
+          "success": true,
+          "timed_out": false,
+          "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/structure/root-ast-only.stdout.log",
+          "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/structure/root-ast-only.stderr.log",
+          "error": null
+        },
+        "circom_version": {
+          "requested": true,
+          "purpose": "circom-version",
+          "binary": "/Users/miiz/.cargo/bin/circom",
+          "args": [
+            "--version"
+          ],
+          "started_at": "2026-09-23T07:08:21.591634Z",
+          "finished_at": "2026-09-23T07:08:21.620411Z",
+          "elapsed_seconds": 0.028777458,
+          "timeout_seconds": 120,
+          "exit_code": 0,
+          "success": true,
+          "timed_out": false,
+          "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/structure/circom-version.stdout.log",
+          "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/structure/circom-version.stderr.log",
+          "error": null
+        },
+        "zkfuzz_version": {
+          "requested": true,
+          "purpose": "zkfuzz-version",
+          "binary": "/Users/miiz/.cargo/bin/zkfuzz",
+          "args": [
+            "--version"
+          ],
+          "started_at": "2026-09-23T07:08:21.620477Z",
+          "finished_at": "2026-09-23T07:08:21.649132Z",
+          "elapsed_seconds": 0.028658333,
+          "timeout_seconds": 120,
+          "exit_code": 0,
+          "success": true,
+          "timed_out": false,
+          "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/structure/zkfuzz-version.stdout.log",
+          "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/structure/zkfuzz-version.stderr.log",
+          "error": null
+        },
+        "limitations": [
+          "Complexity counts only IfThenElse and While nodes in the named root template definition, not reachable dependency templates.",
+          "AST control-flow nodes are not expanded for concrete parameters, loop iterations, or Circom constraint optimizations.",
+          "num_statements counts visited AST statement nodes, including blocks; it is not source lines or constraints.",
+          "R1CS constraint count is a separate concrete compiled size measure, not LEOPARD structural complexity.",
+          "zkFuzz --show_stats_of_ast exits after parse/type analysis; this invocation provides no fuzzing or defect-reproduction evidence."
+        ],
+        "errors": [],
+        "profile_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/structure/structure-profile.json"
+      },
+      "semantic": {
+        "schema_version": 1,
+        "scopes": [
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/aliascheck.circom",
+            "template_name": "AliasCheck",
+            "start_line": 24,
+            "end_line": 33
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/bitify.circom",
+            "template_name": "Num2Bits",
+            "start_line": 25,
+            "end_line": 39
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/bitify.circom",
+            "template_name": "Num2Bits_strict",
+            "start_line": 41,
+            "end_line": 53
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/bitify.circom",
+            "template_name": "Bits2Num",
+            "start_line": 55,
+            "end_line": 67
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/comparators.circom",
+            "template_name": "IsZero",
+            "start_line": 24,
+            "end_line": 34
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/comparators.circom",
+            "template_name": "IsEqual",
+            "start_line": 37,
+            "end_line": 46
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/comparators.circom",
+            "template_name": "LessThan",
+            "start_line": 89,
+            "end_line": 99
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/compconstant.circom",
+            "template_name": "CompConstant",
+            "start_line": 25,
+            "end_line": 74
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/mux1.circom",
+            "template_name": "MultiMux1",
+            "start_line": 21,
+            "end_line": 31
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/mux1.circom",
+            "template_name": "Mux1",
+            "start_line": 33,
+            "end_line": 48
+          },
+          {
+            "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/packages/circuits/circuits/bigComparators.circom",
+            "template_name": "BigLessThan",
+            "start_line": 63,
+            "end_line": 109
+          }
+        ],
+        "capture": {
+          "tool_path": "/Users/miiz/Desktop/kwzzzz_zkfr/.external/circomspect/target/release/circomspect",
+          "tool_version": "0.9.0",
+          "tool_revision": "ece9efe0a21e6c422a43ab6f2e1c0ce99678013b",
+          "curve": "BN254",
+          "command": [
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/circomspect/target/release/circomspect",
+            "--level",
+            "INFO",
+            "--verbose",
+            "--curve",
+            "BN254",
+            "--sarif-file",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/semantic/analysis.sarif",
+            "--library",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/aliascheck.circom",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/bitify.circom",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/comparators.circom",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/compconstant.circom",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/mux1.circom",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/packages/circuits/circuits/bigComparators.circom"
+          ],
+          "sarif_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/semantic/analysis.sarif",
+          "stdout_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/semantic/stdout.log",
+          "stderr_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/semantic/stderr.log",
+          "exit_code": 1,
+          "timed_out": false,
+          "elapsed_seconds": 0.037863417,
+          "execution_error": null
+        },
+        "complete": true,
+        "features": [
+          {
+            "rule_id": "CS0013",
+            "rule_name": "unnecessary-signal-assignment",
+            "meaning": "single-arrow assignment has a quadratic RHS that could instead use a constraint assignment; separate constraints can still make it correct",
+            "status": "complete",
+            "value": 0,
+            "observed_warning_count": 0,
+            "reasons": []
+          },
+          {
+            "rule_id": "CS0014",
+            "rule_name": "unconstrained-less-than",
+            "meaning": "analyzer could not establish the required input range for a Circomlib LessThan use",
+            "status": "complete",
+            "value": 1,
+            "observed_warning_count": 4,
+            "reasons": []
+          },
+          {
+            "rule_id": "CS0015",
+            "rule_name": "unconstrained-division",
+            "meaning": "analyzer did not find its supported IsZero-based nonzero check for the divisor",
+            "status": "complete",
+            "value": 0,
+            "observed_warning_count": 0,
+            "reasons": []
+          },
+          {
+            "rule_id": "CS0017",
+            "rule_name": "under-constrained-signal",
+            "meaning": "intermediate signal appears in fewer than two separate constraints under this analyzer's analysis",
+            "status": "complete",
+            "value": 0,
+            "observed_warning_count": 0,
+            "reasons": []
+          },
+          {
+            "rule_id": "CS0018",
+            "rule_name": "unused-output-signal",
+            "meaning": "instantiated component output is not used as expected, subject to the analyzer's allowlist and access approximation",
+            "status": "complete",
+            "value": 0,
+            "observed_warning_count": 0,
+            "reasons": []
+          }
+        ],
+        "risk_score": 1,
+        "warning_count": 4,
+        "warnings": [
+          {
+            "rule_id": "CS0014",
+            "message": "Inputs to `LessThan` need to be constrained to ensure that they are non-negative",
+            "locations": [
+              {
+                "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/packages/circuits/circuits/bigComparators.circom",
+                "start_line": 88,
+                "end_line": 88,
+                "start_column": 23,
+                "end_column": 34,
+                "label": "`high[0].out` needs to be constrained to ensure that it is <= p/2."
+              }
+            ],
+            "related_locations": [],
+            "attributed_scopes": [
+              {
+                "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/packages/circuits/circuits/bigComparators.circom",
+                "template_name": "BigLessThan",
+                "start_line": 63,
+                "end_line": 109
+              }
+            ],
+            "attribution_basis": "primary source region inside caller-validated reachable template scope",
+            "raw_result_index": 21,
+            "raw_result_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/semantic/analysis.sarif"
+          },
+          {
+            "rule_id": "CS0014",
+            "message": "Inputs to `LessThan` need to be constrained to ensure that they are non-negative",
+            "locations": [
+              {
+                "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/packages/circuits/circuits/bigComparators.circom",
+                "start_line": 89,
+                "end_line": 89,
+                "start_column": 23,
+                "end_column": 34,
+                "label": "`high[1].out` needs to be constrained to ensure that it is <= p/2."
+              }
+            ],
+            "related_locations": [],
+            "attributed_scopes": [
+              {
+                "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/packages/circuits/circuits/bigComparators.circom",
+                "template_name": "BigLessThan",
+                "start_line": 63,
+                "end_line": 109
+              }
+            ],
+            "attribution_basis": "primary source region inside caller-validated reachable template scope",
+            "raw_result_index": 18,
+            "raw_result_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/semantic/analysis.sarif"
+          },
+          {
+            "rule_id": "CS0014",
+            "message": "Inputs to `LessThan` need to be constrained to ensure that they are non-negative",
+            "locations": [
+              {
+                "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/packages/circuits/circuits/bigComparators.circom",
+                "start_line": 92,
+                "end_line": 92,
+                "start_column": 22,
+                "end_column": 32,
+                "label": "`low[0].out` needs to be constrained to ensure that it is <= p/2."
+              }
+            ],
+            "related_locations": [],
+            "attributed_scopes": [
+              {
+                "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/packages/circuits/circuits/bigComparators.circom",
+                "template_name": "BigLessThan",
+                "start_line": 63,
+                "end_line": 109
+              }
+            ],
+            "attribution_basis": "primary source region inside caller-validated reachable template scope",
+            "raw_result_index": 19,
+            "raw_result_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/semantic/analysis.sarif"
+          },
+          {
+            "rule_id": "CS0014",
+            "message": "Inputs to `LessThan` need to be constrained to ensure that they are non-negative",
+            "locations": [
+              {
+                "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/packages/circuits/circuits/bigComparators.circom",
+                "start_line": 93,
+                "end_line": 93,
+                "start_column": 22,
+                "end_column": 32,
+                "label": "`low[1].out` needs to be constrained to ensure that it is <= p/2."
+              }
+            ],
+            "related_locations": [],
+            "attributed_scopes": [
+              {
+                "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/packages/circuits/circuits/bigComparators.circom",
+                "template_name": "BigLessThan",
+                "start_line": 63,
+                "end_line": 109
+              }
+            ],
+            "attribution_basis": "primary source region inside caller-validated reachable template scope",
+            "raw_result_index": 20,
+            "raw_result_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/semantic/analysis.sarif"
+          }
+        ],
+        "ignored_out_of_scope_count": 8,
+        "ignored_other_rule_count": 86,
+        "duplicate_warning_count": 0,
+        "reasons": [],
+        "unsupported_features": [
+          {
+            "name": "compile-time parameter assertion versus signal-dependent assertion",
+            "status": "unsupported",
+            "reason": "the verified Circomspect release has no dedicated rule that establishes this distinction; assertions are not counted"
+          }
+        ],
+        "limitations": [
+          "Warnings describe template definitions; Circomspect does not specialize templates with this target's concrete parameters.",
+          "The caller must validate reachable template scopes and their full dependency closure; file co-location is not reachability.",
+          "Complete means these analyzer passes ran with no observed analysis failure, not that the circuit is safe or all bugs are detectable.",
+          "Any detected partial analysis conservatively makes every required feature unknown; observed warnings remain available.",
+          "Only the five selected rule IDs count in warning-first; unrelated lint reports remain in raw SARIF."
+        ]
+      },
+      "ranking": {
+        "target_id": "sha256:6f2c43c5a4a81b1a77099f29be2a769c06075f817315f3ee0e8f12c12e3d8352",
+        "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circuit.circom",
+        "risk_score": 1,
+        "warning_count": 4,
+        "complexity": 3,
+        "size": 1306,
+        "legacy_score": 31.704735059110984
+      },
+      "eligible": true,
+      "exclusion_reasons": [],
+      "source_fingerprints": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/aliascheck.circom",
+          "sha256": "7df7542461a68c1564a55be8f01d75571c0e2555a08a078abeba43e1ea032eb4"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/binsum.circom",
+          "sha256": "8aa153baf5791d96d06dce837c1e19b9ecc3a7dc65054132d5dd189b60bfcfc2"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/bitify.circom",
+          "sha256": "688f121303a2dd0154ceeda8d2f53a9d2d26789d10a69a46acd534642725683e"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/comparators.circom",
+          "sha256": "fd0c7723ee56e1467df1861131157cbb108e156fe2d9ec64895c8e68de14db20"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/compconstant.circom",
+          "sha256": "94c5cc93b589a940acbfecdb98babc2efc253ad4298814399fb41109faa3b50d"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circomlib/circuits/mux1.circom",
+          "sha256": "eaa61d34d40b03a1695212c012f5793c06f6d0db634878a0246249ba12a40922"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/circuit.circom",
+          "sha256": "2992c336a44b2631c1e5cc1fae2db8a9383f052cc6407cf02fef227a9ff67526"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/packages/circuits/circuits/bigComparators.circom",
+          "sha256": "53dbdbadb47d742fb838cc8428354ec39b162a40c1d851fa9e010c4002696f26"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/datasets/controlled-v3/unirep-big-less-than/fixed/project/packages/circuits/circuits/modulo.circom",
+          "sha256": "2ed79b9e57d592490b03cf0b01cae88619b1044abd7c26ed8cfcb47de6e89a47"
+        }
+      ],
+      "snapshot_fingerprints": [
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/sources/circomlib/circuits/aliascheck.circom",
+          "sha256": "7df7542461a68c1564a55be8f01d75571c0e2555a08a078abeba43e1ea032eb4"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/sources/circomlib/circuits/binsum.circom",
+          "sha256": "8aa153baf5791d96d06dce837c1e19b9ecc3a7dc65054132d5dd189b60bfcfc2"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/sources/circomlib/circuits/bitify.circom",
+          "sha256": "688f121303a2dd0154ceeda8d2f53a9d2d26789d10a69a46acd534642725683e"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/sources/circomlib/circuits/comparators.circom",
+          "sha256": "fd0c7723ee56e1467df1861131157cbb108e156fe2d9ec64895c8e68de14db20"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/sources/circomlib/circuits/compconstant.circom",
+          "sha256": "94c5cc93b589a940acbfecdb98babc2efc253ad4298814399fb41109faa3b50d"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/sources/circomlib/circuits/mux1.circom",
+          "sha256": "eaa61d34d40b03a1695212c012f5793c06f6d0db634878a0246249ba12a40922"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/sources/circuit.circom",
+          "sha256": "2992c336a44b2631c1e5cc1fae2db8a9383f052cc6407cf02fef227a9ff67526"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/sources/packages/circuits/circuits/bigComparators.circom",
+          "sha256": "53dbdbadb47d742fb838cc8428354ec39b162a40c1d851fa9e010c4002696f26"
+        },
+        {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/controlled-v3-development/frozen-preparation-2026-09-23/prepare-fd0251c3-34fa-4899-8c0e-fe141f14f472/targets/0003/sources/packages/circuits/circuits/modulo.circom",
+          "sha256": "2ed79b9e57d592490b03cf0b01cae88619b1044abd7c26ed8cfcb47de6e89a47"
+        }
+      ],
+      "timings": {
+        "inspection_seconds": 0.029825417,
+        "snapshot_seconds": 0.002308416,
+        "structure_seconds": 0.173827541,
+        "semantic_seconds": 0.041898708,
+        "legacy_seconds": 0.017147666
+      },
+      "elapsed_seconds": 0.267316,
+      "limitations": [
+        "Semantic locations refer to the fingerprinted original sources; compiler/AST execution and future fuzzing use the copied entrypoint. Absolute includes can retain read-only original dependencies.",
+        "Legacy baseline maps the existing lexical risk/cost formula over the entire root template source file, including unrelated templates in that file; it is not semantic risk."
+      ]
+    }
+  ],
+  "exclusions": [],
+  "limitations": [
+    "Manifest defect annotations are user-supplied provenance; preparation does not establish a reproduction or a discovered bug.",
+    "Eligibility requires the supported parser's complete reachable template closure; unsupported syntax remains explicitly excluded.",
+    "Semantic diagnostics analyze template definitions, not concrete parameter-specialized instances.",
+    "Source and snapshot hashes must be rechecked before planning and execution; absolute includes retain read-only references to original files."
+  ]
+}

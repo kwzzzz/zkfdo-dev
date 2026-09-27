@@ -7,6 +7,52 @@ use zkfdo::semantic::{
     SemanticAnalysis, SourceScope, ANALYZER_REVISION, ANALYZER_VERSION,
 };
 
+#[test]
+fn analyzer_command_records_deduplicated_library_search_roots() {
+    let directory = TempDir::new().unwrap();
+    let source = directory.path().join("root.circom");
+    fs::write(&source, "template Root() {}\n").unwrap();
+    let library = directory.path().join("library");
+    fs::create_dir(&library).unwrap();
+    let output = directory.path().join("analysis");
+    let options = AnalysisOptions {
+        binary: directory.path().join("missing-circomspect"),
+        library_paths: vec![library.clone(), library.clone()],
+        ..AnalysisOptions::default()
+    };
+
+    let report = analyze_target(
+        &[SourceScope {
+            path: source.clone(),
+            template_name: "Root".into(),
+            start_line: 1,
+            end_line: 1,
+        }],
+        &options,
+        &output,
+    )
+    .unwrap();
+
+    let canonical_library = fs::canonicalize(library)
+        .unwrap()
+        .to_string_lossy()
+        .into_owned();
+    let canonical_source = fs::canonicalize(source)
+        .unwrap()
+        .to_string_lossy()
+        .into_owned();
+    let command = &report.capture.command;
+    let library_flags = command
+        .windows(2)
+        .filter(|pair| pair[0] == "--library" && pair[1] == canonical_library)
+        .count();
+    assert_eq!(library_flags, 1);
+    assert!(
+        command.iter().position(|arg| arg == &canonical_library)
+            < command.iter().position(|arg| arg == &canonical_source)
+    );
+}
+
 fn fixture_root() -> PathBuf {
     PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/semantic")
 }

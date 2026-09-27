@@ -99,26 +99,123 @@ fn validates_generated_library_wrappers_with_circom_when_available() {
 }
 
 #[test]
-fn records_unsupported_instantiations_instead_of_guessing_targets() {
+fn expands_concrete_array_targets_and_records_remaining_unsupported_calls() {
     let output = tempdir().expect("output dir");
     let report =
         discover_project_targets(fixture("target_discovery_unsupported"), output.path(), None)
             .expect("target discovery");
 
     assert_eq!(report.entrypoint_status, EntrypointStatus::Found);
-    assert!(report.targets.is_empty());
-    assert!(report
-        .unsupported
-        .iter()
-        .any(|case| case.reason.contains("component arrays")));
-    assert!(report
-        .unsupported
-        .iter()
-        .any(|case| case.reason.contains("inside control flow")));
+    assert_eq!(report.targets.len(), 3);
+    assert_eq!(
+        report
+            .targets
+            .iter()
+            .map(|target| target.origin.component_name.as_str())
+            .collect::<Vec<_>>(),
+        ["leaves[0]", "leaves[1]", "leaves[2]"]
+    );
     assert!(report
         .unsupported
         .iter()
         .any(|case| case.reason.contains("anonymous component")));
+}
+
+#[test]
+fn rejects_unknown_loop_bounds_without_guessing_targets() {
+    let project = tempdir().expect("project");
+    fs::write(
+        project.path().join("main.circom"),
+        "template Root() { component leaves[2]; for (var i=0; i<unknown; i++) { leaves[i] = Leaf(i); } }\ntemplate Leaf(n) {}\ncomponent main = Root();\n",
+    )
+    .expect("source");
+    let output = tempdir().expect("output");
+    let report =
+        discover_project_targets(project.path(), output.path(), None).expect("target discovery");
+
+    assert!(report.targets.is_empty());
+    assert!(report
+        .unsupported
+        .iter()
+        .any(|case| case.reason.contains("loop condition is not concrete")));
+}
+
+#[test]
+fn nested_loops_share_the_discovery_expansion_budget() {
+    let project = tempdir().expect("project");
+    fs::write(
+        project.path().join("main.circom"),
+        "template Leaf() {}\ntemplate Root() {\n  component selected;\n  for (var i = 0; i < 317; i++) {\n    for (var j = 0; j < 317; j++) {\n      if (i == 316 && j == 316) { selected = Leaf(); }\n    }\n  }\n}\ncomponent main = Root();\n",
+    )
+    .expect("source");
+    let output = tempdir().expect("output");
+    let report =
+        discover_project_targets(project.path(), output.path(), None).expect("target discovery");
+
+    assert!(report.targets.is_empty());
+    assert!(report
+        .unsupported
+        .iter()
+        .any(|case| case.reason.contains("total target expansion exceeded")));
+}
+
+#[test]
+fn repeated_binary_subtrees_emit_unique_concrete_targets() {
+    let project = tempdir().expect("project");
+    fs::write(
+        project.path().join("tree.circom"),
+        "template Tree(depth) {\n  if (depth > 0) {\n    component left = Tree(depth - 1);\n    component right = Tree(depth - 1);\n  }\n}\n",
+    )
+    .expect("source");
+    fs::write(
+        project.path().join("main.circom"),
+        "include \"tree.circom\";\ncomponent main = Tree(10);\n",
+    )
+    .expect("entrypoint");
+    let output = tempdir().expect("output");
+    let report =
+        discover_project_targets(project.path(), output.path(), None).expect("target discovery");
+
+    assert!(report.unsupported.is_empty(), "{:?}", report.unsupported);
+    assert_eq!(report.targets.len(), 20);
+    assert_eq!(report.generated_wrapper_count, 20);
+    let identities = report
+        .targets
+        .iter()
+        .map(|target| target.identity.as_str())
+        .collect::<std::collections::HashSet<_>>();
+    assert_eq!(identities.len(), report.targets.len());
+    for depth in 0..10 {
+        assert_eq!(
+            report
+                .targets
+                .iter()
+                .filter(|target| target.concrete_parameters == [depth.to_string()])
+                .count(),
+            2,
+            "left and right origins must remain distinct for Tree({depth})"
+        );
+    }
+}
+
+#[test]
+fn binding_mutations_cannot_publish_stale_discovery_targets() {
+    let project = tempdir().expect("project");
+    fs::write(
+        project.path().join("main.circom"),
+        "template Root(n) { var width = n; width = 7; component child = Leaf(width); }\ntemplate Leaf(n) {}\ncomponent main = Root(4);\n",
+    )
+    .expect("source");
+    let output = tempdir().expect("output");
+
+    let report =
+        discover_project_targets(project.path(), output.path(), None).expect("target discovery");
+
+    assert!(report.targets.is_empty());
+    assert!(report
+        .unsupported
+        .iter()
+        .any(|case| case.reason.contains("reassignment")));
 }
 
 #[test]

@@ -1,5 +1,7 @@
 # Candidate validation evidence
 
+프로젝트 전체 목표는 [문제 정의](../docs/problem_statement.md)와 [평가 계획](../docs/evaluation_plan.md)에 있다. 최신 실행 결과는 [v1.1](controlled-v1.1-execution-2026-09-20/REPORT.md), [v2](controlled-v2-execution-2026-09-20/REPORT.md), [v3 개발용 파일럿](controlled-v3-pilot-2026-09-23/REPORT.md)에 각각 기록돼 있다. 아래 표와 0건 판정은 **2026-09-15~17 초기 dev3 후보 검토 네 건에만** 적용된다.
+
 이 디렉터리는 dev3 정적 랭킹 파일럿의 backend 후보를 원본 component 기준으로
 사후 검증한 자료를 보존한다. backend 후보 수를 유효 결함 수로 직접 해석하지 않는다.
 
@@ -21,7 +23,7 @@
 | [RotateLeft fixture 충실도](rotateleft-fixture-fidelity-2026-09-15/REPORT.md) | `RotateLeft32Bits(3)` fixture와 고정 원본의 제약 비교 | 대응 범위에서 제약 보존 확인 |
 | [RotateLeft 후보 검증](rotateleft-candidate-check-2026-09-17/REPORT.md) | 결정적으로 선택한 후보 1건과 고정 원본 component | 원본 제약은 만족하나 32-bit 입력 전제 실패 |
 
-현재 이 검증들에서 원본 component의 유효 고유 결함으로 집계된 건수는 0이다.
+아래 네 초기 검증에서 원본 component의 유효 고유 결함으로 집계된 건수는 0이다.
 이는 원본 component가 안전하다는 뜻이 아니며, 검사하지 않은 후보 전체나 랭킹 전략의
 성능으로 일반화하지 않는다.
 
