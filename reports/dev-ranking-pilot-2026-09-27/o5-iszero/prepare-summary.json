@@ -1,0 +1,16 @@
+{
+  "variant": "o5-iszero",
+  "targets": 22,
+  "eligible": 21,
+  "excluded": {
+    "sha256:c3514b7ac100cfbf4db1a47206ad848991d9c2f53430d2d647107fdcd136fb01": [
+      "structure: compile-r1cs failed (exit Some(1), timed_out false): see captured output",
+      "structure: root-ast-only failed (exit Some(1), timed_out false): see captured output",
+      "compilation or compiled size is unavailable",
+      "required root AST complexity is unavailable"
+    ]
+  },
+  "injected_target_bound": true,
+  "prepared": "runs/dev-ranking-pilot-2026-09-27/o5-iszero/prepared/prepare-6fd0bef5-2b7b-46d3-b9e0-5a803de626ac/prepared.json",
+  "prepared_sha256": "0da1ca417f44bbea463c461fca2964705d328a05ce80d1e72a6ef9a5d5c72468"
+}

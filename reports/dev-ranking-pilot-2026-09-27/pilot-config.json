@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "status": "fixed before the first zkFuzz run",
+  "purpose": "Development pilot of the scarce-budget condition. Every variant was used in development, so this is not an independent evaluation.",
+  "variants": [
+    {
+      "id": "o1-where",
+      "injection_plan": "reports/dev-ranking-pilot-2026-09-27/plans/o1-where.json"
+    },
+    {
+      "id": "o2-num2bits41",
+      "injection_plan": "reports/dev-ranking-pilot-2026-09-27/plans/o2-num2bits41.json"
+    },
+    {
+      "id": "o5-iszero",
+      "injection_plan": "reports/dev-ranking-pilot-2026-09-27/plans/o5-iszero.json"
+    }
+  ],
+  "targets": "every unique concrete instance reachable from src/circuit.circom in the mutant tree",
+  "wrapper_directory": "zkfdo-targets",
+  "wrapper_naming": "<source path without .circom, / replaced by __>__<Template>[_<parameters joined by _>].circom, so that path-order follows source path order",
+  "noninjected_input_assumptions": "Development pilot target without a specified input contract.",
+  "strategies": [
+    "path-order",
+    "small-first",
+    "risk-only",
+    "cost-aware",
+    "random"
+  ],
+  "blocks": [
+    {
+      "block": 1,
+      "zkfuzz_seed": 2026092711,
+      "random_ranking_seed": 2026092721
+    },
+    {
+      "block": 2,
+      "zkfuzz_seed": 2026092712,
+      "random_ranking_seed": 2026092722
+    },
+    {
+      "block": 3,
+      "zkfuzz_seed": 2026092713,
+      "random_ranking_seed": 2026092723
+    }
+  ],
+  "budget_seconds_per_target": 30,
+  "total_budget_seconds": 180,
+  "tool_timeout_seconds": 600,
+  "detection": "a zkFuzz candidate that the review engine validates against the injection spec and attributes through the replayed qualification bundle",
+  "tools": {
+    "circom": "/Users/miiz/.cargo/bin/circom",
+    "circom_sha256": "8991887889c2a74d6fc704d5689ada4cc76fba004e866c987de6cbf3b3db6227",
+    "zkfuzz": "/Users/miiz/.cargo/bin/zkfuzz",
+    "zkfuzz_sha256": "ac2d9d16fd97ff803b121b7994aef804b4e191636f3f78660ff6ecd6c9ae4edd",
+    "circomspect": ".external/circomspect/target/release/circomspect",
+    "circomspect_sha256": "6acebb5f1c00fd3823e96388cb322cd29bd516f8bacecf855fee5652431c3590",
+    "circomspect_version": "0.9.0",
+    "circomspect_revision": "ece9efe0a21e6c422a43ab6f2e1c0ce99678013b"
+  },
+  "clean_project": "runs/dev-ranking-pilot-2026-09-27/inference-normalized: git archive of the recorded revision with the three anonymous component calls rewritten as named components (normalization.diff); the compiled entrypoint keeps 179712 non-linear and 16384 linear constraints",
+  "revisions_before_first_run": [
+    "The pinned Circomspect cannot lift templates with anonymous component calls, which left 4 of 22 targets eligible; the clean project was normalized as above.",
+    "Prepare excludes bounded contracts without an executable review; every target uses field_only and the predicates check their own input preconditions. O2 now requires only canonical input and boolean bits."
+  ]
+}

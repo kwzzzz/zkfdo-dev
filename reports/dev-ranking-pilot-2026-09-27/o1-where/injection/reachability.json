@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "completion": "complete",
+  "entrypoint_target_id": "sha256:8a94bb8d907444fb77a32ab16a48d633f8f7def2f38b88db2e0f526644f5be71",
+  "entrypoint_source_sha256": "f1b6abc4987d25cb53f9da6a72ade48703e99ba9499badb8c3dfee242c3a7464",
+  "source_closure_sha256": "4c7d2fb40c27eb84b486f4960927ff84ce466f754d1f96bde85e2b419b5b86a6",
+  "target_instance_key": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-ranking-pilot-2026-09-27/o1-where/injection/mutant/src/where.circom::Where()",
+  "instances": [
+    {
+      "instance_key": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-ranking-pilot-2026-09-27/o1-where/injection/mutant/src/where.circom::Where()",
+      "parent_instance_key": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-ranking-pilot-2026-09-27/o1-where/injection/mutant/src/distanceFromScore.circom::DistanceFromScore(40)",
+      "target_id": "sha256:92149b17b9311f7562b15958d1af7a2965ca08a592946a2526de7fb27901c985",
+      "template": "Where",
+      "concrete_parameters": [],
+      "source_path": "../../../../runs/dev-ranking-pilot-2026-09-27/o1-where/injection/mutant/src/where.circom",
+      "source_sha256": "70dd702217de4b0d4aa561768756217f6d448451ff14c39508caf5a5f66a81c1",
+      "start_byte": 22,
+      "end_byte": 350
+    },
+    {
+      "instance_key": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-ranking-pilot-2026-09-27/o1-where/injection/mutant/src/distanceFromScore.circom::DistanceFromScore(40)",
+      "parent_instance_key": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-ranking-pilot-2026-09-27/o1-where/injection/mutant/src/circuit.circom::IncentiveMechansim(256, 40)",
+      "target_id": "sha256:66128f747db5ad7ca80596e38b44618f94114932f8a1408898dad327ff7f5e95",
+      "template": "DistanceFromScore",
+      "concrete_parameters": [
+        {
+          "position": 0,
+          "name": "b",
+          "kind": "integer",
+          "value_decimal": "40"
+        }
+      ],
+      "source_path": "../../../../runs/dev-ranking-pilot-2026-09-27/o1-where/injection/mutant/src/distanceFromScore.circom",
+      "source_sha256": "5d832250f7aa30cf9f31f7ccdc7a38fb86d94bc8236203a891dd4c548f790255",
+      "start_byte": 81,
+      "end_byte": 797
+    },
+    {
+      "instance_key": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-ranking-pilot-2026-09-27/o1-where/injection/mutant/src/circuit.circom::IncentiveMechansim(256, 40)",
+      "parent_instance_key": null,
+      "target_id": "sha256:8a94bb8d907444fb77a32ab16a48d633f8f7def2f38b88db2e0f526644f5be71",
+      "template": "IncentiveMechansim",
+      "concrete_parameters": [
+        {
+          "position": 0,
+          "name": "batch_size",
+          "kind": "integer",
+          "value_decimal": "256"
+        },
+        {
+          "position": 1,
+          "name": "bits",
+          "kind": "integer",
+          "value_decimal": "40"
+        }
+      ],
+      "source_path": "../../../../runs/dev-ranking-pilot-2026-09-27/o1-where/injection/mutant/src/circuit.circom",
+      "source_sha256": "f1b6abc4987d25cb53f9da6a72ade48703e99ba9499badb8c3dfee242c3a7464",
+      "start_byte": 332,
+      "end_byte": 5885
+    }
+  ],
+  "unsupported": [],
+  "unresolved": []
+}

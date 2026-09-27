@@ -1,0 +1,301 @@
+{
+  "schema_version": 1,
+  "report_id": "pilot-inference-o1-where/qualification",
+  "kind": "injection-ground-truth",
+  "status": "complete",
+  "review_request": {
+    "path": "../request.json",
+    "sha256": "fd65a661b2cea78fee68cc9e026427bf7f76bc7543be07f584dbdb3cfebe8e18"
+  },
+  "review_specs": [
+    {
+      "path": "../spec.json",
+      "sha256": "68c526d5596013a3198d47d072e718b3bc9a892042e97f3e3dcfb72efe8f57e7"
+    }
+  ],
+  "engine": {
+    "version": "candidate-review-schema1",
+    "source_revision": "worktree-engine-manifest:ab036a5a8d4e57fab83a7d9107ab5b8d0b5e17c23012b6190a515836bda8620a",
+    "source_manifest_path": "../engine-source-manifest.json",
+    "source_manifest_sha256": "ab036a5a8d4e57fab83a7d9107ab5b8d0b5e17c23012b6190a515836bda8620a",
+    "executable_path": "../../../../../runs/dev-ranking-pilot-2026-09-27/bin/zkfDO",
+    "executable_sha256": "6faf4b68351eb34cbc28c322f77b9c7e95fefa3d57ca97ba9c466eb3b7dbdc6b",
+    "predicate_runner_path": "../../../../../../../../../opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+    "predicate_runner_sha256": "87d4df53fd91304be5bac391fb204643c36b7df2023c04a0953bcbc7d4fdf634"
+  },
+  "adapters": [
+    {
+      "id": "wtns-json-v1",
+      "implementation_sha256": "7d0f123d84079048b28822011c380791725dcb049c88239253b27bd214875138"
+    }
+  ],
+  "failure": null,
+  "candidate_inventory": null,
+  "executions": [],
+  "candidate_errors": [],
+  "unreviewed_candidates": [],
+  "reviews": [
+    {
+      "review_kind": "injection-ground-truth",
+      "candidate_record_id": null,
+      "candidate": null,
+      "binding": null,
+      "assignments": {
+        "disturbance": {
+          "path": "../../../../../runs/dev-ranking-pilot-2026-09-27/o1-where/injection/witness/twin.assignment.json",
+          "sha256": "1964a8d4d218dec38b02df409b93b5f3227d1c29f1d0515e0aa583b36235894b"
+        },
+        "clean_reference": {
+          "path": "../../../../../runs/dev-ranking-pilot-2026-09-27/o1-where/injection/witness/clean.assignment.json",
+          "sha256": "761f9c07faf942102597dcaf42b9f194341db8668f4b33f06ab64a79b57f03ec"
+        }
+      },
+      "review_spec": {
+        "id": "pilot-inference-o1-where/spec",
+        "path": "../spec.json",
+        "sha256": "68c526d5596013a3198d47d072e718b3bc9a892042e97f3e3dcfb72efe8f57e7"
+      },
+      "root_cause_id": "dev-injection/inference-labs-inc/subnet-2-circom/o1-where-output",
+      "injection_id": "pilot-inference-o1-where",
+      "artifact_verification": {
+        "mutant_r1cs": true,
+        "mutant_sym": true,
+        "clean_r1cs": true,
+        "clean_sym": true,
+        "twin_r1cs": true,
+        "twin_sym": true,
+        "generation_reproduced": true
+      },
+      "failed_target_constraint_count": 0,
+      "failed_target_constraint_indices": [],
+      "failed_clean_constraint_count": 1,
+      "failed_clean_constraint_indices": [
+        3
+      ],
+      "criteria": {
+        "assignment_encoding": {
+          "verdict": "satisfied",
+          "reason_code": "canonical",
+          "evidence": [
+            {
+              "path": "../../../../../runs/dev-ranking-pilot-2026-09-27/o1-where/injection/witness/twin.assignment.json",
+              "sha256": "1964a8d4d218dec38b02df409b93b5f3227d1c29f1d0515e0aa583b36235894b"
+            }
+          ],
+          "note": "All field-valued disturbance assignment entries are canonical."
+        },
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "reason_code": "contract-satisfied",
+          "evidence": [
+            {
+              "path": "../../../../../runs/dev-ranking-pilot-2026-09-27/o1-where/injection/witness/twin.assignment.json",
+              "sha256": "1964a8d4d218dec38b02df409b93b5f3227d1c29f1d0515e0aa583b36235894b"
+            },
+            {
+              "path": "../contract.json",
+              "sha256": "39fcc8cd72482c9f1c872c7de8c2b37f16a426c001823237e9577802c1ac2a9a"
+            }
+          ],
+          "note": "The selector is boolean and both choices are canonical."
+        },
+        "fixed_target_constraints": {
+          "verdict": "satisfied",
+          "reason_code": "all-constraints-satisfied",
+          "evidence": [
+            {
+              "path": "../../../../../runs/dev-ranking-pilot-2026-09-27/o1-where/injection/witness/twin.assignment.json",
+              "sha256": "1964a8d4d218dec38b02df409b93b5f3227d1c29f1d0515e0aa583b36235894b"
+            },
+            {
+              "path": "../../../../../runs/dev-ranking-pilot-2026-09-27/o1-where/injection/compiled/mutant/src__where__Where.r1cs",
+              "sha256": "0ac216feeed03832c81e6c2dd05126c4ecd5eb6184bd40783d64794a636c0e27"
+            }
+          ],
+          "note": "All constraints in the fixed injected-mutant R1CS are satisfied."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "reason_code": "property-violated",
+          "evidence": [
+            {
+              "path": "../../../../../runs/dev-ranking-pilot-2026-09-27/o1-where/injection/witness/twin.assignment.json",
+              "sha256": "1964a8d4d218dec38b02df409b93b5f3227d1c29f1d0515e0aa583b36235894b"
+            },
+            {
+              "path": "../contract.json",
+              "sha256": "39fcc8cd72482c9f1c872c7de8c2b37f16a426c001823237e9577802c1ac2a9a"
+            }
+          ],
+          "note": "The output is not the selected choice."
+        }
+      },
+      "qualification_criteria": {
+        "twin_r1cs_identity": {
+          "verdict": "satisfied",
+          "reason_code": "twin-r1cs-identical",
+          "evidence": [
+            {
+              "path": "../../../../../runs/dev-ranking-pilot-2026-09-27/o1-where/injection/compiled/mutant/src__where__Where.r1cs",
+              "sha256": "0ac216feeed03832c81e6c2dd05126c4ecd5eb6184bd40783d64794a636c0e27"
+            },
+            {
+              "path": "../../../../../runs/dev-ranking-pilot-2026-09-27/o1-where/injection/compiled/twin/src__where__Where.r1cs",
+              "sha256": "0ac216feeed03832c81e6c2dd05126c4ecd5eb6184bd40783d64794a636c0e27"
+            }
+          ],
+          "note": "The disturbance twin and mutant R1CS raw hashes are identical."
+        },
+        "twin_sym_identity": {
+          "verdict": "satisfied",
+          "reason_code": "twin-sym-identical",
+          "evidence": [
+            {
+              "path": "../../../../../runs/dev-ranking-pilot-2026-09-27/o1-where/injection/compiled/mutant/src__where__Where.sym",
+              "sha256": "87a1c7b8b22e82afe6098de398cdaa47dbd01253be342ae3e4bd3b409dadf4b2"
+            },
+            {
+              "path": "../../../../../runs/dev-ranking-pilot-2026-09-27/o1-where/injection/compiled/twin/src__where__Where.sym",
+              "sha256": "87a1c7b8b22e82afe6098de398cdaa47dbd01253be342ae3e4bd3b409dadf4b2"
+            }
+          ],
+          "note": "The disturbance twin and mutant SYM raw hashes are identical."
+        },
+        "generation_reproducibility": {
+          "verdict": "satisfied",
+          "reason_code": "generation-reproduced",
+          "evidence": [
+            {
+              "path": "../generation.json",
+              "sha256": "d7fd78fe0aa19a72258740022a52856aaca18c7705cf59d94a95596a3a0e0aca"
+            }
+          ],
+          "note": "Both pinned generators reproduced their witness and assignment hashes."
+        },
+        "clean_reference_assignment_encoding": {
+          "verdict": "satisfied",
+          "reason_code": "canonical",
+          "evidence": [
+            {
+              "path": "../../../../../runs/dev-ranking-pilot-2026-09-27/o1-where/injection/witness/clean.assignment.json",
+              "sha256": "761f9c07faf942102597dcaf42b9f194341db8668f4b33f06ab64a79b57f03ec"
+            }
+          ],
+          "note": "The clean reference assignment is complete and canonical."
+        },
+        "clean_reference_constraints": {
+          "verdict": "satisfied",
+          "reason_code": "clean-reference-satisfies-constraints",
+          "evidence": [
+            {
+              "path": "../../../../../runs/dev-ranking-pilot-2026-09-27/o1-where/injection/witness/clean.assignment.json",
+              "sha256": "761f9c07faf942102597dcaf42b9f194341db8668f4b33f06ab64a79b57f03ec"
+            },
+            {
+              "path": "../../../../../runs/dev-ranking-pilot-2026-09-27/o1-where/injection/compiled/clean/src__where__Where.r1cs",
+              "sha256": "60d6a17f2ee6df5d19e1c31cac54dc8ebb7671a2b65248b3d0379a012e503340"
+            },
+            {
+              "path": "../../../../../runs/dev-ranking-pilot-2026-09-27/o1-where/injection/compiled/clean/src__where__Where.sym",
+              "sha256": "87a1c7b8b22e82afe6098de398cdaa47dbd01253be342ae3e4bd3b409dadf4b2"
+            }
+          ],
+          "note": "The same-input clean reference satisfies every clean R1CS constraint."
+        },
+        "clean_input_equivalence": {
+          "verdict": "satisfied",
+          "reason_code": "clean-inputs-equal",
+          "evidence": [
+            {
+              "path": "../../../../../runs/dev-ranking-pilot-2026-09-27/o1-where/injection/witness/twin.assignment.json",
+              "sha256": "1964a8d4d218dec38b02df409b93b5f3227d1c29f1d0515e0aa583b36235894b"
+            },
+            {
+              "path": "../../../../../runs/dev-ranking-pilot-2026-09-27/o1-where/injection/witness/clean.assignment.json",
+              "sha256": "761f9c07faf942102597dcaf42b9f194341db8668f4b33f06ab64a79b57f03ec"
+            }
+          ],
+          "note": "The clean and disturbance assignments have identical contract inputs."
+        },
+        "clean_rejection": {
+          "verdict": "satisfied",
+          "reason_code": "clean-projection-rejected",
+          "evidence": [
+            {
+              "path": "../../../../../runs/dev-ranking-pilot-2026-09-27/o1-where/injection/witness/twin.assignment.json",
+              "sha256": "1964a8d4d218dec38b02df409b93b5f3227d1c29f1d0515e0aa583b36235894b"
+            },
+            {
+              "path": "../../../../../runs/dev-ranking-pilot-2026-09-27/o1-where/injection/compiled/clean/src__where__Where.r1cs",
+              "sha256": "60d6a17f2ee6df5d19e1c31cac54dc8ebb7671a2b65248b3d0379a012e503340"
+            },
+            {
+              "path": "../projection.json",
+              "sha256": "e5f384e23183a773d23225e622e8e4db5e834a5a62179a86b14be113d5da16a8"
+            }
+          ],
+          "note": "The projected disturbance fails a predeclared injection-related clean constraint."
+        },
+        "clean_relation_exclusion": {
+          "verdict": "satisfied",
+          "reason_code": "clean-relation-excluded",
+          "evidence": [
+            {
+              "path": "../certificate.json",
+              "sha256": "ab8f89187aa16665e33038bff69c833e5b0e32b341fcdd28e7e0808a3af1649f"
+            },
+            {
+              "path": "../relation-verifier.json",
+              "sha256": "18525f60a2152f4f14b49c89ccd6534ec94e842186d5b595da6c2999668a62f9"
+            }
+          ],
+          "note": "A pinned verifier excludes every clean extension for the fixed contract signals."
+        },
+        "production_reachability": {
+          "verdict": "satisfied",
+          "reason_code": "production-reachable",
+          "evidence": [
+            {
+              "path": "../reachability.json",
+              "sha256": "a62a4460de7b1586438833c117e1d407331573a48aeeb8205e8ff928ca38749c"
+            },
+            {
+              "path": "../reachability-verifier.json",
+              "sha256": "f7a7888774aa305a9ace7fe4a1798a95a00faeec93e1337835532fd67669a30e"
+            },
+            {
+              "path": "../../../../../runs/dev-ranking-pilot-2026-09-27/o1-where/injection/discovery-mutant/49f80861-a445-4a14-b9eb-63f974f4df55/discovery.json",
+              "sha256": "c7ddae17f6c5a84174cb73f09454e4c9a7e75583380d0867863d9a7b1bfff51b"
+            }
+          ],
+          "note": "A complete pinned parent-instance chain reaches the production entrypoint."
+        }
+      },
+      "disposition": "validated",
+      "cause_attribution": {
+        "verdict": "matched",
+        "reason_code": "injection-source-transition-matched",
+        "evidence": [
+          {
+            "path": "../single.diff",
+            "sha256": "686b50be7e26cd3944f90773baa902eff0d665aa648d87c3de6937e0e78c89d5"
+          }
+        ]
+      },
+      "ground_truth_qualification": "qualified",
+      "violation_class": "selected-output-mismatch",
+      "confirmation_eligible": false,
+      "automated_review_seconds": 1.6042774579999999,
+      "predicate_stream_nonempty": false
+    }
+  ],
+  "summary": {
+    "validated": 1,
+    "rejected": 0,
+    "unresolved": 0,
+    "review_error": 0,
+    "qualified": 1
+  },
+  "semantic_result_sha256": "a6f9656b449fa454da99a93b136c84ad0f0ebe9852c3b41f5ec89820d1b05c08",
+  "raw_values_persisted": false
+}

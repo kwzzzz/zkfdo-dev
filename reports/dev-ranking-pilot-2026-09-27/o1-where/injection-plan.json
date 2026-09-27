@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "injection_id": "pilot-inference-o1-where",
+  "root_cause_id": "dev-injection/inference-labs-inc/subnet-2-circom/o1-where-output",
+  "operator": {
+    "id": "O1",
+    "justification": "O1 turns the output definition out <== (temp_signal_1 + temp_signal_2)*1 of Where into an unconstrained assignment. The disturbance twin adds one to the assigned output, so the selected value is no longer returned."
+  },
+  "project": {
+    "name": "inference-labs-inc/subnet-2-circom",
+    "revision": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+    "checkout": "../../../runs/dev-ranking-pilot-2026-09-27/inference-normalized",
+    "entrypoint": "src/circuit.circom",
+    "library_paths": []
+  },
+  "target": {
+    "source_path": "src/where.circom",
+    "template": "Where",
+    "concrete_parameters": []
+  },
+  "mutant_edit": {
+    "find": "    out <== (temp_signal_1 + temp_signal_2)*1;\n",
+    "replace": "    out <-- (temp_signal_1 + temp_signal_2)*1;\n"
+  },
+  "twin_edit": {
+    "find": "    out <-- (temp_signal_1 + temp_signal_2)*1;\n",
+    "replace": "    out <-- (temp_signal_1 + temp_signal_2)*1 + 1;\n"
+  },
+  "contract": {
+    "input_contract_id": "where-selector-boolean",
+    "property_id": "where-returns-selected-choice",
+    "input_contract_statement": "main.selector and both main.choices are canonical field elements; the template constrains the selector to be 0 or 1.",
+    "property_statement": "main.out equals choices[0] when selector is 1 and choices[1] when selector is 0.",
+    "input_contract": {
+      "kind": "field_only"
+    },
+    "input_signal_names": [
+      "main.choices[0]",
+      "main.choices[1]",
+      "main.selector"
+    ],
+    "property_signal_names": [
+      "main.out"
+    ],
+    "predicate": {
+      "path": "../../dev-injection-2026-09-27/predicates/selector_mux.py",
+      "config": {
+        "selector": "main.selector",
+        "choices": [
+          "main.choices[0]",
+          "main.choices[1]"
+        ],
+        "output": "main.out"
+      },
+      "allowed_results": [
+        {
+          "criterion": "input_preconditions",
+          "verdict": "satisfied",
+          "reason_code": "contract-satisfied",
+          "note": "The selector is boolean and both choices are canonical."
+        },
+        {
+          "criterion": "input_preconditions",
+          "verdict": "not-satisfied",
+          "reason_code": "selector-not-boolean",
+          "note": "The selector is not boolean or a choice is not canonical."
+        },
+        {
+          "criterion": "specified_property_violation",
+          "verdict": "satisfied",
+          "reason_code": "property-violated",
+          "note": "The output is not the selected choice."
+        },
+        {
+          "criterion": "specified_property_violation",
+          "verdict": "not-satisfied",
+          "reason_code": "property-holds",
+          "note": "The output is the selected choice."
+        },
+        {
+          "criterion": "specified_property_violation",
+          "verdict": "unknown",
+          "reason_code": "input-precondition-unresolved",
+          "note": "The property is not evaluated because the input precondition failed."
+        }
+      ],
+      "allowed_violation_classes": [
+        "selected-output-mismatch"
+      ]
+    }
+  },
+  "common_input": "../../../runs/dev-injection-2026-09-27/inputs/inference-o1-where.json",
+  "relation_exclusion": "operator-proof",
+  "workspace": "../../../runs/dev-ranking-pilot-2026-09-27/o1-where/injection",
+  "output": "injection",
+  "wrapper_path": "zkfdo-targets/src__where__Where.circom"
+}

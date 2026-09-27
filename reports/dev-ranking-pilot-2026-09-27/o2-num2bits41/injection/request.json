@@ -1,0 +1,27 @@
+{
+  "kind": "injection-ground-truth",
+  "schema_version": 1,
+  "request_id": "pilot-inference-o2-num2bits41/qualification",
+  "review_spec": {
+    "path": "spec.json",
+    "sha256": "8145cc09ad147f3daef31306083324d9fe3d45914a8383079c5d22f03f3c00bb"
+  },
+  "generation_manifest": {
+    "path": "generation.json",
+    "sha256": "96a917531645d2d9abfc7f22dc89fb9cc1c3d23ed1e7783038461b16540c99f3"
+  },
+  "disturbance_assignment": {
+    "origin": "disturbance-twin",
+    "format": "wtns-json-v1",
+    "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o2-num2bits41/injection/witness/twin.assignment.json",
+    "sha256": "3ce7535fc6488d8c2326bfc853630665b37e10bdb7c8305ec0670fb9e711414a",
+    "adapter_implementation_sha256": "7d0f123d84079048b28822011c380791725dcb049c88239253b27bd214875138"
+  },
+  "clean_reference_assignment": {
+    "origin": "clean-witness-generator",
+    "format": "wtns-json-v1",
+    "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o2-num2bits41/injection/witness/clean.assignment.json",
+    "sha256": "748482b31c991e94ca7c08eecf9bcc2d2a198c01d6920b29a76a75bbd49597fb",
+    "adapter_implementation_sha256": "7d0f123d84079048b28822011c380791725dcb049c88239253b27bd214875138"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "api_version": 1,
+  "verifier_id": "zkfdo-unique-propagation",
+  "method": "operator-proof",
+  "implementation": {
+    "kind": "external",
+    "executable_path": "../../../../runs/dev-ranking-pilot-2026-09-27/o1-where/injection/verifier/zkfdo-relation-verifier",
+    "executable_sha256": "0a522d60c8f9056b84cb5a45f93aff177370e06567eb900c4012d61f37f1d86b",
+    "source_manifest_path": "engine-source-manifest.json",
+    "source_manifest_sha256": "ab036a5a8d4e57fab83a7d9107ab5b8d0b5e17c23012b6190a515836bda8620a"
+  },
+  "certificate_format": "unique-propagation-v1",
+  "allowed_results": [
+    {
+      "verdict": "satisfied",
+      "reason_code": "clean-relation-excluded"
+    },
+    {
+      "verdict": "unknown",
+      "reason_code": "exclusion-proof-incomplete"
+    }
+  ]
+}

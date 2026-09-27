@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "files": [
+    {
+      "path": "../../../../Cargo.lock",
+      "size": 40047,
+      "sha256": "da028060f7d0ad7ce6fb8b93f8657715ce79f3f84c58f6f758264c3b62addf87"
+    },
+    {
+      "path": "../../../../Cargo.toml",
+      "size": 1044,
+      "sha256": "3f7bae5b9f8e8b9293e5581a1d9aa29498a379f8ef5a2e86c51840e64062ea48"
+    },
+    {
+      "path": "../../../../src/bin/relation_verifier.rs",
+      "size": 626,
+      "sha256": "1266a4b80cc1122ec701fbdf712667068da42ef5418f81d11d6bb9fd9a191898"
+    },
+    {
+      "path": "../../../../src/candidate_review/engine.rs",
+      "size": 252216,
+      "sha256": "8491d926b2742a1b97b4b5728623faa11a1e3e6879cb0efc2a98d8da52742031"
+    },
+    {
+      "path": "../../../../src/candidate_review/mod.rs",
+      "size": 147,
+      "sha256": "37bd813328609cce068a7bb4a8baf2290da97478bf982a3a88742d569a9f93fa"
+    },
+    {
+      "path": "../../../../src/candidate_review/predicate.rs",
+      "size": 10419,
+      "sha256": "523db867782ab794a5b0da16ed4dbae088a26c7d13ba5dfcdab597ed82cc5a48"
+    },
+    {
+      "path": "../../../../src/candidate_review/r1cs.rs",
+      "size": 26088,
+      "sha256": "62b7a2c98e1817109396105c7ce84f9cc2cbb2facca53abfb1286d63897a9944"
+    },
+    {
+      "path": "../../../../src/candidate_review/schema.rs",
+      "size": 30835,
+      "sha256": "2fbe28bd88fb6609ca3c28be558ac668529a5cfb9076d1f75e548e3789cbdc7a"
+    },
+    {
+      "path": "../../../../src/candidate_review/subprocess.rs",
+      "size": 7027,
+      "sha256": "2877a59d0b6fc1d8b57be177e8b2ae30c1db459ac529a85259eddc1956ce69b6"
+    },
+    {
+      "path": "../../../../src/cli.rs",
+      "size": 16078,
+      "sha256": "b770a3d4a55a2ff40e9b99fa832e00917c4eec301934202f1cbb3ee81556cefa"
+    },
+    {
+      "path": "../../../../src/corpus.rs",
+      "size": 37123,
+      "sha256": "549e86c3248f50f43c1c5953131b11b85a2add5bb0f84f37e7d973bd809dddf5"
+    },
+    {
+      "path": "../../../../src/experiment.rs",
+      "size": 58541,
+      "sha256": "e784376db8cb8a3e6f6a3e7c286c06be86e202b0b0bf1e7a8288ac771fb02ed0"
+    },
+    {
+      "path": "../../../../src/injection.rs",
+      "size": 101044,
+      "sha256": "2a70ea1ae220968f93c8d0f07218c562edd685ff3a138ac8b3a7f6cb029ecddd"
+    },
+    {
+      "path": "../../../../src/structure.rs",
+      "size": 18089,
+      "sha256": "ac0cee8da2590a1052af24b5a1b392fcd7f1d8866e19ddc0ff37373bad0ffc93"
+    },
+    {
+      "path": "../../../../src/targets.rs",
+      "size": 131762,
+      "sha256": "82be17abcb21c96907a8358760fac0fac14de93a85e021be4bc5c6eb47ec24c6"
+    }
+  ]
+}

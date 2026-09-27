@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "kind": "injection-ground-truth",
+  "injection_id": "pilot-inference-o5-iszero",
+  "review_spec": {
+    "path": "../spec.json",
+    "sha256": "b8a30b4e38732743ddd48a2711410272440317a88152d12af83ea0f2d0840608"
+  },
+  "review_request": {
+    "path": "../request.json",
+    "sha256": "c530212717f998ee2573bc8fcea9749f97a8e3ce882c5dc9903e5fb9eb0602bc"
+  },
+  "review_report": {
+    "path": "review-report.json",
+    "sha256": "a833dc29ebc724457051fef52ff13072ed47477e5739aa9f2206d10a2520c894"
+  },
+  "qualification": "qualified"
+}

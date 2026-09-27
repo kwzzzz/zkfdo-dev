@@ -1,0 +1,16 @@
+{
+  "variant": "o2-num2bits41",
+  "targets": 21,
+  "eligible": 20,
+  "excluded": {
+    "sha256:207265ce47751d721ea502c85556d797e2593fe981daf3294e53755da74cd68c": [
+      "structure: compile-r1cs failed (exit Some(1), timed_out false): see captured output",
+      "structure: root-ast-only failed (exit Some(1), timed_out false): see captured output",
+      "compilation or compiled size is unavailable",
+      "required root AST complexity is unavailable"
+    ]
+  },
+  "injected_target_bound": true,
+  "prepared": "runs/dev-ranking-pilot-2026-09-27/o2-num2bits41/prepared/prepare-347cdd8a-0530-45c7-ac03-fa5458669edd/prepared.json",
+  "prepared_sha256": "2e742ae487b834cf8c41177f083ab55ffe7453629c03f99fdc672463bd167b5a"
+}

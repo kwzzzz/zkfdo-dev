@@ -1,0 +1,20 @@
+{
+  "injection_id": "pilot-inference-o1-where",
+  "input_contract": {
+    "kind": "field_only"
+  },
+  "input_contract_id": "where-selector-boolean",
+  "input_contract_statement": "main.selector and both main.choices are canonical field elements; the template constrains the selector to be 0 or 1.",
+  "input_signal_names": [
+    "main.choices[0]",
+    "main.choices[1]",
+    "main.selector"
+  ],
+  "operator_id": "O1",
+  "property_id": "where-returns-selected-choice",
+  "property_signal_names": [
+    "main.out"
+  ],
+  "property_statement": "main.out equals choices[0] when selector is 1 and choices[1] when selector is 0.",
+  "schema_version": 1
+}

@@ -1,0 +1,16 @@
+{
+  "variant": "o1-where",
+  "targets": 22,
+  "eligible": 21,
+  "excluded": {
+    "sha256:d740b4ce16f80b293477671765a481148154faeb4b6b7503f6eba5797bedfe29": [
+      "structure: compile-r1cs failed (exit Some(1), timed_out false): see captured output",
+      "structure: root-ast-only failed (exit Some(1), timed_out false): see captured output",
+      "compilation or compiled size is unavailable",
+      "required root AST complexity is unavailable"
+    ]
+  },
+  "injected_target_bound": true,
+  "prepared": "runs/dev-ranking-pilot-2026-09-27/o1-where/prepared/prepare-90beb0e2-d7b8-4522-8084-4f4237307ab5/prepared.json",
+  "prepared_sha256": "ec21926ed6a11731cf67a79db8cd1eaa57c3d4bd8a7dcb56a89d71f18317a99e"
+}
