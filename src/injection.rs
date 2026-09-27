@@ -137,8 +137,9 @@ pub struct ProjectPlan {
     pub name: String,
     pub revision: String,
     pub checkout: PathBuf,
-    /// Relative to the checkout.
-    pub entrypoint: PathBuf,
+    /// Relative to the checkout. `null` when no entrypoint with a complete discovery reaches
+    /// the target; production reachability is then recorded as unknown.
+    pub entrypoint: Option<PathBuf>,
     /// Relative to the checkout, in circom `-l` order.
     pub library_paths: Vec<PathBuf>,
 }
@@ -193,11 +194,15 @@ pub struct InjectOptions {
 
 /// Certificate checked by the pinned `zkfdo-relation-verifier` executable.
 ///
-/// Unique propagation fixes the contract input and property signals, then repeatedly
-/// solves any clean constraint with exactly one undetermined wire that appears linearly
-/// with a nonzero coefficient. Every value it derives is forced in every clean assignment
-/// that agrees on the fixed signals, so a listed constraint whose wires are all derived and
-/// that is violated proves that no such clean assignment exists.
+/// Unique propagation fixes the contract input and property signals, then repeatedly applies
+/// two rules to clean constraints that are linear in their undetermined wires: a single
+/// undetermined wire with a nonzero coefficient is solved, and undetermined wires that are all
+/// constrained to {0, 1} and weighted by distinct powers of two (up to one common factor, with
+/// a total below the field size) take the unique binary digits of the known value. Every value
+/// either rule derives is forced in every clean assignment that agrees on the fixed signals.
+/// A listed constraint then proves that no such clean assignment exists when all of its wires
+/// are derived and it is violated, or when its undetermined wires are such bits and the known
+/// value has no binary representation over their weights.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct PropagationCertificate {
@@ -242,7 +247,12 @@ pub fn build(options: &InjectOptions) -> Result<InjectOutput> {
 
     let checkout = fs::canonicalize(plan_dir.join(&plan.project.checkout))
         .context("resolve project checkout")?;
-    let entrypoint_rel = safe_relative(&plan.project.entrypoint, "entrypoint")?;
+    let entrypoint_rel = plan
+        .project
+        .entrypoint
+        .as_ref()
+        .map(|path| safe_relative(path, "entrypoint"))
+        .transpose()?;
     let library_rels = plan
         .project
         .library_paths
@@ -275,45 +285,78 @@ pub fn build(options: &InjectOptions) -> Result<InjectOutput> {
     fs::create_dir_all(&output)?;
     let output = fs::canonicalize(&output)?;
 
-    // 1. The clean project must reach the target from the selected entrypoint with a
-    //    complete discovery; its include closure becomes the tree layout.
-    let clean_entrypoint = checkout.join(&entrypoint_rel);
+    // 1. With an entrypoint, the clean project must reach the target through a complete
+    //    discovery and the entrypoint closure becomes the tree layout. Without one, the
+    //    layout is the target source closure alone.
     let clean_libraries = library_rels
         .iter()
         .map(|library| checkout.join(library))
         .collect::<Vec<_>>();
-    let checkout_discovery = targets::discover_project_targets_with(
-        &checkout,
-        workspace.join("discovery-checkout"),
-        &discovery_options(&clean_entrypoint, &clean_libraries),
-    )?;
-    ensure!(
-        checkout_discovery.entrypoint_status == targets::EntrypointStatus::Found
-            && checkout_discovery.unsupported.is_empty(),
-        "checkout discovery from the entrypoint is not complete"
-    );
     let checkout_target_key = targets::concrete_instance_key(
         &checkout.join(&target_rel),
         &plan.target.template,
         &parameter_values,
     )?;
-    ensure!(
-        checkout_discovery.root_instance_key.as_deref() == Some(checkout_target_key.as_str())
-            || checkout_discovery
-                .targets
-                .iter()
-                .any(|target| target.instance_key == checkout_target_key),
-        "the target instance is not reachable from the selected entrypoint"
-    );
-    let closure_files =
-        targets::discovery_dependency_paths(&clean_entrypoint, &checkout, &clean_libraries)?
-            .into_iter()
-            .map(|path| {
-                path.strip_prefix(&checkout)
-                    .map(Path::to_path_buf)
-                    .context("closure file is outside the checkout")
-            })
-            .collect::<Result<Vec<_>>>()?;
+    let closure_paths = match &entrypoint_rel {
+        Some(entrypoint_rel) => {
+            let clean_entrypoint = checkout.join(entrypoint_rel);
+            let checkout_discovery = targets::discover_project_targets_with(
+                &checkout,
+                workspace.join("discovery-checkout"),
+                &discovery_options(&clean_entrypoint, &clean_libraries),
+            )?;
+            ensure!(
+                checkout_discovery.entrypoint_status == targets::EntrypointStatus::Found
+                    && checkout_discovery.unsupported.is_empty(),
+                "checkout discovery from the entrypoint is not complete"
+            );
+            ensure!(
+                checkout_discovery.root_instance_key.as_deref()
+                    == Some(checkout_target_key.as_str())
+                    || checkout_discovery
+                        .targets
+                        .iter()
+                        .any(|target| target.instance_key == checkout_target_key),
+                "the target instance is not reachable from the selected entrypoint"
+            );
+            targets::discovery_dependency_paths(&clean_entrypoint, &checkout, &clean_libraries)?
+        }
+        None => {
+            let probe = workspace.join("closure-probe.circom");
+            fs::write(
+                &probe,
+                format!(
+                    "pragma circom 2.1.6;\n\ninclude \"{}\";\n\ncomponent main = {}({});\n",
+                    checkout
+                        .join(&target_rel)
+                        .to_string_lossy()
+                        .replace('"', "\\\""),
+                    plan.target.template,
+                    parameter_values.join(", ")
+                ),
+            )?;
+            let inspection =
+                targets::inspect_entrypoint_with_libraries(&probe, &checkout, &clean_libraries)?;
+            ensure!(
+                inspection.complete,
+                "the target source closure cannot be inspected completely"
+            );
+            let probe = fs::canonicalize(&probe)?;
+            inspection
+                .dependency_paths
+                .into_iter()
+                .filter(|path| *path != probe)
+                .collect()
+        }
+    };
+    let closure_files = closure_paths
+        .into_iter()
+        .map(|path| {
+            path.strip_prefix(&checkout)
+                .map(Path::to_path_buf)
+                .context("closure file is outside the checkout")
+        })
+        .collect::<Result<Vec<_>>>()?;
     ensure!(
         closure_files.contains(&target_rel),
         "the target source is outside the entrypoint closure"
@@ -588,34 +631,50 @@ pub fn build(options: &InjectOptions) -> Result<InjectOutput> {
         }
     };
 
-    // 5. Reachability from the entrypoint inside the mutant tree, as the engine reruns it.
+    // 5. The wrapper must be a complete discovery rooted at the target instance, as the engine
+    //    re-derives when it recompiles the variants. With an entrypoint, reachability comes
+    //    from the entrypoint inside the mutant tree, as the engine reruns it.
     let mutant_root = fs::canonicalize(&variants[1].tree)?;
-    let mutant_entrypoint = mutant_root.join(&entrypoint_rel);
     let mutant_libraries = library_rels
         .iter()
         .map(|library| mutant_root.join(library))
         .collect::<Vec<_>>();
-    let reachability_discovery = targets::discover_project_targets_with(
-        &mutant_root,
-        workspace.join("discovery-mutant"),
-        &discovery_options(&mutant_entrypoint, &mutant_libraries),
-    )?;
-    ensure!(
-        reachability_discovery.entrypoint_status == targets::EntrypointStatus::Found
-            && reachability_discovery.unsupported.is_empty(),
-        "mutant discovery from the entrypoint is not complete"
-    );
-    let discovery_report = reachability_discovery.work_dir.join("discovery.json");
-    ensure!(
-        discovery_report.is_file(),
-        "discovery report was not written"
-    );
     let mutant_target_key = targets::concrete_instance_key(
         &mutant_root.join(&target_rel),
         &plan.target.template,
         &parameter_values,
     )?;
-    let chain = reachability_chain(&reachability_discovery, &mutant_target_key)?;
+    let wrapper_discovery = targets::discover_project_targets_with(
+        &mutant_root,
+        workspace.join("discovery-wrapper"),
+        &discovery_options(&mutant_root.join(WRAPPER_FILE), &mutant_libraries),
+    )?;
+    ensure!(
+        wrapper_discovery.entrypoint_status == targets::EntrypointStatus::Found
+            && wrapper_discovery.unsupported.is_empty()
+            && wrapper_discovery.root_instance_key.as_deref() == Some(mutant_target_key.as_str()),
+        "the direct wrapper is not a complete discovery rooted at the target instance"
+    );
+    let reachability = match &entrypoint_rel {
+        Some(entrypoint_rel) => {
+            let mutant_entrypoint = mutant_root.join(entrypoint_rel);
+            let discovery = targets::discover_project_targets_with(
+                &mutant_root,
+                workspace.join("discovery-mutant"),
+                &discovery_options(&mutant_entrypoint, &mutant_libraries),
+            )?;
+            ensure!(
+                discovery.entrypoint_status == targets::EntrypointStatus::Found
+                    && discovery.unsupported.is_empty(),
+                "mutant discovery from the entrypoint is not complete"
+            );
+            let report = discovery.work_dir.join("discovery.json");
+            ensure!(report.is_file(), "discovery report was not written");
+            let chain = reachability_chain(&discovery, &mutant_target_key)?;
+            Some((mutant_entrypoint, report, chain))
+        }
+        None => None,
+    };
 
     // 6. Identities follow the corpus target identity so that a later backend plan built
     //    from the same definition binds the same target ID.
@@ -642,32 +701,34 @@ pub fn build(options: &InjectOptions) -> Result<InjectOutput> {
     let identity_dir = workspace.join("identity-wrappers");
     fs::create_dir_all(&identity_dir)?;
     let mut instances = Vec::new();
-    for (index, instance) in chain.iter().enumerate() {
-        let id = if instance.key == mutant_target_key {
-            target_id.clone()
-        } else if instance.parent.is_none() {
-            target_identity(&CorpusTarget {
-                entrypoint: mutant_entrypoint.clone(),
-                mode: "original".to_owned(),
-                ..chain_definition(&plan, &mutant_root, instance, &semantic_compile_args)
-            })?
-        } else {
-            let wrapper = identity_dir.join(format!("instance-{index:03}.circom"));
-            fs::write(
-                &wrapper,
-                format!(
-                    "pragma circom 2.1.6;\n\ninclude \"{}\";\n\ncomponent main = {}({});\n",
-                    instance.source.to_string_lossy().replace('"', "\\\""),
-                    instance.template,
-                    instance.parameters.join(", ")
-                ),
-            )?;
-            target_identity(&CorpusTarget {
-                entrypoint: wrapper,
-                ..chain_definition(&plan, &mutant_root, instance, &semantic_compile_args)
-            })?
-        };
-        instances.push((instance, id));
+    if let Some((mutant_entrypoint, _, chain)) = &reachability {
+        for (index, instance) in chain.iter().enumerate() {
+            let id = if instance.key == mutant_target_key {
+                target_id.clone()
+            } else if instance.parent.is_none() {
+                target_identity(&CorpusTarget {
+                    entrypoint: mutant_entrypoint.clone(),
+                    mode: "original".to_owned(),
+                    ..chain_definition(&plan, &mutant_root, instance, &semantic_compile_args)
+                })?
+            } else {
+                let wrapper = identity_dir.join(format!("instance-{index:03}.circom"));
+                fs::write(
+                    &wrapper,
+                    format!(
+                        "pragma circom 2.1.6;\n\ninclude \"{}\";\n\ncomponent main = {}({});\n",
+                        instance.source.to_string_lossy().replace('"', "\\\""),
+                        instance.template,
+                        instance.parameters.join(", ")
+                    ),
+                )?;
+                target_identity(&CorpusTarget {
+                    entrypoint: wrapper,
+                    ..chain_definition(&plan, &mutant_root, instance, &semantic_compile_args)
+                })?
+            };
+            instances.push((instance, id));
+        }
     }
 
     // 7. Tracked, value-free artifacts.
@@ -776,57 +837,81 @@ pub fn build(options: &InjectOptions) -> Result<InjectOutput> {
     };
     write_json_new(&relation_verifier_path, &relation_verifier)?;
 
-    let reachability_path = output.join("reachability.json");
-    let root = instances.last().context("reachability chain is empty")?;
-    let evidence = ReachabilityEvidence {
-        schema_version: 1,
-        completion: ReachabilityCompletion::Complete,
-        entrypoint_target_id: root.1.clone(),
-        entrypoint_source_sha256: sha256_file(&root.0.source)?,
-        source_closure_sha256: sha256_file(&variants[1].closure)?,
-        target_instance_key: mutant_target_key.clone(),
-        instances: instances
-            .iter()
-            .map(|(instance, id)| {
-                let (start_byte, end_byte) =
-                    targets::template_source_byte_range(&instance.source, &instance.template)?;
-                Ok(ReachabilityInstance {
-                    instance_key: instance.key.clone(),
-                    parent_instance_key: instance.parent.clone(),
-                    target_id: id.clone(),
-                    template: instance.template.clone(),
-                    concrete_parameters: if instance.key == mutant_target_key {
-                        plan.target.concrete_parameters.clone()
-                    } else {
-                        typed_parameters(
+    let production_reachability = match &reachability {
+        None => ProductionReachability {
+            verdict: ReachabilityVerdict::Unknown,
+            entrypoint_target_id: None,
+            instance_key: None,
+            evidence_path: None,
+            evidence_sha256: None,
+            verifier_manifest_path: None,
+            verifier_manifest_sha256: None,
+        },
+        Some((_, discovery_report, _)) => {
+            let reachability_path = output.join("reachability.json");
+            let root = instances.last().context("reachability chain is empty")?;
+            let evidence = ReachabilityEvidence {
+                schema_version: 1,
+                completion: ReachabilityCompletion::Complete,
+                entrypoint_target_id: root.1.clone(),
+                entrypoint_source_sha256: sha256_file(&root.0.source)?,
+                source_closure_sha256: sha256_file(&variants[1].closure)?,
+                target_instance_key: mutant_target_key.clone(),
+                instances: instances
+                    .iter()
+                    .map(|(instance, id)| {
+                        let (start_byte, end_byte) = targets::template_source_byte_range(
                             &instance.source,
                             &instance.template,
-                            &instance.parameters,
-                        )?
-                    },
-                    source_path: relative_path(&output, &instance.source)?,
-                    source_sha256: sha256_file(&instance.source)?,
-                    start_byte,
-                    end_byte,
-                })
-            })
-            .collect::<Result<Vec<_>>>()?,
-        unsupported: Vec::new(),
-        unresolved: Vec::new(),
+                        )?;
+                        Ok(ReachabilityInstance {
+                            instance_key: instance.key.clone(),
+                            parent_instance_key: instance.parent.clone(),
+                            target_id: id.clone(),
+                            template: instance.template.clone(),
+                            concrete_parameters: if instance.key == mutant_target_key {
+                                plan.target.concrete_parameters.clone()
+                            } else {
+                                typed_parameters(
+                                    &instance.source,
+                                    &instance.template,
+                                    &instance.parameters,
+                                )?
+                            },
+                            source_path: relative_path(&output, &instance.source)?,
+                            source_sha256: sha256_file(&instance.source)?,
+                            start_byte,
+                            end_byte,
+                        })
+                    })
+                    .collect::<Result<Vec<_>>>()?,
+                unsupported: Vec::new(),
+                unresolved: Vec::new(),
+            };
+            write_json_new(&reachability_path, &evidence)?;
+            let reachability_verifier_path = output.join("reachability-verifier.json");
+            write_json_new(
+                &reachability_verifier_path,
+                &ReachabilityVerifierManifest {
+                    schema_version: 1,
+                    verifier_id: "zkfdo-targets-discovery-rerun".to_owned(),
+                    source_manifest_path: engine_manifest_ref.path.clone(),
+                    source_manifest_sha256: engine_manifest_ref.sha256.clone(),
+                    discovery_report_path: relative_path(&output, discovery_report)?,
+                    discovery_report_sha256: sha256_file(discovery_report)?,
+                },
+            )?;
+            ProductionReachability {
+                verdict: ReachabilityVerdict::Satisfied,
+                entrypoint_target_id: Some(root.1.clone()),
+                instance_key: Some(mutant_target_key.clone()),
+                evidence_path: Some(relative_path(&output, &reachability_path)?),
+                evidence_sha256: Some(sha256_file(&reachability_path)?),
+                verifier_manifest_path: Some(relative_path(&output, &reachability_verifier_path)?),
+                verifier_manifest_sha256: Some(sha256_file(&reachability_verifier_path)?),
+            }
+        }
     };
-    write_json_new(&reachability_path, &evidence)?;
-    let reachability_verifier_path = output.join("reachability-verifier.json");
-    write_json_new(
-        &reachability_verifier_path,
-        &ReachabilityVerifierManifest {
-            schema_version: 1,
-            verifier_id: "zkfdo-targets-discovery-rerun".to_owned(),
-            source_manifest_path: engine_manifest_ref.path.clone(),
-            source_manifest_sha256: engine_manifest_ref.sha256.clone(),
-            discovery_report_path: relative_path(&output, &discovery_report)?,
-            discovery_report_sha256: sha256_file(&discovery_report)?,
-        },
-    )?;
 
     let compiled = |variant: &Variant, r1cs: &R1cs| -> Result<CompiledVariant> {
         Ok(CompiledVariant {
@@ -975,15 +1060,7 @@ pub fn build(options: &InjectOptions) -> Result<InjectOutput> {
             evidence_path: relative_path(&output, &diff_path)?,
             evidence_sha256: sha256_file(&diff_path)?,
         },
-        production_reachability: ProductionReachability {
-            verdict: ReachabilityVerdict::Satisfied,
-            entrypoint_target_id: Some(root.1.clone()),
-            instance_key: Some(mutant_target_key.clone()),
-            evidence_path: Some(relative_path(&output, &reachability_path)?),
-            evidence_sha256: Some(sha256_file(&reachability_path)?),
-            verifier_manifest_path: Some(relative_path(&output, &reachability_verifier_path)?),
-            verifier_manifest_sha256: Some(sha256_file(&reachability_verifier_path)?),
-        },
+        production_reachability,
         injection_ground_truth: Some(InjectionGroundTruth {
             injection_id: plan.injection_id.clone(),
             operator_id: plan.operator.id.clone(),
@@ -1559,8 +1636,8 @@ fn fully_fixed_certificate(
     })
 }
 
-/// Values forced by the fixed signals under unique linear propagation (see
-/// [`PropagationCertificate`]); `None` for wires the propagation leaves undetermined.
+/// Values forced by the fixed signals (see [`PropagationCertificate`]); `None` for wires the
+/// propagation leaves undetermined.
 pub(crate) fn unique_propagation(
     r1cs: &R1cs,
     symbols: &SymbolTable,
@@ -1581,34 +1658,31 @@ pub(crate) fn unique_propagation(
             None => known[wire] = Some(value.clone()),
         }
     }
+    let boolean = boolean_wires(r1cs);
     loop {
         let mut progress = false;
         for constraint in &r1cs.constraints {
-            let unknown = constraint
-                .a
-                .keys()
-                .chain(constraint.b.keys())
-                .chain(constraint.c.keys())
-                .filter(|wire| known[**wire as usize].is_none())
-                .copied()
-                .collect::<BTreeSet<_>>();
-            let [wire] = unknown.into_iter().collect::<Vec<_>>()[..] else {
+            let Some((coefficients, constant)) = linear_form(constraint, &known, prime) else {
                 continue;
             };
-            let (a0, a1) = split_combination(&constraint.a, wire, &known, prime);
-            let (b0, b1) = split_combination(&constraint.b, wire, &known, prime);
-            let (c0, c1) = split_combination(&constraint.c, wire, &known, prime);
-            // (a0 + a1 x)(b0 + b1 x) = c0 + c1 x is solved only when it is linear in x.
-            if !((&a1 * &b1) % prime).is_zero() {
-                continue;
+            let target = (prime - &constant) % prime;
+            let solved = match coefficients.len() {
+                0 => continue,
+                1 => {
+                    let (wire, coefficient) = coefficients.iter().next().expect("one entry");
+                    vec![(*wire, (&target * inverse(coefficient, prime)) % prime)]
+                }
+                _ if coefficients.keys().all(|wire| boolean.contains(wire)) => {
+                    match binary_digits(&coefficients, &target, prime) {
+                        Decomposition::Unique(digits) => digits,
+                        Decomposition::Infeasible | Decomposition::NotApplicable => continue,
+                    }
+                }
+                _ => continue,
+            };
+            for (wire, value) in solved {
+                known[wire as usize] = Some(value);
             }
-            let slope = ((&a0 * &b1) % prime + (&a1 * &b0) % prime + prime - &c1) % prime;
-            if slope.is_zero() {
-                continue;
-            }
-            let offset = (&c0 + prime - (&a0 * &b0) % prime) % prime;
-            let inverse = slope.modpow(&(prime - 2u32), prime);
-            known[wire as usize] = Some((offset * inverse) % prime);
             progress = true;
         }
         if !progress {
@@ -1617,49 +1691,177 @@ pub(crate) fn unique_propagation(
     }
 }
 
-fn split_combination(
-    combination: &LinearCombination,
-    unknown: u32,
-    known: &[Option<BigUint>],
-    prime: &BigUint,
-) -> (BigUint, BigUint) {
-    let mut constant = BigUint::zero();
-    let mut coefficient = BigUint::zero();
-    for (wire, value) in combination {
-        if *wire == unknown {
-            coefficient = (coefficient + value) % prime;
-        } else if let Some(assigned) = &known[*wire as usize] {
-            constant = (constant + value * assigned) % prime;
+/// Wires constrained to {0, 1}: a constraint over one wire w that is λ(w² − w) = 0, λ ≠ 0.
+fn boolean_wires(r1cs: &R1cs) -> BTreeSet<u32> {
+    let prime = &r1cs.prime;
+    let mut wires = BTreeSet::new();
+    for constraint in &r1cs.constraints {
+        let variables = constraint
+            .a
+            .keys()
+            .chain(constraint.b.keys())
+            .chain(constraint.c.keys())
+            .filter(|wire| **wire != 0)
+            .copied()
+            .collect::<BTreeSet<_>>();
+        let [wire] = variables.into_iter().collect::<Vec<_>>()[..] else {
+            continue;
+        };
+        let part = |combination: &LinearCombination, key: u32| {
+            combination.get(&key).cloned().unwrap_or_default()
+        };
+        let (a1, a0) = (part(&constraint.a, wire), part(&constraint.a, 0));
+        let (b1, b0) = (part(&constraint.b, wire), part(&constraint.b, 0));
+        let (c1, c0) = (part(&constraint.c, wire), part(&constraint.c, 0));
+        let quadratic = (&a1 * &b1) % prime;
+        let linear = ((&a1 * &b0) % prime + (&a0 * &b1) % prime + prime - &c1) % prime;
+        let constant = ((&a0 * &b0) % prime + prime - &c0) % prime;
+        if !quadratic.is_zero()
+            && (&linear + &quadratic) % prime == BigUint::zero()
+            && constant.is_zero()
+        {
+            wires.insert(wire);
         }
     }
-    (constant, coefficient)
+    wires
 }
 
-/// Candidate constraints whose wires are all determined and that are violated.
+/// Rewrites A·B = C as Σ dᵢ·uᵢ + e = 0 over the undetermined wires uᵢ when that is linear,
+/// that is, when A or B has no undetermined wire. Zero coefficients are dropped.
+fn linear_form(
+    constraint: &Constraint,
+    known: &[Option<BigUint>],
+    prime: &BigUint,
+) -> Option<(BTreeMap<u32, BigUint>, BigUint)> {
+    let split = |combination: &LinearCombination| {
+        let mut constant = BigUint::zero();
+        let mut unknown = BTreeMap::<u32, BigUint>::new();
+        for (wire, value) in combination {
+            match &known[*wire as usize] {
+                Some(assigned) => constant = (constant + value * assigned) % prime,
+                None => {
+                    let entry = unknown.entry(*wire).or_insert_with(BigUint::zero);
+                    *entry = (&*entry + value) % prime;
+                }
+            }
+        }
+        unknown.retain(|_, value| !value.is_zero());
+        (constant, unknown)
+    };
+    let (a0, a) = split(&constraint.a);
+    let (b0, b) = split(&constraint.b);
+    let (c0, c) = split(&constraint.c);
+    if !a.is_empty() && !b.is_empty() {
+        return None;
+    }
+    let mut coefficients = BTreeMap::<u32, BigUint>::new();
+    for (wire, value) in &b {
+        *coefficients.entry(*wire).or_insert_with(BigUint::zero) += (&a0 * value) % prime;
+    }
+    for (wire, value) in &a {
+        *coefficients.entry(*wire).or_insert_with(BigUint::zero) += (&b0 * value) % prime;
+    }
+    for (wire, value) in &c {
+        *coefficients.entry(*wire).or_insert_with(BigUint::zero) += prime - value;
+    }
+    for value in coefficients.values_mut() {
+        *value %= prime;
+    }
+    coefficients.retain(|_, value| !value.is_zero());
+    let constant = ((&a0 * &b0) % prime + prime - &c0) % prime;
+    Some((coefficients, constant))
+}
+
+enum Decomposition {
+    /// The unique boolean assignment of every undetermined wire.
+    Unique(Vec<(u32, BigUint)>),
+    /// The shape applies but no boolean assignment satisfies the constraint.
+    Infeasible,
+    NotApplicable,
+}
+
+/// Binary digits of Σ dᵢ·bᵢ = target for boolean bᵢ, when every dᵢ is d·2^eᵢ with distinct eᵢ
+/// and Σ 2^eᵢ < p. The integer sum then lies in [0, p) and must equal target/d exactly, so
+/// its binary representation fixes every bᵢ, or proves that none exists.
+fn binary_digits(
+    coefficients: &BTreeMap<u32, BigUint>,
+    target: &BigUint,
+    prime: &BigUint,
+) -> Decomposition {
+    for base in coefficients.values() {
+        let scale = inverse(base, prime);
+        let mut exponents = BTreeMap::new();
+        let mut distinct = BTreeSet::new();
+        let mut shaped = true;
+        for (wire, coefficient) in coefficients {
+            let ratio = (coefficient * &scale) % prime;
+            if ratio.is_zero() || (&ratio & (&ratio - 1u32)) != BigUint::zero() {
+                shaped = false;
+                break;
+            }
+            let exponent = ratio.bits() - 1;
+            if !distinct.insert(exponent) {
+                shaped = false;
+                break;
+            }
+            exponents.insert(*wire, exponent);
+        }
+        if !shaped {
+            continue;
+        }
+        let mask = distinct.iter().fold(BigUint::zero(), |mask, exponent| {
+            mask | (BigUint::one() << *exponent)
+        });
+        if &mask >= prime {
+            return Decomposition::NotApplicable;
+        }
+        let value = (target * &scale) % prime;
+        if (&value | &mask) != mask {
+            return Decomposition::Infeasible;
+        }
+        return Decomposition::Unique(
+            exponents
+                .into_iter()
+                .map(|(wire, exponent)| (wire, (&value >> exponent) & BigUint::one()))
+                .collect(),
+        );
+    }
+    Decomposition::NotApplicable
+}
+
+fn inverse(value: &BigUint, prime: &BigUint) -> BigUint {
+    value.modpow(&(prime - 2u32), prime)
+}
+
+/// Candidate constraints that no clean assignment agreeing on the propagated values can
+/// satisfy: either every wire is determined and the constraint is violated, or its
+/// undetermined wires are boolean bits of a power-of-two decomposition without a solution.
 pub(crate) fn propagation_contradictions(
     r1cs: &R1cs,
     known: &[Option<BigUint>],
     candidates: &BTreeSet<usize>,
 ) -> Vec<usize> {
     let prime = &r1cs.prime;
-    let evaluate = |combination: &LinearCombination| {
-        combination
-            .iter()
-            .try_fold(BigUint::zero(), |sum, (wire, value)| {
-                known[*wire as usize]
-                    .as_ref()
-                    .map(|assigned| (sum + value * assigned) % prime)
-            })
-    };
+    let boolean = boolean_wires(r1cs);
     candidates
         .iter()
         .copied()
         .filter(|index| {
-            let constraint = &r1cs.constraints[*index];
-            matches!(
-                (evaluate(&constraint.a), evaluate(&constraint.b), evaluate(&constraint.c)),
-                (Some(a), Some(b), Some(c)) if (&a * &b) % prime != c
-            )
+            let Some((coefficients, constant)) =
+                linear_form(&r1cs.constraints[*index], known, prime)
+            else {
+                return false;
+            };
+            if coefficients.is_empty() {
+                return !constant.is_zero();
+            }
+            let target = (prime - &constant) % prime;
+            coefficients.len() > 1
+                && coefficients.keys().all(|wire| boolean.contains(wire))
+                && matches!(
+                    binary_digits(&coefficients, &target, prime),
+                    Decomposition::Infeasible
+                )
         })
         .collect()
 }
@@ -2295,6 +2497,81 @@ mod tests {
         let known = unique_propagation(&r1cs, &symbols, &fixed(&[("main.in", 5)])).unwrap();
         assert_eq!(known[3], None);
         assert!(propagation_contradictions(&r1cs, &known, &BTreeSet::from([0])).is_empty());
+    }
+
+    fn decomposition_fixture(weights: [u32; 3]) -> (R1cs, SymbolTable) {
+        // Wires: 1 = in, 2..=4 = bits. Each bit is boolean; Σ weightᵢ·bitᵢ = weight₀·in.
+        let prime = BigUint::from(1_000_003u32);
+        let boolean = |wire: u32| Constraint {
+            a: term(wire, 1),
+            b: LinearCombination::from([(wire, BigUint::one()), (0, &prime - 1u32)]),
+            c: LinearCombination::new(),
+        };
+        let mut constraints = (2..=4).map(boolean).collect::<Vec<_>>();
+        constraints.push(Constraint {
+            a: LinearCombination::from([
+                (2, BigUint::from(weights[0])),
+                (3, BigUint::from(weights[1])),
+                (4, BigUint::from(weights[2])),
+            ]),
+            b: term(0, 1),
+            c: term(1, weights[0]),
+        });
+        let r1cs = R1cs {
+            prime,
+            shape: R1csShape {
+                wires: 5,
+                labels: 5,
+                public_outputs: 0,
+                public_inputs: 0,
+                private_inputs: 1,
+                constraints: constraints.len(),
+            },
+            constraints,
+            wire_labels: vec![0, 1, 2, 3, 4],
+        };
+        let symbols = SymbolTable::parse(
+            b"1,1,0,main.in\n2,2,0,main.b[0]\n3,3,0,main.b[1]\n4,4,0,main.b[2]\n",
+            &r1cs,
+        )
+        .unwrap();
+        (r1cs, symbols)
+    }
+
+    #[test]
+    fn boolean_bits_weighted_by_scaled_powers_of_two_take_unique_digits() {
+        for weights in [[1, 2, 4], [3, 6, 12]] {
+            let (r1cs, symbols) = decomposition_fixture(weights);
+            assert_eq!(boolean_wires(&r1cs), BTreeSet::from([2, 3, 4]));
+            let known = unique_propagation(&r1cs, &symbols, &fixed(&[("main.in", 5)])).unwrap();
+            assert_eq!(
+                known[2..],
+                [
+                    Some(BigUint::one()),
+                    Some(BigUint::zero()),
+                    Some(BigUint::one())
+                ]
+            );
+        }
+    }
+
+    #[test]
+    fn unrepresentable_decompositions_are_contradictions_without_deriving_bits() {
+        // Weights 1, 3, 4 are not powers of two times one factor: nothing is derived or claimed.
+        let (r1cs, symbols) = decomposition_fixture([1, 3, 4]);
+        let known = unique_propagation(&r1cs, &symbols, &fixed(&[("main.in", 4)])).unwrap();
+        assert!(known[2..].iter().all(Option::is_none));
+        assert!(propagation_contradictions(&r1cs, &known, &BTreeSet::from([3])).is_empty());
+        // Three bits cannot represent 8: nothing is derived, and the sum constraint itself is the
+        // contradiction, while the boolean constraints are not claimed.
+        let (r1cs, symbols) = decomposition_fixture([1, 2, 4]);
+        let known = unique_propagation(&r1cs, &symbols, &fixed(&[("main.in", 8)])).unwrap();
+        assert!(known[2..].iter().all(Option::is_none));
+        let all = BTreeSet::from([0, 1, 2, 3]);
+        assert_eq!(propagation_contradictions(&r1cs, &known, &all), vec![3]);
+        // A representable input derives the bits and contradicts nothing.
+        let known = unique_propagation(&r1cs, &symbols, &fixed(&[("main.in", 6)])).unwrap();
+        assert!(propagation_contradictions(&r1cs, &known, &all).is_empty());
     }
 
     #[test]
