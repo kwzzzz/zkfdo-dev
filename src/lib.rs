@@ -1,3 +1,4 @@
+pub mod candidate_review;
 pub mod cli;
 pub mod config;
 pub mod corpus;

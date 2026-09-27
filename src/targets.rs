@@ -4,7 +4,7 @@ use std::{
     path::{Path, PathBuf},
 };
 
-use anyhow::{Context, Result};
+use anyhow::{ensure, Context, Result};
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
 use uuid::Uuid;
@@ -266,6 +266,8 @@ struct TemplateDefinition {
     name: String,
     start_line: usize,
     end_line: usize,
+    start_byte: usize,
+    end_byte: usize,
     parameters: Vec<String>,
     body: Vec<BodyItem>,
 }
@@ -326,7 +328,10 @@ struct TemplateCall {
 struct Token {
     kind: TokenKind,
     line: usize,
+    /// Character offset retained for stable anonymous-instance identities.
     offset: usize,
+    /// UTF-8 byte offset used only when binding source evidence ranges.
+    byte_offset: usize,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -522,6 +527,109 @@ pub fn inspect_entrypoint(entrypoint: &Path, project_root: &Path) -> Result<Entr
         complete: unsupported.is_empty(),
         unsupported,
     })
+}
+
+/// Returns the exact half-open UTF-8 byte range occupied by one template definition.
+/// This uses the same lexer/parser as discovery so review evidence cannot widen a
+/// target instance to another template in the same source file.
+pub fn template_source_byte_range(path: &Path, template_name: &str) -> Result<(usize, usize)> {
+    let path = fs::canonicalize(path)
+        .with_context(|| format!("resolve template source {}", path.display()))?;
+    let source = fs::read_to_string(&path)
+        .with_context(|| format!("read template source {}", path.display()))?;
+    let parsed = parse_file(&path, &source).map_err(|issue| {
+        anyhow::anyhow!(
+            "parse template source {} at {:?}: {}",
+            issue.source_path.display(),
+            issue.line,
+            issue.reason
+        )
+    })?;
+    let matches = parsed
+        .templates
+        .iter()
+        .filter(|definition| definition.name == template_name)
+        .collect::<Vec<_>>();
+    ensure!(
+        matches.len() == 1,
+        "template {template_name:?} is not uniquely defined in {}",
+        path.display()
+    );
+    Ok((matches[0].start_byte, matches[0].end_byte))
+}
+
+/// Resolves the selected entrypoint's full Circom include closure with the same
+/// search order as target discovery. Review provenance uses this to ensure no
+/// source outside a pinned closure influenced a reproduced discovery.
+pub fn discovery_dependency_paths(
+    entrypoint: &Path,
+    project_root: &Path,
+    library_paths: &[PathBuf],
+) -> Result<Vec<PathBuf>> {
+    let entrypoint = fs::canonicalize(entrypoint)
+        .with_context(|| format!("resolve selected entrypoint {}", entrypoint.display()))?;
+    let project_root = fs::canonicalize(project_root)
+        .with_context(|| format!("resolve project root {}", project_root.display()))?;
+    let library_paths = library_paths
+        .iter()
+        .map(|path| {
+            fs::canonicalize(path)
+                .with_context(|| format!("resolve library path {}", path.display()))
+        })
+        .collect::<Result<Vec<_>>>()?;
+    ensure!(
+        entrypoint.is_file() && entrypoint.starts_with(&project_root),
+        "entrypoint must be a file inside the project root"
+    );
+
+    let mut parsed_files = HashMap::new();
+    let mut unsupported = Vec::new();
+    load_discovery_closure(
+        &entrypoint,
+        &project_root,
+        &library_paths,
+        &mut parsed_files,
+        &mut HashSet::new(),
+        &mut unsupported,
+    );
+    let mut reachable = HashSet::new();
+    collect_reachable_files(
+        &entrypoint,
+        &project_root,
+        &library_paths,
+        &parsed_files,
+        &mut reachable,
+        &mut unsupported,
+    );
+    ensure!(
+        unsupported.is_empty(),
+        "entrypoint source closure cannot be resolved completely"
+    );
+    let mut paths = reachable.into_iter().collect::<Vec<_>>();
+    paths.sort();
+    Ok(paths)
+}
+
+/// Returns the literal include paths parsed by the discovery lexer/parser.
+/// Review-only closure checks use this without changing discovery identities.
+pub fn circom_include_literals(path: &Path) -> Result<Vec<String>> {
+    let path = fs::canonicalize(path)
+        .with_context(|| format!("resolve Circom source {}", path.display()))?;
+    let source = fs::read_to_string(&path)
+        .with_context(|| format!("read Circom source {}", path.display()))?;
+    let parsed = parse_file(&path, &source).map_err(|issue| {
+        anyhow::anyhow!(
+            "parse Circom source {} at {:?}: {}",
+            issue.source_path.display(),
+            issue.line,
+            issue.reason
+        )
+    })?;
+    Ok(parsed
+        .includes
+        .into_iter()
+        .map(|include| include.path)
+        .collect())
 }
 
 fn inspect_binding_changes(definition: &TemplateDefinition) -> Result<Vec<UnsupportedCase>> {
@@ -1989,6 +2097,20 @@ fn instance_key(source_path: &Path, template_name: &str, parameters: &[String]) 
     )
 }
 
+/// Returns the canonical discovery identity for one concrete template instance.
+/// Review code uses this to bind a compiled direct wrapper's `component main`
+/// to the same source/template/parameter tuple recorded by target discovery.
+pub fn concrete_instance_key(
+    source_path: &Path,
+    template_name: &str,
+    parameters: &[String],
+) -> Result<String> {
+    anyhow::ensure!(!template_name.trim().is_empty(), "template name is empty");
+    let source_path = fs::canonicalize(source_path)
+        .with_context(|| format!("resolve concrete instance source {}", source_path.display()))?;
+    Ok(instance_key(&source_path, template_name, parameters))
+}
+
 /// Parses the selected entrypoint and every file its includes resolve to. Unresolved includes
 /// are reported later by `collect_reachable_files`, so they are not duplicated here.
 fn load_discovery_closure(
@@ -2283,6 +2405,9 @@ fn parse_template_definition(
             name,
             start_line: line,
             end_line: tokens[close_body].line,
+            start_byte: tokens[start].byte_offset,
+            // A closing brace is one UTF-8 byte.
+            end_byte: tokens[close_body].byte_offset + 1,
             parameters,
             body,
         },
@@ -3204,6 +3329,11 @@ fn split_top_level(
 
 fn lex(source: &str) -> std::result::Result<Vec<Token>, (usize, String)> {
     let chars = source.chars().collect::<Vec<_>>();
+    let mut byte_offsets = source
+        .char_indices()
+        .map(|(offset, _)| offset)
+        .collect::<Vec<_>>();
+    byte_offsets.push(source.len());
     let mut tokens = Vec::new();
     let mut cursor = 0;
     let mut line = 1;
@@ -3275,6 +3405,7 @@ fn lex(source: &str) -> std::result::Result<Vec<Token>, (usize, String)> {
                 kind: TokenKind::StringLiteral(value),
                 line: start_line,
                 offset: start,
+                byte_offset: byte_offsets[start],
             });
             continue;
         }
@@ -3290,6 +3421,7 @@ fn lex(source: &str) -> std::result::Result<Vec<Token>, (usize, String)> {
                 kind: TokenKind::Identifier(chars[start..cursor].iter().collect()),
                 line,
                 offset: start,
+                byte_offset: byte_offsets[start],
             });
             continue;
         }
@@ -3305,6 +3437,7 @@ fn lex(source: &str) -> std::result::Result<Vec<Token>, (usize, String)> {
                 kind: TokenKind::Number(chars[start..cursor].iter().collect()),
                 line,
                 offset: start,
+                byte_offset: byte_offsets[start],
             });
             continue;
         }
@@ -3325,6 +3458,7 @@ fn lex(source: &str) -> std::result::Result<Vec<Token>, (usize, String)> {
                 kind: TokenKind::Operator(operator.to_string()),
                 line,
                 offset: cursor,
+                byte_offset: byte_offsets[cursor],
             });
             cursor += operator.len();
         } else {
@@ -3332,6 +3466,7 @@ fn lex(source: &str) -> std::result::Result<Vec<Token>, (usize, String)> {
                 kind: TokenKind::Symbol(ch),
                 line,
                 offset: cursor,
+                byte_offset: byte_offsets[cursor],
             });
             cursor += 1;
         }
@@ -3447,5 +3582,78 @@ mod tests {
         assert!(evaluate_expression(&tokens, &HashMap::new())
             .expect_err("unknown value")
             .contains("unknown compile-time value"));
+    }
+
+    #[test]
+    fn template_ranges_are_utf8_byte_offsets_without_changing_token_offsets() {
+        let temporary = tempfile::tempdir().expect("temporary directory");
+        let source =
+            "// 한글 프리픽스\ntemplate UnicodeRange() {\n  signal output out;\n  out <== 1;\n}\n";
+        let path = temporary.path().join("unicode.circom");
+        fs::write(&path, source).expect("write circuit");
+
+        let expected_start = source
+            .find("template UnicodeRange")
+            .expect("template start");
+        let expected_end = source.find("\n}\n").expect("template end") + 2;
+        assert_eq!(
+            template_source_byte_range(&path, "UnicodeRange").expect("template range"),
+            (expected_start, expected_end)
+        );
+
+        let tokens = lex(source).expect("tokens");
+        let template = tokens
+            .iter()
+            .find(|token| token_is_identifier(token, "template"))
+            .expect("template token");
+        assert_ne!(template.offset, template.byte_offset);
+        assert_eq!(template.byte_offset, expected_start);
+    }
+
+    #[test]
+    fn discovery_dependency_paths_follow_library_resolution() {
+        let temporary = tempfile::tempdir().expect("temporary directory");
+        let project = temporary.path().join("project");
+        let library = temporary.path().join("library");
+        fs::create_dir_all(&project).expect("project directory");
+        fs::create_dir_all(&library).expect("library directory");
+        let entrypoint = project.join("main.circom");
+        let dependency = library.join("dependency.circom");
+        fs::write(
+            &entrypoint,
+            "pragma circom 2.1.6;\ninclude \"dependency.circom\";\ncomponent main = Dependency();\n",
+        )
+        .expect("entrypoint");
+        fs::write(
+            &dependency,
+            "pragma circom 2.1.6;\ntemplate Dependency() { signal output out; out <== 1; }\n",
+        )
+        .expect("dependency");
+
+        let mut expected = vec![
+            fs::canonicalize(&entrypoint).expect("canonical entrypoint"),
+            fs::canonicalize(&dependency).expect("canonical dependency"),
+        ];
+        expected.sort();
+        assert_eq!(
+            discovery_dependency_paths(&entrypoint, &project, &[library])
+                .expect("dependency closure"),
+            expected
+        );
+    }
+
+    #[test]
+    fn circom_include_literals_use_the_discovery_parser() {
+        let temporary = tempfile::tempdir().expect("temporary directory");
+        let path = temporary.path().join("includes.circom");
+        fs::write(
+            &path,
+            "pragma circom 2.1.6;\ninclude \"a.circom\";\ninclude \"../b.circom\";\n",
+        )
+        .expect("source");
+        assert_eq!(
+            circom_include_literals(&path).expect("includes"),
+            vec!["a.circom".to_owned(), "../b.circom".to_owned()]
+        );
     }
 }

@@ -934,7 +934,7 @@ fn validate_common_complete_target(target: &corpus::PreparedTarget) -> Result<()
 /// Schema 1 plans were frozen before tie reporting and must not contain a `ties` key;
 /// schema 2 plans must contain it (null only for `random`), checked on the raw JSON
 /// because a missing key and an explicit null both deserialize to None.
-fn load_plan(plan_bytes: &[u8]) -> Result<ExperimentPlan> {
+pub(crate) fn load_plan(plan_bytes: &[u8]) -> Result<ExperimentPlan> {
     let value: serde_json::Value =
         serde_json::from_slice(plan_bytes).context("invalid experiment plan JSON")?;
     let has_ties = value.get("ties").is_some();
