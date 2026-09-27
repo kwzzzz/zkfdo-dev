@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "review_spec_id": "dev-inference-o5-iszero/spec",
+  "root_cause_id": "dev-injection/inference-labs-inc/subnet-2-circom/o5-iszero-output-condition",
+  "subject_kind": "injected-mutant",
+  "expected_scope": "original-component",
+  "target_binding": {
+    "target_id": "sha256:242a03c31920344d40f39ccf5198f3c6b8935365bebfcefe0daa45d2d499bfa0",
+    "instance_key": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-injection-2026-09-27/inference-o5-iszero/mutant/src/integerDivision.circom::IsZero()",
+    "template": "IsZero",
+    "concrete_parameters": [],
+    "source_path": "../../../runs/dev-injection-2026-09-27/inference-o5-iszero/mutant/src/integerDivision.circom",
+    "source_sha256": "e40a87f51a82e051b8797ad16eba2072eb9fb425682a883072e1a91e315a32c3",
+    "source_closure_manifest_path": "../../../runs/dev-injection-2026-09-27/inference-o5-iszero/mutant/closure.json",
+    "source_closure_manifest_sha256": "0a23982c8679b2a3c54b4c11371da5d24f119d2ef3931d51fd9fa0f14522c05c"
+  },
+  "field": {
+    "name": "bn128",
+    "modulus_decimal": "21888242871839275222246405745257275088548364400416034343698204186575808495617",
+    "assignment_encoding": "canonical-field-elements"
+  },
+  "compiled_subject": {
+    "r1cs_path": "../../../runs/dev-injection-2026-09-27/inference-o5-iszero/compiled/mutant/zkfdo_injection_target.r1cs",
+    "r1cs_sha256": "f93866bc63b76e5c2efe6e6b024d3a4e3ef3a914f75ca93eef4c6623acf901c0",
+    "sym_path": "../../../runs/dev-injection-2026-09-27/inference-o5-iszero/compiled/mutant/zkfdo_injection_target.sym",
+    "sym_sha256": "b06d620031aa0de6f6974e516e07180476b5531cb7dd25faa844a9ff81d5943c",
+    "expected_shape": {
+      "wires": 4,
+      "labels": 4,
+      "public_outputs": 1,
+      "public_inputs": 0,
+      "private_inputs": 1,
+      "constraints": 1
+    }
+  },
+  "compiler": {
+    "version": "2.2.3",
+    "binary_sha256": "8991887889c2a74d6fc704d5689ada4cc76fba004e866c987de6cbf3b3db6227",
+    "arguments": [],
+    "library_manifest_path": "../../../runs/dev-injection-2026-09-27/inference-o5-iszero/mutant/closure.json",
+    "library_manifest_sha256": "0a23982c8679b2a3c54b4c11371da5d24f119d2ef3931d51fd9fa0f14522c05c"
+  },
+  "contract": {
+    "definition_path": "contract.json",
+    "definition_sha256": "6e5cb878029ac8f716cee65daedab8544faf0ef536148d39ea78f01375602efa",
+    "input_contract_id": "iszero-field-input",
+    "property_id": "iszero-output-is-zero-test",
+    "input_contract_statement": "main.in is a canonical field element.",
+    "property_statement": "main.out is 1 when main.in is 0 and 0 otherwise.",
+    "input_signal_names": [
+      "main.in"
+    ],
+    "property_signal_names": [
+      "main.out"
+    ],
+    "predicate": {
+      "api_version": 1,
+      "path": "../predicates/is_zero.py",
+      "sha256": "38e6f0f6c8979d14a996d51455b6120db7eede3e52ac1ef60081d2f58264fc27",
+      "entrypoint": "evaluate",
+      "config": {
+        "input": "main.in",
+        "output": "main.out"
+      },
+      "allowed_results": [
+        {
+          "criterion": "input_preconditions",
+          "verdict": "satisfied",
+          "reason_code": "contract-satisfied",
+          "note": "The input is a canonical field element."
+        },
+        {
+          "criterion": "input_preconditions",
+          "verdict": "not-satisfied",
+          "reason_code": "input-noncanonical",
+          "note": "The input is not a canonical field element."
+        },
+        {
+          "criterion": "specified_property_violation",
+          "verdict": "satisfied",
+          "reason_code": "property-violated",
+          "note": "The output is not the zero test of the input."
+        },
+        {
+          "criterion": "specified_property_violation",
+          "verdict": "not-satisfied",
+          "reason_code": "property-holds",
+          "note": "The output is the zero test of the input."
+        },
+        {
+          "criterion": "specified_property_violation",
+          "verdict": "unknown",
+          "reason_code": "input-precondition-unresolved",
+          "note": "The property is not evaluated because the input precondition failed."
+        }
+      ],
+      "allowed_violation_classes": [
+        "zero-test-output-mismatch"
+      ]
+    }
+  },
+  "attribution": {
+    "method": "injection-single-diff",
+    "evidence_path": "single.diff",
+    "evidence_sha256": "dd992d00d13cd284886ab8a8ac1e95e1821e1107e3f287e12b3d3dfe5fd10cc0"
+  },
+  "production_reachability": {
+    "verdict": "satisfied",
+    "entrypoint_target_id": "sha256:df18305bfcf98bc4e285f25be1c7a6e56904e18d4af21073250d7c493b03c2f5",
+    "instance_key": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-injection-2026-09-27/inference-o5-iszero/mutant/src/integerDivision.circom::IsZero()",
+    "evidence_path": "reachability.json",
+    "evidence_sha256": "97ea4a33e115d2901d0f3fb4e275d710c98ce6a8101fe02cab2df2b5c2238243",
+    "verifier_manifest_path": "reachability-verifier.json",
+    "verifier_manifest_sha256": "4123a0d720c189015825814f4fb194e503464f83eeb40c5f81ec71fb46680644"
+  },
+  "injection_ground_truth": {
+    "injection_id": "dev-inference-o5-iszero",
+    "operator_id": "O5",
+    "source_location": {
+      "path": "../../../runs/dev-injection-2026-09-27/inference-o5-iszero/mutant/src/integerDivision.circom",
+      "source_sha256": "e40a87f51a82e051b8797ad16eba2072eb9fb425682a883072e1a91e315a32c3",
+      "start_byte": 116,
+      "end_byte": 182
+    },
+    "clean_revision": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+    "single_diff": {
+      "path": "single.diff",
+      "sha256": "dd992d00d13cd284886ab8a8ac1e95e1821e1107e3f287e12b3d3dfe5fd10cc0"
+    },
+    "source_closures": {
+      "clean": {
+        "path": "../../../runs/dev-injection-2026-09-27/inference-o5-iszero/clean/closure.json",
+        "sha256": "ba6b0fa93bd170a7ed382b756e2db76370339b8c6f53245d69e7487b11fd325c"
+      },
+      "mutant": {
+        "path": "../../../runs/dev-injection-2026-09-27/inference-o5-iszero/mutant/closure.json",
+        "sha256": "0a23982c8679b2a3c54b4c11371da5d24f119d2ef3931d51fd9fa0f14522c05c"
+      },
+      "disturbance_twin": {
+        "path": "../../../runs/dev-injection-2026-09-27/inference-o5-iszero/twin/closure.json",
+        "sha256": "17eee28449ba33657c0c699f29ff4d793820f73dd80300874a9e5cdff0d39f04"
+      }
+    },
+    "compiled_variants": {
+      "clean": {
+        "r1cs_path": "../../../runs/dev-injection-2026-09-27/inference-o5-iszero/compiled/clean/zkfdo_injection_target.r1cs",
+        "r1cs_sha256": "62747d89ea5867a9f9a6adf8e194f6987144f53cfda01b1bfd621a29c8b72a99",
+        "sym_path": "../../../runs/dev-injection-2026-09-27/inference-o5-iszero/compiled/clean/zkfdo_injection_target.sym",
+        "sym_sha256": "b06d620031aa0de6f6974e516e07180476b5531cb7dd25faa844a9ff81d5943c",
+        "shape": {
+          "wires": 4,
+          "labels": 4,
+          "public_outputs": 1,
+          "public_inputs": 0,
+          "private_inputs": 1,
+          "constraints": 2
+        }
+      },
+      "mutant": {
+        "r1cs_path": "../../../runs/dev-injection-2026-09-27/inference-o5-iszero/compiled/mutant/zkfdo_injection_target.r1cs",
+        "r1cs_sha256": "f93866bc63b76e5c2efe6e6b024d3a4e3ef3a914f75ca93eef4c6623acf901c0",
+        "sym_path": "../../../runs/dev-injection-2026-09-27/inference-o5-iszero/compiled/mutant/zkfdo_injection_target.sym",
+        "sym_sha256": "b06d620031aa0de6f6974e516e07180476b5531cb7dd25faa844a9ff81d5943c",
+        "shape": {
+          "wires": 4,
+          "labels": 4,
+          "public_outputs": 1,
+          "public_inputs": 0,
+          "private_inputs": 1,
+          "constraints": 1
+        }
+      },
+      "disturbance_twin": {
+        "r1cs_path": "../../../runs/dev-injection-2026-09-27/inference-o5-iszero/compiled/twin/zkfdo_injection_target.r1cs",
+        "r1cs_sha256": "f93866bc63b76e5c2efe6e6b024d3a4e3ef3a914f75ca93eef4c6623acf901c0",
+        "sym_path": "../../../runs/dev-injection-2026-09-27/inference-o5-iszero/compiled/twin/zkfdo_injection_target.sym",
+        "sym_sha256": "b06d620031aa0de6f6974e516e07180476b5531cb7dd25faa844a9ff81d5943c",
+        "shape": {
+          "wires": 4,
+          "labels": 4,
+          "public_outputs": 1,
+          "public_inputs": 0,
+          "private_inputs": 1,
+          "constraints": 1
+        }
+      }
+    },
+    "compilation_manifest": {
+      "path": "compilation.json",
+      "sha256": "cda2d223f4cbdd6543e204730da57744b09102c5788cb99ba5eaddc4ca70d0ed"
+    },
+    "projection_manifest": {
+      "path": "projection.json",
+      "sha256": "2cdcc154545a74428aea605a216eb250c68a81142a4ae87885632c0eb3257aa6"
+    },
+    "expected_clean_constraint_indices": [
+      1
+    ],
+    "clean_relation_exclusion": {
+      "method": "fully-fixed-constraint",
+      "certificate_path": "certificate.json",
+      "certificate_sha256": "4919951de5c9eb3f42f33e23972bb4b747cc02e7ab36ed3f04b06f8517f1c5da",
+      "verifier_manifest_path": "relation-verifier.json",
+      "verifier_manifest_sha256": "79da166430ed411e6ce8272c464434be96d885f80c1df2931697da7f3f922378"
+    }
+  }
+}

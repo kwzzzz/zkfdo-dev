@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "injection_id": "dev-inference-o5-iszero",
+  "root_cause_id": "dev-injection/inference-labs-inc/subnet-2-circom/o5-iszero-output-condition",
+  "operator": {
+    "id": "O5",
+    "justification": "O5 removes in * out === 0, the constraint that ties the IsZero output to its condition. The disturbance twin computes the inverse hint as zero, so a nonzero input yields output 1."
+  },
+  "project": {
+    "name": "inference-labs-inc/subnet-2-circom",
+    "revision": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+    "checkout": "../../../runs/dev-projects/inference",
+    "entrypoint": "src/circuit.circom",
+    "library_paths": []
+  },
+  "target": {
+    "source_path": "src/integerDivision.circom",
+    "template": "IsZero",
+    "concrete_parameters": []
+  },
+  "mutant_edit": {
+    "find": "  in * out === 0;\n",
+    "replace": ""
+  },
+  "twin_edit": {
+    "find": "  signal inv <-- in != 0 ? 1 / in : 0;\n",
+    "replace": "  signal inv <-- 0;\n"
+  },
+  "contract": {
+    "input_contract_id": "iszero-field-input",
+    "property_id": "iszero-output-is-zero-test",
+    "input_contract_statement": "main.in is a canonical field element.",
+    "property_statement": "main.out is 1 when main.in is 0 and 0 otherwise.",
+    "input_contract": {
+      "kind": "field_only"
+    },
+    "input_signal_names": [
+      "main.in"
+    ],
+    "property_signal_names": [
+      "main.out"
+    ],
+    "predicate": {
+      "path": "../predicates/is_zero.py",
+      "config": {
+        "input": "main.in",
+        "output": "main.out"
+      },
+      "allowed_results": [
+        {
+          "criterion": "input_preconditions",
+          "verdict": "satisfied",
+          "reason_code": "contract-satisfied",
+          "note": "The input is a canonical field element."
+        },
+        {
+          "criterion": "input_preconditions",
+          "verdict": "not-satisfied",
+          "reason_code": "input-noncanonical",
+          "note": "The input is not a canonical field element."
+        },
+        {
+          "criterion": "specified_property_violation",
+          "verdict": "satisfied",
+          "reason_code": "property-violated",
+          "note": "The output is not the zero test of the input."
+        },
+        {
+          "criterion": "specified_property_violation",
+          "verdict": "not-satisfied",
+          "reason_code": "property-holds",
+          "note": "The output is the zero test of the input."
+        },
+        {
+          "criterion": "specified_property_violation",
+          "verdict": "unknown",
+          "reason_code": "input-precondition-unresolved",
+          "note": "The property is not evaluated because the input precondition failed."
+        }
+      ],
+      "allowed_violation_classes": [
+        "zero-test-output-mismatch"
+      ]
+    }
+  },
+  "common_input": "../../../runs/dev-injection-2026-09-27/inputs/inference-o5-iszero.json",
+  "relation_exclusion": "fully-fixed-constraint",
+  "workspace": "../../../runs/dev-injection-2026-09-27/inference-o5-iszero",
+  "output": "."
+}

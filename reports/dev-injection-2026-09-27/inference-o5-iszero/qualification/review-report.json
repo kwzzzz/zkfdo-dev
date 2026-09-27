@@ -1,0 +1,301 @@
+{
+  "schema_version": 1,
+  "report_id": "dev-inference-o5-iszero/qualification",
+  "kind": "injection-ground-truth",
+  "status": "complete",
+  "review_request": {
+    "path": "../request.json",
+    "sha256": "63ec282aef1eed6300237125a57ebaceb5b829506e740e25c3f733cac910b449"
+  },
+  "review_specs": [
+    {
+      "path": "../spec.json",
+      "sha256": "3d2712b0e2d9ee7f95fc7bd46934e14904a09b61a85584466405636725d3b466"
+    }
+  ],
+  "engine": {
+    "version": "candidate-review-schema1",
+    "source_revision": "worktree-engine-manifest:457062ab146c1868283547483bbe8f768f691b74cde8198d8db1f57bc4c15768",
+    "source_manifest_path": "../engine-source-manifest.json",
+    "source_manifest_sha256": "457062ab146c1868283547483bbe8f768f691b74cde8198d8db1f57bc4c15768",
+    "executable_path": "../../../../runs/dev-injection-2026-09-27/bin-dev/zkfDO",
+    "executable_sha256": "4d94870c9e64a34bbeaec32d6ca1ac5129e5bc1149e8a7417025e58f0f7bb1db",
+    "predicate_runner_path": "../../../../../../../../opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+    "predicate_runner_sha256": "87d4df53fd91304be5bac391fb204643c36b7df2023c04a0953bcbc7d4fdf634"
+  },
+  "adapters": [
+    {
+      "id": "wtns-json-v1",
+      "implementation_sha256": "7d0f123d84079048b28822011c380791725dcb049c88239253b27bd214875138"
+    }
+  ],
+  "failure": null,
+  "candidate_inventory": null,
+  "executions": [],
+  "candidate_errors": [],
+  "unreviewed_candidates": [],
+  "reviews": [
+    {
+      "review_kind": "injection-ground-truth",
+      "candidate_record_id": null,
+      "candidate": null,
+      "binding": null,
+      "assignments": {
+        "disturbance": {
+          "path": "../../../../runs/dev-injection-2026-09-27/inference-o5-iszero/witness/twin.assignment.json",
+          "sha256": "cb8642d7cd10910ca12c3b79676220355b7988dbafb1f839922d5b865095a762"
+        },
+        "clean_reference": {
+          "path": "../../../../runs/dev-injection-2026-09-27/inference-o5-iszero/witness/clean.assignment.json",
+          "sha256": "55cdffcd23a8583e4f0ad3483e39bc3d2cb735b1363a94384fc57bbcf5f493f3"
+        }
+      },
+      "review_spec": {
+        "id": "dev-inference-o5-iszero/spec",
+        "path": "../spec.json",
+        "sha256": "3d2712b0e2d9ee7f95fc7bd46934e14904a09b61a85584466405636725d3b466"
+      },
+      "root_cause_id": "dev-injection/inference-labs-inc/subnet-2-circom/o5-iszero-output-condition",
+      "injection_id": "dev-inference-o5-iszero",
+      "artifact_verification": {
+        "mutant_r1cs": true,
+        "mutant_sym": true,
+        "clean_r1cs": true,
+        "clean_sym": true,
+        "twin_r1cs": true,
+        "twin_sym": true,
+        "generation_reproduced": true
+      },
+      "failed_target_constraint_count": 0,
+      "failed_target_constraint_indices": [],
+      "failed_clean_constraint_count": 1,
+      "failed_clean_constraint_indices": [
+        1
+      ],
+      "criteria": {
+        "assignment_encoding": {
+          "verdict": "satisfied",
+          "reason_code": "canonical",
+          "evidence": [
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/inference-o5-iszero/witness/twin.assignment.json",
+              "sha256": "cb8642d7cd10910ca12c3b79676220355b7988dbafb1f839922d5b865095a762"
+            }
+          ],
+          "note": "All field-valued disturbance assignment entries are canonical."
+        },
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "reason_code": "contract-satisfied",
+          "evidence": [
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/inference-o5-iszero/witness/twin.assignment.json",
+              "sha256": "cb8642d7cd10910ca12c3b79676220355b7988dbafb1f839922d5b865095a762"
+            },
+            {
+              "path": "../contract.json",
+              "sha256": "6e5cb878029ac8f716cee65daedab8544faf0ef536148d39ea78f01375602efa"
+            }
+          ],
+          "note": "The input is a canonical field element."
+        },
+        "fixed_target_constraints": {
+          "verdict": "satisfied",
+          "reason_code": "all-constraints-satisfied",
+          "evidence": [
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/inference-o5-iszero/witness/twin.assignment.json",
+              "sha256": "cb8642d7cd10910ca12c3b79676220355b7988dbafb1f839922d5b865095a762"
+            },
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/inference-o5-iszero/compiled/mutant/zkfdo_injection_target.r1cs",
+              "sha256": "f93866bc63b76e5c2efe6e6b024d3a4e3ef3a914f75ca93eef4c6623acf901c0"
+            }
+          ],
+          "note": "All constraints in the fixed injected-mutant R1CS are satisfied."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "reason_code": "property-violated",
+          "evidence": [
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/inference-o5-iszero/witness/twin.assignment.json",
+              "sha256": "cb8642d7cd10910ca12c3b79676220355b7988dbafb1f839922d5b865095a762"
+            },
+            {
+              "path": "../contract.json",
+              "sha256": "6e5cb878029ac8f716cee65daedab8544faf0ef536148d39ea78f01375602efa"
+            }
+          ],
+          "note": "The output is not the zero test of the input."
+        }
+      },
+      "qualification_criteria": {
+        "twin_r1cs_identity": {
+          "verdict": "satisfied",
+          "reason_code": "twin-r1cs-identical",
+          "evidence": [
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/inference-o5-iszero/compiled/mutant/zkfdo_injection_target.r1cs",
+              "sha256": "f93866bc63b76e5c2efe6e6b024d3a4e3ef3a914f75ca93eef4c6623acf901c0"
+            },
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/inference-o5-iszero/compiled/twin/zkfdo_injection_target.r1cs",
+              "sha256": "f93866bc63b76e5c2efe6e6b024d3a4e3ef3a914f75ca93eef4c6623acf901c0"
+            }
+          ],
+          "note": "The disturbance twin and mutant R1CS raw hashes are identical."
+        },
+        "twin_sym_identity": {
+          "verdict": "satisfied",
+          "reason_code": "twin-sym-identical",
+          "evidence": [
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/inference-o5-iszero/compiled/mutant/zkfdo_injection_target.sym",
+              "sha256": "b06d620031aa0de6f6974e516e07180476b5531cb7dd25faa844a9ff81d5943c"
+            },
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/inference-o5-iszero/compiled/twin/zkfdo_injection_target.sym",
+              "sha256": "b06d620031aa0de6f6974e516e07180476b5531cb7dd25faa844a9ff81d5943c"
+            }
+          ],
+          "note": "The disturbance twin and mutant SYM raw hashes are identical."
+        },
+        "generation_reproducibility": {
+          "verdict": "satisfied",
+          "reason_code": "generation-reproduced",
+          "evidence": [
+            {
+              "path": "../generation.json",
+              "sha256": "38a1b942cbf0514168a0d71596b89cefacf99648f822fc8d61e4e52b66b433d2"
+            }
+          ],
+          "note": "Both pinned generators reproduced their witness and assignment hashes."
+        },
+        "clean_reference_assignment_encoding": {
+          "verdict": "satisfied",
+          "reason_code": "canonical",
+          "evidence": [
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/inference-o5-iszero/witness/clean.assignment.json",
+              "sha256": "55cdffcd23a8583e4f0ad3483e39bc3d2cb735b1363a94384fc57bbcf5f493f3"
+            }
+          ],
+          "note": "The clean reference assignment is complete and canonical."
+        },
+        "clean_reference_constraints": {
+          "verdict": "satisfied",
+          "reason_code": "clean-reference-satisfies-constraints",
+          "evidence": [
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/inference-o5-iszero/witness/clean.assignment.json",
+              "sha256": "55cdffcd23a8583e4f0ad3483e39bc3d2cb735b1363a94384fc57bbcf5f493f3"
+            },
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/inference-o5-iszero/compiled/clean/zkfdo_injection_target.r1cs",
+              "sha256": "62747d89ea5867a9f9a6adf8e194f6987144f53cfda01b1bfd621a29c8b72a99"
+            },
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/inference-o5-iszero/compiled/clean/zkfdo_injection_target.sym",
+              "sha256": "b06d620031aa0de6f6974e516e07180476b5531cb7dd25faa844a9ff81d5943c"
+            }
+          ],
+          "note": "The same-input clean reference satisfies every clean R1CS constraint."
+        },
+        "clean_input_equivalence": {
+          "verdict": "satisfied",
+          "reason_code": "clean-inputs-equal",
+          "evidence": [
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/inference-o5-iszero/witness/twin.assignment.json",
+              "sha256": "cb8642d7cd10910ca12c3b79676220355b7988dbafb1f839922d5b865095a762"
+            },
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/inference-o5-iszero/witness/clean.assignment.json",
+              "sha256": "55cdffcd23a8583e4f0ad3483e39bc3d2cb735b1363a94384fc57bbcf5f493f3"
+            }
+          ],
+          "note": "The clean and disturbance assignments have identical contract inputs."
+        },
+        "clean_rejection": {
+          "verdict": "satisfied",
+          "reason_code": "clean-projection-rejected",
+          "evidence": [
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/inference-o5-iszero/witness/twin.assignment.json",
+              "sha256": "cb8642d7cd10910ca12c3b79676220355b7988dbafb1f839922d5b865095a762"
+            },
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/inference-o5-iszero/compiled/clean/zkfdo_injection_target.r1cs",
+              "sha256": "62747d89ea5867a9f9a6adf8e194f6987144f53cfda01b1bfd621a29c8b72a99"
+            },
+            {
+              "path": "../projection.json",
+              "sha256": "2cdcc154545a74428aea605a216eb250c68a81142a4ae87885632c0eb3257aa6"
+            }
+          ],
+          "note": "The projected disturbance fails a predeclared injection-related clean constraint."
+        },
+        "clean_relation_exclusion": {
+          "verdict": "satisfied",
+          "reason_code": "clean-relation-excluded",
+          "evidence": [
+            {
+              "path": "../certificate.json",
+              "sha256": "4919951de5c9eb3f42f33e23972bb4b747cc02e7ab36ed3f04b06f8517f1c5da"
+            },
+            {
+              "path": "../relation-verifier.json",
+              "sha256": "79da166430ed411e6ce8272c464434be96d885f80c1df2931697da7f3f922378"
+            }
+          ],
+          "note": "A pinned verifier excludes every clean extension for the fixed contract signals."
+        },
+        "production_reachability": {
+          "verdict": "satisfied",
+          "reason_code": "production-reachable",
+          "evidence": [
+            {
+              "path": "../reachability.json",
+              "sha256": "97ea4a33e115d2901d0f3fb4e275d710c98ce6a8101fe02cab2df2b5c2238243"
+            },
+            {
+              "path": "../reachability-verifier.json",
+              "sha256": "4123a0d720c189015825814f4fb194e503464f83eeb40c5f81ec71fb46680644"
+            },
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/inference-o5-iszero/discovery-mutant/8e50ee8c-b765-4f1d-89a2-76620463339a/discovery.json",
+              "sha256": "bb011d914419953da8da1657eeac4e7f22f35051b3feeecc3c3736223360d761"
+            }
+          ],
+          "note": "A complete pinned parent-instance chain reaches the production entrypoint."
+        }
+      },
+      "disposition": "validated",
+      "cause_attribution": {
+        "verdict": "matched",
+        "reason_code": "injection-source-transition-matched",
+        "evidence": [
+          {
+            "path": "../single.diff",
+            "sha256": "dd992d00d13cd284886ab8a8ac1e95e1821e1107e3f287e12b3d3dfe5fd10cc0"
+          }
+        ]
+      },
+      "ground_truth_qualification": "qualified",
+      "violation_class": "zero-test-output-mismatch",
+      "confirmation_eligible": false,
+      "automated_review_seconds": 1.308090459,
+      "predicate_stream_nonempty": false
+    }
+  ],
+  "summary": {
+    "validated": 1,
+    "rejected": 0,
+    "unresolved": 0,
+    "review_error": 0,
+    "qualified": 1
+  },
+  "semantic_result_sha256": "c67872e0f16eb33c4701a0adc1523a50fd869067e853c781a64bf526080cf928",
+  "raw_values_persisted": false
+}

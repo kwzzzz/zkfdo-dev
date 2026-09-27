@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "kind": "injection-ground-truth",
+  "injection_id": "dev-inference-o5-iszero",
+  "review_spec": {
+    "path": "../spec.json",
+    "sha256": "3d2712b0e2d9ee7f95fc7bd46934e14904a09b61a85584466405636725d3b466"
+  },
+  "review_request": {
+    "path": "../request.json",
+    "sha256": "63ec282aef1eed6300237125a57ebaceb5b829506e740e25c3f733cac910b449"
+  },
+  "review_report": {
+    "path": "review-report.json",
+    "sha256": "f322d39c3f9dfcbdc43c2e5f2a3e85b61f9431d51a85dfa3f37bbcc3401282a3"
+  },
+  "qualification": "qualified"
+}

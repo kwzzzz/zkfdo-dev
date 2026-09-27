@@ -1,0 +1,18 @@
+{
+  "injection_id": "dev-inference-o5-iszero",
+  "input_contract": {
+    "kind": "field_only"
+  },
+  "input_contract_id": "iszero-field-input",
+  "input_contract_statement": "main.in is a canonical field element.",
+  "input_signal_names": [
+    "main.in"
+  ],
+  "operator_id": "O5",
+  "property_id": "iszero-output-is-zero-test",
+  "property_signal_names": [
+    "main.out"
+  ],
+  "property_statement": "main.out is 1 when main.in is 0 and 0 otherwise.",
+  "schema_version": 1
+}

@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "operator_id": "O5",
+  "operator_justification": "O5 removes in * out === 0, the constraint that ties the IsZero output to its condition. The disturbance twin computes the inverse hint as zero, so a nonzero input yields output 1.",
+  "mappings": [
+    {
+      "clean_wire_index": 1,
+      "clean_signal_names": [
+        "main.out"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out"
+    },
+    {
+      "clean_wire_index": 2,
+      "clean_signal_names": [
+        "main.in"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.in"
+    },
+    {
+      "clean_wire_index": 3,
+      "clean_signal_names": [
+        "main.inv"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.inv"
+    }
+  ]
+}
