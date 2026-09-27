@@ -196,6 +196,7 @@ B1 설계 초안 ─► T4 검토 엔진·개발용 주입(제외 스냅샷 프�
 - **완료 조건:** 기존 판정과 전부 일치, 테스트 포함.
 - **금지:** 기존 보고서의 판정 파일을 덮어쓰지 않는다. 신호 값을 Git에 커밋하지 않는다.
 - **완료 (2026-09-27):** strict schema 1 spec/request/report/index, raw R1CS·SYM·assignment 검증, 고정 timeout의 predicate·generator·compiler·외부 verifier, backend·주입 검토, selected-entrypoint reachability와 clean relation-exclusion 검증, schema 2 confirmation·실제 evaluator 연결을 구현했다. backend spec은 frozen prepared corpus의 R1CS·compiler·semantic arguments와 결속하고, 주입 qualification은 별도 full reproduction argv로 닫힌 `-l` include 순서와 exact wrapper instance를 재검증한다. qualification bundle은 현재 엔진으로 다시 실행해 원본 review와 일치해야 하며, 같은 spec의 backend request가 이를 실제 소비하는 통합 시험을 통과한다. final output은 staging 완성 뒤 atomic rename한다. 보존된 v1.1 36쌍·v2 36쌍·v3 1쌍의 후보 73개가 모두 기존 판정과 일치했고, 220개 실행 행(비후보 147개), 원인 중복 제거, 값 비보존과 frozen oracle·내부 evidence hash를 자동 교차 검증했다. 합성 시험으로 후보 0개, 복수 후보·복수 spec, 후보 파일·adapter·공유 입력 오류 경계와 주입 qualification의 정상·generator·compiler library·assignment·hash·parse·binding 경로를 검증했다. `clean_revision`의 upstream checkout, `single_diff` patch 적용, production entrypoint 지정은 B2 프로젝트 provenance의 별도 필수 gate로 남긴다.
+- **보완 (2026-09-27):** 처음 올린 시험 일부가 Git에 없는 로컬 증거(컴파일한 R1CS·SYM, 보존 후보, 빌드 경로의 실행 파일, 당시 소스 스냅샷)를 요구해 깨끗한 checkout과 CI에서는 컴파일되지 않거나 실패했다. 이 시험들은 로컬 전용(`#[ignore]`)으로 표시하고, 회귀 검증을 추적 증거 모드(CI 기본)와 `--require-local-evidence` 모드로 나눴다. macOS에서 막 생성된 프로세스 그룹에 대한 일시적 EPERM도 짧게 재시도한다. 회귀 결과는 `runs/`에 보존한 실행 파일로 다시 만들었고, 판정 내용은 이전 결과와 같다. backend 경계 시험을 합성 fixture로 옮겨 CI에서도 돌게 하는 일은 후속으로 남긴다.
 
 ### T5. `cost-aware` 전략과 동점 기록 — 담당: miiz
 
