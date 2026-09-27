@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "review_spec_id": "pilot-inference-o1-where/spec",
+  "root_cause_id": "dev-injection/inference-labs-inc/subnet-2-circom/o1-where-output",
+  "subject_kind": "injected-mutant",
+  "expected_scope": "original-component",
+  "target_binding": {
+    "target_id": "sha256:92149b17b9311f7562b15958d1af7a2965ca08a592946a2526de7fb27901c985",
+    "instance_key": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-ranking-pilot-2026-09-27/o1-where/injection/mutant/src/where.circom::Where()",
+    "template": "Where",
+    "concrete_parameters": [],
+    "source_path": "../../../../runs/dev-ranking-pilot-2026-09-27/o1-where/injection/mutant/src/where.circom",
+    "source_sha256": "70dd702217de4b0d4aa561768756217f6d448451ff14c39508caf5a5f66a81c1",
+    "source_closure_manifest_path": "../../../../runs/dev-ranking-pilot-2026-09-27/o1-where/injection/mutant/closure.json",
+    "source_closure_manifest_sha256": "4c7d2fb40c27eb84b486f4960927ff84ce466f754d1f96bde85e2b419b5b86a6"
+  },
+  "field": {
+    "name": "bn128",
+    "modulus_decimal": "21888242871839275222246405745257275088548364400416034343698204186575808495617",
+    "assignment_encoding": "canonical-field-elements"
+  },
+  "compiled_subject": {
+    "r1cs_path": "../../../../runs/dev-ranking-pilot-2026-09-27/o1-where/injection/compiled/mutant/src__where__Where.r1cs",
+    "r1cs_sha256": "0ac216feeed03832c81e6c2dd05126c4ecd5eb6184bd40783d64794a636c0e27",
+    "sym_path": "../../../../runs/dev-ranking-pilot-2026-09-27/o1-where/injection/compiled/mutant/src__where__Where.sym",
+    "sym_sha256": "87a1c7b8b22e82afe6098de398cdaa47dbd01253be342ae3e4bd3b409dadf4b2",
+    "expected_shape": {
+      "wires": 7,
+      "labels": 7,
+      "public_outputs": 1,
+      "public_inputs": 0,
+      "private_inputs": 3,
+      "constraints": 3
+    }
+  },
+  "compiler": {
+    "version": "2.2.3",
+    "binary_sha256": "8991887889c2a74d6fc704d5689ada4cc76fba004e866c987de6cbf3b3db6227",
+    "arguments": [],
+    "library_manifest_path": "../../../../runs/dev-ranking-pilot-2026-09-27/o1-where/injection/mutant/closure.json",
+    "library_manifest_sha256": "4c7d2fb40c27eb84b486f4960927ff84ce466f754d1f96bde85e2b419b5b86a6"
+  },
+  "contract": {
+    "definition_path": "contract.json",
+    "definition_sha256": "39fcc8cd72482c9f1c872c7de8c2b37f16a426c001823237e9577802c1ac2a9a",
+    "input_contract_id": "where-selector-boolean",
+    "property_id": "where-returns-selected-choice",
+    "input_contract_statement": "main.selector and both main.choices are canonical field elements; the template constrains the selector to be 0 or 1.",
+    "property_statement": "main.out equals choices[0] when selector is 1 and choices[1] when selector is 0.",
+    "input_signal_names": [
+      "main.choices[0]",
+      "main.choices[1]",
+      "main.selector"
+    ],
+    "property_signal_names": [
+      "main.out"
+    ],
+    "predicate": {
+      "api_version": 1,
+      "path": "../../../dev-injection-2026-09-27/predicates/selector_mux.py",
+      "sha256": "e99ce780c056ace7b3c78a9c17b568a92a3043a899546ff3167ce57f2f6b65c6",
+      "entrypoint": "evaluate",
+      "config": {
+        "choices": [
+          "main.choices[0]",
+          "main.choices[1]"
+        ],
+        "output": "main.out",
+        "selector": "main.selector"
+      },
+      "allowed_results": [
+        {
+          "criterion": "input_preconditions",
+          "verdict": "satisfied",
+          "reason_code": "contract-satisfied",
+          "note": "The selector is boolean and both choices are canonical."
+        },
+        {
+          "criterion": "input_preconditions",
+          "verdict": "not-satisfied",
+          "reason_code": "selector-not-boolean",
+          "note": "The selector is not boolean or a choice is not canonical."
+        },
+        {
+          "criterion": "specified_property_violation",
+          "verdict": "satisfied",
+          "reason_code": "property-violated",
+          "note": "The output is not the selected choice."
+        },
+        {
+          "criterion": "specified_property_violation",
+          "verdict": "not-satisfied",
+          "reason_code": "property-holds",
+          "note": "The output is the selected choice."
+        },
+        {
+          "criterion": "specified_property_violation",
+          "verdict": "unknown",
+          "reason_code": "input-precondition-unresolved",
+          "note": "The property is not evaluated because the input precondition failed."
+        }
+      ],
+      "allowed_violation_classes": [
+        "selected-output-mismatch"
+      ]
+    }
+  },
+  "attribution": {
+    "method": "injection-single-diff",
+    "evidence_path": "single.diff",
+    "evidence_sha256": "686b50be7e26cd3944f90773baa902eff0d665aa648d87c3de6937e0e78c89d5"
+  },
+  "production_reachability": {
+    "verdict": "satisfied",
+    "entrypoint_target_id": "sha256:8a94bb8d907444fb77a32ab16a48d633f8f7def2f38b88db2e0f526644f5be71",
+    "instance_key": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-ranking-pilot-2026-09-27/o1-where/injection/mutant/src/where.circom::Where()",
+    "evidence_path": "reachability.json",
+    "evidence_sha256": "a62a4460de7b1586438833c117e1d407331573a48aeeb8205e8ff928ca38749c",
+    "verifier_manifest_path": "reachability-verifier.json",
+    "verifier_manifest_sha256": "379cc1e523b5639f73850ecca4a82ca4ea7614dc3b123d52b3425f90076193bf"
+  },
+  "injection_ground_truth": {
+    "injection_id": "pilot-inference-o1-where",
+    "operator_id": "O1",
+    "source_location": {
+      "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o1-where/injection/mutant/src/where.circom",
+      "source_sha256": "70dd702217de4b0d4aa561768756217f6d448451ff14c39508caf5a5f66a81c1",
+      "start_byte": 302,
+      "end_byte": 349
+    },
+    "clean_revision": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+    "single_diff": {
+      "path": "single.diff",
+      "sha256": "686b50be7e26cd3944f90773baa902eff0d665aa648d87c3de6937e0e78c89d5"
+    },
+    "source_closures": {
+      "clean": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o1-where/injection/clean/closure.json",
+        "sha256": "7b3a291d64007c993559d8b20eabc88b44df8e2bc5c70fc05470e2a3de934079"
+      },
+      "mutant": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o1-where/injection/mutant/closure.json",
+        "sha256": "4c7d2fb40c27eb84b486f4960927ff84ce466f754d1f96bde85e2b419b5b86a6"
+      },
+      "disturbance_twin": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o1-where/injection/twin/closure.json",
+        "sha256": "57957d4acb109c8709f78e08baeced7ad02f9012859829d874db0f63edddb47e"
+      }
+    },
+    "compiled_variants": {
+      "clean": {
+        "r1cs_path": "../../../../runs/dev-ranking-pilot-2026-09-27/o1-where/injection/compiled/clean/src__where__Where.r1cs",
+        "r1cs_sha256": "60d6a17f2ee6df5d19e1c31cac54dc8ebb7671a2b65248b3d0379a012e503340",
+        "sym_path": "../../../../runs/dev-ranking-pilot-2026-09-27/o1-where/injection/compiled/clean/src__where__Where.sym",
+        "sym_sha256": "87a1c7b8b22e82afe6098de398cdaa47dbd01253be342ae3e4bd3b409dadf4b2",
+        "shape": {
+          "wires": 7,
+          "labels": 7,
+          "public_outputs": 1,
+          "public_inputs": 0,
+          "private_inputs": 3,
+          "constraints": 4
+        }
+      },
+      "mutant": {
+        "r1cs_path": "../../../../runs/dev-ranking-pilot-2026-09-27/o1-where/injection/compiled/mutant/src__where__Where.r1cs",
+        "r1cs_sha256": "0ac216feeed03832c81e6c2dd05126c4ecd5eb6184bd40783d64794a636c0e27",
+        "sym_path": "../../../../runs/dev-ranking-pilot-2026-09-27/o1-where/injection/compiled/mutant/src__where__Where.sym",
+        "sym_sha256": "87a1c7b8b22e82afe6098de398cdaa47dbd01253be342ae3e4bd3b409dadf4b2",
+        "shape": {
+          "wires": 7,
+          "labels": 7,
+          "public_outputs": 1,
+          "public_inputs": 0,
+          "private_inputs": 3,
+          "constraints": 3
+        }
+      },
+      "disturbance_twin": {
+        "r1cs_path": "../../../../runs/dev-ranking-pilot-2026-09-27/o1-where/injection/compiled/twin/src__where__Where.r1cs",
+        "r1cs_sha256": "0ac216feeed03832c81e6c2dd05126c4ecd5eb6184bd40783d64794a636c0e27",
+        "sym_path": "../../../../runs/dev-ranking-pilot-2026-09-27/o1-where/injection/compiled/twin/src__where__Where.sym",
+        "sym_sha256": "87a1c7b8b22e82afe6098de398cdaa47dbd01253be342ae3e4bd3b409dadf4b2",
+        "shape": {
+          "wires": 7,
+          "labels": 7,
+          "public_outputs": 1,
+          "public_inputs": 0,
+          "private_inputs": 3,
+          "constraints": 3
+        }
+      }
+    },
+    "compilation_manifest": {
+      "path": "compilation.json",
+      "sha256": "7178c9fe1f2c64c69d705e8ce7978d23d6bcd878ed63660efbc3b4b54594f8ce"
+    },
+    "projection_manifest": {
+      "path": "projection.json",
+      "sha256": "e5f384e23183a773d23225e622e8e4db5e834a5a62179a86b14be113d5da16a8"
+    },
+    "expected_clean_constraint_indices": [
+      3
+    ],
+    "clean_relation_exclusion": {
+      "method": "operator-proof",
+      "certificate_path": "certificate.json",
+      "certificate_sha256": "ab8f89187aa16665e33038bff69c833e5b0e32b341fcdd28e7e0808a3af1649f",
+      "verifier_manifest_path": "relation-verifier.json",
+      "verifier_manifest_sha256": "6b859b0fac02a29c99c1488b210f6e948ac6905288b66df8ad3c5c72e3263be8"
+    }
+  }
+}

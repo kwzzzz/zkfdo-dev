@@ -1,0 +1,18 @@
+--- a/src/clampTensor.circom
++++ b/src/clampTensor.circom
+@@ -7,12 +7,9 @@
+ 
+   var lc = 0;
+   var bit_value = 1;
+-  component bit_checks[n];
+-
+-  for (var i = 0; i < n; i++) {
+-    out[i] <-- (in >> i) & 1;
+-    bit_checks[i] = AssertBit();
+-    bit_checks[i].in <== out[i];
++
++  for (var i = 0; i < n; i++) {
++    out[i] <-- (in >> i) & 1;
+ 
+     lc += out[i] * bit_value;
+     bit_value <<= 1;

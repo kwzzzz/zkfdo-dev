@@ -1,0 +1,27 @@
+{
+  "kind": "injection-ground-truth",
+  "schema_version": 1,
+  "request_id": "pilot-inference-o2-num2bits41/qualification",
+  "review_spec": {
+    "path": "spec.json",
+    "sha256": "662739ced935550c6487ec4fde2ca8641d4cc8f09971c06633794099d8bd0bda"
+  },
+  "generation_manifest": {
+    "path": "generation.json",
+    "sha256": "96a917531645d2d9abfc7f22dc89fb9cc1c3d23ed1e7783038461b16540c99f3"
+  },
+  "disturbance_assignment": {
+    "origin": "disturbance-twin",
+    "format": "wtns-json-v1",
+    "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o2-num2bits41/injection/witness/twin.assignment.json",
+    "sha256": "3ce7535fc6488d8c2326bfc853630665b37e10bdb7c8305ec0670fb9e711414a",
+    "adapter_implementation_sha256": "46a43d08b23b3c5d3a11a5b407d402aa9c33aeeeff9c92918fb30089dcd20bbb"
+  },
+  "clean_reference_assignment": {
+    "origin": "clean-witness-generator",
+    "format": "wtns-json-v1",
+    "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o2-num2bits41/injection/witness/clean.assignment.json",
+    "sha256": "748482b31c991e94ca7c08eecf9bcc2d2a198c01d6920b29a76a75bbd49597fb",
+    "adapter_implementation_sha256": "46a43d08b23b3c5d3a11a5b407d402aa9c33aeeeff9c92918fb30089dcd20bbb"
+  }
+}

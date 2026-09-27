@@ -1,0 +1,10 @@
+--- a/src/integerDivision.circom
++++ b/src/integerDivision.circom
+@@ -9,7 +9,6 @@
+   signal inv <-- in != 0 ? 1 / in : 0;
+   out <== 1 - (in * inv);
+ 
+-  in * out === 0;
+ }
+ 
+ template IntDiv(n) {

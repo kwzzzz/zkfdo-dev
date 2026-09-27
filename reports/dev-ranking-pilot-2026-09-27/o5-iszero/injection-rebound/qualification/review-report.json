@@ -1,0 +1,301 @@
+{
+  "schema_version": 1,
+  "report_id": "pilot-inference-o5-iszero/qualification",
+  "kind": "injection-ground-truth",
+  "status": "complete",
+  "review_request": {
+    "path": "../request.json",
+    "sha256": "be49c8c5d9144d4f9b19e8b401ef46946872668dde27e90c6538809dcf38dab0"
+  },
+  "review_specs": [
+    {
+      "path": "../spec.json",
+      "sha256": "b9d75cc0639d6b03d80604912f963ae9dbfc5cc16704425ec647d7e2f66c66c1"
+    }
+  ],
+  "engine": {
+    "version": "candidate-review-schema1",
+    "source_revision": "worktree-engine-manifest:32b9c66e95b5ee656c58f2c10e63ddd7381d5134f0f2524934e2d0a257b0f0e9",
+    "source_manifest_path": "../engine-source-manifest.json",
+    "source_manifest_sha256": "32b9c66e95b5ee656c58f2c10e63ddd7381d5134f0f2524934e2d0a257b0f0e9",
+    "executable_path": "../../../../../runs/dev-ranking-pilot-2026-09-27/bin-v2/zkfDO",
+    "executable_sha256": "89488fb61b5b59ee9d0df5cdc37bdf87e9c670b08db5996896981bc436f029fc",
+    "predicate_runner_path": "../../../../../../../../../opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+    "predicate_runner_sha256": "87d4df53fd91304be5bac391fb204643c36b7df2023c04a0953bcbc7d4fdf634"
+  },
+  "adapters": [
+    {
+      "id": "wtns-json-v1",
+      "implementation_sha256": "46a43d08b23b3c5d3a11a5b407d402aa9c33aeeeff9c92918fb30089dcd20bbb"
+    }
+  ],
+  "failure": null,
+  "candidate_inventory": null,
+  "executions": [],
+  "candidate_errors": [],
+  "unreviewed_candidates": [],
+  "reviews": [
+    {
+      "review_kind": "injection-ground-truth",
+      "candidate_record_id": null,
+      "candidate": null,
+      "binding": null,
+      "assignments": {
+        "disturbance": {
+          "path": "../../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/witness/twin.assignment.json",
+          "sha256": "cb8642d7cd10910ca12c3b79676220355b7988dbafb1f839922d5b865095a762"
+        },
+        "clean_reference": {
+          "path": "../../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/witness/clean.assignment.json",
+          "sha256": "55cdffcd23a8583e4f0ad3483e39bc3d2cb735b1363a94384fc57bbcf5f493f3"
+        }
+      },
+      "review_spec": {
+        "id": "pilot-inference-o5-iszero/spec",
+        "path": "../spec.json",
+        "sha256": "b9d75cc0639d6b03d80604912f963ae9dbfc5cc16704425ec647d7e2f66c66c1"
+      },
+      "root_cause_id": "dev-injection/inference-labs-inc/subnet-2-circom/o5-iszero-output-condition",
+      "injection_id": "pilot-inference-o5-iszero",
+      "artifact_verification": {
+        "mutant_r1cs": true,
+        "mutant_sym": true,
+        "clean_r1cs": true,
+        "clean_sym": true,
+        "twin_r1cs": true,
+        "twin_sym": true,
+        "generation_reproduced": true
+      },
+      "failed_target_constraint_count": 0,
+      "failed_target_constraint_indices": [],
+      "failed_clean_constraint_count": 1,
+      "failed_clean_constraint_indices": [
+        1
+      ],
+      "criteria": {
+        "assignment_encoding": {
+          "verdict": "satisfied",
+          "reason_code": "canonical",
+          "evidence": [
+            {
+              "path": "../../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/witness/twin.assignment.json",
+              "sha256": "cb8642d7cd10910ca12c3b79676220355b7988dbafb1f839922d5b865095a762"
+            }
+          ],
+          "note": "All field-valued disturbance assignment entries are canonical."
+        },
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "reason_code": "contract-satisfied",
+          "evidence": [
+            {
+              "path": "../../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/witness/twin.assignment.json",
+              "sha256": "cb8642d7cd10910ca12c3b79676220355b7988dbafb1f839922d5b865095a762"
+            },
+            {
+              "path": "../contract.json",
+              "sha256": "cb08fde94d26170698269b867c9c2a84b274d6d31df3c9f6f4f5851cae637e29"
+            }
+          ],
+          "note": "The input is a canonical field element."
+        },
+        "fixed_target_constraints": {
+          "verdict": "satisfied",
+          "reason_code": "all-constraints-satisfied",
+          "evidence": [
+            {
+              "path": "../../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/witness/twin.assignment.json",
+              "sha256": "cb8642d7cd10910ca12c3b79676220355b7988dbafb1f839922d5b865095a762"
+            },
+            {
+              "path": "../../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/compiled/mutant/src__integerDivision__IsZero.r1cs",
+              "sha256": "f93866bc63b76e5c2efe6e6b024d3a4e3ef3a914f75ca93eef4c6623acf901c0"
+            }
+          ],
+          "note": "All constraints in the fixed injected-mutant R1CS are satisfied."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "reason_code": "property-violated",
+          "evidence": [
+            {
+              "path": "../../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/witness/twin.assignment.json",
+              "sha256": "cb8642d7cd10910ca12c3b79676220355b7988dbafb1f839922d5b865095a762"
+            },
+            {
+              "path": "../contract.json",
+              "sha256": "cb08fde94d26170698269b867c9c2a84b274d6d31df3c9f6f4f5851cae637e29"
+            }
+          ],
+          "note": "The output is not the zero test of the input."
+        }
+      },
+      "qualification_criteria": {
+        "twin_r1cs_identity": {
+          "verdict": "satisfied",
+          "reason_code": "twin-r1cs-identical",
+          "evidence": [
+            {
+              "path": "../../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/compiled/mutant/src__integerDivision__IsZero.r1cs",
+              "sha256": "f93866bc63b76e5c2efe6e6b024d3a4e3ef3a914f75ca93eef4c6623acf901c0"
+            },
+            {
+              "path": "../../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/compiled/twin/src__integerDivision__IsZero.r1cs",
+              "sha256": "f93866bc63b76e5c2efe6e6b024d3a4e3ef3a914f75ca93eef4c6623acf901c0"
+            }
+          ],
+          "note": "The disturbance twin and mutant R1CS raw hashes are identical."
+        },
+        "twin_sym_identity": {
+          "verdict": "satisfied",
+          "reason_code": "twin-sym-identical",
+          "evidence": [
+            {
+              "path": "../../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/compiled/mutant/src__integerDivision__IsZero.sym",
+              "sha256": "b06d620031aa0de6f6974e516e07180476b5531cb7dd25faa844a9ff81d5943c"
+            },
+            {
+              "path": "../../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/compiled/twin/src__integerDivision__IsZero.sym",
+              "sha256": "b06d620031aa0de6f6974e516e07180476b5531cb7dd25faa844a9ff81d5943c"
+            }
+          ],
+          "note": "The disturbance twin and mutant SYM raw hashes are identical."
+        },
+        "generation_reproducibility": {
+          "verdict": "satisfied",
+          "reason_code": "generation-reproduced",
+          "evidence": [
+            {
+              "path": "../generation.json",
+              "sha256": "3e022150d4004a509feb42ed1eddbfe786359a45a1ca214d059a374fd425fbea"
+            }
+          ],
+          "note": "Both pinned generators reproduced their witness and assignment hashes."
+        },
+        "clean_reference_assignment_encoding": {
+          "verdict": "satisfied",
+          "reason_code": "canonical",
+          "evidence": [
+            {
+              "path": "../../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/witness/clean.assignment.json",
+              "sha256": "55cdffcd23a8583e4f0ad3483e39bc3d2cb735b1363a94384fc57bbcf5f493f3"
+            }
+          ],
+          "note": "The clean reference assignment is complete and canonical."
+        },
+        "clean_reference_constraints": {
+          "verdict": "satisfied",
+          "reason_code": "clean-reference-satisfies-constraints",
+          "evidence": [
+            {
+              "path": "../../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/witness/clean.assignment.json",
+              "sha256": "55cdffcd23a8583e4f0ad3483e39bc3d2cb735b1363a94384fc57bbcf5f493f3"
+            },
+            {
+              "path": "../../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/compiled/clean/src__integerDivision__IsZero.r1cs",
+              "sha256": "62747d89ea5867a9f9a6adf8e194f6987144f53cfda01b1bfd621a29c8b72a99"
+            },
+            {
+              "path": "../../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/compiled/clean/src__integerDivision__IsZero.sym",
+              "sha256": "b06d620031aa0de6f6974e516e07180476b5531cb7dd25faa844a9ff81d5943c"
+            }
+          ],
+          "note": "The same-input clean reference satisfies every clean R1CS constraint."
+        },
+        "clean_input_equivalence": {
+          "verdict": "satisfied",
+          "reason_code": "clean-inputs-equal",
+          "evidence": [
+            {
+              "path": "../../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/witness/twin.assignment.json",
+              "sha256": "cb8642d7cd10910ca12c3b79676220355b7988dbafb1f839922d5b865095a762"
+            },
+            {
+              "path": "../../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/witness/clean.assignment.json",
+              "sha256": "55cdffcd23a8583e4f0ad3483e39bc3d2cb735b1363a94384fc57bbcf5f493f3"
+            }
+          ],
+          "note": "The clean and disturbance assignments have identical contract inputs."
+        },
+        "clean_rejection": {
+          "verdict": "satisfied",
+          "reason_code": "clean-projection-rejected",
+          "evidence": [
+            {
+              "path": "../../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/witness/twin.assignment.json",
+              "sha256": "cb8642d7cd10910ca12c3b79676220355b7988dbafb1f839922d5b865095a762"
+            },
+            {
+              "path": "../../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/compiled/clean/src__integerDivision__IsZero.r1cs",
+              "sha256": "62747d89ea5867a9f9a6adf8e194f6987144f53cfda01b1bfd621a29c8b72a99"
+            },
+            {
+              "path": "../projection.json",
+              "sha256": "2cdcc154545a74428aea605a216eb250c68a81142a4ae87885632c0eb3257aa6"
+            }
+          ],
+          "note": "The projected disturbance fails a predeclared injection-related clean constraint."
+        },
+        "clean_relation_exclusion": {
+          "verdict": "satisfied",
+          "reason_code": "clean-relation-excluded",
+          "evidence": [
+            {
+              "path": "../certificate.json",
+              "sha256": "4919951de5c9eb3f42f33e23972bb4b747cc02e7ab36ed3f04b06f8517f1c5da"
+            },
+            {
+              "path": "../relation-verifier.json",
+              "sha256": "605d233597eea346a260ae17af65bb5d1e0c8a2bccff508d5e0f4af1ed1b6981"
+            }
+          ],
+          "note": "A pinned verifier excludes every clean extension for the fixed contract signals."
+        },
+        "production_reachability": {
+          "verdict": "satisfied",
+          "reason_code": "production-reachable",
+          "evidence": [
+            {
+              "path": "../reachability.json",
+              "sha256": "ff4e8560ae7806fa8700d38664a68066d953cfe3ba2fa42f5031ef9449b49446"
+            },
+            {
+              "path": "../reachability-verifier.json",
+              "sha256": "137c978c2eac51167912a3853f43f14c019f0c50b560b08d91e6bb0f05452a96"
+            },
+            {
+              "path": "../../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/discovery-mutant/cf2d2cd4-00f3-488a-8da7-3916e59dbb1e/discovery.json",
+              "sha256": "0de55d19b3f3303b58a03adfd77ecef69b799403b0bb7eef7aa5f3afc918e80a"
+            }
+          ],
+          "note": "A complete pinned parent-instance chain reaches the production entrypoint."
+        }
+      },
+      "disposition": "validated",
+      "cause_attribution": {
+        "verdict": "matched",
+        "reason_code": "injection-source-transition-matched",
+        "evidence": [
+          {
+            "path": "../single.diff",
+            "sha256": "dd992d00d13cd284886ab8a8ac1e95e1821e1107e3f287e12b3d3dfe5fd10cc0"
+          }
+        ]
+      },
+      "ground_truth_qualification": "qualified",
+      "violation_class": "zero-test-output-mismatch",
+      "confirmation_eligible": false,
+      "automated_review_seconds": 1.338925083,
+      "predicate_stream_nonempty": false
+    }
+  ],
+  "summary": {
+    "validated": 1,
+    "rejected": 0,
+    "unresolved": 0,
+    "review_error": 0,
+    "qualified": 1
+  },
+  "semantic_result_sha256": "e86ff386860b2d9bd7d5e1bca751d46430e06540d6835339e4fa96376ddb7ee2",
+  "raw_values_persisted": false
+}

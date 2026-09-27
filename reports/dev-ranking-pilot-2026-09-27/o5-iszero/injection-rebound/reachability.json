@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "completion": "complete",
+  "entrypoint_target_id": "sha256:47e03f0e526112728c9f8827812f4e095f3b31e4b2a26d2b9df69626f8c9a2a2",
+  "entrypoint_source_sha256": "f1b6abc4987d25cb53f9da6a72ade48703e99ba9499badb8c3dfee242c3a7464",
+  "source_closure_sha256": "7d08738d746fc4d499bb474308f62157ee750704baffbed0d6ff569a6177b4a6",
+  "target_instance_key": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/mutant/src/integerDivision.circom::IsZero()",
+  "instances": [
+    {
+      "instance_key": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/mutant/src/integerDivision.circom::IsZero()",
+      "parent_instance_key": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/mutant/src/integerDivision.circom::IntDiv(40)",
+      "target_id": "sha256:ede0428c345673cb7db9588fc77feb9b36150fbecfaa44ba8452a09d4a5f1f51",
+      "template": "IsZero",
+      "concrete_parameters": [],
+      "source_path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/mutant/src/integerDivision.circom",
+      "source_sha256": "f36d8ff6351d930af020656fc5ee08e708ad8f388bfa239c22724ff15302f39d",
+      "start_byte": 55,
+      "end_byte": 183
+    },
+    {
+      "instance_key": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/mutant/src/integerDivision.circom::IntDiv(40)",
+      "parent_instance_key": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/mutant/src/circuit.circom::IncentiveMechansim(256, 40)",
+      "target_id": "sha256:ef09ba26a3ba4922029a30b14271f6fc0e5c588d8bc078b84a3badc50affd9c2",
+      "template": "IntDiv",
+      "concrete_parameters": [
+        {
+          "position": 0,
+          "name": "n",
+          "kind": "integer",
+          "value_decimal": "40"
+        }
+      ],
+      "source_path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/mutant/src/integerDivision.circom",
+      "source_sha256": "f36d8ff6351d930af020656fc5ee08e708ad8f388bfa239c22724ff15302f39d",
+      "start_byte": 185,
+      "end_byte": 703
+    },
+    {
+      "instance_key": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/mutant/src/circuit.circom::IncentiveMechansim(256, 40)",
+      "parent_instance_key": null,
+      "target_id": "sha256:47e03f0e526112728c9f8827812f4e095f3b31e4b2a26d2b9df69626f8c9a2a2",
+      "template": "IncentiveMechansim",
+      "concrete_parameters": [
+        {
+          "position": 0,
+          "name": "batch_size",
+          "kind": "integer",
+          "value_decimal": "256"
+        },
+        {
+          "position": 1,
+          "name": "bits",
+          "kind": "integer",
+          "value_decimal": "40"
+        }
+      ],
+      "source_path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/mutant/src/circuit.circom",
+      "source_sha256": "f1b6abc4987d25cb53f9da6a72ade48703e99ba9499badb8c3dfee242c3a7464",
+      "start_byte": 332,
+      "end_byte": 5885
+    }
+  ],
+  "unsupported": [],
+  "unresolved": []
+}

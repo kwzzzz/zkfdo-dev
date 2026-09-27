@@ -1,0 +1,27 @@
+{
+  "kind": "injection-ground-truth",
+  "schema_version": 1,
+  "request_id": "pilot-inference-o5-iszero/qualification",
+  "review_spec": {
+    "path": "spec.json",
+    "sha256": "b9d75cc0639d6b03d80604912f963ae9dbfc5cc16704425ec647d7e2f66c66c1"
+  },
+  "generation_manifest": {
+    "path": "generation.json",
+    "sha256": "3e022150d4004a509feb42ed1eddbfe786359a45a1ca214d059a374fd425fbea"
+  },
+  "disturbance_assignment": {
+    "origin": "disturbance-twin",
+    "format": "wtns-json-v1",
+    "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/witness/twin.assignment.json",
+    "sha256": "cb8642d7cd10910ca12c3b79676220355b7988dbafb1f839922d5b865095a762",
+    "adapter_implementation_sha256": "46a43d08b23b3c5d3a11a5b407d402aa9c33aeeeff9c92918fb30089dcd20bbb"
+  },
+  "clean_reference_assignment": {
+    "origin": "clean-witness-generator",
+    "format": "wtns-json-v1",
+    "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/witness/clean.assignment.json",
+    "sha256": "55cdffcd23a8583e4f0ad3483e39bc3d2cb735b1363a94384fc57bbcf5f493f3",
+    "adapter_implementation_sha256": "46a43d08b23b3c5d3a11a5b407d402aa9c33aeeeff9c92918fb30089dcd20bbb"
+  }
+}

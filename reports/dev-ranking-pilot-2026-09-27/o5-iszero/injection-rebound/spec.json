@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "review_spec_id": "pilot-inference-o5-iszero/spec",
+  "root_cause_id": "dev-injection/inference-labs-inc/subnet-2-circom/o5-iszero-output-condition",
+  "subject_kind": "injected-mutant",
+  "expected_scope": "original-component",
+  "target_binding": {
+    "target_id": "sha256:ede0428c345673cb7db9588fc77feb9b36150fbecfaa44ba8452a09d4a5f1f51",
+    "instance_key": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/mutant/src/integerDivision.circom::IsZero()",
+    "template": "IsZero",
+    "concrete_parameters": [],
+    "source_path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/mutant/src/integerDivision.circom",
+    "source_sha256": "f36d8ff6351d930af020656fc5ee08e708ad8f388bfa239c22724ff15302f39d",
+    "source_closure_manifest_path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/mutant/closure.json",
+    "source_closure_manifest_sha256": "7d08738d746fc4d499bb474308f62157ee750704baffbed0d6ff569a6177b4a6"
+  },
+  "field": {
+    "name": "bn128",
+    "modulus_decimal": "21888242871839275222246405745257275088548364400416034343698204186575808495617",
+    "assignment_encoding": "canonical-field-elements"
+  },
+  "compiled_subject": {
+    "r1cs_path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/compiled/mutant/src__integerDivision__IsZero.r1cs",
+    "r1cs_sha256": "f93866bc63b76e5c2efe6e6b024d3a4e3ef3a914f75ca93eef4c6623acf901c0",
+    "sym_path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/compiled/mutant/src__integerDivision__IsZero.sym",
+    "sym_sha256": "b06d620031aa0de6f6974e516e07180476b5531cb7dd25faa844a9ff81d5943c",
+    "expected_shape": {
+      "wires": 4,
+      "labels": 4,
+      "public_outputs": 1,
+      "public_inputs": 0,
+      "private_inputs": 1,
+      "constraints": 1
+    }
+  },
+  "compiler": {
+    "version": "2.2.3",
+    "binary_sha256": "8991887889c2a74d6fc704d5689ada4cc76fba004e866c987de6cbf3b3db6227",
+    "arguments": [],
+    "library_manifest_path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/mutant/closure.json",
+    "library_manifest_sha256": "7d08738d746fc4d499bb474308f62157ee750704baffbed0d6ff569a6177b4a6"
+  },
+  "contract": {
+    "definition_path": "contract.json",
+    "definition_sha256": "cb08fde94d26170698269b867c9c2a84b274d6d31df3c9f6f4f5851cae637e29",
+    "input_contract_id": "iszero-field-input",
+    "property_id": "iszero-output-is-zero-test",
+    "input_contract_statement": "main.in is a canonical field element.",
+    "property_statement": "main.out is 1 when main.in is 0 and 0 otherwise.",
+    "input_signal_names": [
+      "main.in"
+    ],
+    "property_signal_names": [
+      "main.out"
+    ],
+    "predicate": {
+      "api_version": 1,
+      "path": "../../../dev-injection-2026-09-27/predicates/is_zero.py",
+      "sha256": "38e6f0f6c8979d14a996d51455b6120db7eede3e52ac1ef60081d2f58264fc27",
+      "entrypoint": "evaluate",
+      "config": {
+        "input": "main.in",
+        "output": "main.out"
+      },
+      "allowed_results": [
+        {
+          "criterion": "input_preconditions",
+          "verdict": "satisfied",
+          "reason_code": "contract-satisfied",
+          "note": "The input is a canonical field element."
+        },
+        {
+          "criterion": "input_preconditions",
+          "verdict": "not-satisfied",
+          "reason_code": "input-noncanonical",
+          "note": "The input is not a canonical field element."
+        },
+        {
+          "criterion": "specified_property_violation",
+          "verdict": "satisfied",
+          "reason_code": "property-violated",
+          "note": "The output is not the zero test of the input."
+        },
+        {
+          "criterion": "specified_property_violation",
+          "verdict": "not-satisfied",
+          "reason_code": "property-holds",
+          "note": "The output is the zero test of the input."
+        },
+        {
+          "criterion": "specified_property_violation",
+          "verdict": "unknown",
+          "reason_code": "input-precondition-unresolved",
+          "note": "The property is not evaluated because the input precondition failed."
+        }
+      ],
+      "allowed_violation_classes": [
+        "zero-test-output-mismatch"
+      ]
+    }
+  },
+  "attribution": {
+    "method": "injection-single-diff",
+    "evidence_path": "single.diff",
+    "evidence_sha256": "dd992d00d13cd284886ab8a8ac1e95e1821e1107e3f287e12b3d3dfe5fd10cc0"
+  },
+  "production_reachability": {
+    "verdict": "satisfied",
+    "entrypoint_target_id": "sha256:47e03f0e526112728c9f8827812f4e095f3b31e4b2a26d2b9df69626f8c9a2a2",
+    "instance_key": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/mutant/src/integerDivision.circom::IsZero()",
+    "evidence_path": "reachability.json",
+    "evidence_sha256": "ff4e8560ae7806fa8700d38664a68066d953cfe3ba2fa42f5031ef9449b49446",
+    "verifier_manifest_path": "reachability-verifier.json",
+    "verifier_manifest_sha256": "137c978c2eac51167912a3853f43f14c019f0c50b560b08d91e6bb0f05452a96"
+  },
+  "injection_ground_truth": {
+    "injection_id": "pilot-inference-o5-iszero",
+    "operator_id": "O5",
+    "source_location": {
+      "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/mutant/src/integerDivision.circom",
+      "source_sha256": "f36d8ff6351d930af020656fc5ee08e708ad8f388bfa239c22724ff15302f39d",
+      "start_byte": 116,
+      "end_byte": 182
+    },
+    "clean_revision": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+    "single_diff": {
+      "path": "single.diff",
+      "sha256": "dd992d00d13cd284886ab8a8ac1e95e1821e1107e3f287e12b3d3dfe5fd10cc0"
+    },
+    "source_closures": {
+      "clean": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/clean/closure.json",
+        "sha256": "15685a5d693c4e2aece97af62281a5f34ca3d73919cc418a04abe60ce07d331a"
+      },
+      "mutant": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/mutant/closure.json",
+        "sha256": "7d08738d746fc4d499bb474308f62157ee750704baffbed0d6ff569a6177b4a6"
+      },
+      "disturbance_twin": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/twin/closure.json",
+        "sha256": "7ef74230d951e982444d7a9863691b28d50801dce145eb9ff10e45a56ec40642"
+      }
+    },
+    "compiled_variants": {
+      "clean": {
+        "r1cs_path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/compiled/clean/src__integerDivision__IsZero.r1cs",
+        "r1cs_sha256": "62747d89ea5867a9f9a6adf8e194f6987144f53cfda01b1bfd621a29c8b72a99",
+        "sym_path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/compiled/clean/src__integerDivision__IsZero.sym",
+        "sym_sha256": "b06d620031aa0de6f6974e516e07180476b5531cb7dd25faa844a9ff81d5943c",
+        "shape": {
+          "wires": 4,
+          "labels": 4,
+          "public_outputs": 1,
+          "public_inputs": 0,
+          "private_inputs": 1,
+          "constraints": 2
+        }
+      },
+      "mutant": {
+        "r1cs_path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/compiled/mutant/src__integerDivision__IsZero.r1cs",
+        "r1cs_sha256": "f93866bc63b76e5c2efe6e6b024d3a4e3ef3a914f75ca93eef4c6623acf901c0",
+        "sym_path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/compiled/mutant/src__integerDivision__IsZero.sym",
+        "sym_sha256": "b06d620031aa0de6f6974e516e07180476b5531cb7dd25faa844a9ff81d5943c",
+        "shape": {
+          "wires": 4,
+          "labels": 4,
+          "public_outputs": 1,
+          "public_inputs": 0,
+          "private_inputs": 1,
+          "constraints": 1
+        }
+      },
+      "disturbance_twin": {
+        "r1cs_path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/compiled/twin/src__integerDivision__IsZero.r1cs",
+        "r1cs_sha256": "f93866bc63b76e5c2efe6e6b024d3a4e3ef3a914f75ca93eef4c6623acf901c0",
+        "sym_path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/injection/compiled/twin/src__integerDivision__IsZero.sym",
+        "sym_sha256": "b06d620031aa0de6f6974e516e07180476b5531cb7dd25faa844a9ff81d5943c",
+        "shape": {
+          "wires": 4,
+          "labels": 4,
+          "public_outputs": 1,
+          "public_inputs": 0,
+          "private_inputs": 1,
+          "constraints": 1
+        }
+      }
+    },
+    "compilation_manifest": {
+      "path": "compilation.json",
+      "sha256": "47902c2b507a1ed7e11af475c0e9572d278473d93711cf8764393f7e72cdbdd6"
+    },
+    "projection_manifest": {
+      "path": "projection.json",
+      "sha256": "2cdcc154545a74428aea605a216eb250c68a81142a4ae87885632c0eb3257aa6"
+    },
+    "expected_clean_constraint_indices": [
+      1
+    ],
+    "clean_relation_exclusion": {
+      "method": "fully-fixed-constraint",
+      "certificate_path": "certificate.json",
+      "certificate_sha256": "4919951de5c9eb3f42f33e23972bb4b747cc02e7ab36ed3f04b06f8517f1c5da",
+      "verifier_manifest_path": "relation-verifier.json",
+      "verifier_manifest_sha256": "605d233597eea346a260ae17af65bb5d1e0c8a2bccff508d5e0f4af1ed1b6981"
+    }
+  }
+}

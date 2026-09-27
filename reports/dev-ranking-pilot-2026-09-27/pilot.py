@@ -22,6 +22,10 @@ RUNS = ROOT / "runs/dev-ranking-pilot-2026-09-27"
 CONFIG = json.loads((HERE / "pilot-config.json").read_text())
 BIN = RUNS / "bin/zkfDO"
 VERIFIER = RUNS / "bin/zkfdo-relation-verifier"
+# The campaign ran with bin/. Review uses bin-v2/, whose engine binds an injected spec to a
+# prepared target through the files its direct wrapper compiles (see README).
+REVIEW_BIN = RUNS / "bin-v2/zkfDO"
+REVIEW_VERIFIER = RUNS / "bin-v2/zkfdo-relation-verifier"
 CANDIDATE_ADAPTER = b"zkfDO candidate adapter zkfuzz-counterexample-v1 schema 1\n"
 
 
@@ -234,9 +238,49 @@ def campaign(variant):
             print(variant["id"], number, strategy, ledger["executions"][-1]["injected_status"], flush=True)
 
 
+def rebind(variant):
+    """Requalify the injection with the review engine at the campaign's workspace path.
+
+    The campaign's prepared corpus fingerprints the mutant tree by path, so the tree is rebuilt
+    at the same place (byte-identical, the earlier one is kept beside it) and the other target
+    wrappers are copied back. Tracked outputs go to injection-rebound; the pre-run injection
+    record stays unchanged.
+    """
+    base, report = variant_paths(variant)
+    previous = base / "injection-run1"
+    if not previous.exists():
+        (base / "injection").rename(previous)
+    plan = json.loads((report / "injection-plan.json").read_text())
+    plan["output"] = "injection-rebound"
+    write_json(report / "injection-plan-rebound.json", plan)
+    run([REVIEW_BIN, "experiment", "inject", "--plan", report / "injection-plan-rebound.json",
+         "--relation-verifier-bin", REVIEW_VERIFIER])
+    injection = report / "injection-rebound"
+    manifest_ref = injection / "engine-source-manifest.json"
+    run([REVIEW_BIN, "experiment", "review", "--request", injection / "request.json",
+         "--output", injection / "qualification",
+         "--source-revision", f"worktree-engine-manifest:{sha256(manifest_ref)}",
+         "--engine-source-manifest", manifest_ref])
+    verdict = json.loads((injection / "qualification/review-report.json").read_text())[
+        "reviews"][0]["ground_truth_qualification"]
+    if verdict != "qualified":
+        raise SystemExit(f"{variant['id']} rebound injection is {verdict}")
+    for directory in ("clean", "mutant", "twin"):
+        old_tree = previous / directory
+        new_tree = base / "injection" / directory
+        for path in sorted(p for p in old_tree.rglob("*") if p.is_file()):
+            relative_path = path.relative_to(old_tree)
+            counterpart = new_tree / relative_path
+            if relative_path.parts[0] == CONFIG["wrapper_directory"] and not counterpart.exists():
+                counterpart.write_bytes(path.read_bytes())
+            if counterpart.read_bytes() != path.read_bytes():
+                raise SystemExit(f"rebuilt tree differs at {directory}/{relative_path}")
+    print(variant["id"], "rebound", verdict)
+
+
 def review(variant):
     base, report = variant_paths(variant)
-    injection = report / "injection"
+    injection = report / "injection-rebound"
     ledger = json.loads((report / "campaign-ledger.json").read_text())
     spec_path = injection / "spec.json"
     spec = json.loads(spec_path.read_text())
@@ -268,7 +312,7 @@ def review(variant):
     }
     write_json(request_path, request)
     manifest = injection / "engine-source-manifest.json"
-    run([BIN, "experiment", "review", "--request", request_path,
+    run([REVIEW_BIN, "experiment", "review", "--request", request_path,
          "--output", report / "backend-review",
          "--source-revision", f"worktree-engine-manifest:{sha256(manifest)}",
          "--engine-source-manifest", manifest], cwd=ROOT)
@@ -277,24 +321,41 @@ def review(variant):
 
 
 def summarize():
+    """Detection time is the scheduler completion offset of the run whose candidate the engine
+    validated and attributed, the same upper bound the evaluator reports."""
     rows = []
+    natural = {}
     for variant in CONFIG["variants"]:
         base, report = variant_paths(variant)
         ledger = json.loads((report / "campaign-ledger.json").read_text())
         backend = json.loads((report / "backend-review/review-report.json").read_text())
-        bundle = json.loads((report / "backend-review/bundle-index.json").read_text())
+        prepared = json.loads((ROOT / json.loads(
+            (report / "prepare-summary.json").read_text())["prepared"]).read_text())
+        names = {target["target_id"]: "{}({})".format(
+            target["definition"]["template_name"],
+            ", ".join(target["definition"]["concrete_parameters"]))
+            for target in prepared["targets"]}
         detected = {}
         for review_row in backend["reviews"]:
-            if review_row["disposition"] == "validated" and review_row["cause_attribution"]["verdict"] == "matched":
-                detected.setdefault(review_row["binding"]["execution_id"], []).append(review_row)
-        evaluations = {row["execution_id"]: row for row in bundle["execution_evaluations"]}
+            if (review_row["disposition"] == "validated"
+                    and review_row["cause_attribution"]["verdict"] == "matched"):
+                detected.setdefault(review_row["binding"]["execution_id"], set()).add(
+                    review_row["binding"]["run_id"])
+        injected_id = json.loads((report / "injection-rebound/spec.json").read_text())[
+            "target_binding"]["target_id"]
         for entry in ledger["executions"]:
             execution_id = f"{variant['id']}-block-{entry['block']}-{entry['strategy']}"
-            evaluation_ref = evaluations.get(execution_id, {}).get("evaluator_output")
+            outcome = json.loads((ROOT / entry["outcome"]["path"]).read_text())
             first = None
-            if evaluation_ref:
-                evaluation = json.loads(((report / "backend-review") / evaluation_ref["path"]).read_text())
-                first = evaluation.get("first_confirmed_original_component_defect_observed_by_seconds")
+            for scheduled in outcome["scheduler"]["runs"]:
+                result = scheduled["result"]
+                if result and result["run_id"] in detected.get(execution_id, set()):
+                    offset = scheduled["completion_offset_seconds"]
+                    first = offset if first is None else min(first, offset)
+            for candidate in outcome["counterexample_candidates"]:
+                if candidate["target_id"] != injected_id:
+                    name = names[candidate["target_id"]]
+                    natural[name] = natural.get(name, 0) + 1
             rows.append({
                 "variant": variant["id"],
                 "block": entry["block"],
@@ -303,21 +364,28 @@ def summarize():
                 "injected_planned_rank": entry["injected_planned_rank"],
                 "started_targets": entry["started_targets"],
                 "injected_status": entry["injected_status"],
-                "detected": execution_id in detected,
+                "detected": first is not None,
                 "detection_upper_bound_seconds": first,
             })
     by_strategy = {}
     for strategy in CONFIG["strategies"]:
         selected = [row for row in rows if row["strategy"] == strategy]
-        times = [row["detection_upper_bound_seconds"] for row in selected if row["detected"]]
+        times = sorted(row["detection_upper_bound_seconds"] for row in selected if row["detected"])
         by_strategy[strategy] = {
             "executions": len(selected),
             "detected": sum(row["detected"] for row in selected),
-            "mean_planned_rank": sum(row["injected_planned_rank"] for row in selected) / len(selected),
-            "mean_started_targets": sum(row["started_targets"] for row in selected) / len(selected),
-            "median_detection_upper_bound_seconds": sorted(times)[len(times) // 2] if times else None,
+            "mean_planned_rank": round(
+                sum(row["injected_planned_rank"] for row in selected) / len(selected), 2),
+            "mean_started_targets": round(
+                sum(row["started_targets"] for row in selected) / len(selected), 2),
+            "detection_upper_bound_seconds": [round(time, 3) for time in times],
         }
-    write_json(HERE / "results.json", {"schema_version": 1, "rows": rows, "by_strategy": by_strategy})
+    write_json(HERE / "results.json", {
+        "schema_version": 1,
+        "rows": rows,
+        "by_strategy": by_strategy,
+        "unattributed_candidates_by_target": dict(sorted(natural.items(), key=lambda item: -item[1])),
+    })
     print(json.dumps(by_strategy, indent=2))
 
 
@@ -328,7 +396,7 @@ def main():
         return
     variants = [v for v in CONFIG["variants"] if not names or v["id"] in names]
     for variant in variants:
-        {"prepare": prepare, "run": campaign, "review": review}[stage](variant)
+        {"prepare": prepare, "run": campaign, "rebind": rebind, "review": review}[stage](variant)
 
 
 if __name__ == "__main__":

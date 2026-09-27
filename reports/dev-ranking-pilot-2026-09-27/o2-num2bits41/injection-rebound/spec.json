@@ -1,0 +1,295 @@
+{
+  "schema_version": 1,
+  "review_spec_id": "pilot-inference-o2-num2bits41/spec",
+  "root_cause_id": "dev-injection/inference-labs-inc/subnet-2-circom/o2-num2bits41-bit-booleanity",
+  "subject_kind": "injected-mutant",
+  "expected_scope": "original-component",
+  "target_binding": {
+    "target_id": "sha256:e5d1a81076b1ebe3d72fa0b3d247041d7c499bfa210932133a84a68a10ee190b",
+    "instance_key": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-ranking-pilot-2026-09-27/o2-num2bits41/injection/mutant/src/clampTensor.circom::Num2Bits(41)",
+    "template": "Num2Bits",
+    "concrete_parameters": [
+      {
+        "position": 0,
+        "name": "n",
+        "kind": "integer",
+        "value_decimal": "41"
+      }
+    ],
+    "source_path": "../../../../runs/dev-ranking-pilot-2026-09-27/o2-num2bits41/injection/mutant/src/clampTensor.circom",
+    "source_sha256": "442dd682f7925983614256be6c52a3712c7663f7a71a68f12c9585a69ad6359d",
+    "source_closure_manifest_path": "../../../../runs/dev-ranking-pilot-2026-09-27/o2-num2bits41/injection/mutant/closure.json",
+    "source_closure_manifest_sha256": "0ff56584de1d923d2ade507457120f01add7c3cfa60fb9651bac198e8cd538d6"
+  },
+  "field": {
+    "name": "bn128",
+    "modulus_decimal": "21888242871839275222246405745257275088548364400416034343698204186575808495617",
+    "assignment_encoding": "canonical-field-elements"
+  },
+  "compiled_subject": {
+    "r1cs_path": "../../../../runs/dev-ranking-pilot-2026-09-27/o2-num2bits41/injection/compiled/mutant/src__clampTensor__Num2Bits_41.r1cs",
+    "r1cs_sha256": "381923c6d852eda539bd12276642460d3c9a19a8d6a62cdc72e3b2c2148f9ac7",
+    "sym_path": "../../../../runs/dev-ranking-pilot-2026-09-27/o2-num2bits41/injection/compiled/mutant/src__clampTensor__Num2Bits_41.sym",
+    "sym_sha256": "e51cb7645e09c329193e34d4911db476b538c6bf836c0454080037dca6da20b4",
+    "expected_shape": {
+      "wires": 43,
+      "labels": 43,
+      "public_outputs": 41,
+      "public_inputs": 0,
+      "private_inputs": 1,
+      "constraints": 1
+    }
+  },
+  "compiler": {
+    "version": "2.2.3",
+    "binary_sha256": "8991887889c2a74d6fc704d5689ada4cc76fba004e866c987de6cbf3b3db6227",
+    "arguments": [],
+    "library_manifest_path": "../../../../runs/dev-ranking-pilot-2026-09-27/o2-num2bits41/injection/mutant/closure.json",
+    "library_manifest_sha256": "0ff56584de1d923d2ade507457120f01add7c3cfa60fb9651bac198e8cd538d6"
+  },
+  "contract": {
+    "definition_path": "contract.json",
+    "definition_sha256": "18dcfc090c5ca555af19bb3caf169aa9f6bfa1b718696bb7d59dc027f9f5c28b",
+    "input_contract_id": "num2bits-field-input",
+    "property_id": "num2bits-output-bits-boolean",
+    "input_contract_statement": "main.in is a canonical field element.",
+    "property_statement": "Every decomposed output bit main.out[i] is 0 or 1 for any accepted input.",
+    "input_signal_names": [
+      "main.in"
+    ],
+    "property_signal_names": [
+      "main.out[0]",
+      "main.out[1]",
+      "main.out[2]",
+      "main.out[3]",
+      "main.out[4]",
+      "main.out[5]",
+      "main.out[6]",
+      "main.out[7]",
+      "main.out[8]",
+      "main.out[9]",
+      "main.out[10]",
+      "main.out[11]",
+      "main.out[12]",
+      "main.out[13]",
+      "main.out[14]",
+      "main.out[15]",
+      "main.out[16]",
+      "main.out[17]",
+      "main.out[18]",
+      "main.out[19]",
+      "main.out[20]",
+      "main.out[21]",
+      "main.out[22]",
+      "main.out[23]",
+      "main.out[24]",
+      "main.out[25]",
+      "main.out[26]",
+      "main.out[27]",
+      "main.out[28]",
+      "main.out[29]",
+      "main.out[30]",
+      "main.out[31]",
+      "main.out[32]",
+      "main.out[33]",
+      "main.out[34]",
+      "main.out[35]",
+      "main.out[36]",
+      "main.out[37]",
+      "main.out[38]",
+      "main.out[39]",
+      "main.out[40]"
+    ],
+    "predicate": {
+      "api_version": 1,
+      "path": "../../predicates/bit_booleanity.py",
+      "sha256": "b8ce729a7b5529fffb5e0fe3f2ae2c6f8aeb06e5c8727524b0ff38247e1d0647",
+      "entrypoint": "evaluate",
+      "config": {
+        "bits": 41,
+        "input": "main.in",
+        "output": "main.out"
+      },
+      "allowed_results": [
+        {
+          "criterion": "input_preconditions",
+          "verdict": "satisfied",
+          "reason_code": "contract-satisfied",
+          "note": "The input is a canonical field element."
+        },
+        {
+          "criterion": "input_preconditions",
+          "verdict": "not-satisfied",
+          "reason_code": "input-noncanonical",
+          "note": "The input is not a canonical field element."
+        },
+        {
+          "criterion": "specified_property_violation",
+          "verdict": "satisfied",
+          "reason_code": "property-violated",
+          "note": "At least one decomposed output bit is neither 0 nor 1."
+        },
+        {
+          "criterion": "specified_property_violation",
+          "verdict": "not-satisfied",
+          "reason_code": "property-holds",
+          "note": "Every decomposed output bit is 0 or 1."
+        },
+        {
+          "criterion": "specified_property_violation",
+          "verdict": "unknown",
+          "reason_code": "input-precondition-unresolved",
+          "note": "The property is not evaluated because the input precondition failed."
+        }
+      ],
+      "allowed_violation_classes": [
+        "non-boolean-output-bit"
+      ]
+    }
+  },
+  "attribution": {
+    "method": "injection-single-diff",
+    "evidence_path": "single.diff",
+    "evidence_sha256": "8314112fc0eacc33a8903cfe2af7301a0ad3757f255009742b5985541f0a5973"
+  },
+  "production_reachability": {
+    "verdict": "satisfied",
+    "entrypoint_target_id": "sha256:57a021ef20a13f4bdee46e3abce41d2c6c752ea458ddb71bbbc815514a0cbae2",
+    "instance_key": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-ranking-pilot-2026-09-27/o2-num2bits41/injection/mutant/src/clampTensor.circom::Num2Bits(41)",
+    "evidence_path": "reachability.json",
+    "evidence_sha256": "c32f3dc451996b2e718dad94cc24107274489aa7324d20a2768316270a8454b6",
+    "verifier_manifest_path": "reachability-verifier.json",
+    "verifier_manifest_sha256": "9c2d2380941a88e51f8144ca7d8ebad5cd369b5860c971f682c21cf76969edf3"
+  },
+  "injection_ground_truth": {
+    "injection_id": "pilot-inference-o2-num2bits41",
+    "operator_id": "O2",
+    "source_location": {
+      "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o2-num2bits41/injection/mutant/src/clampTensor.circom",
+      "source_sha256": "442dd682f7925983614256be6c52a3712c7663f7a71a68f12c9585a69ad6359d",
+      "start_byte": 143,
+      "end_byte": 206
+    },
+    "clean_revision": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+    "single_diff": {
+      "path": "single.diff",
+      "sha256": "8314112fc0eacc33a8903cfe2af7301a0ad3757f255009742b5985541f0a5973"
+    },
+    "source_closures": {
+      "clean": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o2-num2bits41/injection/clean/closure.json",
+        "sha256": "1ff0e3c5fb55dd98fda4be50615ccf95fd5e8bbccfbf0fc0a3b702e8b1dafd65"
+      },
+      "mutant": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o2-num2bits41/injection/mutant/closure.json",
+        "sha256": "0ff56584de1d923d2ade507457120f01add7c3cfa60fb9651bac198e8cd538d6"
+      },
+      "disturbance_twin": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o2-num2bits41/injection/twin/closure.json",
+        "sha256": "0b77610c069d2baaa09691f4c20640e0bed96e0307245ac3f51b71bf1c163e6f"
+      }
+    },
+    "compiled_variants": {
+      "clean": {
+        "r1cs_path": "../../../../runs/dev-ranking-pilot-2026-09-27/o2-num2bits41/injection/compiled/clean/src__clampTensor__Num2Bits_41.r1cs",
+        "r1cs_sha256": "f5eeb8381d536d0acf116364768fd8549460f8b60e0fd13919fffc7e104af09e",
+        "sym_path": "../../../../runs/dev-ranking-pilot-2026-09-27/o2-num2bits41/injection/compiled/clean/src__clampTensor__Num2Bits_41.sym",
+        "sym_sha256": "5982421e3ffa30e82586bf54512997928b3b466a7da48c2e6661578c99338de2",
+        "shape": {
+          "wires": 43,
+          "labels": 84,
+          "public_outputs": 41,
+          "public_inputs": 0,
+          "private_inputs": 1,
+          "constraints": 42
+        }
+      },
+      "mutant": {
+        "r1cs_path": "../../../../runs/dev-ranking-pilot-2026-09-27/o2-num2bits41/injection/compiled/mutant/src__clampTensor__Num2Bits_41.r1cs",
+        "r1cs_sha256": "381923c6d852eda539bd12276642460d3c9a19a8d6a62cdc72e3b2c2148f9ac7",
+        "sym_path": "../../../../runs/dev-ranking-pilot-2026-09-27/o2-num2bits41/injection/compiled/mutant/src__clampTensor__Num2Bits_41.sym",
+        "sym_sha256": "e51cb7645e09c329193e34d4911db476b538c6bf836c0454080037dca6da20b4",
+        "shape": {
+          "wires": 43,
+          "labels": 43,
+          "public_outputs": 41,
+          "public_inputs": 0,
+          "private_inputs": 1,
+          "constraints": 1
+        }
+      },
+      "disturbance_twin": {
+        "r1cs_path": "../../../../runs/dev-ranking-pilot-2026-09-27/o2-num2bits41/injection/compiled/twin/src__clampTensor__Num2Bits_41.r1cs",
+        "r1cs_sha256": "381923c6d852eda539bd12276642460d3c9a19a8d6a62cdc72e3b2c2148f9ac7",
+        "sym_path": "../../../../runs/dev-ranking-pilot-2026-09-27/o2-num2bits41/injection/compiled/twin/src__clampTensor__Num2Bits_41.sym",
+        "sym_sha256": "e51cb7645e09c329193e34d4911db476b538c6bf836c0454080037dca6da20b4",
+        "shape": {
+          "wires": 43,
+          "labels": 43,
+          "public_outputs": 41,
+          "public_inputs": 0,
+          "private_inputs": 1,
+          "constraints": 1
+        }
+      }
+    },
+    "compilation_manifest": {
+      "path": "compilation.json",
+      "sha256": "8d2c737afca1bed07bbea29bbae19e592c7a9c60ffe40417d28e2a59fd019079"
+    },
+    "projection_manifest": {
+      "path": "projection.json",
+      "sha256": "13a0c6cc9795e11889d6e1bc945a95a030a4126c2308ea721739dfcbc3f683a6"
+    },
+    "expected_clean_constraint_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40
+    ],
+    "clean_relation_exclusion": {
+      "method": "fully-fixed-constraint",
+      "certificate_path": "certificate.json",
+      "certificate_sha256": "ba36f433331183e64cb5ee6e60bbf8e75ab2fd2cd945844a8807e90197ba1ff6",
+      "verifier_manifest_path": "relation-verifier.json",
+      "verifier_manifest_sha256": "605d233597eea346a260ae17af65bb5d1e0c8a2bccff508d5e0f4af1ed1b6981"
+    }
+  }
+}

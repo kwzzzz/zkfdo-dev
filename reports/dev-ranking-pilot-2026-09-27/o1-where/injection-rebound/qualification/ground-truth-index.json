@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "kind": "injection-ground-truth",
+  "injection_id": "pilot-inference-o1-where",
+  "review_spec": {
+    "path": "../spec.json",
+    "sha256": "b445da9cd5c0419ad3c97ca7eb18bf449e84467bf872495e001328fbc52271cf"
+  },
+  "review_request": {
+    "path": "../request.json",
+    "sha256": "69504879e94674bf38c99792d2670447aa55657d8d7647c1721358b836f8f819"
+  },
+  "review_report": {
+    "path": "review-report.json",
+    "sha256": "df71b5cda4796811a9851a2ad4333d4fe78ededfec1bd17800462d83e44d6f4c"
+  },
+  "qualification": "qualified"
+}

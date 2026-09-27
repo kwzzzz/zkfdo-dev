@@ -1,0 +1,251 @@
+{
+  "schema_version": 1,
+  "request_id": "pilot-o5-iszero-backend",
+  "kind": "backend-candidates",
+  "review_specs": [
+    {
+      "path": "injection-rebound/spec.json",
+      "sha256": "b9d75cc0639d6b03d80604912f963ae9dbfc5cc16704425ec647d7e2f66c66c1"
+    }
+  ],
+  "executions": [
+    {
+      "execution_id": "o5-iszero-block-1-cost-aware",
+      "campaign_coordinates": {
+        "block": 1,
+        "strategy": "cost-aware"
+      },
+      "plan": {
+        "path": "../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/cost-aware/plan.json",
+        "sha256": "034204f06e1632ed477fe244cf8871902ca7eeded3385a5d0303f045b31ac2f3"
+      },
+      "outcome": {
+        "path": "../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/cost-aware/execution/execution-f031ed00-49e9-4b3a-b046-84c6afcb9dcd/outcome.json",
+        "sha256": "687c0230ccf5c0f3fe8d3b37fea5d3e9cf2e6f31af94aceeba3cf05d0a3ab928"
+      }
+    },
+    {
+      "execution_id": "o5-iszero-block-1-path-order",
+      "campaign_coordinates": {
+        "block": 1,
+        "strategy": "path-order"
+      },
+      "plan": {
+        "path": "../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/path-order/plan.json",
+        "sha256": "9182b11cb648e038b3a8b577a7356c78936ebf94792d4bbe8a6199a096415951"
+      },
+      "outcome": {
+        "path": "../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/path-order/execution/execution-a91416f3-45da-47c7-956a-c19df5e61172/outcome.json",
+        "sha256": "edadaef9cc5acc8f7fa08dea98130417a61bddd242a85cdd0499936a61894e2a"
+      }
+    },
+    {
+      "execution_id": "o5-iszero-block-1-random",
+      "campaign_coordinates": {
+        "block": 1,
+        "strategy": "random"
+      },
+      "plan": {
+        "path": "../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/random/plan.json",
+        "sha256": "2be03472569acda1789973d5f0aadb84df82acb7e0835ca05f4f71d699c50af8"
+      },
+      "outcome": {
+        "path": "../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/random/execution/execution-838be8ef-241b-4c41-8674-e5d9e0c85b11/outcome.json",
+        "sha256": "929b58eabbcdf1f0b8eae2716f7b82e0e2af581e7ec401751898d390ed15b48d"
+      }
+    },
+    {
+      "execution_id": "o5-iszero-block-1-risk-only",
+      "campaign_coordinates": {
+        "block": 1,
+        "strategy": "risk-only"
+      },
+      "plan": {
+        "path": "../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/risk-only/plan.json",
+        "sha256": "dc85e328c9484f83f6ad72aa744d8c92c1d842279208892d8ca0a017318d827c"
+      },
+      "outcome": {
+        "path": "../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/risk-only/execution/execution-1c16754b-9c44-441b-8b17-c1117787b957/outcome.json",
+        "sha256": "c978a5b4b6edad9cfed547716d11f8fc73f10c654d94128c6f511ced04b8db06"
+      }
+    },
+    {
+      "execution_id": "o5-iszero-block-1-small-first",
+      "campaign_coordinates": {
+        "block": 1,
+        "strategy": "small-first"
+      },
+      "plan": {
+        "path": "../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/small-first/plan.json",
+        "sha256": "3b8b52bc553b6dcc1c0e63d8776bb6fc9fcb15c29c841ae640fc2912faee09ad"
+      },
+      "outcome": {
+        "path": "../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/small-first/execution/execution-a0e53884-f136-47a0-9065-1cc90c4352ac/outcome.json",
+        "sha256": "fede79ccc39e9f5b1a889508c48b96ae72ff6a46e97679236c3992c34385cd7a"
+      }
+    },
+    {
+      "execution_id": "o5-iszero-block-2-cost-aware",
+      "campaign_coordinates": {
+        "block": 2,
+        "strategy": "cost-aware"
+      },
+      "plan": {
+        "path": "../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/cost-aware/plan.json",
+        "sha256": "3d98445fc159f1c2b88b63208fc01fe501e292e0367dc2dde6bf1e86c331af39"
+      },
+      "outcome": {
+        "path": "../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/cost-aware/execution/execution-2dffd59c-9643-436c-bcfe-e9a43ca73a9d/outcome.json",
+        "sha256": "b0d21dfcedc457809dd9679e3e5ef39f2d07c8c3e7d437dcce454030a5995c10"
+      }
+    },
+    {
+      "execution_id": "o5-iszero-block-2-path-order",
+      "campaign_coordinates": {
+        "block": 2,
+        "strategy": "path-order"
+      },
+      "plan": {
+        "path": "../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/path-order/plan.json",
+        "sha256": "85f72cb1bedcb87d6d7b99b46dae979e6812ee03397300c3e61919a2ad38d550"
+      },
+      "outcome": {
+        "path": "../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/path-order/execution/execution-1f92daf4-05a0-457a-99d5-40e660c1c6b3/outcome.json",
+        "sha256": "918bfcf031343d8ce0ab6ef789ed0fc146788aaf21f6f05c0574dbb9fc14dfbe"
+      }
+    },
+    {
+      "execution_id": "o5-iszero-block-2-random",
+      "campaign_coordinates": {
+        "block": 2,
+        "strategy": "random"
+      },
+      "plan": {
+        "path": "../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/random/plan.json",
+        "sha256": "d45171faf9a5433bc8f2aa48128323692be06ce01a84d7a3d61f181342756b1e"
+      },
+      "outcome": {
+        "path": "../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/random/execution/execution-9e41691b-654b-40b2-8f00-5012c34c48d4/outcome.json",
+        "sha256": "362769f6b7c5fb8bf78c1cb8ccb5d7efc0b3ae578c1165375d668af248d3573a"
+      }
+    },
+    {
+      "execution_id": "o5-iszero-block-2-risk-only",
+      "campaign_coordinates": {
+        "block": 2,
+        "strategy": "risk-only"
+      },
+      "plan": {
+        "path": "../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/risk-only/plan.json",
+        "sha256": "0ba5e359e2423a185b77aea48509c0afa2113219d3ff0adcca42b36e4714e090"
+      },
+      "outcome": {
+        "path": "../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/risk-only/execution/execution-885c0c42-e02f-4a54-be47-2a8bcb674c86/outcome.json",
+        "sha256": "eba5e87c7108fa98e6430ae985f69b1120c478b764b60447ed49930dc019885e"
+      }
+    },
+    {
+      "execution_id": "o5-iszero-block-2-small-first",
+      "campaign_coordinates": {
+        "block": 2,
+        "strategy": "small-first"
+      },
+      "plan": {
+        "path": "../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/small-first/plan.json",
+        "sha256": "0c807523733363df599b05b7b493c78f4a916ebc448a2b8d89c8f6c7447904d8"
+      },
+      "outcome": {
+        "path": "../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/small-first/execution/execution-f042f859-c710-4481-b796-fa57b6f7259b/outcome.json",
+        "sha256": "9d750d86e37b6da556944f93d877ecbaad56ed43132a13a478fe08293dd1ffc9"
+      }
+    },
+    {
+      "execution_id": "o5-iszero-block-3-cost-aware",
+      "campaign_coordinates": {
+        "block": 3,
+        "strategy": "cost-aware"
+      },
+      "plan": {
+        "path": "../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/cost-aware/plan.json",
+        "sha256": "e83a3117561a373d579919495cce730e361d256bbe76c750d937d52d5fbeff74"
+      },
+      "outcome": {
+        "path": "../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/cost-aware/execution/execution-dd7082d3-c395-44c3-a2cf-b0451cbd9e2e/outcome.json",
+        "sha256": "2a40f8a7d15797da17603c88358650a113cff0afa697d6bbbb638a981648a482"
+      }
+    },
+    {
+      "execution_id": "o5-iszero-block-3-path-order",
+      "campaign_coordinates": {
+        "block": 3,
+        "strategy": "path-order"
+      },
+      "plan": {
+        "path": "../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/path-order/plan.json",
+        "sha256": "e8197b166b79f6eafbc9818d2858aed51c45cbf306d38d124c8e6469f763ae96"
+      },
+      "outcome": {
+        "path": "../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/path-order/execution/execution-6237acc8-5202-490b-bec1-d7de0a5b51e6/outcome.json",
+        "sha256": "dae9955b30fe03a9c42b305af40ca6cf9fceaf3d2ba4ff147a22775f4c04ad80"
+      }
+    },
+    {
+      "execution_id": "o5-iszero-block-3-random",
+      "campaign_coordinates": {
+        "block": 3,
+        "strategy": "random"
+      },
+      "plan": {
+        "path": "../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/random/plan.json",
+        "sha256": "93d4f8b58092791528dde2ed24167af701ab6152549446ae77cd20026afdf86a"
+      },
+      "outcome": {
+        "path": "../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/random/execution/execution-bf248257-1209-49d8-a3c9-9bf766ba8a8b/outcome.json",
+        "sha256": "4a4f104dc1a62d3851f558f2c493c5796949f82b07470d5a2172692b119c40d5"
+      }
+    },
+    {
+      "execution_id": "o5-iszero-block-3-risk-only",
+      "campaign_coordinates": {
+        "block": 3,
+        "strategy": "risk-only"
+      },
+      "plan": {
+        "path": "../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/risk-only/plan.json",
+        "sha256": "f7ff16cf9ec855cfbdf73d68a6aac3d4737a4bb9aef2917c57ad26acedd462c1"
+      },
+      "outcome": {
+        "path": "../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/risk-only/execution/execution-27442fea-e014-43f1-9ce2-4e489edad61d/outcome.json",
+        "sha256": "5afa79ec6a06d7fbcf52451cee00dafd108450815616696d4074a2869de52b8a"
+      }
+    },
+    {
+      "execution_id": "o5-iszero-block-3-small-first",
+      "campaign_coordinates": {
+        "block": 3,
+        "strategy": "small-first"
+      },
+      "plan": {
+        "path": "../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/small-first/plan.json",
+        "sha256": "b5720cfb4d45295172526c27446ff95f1b55bfb4d640550933e42903e5d7fd05"
+      },
+      "outcome": {
+        "path": "../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/small-first/execution/execution-8f397096-7d98-4814-b28b-d0062e29838f/outcome.json",
+        "sha256": "3d6d2f92551b90a2f2c5de2024a1122ddf75a139dbccef56486f98c12bb8e9b7"
+      }
+    }
+  ],
+  "candidate_adapter": {
+    "id": "zkfuzz-counterexample-v1",
+    "implementation_sha256": "d85426b53b5d8265f80b2a1bdf57090e58ebf9e91ba2351e5a7052d1f01518cb"
+  },
+  "candidate_policy": "all-outcome-candidates",
+  "unmatched_candidate_policy": "record-unreviewed",
+  "qualification_bundles": [
+    {
+      "injection_id": "pilot-inference-o5-iszero",
+      "path": "injection-rebound/qualification/ground-truth-index.json",
+      "sha256": "4c28e09620fb14118f47d24a1853b8e9c93eced8e8366868829bbd5cb729c0ee"
+    }
+  ]
+}

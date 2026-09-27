@@ -1,0 +1,4115 @@
+{
+  "schema_version": 1,
+  "report_id": "pilot-o5-iszero-backend",
+  "kind": "backend-candidates",
+  "status": "incomplete",
+  "review_request": {
+    "path": "../backend-request.json",
+    "sha256": "df88adb4a8b1fd1e744dfccd58cd907d15f3deb4911d92bed8c0b7066dfd4a03"
+  },
+  "review_specs": [
+    {
+      "path": "../injection-rebound/spec.json",
+      "sha256": "b9d75cc0639d6b03d80604912f963ae9dbfc5cc16704425ec647d7e2f66c66c1"
+    }
+  ],
+  "engine": {
+    "version": "candidate-review-schema1",
+    "source_revision": "worktree-engine-manifest:32b9c66e95b5ee656c58f2c10e63ddd7381d5134f0f2524934e2d0a257b0f0e9",
+    "source_manifest_path": "../injection-rebound/engine-source-manifest.json",
+    "source_manifest_sha256": "32b9c66e95b5ee656c58f2c10e63ddd7381d5134f0f2524934e2d0a257b0f0e9",
+    "executable_path": "../../../../runs/dev-ranking-pilot-2026-09-27/bin-v2/zkfDO",
+    "executable_sha256": "89488fb61b5b59ee9d0df5cdc37bdf87e9c670b08db5996896981bc436f029fc",
+    "predicate_runner_path": "../../../../../../../../opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+    "predicate_runner_sha256": "87d4df53fd91304be5bac391fb204643c36b7df2023c04a0953bcbc7d4fdf634"
+  },
+  "adapters": [
+    {
+      "id": "zkfuzz-counterexample-v1",
+      "implementation_sha256": "d85426b53b5d8265f80b2a1bdf57090e58ebf9e91ba2351e5a7052d1f01518cb"
+    }
+  ],
+  "failure": null,
+  "candidate_inventory": {
+    "outcome_candidate_count": 111,
+    "matched_candidate_count": 0,
+    "unmatched_candidate_count": 111,
+    "candidate_error_count": 0,
+    "review_pair_count": 0,
+    "terminal_review_pair_count": 0,
+    "complete": false
+  },
+  "executions": [
+    {
+      "execution_id": "o5-iszero-block-1-cost-aware",
+      "plan_index": 0,
+      "run_id": "6f9a9750-667f-4497-9376-604d6452ba3a",
+      "target_id": "sha256:437109e0ce6c3f3e32c2561201194a4945004d514725c3639fdfb9f2c025d316",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-cost-aware",
+      "plan_index": 1,
+      "run_id": "60c6fd1b-ea5c-461a-8046-6117967ee0b2",
+      "target_id": "sha256:ede0428c345673cb7db9588fc77feb9b36150fbecfaa44ba8452a09d4a5f1f51",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-cost-aware",
+      "plan_index": 2,
+      "run_id": "43380adb-27aa-4c0a-8c9e-5841fb3b5302",
+      "target_id": "sha256:11cc7b651b9412a77986914f7e665d5f1eec6a3db99ff552219bc87ea757625f",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-cost-aware",
+      "plan_index": 3,
+      "run_id": "d62856a9-84c0-42e0-83a6-5443e97163b1",
+      "target_id": "sha256:4ba272db03ccbb632bc469189aaab672cb7eec70e106582104d53c3325f9618e",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-cost-aware",
+      "plan_index": 4,
+      "run_id": "2e52f64b-f1d9-4032-99f8-5039afcf5f74",
+      "target_id": "sha256:1b56c5b9ec469b9948bd67314ba5ca46c55f0c56044d6dde00fd5a45e25c7b4c",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-cost-aware",
+      "plan_index": 5,
+      "run_id": "37fb1cee-f966-47d9-8c91-f9249a560f81",
+      "target_id": "sha256:531218b7788e5fdc5c78e66bdf5150ca15dccc333802bc00a7fe2ae28bdeade3",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-cost-aware",
+      "plan_index": 6,
+      "run_id": "d5e98240-5ddb-46c3-9055-10b46ca80404",
+      "target_id": "sha256:97e2f511ba2f533e2047fb3a0c84891cba88339548147ec426b68096b23fba4d",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-cost-aware",
+      "plan_index": 7,
+      "run_id": "afa80a2b-bbbf-42fa-9a60-aa9db140b9f3",
+      "target_id": "sha256:1622d14622e6053ca335914c760ee2153e5e355b9c4e144803fa50cdf60ca4d6",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-cost-aware",
+      "plan_index": 8,
+      "run_id": "0b2c7350-22b8-43f9-8004-998b192a5489",
+      "target_id": "sha256:48df1353be28c9292af17bb15a9073b22a03073207111e31e401a5df18fd9be2",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-cost-aware",
+      "plan_index": 9,
+      "run_id": "4b703e8f-268c-4d4a-ac01-57efd15ab653",
+      "target_id": "sha256:25f6a8ee800597afe39e47709fb195d993600126a35430180cd4db62090447b7",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-cost-aware",
+      "plan_index": 10,
+      "run_id": "81e85c49-55e0-4d66-a74d-d1052d3e6b1a",
+      "target_id": "sha256:4b8854c8fccb43dc5083e87a6b25ab7ee77972c28cca2c258a2cecc55f3a7a19",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-cost-aware",
+      "plan_index": 11,
+      "run_id": "fe9184cb-0509-4e7c-acfe-85ba7652f461",
+      "target_id": "sha256:ac519b475dc0e3e923c812c847c58ae0929b1ea9b5948df9b22b4a9567e222e8",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-cost-aware",
+      "plan_index": 12,
+      "run_id": "e595f07c-ef06-4e22-b903-865019ead024",
+      "target_id": "sha256:1e47be4cf749494fd0628e08f485fadb3df4ef88cfab9bd0c8b2bd66976dfcd8",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-cost-aware",
+      "plan_index": 13,
+      "run_id": "bd607465-0eaf-47d9-9e10-07d537d45d92",
+      "target_id": "sha256:9c92048bec569ebf1215ba08de2d74d722a67d781fa53cee8438c4446201e774",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-cost-aware",
+      "plan_index": 14,
+      "run_id": "e724a41d-b29f-4f34-b229-c6d36e9cb7a9",
+      "target_id": "sha256:7c77f6e0a1bd0f8cf6f4fdd7593d12c156cfa745126de4fb6e1cc4ea30ffb455",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-cost-aware",
+      "plan_index": 15,
+      "run_id": "f10b7078-7c1a-4afd-8ab7-9301cdf8020f",
+      "target_id": "sha256:ace3a30a816b363cf300b214bd74c36e3a94a8f9db2cdde2a202eaea526a98b3",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-cost-aware",
+      "plan_index": 16,
+      "run_id": "a9162ac0-ad5b-4b13-9f3d-ad5495d3c021",
+      "target_id": "sha256:707fe160d30a53f032bc7784414894cc056fb29115e21c3dfec7faeb03d1f435",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-cost-aware",
+      "plan_index": 17,
+      "run_id": "011efbcd-1413-4fcc-93d2-20713a0845e1",
+      "target_id": "sha256:bce3fa6fb6af016b5dd139896c780c837309d1cb15a3bf9306dce1a01d4d567f",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-cost-aware",
+      "plan_index": 18,
+      "run_id": "328b3080-6623-439b-87e6-56aad2988137",
+      "target_id": "sha256:7c2448f685668dbbe24658dbc7a3896215518203f64b0a959d98c11c2250e0e8",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-cost-aware",
+      "plan_index": 19,
+      "run_id": "c1188aa4-1b4a-412b-bd7b-435986afa41a",
+      "target_id": "sha256:7e3fcfc546a51dc764cc04356515dd2df776a1c79f6d25c5c1c5dfff97af1e14",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-cost-aware",
+      "plan_index": 20,
+      "run_id": "0d9dc77f-0811-42db-a12b-649d73acd174",
+      "target_id": "sha256:b52b3a2f3aa4c659eadbccfbeeab1ba07057d2f567b539586e73359be8ee122d",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-path-order",
+      "plan_index": 0,
+      "run_id": "e21034a0-530c-4f24-b8d2-5020f1b28acd",
+      "target_id": "sha256:4b8854c8fccb43dc5083e87a6b25ab7ee77972c28cca2c258a2cecc55f3a7a19",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-path-order",
+      "plan_index": 1,
+      "run_id": "88e0522a-b058-40c9-a3bd-2922e4473676",
+      "target_id": "sha256:ac519b475dc0e3e923c812c847c58ae0929b1ea9b5948df9b22b4a9567e222e8",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-path-order",
+      "plan_index": 2,
+      "run_id": "74d708a6-9669-45f5-9782-399312c5470b",
+      "target_id": "sha256:25f6a8ee800597afe39e47709fb195d993600126a35430180cd4db62090447b7",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-path-order",
+      "plan_index": 3,
+      "run_id": "64df618c-79b1-418a-a562-80b1b605f466",
+      "target_id": "sha256:b52b3a2f3aa4c659eadbccfbeeab1ba07057d2f567b539586e73359be8ee122d",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-path-order",
+      "plan_index": 4,
+      "run_id": "540da6ce-ce13-4f9a-9205-bee71919d16d",
+      "target_id": "sha256:707fe160d30a53f032bc7784414894cc056fb29115e21c3dfec7faeb03d1f435",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-path-order",
+      "plan_index": 5,
+      "run_id": "31cf2cc2-f686-4507-88e3-d9bad8f4ee04",
+      "target_id": "sha256:7c2448f685668dbbe24658dbc7a3896215518203f64b0a959d98c11c2250e0e8",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-path-order",
+      "plan_index": 6,
+      "run_id": "4c3412c4-3ad5-4d68-b948-36283506e3ca",
+      "target_id": "sha256:7e3fcfc546a51dc764cc04356515dd2df776a1c79f6d25c5c1c5dfff97af1e14",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-path-order",
+      "plan_index": 7,
+      "run_id": "e22b948b-3e7b-4148-8f77-63b77ba51785",
+      "target_id": "sha256:ace3a30a816b363cf300b214bd74c36e3a94a8f9db2cdde2a202eaea526a98b3",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-path-order",
+      "plan_index": 8,
+      "run_id": "75e8436b-1fcf-4581-bbf8-db270fe635ec",
+      "target_id": "sha256:bce3fa6fb6af016b5dd139896c780c837309d1cb15a3bf9306dce1a01d4d567f",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-path-order",
+      "plan_index": 9,
+      "run_id": null,
+      "target_id": "sha256:48df1353be28c9292af17bb15a9073b22a03073207111e31e401a5df18fd9be2",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-path-order",
+      "plan_index": 10,
+      "run_id": null,
+      "target_id": "sha256:7c77f6e0a1bd0f8cf6f4fdd7593d12c156cfa745126de4fb6e1cc4ea30ffb455",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-path-order",
+      "plan_index": 11,
+      "run_id": null,
+      "target_id": "sha256:531218b7788e5fdc5c78e66bdf5150ca15dccc333802bc00a7fe2ae28bdeade3",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-path-order",
+      "plan_index": 12,
+      "run_id": null,
+      "target_id": "sha256:11cc7b651b9412a77986914f7e665d5f1eec6a3db99ff552219bc87ea757625f",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-path-order",
+      "plan_index": 13,
+      "run_id": null,
+      "target_id": "sha256:4ba272db03ccbb632bc469189aaab672cb7eec70e106582104d53c3325f9618e",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-path-order",
+      "plan_index": 14,
+      "run_id": null,
+      "target_id": "sha256:ede0428c345673cb7db9588fc77feb9b36150fbecfaa44ba8452a09d4a5f1f51",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-path-order",
+      "plan_index": 15,
+      "run_id": null,
+      "target_id": "sha256:1e47be4cf749494fd0628e08f485fadb3df4ef88cfab9bd0c8b2bd66976dfcd8",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-path-order",
+      "plan_index": 16,
+      "run_id": null,
+      "target_id": "sha256:1622d14622e6053ca335914c760ee2153e5e355b9c4e144803fa50cdf60ca4d6",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-path-order",
+      "plan_index": 17,
+      "run_id": null,
+      "target_id": "sha256:97e2f511ba2f533e2047fb3a0c84891cba88339548147ec426b68096b23fba4d",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-path-order",
+      "plan_index": 18,
+      "run_id": null,
+      "target_id": "sha256:1b56c5b9ec469b9948bd67314ba5ca46c55f0c56044d6dde00fd5a45e25c7b4c",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-path-order",
+      "plan_index": 19,
+      "run_id": null,
+      "target_id": "sha256:437109e0ce6c3f3e32c2561201194a4945004d514725c3639fdfb9f2c025d316",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-path-order",
+      "plan_index": 20,
+      "run_id": null,
+      "target_id": "sha256:9c92048bec569ebf1215ba08de2d74d722a67d781fa53cee8438c4446201e774",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-random",
+      "plan_index": 0,
+      "run_id": "3f6a13c9-7e65-48de-9b7c-1b06535d6ecc",
+      "target_id": "sha256:ace3a30a816b363cf300b214bd74c36e3a94a8f9db2cdde2a202eaea526a98b3",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-random",
+      "plan_index": 1,
+      "run_id": "8e32c003-253a-45e5-b771-e5a73f682f4c",
+      "target_id": "sha256:9c92048bec569ebf1215ba08de2d74d722a67d781fa53cee8438c4446201e774",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-random",
+      "plan_index": 2,
+      "run_id": "cbf2de61-987d-49a9-993c-d201e12b3c26",
+      "target_id": "sha256:ac519b475dc0e3e923c812c847c58ae0929b1ea9b5948df9b22b4a9567e222e8",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-random",
+      "plan_index": 3,
+      "run_id": "7cfda6da-8fc7-4de6-83fe-1deac2dad022",
+      "target_id": "sha256:437109e0ce6c3f3e32c2561201194a4945004d514725c3639fdfb9f2c025d316",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-random",
+      "plan_index": 4,
+      "run_id": "0923dfcb-317a-4f60-adc7-a47ba01a30d8",
+      "target_id": "sha256:1e47be4cf749494fd0628e08f485fadb3df4ef88cfab9bd0c8b2bd66976dfcd8",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-random",
+      "plan_index": 5,
+      "run_id": "2f93bd3b-bfce-410d-9823-d04a67389e3e",
+      "target_id": "sha256:25f6a8ee800597afe39e47709fb195d993600126a35430180cd4db62090447b7",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-random",
+      "plan_index": 6,
+      "run_id": "8b3c9347-4868-4038-9c3e-1ecd9369b99a",
+      "target_id": "sha256:4ba272db03ccbb632bc469189aaab672cb7eec70e106582104d53c3325f9618e",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-random",
+      "plan_index": 7,
+      "run_id": "79570e52-f4c8-473d-b881-faf4f28389e4",
+      "target_id": "sha256:531218b7788e5fdc5c78e66bdf5150ca15dccc333802bc00a7fe2ae28bdeade3",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-random",
+      "plan_index": 8,
+      "run_id": "245f7e90-7e5d-45a8-be41-f6a0a70e0cf9",
+      "target_id": "sha256:b52b3a2f3aa4c659eadbccfbeeab1ba07057d2f567b539586e73359be8ee122d",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-random",
+      "plan_index": 9,
+      "run_id": "a3d11ec6-1cae-438a-a0bd-65bfac64ff31",
+      "target_id": "sha256:7c2448f685668dbbe24658dbc7a3896215518203f64b0a959d98c11c2250e0e8",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-random",
+      "plan_index": 10,
+      "run_id": "6f1ca5ac-aa23-4d5a-94fc-33e8095eb51c",
+      "target_id": "sha256:97e2f511ba2f533e2047fb3a0c84891cba88339548147ec426b68096b23fba4d",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-random",
+      "plan_index": 11,
+      "run_id": "09893383-9ee4-4a64-ab03-63475c654bbf",
+      "target_id": "sha256:7e3fcfc546a51dc764cc04356515dd2df776a1c79f6d25c5c1c5dfff97af1e14",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-random",
+      "plan_index": 12,
+      "run_id": "26162ad1-3129-463f-a149-c8effd7a093d",
+      "target_id": "sha256:48df1353be28c9292af17bb15a9073b22a03073207111e31e401a5df18fd9be2",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-random",
+      "plan_index": 13,
+      "run_id": "bec2807d-e355-4f95-9886-f77d1ceedf40",
+      "target_id": "sha256:4b8854c8fccb43dc5083e87a6b25ab7ee77972c28cca2c258a2cecc55f3a7a19",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-random",
+      "plan_index": 14,
+      "run_id": "595788be-c4ea-4f78-a4c7-0e88757577e2",
+      "target_id": "sha256:bce3fa6fb6af016b5dd139896c780c837309d1cb15a3bf9306dce1a01d4d567f",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-random",
+      "plan_index": 15,
+      "run_id": "8ec191cc-6362-4ad2-bb98-156c6335cedb",
+      "target_id": "sha256:707fe160d30a53f032bc7784414894cc056fb29115e21c3dfec7faeb03d1f435",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-random",
+      "plan_index": 16,
+      "run_id": null,
+      "target_id": "sha256:ede0428c345673cb7db9588fc77feb9b36150fbecfaa44ba8452a09d4a5f1f51",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-random",
+      "plan_index": 17,
+      "run_id": null,
+      "target_id": "sha256:7c77f6e0a1bd0f8cf6f4fdd7593d12c156cfa745126de4fb6e1cc4ea30ffb455",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-random",
+      "plan_index": 18,
+      "run_id": null,
+      "target_id": "sha256:1622d14622e6053ca335914c760ee2153e5e355b9c4e144803fa50cdf60ca4d6",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-random",
+      "plan_index": 19,
+      "run_id": null,
+      "target_id": "sha256:1b56c5b9ec469b9948bd67314ba5ca46c55f0c56044d6dde00fd5a45e25c7b4c",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-random",
+      "plan_index": 20,
+      "run_id": null,
+      "target_id": "sha256:11cc7b651b9412a77986914f7e665d5f1eec6a3db99ff552219bc87ea757625f",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-risk-only",
+      "plan_index": 0,
+      "run_id": "684f46bc-c26d-4d0e-a0e5-77e508310a03",
+      "target_id": "sha256:11cc7b651b9412a77986914f7e665d5f1eec6a3db99ff552219bc87ea757625f",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-risk-only",
+      "plan_index": 1,
+      "run_id": "70eee9bc-38b9-4942-b626-825b5a3b9e4c",
+      "target_id": "sha256:1622d14622e6053ca335914c760ee2153e5e355b9c4e144803fa50cdf60ca4d6",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-risk-only",
+      "plan_index": 2,
+      "run_id": "a3082f46-57c7-460b-83d2-33197db100b1",
+      "target_id": "sha256:1b56c5b9ec469b9948bd67314ba5ca46c55f0c56044d6dde00fd5a45e25c7b4c",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-risk-only",
+      "plan_index": 3,
+      "run_id": "8083a210-8270-44e5-80b0-e86ca46ac001",
+      "target_id": "sha256:4ba272db03ccbb632bc469189aaab672cb7eec70e106582104d53c3325f9618e",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-risk-only",
+      "plan_index": 4,
+      "run_id": "60cef0a6-3455-4347-ab5e-35747b2bd630",
+      "target_id": "sha256:531218b7788e5fdc5c78e66bdf5150ca15dccc333802bc00a7fe2ae28bdeade3",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-risk-only",
+      "plan_index": 5,
+      "run_id": "5f85d2e6-7fab-4c80-b3f3-317c429dca41",
+      "target_id": "sha256:97e2f511ba2f533e2047fb3a0c84891cba88339548147ec426b68096b23fba4d",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-risk-only",
+      "plan_index": 6,
+      "run_id": "148eab2b-772f-474b-856b-aad0714d5f92",
+      "target_id": "sha256:437109e0ce6c3f3e32c2561201194a4945004d514725c3639fdfb9f2c025d316",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-risk-only",
+      "plan_index": 7,
+      "run_id": "1c4ea4c4-4178-4ff0-87a0-c767f06e8502",
+      "target_id": "sha256:25f6a8ee800597afe39e47709fb195d993600126a35430180cd4db62090447b7",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-risk-only",
+      "plan_index": 8,
+      "run_id": "5f6ee80a-96c3-4646-92ed-8d7e5892e3ac",
+      "target_id": "sha256:48df1353be28c9292af17bb15a9073b22a03073207111e31e401a5df18fd9be2",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-risk-only",
+      "plan_index": 9,
+      "run_id": "d42ddcdd-6f2d-4e92-9a61-eb498ae00b6c",
+      "target_id": "sha256:4b8854c8fccb43dc5083e87a6b25ab7ee77972c28cca2c258a2cecc55f3a7a19",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-risk-only",
+      "plan_index": 10,
+      "run_id": "98d67d76-3cb7-4675-bbb7-c9ac3cca5dfa",
+      "target_id": "sha256:ede0428c345673cb7db9588fc77feb9b36150fbecfaa44ba8452a09d4a5f1f51",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-risk-only",
+      "plan_index": 11,
+      "run_id": "63221c34-b63c-4a5e-a8b8-244591509f8e",
+      "target_id": "sha256:1e47be4cf749494fd0628e08f485fadb3df4ef88cfab9bd0c8b2bd66976dfcd8",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-risk-only",
+      "plan_index": 12,
+      "run_id": "5aecaf17-d7ca-4208-bdf3-6d3e068a1ba4",
+      "target_id": "sha256:707fe160d30a53f032bc7784414894cc056fb29115e21c3dfec7faeb03d1f435",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-risk-only",
+      "plan_index": 13,
+      "run_id": "68cfcb41-9933-4413-840f-a13e9687f7b8",
+      "target_id": "sha256:7c2448f685668dbbe24658dbc7a3896215518203f64b0a959d98c11c2250e0e8",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-risk-only",
+      "plan_index": 14,
+      "run_id": "8d292e97-e461-4820-849c-6ba451a77366",
+      "target_id": "sha256:7c77f6e0a1bd0f8cf6f4fdd7593d12c156cfa745126de4fb6e1cc4ea30ffb455",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-risk-only",
+      "plan_index": 15,
+      "run_id": "fae0feb1-761b-473e-8ceb-d5b9a9a3bea7",
+      "target_id": "sha256:7e3fcfc546a51dc764cc04356515dd2df776a1c79f6d25c5c1c5dfff97af1e14",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-risk-only",
+      "plan_index": 16,
+      "run_id": "2eb80882-3c63-4f84-95d1-e668adf3fa69",
+      "target_id": "sha256:9c92048bec569ebf1215ba08de2d74d722a67d781fa53cee8438c4446201e774",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-risk-only",
+      "plan_index": 17,
+      "run_id": "3aaa8a85-82bd-4672-8e4e-ff9b220d960c",
+      "target_id": "sha256:ac519b475dc0e3e923c812c847c58ae0929b1ea9b5948df9b22b4a9567e222e8",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-risk-only",
+      "plan_index": 18,
+      "run_id": "7fb7b5bb-5319-4c86-b0d9-b0da0b00ebd2",
+      "target_id": "sha256:ace3a30a816b363cf300b214bd74c36e3a94a8f9db2cdde2a202eaea526a98b3",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-risk-only",
+      "plan_index": 19,
+      "run_id": "29377bd8-511d-4523-81c3-6527523aeab9",
+      "target_id": "sha256:b52b3a2f3aa4c659eadbccfbeeab1ba07057d2f567b539586e73359be8ee122d",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-risk-only",
+      "plan_index": 20,
+      "run_id": "53b5292c-0098-44d7-85b4-df1b86ede115",
+      "target_id": "sha256:bce3fa6fb6af016b5dd139896c780c837309d1cb15a3bf9306dce1a01d4d567f",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-small-first",
+      "plan_index": 0,
+      "run_id": "4cd87576-f085-4751-aeba-c26e6dd818fe",
+      "target_id": "sha256:437109e0ce6c3f3e32c2561201194a4945004d514725c3639fdfb9f2c025d316",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-small-first",
+      "plan_index": 1,
+      "run_id": "97d9b724-28e8-41ab-a98c-e6135c6f6526",
+      "target_id": "sha256:ac519b475dc0e3e923c812c847c58ae0929b1ea9b5948df9b22b4a9567e222e8",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-small-first",
+      "plan_index": 2,
+      "run_id": "02bb4a3f-2f42-40d0-bd94-50d61698bd53",
+      "target_id": "sha256:ede0428c345673cb7db9588fc77feb9b36150fbecfaa44ba8452a09d4a5f1f51",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-small-first",
+      "plan_index": 3,
+      "run_id": "c6912988-70c8-4948-88f9-1334a4b2be64",
+      "target_id": "sha256:1e47be4cf749494fd0628e08f485fadb3df4ef88cfab9bd0c8b2bd66976dfcd8",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-small-first",
+      "plan_index": 4,
+      "run_id": "1c423a3b-5bf7-481c-a6c0-008de21df554",
+      "target_id": "sha256:9c92048bec569ebf1215ba08de2d74d722a67d781fa53cee8438c4446201e774",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-small-first",
+      "plan_index": 5,
+      "run_id": "a0284793-c862-4381-b14e-4760406743f4",
+      "target_id": "sha256:7c77f6e0a1bd0f8cf6f4fdd7593d12c156cfa745126de4fb6e1cc4ea30ffb455",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-small-first",
+      "plan_index": 6,
+      "run_id": "4a08492e-4268-4aa0-9452-f32142693992",
+      "target_id": "sha256:ace3a30a816b363cf300b214bd74c36e3a94a8f9db2cdde2a202eaea526a98b3",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-small-first",
+      "plan_index": 7,
+      "run_id": "30d554ae-4cf0-4bc4-8be1-82d1579bec67",
+      "target_id": "sha256:707fe160d30a53f032bc7784414894cc056fb29115e21c3dfec7faeb03d1f435",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-small-first",
+      "plan_index": 8,
+      "run_id": "235b6162-63af-4c03-9323-7ac491c36e8c",
+      "target_id": "sha256:11cc7b651b9412a77986914f7e665d5f1eec6a3db99ff552219bc87ea757625f",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-small-first",
+      "plan_index": 9,
+      "run_id": "484316bf-7594-4a6d-ae39-26cb0e629fce",
+      "target_id": "sha256:48df1353be28c9292af17bb15a9073b22a03073207111e31e401a5df18fd9be2",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-small-first",
+      "plan_index": 10,
+      "run_id": "a90cee4d-bb26-497a-8533-693518c610dd",
+      "target_id": "sha256:bce3fa6fb6af016b5dd139896c780c837309d1cb15a3bf9306dce1a01d4d567f",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-small-first",
+      "plan_index": 11,
+      "run_id": "6b4fbd53-09b3-4cd5-b996-2605157383aa",
+      "target_id": "sha256:7c2448f685668dbbe24658dbc7a3896215518203f64b0a959d98c11c2250e0e8",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-small-first",
+      "plan_index": 12,
+      "run_id": "ab986ca8-1df8-4961-9b46-5abe092a487e",
+      "target_id": "sha256:4ba272db03ccbb632bc469189aaab672cb7eec70e106582104d53c3325f9618e",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-small-first",
+      "plan_index": 13,
+      "run_id": "5d624c77-0a93-4cbb-bb54-7f2d90198ed3",
+      "target_id": "sha256:25f6a8ee800597afe39e47709fb195d993600126a35430180cd4db62090447b7",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-small-first",
+      "plan_index": 14,
+      "run_id": "5e3c5d44-f37b-40e7-a64e-83fcf8e6f76f",
+      "target_id": "sha256:4b8854c8fccb43dc5083e87a6b25ab7ee77972c28cca2c258a2cecc55f3a7a19",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-small-first",
+      "plan_index": 15,
+      "run_id": "7eff8dad-9c82-41c8-868b-bd26a69abf9d",
+      "target_id": "sha256:1b56c5b9ec469b9948bd67314ba5ca46c55f0c56044d6dde00fd5a45e25c7b4c",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-small-first",
+      "plan_index": 16,
+      "run_id": "808ddfce-dc4c-40ee-99d0-244459a989e9",
+      "target_id": "sha256:7e3fcfc546a51dc764cc04356515dd2df776a1c79f6d25c5c1c5dfff97af1e14",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-small-first",
+      "plan_index": 17,
+      "run_id": "ffa34b91-cb3a-4d5f-83b1-38b5dcf05f6a",
+      "target_id": "sha256:b52b3a2f3aa4c659eadbccfbeeab1ba07057d2f567b539586e73359be8ee122d",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-small-first",
+      "plan_index": 18,
+      "run_id": null,
+      "target_id": "sha256:531218b7788e5fdc5c78e66bdf5150ca15dccc333802bc00a7fe2ae28bdeade3",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-small-first",
+      "plan_index": 19,
+      "run_id": null,
+      "target_id": "sha256:97e2f511ba2f533e2047fb3a0c84891cba88339548147ec426b68096b23fba4d",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-1-small-first",
+      "plan_index": 20,
+      "run_id": null,
+      "target_id": "sha256:1622d14622e6053ca335914c760ee2153e5e355b9c4e144803fa50cdf60ca4d6",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-cost-aware",
+      "plan_index": 0,
+      "run_id": "56e3cebe-662e-4fcf-b66c-8e83f88621f5",
+      "target_id": "sha256:437109e0ce6c3f3e32c2561201194a4945004d514725c3639fdfb9f2c025d316",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-cost-aware",
+      "plan_index": 1,
+      "run_id": "0af88500-dc12-4fbb-a9e7-97c46f9e16e5",
+      "target_id": "sha256:ede0428c345673cb7db9588fc77feb9b36150fbecfaa44ba8452a09d4a5f1f51",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-cost-aware",
+      "plan_index": 2,
+      "run_id": "d32305ce-850e-4d54-a418-3709728bff81",
+      "target_id": "sha256:11cc7b651b9412a77986914f7e665d5f1eec6a3db99ff552219bc87ea757625f",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-cost-aware",
+      "plan_index": 3,
+      "run_id": "646b4cbc-8060-4fd8-bd4d-4d84c2f9f7ab",
+      "target_id": "sha256:4ba272db03ccbb632bc469189aaab672cb7eec70e106582104d53c3325f9618e",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-cost-aware",
+      "plan_index": 4,
+      "run_id": "ea03ff0a-62e2-41e8-a997-5f9ee9f61891",
+      "target_id": "sha256:1b56c5b9ec469b9948bd67314ba5ca46c55f0c56044d6dde00fd5a45e25c7b4c",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-cost-aware",
+      "plan_index": 5,
+      "run_id": "8788b139-004d-4cd3-b89d-5a7c984acb47",
+      "target_id": "sha256:531218b7788e5fdc5c78e66bdf5150ca15dccc333802bc00a7fe2ae28bdeade3",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-cost-aware",
+      "plan_index": 6,
+      "run_id": "e5883b0c-f0c6-4528-bf3d-41007ca93954",
+      "target_id": "sha256:97e2f511ba2f533e2047fb3a0c84891cba88339548147ec426b68096b23fba4d",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-cost-aware",
+      "plan_index": 7,
+      "run_id": "170d6546-9de2-4ad4-b4f3-61221c3c3219",
+      "target_id": "sha256:1622d14622e6053ca335914c760ee2153e5e355b9c4e144803fa50cdf60ca4d6",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-cost-aware",
+      "plan_index": 8,
+      "run_id": "a7639667-ab79-4c42-a77a-d49e692775b1",
+      "target_id": "sha256:48df1353be28c9292af17bb15a9073b22a03073207111e31e401a5df18fd9be2",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-cost-aware",
+      "plan_index": 9,
+      "run_id": "4867fd53-9400-4e19-8f2f-68dc44d17e69",
+      "target_id": "sha256:25f6a8ee800597afe39e47709fb195d993600126a35430180cd4db62090447b7",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-cost-aware",
+      "plan_index": 10,
+      "run_id": "f877fff6-b17c-4967-ac1d-5e136cea7dfc",
+      "target_id": "sha256:4b8854c8fccb43dc5083e87a6b25ab7ee77972c28cca2c258a2cecc55f3a7a19",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-cost-aware",
+      "plan_index": 11,
+      "run_id": "67d1b8ac-229b-4414-8ab5-9961ecae26a1",
+      "target_id": "sha256:ac519b475dc0e3e923c812c847c58ae0929b1ea9b5948df9b22b4a9567e222e8",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-cost-aware",
+      "plan_index": 12,
+      "run_id": "73100eb2-a9ac-4160-840a-279d128030ed",
+      "target_id": "sha256:1e47be4cf749494fd0628e08f485fadb3df4ef88cfab9bd0c8b2bd66976dfcd8",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-cost-aware",
+      "plan_index": 13,
+      "run_id": "d7f610eb-e03c-4aa7-9832-16c6e4fa182a",
+      "target_id": "sha256:9c92048bec569ebf1215ba08de2d74d722a67d781fa53cee8438c4446201e774",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-cost-aware",
+      "plan_index": 14,
+      "run_id": "16797bc7-1c3a-4fc0-ad7f-9976635cde95",
+      "target_id": "sha256:7c77f6e0a1bd0f8cf6f4fdd7593d12c156cfa745126de4fb6e1cc4ea30ffb455",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-cost-aware",
+      "plan_index": 15,
+      "run_id": "530f292b-7263-4624-88da-b644bfebe00e",
+      "target_id": "sha256:ace3a30a816b363cf300b214bd74c36e3a94a8f9db2cdde2a202eaea526a98b3",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-cost-aware",
+      "plan_index": 16,
+      "run_id": "2c32548a-3828-4fc0-a9c3-b521d5489491",
+      "target_id": "sha256:707fe160d30a53f032bc7784414894cc056fb29115e21c3dfec7faeb03d1f435",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-cost-aware",
+      "plan_index": 17,
+      "run_id": "5e63f95c-d83f-4a20-94e0-1c21cacfb56a",
+      "target_id": "sha256:bce3fa6fb6af016b5dd139896c780c837309d1cb15a3bf9306dce1a01d4d567f",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-cost-aware",
+      "plan_index": 18,
+      "run_id": "d108636a-2d7e-401e-ba0c-8026afc5e591",
+      "target_id": "sha256:7c2448f685668dbbe24658dbc7a3896215518203f64b0a959d98c11c2250e0e8",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-cost-aware",
+      "plan_index": 19,
+      "run_id": "1ea109d9-9952-46a8-a646-6817f0ddfc7e",
+      "target_id": "sha256:7e3fcfc546a51dc764cc04356515dd2df776a1c79f6d25c5c1c5dfff97af1e14",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-cost-aware",
+      "plan_index": 20,
+      "run_id": "a0655a95-9090-4937-9a23-680cb3d420b4",
+      "target_id": "sha256:b52b3a2f3aa4c659eadbccfbeeab1ba07057d2f567b539586e73359be8ee122d",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-path-order",
+      "plan_index": 0,
+      "run_id": "44b3469b-75bb-4fad-b761-99bfa6c0f578",
+      "target_id": "sha256:4b8854c8fccb43dc5083e87a6b25ab7ee77972c28cca2c258a2cecc55f3a7a19",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-path-order",
+      "plan_index": 1,
+      "run_id": "95c3184c-6451-4b3b-a36b-326064890122",
+      "target_id": "sha256:ac519b475dc0e3e923c812c847c58ae0929b1ea9b5948df9b22b4a9567e222e8",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-path-order",
+      "plan_index": 2,
+      "run_id": "eb90b71f-b7e1-46a6-ad82-b9df3f487ac2",
+      "target_id": "sha256:25f6a8ee800597afe39e47709fb195d993600126a35430180cd4db62090447b7",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-path-order",
+      "plan_index": 3,
+      "run_id": "d5669637-3cec-4152-b176-c93379f7df41",
+      "target_id": "sha256:b52b3a2f3aa4c659eadbccfbeeab1ba07057d2f567b539586e73359be8ee122d",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-path-order",
+      "plan_index": 4,
+      "run_id": "3e32d286-7fb4-4d0b-8f62-45c91ce02f1d",
+      "target_id": "sha256:707fe160d30a53f032bc7784414894cc056fb29115e21c3dfec7faeb03d1f435",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-path-order",
+      "plan_index": 5,
+      "run_id": "bac24837-c9c6-49fc-a78d-586239eabaeb",
+      "target_id": "sha256:7c2448f685668dbbe24658dbc7a3896215518203f64b0a959d98c11c2250e0e8",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-path-order",
+      "plan_index": 6,
+      "run_id": "43eb3263-42c9-48b7-8676-5e46cc0cb86d",
+      "target_id": "sha256:7e3fcfc546a51dc764cc04356515dd2df776a1c79f6d25c5c1c5dfff97af1e14",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-path-order",
+      "plan_index": 7,
+      "run_id": "1a32b598-92c4-4796-8514-09080e4eef3f",
+      "target_id": "sha256:ace3a30a816b363cf300b214bd74c36e3a94a8f9db2cdde2a202eaea526a98b3",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-path-order",
+      "plan_index": 8,
+      "run_id": "3e3fbbc7-b671-48a5-b26a-d77e81356977",
+      "target_id": "sha256:bce3fa6fb6af016b5dd139896c780c837309d1cb15a3bf9306dce1a01d4d567f",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-path-order",
+      "plan_index": 9,
+      "run_id": null,
+      "target_id": "sha256:48df1353be28c9292af17bb15a9073b22a03073207111e31e401a5df18fd9be2",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-path-order",
+      "plan_index": 10,
+      "run_id": null,
+      "target_id": "sha256:7c77f6e0a1bd0f8cf6f4fdd7593d12c156cfa745126de4fb6e1cc4ea30ffb455",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-path-order",
+      "plan_index": 11,
+      "run_id": null,
+      "target_id": "sha256:531218b7788e5fdc5c78e66bdf5150ca15dccc333802bc00a7fe2ae28bdeade3",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-path-order",
+      "plan_index": 12,
+      "run_id": null,
+      "target_id": "sha256:11cc7b651b9412a77986914f7e665d5f1eec6a3db99ff552219bc87ea757625f",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-path-order",
+      "plan_index": 13,
+      "run_id": null,
+      "target_id": "sha256:4ba272db03ccbb632bc469189aaab672cb7eec70e106582104d53c3325f9618e",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-path-order",
+      "plan_index": 14,
+      "run_id": null,
+      "target_id": "sha256:ede0428c345673cb7db9588fc77feb9b36150fbecfaa44ba8452a09d4a5f1f51",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-path-order",
+      "plan_index": 15,
+      "run_id": null,
+      "target_id": "sha256:1e47be4cf749494fd0628e08f485fadb3df4ef88cfab9bd0c8b2bd66976dfcd8",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-path-order",
+      "plan_index": 16,
+      "run_id": null,
+      "target_id": "sha256:1622d14622e6053ca335914c760ee2153e5e355b9c4e144803fa50cdf60ca4d6",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-path-order",
+      "plan_index": 17,
+      "run_id": null,
+      "target_id": "sha256:97e2f511ba2f533e2047fb3a0c84891cba88339548147ec426b68096b23fba4d",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-path-order",
+      "plan_index": 18,
+      "run_id": null,
+      "target_id": "sha256:1b56c5b9ec469b9948bd67314ba5ca46c55f0c56044d6dde00fd5a45e25c7b4c",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-path-order",
+      "plan_index": 19,
+      "run_id": null,
+      "target_id": "sha256:437109e0ce6c3f3e32c2561201194a4945004d514725c3639fdfb9f2c025d316",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-path-order",
+      "plan_index": 20,
+      "run_id": null,
+      "target_id": "sha256:9c92048bec569ebf1215ba08de2d74d722a67d781fa53cee8438c4446201e774",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-random",
+      "plan_index": 0,
+      "run_id": "c811a40b-ced6-4264-9045-95b312de2d54",
+      "target_id": "sha256:7c77f6e0a1bd0f8cf6f4fdd7593d12c156cfa745126de4fb6e1cc4ea30ffb455",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-random",
+      "plan_index": 1,
+      "run_id": "3392f61c-dfad-4ae6-9ca4-b4a00f265053",
+      "target_id": "sha256:bce3fa6fb6af016b5dd139896c780c837309d1cb15a3bf9306dce1a01d4d567f",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-random",
+      "plan_index": 2,
+      "run_id": "b87ad966-b2b9-418d-bd0f-add09b144c7a",
+      "target_id": "sha256:ac519b475dc0e3e923c812c847c58ae0929b1ea9b5948df9b22b4a9567e222e8",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-random",
+      "plan_index": 3,
+      "run_id": "cdf39727-d000-4c25-9211-9a383b0d332d",
+      "target_id": "sha256:11cc7b651b9412a77986914f7e665d5f1eec6a3db99ff552219bc87ea757625f",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-random",
+      "plan_index": 4,
+      "run_id": "eedaf0bf-3c23-4c72-8638-1d9146066cc4",
+      "target_id": "sha256:b52b3a2f3aa4c659eadbccfbeeab1ba07057d2f567b539586e73359be8ee122d",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-random",
+      "plan_index": 5,
+      "run_id": "7f8e8e1f-095b-4879-848d-d1da0c67807f",
+      "target_id": "sha256:7c2448f685668dbbe24658dbc7a3896215518203f64b0a959d98c11c2250e0e8",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-random",
+      "plan_index": 6,
+      "run_id": "bd7f7fc9-1309-4aa3-9d51-df129ff19e72",
+      "target_id": "sha256:ede0428c345673cb7db9588fc77feb9b36150fbecfaa44ba8452a09d4a5f1f51",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-random",
+      "plan_index": 7,
+      "run_id": "e471987f-b6eb-4d79-9875-fd201d162aa2",
+      "target_id": "sha256:707fe160d30a53f032bc7784414894cc056fb29115e21c3dfec7faeb03d1f435",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-random",
+      "plan_index": 8,
+      "run_id": "7cd74f35-2113-47c6-8ed4-7be882211c33",
+      "target_id": "sha256:4ba272db03ccbb632bc469189aaab672cb7eec70e106582104d53c3325f9618e",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-random",
+      "plan_index": 9,
+      "run_id": "f39233bf-91a3-4c51-8272-8b9972ff81aa",
+      "target_id": "sha256:25f6a8ee800597afe39e47709fb195d993600126a35430180cd4db62090447b7",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-random",
+      "plan_index": 10,
+      "run_id": "92691d86-26e8-4ab9-887d-fa755fa39818",
+      "target_id": "sha256:9c92048bec569ebf1215ba08de2d74d722a67d781fa53cee8438c4446201e774",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-random",
+      "plan_index": 11,
+      "run_id": "602dc5bf-2772-4fb9-a2e6-b75d406f8798",
+      "target_id": "sha256:531218b7788e5fdc5c78e66bdf5150ca15dccc333802bc00a7fe2ae28bdeade3",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-random",
+      "plan_index": 12,
+      "run_id": "1a38c4fa-9152-49ab-862a-35ebecc52fd2",
+      "target_id": "sha256:1e47be4cf749494fd0628e08f485fadb3df4ef88cfab9bd0c8b2bd66976dfcd8",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-random",
+      "plan_index": 13,
+      "run_id": "c82af029-3e1c-4ff9-a970-c108e775b14c",
+      "target_id": "sha256:437109e0ce6c3f3e32c2561201194a4945004d514725c3639fdfb9f2c025d316",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-random",
+      "plan_index": 14,
+      "run_id": "384c5c70-d921-43d5-9efe-479c3182c4cd",
+      "target_id": "sha256:4b8854c8fccb43dc5083e87a6b25ab7ee77972c28cca2c258a2cecc55f3a7a19",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-random",
+      "plan_index": 15,
+      "run_id": "d0af12bb-2c6a-4151-b435-fc188a53972b",
+      "target_id": "sha256:7e3fcfc546a51dc764cc04356515dd2df776a1c79f6d25c5c1c5dfff97af1e14",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-random",
+      "plan_index": 16,
+      "run_id": "3c9b609f-11dd-44c0-bc09-5cab3d979cf2",
+      "target_id": "sha256:97e2f511ba2f533e2047fb3a0c84891cba88339548147ec426b68096b23fba4d",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-random",
+      "plan_index": 17,
+      "run_id": "67d6feb6-328e-4ef8-abb9-0d780dc7e23b",
+      "target_id": "sha256:1622d14622e6053ca335914c760ee2153e5e355b9c4e144803fa50cdf60ca4d6",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-random",
+      "plan_index": 18,
+      "run_id": "5c31cb09-3127-4902-96ab-0b26096e6fc9",
+      "target_id": "sha256:1b56c5b9ec469b9948bd67314ba5ca46c55f0c56044d6dde00fd5a45e25c7b4c",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-random",
+      "plan_index": 19,
+      "run_id": "8584d662-7002-4848-9393-5aefd5621c6a",
+      "target_id": "sha256:48df1353be28c9292af17bb15a9073b22a03073207111e31e401a5df18fd9be2",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-random",
+      "plan_index": 20,
+      "run_id": "681c699e-24c1-4e82-b0d2-78f165664587",
+      "target_id": "sha256:ace3a30a816b363cf300b214bd74c36e3a94a8f9db2cdde2a202eaea526a98b3",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-risk-only",
+      "plan_index": 0,
+      "run_id": "40ef6bf4-328a-4a0b-85c7-035c19e9060e",
+      "target_id": "sha256:11cc7b651b9412a77986914f7e665d5f1eec6a3db99ff552219bc87ea757625f",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-risk-only",
+      "plan_index": 1,
+      "run_id": "b6dbbc82-9000-4ad8-8a48-da501f03e800",
+      "target_id": "sha256:1622d14622e6053ca335914c760ee2153e5e355b9c4e144803fa50cdf60ca4d6",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-risk-only",
+      "plan_index": 2,
+      "run_id": "62d770d9-f5f8-44a0-befe-f164a24a0764",
+      "target_id": "sha256:1b56c5b9ec469b9948bd67314ba5ca46c55f0c56044d6dde00fd5a45e25c7b4c",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-risk-only",
+      "plan_index": 3,
+      "run_id": "31b71a99-aace-4fed-ad5a-3ebac819861e",
+      "target_id": "sha256:4ba272db03ccbb632bc469189aaab672cb7eec70e106582104d53c3325f9618e",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-risk-only",
+      "plan_index": 4,
+      "run_id": "49c86f92-1ce8-4355-85c9-34a5ac373a42",
+      "target_id": "sha256:531218b7788e5fdc5c78e66bdf5150ca15dccc333802bc00a7fe2ae28bdeade3",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-risk-only",
+      "plan_index": 5,
+      "run_id": "bd2f5801-f180-4466-bd5a-404f39df330d",
+      "target_id": "sha256:97e2f511ba2f533e2047fb3a0c84891cba88339548147ec426b68096b23fba4d",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-risk-only",
+      "plan_index": 6,
+      "run_id": "eb5a3206-15d5-456a-8f4f-253558cd5fc4",
+      "target_id": "sha256:437109e0ce6c3f3e32c2561201194a4945004d514725c3639fdfb9f2c025d316",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-risk-only",
+      "plan_index": 7,
+      "run_id": "90b5421e-5905-4e22-84ff-b96d58db792a",
+      "target_id": "sha256:25f6a8ee800597afe39e47709fb195d993600126a35430180cd4db62090447b7",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-risk-only",
+      "plan_index": 8,
+      "run_id": "1f015839-2611-4e8e-8410-9d0b98a08a8b",
+      "target_id": "sha256:48df1353be28c9292af17bb15a9073b22a03073207111e31e401a5df18fd9be2",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-risk-only",
+      "plan_index": 9,
+      "run_id": "af655ef0-f1e2-4537-af15-17e076d23076",
+      "target_id": "sha256:4b8854c8fccb43dc5083e87a6b25ab7ee77972c28cca2c258a2cecc55f3a7a19",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-risk-only",
+      "plan_index": 10,
+      "run_id": "a6956460-31a6-47fb-a10c-d862936c2c7b",
+      "target_id": "sha256:ede0428c345673cb7db9588fc77feb9b36150fbecfaa44ba8452a09d4a5f1f51",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-risk-only",
+      "plan_index": 11,
+      "run_id": "e6601601-8fa4-4ab9-a8d8-e4ff0b951ad7",
+      "target_id": "sha256:1e47be4cf749494fd0628e08f485fadb3df4ef88cfab9bd0c8b2bd66976dfcd8",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-risk-only",
+      "plan_index": 12,
+      "run_id": "85cd74eb-cb88-42b1-8a28-d2427a325582",
+      "target_id": "sha256:707fe160d30a53f032bc7784414894cc056fb29115e21c3dfec7faeb03d1f435",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-risk-only",
+      "plan_index": 13,
+      "run_id": "f3958c0c-16b8-4719-a78d-2de59dcd14b0",
+      "target_id": "sha256:7c2448f685668dbbe24658dbc7a3896215518203f64b0a959d98c11c2250e0e8",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-risk-only",
+      "plan_index": 14,
+      "run_id": "06b6e250-a3e3-4c1d-ac92-75e68ae26399",
+      "target_id": "sha256:7c77f6e0a1bd0f8cf6f4fdd7593d12c156cfa745126de4fb6e1cc4ea30ffb455",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-risk-only",
+      "plan_index": 15,
+      "run_id": "e4960eef-8fbd-493d-a519-00835d659a5d",
+      "target_id": "sha256:7e3fcfc546a51dc764cc04356515dd2df776a1c79f6d25c5c1c5dfff97af1e14",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-risk-only",
+      "plan_index": 16,
+      "run_id": "177a1363-3885-4344-9072-5b7656106336",
+      "target_id": "sha256:9c92048bec569ebf1215ba08de2d74d722a67d781fa53cee8438c4446201e774",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-risk-only",
+      "plan_index": 17,
+      "run_id": "db17409b-e4cd-453d-a90f-714b24dbbced",
+      "target_id": "sha256:ac519b475dc0e3e923c812c847c58ae0929b1ea9b5948df9b22b4a9567e222e8",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-risk-only",
+      "plan_index": 18,
+      "run_id": "e34989d0-9687-4218-9553-eaf5a7a1df39",
+      "target_id": "sha256:ace3a30a816b363cf300b214bd74c36e3a94a8f9db2cdde2a202eaea526a98b3",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-risk-only",
+      "plan_index": 19,
+      "run_id": "9288eae3-5f6c-4c4d-87c9-c9b5b6558e08",
+      "target_id": "sha256:b52b3a2f3aa4c659eadbccfbeeab1ba07057d2f567b539586e73359be8ee122d",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-risk-only",
+      "plan_index": 20,
+      "run_id": "7a8a8cd3-b7fb-4900-8b83-d874db0c3eb6",
+      "target_id": "sha256:bce3fa6fb6af016b5dd139896c780c837309d1cb15a3bf9306dce1a01d4d567f",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-small-first",
+      "plan_index": 0,
+      "run_id": "c38a5677-0445-4d8a-a277-33f9df370ace",
+      "target_id": "sha256:437109e0ce6c3f3e32c2561201194a4945004d514725c3639fdfb9f2c025d316",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-small-first",
+      "plan_index": 1,
+      "run_id": "5861ae5e-4f7c-4138-8615-12e35f56b9c3",
+      "target_id": "sha256:ac519b475dc0e3e923c812c847c58ae0929b1ea9b5948df9b22b4a9567e222e8",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-small-first",
+      "plan_index": 2,
+      "run_id": "52f8ab50-34e8-4350-8e25-dd8e2f58a888",
+      "target_id": "sha256:ede0428c345673cb7db9588fc77feb9b36150fbecfaa44ba8452a09d4a5f1f51",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-small-first",
+      "plan_index": 3,
+      "run_id": "5c1ec6b8-46a1-4a6c-b278-51cd9d39f20e",
+      "target_id": "sha256:1e47be4cf749494fd0628e08f485fadb3df4ef88cfab9bd0c8b2bd66976dfcd8",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-small-first",
+      "plan_index": 4,
+      "run_id": "6ee95a06-1255-4702-b082-1bb8b97a2bf8",
+      "target_id": "sha256:9c92048bec569ebf1215ba08de2d74d722a67d781fa53cee8438c4446201e774",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-small-first",
+      "plan_index": 5,
+      "run_id": "c80ffe8e-2643-4d9e-bd19-1a37cb0d8c15",
+      "target_id": "sha256:7c77f6e0a1bd0f8cf6f4fdd7593d12c156cfa745126de4fb6e1cc4ea30ffb455",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-small-first",
+      "plan_index": 6,
+      "run_id": "5a3ef6f6-5b47-4b96-807f-95109dacfe38",
+      "target_id": "sha256:ace3a30a816b363cf300b214bd74c36e3a94a8f9db2cdde2a202eaea526a98b3",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-small-first",
+      "plan_index": 7,
+      "run_id": "998bbed8-95a8-4d6f-a6f7-be0cd3694748",
+      "target_id": "sha256:707fe160d30a53f032bc7784414894cc056fb29115e21c3dfec7faeb03d1f435",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-small-first",
+      "plan_index": 8,
+      "run_id": "b252a768-1b9c-4ca0-be99-8b22871f4dec",
+      "target_id": "sha256:11cc7b651b9412a77986914f7e665d5f1eec6a3db99ff552219bc87ea757625f",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-small-first",
+      "plan_index": 9,
+      "run_id": "870b5a14-36f4-4506-b11a-3c39eba49afb",
+      "target_id": "sha256:48df1353be28c9292af17bb15a9073b22a03073207111e31e401a5df18fd9be2",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-small-first",
+      "plan_index": 10,
+      "run_id": "121bce93-cd7e-4017-ae5f-6480714306de",
+      "target_id": "sha256:bce3fa6fb6af016b5dd139896c780c837309d1cb15a3bf9306dce1a01d4d567f",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-small-first",
+      "plan_index": 11,
+      "run_id": "46f4544b-4189-4230-a4eb-95a64d1081f5",
+      "target_id": "sha256:7c2448f685668dbbe24658dbc7a3896215518203f64b0a959d98c11c2250e0e8",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-small-first",
+      "plan_index": 12,
+      "run_id": "a9292929-4a56-454b-906b-c025817ecbe1",
+      "target_id": "sha256:4ba272db03ccbb632bc469189aaab672cb7eec70e106582104d53c3325f9618e",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-small-first",
+      "plan_index": 13,
+      "run_id": "fbc9dc90-8054-417e-8b18-299180c4c8d9",
+      "target_id": "sha256:25f6a8ee800597afe39e47709fb195d993600126a35430180cd4db62090447b7",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-small-first",
+      "plan_index": 14,
+      "run_id": "cf17ac89-eca4-4480-a736-5f083f3ddf33",
+      "target_id": "sha256:4b8854c8fccb43dc5083e87a6b25ab7ee77972c28cca2c258a2cecc55f3a7a19",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-small-first",
+      "plan_index": 15,
+      "run_id": "f41f3874-fcb8-4f25-b725-735ef2682c98",
+      "target_id": "sha256:1b56c5b9ec469b9948bd67314ba5ca46c55f0c56044d6dde00fd5a45e25c7b4c",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-small-first",
+      "plan_index": 16,
+      "run_id": "7017b45a-f6ac-4415-aadc-9027571a73e5",
+      "target_id": "sha256:7e3fcfc546a51dc764cc04356515dd2df776a1c79f6d25c5c1c5dfff97af1e14",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-small-first",
+      "plan_index": 17,
+      "run_id": "42f1b1fc-43dc-471d-a1a2-7cacc5f7ce74",
+      "target_id": "sha256:b52b3a2f3aa4c659eadbccfbeeab1ba07057d2f567b539586e73359be8ee122d",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-small-first",
+      "plan_index": 18,
+      "run_id": null,
+      "target_id": "sha256:531218b7788e5fdc5c78e66bdf5150ca15dccc333802bc00a7fe2ae28bdeade3",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-small-first",
+      "plan_index": 19,
+      "run_id": null,
+      "target_id": "sha256:97e2f511ba2f533e2047fb3a0c84891cba88339548147ec426b68096b23fba4d",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-2-small-first",
+      "plan_index": 20,
+      "run_id": null,
+      "target_id": "sha256:1622d14622e6053ca335914c760ee2153e5e355b9c4e144803fa50cdf60ca4d6",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-cost-aware",
+      "plan_index": 0,
+      "run_id": "4bf50ba5-b84a-42c5-837f-c3fca9239d80",
+      "target_id": "sha256:437109e0ce6c3f3e32c2561201194a4945004d514725c3639fdfb9f2c025d316",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-cost-aware",
+      "plan_index": 1,
+      "run_id": "ad1aa316-e1b6-443b-9a02-2f97ba71f7a1",
+      "target_id": "sha256:ede0428c345673cb7db9588fc77feb9b36150fbecfaa44ba8452a09d4a5f1f51",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-cost-aware",
+      "plan_index": 2,
+      "run_id": "ce6b535f-6435-4d82-8b74-0a4f0196010c",
+      "target_id": "sha256:11cc7b651b9412a77986914f7e665d5f1eec6a3db99ff552219bc87ea757625f",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-cost-aware",
+      "plan_index": 3,
+      "run_id": "f89a6d30-5e36-471c-8141-db419609e7a7",
+      "target_id": "sha256:4ba272db03ccbb632bc469189aaab672cb7eec70e106582104d53c3325f9618e",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-cost-aware",
+      "plan_index": 4,
+      "run_id": "ae175826-b9b9-42d2-844c-a61da5a9da9b",
+      "target_id": "sha256:1b56c5b9ec469b9948bd67314ba5ca46c55f0c56044d6dde00fd5a45e25c7b4c",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-cost-aware",
+      "plan_index": 5,
+      "run_id": "4e4136c9-0aea-48be-8e34-b75fc28212bf",
+      "target_id": "sha256:531218b7788e5fdc5c78e66bdf5150ca15dccc333802bc00a7fe2ae28bdeade3",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-cost-aware",
+      "plan_index": 6,
+      "run_id": "a98ca471-cf35-4a7b-bc8d-3977518200cb",
+      "target_id": "sha256:97e2f511ba2f533e2047fb3a0c84891cba88339548147ec426b68096b23fba4d",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-cost-aware",
+      "plan_index": 7,
+      "run_id": "56617980-c356-4393-8e98-085b5d7bfc15",
+      "target_id": "sha256:1622d14622e6053ca335914c760ee2153e5e355b9c4e144803fa50cdf60ca4d6",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-cost-aware",
+      "plan_index": 8,
+      "run_id": "642380d5-ceac-4569-8742-ef62fc5e0ac0",
+      "target_id": "sha256:48df1353be28c9292af17bb15a9073b22a03073207111e31e401a5df18fd9be2",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-cost-aware",
+      "plan_index": 9,
+      "run_id": "c86d3749-d2cb-4c64-897f-c1cbdfd495a6",
+      "target_id": "sha256:25f6a8ee800597afe39e47709fb195d993600126a35430180cd4db62090447b7",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-cost-aware",
+      "plan_index": 10,
+      "run_id": "10a4cd60-7dd0-4fc1-8796-27989e6e5d88",
+      "target_id": "sha256:4b8854c8fccb43dc5083e87a6b25ab7ee77972c28cca2c258a2cecc55f3a7a19",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-cost-aware",
+      "plan_index": 11,
+      "run_id": "07824f91-9bce-4261-b8d0-34ca27fcb9c3",
+      "target_id": "sha256:ac519b475dc0e3e923c812c847c58ae0929b1ea9b5948df9b22b4a9567e222e8",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-cost-aware",
+      "plan_index": 12,
+      "run_id": "93e78ae8-b49d-4f29-87d8-78180871cb97",
+      "target_id": "sha256:1e47be4cf749494fd0628e08f485fadb3df4ef88cfab9bd0c8b2bd66976dfcd8",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-cost-aware",
+      "plan_index": 13,
+      "run_id": "807cc7e5-bce4-406d-a626-4d94228cbd4f",
+      "target_id": "sha256:9c92048bec569ebf1215ba08de2d74d722a67d781fa53cee8438c4446201e774",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-cost-aware",
+      "plan_index": 14,
+      "run_id": "c6300dc0-4b5d-4105-9708-35f607770510",
+      "target_id": "sha256:7c77f6e0a1bd0f8cf6f4fdd7593d12c156cfa745126de4fb6e1cc4ea30ffb455",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-cost-aware",
+      "plan_index": 15,
+      "run_id": "4544b73b-3dfe-492d-af94-fa8594b6d67c",
+      "target_id": "sha256:ace3a30a816b363cf300b214bd74c36e3a94a8f9db2cdde2a202eaea526a98b3",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-cost-aware",
+      "plan_index": 16,
+      "run_id": "d30c1137-6547-4464-8fe2-da507018540f",
+      "target_id": "sha256:707fe160d30a53f032bc7784414894cc056fb29115e21c3dfec7faeb03d1f435",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-cost-aware",
+      "plan_index": 17,
+      "run_id": "d5976d49-443c-41f4-bb15-d259b5e16321",
+      "target_id": "sha256:bce3fa6fb6af016b5dd139896c780c837309d1cb15a3bf9306dce1a01d4d567f",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-cost-aware",
+      "plan_index": 18,
+      "run_id": "e8f9568d-f8c9-4db2-a018-ee8a155609de",
+      "target_id": "sha256:7c2448f685668dbbe24658dbc7a3896215518203f64b0a959d98c11c2250e0e8",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-cost-aware",
+      "plan_index": 19,
+      "run_id": "3e301400-49d4-4013-bef0-ed36492f5403",
+      "target_id": "sha256:7e3fcfc546a51dc764cc04356515dd2df776a1c79f6d25c5c1c5dfff97af1e14",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-cost-aware",
+      "plan_index": 20,
+      "run_id": "50af49ea-e518-46ff-847f-cc5e75c10b7f",
+      "target_id": "sha256:b52b3a2f3aa4c659eadbccfbeeab1ba07057d2f567b539586e73359be8ee122d",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-path-order",
+      "plan_index": 0,
+      "run_id": "b6dc0572-0191-449a-929a-97848d3da3c8",
+      "target_id": "sha256:4b8854c8fccb43dc5083e87a6b25ab7ee77972c28cca2c258a2cecc55f3a7a19",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-path-order",
+      "plan_index": 1,
+      "run_id": "844c9e46-39eb-40d2-8173-f31b65843a3a",
+      "target_id": "sha256:ac519b475dc0e3e923c812c847c58ae0929b1ea9b5948df9b22b4a9567e222e8",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-path-order",
+      "plan_index": 2,
+      "run_id": "c58b13b6-9b3f-49eb-a5ac-3e3db76ea435",
+      "target_id": "sha256:25f6a8ee800597afe39e47709fb195d993600126a35430180cd4db62090447b7",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-path-order",
+      "plan_index": 3,
+      "run_id": "fa8bb09a-e521-4d59-b83d-5b58fa573c09",
+      "target_id": "sha256:b52b3a2f3aa4c659eadbccfbeeab1ba07057d2f567b539586e73359be8ee122d",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-path-order",
+      "plan_index": 4,
+      "run_id": "57b49d83-02e8-44d6-8e4f-304b13e9b4eb",
+      "target_id": "sha256:707fe160d30a53f032bc7784414894cc056fb29115e21c3dfec7faeb03d1f435",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-path-order",
+      "plan_index": 5,
+      "run_id": "81deb267-75cd-4474-9e3f-ac7d4c2426c8",
+      "target_id": "sha256:7c2448f685668dbbe24658dbc7a3896215518203f64b0a959d98c11c2250e0e8",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-path-order",
+      "plan_index": 6,
+      "run_id": "ab8143c3-d5f0-4c3f-9c2e-5cfa8ef1ca1e",
+      "target_id": "sha256:7e3fcfc546a51dc764cc04356515dd2df776a1c79f6d25c5c1c5dfff97af1e14",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-path-order",
+      "plan_index": 7,
+      "run_id": "c814db47-e105-4753-bf42-2eb7a619222a",
+      "target_id": "sha256:ace3a30a816b363cf300b214bd74c36e3a94a8f9db2cdde2a202eaea526a98b3",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-path-order",
+      "plan_index": 8,
+      "run_id": "aab7b126-4ba5-400c-a9df-ad83164add51",
+      "target_id": "sha256:bce3fa6fb6af016b5dd139896c780c837309d1cb15a3bf9306dce1a01d4d567f",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-path-order",
+      "plan_index": 9,
+      "run_id": null,
+      "target_id": "sha256:48df1353be28c9292af17bb15a9073b22a03073207111e31e401a5df18fd9be2",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-path-order",
+      "plan_index": 10,
+      "run_id": null,
+      "target_id": "sha256:7c77f6e0a1bd0f8cf6f4fdd7593d12c156cfa745126de4fb6e1cc4ea30ffb455",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-path-order",
+      "plan_index": 11,
+      "run_id": null,
+      "target_id": "sha256:531218b7788e5fdc5c78e66bdf5150ca15dccc333802bc00a7fe2ae28bdeade3",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-path-order",
+      "plan_index": 12,
+      "run_id": null,
+      "target_id": "sha256:11cc7b651b9412a77986914f7e665d5f1eec6a3db99ff552219bc87ea757625f",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-path-order",
+      "plan_index": 13,
+      "run_id": null,
+      "target_id": "sha256:4ba272db03ccbb632bc469189aaab672cb7eec70e106582104d53c3325f9618e",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-path-order",
+      "plan_index": 14,
+      "run_id": null,
+      "target_id": "sha256:ede0428c345673cb7db9588fc77feb9b36150fbecfaa44ba8452a09d4a5f1f51",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-path-order",
+      "plan_index": 15,
+      "run_id": null,
+      "target_id": "sha256:1e47be4cf749494fd0628e08f485fadb3df4ef88cfab9bd0c8b2bd66976dfcd8",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-path-order",
+      "plan_index": 16,
+      "run_id": null,
+      "target_id": "sha256:1622d14622e6053ca335914c760ee2153e5e355b9c4e144803fa50cdf60ca4d6",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-path-order",
+      "plan_index": 17,
+      "run_id": null,
+      "target_id": "sha256:97e2f511ba2f533e2047fb3a0c84891cba88339548147ec426b68096b23fba4d",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-path-order",
+      "plan_index": 18,
+      "run_id": null,
+      "target_id": "sha256:1b56c5b9ec469b9948bd67314ba5ca46c55f0c56044d6dde00fd5a45e25c7b4c",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-path-order",
+      "plan_index": 19,
+      "run_id": null,
+      "target_id": "sha256:437109e0ce6c3f3e32c2561201194a4945004d514725c3639fdfb9f2c025d316",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-path-order",
+      "plan_index": 20,
+      "run_id": null,
+      "target_id": "sha256:9c92048bec569ebf1215ba08de2d74d722a67d781fa53cee8438c4446201e774",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-random",
+      "plan_index": 0,
+      "run_id": "30008beb-4366-4dba-9b7b-1a12a1268619",
+      "target_id": "sha256:ace3a30a816b363cf300b214bd74c36e3a94a8f9db2cdde2a202eaea526a98b3",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-random",
+      "plan_index": 1,
+      "run_id": "c9ea971d-2dc2-4b65-90bb-d40c0362cd24",
+      "target_id": "sha256:ede0428c345673cb7db9588fc77feb9b36150fbecfaa44ba8452a09d4a5f1f51",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-random",
+      "plan_index": 2,
+      "run_id": "7b2a19e9-3b88-4664-a8d0-0f17a6854e41",
+      "target_id": "sha256:707fe160d30a53f032bc7784414894cc056fb29115e21c3dfec7faeb03d1f435",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-random",
+      "plan_index": 3,
+      "run_id": "df0a7732-0796-4b78-8c23-28786b79252d",
+      "target_id": "sha256:48df1353be28c9292af17bb15a9073b22a03073207111e31e401a5df18fd9be2",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-random",
+      "plan_index": 4,
+      "run_id": "387b13e5-ff5a-4857-bc2e-b1492ad67001",
+      "target_id": "sha256:1e47be4cf749494fd0628e08f485fadb3df4ef88cfab9bd0c8b2bd66976dfcd8",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-random",
+      "plan_index": 5,
+      "run_id": "2984eb93-67a8-462e-9d8d-1ed2807e3898",
+      "target_id": "sha256:9c92048bec569ebf1215ba08de2d74d722a67d781fa53cee8438c4446201e774",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-random",
+      "plan_index": 6,
+      "run_id": "3349e550-8b14-41ec-a9ac-a647993269bb",
+      "target_id": "sha256:97e2f511ba2f533e2047fb3a0c84891cba88339548147ec426b68096b23fba4d",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-random",
+      "plan_index": 7,
+      "run_id": "f29e984a-04f9-4691-95e6-7a47ebe832e9",
+      "target_id": "sha256:1622d14622e6053ca335914c760ee2153e5e355b9c4e144803fa50cdf60ca4d6",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-random",
+      "plan_index": 8,
+      "run_id": "613c5fe0-9dfe-48ba-88d3-1a02a941efb0",
+      "target_id": "sha256:7c77f6e0a1bd0f8cf6f4fdd7593d12c156cfa745126de4fb6e1cc4ea30ffb455",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-random",
+      "plan_index": 9,
+      "run_id": "c2307e83-f1ae-4d97-ad83-71a115eb5d6c",
+      "target_id": "sha256:ac519b475dc0e3e923c812c847c58ae0929b1ea9b5948df9b22b4a9567e222e8",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-random",
+      "plan_index": 10,
+      "run_id": "df90a440-b2d0-4299-9c6e-013f3b080993",
+      "target_id": "sha256:437109e0ce6c3f3e32c2561201194a4945004d514725c3639fdfb9f2c025d316",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-random",
+      "plan_index": 11,
+      "run_id": "d03659a9-7eb6-470a-8346-e3a2c6eb2734",
+      "target_id": "sha256:531218b7788e5fdc5c78e66bdf5150ca15dccc333802bc00a7fe2ae28bdeade3",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-random",
+      "plan_index": 12,
+      "run_id": "b74cd674-8780-4d0f-aa49-514fafba14d1",
+      "target_id": "sha256:7c2448f685668dbbe24658dbc7a3896215518203f64b0a959d98c11c2250e0e8",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-random",
+      "plan_index": 13,
+      "run_id": "39545cc1-5b52-4b5c-8fb0-d7f32a94f336",
+      "target_id": "sha256:25f6a8ee800597afe39e47709fb195d993600126a35430180cd4db62090447b7",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-random",
+      "plan_index": 14,
+      "run_id": "b106efdb-6de9-4da5-bfbb-d0c51b152648",
+      "target_id": "sha256:7e3fcfc546a51dc764cc04356515dd2df776a1c79f6d25c5c1c5dfff97af1e14",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-random",
+      "plan_index": 15,
+      "run_id": "abb69758-22c8-4d11-b954-cb9a6223d220",
+      "target_id": "sha256:b52b3a2f3aa4c659eadbccfbeeab1ba07057d2f567b539586e73359be8ee122d",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-random",
+      "plan_index": 16,
+      "run_id": "b85adde9-6d0e-4e99-9e1a-a2fd0558d6ef",
+      "target_id": "sha256:4ba272db03ccbb632bc469189aaab672cb7eec70e106582104d53c3325f9618e",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-random",
+      "plan_index": 17,
+      "run_id": "5f5b0e17-77bb-4e2a-bded-964037673daf",
+      "target_id": "sha256:bce3fa6fb6af016b5dd139896c780c837309d1cb15a3bf9306dce1a01d4d567f",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-random",
+      "plan_index": 18,
+      "run_id": null,
+      "target_id": "sha256:4b8854c8fccb43dc5083e87a6b25ab7ee77972c28cca2c258a2cecc55f3a7a19",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-random",
+      "plan_index": 19,
+      "run_id": null,
+      "target_id": "sha256:1b56c5b9ec469b9948bd67314ba5ca46c55f0c56044d6dde00fd5a45e25c7b4c",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-random",
+      "plan_index": 20,
+      "run_id": null,
+      "target_id": "sha256:11cc7b651b9412a77986914f7e665d5f1eec6a3db99ff552219bc87ea757625f",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-risk-only",
+      "plan_index": 0,
+      "run_id": "64d15c5a-8640-4540-a8ab-e52d4def6af0",
+      "target_id": "sha256:11cc7b651b9412a77986914f7e665d5f1eec6a3db99ff552219bc87ea757625f",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-risk-only",
+      "plan_index": 1,
+      "run_id": "54a73afc-9917-4154-9fa9-87d6b2fac8a0",
+      "target_id": "sha256:1622d14622e6053ca335914c760ee2153e5e355b9c4e144803fa50cdf60ca4d6",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-risk-only",
+      "plan_index": 2,
+      "run_id": "81ba51db-8b3a-4a25-842e-da12170e304f",
+      "target_id": "sha256:1b56c5b9ec469b9948bd67314ba5ca46c55f0c56044d6dde00fd5a45e25c7b4c",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-risk-only",
+      "plan_index": 3,
+      "run_id": "b150d6db-6836-4f13-ba4e-840866c226bf",
+      "target_id": "sha256:4ba272db03ccbb632bc469189aaab672cb7eec70e106582104d53c3325f9618e",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-risk-only",
+      "plan_index": 4,
+      "run_id": "d365b942-5867-43ad-81ac-e53640b72bfb",
+      "target_id": "sha256:531218b7788e5fdc5c78e66bdf5150ca15dccc333802bc00a7fe2ae28bdeade3",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-risk-only",
+      "plan_index": 5,
+      "run_id": "b45e1fa8-eaf1-4d34-acce-f7613443ef5e",
+      "target_id": "sha256:97e2f511ba2f533e2047fb3a0c84891cba88339548147ec426b68096b23fba4d",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-risk-only",
+      "plan_index": 6,
+      "run_id": "b09ec889-c0af-44e6-a417-162fbc474af9",
+      "target_id": "sha256:437109e0ce6c3f3e32c2561201194a4945004d514725c3639fdfb9f2c025d316",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-risk-only",
+      "plan_index": 7,
+      "run_id": "7c455afb-d069-4da9-9a1d-a5a15ffc232d",
+      "target_id": "sha256:25f6a8ee800597afe39e47709fb195d993600126a35430180cd4db62090447b7",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-risk-only",
+      "plan_index": 8,
+      "run_id": "d257181a-f5ad-41a4-91c0-0ece6d6b169c",
+      "target_id": "sha256:48df1353be28c9292af17bb15a9073b22a03073207111e31e401a5df18fd9be2",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-risk-only",
+      "plan_index": 9,
+      "run_id": "6537097a-6066-4915-8bd8-3808bbd17052",
+      "target_id": "sha256:4b8854c8fccb43dc5083e87a6b25ab7ee77972c28cca2c258a2cecc55f3a7a19",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-risk-only",
+      "plan_index": 10,
+      "run_id": "524c4016-fbe7-4570-bf96-3d317a32bac8",
+      "target_id": "sha256:ede0428c345673cb7db9588fc77feb9b36150fbecfaa44ba8452a09d4a5f1f51",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-risk-only",
+      "plan_index": 11,
+      "run_id": "f0958475-e1a6-4247-baa8-4ddeff3af192",
+      "target_id": "sha256:1e47be4cf749494fd0628e08f485fadb3df4ef88cfab9bd0c8b2bd66976dfcd8",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-risk-only",
+      "plan_index": 12,
+      "run_id": "d2b3358d-8389-49a7-95ff-e3fd46e7bf1f",
+      "target_id": "sha256:707fe160d30a53f032bc7784414894cc056fb29115e21c3dfec7faeb03d1f435",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-risk-only",
+      "plan_index": 13,
+      "run_id": "7bf93548-6228-4c8f-937e-75438282d613",
+      "target_id": "sha256:7c2448f685668dbbe24658dbc7a3896215518203f64b0a959d98c11c2250e0e8",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-risk-only",
+      "plan_index": 14,
+      "run_id": "2e244add-e307-4fa1-94ee-defd845b61e5",
+      "target_id": "sha256:7c77f6e0a1bd0f8cf6f4fdd7593d12c156cfa745126de4fb6e1cc4ea30ffb455",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-risk-only",
+      "plan_index": 15,
+      "run_id": "2e29ed7a-60f4-4f5c-b564-012b2488fb99",
+      "target_id": "sha256:7e3fcfc546a51dc764cc04356515dd2df776a1c79f6d25c5c1c5dfff97af1e14",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-risk-only",
+      "plan_index": 16,
+      "run_id": "41f91a30-7e96-4c18-b605-6e2efb75fc3e",
+      "target_id": "sha256:9c92048bec569ebf1215ba08de2d74d722a67d781fa53cee8438c4446201e774",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-risk-only",
+      "plan_index": 17,
+      "run_id": "852ebf1f-21df-477d-9380-47281c2a2fd3",
+      "target_id": "sha256:ac519b475dc0e3e923c812c847c58ae0929b1ea9b5948df9b22b4a9567e222e8",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-risk-only",
+      "plan_index": 18,
+      "run_id": "7e88a29a-a51e-470b-af94-30402f2066db",
+      "target_id": "sha256:ace3a30a816b363cf300b214bd74c36e3a94a8f9db2cdde2a202eaea526a98b3",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-risk-only",
+      "plan_index": 19,
+      "run_id": "dd35da1d-79a7-403c-8195-00bb003c7600",
+      "target_id": "sha256:b52b3a2f3aa4c659eadbccfbeeab1ba07057d2f567b539586e73359be8ee122d",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-risk-only",
+      "plan_index": 20,
+      "run_id": "28760da0-647a-42a5-bffc-287176834589",
+      "target_id": "sha256:bce3fa6fb6af016b5dd139896c780c837309d1cb15a3bf9306dce1a01d4d567f",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-small-first",
+      "plan_index": 0,
+      "run_id": "830fbdd7-5991-4a6b-93b4-ca54522020a4",
+      "target_id": "sha256:437109e0ce6c3f3e32c2561201194a4945004d514725c3639fdfb9f2c025d316",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-small-first",
+      "plan_index": 1,
+      "run_id": "76555fa2-5cbb-4f5e-aece-c894ab3afb74",
+      "target_id": "sha256:ac519b475dc0e3e923c812c847c58ae0929b1ea9b5948df9b22b4a9567e222e8",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-small-first",
+      "plan_index": 2,
+      "run_id": "70aea17d-d5f6-40e0-8dc0-d37474fa7fec",
+      "target_id": "sha256:ede0428c345673cb7db9588fc77feb9b36150fbecfaa44ba8452a09d4a5f1f51",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-small-first",
+      "plan_index": 3,
+      "run_id": "f2c3c99c-3a13-4696-a673-6e90ef4f50e5",
+      "target_id": "sha256:1e47be4cf749494fd0628e08f485fadb3df4ef88cfab9bd0c8b2bd66976dfcd8",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-small-first",
+      "plan_index": 4,
+      "run_id": "cdc257e0-057d-4dc1-855f-aa44a68e958d",
+      "target_id": "sha256:9c92048bec569ebf1215ba08de2d74d722a67d781fa53cee8438c4446201e774",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-small-first",
+      "plan_index": 5,
+      "run_id": "77130d2d-5a60-444a-985d-d5a6bcf2699f",
+      "target_id": "sha256:7c77f6e0a1bd0f8cf6f4fdd7593d12c156cfa745126de4fb6e1cc4ea30ffb455",
+      "backend_status": "no_counterexample",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-small-first",
+      "plan_index": 6,
+      "run_id": "4f0a30b1-e67d-44dc-9f03-c1509389792a",
+      "target_id": "sha256:ace3a30a816b363cf300b214bd74c36e3a94a8f9db2cdde2a202eaea526a98b3",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-small-first",
+      "plan_index": 7,
+      "run_id": "99b90e1e-0dc5-4be3-b68f-fd19b9333346",
+      "target_id": "sha256:707fe160d30a53f032bc7784414894cc056fb29115e21c3dfec7faeb03d1f435",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-small-first",
+      "plan_index": 8,
+      "run_id": "e6f4f134-6791-4682-b262-5afc627d7f97",
+      "target_id": "sha256:11cc7b651b9412a77986914f7e665d5f1eec6a3db99ff552219bc87ea757625f",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-small-first",
+      "plan_index": 9,
+      "run_id": "58a6baae-912a-49ef-ae38-41f244e59933",
+      "target_id": "sha256:48df1353be28c9292af17bb15a9073b22a03073207111e31e401a5df18fd9be2",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-small-first",
+      "plan_index": 10,
+      "run_id": "e1eaf9a5-b3c2-4477-bf7a-4aeddf4d7006",
+      "target_id": "sha256:bce3fa6fb6af016b5dd139896c780c837309d1cb15a3bf9306dce1a01d4d567f",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-small-first",
+      "plan_index": 11,
+      "run_id": "e902eaa2-89b7-44bf-8e0c-7318a5f79413",
+      "target_id": "sha256:7c2448f685668dbbe24658dbc7a3896215518203f64b0a959d98c11c2250e0e8",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-small-first",
+      "plan_index": 12,
+      "run_id": "2dc7f468-b309-48e6-83bf-8283c7b58b06",
+      "target_id": "sha256:4ba272db03ccbb632bc469189aaab672cb7eec70e106582104d53c3325f9618e",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-small-first",
+      "plan_index": 13,
+      "run_id": "ce517190-268e-4441-a068-cbba1e9388f5",
+      "target_id": "sha256:25f6a8ee800597afe39e47709fb195d993600126a35430180cd4db62090447b7",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-small-first",
+      "plan_index": 14,
+      "run_id": "0b4720a0-a67c-4960-9b4c-207f131ce425",
+      "target_id": "sha256:4b8854c8fccb43dc5083e87a6b25ab7ee77972c28cca2c258a2cecc55f3a7a19",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-small-first",
+      "plan_index": 15,
+      "run_id": "9e4e1bfa-d66d-48ac-8da0-7c89854fae17",
+      "target_id": "sha256:1b56c5b9ec469b9948bd67314ba5ca46c55f0c56044d6dde00fd5a45e25c7b4c",
+      "backend_status": "bug_found",
+      "candidate_count": 1,
+      "candidate_status": "candidate-present"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-small-first",
+      "plan_index": 16,
+      "run_id": "fe92b0dc-7435-4ff0-b182-6201aedeafcd",
+      "target_id": "sha256:7e3fcfc546a51dc764cc04356515dd2df776a1c79f6d25c5c1c5dfff97af1e14",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-small-first",
+      "plan_index": 17,
+      "run_id": "bd7e2df4-cad1-450c-af02-d18151849113",
+      "target_id": "sha256:b52b3a2f3aa4c659eadbccfbeeab1ba07057d2f567b539586e73359be8ee122d",
+      "backend_status": "timeout",
+      "candidate_count": 0,
+      "candidate_status": "no-candidate"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-small-first",
+      "plan_index": 18,
+      "run_id": null,
+      "target_id": "sha256:531218b7788e5fdc5c78e66bdf5150ca15dccc333802bc00a7fe2ae28bdeade3",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-small-first",
+      "plan_index": 19,
+      "run_id": null,
+      "target_id": "sha256:97e2f511ba2f533e2047fb3a0c84891cba88339548147ec426b68096b23fba4d",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    },
+    {
+      "execution_id": "o5-iszero-block-3-small-first",
+      "plan_index": 20,
+      "run_id": null,
+      "target_id": "sha256:1622d14622e6053ca335914c760ee2153e5e355b9c4e144803fa50cdf60ca4d6",
+      "backend_status": "not_started",
+      "candidate_count": 0,
+      "candidate_status": "not-applicable"
+    }
+  ],
+  "candidate_errors": [],
+  "unreviewed_candidates": [
+    {
+      "candidate_record_id": "o5-iszero-block-1-cost-aware/0000",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/cost-aware/execution/execution-f031ed00-49e9-4b3a-b046-84c6afcb9dcd/counterexample-candidates/0001/src__subtractTensor__Subtract.circom_yRly9kzfIv_counterexample.json",
+        "sha256": "3dfe193be85f1427979c14aaf6e9eab97113f6be749ffa5e8c5cac8bba473e36"
+      },
+      "execution_id": "o5-iszero-block-1-cost-aware",
+      "run_id": "6f9a9750-667f-4497-9376-604d6452ba3a",
+      "target_id": "sha256:437109e0ce6c3f3e32c2561201194a4945004d514725c3639fdfb9f2c025d316",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-1-cost-aware/0001",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/cost-aware/execution/execution-f031ed00-49e9-4b3a-b046-84c6afcb9dcd/counterexample-candidates/0003/src__integerDivision__IntDiv_40.circom_BHSYDooOaz_counterexample.json",
+        "sha256": "4323187c67233fad06720d201764e02b1924a7dd9597aa9f26c2f973e2b62704"
+      },
+      "execution_id": "o5-iszero-block-1-cost-aware",
+      "run_id": "43380adb-27aa-4c0a-8c9e-5841fb3b5302",
+      "target_id": "sha256:11cc7b651b9412a77986914f7e665d5f1eec6a3db99ff552219bc87ea757625f",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-1-cost-aware/0002",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/cost-aware/execution/execution-f031ed00-49e9-4b3a-b046-84c6afcb9dcd/counterexample-candidates/0004/src__integerDivision__IntDiv_80.circom_LBBgDM4nxM_counterexample.json",
+        "sha256": "d2176ce5334e23af55049019cfe3bad578bcc60b683c224159f38ebf01041448"
+      },
+      "execution_id": "o5-iszero-block-1-cost-aware",
+      "run_id": "d62856a9-84c0-42e0-83a6-5443e97163b1",
+      "target_id": "sha256:4ba272db03ccbb632bc469189aaab672cb7eec70e106582104d53c3325f9618e",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-1-cost-aware/0003",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/cost-aware/execution/execution-f031ed00-49e9-4b3a-b046-84c6afcb9dcd/counterexample-candidates/0005/src__responseTimeNormalized__ResponseTimeNormalized_40.circom_CuFDooMEk5_counterexample.json",
+        "sha256": "72fa6c1d5e8143590b84f0440f841a81d64356359b62c8502397af13802e7299"
+      },
+      "execution_id": "o5-iszero-block-1-cost-aware",
+      "run_id": "2e52f64b-f1d9-4032-99f8-5039afcf5f74",
+      "target_id": "sha256:1b56c5b9ec469b9948bd67314ba5ca46c55f0c56044d6dde00fd5a45e25c7b4c",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-1-cost-aware/0004",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/cost-aware/execution/execution-f031ed00-49e9-4b3a-b046-84c6afcb9dcd/counterexample-candidates/0006/src__integerDivision__IntDiv_120.circom_yqtKkITjd4_counterexample.json",
+        "sha256": "7f336571987a5e1b9eba7276aeb05ee27b63c106dd84fba27bcd9f4c046e1e9d"
+      },
+      "execution_id": "o5-iszero-block-1-cost-aware",
+      "run_id": "37fb1cee-f966-47d9-8c91-f9249a560f81",
+      "target_id": "sha256:531218b7788e5fdc5c78e66bdf5150ca15dccc333802bc00a7fe2ae28bdeade3",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-1-cost-aware/0005",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/cost-aware/execution/execution-f031ed00-49e9-4b3a-b046-84c6afcb9dcd/counterexample-candidates/0007/src__responseTimeMetric__ScoringFunction_40.circom_QPp5EPMNcJ_counterexample.json",
+        "sha256": "8504f388a071081c3b553398c107895c766a2854b9ee95be1c1ee8cb414d0ef0"
+      },
+      "execution_id": "o5-iszero-block-1-cost-aware",
+      "run_id": "d5e98240-5ddb-46c3-9055-10b46ca80404",
+      "target_id": "sha256:97e2f511ba2f533e2047fb3a0c84891cba88339548147ec426b68096b23fba4d",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-1-cost-aware/0006",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/cost-aware/execution/execution-f031ed00-49e9-4b3a-b046-84c6afcb9dcd/counterexample-candidates/0008/src__responseTimeMetric__ResponseTimeMetric_40.circom_53tJj6Aw0t_counterexample.json",
+        "sha256": "17ce1532bdd71767b1099cdfe8e222acdf029dab1574fed346c813f0d7902084"
+      },
+      "execution_id": "o5-iszero-block-1-cost-aware",
+      "run_id": "afa80a2b-bbbf-42fa-9a60-aa9db140b9f3",
+      "target_id": "sha256:1622d14622e6053ca335914c760ee2153e5e355b9c4e144803fa50cdf60ca4d6",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-1-cost-aware/0007",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/cost-aware/execution/execution-f031ed00-49e9-4b3a-b046-84c6afcb9dcd/counterexample-candidates/0009/src__distanceFromScore__DistanceFromScore_40.circom_dmrYhEQc5H_counterexample.json",
+        "sha256": "2a7f7a936a92946e42ee13ad6cd6dfe04f2f59c4f3d458a864db03c7dda3ec8e"
+      },
+      "execution_id": "o5-iszero-block-1-cost-aware",
+      "run_id": "0b2c7350-22b8-43f9-8004-998b192a5489",
+      "target_id": "sha256:48df1353be28c9292af17bb15a9073b22a03073207111e31e401a5df18fd9be2",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-1-cost-aware/0008",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/cost-aware/execution/execution-f031ed00-49e9-4b3a-b046-84c6afcb9dcd/counterexample-candidates/0010/src__clampTensor__Clamp_40.circom_R7vmtl58mC_counterexample.json",
+        "sha256": "6630ab3d427b521957039df318667ca3d8db03c33d76184a7510fa46e5a5e8fd"
+      },
+      "execution_id": "o5-iszero-block-1-cost-aware",
+      "run_id": "4b703e8f-268c-4d4a-ac01-57efd15ab653",
+      "target_id": "sha256:25f6a8ee800597afe39e47709fb195d993600126a35430180cd4db62090447b7",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-1-cost-aware/0009",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/cost-aware/execution/execution-f031ed00-49e9-4b3a-b046-84c6afcb9dcd/counterexample-candidates/0011/src__calculatedScoreFraction__CalculatedScoreFraction_40.circom_ntbuE9YgNm_counterexample.json",
+        "sha256": "2e686ab5ed4215a623d9c26d5eee913aedebe51637c87d44e5d765b371611907"
+      },
+      "execution_id": "o5-iszero-block-1-cost-aware",
+      "run_id": "81e85c49-55e0-4d66-a74d-d1052d3e6b1a",
+      "target_id": "sha256:4b8854c8fccb43dc5083e87a6b25ab7ee77972c28cca2c258a2cecc55f3a7a19",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-1-path-order/0000",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/path-order/execution/execution-a91416f3-45da-47c7-956a-c19df5e61172/counterexample-candidates/0001/src__calculatedScoreFraction__CalculatedScoreFraction_40.circom_CdoKqG1aGZ_counterexample.json",
+        "sha256": "6b44e098c5c8c4b5f550f58a417cca03ad32d2cb6f5d14a29df23b5a79c5af1d"
+      },
+      "execution_id": "o5-iszero-block-1-path-order",
+      "run_id": "e21034a0-530c-4f24-b8d2-5020f1b28acd",
+      "target_id": "sha256:4b8854c8fccb43dc5083e87a6b25ab7ee77972c28cca2c258a2cecc55f3a7a19",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-1-path-order/0001",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/path-order/execution/execution-a91416f3-45da-47c7-956a-c19df5e61172/counterexample-candidates/0003/src__clampTensor__Clamp_40.circom_jvC6EnqxJ1_counterexample.json",
+        "sha256": "c3cfeda181a65535a83fd4faea85462bd05140c09760245d46be351b65ccfb21"
+      },
+      "execution_id": "o5-iszero-block-1-path-order",
+      "run_id": "74d708a6-9669-45f5-9782-399312c5470b",
+      "target_id": "sha256:25f6a8ee800597afe39e47709fb195d993600126a35430180cd4db62090447b7",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-1-random/0000",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/random/execution/execution-838be8ef-241b-4c41-8674-e5d9e0c85b11/counterexample-candidates/0004/src__subtractTensor__Subtract.circom_NSqPYQplqn_counterexample.json",
+        "sha256": "d3ecff0b6f19700b17182ceeaf8fe6a25f577b3636cfd34d7f1a0d58493af4c0"
+      },
+      "execution_id": "o5-iszero-block-1-random",
+      "run_id": "7cfda6da-8fc7-4de6-83fe-1deac2dad022",
+      "target_id": "sha256:437109e0ce6c3f3e32c2561201194a4945004d514725c3639fdfb9f2c025d316",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-1-random/0001",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/random/execution/execution-838be8ef-241b-4c41-8674-e5d9e0c85b11/counterexample-candidates/0006/src__clampTensor__Clamp_40.circom_fqkZYJwqWn_counterexample.json",
+        "sha256": "4406177c7f5888b5980e0a50a1cd1af13a8d61c166c426be9fd57dc9efb2041a"
+      },
+      "execution_id": "o5-iszero-block-1-random",
+      "run_id": "2f93bd3b-bfce-410d-9823-d04a67389e3e",
+      "target_id": "sha256:25f6a8ee800597afe39e47709fb195d993600126a35430180cd4db62090447b7",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-1-random/0002",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/random/execution/execution-838be8ef-241b-4c41-8674-e5d9e0c85b11/counterexample-candidates/0007/src__integerDivision__IntDiv_80.circom_X2VMVxx5tY_counterexample.json",
+        "sha256": "aa6744cd13c58066050c66eb9cde4b0400cdf1c963177063c7c2c99751b6ca7b"
+      },
+      "execution_id": "o5-iszero-block-1-random",
+      "run_id": "8b3c9347-4868-4038-9c3e-1ecd9369b99a",
+      "target_id": "sha256:4ba272db03ccbb632bc469189aaab672cb7eec70e106582104d53c3325f9618e",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-1-random/0003",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/random/execution/execution-838be8ef-241b-4c41-8674-e5d9e0c85b11/counterexample-candidates/0008/src__integerDivision__IntDiv_120.circom_Jh9Sl6D2lO_counterexample.json",
+        "sha256": "302df365b18babed049f426ce7ed08c074d5b923f4e20778b63f00d0e87d2f7d"
+      },
+      "execution_id": "o5-iszero-block-1-random",
+      "run_id": "79570e52-f4c8-473d-b881-faf4f28389e4",
+      "target_id": "sha256:531218b7788e5fdc5c78e66bdf5150ca15dccc333802bc00a7fe2ae28bdeade3",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-1-random/0004",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/random/execution/execution-838be8ef-241b-4c41-8674-e5d9e0c85b11/counterexample-candidates/0011/src__responseTimeMetric__ScoringFunction_40.circom_VUm4S2q8lU_counterexample.json",
+        "sha256": "5f98b34328f6d8e62c67c73310c0f0bbc629160ef6b65d78c29b647f8d200538"
+      },
+      "execution_id": "o5-iszero-block-1-random",
+      "run_id": "6f1ca5ac-aa23-4d5a-94fc-33e8095eb51c",
+      "target_id": "sha256:97e2f511ba2f533e2047fb3a0c84891cba88339548147ec426b68096b23fba4d",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-1-random/0005",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/random/execution/execution-838be8ef-241b-4c41-8674-e5d9e0c85b11/counterexample-candidates/0013/src__distanceFromScore__DistanceFromScore_40.circom_Uj5xVp9lbe_counterexample.json",
+        "sha256": "11ab2d49f98692734c8f635db7adf05bff3bd1a04f1339fc39a27d26cda23f44"
+      },
+      "execution_id": "o5-iszero-block-1-random",
+      "run_id": "26162ad1-3129-463f-a149-c8effd7a093d",
+      "target_id": "sha256:48df1353be28c9292af17bb15a9073b22a03073207111e31e401a5df18fd9be2",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-1-random/0006",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/random/execution/execution-838be8ef-241b-4c41-8674-e5d9e0c85b11/counterexample-candidates/0014/src__calculatedScoreFraction__CalculatedScoreFraction_40.circom_0fgAOuflDq_counterexample.json",
+        "sha256": "4922d19b2924ec87e8893f7bde35514eccfd475dd9b39cf5e6de35c46522e672"
+      },
+      "execution_id": "o5-iszero-block-1-random",
+      "run_id": "bec2807d-e355-4f95-9886-f77d1ceedf40",
+      "target_id": "sha256:4b8854c8fccb43dc5083e87a6b25ab7ee77972c28cca2c258a2cecc55f3a7a19",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-1-risk-only/0000",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/risk-only/execution/execution-1c16754b-9c44-441b-8b17-c1117787b957/counterexample-candidates/0001/src__integerDivision__IntDiv_40.circom_MIwBDGdO4D_counterexample.json",
+        "sha256": "b99782a8627b50472d00f658c49b97865238250a6a8e0e42a94905dd0171383a"
+      },
+      "execution_id": "o5-iszero-block-1-risk-only",
+      "run_id": "684f46bc-c26d-4d0e-a0e5-77e508310a03",
+      "target_id": "sha256:11cc7b651b9412a77986914f7e665d5f1eec6a3db99ff552219bc87ea757625f",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-1-risk-only/0001",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/risk-only/execution/execution-1c16754b-9c44-441b-8b17-c1117787b957/counterexample-candidates/0002/src__responseTimeMetric__ResponseTimeMetric_40.circom_OqI5VKJTqS_counterexample.json",
+        "sha256": "749d8de601120ba957c479bef4f4907fdfa6254059722c966a748552da526752"
+      },
+      "execution_id": "o5-iszero-block-1-risk-only",
+      "run_id": "70eee9bc-38b9-4942-b626-825b5a3b9e4c",
+      "target_id": "sha256:1622d14622e6053ca335914c760ee2153e5e355b9c4e144803fa50cdf60ca4d6",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-1-risk-only/0002",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/risk-only/execution/execution-1c16754b-9c44-441b-8b17-c1117787b957/counterexample-candidates/0003/src__responseTimeNormalized__ResponseTimeNormalized_40.circom_zaws4Cqufq_counterexample.json",
+        "sha256": "8a9f7f05149fd7b08ad6e3b0560a8af393573fb4aeb219b48ec9473e858ccd10"
+      },
+      "execution_id": "o5-iszero-block-1-risk-only",
+      "run_id": "a3082f46-57c7-460b-83d2-33197db100b1",
+      "target_id": "sha256:1b56c5b9ec469b9948bd67314ba5ca46c55f0c56044d6dde00fd5a45e25c7b4c",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-1-risk-only/0003",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/risk-only/execution/execution-1c16754b-9c44-441b-8b17-c1117787b957/counterexample-candidates/0004/src__integerDivision__IntDiv_80.circom_TSntMFzsGZ_counterexample.json",
+        "sha256": "c10873a1cf06516c4389792eba0936933c73d938055cdd83735cf078ae42ff13"
+      },
+      "execution_id": "o5-iszero-block-1-risk-only",
+      "run_id": "8083a210-8270-44e5-80b0-e86ca46ac001",
+      "target_id": "sha256:4ba272db03ccbb632bc469189aaab672cb7eec70e106582104d53c3325f9618e",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-1-risk-only/0004",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/risk-only/execution/execution-1c16754b-9c44-441b-8b17-c1117787b957/counterexample-candidates/0005/src__integerDivision__IntDiv_120.circom_MRhmKxpPPu_counterexample.json",
+        "sha256": "52a4b4843a82e74b47f3424996c73b2d110be2c915eab545f28ead12dcb52503"
+      },
+      "execution_id": "o5-iszero-block-1-risk-only",
+      "run_id": "60cef0a6-3455-4347-ab5e-35747b2bd630",
+      "target_id": "sha256:531218b7788e5fdc5c78e66bdf5150ca15dccc333802bc00a7fe2ae28bdeade3",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-1-risk-only/0005",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/risk-only/execution/execution-1c16754b-9c44-441b-8b17-c1117787b957/counterexample-candidates/0006/src__responseTimeMetric__ScoringFunction_40.circom_u3inBAcG7U_counterexample.json",
+        "sha256": "fb5a8b98524b6306569dc18f5560f216da0e2958db15fee32d8eacbda146b40d"
+      },
+      "execution_id": "o5-iszero-block-1-risk-only",
+      "run_id": "5f85d2e6-7fab-4c80-b3f3-317c429dca41",
+      "target_id": "sha256:97e2f511ba2f533e2047fb3a0c84891cba88339548147ec426b68096b23fba4d",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-1-risk-only/0006",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/risk-only/execution/execution-1c16754b-9c44-441b-8b17-c1117787b957/counterexample-candidates/0007/src__subtractTensor__Subtract.circom_Vj8bQgHqsI_counterexample.json",
+        "sha256": "892b724afbf2e8c4b4919914e96e191bbde3d872c7bba8f028f927e4916f2141"
+      },
+      "execution_id": "o5-iszero-block-1-risk-only",
+      "run_id": "148eab2b-772f-474b-856b-aad0714d5f92",
+      "target_id": "sha256:437109e0ce6c3f3e32c2561201194a4945004d514725c3639fdfb9f2c025d316",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-1-risk-only/0007",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/risk-only/execution/execution-1c16754b-9c44-441b-8b17-c1117787b957/counterexample-candidates/0008/src__clampTensor__Clamp_40.circom_7Y4nMMohVT_counterexample.json",
+        "sha256": "887dabddfbbf1e633f8bf8c5fe981eb92de21ab7638e726ef7fe3ad8ef0ea83e"
+      },
+      "execution_id": "o5-iszero-block-1-risk-only",
+      "run_id": "1c4ea4c4-4178-4ff0-87a0-c767f06e8502",
+      "target_id": "sha256:25f6a8ee800597afe39e47709fb195d993600126a35430180cd4db62090447b7",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-1-risk-only/0008",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/risk-only/execution/execution-1c16754b-9c44-441b-8b17-c1117787b957/counterexample-candidates/0009/src__distanceFromScore__DistanceFromScore_40.circom_atIdyUEtwc_counterexample.json",
+        "sha256": "514d165547b8a5e6b9c4286ee899d659018664eb05917570ca33f902bf2340a8"
+      },
+      "execution_id": "o5-iszero-block-1-risk-only",
+      "run_id": "5f6ee80a-96c3-4646-92ed-8d7e5892e3ac",
+      "target_id": "sha256:48df1353be28c9292af17bb15a9073b22a03073207111e31e401a5df18fd9be2",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-1-risk-only/0009",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/risk-only/execution/execution-1c16754b-9c44-441b-8b17-c1117787b957/counterexample-candidates/0010/src__calculatedScoreFraction__CalculatedScoreFraction_40.circom_cGcQQwiUin_counterexample.json",
+        "sha256": "af50b82effe6f8915aea0516114ffb6428add56d15ac636a78fbe8eceb372cf6"
+      },
+      "execution_id": "o5-iszero-block-1-risk-only",
+      "run_id": "d42ddcdd-6f2d-4e92-9a61-eb498ae00b6c",
+      "target_id": "sha256:4b8854c8fccb43dc5083e87a6b25ab7ee77972c28cca2c258a2cecc55f3a7a19",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-1-small-first/0000",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/small-first/execution/execution-a0e53884-f136-47a0-9065-1cc90c4352ac/counterexample-candidates/0001/src__subtractTensor__Subtract.circom_zr6cGnkb8n_counterexample.json",
+        "sha256": "d3695812f02232d88bec82f2bea40a915a0ac5c201d66619dd20df4eca80ac52"
+      },
+      "execution_id": "o5-iszero-block-1-small-first",
+      "run_id": "4cd87576-f085-4751-aeba-c26e6dd818fe",
+      "target_id": "sha256:437109e0ce6c3f3e32c2561201194a4945004d514725c3639fdfb9f2c025d316",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-1-small-first/0001",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/small-first/execution/execution-a0e53884-f136-47a0-9065-1cc90c4352ac/counterexample-candidates/0009/src__integerDivision__IntDiv_40.circom_csgMu2SJUu_counterexample.json",
+        "sha256": "93490dd433b4173aff78000f71e804d50ab585f42f8c03af76accc582549976e"
+      },
+      "execution_id": "o5-iszero-block-1-small-first",
+      "run_id": "235b6162-63af-4c03-9323-7ac491c36e8c",
+      "target_id": "sha256:11cc7b651b9412a77986914f7e665d5f1eec6a3db99ff552219bc87ea757625f",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-1-small-first/0002",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/small-first/execution/execution-a0e53884-f136-47a0-9065-1cc90c4352ac/counterexample-candidates/0010/src__distanceFromScore__DistanceFromScore_40.circom_CeuClCqMtB_counterexample.json",
+        "sha256": "e7dc3d748f8ec84ac7a6d18615a6aefeff44b02fb56179824d88404de254cd9a"
+      },
+      "execution_id": "o5-iszero-block-1-small-first",
+      "run_id": "484316bf-7594-4a6d-ae39-26cb0e629fce",
+      "target_id": "sha256:48df1353be28c9292af17bb15a9073b22a03073207111e31e401a5df18fd9be2",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-1-small-first/0003",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/small-first/execution/execution-a0e53884-f136-47a0-9065-1cc90c4352ac/counterexample-candidates/0013/src__integerDivision__IntDiv_80.circom_ybZZM2YQrN_counterexample.json",
+        "sha256": "044008a55e55a02eb6d82439623bc177e021e3cf2f0639310fa74d452ba05663"
+      },
+      "execution_id": "o5-iszero-block-1-small-first",
+      "run_id": "ab986ca8-1df8-4961-9b46-5abe092a487e",
+      "target_id": "sha256:4ba272db03ccbb632bc469189aaab672cb7eec70e106582104d53c3325f9618e",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-1-small-first/0004",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/small-first/execution/execution-a0e53884-f136-47a0-9065-1cc90c4352ac/counterexample-candidates/0014/src__clampTensor__Clamp_40.circom_Oi5W9AWsMH_counterexample.json",
+        "sha256": "862cb72f8e88cae6b1b6c5e2206bb1a9be2260d5575032a6fae0ba2c04286aa5"
+      },
+      "execution_id": "o5-iszero-block-1-small-first",
+      "run_id": "5d624c77-0a93-4cbb-bb54-7f2d90198ed3",
+      "target_id": "sha256:25f6a8ee800597afe39e47709fb195d993600126a35430180cd4db62090447b7",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-1-small-first/0005",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/small-first/execution/execution-a0e53884-f136-47a0-9065-1cc90c4352ac/counterexample-candidates/0015/src__calculatedScoreFraction__CalculatedScoreFraction_40.circom_tuR7Iw3OeB_counterexample.json",
+        "sha256": "9cf3e38c5f33ccc0dbdfe14c21af929e2bb361227d86cce25fb5f6abb7fc2576"
+      },
+      "execution_id": "o5-iszero-block-1-small-first",
+      "run_id": "5e3c5d44-f37b-40e7-a64e-83fcf8e6f76f",
+      "target_id": "sha256:4b8854c8fccb43dc5083e87a6b25ab7ee77972c28cca2c258a2cecc55f3a7a19",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-1-small-first/0006",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-1/small-first/execution/execution-a0e53884-f136-47a0-9065-1cc90c4352ac/counterexample-candidates/0016/src__responseTimeNormalized__ResponseTimeNormalized_40.circom_L6Na2HRavQ_counterexample.json",
+        "sha256": "3a712a2b97f5dbf9e73f5e4fe65932519bd4fde7e584a1c72bf510b825bfacb9"
+      },
+      "execution_id": "o5-iszero-block-1-small-first",
+      "run_id": "7eff8dad-9c82-41c8-868b-bd26a69abf9d",
+      "target_id": "sha256:1b56c5b9ec469b9948bd67314ba5ca46c55f0c56044d6dde00fd5a45e25c7b4c",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-2-cost-aware/0000",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/cost-aware/execution/execution-2dffd59c-9643-436c-bcfe-e9a43ca73a9d/counterexample-candidates/0001/src__subtractTensor__Subtract.circom_V0ueX3IGh1_counterexample.json",
+        "sha256": "ce5b8bd0a913d276db49822940909450483b07b04948391a20f6d35337156d9b"
+      },
+      "execution_id": "o5-iszero-block-2-cost-aware",
+      "run_id": "56e3cebe-662e-4fcf-b66c-8e83f88621f5",
+      "target_id": "sha256:437109e0ce6c3f3e32c2561201194a4945004d514725c3639fdfb9f2c025d316",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-2-cost-aware/0001",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/cost-aware/execution/execution-2dffd59c-9643-436c-bcfe-e9a43ca73a9d/counterexample-candidates/0003/src__integerDivision__IntDiv_40.circom_urI3vz4f94_counterexample.json",
+        "sha256": "4df4647afcf2593ede1b4b436c5e47dd194c83f85bfceed143916df135210e5c"
+      },
+      "execution_id": "o5-iszero-block-2-cost-aware",
+      "run_id": "d32305ce-850e-4d54-a418-3709728bff81",
+      "target_id": "sha256:11cc7b651b9412a77986914f7e665d5f1eec6a3db99ff552219bc87ea757625f",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-2-cost-aware/0002",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/cost-aware/execution/execution-2dffd59c-9643-436c-bcfe-e9a43ca73a9d/counterexample-candidates/0004/src__integerDivision__IntDiv_80.circom_amN4BHmhIr_counterexample.json",
+        "sha256": "eaea5dac6a59f6bd4cbba596278cbebbde2dd6a43af7d7a05e1f1b0fe2161fc3"
+      },
+      "execution_id": "o5-iszero-block-2-cost-aware",
+      "run_id": "646b4cbc-8060-4fd8-bd4d-4d84c2f9f7ab",
+      "target_id": "sha256:4ba272db03ccbb632bc469189aaab672cb7eec70e106582104d53c3325f9618e",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-2-cost-aware/0003",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/cost-aware/execution/execution-2dffd59c-9643-436c-bcfe-e9a43ca73a9d/counterexample-candidates/0005/src__responseTimeNormalized__ResponseTimeNormalized_40.circom_IbjIQTGl0i_counterexample.json",
+        "sha256": "0eef67f16dc397ecf866523f33c742bae5764cf842bcc2dff650a75bf47775ec"
+      },
+      "execution_id": "o5-iszero-block-2-cost-aware",
+      "run_id": "ea03ff0a-62e2-41e8-a997-5f9ee9f61891",
+      "target_id": "sha256:1b56c5b9ec469b9948bd67314ba5ca46c55f0c56044d6dde00fd5a45e25c7b4c",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-2-cost-aware/0004",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/cost-aware/execution/execution-2dffd59c-9643-436c-bcfe-e9a43ca73a9d/counterexample-candidates/0006/src__integerDivision__IntDiv_120.circom_Fd4R9yde0U_counterexample.json",
+        "sha256": "1710f3a2abe499861a8d1507e5e12bfd39016505a36d4a6bdedb7e48192cfa9d"
+      },
+      "execution_id": "o5-iszero-block-2-cost-aware",
+      "run_id": "8788b139-004d-4cd3-b89d-5a7c984acb47",
+      "target_id": "sha256:531218b7788e5fdc5c78e66bdf5150ca15dccc333802bc00a7fe2ae28bdeade3",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-2-cost-aware/0005",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/cost-aware/execution/execution-2dffd59c-9643-436c-bcfe-e9a43ca73a9d/counterexample-candidates/0007/src__responseTimeMetric__ScoringFunction_40.circom_8EYdVHqvJD_counterexample.json",
+        "sha256": "e8480fb37ebcf8ba7615a57132e061f926873d99cfb2225b8aad29a2973cf215"
+      },
+      "execution_id": "o5-iszero-block-2-cost-aware",
+      "run_id": "e5883b0c-f0c6-4528-bf3d-41007ca93954",
+      "target_id": "sha256:97e2f511ba2f533e2047fb3a0c84891cba88339548147ec426b68096b23fba4d",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-2-cost-aware/0006",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/cost-aware/execution/execution-2dffd59c-9643-436c-bcfe-e9a43ca73a9d/counterexample-candidates/0008/src__responseTimeMetric__ResponseTimeMetric_40.circom_P4cJbPeSZC_counterexample.json",
+        "sha256": "275849558c1e3db4f4ce35f6b05ce545f0e8f80ae2010211c8755f83e707dd39"
+      },
+      "execution_id": "o5-iszero-block-2-cost-aware",
+      "run_id": "170d6546-9de2-4ad4-b4f3-61221c3c3219",
+      "target_id": "sha256:1622d14622e6053ca335914c760ee2153e5e355b9c4e144803fa50cdf60ca4d6",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-2-cost-aware/0007",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/cost-aware/execution/execution-2dffd59c-9643-436c-bcfe-e9a43ca73a9d/counterexample-candidates/0009/src__distanceFromScore__DistanceFromScore_40.circom_dz8RACNvRN_counterexample.json",
+        "sha256": "8dd0f1502bc9b702fcebdbb3c1375de51e4fe3617248c33a5f1a17a7e2891f35"
+      },
+      "execution_id": "o5-iszero-block-2-cost-aware",
+      "run_id": "a7639667-ab79-4c42-a77a-d49e692775b1",
+      "target_id": "sha256:48df1353be28c9292af17bb15a9073b22a03073207111e31e401a5df18fd9be2",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-2-cost-aware/0008",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/cost-aware/execution/execution-2dffd59c-9643-436c-bcfe-e9a43ca73a9d/counterexample-candidates/0010/src__clampTensor__Clamp_40.circom_mnj2EMs8p1_counterexample.json",
+        "sha256": "01aa8c7e00297e7a85e9eab3cff8949643f8a2afa59f5bc9241fb36194d75455"
+      },
+      "execution_id": "o5-iszero-block-2-cost-aware",
+      "run_id": "4867fd53-9400-4e19-8f2f-68dc44d17e69",
+      "target_id": "sha256:25f6a8ee800597afe39e47709fb195d993600126a35430180cd4db62090447b7",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-2-cost-aware/0009",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/cost-aware/execution/execution-2dffd59c-9643-436c-bcfe-e9a43ca73a9d/counterexample-candidates/0011/src__calculatedScoreFraction__CalculatedScoreFraction_40.circom_pAqZLmMmlo_counterexample.json",
+        "sha256": "f1a5eb173ff90b44925c8adfd33fa0cf2f0920d41382968536f7d8856c62f758"
+      },
+      "execution_id": "o5-iszero-block-2-cost-aware",
+      "run_id": "f877fff6-b17c-4967-ac1d-5e136cea7dfc",
+      "target_id": "sha256:4b8854c8fccb43dc5083e87a6b25ab7ee77972c28cca2c258a2cecc55f3a7a19",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-2-path-order/0000",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/path-order/execution/execution-1f92daf4-05a0-457a-99d5-40e660c1c6b3/counterexample-candidates/0001/src__calculatedScoreFraction__CalculatedScoreFraction_40.circom_AUKjTxHL6k_counterexample.json",
+        "sha256": "fb08965bd87561405f9d2f9666b0aaa341db26f850c7a545e4b54c96913b4dd8"
+      },
+      "execution_id": "o5-iszero-block-2-path-order",
+      "run_id": "44b3469b-75bb-4fad-b761-99bfa6c0f578",
+      "target_id": "sha256:4b8854c8fccb43dc5083e87a6b25ab7ee77972c28cca2c258a2cecc55f3a7a19",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-2-path-order/0001",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/path-order/execution/execution-1f92daf4-05a0-457a-99d5-40e660c1c6b3/counterexample-candidates/0003/src__clampTensor__Clamp_40.circom_4lyVSQhHJX_counterexample.json",
+        "sha256": "e5256f7970006e47ed1f8d434953006c1dfd2b4b81e2e90a92bea450bce2ff1f"
+      },
+      "execution_id": "o5-iszero-block-2-path-order",
+      "run_id": "eb90b71f-b7e1-46a6-ad82-b9df3f487ac2",
+      "target_id": "sha256:25f6a8ee800597afe39e47709fb195d993600126a35430180cd4db62090447b7",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-2-random/0000",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/random/execution/execution-9e41691b-654b-40b2-8f00-5012c34c48d4/counterexample-candidates/0004/src__integerDivision__IntDiv_40.circom_vTnzPrFSrX_counterexample.json",
+        "sha256": "b139db3d227d56d687fc51e25e74281c7f1e8719d0d838b18430ead80aa03286"
+      },
+      "execution_id": "o5-iszero-block-2-random",
+      "run_id": "cdf39727-d000-4c25-9211-9a383b0d332d",
+      "target_id": "sha256:11cc7b651b9412a77986914f7e665d5f1eec6a3db99ff552219bc87ea757625f",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-2-random/0001",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/random/execution/execution-9e41691b-654b-40b2-8f00-5012c34c48d4/counterexample-candidates/0009/src__integerDivision__IntDiv_80.circom_8AacAuQNzH_counterexample.json",
+        "sha256": "fc393bad3829fc490c0a7082bbf94133f8697f86b8192e7e2ef3bfbacfcda3e8"
+      },
+      "execution_id": "o5-iszero-block-2-random",
+      "run_id": "7cd74f35-2113-47c6-8ed4-7be882211c33",
+      "target_id": "sha256:4ba272db03ccbb632bc469189aaab672cb7eec70e106582104d53c3325f9618e",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-2-random/0002",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/random/execution/execution-9e41691b-654b-40b2-8f00-5012c34c48d4/counterexample-candidates/0010/src__clampTensor__Clamp_40.circom_wzBCGE69lb_counterexample.json",
+        "sha256": "f3f3d0bbad6ff4f8802a87d2c86f7fd450d50ca29f4825e570e8d8a8458a90af"
+      },
+      "execution_id": "o5-iszero-block-2-random",
+      "run_id": "f39233bf-91a3-4c51-8272-8b9972ff81aa",
+      "target_id": "sha256:25f6a8ee800597afe39e47709fb195d993600126a35430180cd4db62090447b7",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-2-random/0003",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/random/execution/execution-9e41691b-654b-40b2-8f00-5012c34c48d4/counterexample-candidates/0012/src__integerDivision__IntDiv_120.circom_3228f8SmFz_counterexample.json",
+        "sha256": "6c825712a0b424108518f4a179b5b7777d7690cd783f1b69677f845ee9386abc"
+      },
+      "execution_id": "o5-iszero-block-2-random",
+      "run_id": "602dc5bf-2772-4fb9-a2e6-b75d406f8798",
+      "target_id": "sha256:531218b7788e5fdc5c78e66bdf5150ca15dccc333802bc00a7fe2ae28bdeade3",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-2-random/0004",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/random/execution/execution-9e41691b-654b-40b2-8f00-5012c34c48d4/counterexample-candidates/0014/src__subtractTensor__Subtract.circom_XwTII8YnQM_counterexample.json",
+        "sha256": "5c1da63014da2732b5bf0381c6baf96a600542f1acd1e965c397a870863526f2"
+      },
+      "execution_id": "o5-iszero-block-2-random",
+      "run_id": "c82af029-3e1c-4ff9-a970-c108e775b14c",
+      "target_id": "sha256:437109e0ce6c3f3e32c2561201194a4945004d514725c3639fdfb9f2c025d316",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-2-random/0005",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/random/execution/execution-9e41691b-654b-40b2-8f00-5012c34c48d4/counterexample-candidates/0015/src__calculatedScoreFraction__CalculatedScoreFraction_40.circom_OgH5ph17w2_counterexample.json",
+        "sha256": "dd2ecf9ce324bce7f454bb67bf246b218c0c99aab402a2f2ad6496bf1ac91a6c"
+      },
+      "execution_id": "o5-iszero-block-2-random",
+      "run_id": "384c5c70-d921-43d5-9efe-479c3182c4cd",
+      "target_id": "sha256:4b8854c8fccb43dc5083e87a6b25ab7ee77972c28cca2c258a2cecc55f3a7a19",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-2-random/0006",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/random/execution/execution-9e41691b-654b-40b2-8f00-5012c34c48d4/counterexample-candidates/0017/src__responseTimeMetric__ScoringFunction_40.circom_fqT4Cd6Nel_counterexample.json",
+        "sha256": "4a9c8ee257e6a4a03ef76f293ee876f848e69a4f18f326ab2be42e64b23ad013"
+      },
+      "execution_id": "o5-iszero-block-2-random",
+      "run_id": "3c9b609f-11dd-44c0-bc09-5cab3d979cf2",
+      "target_id": "sha256:97e2f511ba2f533e2047fb3a0c84891cba88339548147ec426b68096b23fba4d",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-2-random/0007",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/random/execution/execution-9e41691b-654b-40b2-8f00-5012c34c48d4/counterexample-candidates/0018/src__responseTimeMetric__ResponseTimeMetric_40.circom_vWiIcJCREm_counterexample.json",
+        "sha256": "f8b597ada2eb6ca26edc32b53fd5290f8811c13594a1e29bb68c819412f9586e"
+      },
+      "execution_id": "o5-iszero-block-2-random",
+      "run_id": "67d6feb6-328e-4ef8-abb9-0d780dc7e23b",
+      "target_id": "sha256:1622d14622e6053ca335914c760ee2153e5e355b9c4e144803fa50cdf60ca4d6",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-2-random/0008",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/random/execution/execution-9e41691b-654b-40b2-8f00-5012c34c48d4/counterexample-candidates/0019/src__responseTimeNormalized__ResponseTimeNormalized_40.circom_N0okxrww4G_counterexample.json",
+        "sha256": "a1cc921059df577170358f307b582c2c2f984eb7d47b0c481dba959bc35c3543"
+      },
+      "execution_id": "o5-iszero-block-2-random",
+      "run_id": "5c31cb09-3127-4902-96ab-0b26096e6fc9",
+      "target_id": "sha256:1b56c5b9ec469b9948bd67314ba5ca46c55f0c56044d6dde00fd5a45e25c7b4c",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-2-random/0009",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/random/execution/execution-9e41691b-654b-40b2-8f00-5012c34c48d4/counterexample-candidates/0020/src__distanceFromScore__DistanceFromScore_40.circom_R60DnmxiKj_counterexample.json",
+        "sha256": "b066732bd451a3c88151e6e42df4f5f9eaaaebb3abb6c00a4902667374586d05"
+      },
+      "execution_id": "o5-iszero-block-2-random",
+      "run_id": "8584d662-7002-4848-9393-5aefd5621c6a",
+      "target_id": "sha256:48df1353be28c9292af17bb15a9073b22a03073207111e31e401a5df18fd9be2",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-2-risk-only/0000",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/risk-only/execution/execution-885c0c42-e02f-4a54-be47-2a8bcb674c86/counterexample-candidates/0001/src__integerDivision__IntDiv_40.circom_OiV0V4ZmCo_counterexample.json",
+        "sha256": "a8ff56bae46c7797426e87f6263bc515b414bd15fe53aa89a8bb965d5f79de17"
+      },
+      "execution_id": "o5-iszero-block-2-risk-only",
+      "run_id": "40ef6bf4-328a-4a0b-85c7-035c19e9060e",
+      "target_id": "sha256:11cc7b651b9412a77986914f7e665d5f1eec6a3db99ff552219bc87ea757625f",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-2-risk-only/0001",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/risk-only/execution/execution-885c0c42-e02f-4a54-be47-2a8bcb674c86/counterexample-candidates/0002/src__responseTimeMetric__ResponseTimeMetric_40.circom_BVAuuF31fc_counterexample.json",
+        "sha256": "a3a8a47b0ce1c734d0a7ca821e3c973f28aba5dcc8387f6deb19ccee69cf933c"
+      },
+      "execution_id": "o5-iszero-block-2-risk-only",
+      "run_id": "b6dbbc82-9000-4ad8-8a48-da501f03e800",
+      "target_id": "sha256:1622d14622e6053ca335914c760ee2153e5e355b9c4e144803fa50cdf60ca4d6",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-2-risk-only/0002",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/risk-only/execution/execution-885c0c42-e02f-4a54-be47-2a8bcb674c86/counterexample-candidates/0003/src__responseTimeNormalized__ResponseTimeNormalized_40.circom_r6IZvSMy68_counterexample.json",
+        "sha256": "91265b94dc490da3217b1541e1e6641229510b33dfd0897495da4db5c89d2140"
+      },
+      "execution_id": "o5-iszero-block-2-risk-only",
+      "run_id": "62d770d9-f5f8-44a0-befe-f164a24a0764",
+      "target_id": "sha256:1b56c5b9ec469b9948bd67314ba5ca46c55f0c56044d6dde00fd5a45e25c7b4c",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-2-risk-only/0003",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/risk-only/execution/execution-885c0c42-e02f-4a54-be47-2a8bcb674c86/counterexample-candidates/0004/src__integerDivision__IntDiv_80.circom_IpuR2rpYNi_counterexample.json",
+        "sha256": "00849556cf2a643d4faa2f216938fb7f6d2a6096cf77acb00411e5ba0764b2d4"
+      },
+      "execution_id": "o5-iszero-block-2-risk-only",
+      "run_id": "31b71a99-aace-4fed-ad5a-3ebac819861e",
+      "target_id": "sha256:4ba272db03ccbb632bc469189aaab672cb7eec70e106582104d53c3325f9618e",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-2-risk-only/0004",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/risk-only/execution/execution-885c0c42-e02f-4a54-be47-2a8bcb674c86/counterexample-candidates/0005/src__integerDivision__IntDiv_120.circom_rZ7YM6jsLJ_counterexample.json",
+        "sha256": "9e3fb1e557e0a823ae88d63d4ceb6c948afd000cff70fd2f0aeb9185fd51bd38"
+      },
+      "execution_id": "o5-iszero-block-2-risk-only",
+      "run_id": "49c86f92-1ce8-4355-85c9-34a5ac373a42",
+      "target_id": "sha256:531218b7788e5fdc5c78e66bdf5150ca15dccc333802bc00a7fe2ae28bdeade3",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-2-risk-only/0005",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/risk-only/execution/execution-885c0c42-e02f-4a54-be47-2a8bcb674c86/counterexample-candidates/0006/src__responseTimeMetric__ScoringFunction_40.circom_1wFZwzme4S_counterexample.json",
+        "sha256": "5f469445ea1ddc877e4e08e1ebc73dba2c02ebf272450d5decfd4891c8701ccb"
+      },
+      "execution_id": "o5-iszero-block-2-risk-only",
+      "run_id": "bd2f5801-f180-4466-bd5a-404f39df330d",
+      "target_id": "sha256:97e2f511ba2f533e2047fb3a0c84891cba88339548147ec426b68096b23fba4d",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-2-risk-only/0006",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/risk-only/execution/execution-885c0c42-e02f-4a54-be47-2a8bcb674c86/counterexample-candidates/0007/src__subtractTensor__Subtract.circom_r8xFMe7NZD_counterexample.json",
+        "sha256": "67e050567a32bed9f938f52e926738ef2235c3e7b8d43da004cd7821bdf26d4e"
+      },
+      "execution_id": "o5-iszero-block-2-risk-only",
+      "run_id": "eb5a3206-15d5-456a-8f4f-253558cd5fc4",
+      "target_id": "sha256:437109e0ce6c3f3e32c2561201194a4945004d514725c3639fdfb9f2c025d316",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-2-risk-only/0007",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/risk-only/execution/execution-885c0c42-e02f-4a54-be47-2a8bcb674c86/counterexample-candidates/0008/src__clampTensor__Clamp_40.circom_DU9va1KusZ_counterexample.json",
+        "sha256": "79d904e37f7e638d8bde244276f013f158aa2ecb7e0f33fff8e768a3dc20003d"
+      },
+      "execution_id": "o5-iszero-block-2-risk-only",
+      "run_id": "90b5421e-5905-4e22-84ff-b96d58db792a",
+      "target_id": "sha256:25f6a8ee800597afe39e47709fb195d993600126a35430180cd4db62090447b7",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-2-risk-only/0008",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/risk-only/execution/execution-885c0c42-e02f-4a54-be47-2a8bcb674c86/counterexample-candidates/0009/src__distanceFromScore__DistanceFromScore_40.circom_AK8s57x7Qt_counterexample.json",
+        "sha256": "64b9f88d8cd71432b5cc17c95302dc859ee96e533967f365ebda6036d0780321"
+      },
+      "execution_id": "o5-iszero-block-2-risk-only",
+      "run_id": "1f015839-2611-4e8e-8410-9d0b98a08a8b",
+      "target_id": "sha256:48df1353be28c9292af17bb15a9073b22a03073207111e31e401a5df18fd9be2",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-2-risk-only/0009",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/risk-only/execution/execution-885c0c42-e02f-4a54-be47-2a8bcb674c86/counterexample-candidates/0010/src__calculatedScoreFraction__CalculatedScoreFraction_40.circom_Y34uLNrD7e_counterexample.json",
+        "sha256": "09f4211823faa55bbc9cf85ff63d4e2bd8458a9927453f06e9bf1ff147596d34"
+      },
+      "execution_id": "o5-iszero-block-2-risk-only",
+      "run_id": "af655ef0-f1e2-4537-af15-17e076d23076",
+      "target_id": "sha256:4b8854c8fccb43dc5083e87a6b25ab7ee77972c28cca2c258a2cecc55f3a7a19",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-2-small-first/0000",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/small-first/execution/execution-f042f859-c710-4481-b796-fa57b6f7259b/counterexample-candidates/0001/src__subtractTensor__Subtract.circom_SCswmDvg1K_counterexample.json",
+        "sha256": "51996834337bd8ce0fc42c31e34fa489970bb4daaa7c957190bd352e2f107c23"
+      },
+      "execution_id": "o5-iszero-block-2-small-first",
+      "run_id": "c38a5677-0445-4d8a-a277-33f9df370ace",
+      "target_id": "sha256:437109e0ce6c3f3e32c2561201194a4945004d514725c3639fdfb9f2c025d316",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-2-small-first/0001",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/small-first/execution/execution-f042f859-c710-4481-b796-fa57b6f7259b/counterexample-candidates/0009/src__integerDivision__IntDiv_40.circom_H68HNOta5v_counterexample.json",
+        "sha256": "dd33aab198c0941c1eb72b7331844442a5863ab825431df80096d450ea3fe408"
+      },
+      "execution_id": "o5-iszero-block-2-small-first",
+      "run_id": "b252a768-1b9c-4ca0-be99-8b22871f4dec",
+      "target_id": "sha256:11cc7b651b9412a77986914f7e665d5f1eec6a3db99ff552219bc87ea757625f",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-2-small-first/0002",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/small-first/execution/execution-f042f859-c710-4481-b796-fa57b6f7259b/counterexample-candidates/0010/src__distanceFromScore__DistanceFromScore_40.circom_PyDaiKuzxF_counterexample.json",
+        "sha256": "57965550754910cec3cd31c133318aad2830d4a4b456caf6bc3a893d569f31fa"
+      },
+      "execution_id": "o5-iszero-block-2-small-first",
+      "run_id": "870b5a14-36f4-4506-b11a-3c39eba49afb",
+      "target_id": "sha256:48df1353be28c9292af17bb15a9073b22a03073207111e31e401a5df18fd9be2",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-2-small-first/0003",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/small-first/execution/execution-f042f859-c710-4481-b796-fa57b6f7259b/counterexample-candidates/0013/src__integerDivision__IntDiv_80.circom_rsm6fujvNw_counterexample.json",
+        "sha256": "8fba1b5b442f8e0101b1abb484de46bf0445bf41ab2cd54e09abf6bb4be43db9"
+      },
+      "execution_id": "o5-iszero-block-2-small-first",
+      "run_id": "a9292929-4a56-454b-906b-c025817ecbe1",
+      "target_id": "sha256:4ba272db03ccbb632bc469189aaab672cb7eec70e106582104d53c3325f9618e",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-2-small-first/0004",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/small-first/execution/execution-f042f859-c710-4481-b796-fa57b6f7259b/counterexample-candidates/0014/src__clampTensor__Clamp_40.circom_BQdJZEJG9U_counterexample.json",
+        "sha256": "c16fa390976bbb44fb0491a2712239b666be8169a338ff960b8638d3bdb1a734"
+      },
+      "execution_id": "o5-iszero-block-2-small-first",
+      "run_id": "fbc9dc90-8054-417e-8b18-299180c4c8d9",
+      "target_id": "sha256:25f6a8ee800597afe39e47709fb195d993600126a35430180cd4db62090447b7",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-2-small-first/0005",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/small-first/execution/execution-f042f859-c710-4481-b796-fa57b6f7259b/counterexample-candidates/0015/src__calculatedScoreFraction__CalculatedScoreFraction_40.circom_n67FOfEZJF_counterexample.json",
+        "sha256": "f0a36148da3425b0b70b8ae7830a19b5163df36ad458633483e6b8d1af614694"
+      },
+      "execution_id": "o5-iszero-block-2-small-first",
+      "run_id": "cf17ac89-eca4-4480-a736-5f083f3ddf33",
+      "target_id": "sha256:4b8854c8fccb43dc5083e87a6b25ab7ee77972c28cca2c258a2cecc55f3a7a19",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-2-small-first/0006",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-2/small-first/execution/execution-f042f859-c710-4481-b796-fa57b6f7259b/counterexample-candidates/0016/src__responseTimeNormalized__ResponseTimeNormalized_40.circom_NN5HqVg0EN_counterexample.json",
+        "sha256": "8fe3780920dfa41f9f2cd9da8a217c9619bfdbfc87bcb5ed000eaed9b6f39ab8"
+      },
+      "execution_id": "o5-iszero-block-2-small-first",
+      "run_id": "f41f3874-fcb8-4f25-b725-735ef2682c98",
+      "target_id": "sha256:1b56c5b9ec469b9948bd67314ba5ca46c55f0c56044d6dde00fd5a45e25c7b4c",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-3-cost-aware/0000",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/cost-aware/execution/execution-dd7082d3-c395-44c3-a2cf-b0451cbd9e2e/counterexample-candidates/0001/src__subtractTensor__Subtract.circom_KnBMawTGkF_counterexample.json",
+        "sha256": "2cfb9f8ea7431bca4af435411c6dbfbfe3c7bd9608abac4e1dfd8b5f7fd2e1de"
+      },
+      "execution_id": "o5-iszero-block-3-cost-aware",
+      "run_id": "4bf50ba5-b84a-42c5-837f-c3fca9239d80",
+      "target_id": "sha256:437109e0ce6c3f3e32c2561201194a4945004d514725c3639fdfb9f2c025d316",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-3-cost-aware/0001",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/cost-aware/execution/execution-dd7082d3-c395-44c3-a2cf-b0451cbd9e2e/counterexample-candidates/0003/src__integerDivision__IntDiv_40.circom_6iued7RcfI_counterexample.json",
+        "sha256": "9a48ea12eadb883dbd6bac79892a88f65587c6dfbc2c15369166ef93ec6d60cb"
+      },
+      "execution_id": "o5-iszero-block-3-cost-aware",
+      "run_id": "ce6b535f-6435-4d82-8b74-0a4f0196010c",
+      "target_id": "sha256:11cc7b651b9412a77986914f7e665d5f1eec6a3db99ff552219bc87ea757625f",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-3-cost-aware/0002",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/cost-aware/execution/execution-dd7082d3-c395-44c3-a2cf-b0451cbd9e2e/counterexample-candidates/0004/src__integerDivision__IntDiv_80.circom_1DKEvsu9pl_counterexample.json",
+        "sha256": "b7e7a9867e59f4f8a8df75b8d612238297be1b0e56278ac29c4d1c7571ca9af1"
+      },
+      "execution_id": "o5-iszero-block-3-cost-aware",
+      "run_id": "f89a6d30-5e36-471c-8141-db419609e7a7",
+      "target_id": "sha256:4ba272db03ccbb632bc469189aaab672cb7eec70e106582104d53c3325f9618e",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-3-cost-aware/0003",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/cost-aware/execution/execution-dd7082d3-c395-44c3-a2cf-b0451cbd9e2e/counterexample-candidates/0005/src__responseTimeNormalized__ResponseTimeNormalized_40.circom_BQrzBHeoIb_counterexample.json",
+        "sha256": "7c8d5babd800d143af4172b63c9f2e5fd446b237216a848e7da1e6815d55f101"
+      },
+      "execution_id": "o5-iszero-block-3-cost-aware",
+      "run_id": "ae175826-b9b9-42d2-844c-a61da5a9da9b",
+      "target_id": "sha256:1b56c5b9ec469b9948bd67314ba5ca46c55f0c56044d6dde00fd5a45e25c7b4c",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-3-cost-aware/0004",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/cost-aware/execution/execution-dd7082d3-c395-44c3-a2cf-b0451cbd9e2e/counterexample-candidates/0006/src__integerDivision__IntDiv_120.circom_uhVj4vyMY6_counterexample.json",
+        "sha256": "61f1f4671a705cdb925059fdafae93093b020324c5a3f9df4229edf9424b1b36"
+      },
+      "execution_id": "o5-iszero-block-3-cost-aware",
+      "run_id": "4e4136c9-0aea-48be-8e34-b75fc28212bf",
+      "target_id": "sha256:531218b7788e5fdc5c78e66bdf5150ca15dccc333802bc00a7fe2ae28bdeade3",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-3-cost-aware/0005",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/cost-aware/execution/execution-dd7082d3-c395-44c3-a2cf-b0451cbd9e2e/counterexample-candidates/0007/src__responseTimeMetric__ScoringFunction_40.circom_sMaJ0hI2gJ_counterexample.json",
+        "sha256": "f3884c5cbd7caaad58d3553d8b2bca2b834c72aec189ca6d914e3fbdbf613a38"
+      },
+      "execution_id": "o5-iszero-block-3-cost-aware",
+      "run_id": "a98ca471-cf35-4a7b-bc8d-3977518200cb",
+      "target_id": "sha256:97e2f511ba2f533e2047fb3a0c84891cba88339548147ec426b68096b23fba4d",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-3-cost-aware/0006",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/cost-aware/execution/execution-dd7082d3-c395-44c3-a2cf-b0451cbd9e2e/counterexample-candidates/0008/src__responseTimeMetric__ResponseTimeMetric_40.circom_J2Ozbkq5ls_counterexample.json",
+        "sha256": "7a0fddfc9d534eb481a9d837de963fb8afefa45f2f7803d5cabad8da4fbc46b8"
+      },
+      "execution_id": "o5-iszero-block-3-cost-aware",
+      "run_id": "56617980-c356-4393-8e98-085b5d7bfc15",
+      "target_id": "sha256:1622d14622e6053ca335914c760ee2153e5e355b9c4e144803fa50cdf60ca4d6",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-3-cost-aware/0007",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/cost-aware/execution/execution-dd7082d3-c395-44c3-a2cf-b0451cbd9e2e/counterexample-candidates/0009/src__distanceFromScore__DistanceFromScore_40.circom_SWQ6dBVwrM_counterexample.json",
+        "sha256": "100e512c168d08bbbd7a205b08715940946c6fec280caa4ece4de91ba5d0e636"
+      },
+      "execution_id": "o5-iszero-block-3-cost-aware",
+      "run_id": "642380d5-ceac-4569-8742-ef62fc5e0ac0",
+      "target_id": "sha256:48df1353be28c9292af17bb15a9073b22a03073207111e31e401a5df18fd9be2",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-3-cost-aware/0008",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/cost-aware/execution/execution-dd7082d3-c395-44c3-a2cf-b0451cbd9e2e/counterexample-candidates/0010/src__clampTensor__Clamp_40.circom_kg7Oslv9ej_counterexample.json",
+        "sha256": "1a4663527150b57ba9557e31a5dbd3e6a5e1bdbadf68dc58c1e2719e1c13a38d"
+      },
+      "execution_id": "o5-iszero-block-3-cost-aware",
+      "run_id": "c86d3749-d2cb-4c64-897f-c1cbdfd495a6",
+      "target_id": "sha256:25f6a8ee800597afe39e47709fb195d993600126a35430180cd4db62090447b7",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-3-cost-aware/0009",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/cost-aware/execution/execution-dd7082d3-c395-44c3-a2cf-b0451cbd9e2e/counterexample-candidates/0011/src__calculatedScoreFraction__CalculatedScoreFraction_40.circom_sb7wPSOmc3_counterexample.json",
+        "sha256": "7e54c7844da8aa455528a1c20c83057f9a90928480a05ff4d2237bc39151cf93"
+      },
+      "execution_id": "o5-iszero-block-3-cost-aware",
+      "run_id": "10a4cd60-7dd0-4fc1-8796-27989e6e5d88",
+      "target_id": "sha256:4b8854c8fccb43dc5083e87a6b25ab7ee77972c28cca2c258a2cecc55f3a7a19",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-3-path-order/0000",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/path-order/execution/execution-6237acc8-5202-490b-bec1-d7de0a5b51e6/counterexample-candidates/0001/src__calculatedScoreFraction__CalculatedScoreFraction_40.circom_553FALJMlT_counterexample.json",
+        "sha256": "b302b441cd3fdbbee21355ed80705855f6ff83755cf40d8e2736060db70f1348"
+      },
+      "execution_id": "o5-iszero-block-3-path-order",
+      "run_id": "b6dc0572-0191-449a-929a-97848d3da3c8",
+      "target_id": "sha256:4b8854c8fccb43dc5083e87a6b25ab7ee77972c28cca2c258a2cecc55f3a7a19",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-3-path-order/0001",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/path-order/execution/execution-6237acc8-5202-490b-bec1-d7de0a5b51e6/counterexample-candidates/0003/src__clampTensor__Clamp_40.circom_lFvyDeI5ul_counterexample.json",
+        "sha256": "d5dfa6ccf947ccddd57c22d19b5ad478de4563e6d3415441a74724979860d4bb"
+      },
+      "execution_id": "o5-iszero-block-3-path-order",
+      "run_id": "c58b13b6-9b3f-49eb-a5ac-3e3db76ea435",
+      "target_id": "sha256:25f6a8ee800597afe39e47709fb195d993600126a35430180cd4db62090447b7",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-3-random/0000",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/random/execution/execution-bf248257-1209-49d8-a3c9-9bf766ba8a8b/counterexample-candidates/0004/src__distanceFromScore__DistanceFromScore_40.circom_nqlYloA9KX_counterexample.json",
+        "sha256": "b0cc79bba3d66ec48c541f108a70c8b4ca48a343323bda521015710357382af2"
+      },
+      "execution_id": "o5-iszero-block-3-random",
+      "run_id": "df0a7732-0796-4b78-8c23-28786b79252d",
+      "target_id": "sha256:48df1353be28c9292af17bb15a9073b22a03073207111e31e401a5df18fd9be2",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-3-random/0001",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/random/execution/execution-bf248257-1209-49d8-a3c9-9bf766ba8a8b/counterexample-candidates/0007/src__responseTimeMetric__ScoringFunction_40.circom_uI5eaPBYkJ_counterexample.json",
+        "sha256": "583b69bcb53da298c06b1d6171ba3236a12f4904367a704187ad69f105b4ad65"
+      },
+      "execution_id": "o5-iszero-block-3-random",
+      "run_id": "3349e550-8b14-41ec-a9ac-a647993269bb",
+      "target_id": "sha256:97e2f511ba2f533e2047fb3a0c84891cba88339548147ec426b68096b23fba4d",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-3-random/0002",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/random/execution/execution-bf248257-1209-49d8-a3c9-9bf766ba8a8b/counterexample-candidates/0008/src__responseTimeMetric__ResponseTimeMetric_40.circom_qUFqDvoQGw_counterexample.json",
+        "sha256": "45ac392635d2079fa9de77fc531b0764996e529f27cf81ddd671b1e698218df0"
+      },
+      "execution_id": "o5-iszero-block-3-random",
+      "run_id": "f29e984a-04f9-4691-95e6-7a47ebe832e9",
+      "target_id": "sha256:1622d14622e6053ca335914c760ee2153e5e355b9c4e144803fa50cdf60ca4d6",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-3-random/0003",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/random/execution/execution-bf248257-1209-49d8-a3c9-9bf766ba8a8b/counterexample-candidates/0011/src__subtractTensor__Subtract.circom_Fvuibh1TZV_counterexample.json",
+        "sha256": "b990e0ea637ef34bd4392c851f258993ba399bca3ecefbb4cc4dc4fa77fe2bc6"
+      },
+      "execution_id": "o5-iszero-block-3-random",
+      "run_id": "df90a440-b2d0-4299-9c6e-013f3b080993",
+      "target_id": "sha256:437109e0ce6c3f3e32c2561201194a4945004d514725c3639fdfb9f2c025d316",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-3-random/0004",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/random/execution/execution-bf248257-1209-49d8-a3c9-9bf766ba8a8b/counterexample-candidates/0012/src__integerDivision__IntDiv_120.circom_dWEiu47X0W_counterexample.json",
+        "sha256": "d080dda9b20dd2ffbe8261335b5a17c12eb89342aed8783f2f36be902b5a2b2b"
+      },
+      "execution_id": "o5-iszero-block-3-random",
+      "run_id": "d03659a9-7eb6-470a-8346-e3a2c6eb2734",
+      "target_id": "sha256:531218b7788e5fdc5c78e66bdf5150ca15dccc333802bc00a7fe2ae28bdeade3",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-3-random/0005",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/random/execution/execution-bf248257-1209-49d8-a3c9-9bf766ba8a8b/counterexample-candidates/0014/src__clampTensor__Clamp_40.circom_Q40PGDyPTk_counterexample.json",
+        "sha256": "0840d7524ea1f236285c458d22b53faf0cc09fc14a1a0592120366971ea3dab5"
+      },
+      "execution_id": "o5-iszero-block-3-random",
+      "run_id": "39545cc1-5b52-4b5c-8fb0-d7f32a94f336",
+      "target_id": "sha256:25f6a8ee800597afe39e47709fb195d993600126a35430180cd4db62090447b7",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-3-random/0006",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/random/execution/execution-bf248257-1209-49d8-a3c9-9bf766ba8a8b/counterexample-candidates/0017/src__integerDivision__IntDiv_80.circom_3DIn60zIw9_counterexample.json",
+        "sha256": "f3f862fd255752d1520a639c13ad7b938143657ca6d7e5dab9c6f2c1cb1e122c"
+      },
+      "execution_id": "o5-iszero-block-3-random",
+      "run_id": "b85adde9-6d0e-4e99-9e1a-a2fd0558d6ef",
+      "target_id": "sha256:4ba272db03ccbb632bc469189aaab672cb7eec70e106582104d53c3325f9618e",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-3-risk-only/0000",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/risk-only/execution/execution-27442fea-e014-43f1-9ce2-4e489edad61d/counterexample-candidates/0001/src__integerDivision__IntDiv_40.circom_s1WVFnlsi8_counterexample.json",
+        "sha256": "8df2ea967c4ee18c9b6077f034c26cb01f4e7d446be0c0fbb2f893327dd1e4ee"
+      },
+      "execution_id": "o5-iszero-block-3-risk-only",
+      "run_id": "64d15c5a-8640-4540-a8ab-e52d4def6af0",
+      "target_id": "sha256:11cc7b651b9412a77986914f7e665d5f1eec6a3db99ff552219bc87ea757625f",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-3-risk-only/0001",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/risk-only/execution/execution-27442fea-e014-43f1-9ce2-4e489edad61d/counterexample-candidates/0002/src__responseTimeMetric__ResponseTimeMetric_40.circom_bCxxAHib55_counterexample.json",
+        "sha256": "88d2fbbad6c79a6888c4d12fb361e9fa3dbbd6577082f39f7bfe6a3d6a2fa60d"
+      },
+      "execution_id": "o5-iszero-block-3-risk-only",
+      "run_id": "54a73afc-9917-4154-9fa9-87d6b2fac8a0",
+      "target_id": "sha256:1622d14622e6053ca335914c760ee2153e5e355b9c4e144803fa50cdf60ca4d6",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-3-risk-only/0002",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/risk-only/execution/execution-27442fea-e014-43f1-9ce2-4e489edad61d/counterexample-candidates/0003/src__responseTimeNormalized__ResponseTimeNormalized_40.circom_perr8OBioX_counterexample.json",
+        "sha256": "8d943e617f8e33e5c78ccc6b6a3bb4911cee85412bb9486b9ed8e884ad11a0b4"
+      },
+      "execution_id": "o5-iszero-block-3-risk-only",
+      "run_id": "81ba51db-8b3a-4a25-842e-da12170e304f",
+      "target_id": "sha256:1b56c5b9ec469b9948bd67314ba5ca46c55f0c56044d6dde00fd5a45e25c7b4c",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-3-risk-only/0003",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/risk-only/execution/execution-27442fea-e014-43f1-9ce2-4e489edad61d/counterexample-candidates/0004/src__integerDivision__IntDiv_80.circom_HNa5Rr8fTL_counterexample.json",
+        "sha256": "e6835ba4cda3ec6c9f83b1d7843d7320eff230cd500e79b269a643de097cc4b0"
+      },
+      "execution_id": "o5-iszero-block-3-risk-only",
+      "run_id": "b150d6db-6836-4f13-ba4e-840866c226bf",
+      "target_id": "sha256:4ba272db03ccbb632bc469189aaab672cb7eec70e106582104d53c3325f9618e",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-3-risk-only/0004",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/risk-only/execution/execution-27442fea-e014-43f1-9ce2-4e489edad61d/counterexample-candidates/0005/src__integerDivision__IntDiv_120.circom_44cevD3RMd_counterexample.json",
+        "sha256": "9efe9cb575a77d3c6998962591dcaa1e80892e6d6148df4f17bb50f53ba9001e"
+      },
+      "execution_id": "o5-iszero-block-3-risk-only",
+      "run_id": "d365b942-5867-43ad-81ac-e53640b72bfb",
+      "target_id": "sha256:531218b7788e5fdc5c78e66bdf5150ca15dccc333802bc00a7fe2ae28bdeade3",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-3-risk-only/0005",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/risk-only/execution/execution-27442fea-e014-43f1-9ce2-4e489edad61d/counterexample-candidates/0006/src__responseTimeMetric__ScoringFunction_40.circom_WHeumKWFI5_counterexample.json",
+        "sha256": "3553fb430dde594f9a685764b8b887d0bd26e12a45ca59a605765f75af3c0fb8"
+      },
+      "execution_id": "o5-iszero-block-3-risk-only",
+      "run_id": "b45e1fa8-eaf1-4d34-acce-f7613443ef5e",
+      "target_id": "sha256:97e2f511ba2f533e2047fb3a0c84891cba88339548147ec426b68096b23fba4d",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-3-risk-only/0006",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/risk-only/execution/execution-27442fea-e014-43f1-9ce2-4e489edad61d/counterexample-candidates/0007/src__subtractTensor__Subtract.circom_Ao8aJNpDJF_counterexample.json",
+        "sha256": "d4cc39d49b71cd76359a0bcbf9682182c12bf230895b58ec399a2925b8573d86"
+      },
+      "execution_id": "o5-iszero-block-3-risk-only",
+      "run_id": "b09ec889-c0af-44e6-a417-162fbc474af9",
+      "target_id": "sha256:437109e0ce6c3f3e32c2561201194a4945004d514725c3639fdfb9f2c025d316",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-3-risk-only/0007",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/risk-only/execution/execution-27442fea-e014-43f1-9ce2-4e489edad61d/counterexample-candidates/0008/src__clampTensor__Clamp_40.circom_NbOglvOwCJ_counterexample.json",
+        "sha256": "9513576926760218c1ee99d823e78743e48c50f9ceddfdd545748e0e72c6af02"
+      },
+      "execution_id": "o5-iszero-block-3-risk-only",
+      "run_id": "7c455afb-d069-4da9-9a1d-a5a15ffc232d",
+      "target_id": "sha256:25f6a8ee800597afe39e47709fb195d993600126a35430180cd4db62090447b7",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-3-risk-only/0008",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/risk-only/execution/execution-27442fea-e014-43f1-9ce2-4e489edad61d/counterexample-candidates/0009/src__distanceFromScore__DistanceFromScore_40.circom_F81mUVHC2D_counterexample.json",
+        "sha256": "51d7ccf1108386f5df8f637313e5f7ae430da6845263ddbaddcbaf2b95e12973"
+      },
+      "execution_id": "o5-iszero-block-3-risk-only",
+      "run_id": "d257181a-f5ad-41a4-91c0-0ece6d6b169c",
+      "target_id": "sha256:48df1353be28c9292af17bb15a9073b22a03073207111e31e401a5df18fd9be2",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-3-risk-only/0009",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/risk-only/execution/execution-27442fea-e014-43f1-9ce2-4e489edad61d/counterexample-candidates/0010/src__calculatedScoreFraction__CalculatedScoreFraction_40.circom_la6HKF0QS5_counterexample.json",
+        "sha256": "6f53a5a6f3202cd083e1461d799f9a4e51921db68c9c76a03cb09a4900f9e66a"
+      },
+      "execution_id": "o5-iszero-block-3-risk-only",
+      "run_id": "6537097a-6066-4915-8bd8-3808bbd17052",
+      "target_id": "sha256:4b8854c8fccb43dc5083e87a6b25ab7ee77972c28cca2c258a2cecc55f3a7a19",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-3-small-first/0000",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/small-first/execution/execution-8f397096-7d98-4814-b28b-d0062e29838f/counterexample-candidates/0001/src__subtractTensor__Subtract.circom_5omau5PBnM_counterexample.json",
+        "sha256": "27f39702087a2d84ec308cc07d965b928ea05243ba302a142c3d9525cf4aad24"
+      },
+      "execution_id": "o5-iszero-block-3-small-first",
+      "run_id": "830fbdd7-5991-4a6b-93b4-ca54522020a4",
+      "target_id": "sha256:437109e0ce6c3f3e32c2561201194a4945004d514725c3639fdfb9f2c025d316",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-3-small-first/0001",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/small-first/execution/execution-8f397096-7d98-4814-b28b-d0062e29838f/counterexample-candidates/0009/src__integerDivision__IntDiv_40.circom_KFRPCTWr3S_counterexample.json",
+        "sha256": "ff2a573bf242dc15ebf2a0aab4f9fbcf01ed60ca84b5c56da0e0c61d87b7956f"
+      },
+      "execution_id": "o5-iszero-block-3-small-first",
+      "run_id": "e6f4f134-6791-4682-b262-5afc627d7f97",
+      "target_id": "sha256:11cc7b651b9412a77986914f7e665d5f1eec6a3db99ff552219bc87ea757625f",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-3-small-first/0002",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/small-first/execution/execution-8f397096-7d98-4814-b28b-d0062e29838f/counterexample-candidates/0010/src__distanceFromScore__DistanceFromScore_40.circom_Dfjj5QAYPk_counterexample.json",
+        "sha256": "9d06f18f758dcd72ec2c2a7fc37f65d0995bfa5ef97cdb2ddf34daa4ff96b279"
+      },
+      "execution_id": "o5-iszero-block-3-small-first",
+      "run_id": "58a6baae-912a-49ef-ae38-41f244e59933",
+      "target_id": "sha256:48df1353be28c9292af17bb15a9073b22a03073207111e31e401a5df18fd9be2",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-3-small-first/0003",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/small-first/execution/execution-8f397096-7d98-4814-b28b-d0062e29838f/counterexample-candidates/0013/src__integerDivision__IntDiv_80.circom_oRjjjmRhHW_counterexample.json",
+        "sha256": "0f2f3947c2a7e473f5d34921c5305491111fe026319c08069696c895b9a860f4"
+      },
+      "execution_id": "o5-iszero-block-3-small-first",
+      "run_id": "2dc7f468-b309-48e6-83bf-8283c7b58b06",
+      "target_id": "sha256:4ba272db03ccbb632bc469189aaab672cb7eec70e106582104d53c3325f9618e",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-3-small-first/0004",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/small-first/execution/execution-8f397096-7d98-4814-b28b-d0062e29838f/counterexample-candidates/0014/src__clampTensor__Clamp_40.circom_NrygYE3KBi_counterexample.json",
+        "sha256": "71b6a0f8e2326f9bf61ba22bf6b287c1d8ce9875a1d6f96198d71c33858a32c2"
+      },
+      "execution_id": "o5-iszero-block-3-small-first",
+      "run_id": "ce517190-268e-4441-a068-cbba1e9388f5",
+      "target_id": "sha256:25f6a8ee800597afe39e47709fb195d993600126a35430180cd4db62090447b7",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-3-small-first/0005",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/small-first/execution/execution-8f397096-7d98-4814-b28b-d0062e29838f/counterexample-candidates/0015/src__calculatedScoreFraction__CalculatedScoreFraction_40.circom_hni1Q76X4T_counterexample.json",
+        "sha256": "b87f2afabca5cdc98a4d1413606b876faa44cbf0eb5eb8b7cd7d65ab6e879ad4"
+      },
+      "execution_id": "o5-iszero-block-3-small-first",
+      "run_id": "0b4720a0-a67c-4960-9b4c-207f131ce425",
+      "target_id": "sha256:4b8854c8fccb43dc5083e87a6b25ab7ee77972c28cca2c258a2cecc55f3a7a19",
+      "reason_code": "no-matching-spec"
+    },
+    {
+      "candidate_record_id": "o5-iszero-block-3-small-first/0006",
+      "candidate": {
+        "path": "../../../../runs/dev-ranking-pilot-2026-09-27/o5-iszero/campaign/block-3/small-first/execution/execution-8f397096-7d98-4814-b28b-d0062e29838f/counterexample-candidates/0016/src__responseTimeNormalized__ResponseTimeNormalized_40.circom_3HIv1pzKlR_counterexample.json",
+        "sha256": "4da0344663341e2951cc74d20b8df9f034bed972706652b0b996262d0e4e50f7"
+      },
+      "execution_id": "o5-iszero-block-3-small-first",
+      "run_id": "9e4e1bfa-d66d-48ac-8da0-7c89854fae17",
+      "target_id": "sha256:1b56c5b9ec469b9948bd67314ba5ca46c55f0c56044d6dde00fd5a45e25c7b4c",
+      "reason_code": "no-matching-spec"
+    }
+  ],
+  "reviews": [],
+  "summary": {
+    "validated": 0,
+    "rejected": 0,
+    "unresolved": 0,
+    "review_error": 0,
+    "unreviewed_candidates": 111,
+    "attributed_validated": 0,
+    "unique_validated_root_causes": 0
+  },
+  "semantic_result_sha256": "eb5fb3bd2ae708df288bcc0b5ac4502b8f155406aca2992cac96915bbefe3cf8",
+  "raw_values_persisted": false
+}

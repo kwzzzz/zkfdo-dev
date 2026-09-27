@@ -1,0 +1,321 @@
+{
+  "schema_version": 1,
+  "variant": "o1-where",
+  "executions": [
+    {
+      "block": 1,
+      "strategy": "path-order",
+      "zkfuzz_seed": 2026092711,
+      "random_ranking_seed": null,
+      "plan": {
+        "path": "runs/dev-ranking-pilot-2026-09-27/o1-where/campaign/block-1/path-order/plan.json",
+        "sha256": "423bb3f84a0f18c46a6285895c5a726954ed9286c74ea90bba8f853b7005ca68"
+      },
+      "outcome": {
+        "path": "runs/dev-ranking-pilot-2026-09-27/o1-where/campaign/block-1/path-order/execution/execution-2d7c8e4c-7c45-4e6a-b10f-9780720fcf9a/outcome.json",
+        "sha256": "2a85a5d27ac914953e8ad13a6ef6a519b120d4720b5d947ee4d946307846288e"
+      },
+      "planned_targets": 21,
+      "injected_planned_rank": 21,
+      "started_targets": 9,
+      "skipped_targets": 12,
+      "injected_status": "not-started",
+      "candidate_count": 2,
+      "elapsed_seconds": 180.005446166
+    },
+    {
+      "block": 1,
+      "strategy": "small-first",
+      "zkfuzz_seed": 2026092711,
+      "random_ranking_seed": null,
+      "plan": {
+        "path": "runs/dev-ranking-pilot-2026-09-27/o1-where/campaign/block-1/small-first/plan.json",
+        "sha256": "9e50a5baccfa20d472c43c7a7725be356d9dedff29b0de5d2537a99dec725d07"
+      },
+      "outcome": {
+        "path": "runs/dev-ranking-pilot-2026-09-27/o1-where/campaign/block-1/small-first/execution/execution-eed5eb9e-00ac-4aac-aa92-9e12762d2cee/outcome.json",
+        "sha256": "44304d4bb4ae241016205f96412f68ca7d60e79202664403ab2b13811245d4b5"
+      },
+      "planned_targets": 21,
+      "injected_planned_rank": 4,
+      "started_targets": 18,
+      "skipped_targets": 3,
+      "injected_status": "bug_found",
+      "candidate_count": 10,
+      "elapsed_seconds": 180.084962333
+    },
+    {
+      "block": 1,
+      "strategy": "risk-only",
+      "zkfuzz_seed": 2026092711,
+      "random_ranking_seed": null,
+      "plan": {
+        "path": "runs/dev-ranking-pilot-2026-09-27/o1-where/campaign/block-1/risk-only/plan.json",
+        "sha256": "dfb6cd29fdc0522a0a601c4397632b61a0f5174d535b8f722af65a114d530442"
+      },
+      "outcome": {
+        "path": "runs/dev-ranking-pilot-2026-09-27/o1-where/campaign/block-1/risk-only/execution/execution-03583122-e600-4d16-8904-7a6a3ee380eb/outcome.json",
+        "sha256": "557813ced464a43b27fd8cb444d7c8bbccbf61368d99256f91986cddcaf60b1f"
+      },
+      "planned_targets": 21,
+      "injected_planned_rank": 9,
+      "started_targets": 21,
+      "skipped_targets": 0,
+      "injected_status": "bug_found",
+      "candidate_count": 13,
+      "elapsed_seconds": 180.007476041
+    },
+    {
+      "block": 1,
+      "strategy": "cost-aware",
+      "zkfuzz_seed": 2026092711,
+      "random_ranking_seed": null,
+      "plan": {
+        "path": "runs/dev-ranking-pilot-2026-09-27/o1-where/campaign/block-1/cost-aware/plan.json",
+        "sha256": "7485b6b2ea101bc5a90c601f3d3b1b7b6c9d47fba2a16d8fc55af703166d6ec5"
+      },
+      "outcome": {
+        "path": "runs/dev-ranking-pilot-2026-09-27/o1-where/campaign/block-1/cost-aware/execution/execution-e7c6b1d3-5fc9-4aac-b890-cbbf1360cb8a/outcome.json",
+        "sha256": "94cc3d2d244fd7a6a29184bc4c6661256a0019316bbe5e3a49ef1c52613bc7e1"
+      },
+      "planned_targets": 21,
+      "injected_planned_rank": 2,
+      "started_targets": 21,
+      "skipped_targets": 0,
+      "injected_status": "bug_found",
+      "candidate_count": 13,
+      "elapsed_seconds": 180.006522709
+    },
+    {
+      "block": 1,
+      "strategy": "random",
+      "zkfuzz_seed": 2026092711,
+      "random_ranking_seed": 2026092721,
+      "plan": {
+        "path": "runs/dev-ranking-pilot-2026-09-27/o1-where/campaign/block-1/random/plan.json",
+        "sha256": "6f87250589669bf3303471ba0f5eadce2de60de22aa82928c25ebfb3ef8f167e"
+      },
+      "outcome": {
+        "path": "runs/dev-ranking-pilot-2026-09-27/o1-where/campaign/block-1/random/execution/execution-fc8e621c-f577-40d2-9e77-0d484f592550/outcome.json",
+        "sha256": "412d4e6ddd55f60c69fd9de9ecfa2df7856ef2f86624e1087a242efb97eb9097"
+      },
+      "planned_targets": 21,
+      "injected_planned_rank": 10,
+      "started_targets": 11,
+      "skipped_targets": 10,
+      "injected_status": "bug_found",
+      "candidate_count": 4,
+      "elapsed_seconds": 180.006827833
+    },
+    {
+      "block": 2,
+      "strategy": "small-first",
+      "zkfuzz_seed": 2026092712,
+      "random_ranking_seed": null,
+      "plan": {
+        "path": "runs/dev-ranking-pilot-2026-09-27/o1-where/campaign/block-2/small-first/plan.json",
+        "sha256": "70f940c62c4276f2e2a1797ddcef75a8feab973ef79da67c0bde994c772d68c6"
+      },
+      "outcome": {
+        "path": "runs/dev-ranking-pilot-2026-09-27/o1-where/campaign/block-2/small-first/execution/execution-f8626897-eef6-44ec-8769-88227fd13bfc/outcome.json",
+        "sha256": "454ed9caafa5075082f8146fe5b80e92cc126bde60bd6fbf6130293e5861cb6e"
+      },
+      "planned_targets": 21,
+      "injected_planned_rank": 4,
+      "started_targets": 18,
+      "skipped_targets": 3,
+      "injected_status": "bug_found",
+      "candidate_count": 10,
+      "elapsed_seconds": 180.004246
+    },
+    {
+      "block": 2,
+      "strategy": "risk-only",
+      "zkfuzz_seed": 2026092712,
+      "random_ranking_seed": null,
+      "plan": {
+        "path": "runs/dev-ranking-pilot-2026-09-27/o1-where/campaign/block-2/risk-only/plan.json",
+        "sha256": "29f6f55543e9b285e4a12293e7a8ea37e8cfdddebf74b81ffb30383cec9b2507"
+      },
+      "outcome": {
+        "path": "runs/dev-ranking-pilot-2026-09-27/o1-where/campaign/block-2/risk-only/execution/execution-25a64366-e261-4102-81a0-760ad4b5edc0/outcome.json",
+        "sha256": "9a0a552f50b03d29ad568bb216183870f7f7aadc0979331cd9276c3441dce15f"
+      },
+      "planned_targets": 21,
+      "injected_planned_rank": 9,
+      "started_targets": 21,
+      "skipped_targets": 0,
+      "injected_status": "bug_found",
+      "candidate_count": 13,
+      "elapsed_seconds": 180.004022584
+    },
+    {
+      "block": 2,
+      "strategy": "cost-aware",
+      "zkfuzz_seed": 2026092712,
+      "random_ranking_seed": null,
+      "plan": {
+        "path": "runs/dev-ranking-pilot-2026-09-27/o1-where/campaign/block-2/cost-aware/plan.json",
+        "sha256": "e6461efd4a1c4703d070590f4d82b92c0c7fd2eef0c2c4d0a07713a7cd7d2a3d"
+      },
+      "outcome": {
+        "path": "runs/dev-ranking-pilot-2026-09-27/o1-where/campaign/block-2/cost-aware/execution/execution-0385cde5-b4e3-4f9b-8d62-5a5c0932cbd6/outcome.json",
+        "sha256": "c2d1ba55ba2c7e7e36fb6fa0101eda00242a4343c90aa1c6a076ce940bd7f3ee"
+      },
+      "planned_targets": 21,
+      "injected_planned_rank": 2,
+      "started_targets": 21,
+      "skipped_targets": 0,
+      "injected_status": "bug_found",
+      "candidate_count": 13,
+      "elapsed_seconds": 180.004626417
+    },
+    {
+      "block": 2,
+      "strategy": "random",
+      "zkfuzz_seed": 2026092712,
+      "random_ranking_seed": 2026092722,
+      "plan": {
+        "path": "runs/dev-ranking-pilot-2026-09-27/o1-where/campaign/block-2/random/plan.json",
+        "sha256": "5e34e70dd219a198a75fca3c053742ea4ea2f1764ad1811d4d0a37576f45891b"
+      },
+      "outcome": {
+        "path": "runs/dev-ranking-pilot-2026-09-27/o1-where/campaign/block-2/random/execution/execution-8378db1c-0816-45cf-a1ef-22593924fc2b/outcome.json",
+        "sha256": "fdde18ff811e0383da65d8ddf05211f699deffa21c03b39d6aa9a5cdac8cca18"
+      },
+      "planned_targets": 21,
+      "injected_planned_rank": 6,
+      "started_targets": 21,
+      "skipped_targets": 0,
+      "injected_status": "bug_found",
+      "candidate_count": 13,
+      "elapsed_seconds": 180.003438708
+    },
+    {
+      "block": 2,
+      "strategy": "path-order",
+      "zkfuzz_seed": 2026092712,
+      "random_ranking_seed": null,
+      "plan": {
+        "path": "runs/dev-ranking-pilot-2026-09-27/o1-where/campaign/block-2/path-order/plan.json",
+        "sha256": "88aded69dbd7e3648e0b521a7487925f9575574a3f84a0ba52fea5988a12b037"
+      },
+      "outcome": {
+        "path": "runs/dev-ranking-pilot-2026-09-27/o1-where/campaign/block-2/path-order/execution/execution-3324a774-3efd-4724-8ca0-f9ea13f7b565/outcome.json",
+        "sha256": "e34e0c3d476d7dd2402bfe3aedda74ed9f959c924003bf2b7c8b71231c46a060"
+      },
+      "planned_targets": 21,
+      "injected_planned_rank": 21,
+      "started_targets": 9,
+      "skipped_targets": 12,
+      "injected_status": "not-started",
+      "candidate_count": 2,
+      "elapsed_seconds": 180.003958667
+    },
+    {
+      "block": 3,
+      "strategy": "risk-only",
+      "zkfuzz_seed": 2026092713,
+      "random_ranking_seed": null,
+      "plan": {
+        "path": "runs/dev-ranking-pilot-2026-09-27/o1-where/campaign/block-3/risk-only/plan.json",
+        "sha256": "181bb68b30e57678fae81a910f4ef08cb9f0e51d36b13538bb4d100a1abd3c47"
+      },
+      "outcome": {
+        "path": "runs/dev-ranking-pilot-2026-09-27/o1-where/campaign/block-3/risk-only/execution/execution-db1d3b94-ba70-48b6-927b-e577413df4c2/outcome.json",
+        "sha256": "2dc5de414765695fe1118b8e35454187d751f4be8ae32cfb5c47dcf5ccab703e"
+      },
+      "planned_targets": 21,
+      "injected_planned_rank": 9,
+      "started_targets": 21,
+      "skipped_targets": 0,
+      "injected_status": "bug_found",
+      "candidate_count": 13,
+      "elapsed_seconds": 180.004252042
+    },
+    {
+      "block": 3,
+      "strategy": "cost-aware",
+      "zkfuzz_seed": 2026092713,
+      "random_ranking_seed": null,
+      "plan": {
+        "path": "runs/dev-ranking-pilot-2026-09-27/o1-where/campaign/block-3/cost-aware/plan.json",
+        "sha256": "d4f4f7b21d097c99e199a08da67267f3a367ca3627607adf0e77d3ae65cf4f80"
+      },
+      "outcome": {
+        "path": "runs/dev-ranking-pilot-2026-09-27/o1-where/campaign/block-3/cost-aware/execution/execution-86990b59-869d-44f4-bd15-4d1728b11cca/outcome.json",
+        "sha256": "6771834bcb70f2f38ba437cfcdce6447c70fbbb63c738d4744211df9a595875b"
+      },
+      "planned_targets": 21,
+      "injected_planned_rank": 2,
+      "started_targets": 21,
+      "skipped_targets": 0,
+      "injected_status": "bug_found",
+      "candidate_count": 13,
+      "elapsed_seconds": 180.011193458
+    },
+    {
+      "block": 3,
+      "strategy": "random",
+      "zkfuzz_seed": 2026092713,
+      "random_ranking_seed": 2026092723,
+      "plan": {
+        "path": "runs/dev-ranking-pilot-2026-09-27/o1-where/campaign/block-3/random/plan.json",
+        "sha256": "702706f5cd6e5dc3919a440bf9c87fe3969d719fadf3e2312f3c5bd9f1ea7518"
+      },
+      "outcome": {
+        "path": "runs/dev-ranking-pilot-2026-09-27/o1-where/campaign/block-3/random/execution/execution-7972581f-4740-41d4-a36e-400dcc71ca0b/outcome.json",
+        "sha256": "9ed957e147bb0df0cb39ab5a09067c046c3d90e4524a08111c5bf94fbf237ebf"
+      },
+      "planned_targets": 21,
+      "injected_planned_rank": 13,
+      "started_targets": 17,
+      "skipped_targets": 4,
+      "injected_status": "bug_found",
+      "candidate_count": 9,
+      "elapsed_seconds": 180.006790334
+    },
+    {
+      "block": 3,
+      "strategy": "path-order",
+      "zkfuzz_seed": 2026092713,
+      "random_ranking_seed": null,
+      "plan": {
+        "path": "runs/dev-ranking-pilot-2026-09-27/o1-where/campaign/block-3/path-order/plan.json",
+        "sha256": "afed22d157cea408e36f7ce17896b2dbc13e372bbe8a689d471ff76c53c44367"
+      },
+      "outcome": {
+        "path": "runs/dev-ranking-pilot-2026-09-27/o1-where/campaign/block-3/path-order/execution/execution-3b567d3b-d710-4e7e-8609-40791baa84a9/outcome.json",
+        "sha256": "1d178a1948cc6eb9b067b65c152e4eee08420466e4cbf7d946e4e376f43a0a22"
+      },
+      "planned_targets": 21,
+      "injected_planned_rank": 21,
+      "started_targets": 9,
+      "skipped_targets": 12,
+      "injected_status": "not-started",
+      "candidate_count": 2,
+      "elapsed_seconds": 180.003880417
+    },
+    {
+      "block": 3,
+      "strategy": "small-first",
+      "zkfuzz_seed": 2026092713,
+      "random_ranking_seed": null,
+      "plan": {
+        "path": "runs/dev-ranking-pilot-2026-09-27/o1-where/campaign/block-3/small-first/plan.json",
+        "sha256": "3b58d9b3c0aeb86185cfdc4e3d373de9f24f67af62ba4154e9d35e4ef82a86c2"
+      },
+      "outcome": {
+        "path": "runs/dev-ranking-pilot-2026-09-27/o1-where/campaign/block-3/small-first/execution/execution-7f0a8428-6733-492d-a31c-b15400f9c80c/outcome.json",
+        "sha256": "160a983496f5196f84e9f0d8a7112a22fd6eb3713d057cb38220c033d289f82f"
+      },
+      "planned_targets": 21,
+      "injected_planned_rank": 4,
+      "started_targets": 18,
+      "skipped_targets": 3,
+      "injected_status": "bug_found",
+      "candidate_count": 10,
+      "elapsed_seconds": 180.00619375
+    }
+  ]
+}

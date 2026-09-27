@@ -1,0 +1,14 @@
+{
+  "contradiction_constraint_indices": [
+    3
+  ],
+  "fixed_signal_names": [
+    "main.choices[0]",
+    "main.choices[1]",
+    "main.out",
+    "main.selector"
+  ],
+  "format": "unique-propagation-v1",
+  "method": "operator-proof",
+  "schema_version": 1
+}

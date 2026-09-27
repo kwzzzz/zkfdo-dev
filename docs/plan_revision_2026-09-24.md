@@ -214,6 +214,12 @@ B1 설계 초안 ─► T4 검토 엔진·개발용 주입(제외 스냅샷 프�
 - **진행 (2026-09-27):** `experiment inject` 도구와 고정 외부 verifier `zkfdo-relation-verifier`(unique-propagation)를 구현했다. inference 프로젝트에서 O2(`Num2Bits(41)`), O1(`Where`), O5(`IsZero`)가 13개 기준을 모두 통과해 `qualified`다. B2 입력이 될 발견 사항 4가지를 [중간 기록](../reports/dev-injection-2026-09-27/README.md)에 남겼다: O1은 대부분 propagation 증명이 필요함, O3는 보조 신호 범위 검사에만 맞음, 코퍼스 inspection·target ID의 라이브러리 경로 미지원(B prepare에도 영향), backend 판정용 명세 속성 필요.
 - **완료 (2026-09-27):** O3(circom-bigint `Split(64, 64)`, 보조 신호 범위 검사)와 O4(circomlib `Num2Bits_strict`)도 교란 규칙과 relation exclusion이 동작해 12개 기준을 통과했다. 두 대상에 완전한 탐색으로 도달하는 entrypoint가 개발 프로젝트에 없어 production 도달성은 `unknown`, 판정은 `unresolved`다. unique-propagation에 불리언 비트 분해 규칙을 더했고, 코퍼스 inspection과 target ID가 `-l` 라이브러리 경로를 쓰도록 보완했다(기존 target ID 불변). 다섯 사례를 하나의 보존 실행 파일로 다시 만들었다. [설계 초안](injection_evaluation_design.md) 4.1절에 연산자 규칙 초안을 적었다. 자동 위치 탐색·표집, 탈락 기록, backend 속성 방식, 라이브러리 내부 탐색 방식은 B2 준비로 넘긴다.
 
+### P1. 개발용 순위 파일럿 (예산 부족 조건) — 담당: miiz
+
+- **목적:** B 인프라를 더 만들기 전에, 순위 전략을 예산이 부족한 조건에서 실제로 비교해 본다. 개발에 쓴 프로젝트라 독립 평가가 아니다.
+- **완료 (2026-09-27):** inference에 주입 결함을 하나씩 넣은 변형 3개 × 전략 5개 × zkFuzz seed 3개, 모두 45회(타깃당 30초, 총 180초)를 실행하고 엔진으로 검토했다([보고서](../reports/dev-ranking-pilot-2026-09-27/README.md)). zkFuzz가 찾은 주입 결함은 O1 하나뿐이고, O2·O5는 주입 타깃이 실행된 26회에서 한 번도 찾지 못했다. O1에서는 cost-aware(0.06초) < risk-only(0.3~2.8초) < small-first(약 4.5초) < random(30~155초) 순으로 빨랐고 path-order는 찾지 못했다. 하지만 `<--` 주입이 `Where`의 위험 점수를 0에서 2로 올려 cost-aware 순위를 14위에서 2위로 만든 결과라서, 위험 기반 전략의 이점은 대부분 주입 자체에서 왔다. 45회 중 27회가 모든 타깃을 시작해 부족 조건도 절반 넘게 실패했다. 검토 중 주입 spec과 plan 타깃의 closure 결속 결함을 찾아 엔진을 고쳤다.
+- **B2 결정 사항:** 주입이 순위 특징을 바꾸는 문제의 처리(원본 특징으로 순위를 매기는 조건 등), 연산자별 zkFuzz 탐지 가능성과 타깃당 예산, 실제 소요 시간 분포에 맞춘 총 예산, Circomspect의 익명 컴포넌트 미지원.
+
 ### T5. `cost-aware` 전략과 동점 기록 — 담당: miiz
 
 - **목표:** `evaluation_plan.md`에는 있지만 구현되지 않은 `cost-aware` 전략을 추가하고, 동점 정보를 계획에 남긴다.
@@ -295,6 +301,7 @@ B1 설계 초안 ─► T4 검토 엔진·개발용 주입(제외 스냅샷 프�
 | T4a | 완료 (2026-09-26) | miiz | 공통 review-spec/request/report, predicate API, R1CS/SYM 고정, 교란 쌍둥이 검증 형식 결정 |
 | T4b | 완료 (2026-09-27) | miiz | 공용 엔진·confirmation adapter 구현, v1.1~v3 후보 73개와 220개 실행 행 회귀, backend·주입 실패 경계 시험 완료 |
 | T4c | 완료 (2026-09-27) | miiz | 주입 도구·unique-propagation verifier. O1·O2·O5 qualified(inference), O3·O4는 도달 entrypoint가 없어 unresolved(12개 기준 통과). 발견 사항과 B2 준비 과제는 [보고서](../reports/dev-injection-2026-09-27/README.md) |
+| P1 | 완료 (2026-09-27) | miiz | 개발용 순위 파일럿 45회. O1만 탐지, 위험 기반 전략의 이점은 주입이 바꾼 특징 때문. 부족 조건 27/45 실패. 엔진 결속 결함 수정 |
 | T5 | 완료 (2026-09-26 확인) | miiz | cost-aware(휴리스틱) 유지 확정, schema 2 `ties` 검증 |
 | T6a | 완료 (2026-09-26) | miiz | 탐색·익명 호출·컴파일 재사용·도구 고정 |
 | T6 | 대기 | | T6 풀 프로젝트만. 결함을 주입하지 않은 원본으로 feasibility와 비용 보정 |
