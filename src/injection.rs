@@ -56,7 +56,6 @@ const WTNS_ADAPTER_DESCRIPTOR: &str = "zkfDO assignment adapter wtns-json-v1 sch
 const BN128_MODULUS: &str =
     "21888242871839275222246405745257275088548364400416034343698204186575808495617";
 const WRAPPER_FILE: &str = "zkfdo_injection_target.circom";
-const WRAPPER_STEM: &str = "zkfdo_injection_target";
 const CLOSURE_FILE: &str = "closure.json";
 
 /// Loads the circom-generated witness calculator next to it and writes both the binary
@@ -122,6 +121,10 @@ pub struct InjectionPlan {
     pub relation_exclusion: RelationExclusionMethod,
     pub workspace: PathBuf,
     pub output: PathBuf,
+    /// Location of the direct wrapper inside each tree; defaults to a file at the tree root.
+    /// A campaign that ranks several wrappers by path places them all in one directory.
+    #[serde(default)]
+    pub wrapper_path: Option<PathBuf>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -260,6 +263,21 @@ pub fn build(options: &InjectOptions) -> Result<InjectOutput> {
         .map(|path| safe_relative(path, "library path"))
         .collect::<Result<Vec<_>>>()?;
     let target_rel = safe_relative(&plan.target.source_path, "target source")?;
+    let wrapper_rel = match &plan.wrapper_path {
+        Some(path) => safe_relative(path, "wrapper path")?,
+        None => PathBuf::from(WRAPPER_FILE),
+    };
+    ensure!(
+        wrapper_rel
+            .extension()
+            .is_some_and(|extension| extension == "circom"),
+        "the wrapper path must name a .circom file"
+    );
+    let wrapper_stem = wrapper_rel
+        .file_stem()
+        .context("wrapper path has no file name")?
+        .to_string_lossy()
+        .into_owned();
     ensure!(
         !library_rels
             .iter()
@@ -362,7 +380,7 @@ pub fn build(options: &InjectOptions) -> Result<InjectOutput> {
         "the target source is outside the entrypoint closure"
     );
     ensure!(
-        !closure_files.contains(&PathBuf::from(WRAPPER_FILE))
+        !closure_files.contains(&wrapper_rel)
             && !closure_files.contains(&PathBuf::from(CLOSURE_FILE)),
         "the project already uses a reserved builder file name"
     );
@@ -376,11 +394,11 @@ pub fn build(options: &InjectOptions) -> Result<InjectOutput> {
             r1cs: workspace
                 .join("compiled")
                 .join(label)
-                .join(format!("{WRAPPER_STEM}.r1cs")),
+                .join(format!("{wrapper_stem}.r1cs")),
             sym: workspace
                 .join("compiled")
                 .join(label)
-                .join(format!("{WRAPPER_STEM}.sym")),
+                .join(format!("{wrapper_stem}.sym")),
             tree,
         }
     });
@@ -409,17 +427,26 @@ pub fn build(options: &InjectOptions) -> Result<InjectOutput> {
         &mutant_scope,
     )?;
 
+    let include = wrapper_rel
+        .parent()
+        .into_iter()
+        .flat_map(Path::components)
+        .map(|_| Path::new(".."))
+        .fold(PathBuf::new(), |path, parent| path.join(parent))
+        .join(&target_rel);
     let wrapper = format!(
         "pragma circom 2.1.6;\n\ninclude \"{}\";\n\ncomponent main = {}({});\n",
-        slash_path(&target_rel),
+        slash_path(&include),
         plan.target.template,
         parameter_values.join(", ")
     );
     let mut manifest_files = closure_files.clone();
-    manifest_files.push(PathBuf::from(WRAPPER_FILE));
+    manifest_files.push(wrapper_rel.clone());
     manifest_files.sort();
     for variant in &variants {
-        fs::write(variant.tree.join(WRAPPER_FILE), &wrapper)?;
+        let wrapper_path = variant.tree.join(&wrapper_rel);
+        fs::create_dir_all(wrapper_path.parent().context("wrapper has no parent")?)?;
+        fs::write(wrapper_path, &wrapper)?;
         write_json_new(
             &variant.closure,
             &directory_manifest(&variant.tree, &manifest_files)?,
@@ -459,6 +486,7 @@ pub fn build(options: &InjectOptions) -> Result<InjectOutput> {
         run_compiler(
             &compiler,
             &variant.tree,
+            &wrapper_rel,
             &library_rels,
             output_dir,
             &workspace,
@@ -487,16 +515,17 @@ pub fn build(options: &InjectOptions) -> Result<InjectOutput> {
         run_compiler(
             &compiler,
             &variant.tree,
+            &wrapper_rel,
             &library_rels,
             &build_dir,
             &workspace,
             true,
         )
         .with_context(|| format!("compile {} witness generator", variant.label))?;
-        let generated = build_dir.join(format!("{WRAPPER_STEM}_js"));
+        let generated = build_dir.join(format!("{wrapper_stem}_js"));
         fs::copy(
-            generated.join(format!("{WRAPPER_STEM}.wasm")),
-            directory.join(format!("{WRAPPER_STEM}.wasm")),
+            generated.join(format!("{wrapper_stem}.wasm")),
+            directory.join(format!("{wrapper_stem}.wasm")),
         )?;
         fs::copy(
             generated.join("witness_calculator.js"),
@@ -511,7 +540,7 @@ pub fn build(options: &InjectOptions) -> Result<InjectOutput> {
                 &[
                     PathBuf::from("runner.js"),
                     PathBuf::from("witness_calculator.js"),
-                    PathBuf::from(format!("{WRAPPER_STEM}.wasm")),
+                    PathBuf::from(format!("{wrapper_stem}.wasm")),
                 ],
             )?,
         )?;
@@ -520,7 +549,7 @@ pub fn build(options: &InjectOptions) -> Result<InjectOutput> {
         let arguments = vec![
             directory.join("runner.js").to_string_lossy().into_owned(),
             directory
-                .join(format!("{WRAPPER_STEM}.wasm"))
+                .join(format!("{wrapper_stem}.wasm"))
                 .to_string_lossy()
                 .into_owned(),
             "{common_input}".to_owned(),
@@ -647,7 +676,7 @@ pub fn build(options: &InjectOptions) -> Result<InjectOutput> {
     let wrapper_discovery = targets::discover_project_targets_with(
         &mutant_root,
         workspace.join("discovery-wrapper"),
-        &discovery_options(&mutant_root.join(WRAPPER_FILE), &mutant_libraries),
+        &discovery_options(&mutant_root.join(&wrapper_rel), &mutant_libraries),
     )?;
     ensure!(
         wrapper_discovery.entrypoint_status == targets::EntrypointStatus::Found
@@ -687,7 +716,7 @@ pub fn build(options: &InjectOptions) -> Result<InjectOutput> {
         project: plan.project.name.clone(),
         revision: plan.project.revision.clone(),
         project_root: mutant_root.clone(),
-        entrypoint: mutant_root.join(WRAPPER_FILE),
+        entrypoint: mutant_root.join(&wrapper_rel),
         template_name: plan.target.template.clone(),
         concrete_parameters: parameter_values.clone(),
         prime: "bn128".to_owned(),
@@ -934,9 +963,9 @@ pub fn build(options: &InjectOptions) -> Result<InjectOutput> {
         Ok(CompilationReproductionVariant {
             source_closure_manifest_path: closure.path,
             source_closure_manifest_sha256: closure.sha256,
-            entrypoint_path: PathBuf::from(WRAPPER_FILE),
-            r1cs_output_path: PathBuf::from(format!("{WRAPPER_STEM}.r1cs")),
-            sym_output_path: PathBuf::from(format!("{WRAPPER_STEM}.sym")),
+            entrypoint_path: wrapper_rel.clone(),
+            r1cs_output_path: PathBuf::from(format!("{wrapper_stem}.r1cs")),
+            sym_output_path: PathBuf::from(format!("{wrapper_stem}.sym")),
         })
     };
     let compilation_path = output.join("compilation.json");
@@ -1296,6 +1325,7 @@ fn directory_manifest(root: &Path, files: &[PathBuf]) -> Result<DirectoryManifes
 fn run_compiler(
     compiler: &Path,
     tree: &Path,
+    wrapper: &Path,
     libraries: &[PathBuf],
     output_dir: &Path,
     workspace: &Path,
@@ -1304,7 +1334,7 @@ fn run_compiler(
     let tmp = workspace.join("tmp");
     fs::create_dir_all(&tmp)?;
     let mut command = Command::new(compiler);
-    command.arg(tree.join(WRAPPER_FILE));
+    command.arg(tree.join(wrapper));
     if wasm {
         command.arg("--wasm");
     } else {
