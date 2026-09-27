@@ -1,0 +1,295 @@
+{
+  "schema_version": 1,
+  "review_spec_id": "dev-inference-o2-num2bits41/spec",
+  "root_cause_id": "dev-injection/inference-labs-inc/subnet-2-circom/o2-num2bits41-bit-booleanity",
+  "subject_kind": "injected-mutant",
+  "expected_scope": "original-component",
+  "target_binding": {
+    "target_id": "sha256:174985eced581b1eeb5da89ead90fc39b10d6666b39b33fadee16365b4ba2cb9",
+    "instance_key": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-injection-2026-09-27/inference-o2-num2bits41/mutant/src/clampTensor.circom::Num2Bits(41)",
+    "template": "Num2Bits",
+    "concrete_parameters": [
+      {
+        "position": 0,
+        "name": "n",
+        "kind": "integer",
+        "value_decimal": "41"
+      }
+    ],
+    "source_path": "../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/mutant/src/clampTensor.circom",
+    "source_sha256": "442dd682f7925983614256be6c52a3712c7663f7a71a68f12c9585a69ad6359d",
+    "source_closure_manifest_path": "../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/mutant/closure.json",
+    "source_closure_manifest_sha256": "8181aeb7279e2599d66d5dff4daa7f8b22d98baa3db13bb8df0c5f18bcd6b4a9"
+  },
+  "field": {
+    "name": "bn128",
+    "modulus_decimal": "21888242871839275222246405745257275088548364400416034343698204186575808495617",
+    "assignment_encoding": "canonical-field-elements"
+  },
+  "compiled_subject": {
+    "r1cs_path": "../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/compiled/mutant/zkfdo_injection_target.r1cs",
+    "r1cs_sha256": "381923c6d852eda539bd12276642460d3c9a19a8d6a62cdc72e3b2c2148f9ac7",
+    "sym_path": "../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/compiled/mutant/zkfdo_injection_target.sym",
+    "sym_sha256": "e51cb7645e09c329193e34d4911db476b538c6bf836c0454080037dca6da20b4",
+    "expected_shape": {
+      "wires": 43,
+      "labels": 43,
+      "public_outputs": 41,
+      "public_inputs": 0,
+      "private_inputs": 1,
+      "constraints": 1
+    }
+  },
+  "compiler": {
+    "version": "2.2.3",
+    "binary_sha256": "8991887889c2a74d6fc704d5689ada4cc76fba004e866c987de6cbf3b3db6227",
+    "arguments": [],
+    "library_manifest_path": "../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/mutant/closure.json",
+    "library_manifest_sha256": "8181aeb7279e2599d66d5dff4daa7f8b22d98baa3db13bb8df0c5f18bcd6b4a9"
+  },
+  "contract": {
+    "definition_path": "contract.json",
+    "definition_sha256": "3752db3f51a78c919ecf8c156b09740edf248cbd2ff422401298da8d567b8a25",
+    "input_contract_id": "num2bits-input-below-2-pow-n",
+    "property_id": "num2bits-output-bits-boolean",
+    "input_contract_statement": "main.in is a canonical field element below 2^n for the concrete n.",
+    "property_statement": "Every decomposed output bit main.out[i] is 0 or 1.",
+    "input_signal_names": [
+      "main.in"
+    ],
+    "property_signal_names": [
+      "main.out[0]",
+      "main.out[1]",
+      "main.out[2]",
+      "main.out[3]",
+      "main.out[4]",
+      "main.out[5]",
+      "main.out[6]",
+      "main.out[7]",
+      "main.out[8]",
+      "main.out[9]",
+      "main.out[10]",
+      "main.out[11]",
+      "main.out[12]",
+      "main.out[13]",
+      "main.out[14]",
+      "main.out[15]",
+      "main.out[16]",
+      "main.out[17]",
+      "main.out[18]",
+      "main.out[19]",
+      "main.out[20]",
+      "main.out[21]",
+      "main.out[22]",
+      "main.out[23]",
+      "main.out[24]",
+      "main.out[25]",
+      "main.out[26]",
+      "main.out[27]",
+      "main.out[28]",
+      "main.out[29]",
+      "main.out[30]",
+      "main.out[31]",
+      "main.out[32]",
+      "main.out[33]",
+      "main.out[34]",
+      "main.out[35]",
+      "main.out[36]",
+      "main.out[37]",
+      "main.out[38]",
+      "main.out[39]",
+      "main.out[40]"
+    ],
+    "predicate": {
+      "api_version": 1,
+      "path": "../predicates/bit_decomposition.py",
+      "sha256": "4eed83d755cbd6f5638ba5d2e7e6d6bf125ce26ebfcdac802ef7b7f6314c4930",
+      "entrypoint": "evaluate",
+      "config": {
+        "bits": 41,
+        "input": "main.in",
+        "output": "main.out"
+      },
+      "allowed_results": [
+        {
+          "criterion": "input_preconditions",
+          "verdict": "satisfied",
+          "reason_code": "contract-satisfied",
+          "note": "The input is a canonical field element below 2^n."
+        },
+        {
+          "criterion": "input_preconditions",
+          "verdict": "not-satisfied",
+          "reason_code": "input-out-of-range",
+          "note": "The input is not a canonical field element below 2^n."
+        },
+        {
+          "criterion": "specified_property_violation",
+          "verdict": "satisfied",
+          "reason_code": "property-violated",
+          "note": "At least one decomposed output bit is neither 0 nor 1."
+        },
+        {
+          "criterion": "specified_property_violation",
+          "verdict": "not-satisfied",
+          "reason_code": "property-holds",
+          "note": "Every decomposed output bit is 0 or 1."
+        },
+        {
+          "criterion": "specified_property_violation",
+          "verdict": "unknown",
+          "reason_code": "input-precondition-unresolved",
+          "note": "The property is not evaluated because the input precondition failed."
+        }
+      ],
+      "allowed_violation_classes": [
+        "non-boolean-output-bit"
+      ]
+    }
+  },
+  "attribution": {
+    "method": "injection-single-diff",
+    "evidence_path": "single.diff",
+    "evidence_sha256": "ccb444f9e9f40324354fe43f011d6f64a86b90088f2dfa97e6401e41ca60633b"
+  },
+  "production_reachability": {
+    "verdict": "satisfied",
+    "entrypoint_target_id": "sha256:b8928e97cfc1431028c9761a4e6e457e6bce07e82b36084043932f56d7d8be90",
+    "instance_key": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-injection-2026-09-27/inference-o2-num2bits41/mutant/src/clampTensor.circom::Num2Bits(41)",
+    "evidence_path": "reachability.json",
+    "evidence_sha256": "decd3669ae591cbffa7fac607ff0375751ac4bde15843c363d4edcefd4d3b68f",
+    "verifier_manifest_path": "reachability-verifier.json",
+    "verifier_manifest_sha256": "a0057bd95c11b8f31f71a4b2604b96286b6b1624c7f7b7dc015b4807bd1b758c"
+  },
+  "injection_ground_truth": {
+    "injection_id": "dev-inference-o2-num2bits41",
+    "operator_id": "O2",
+    "source_location": {
+      "path": "../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/mutant/src/clampTensor.circom",
+      "source_sha256": "442dd682f7925983614256be6c52a3712c7663f7a71a68f12c9585a69ad6359d",
+      "start_byte": 176,
+      "end_byte": 206
+    },
+    "clean_revision": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+    "single_diff": {
+      "path": "single.diff",
+      "sha256": "ccb444f9e9f40324354fe43f011d6f64a86b90088f2dfa97e6401e41ca60633b"
+    },
+    "source_closures": {
+      "clean": {
+        "path": "../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/clean/closure.json",
+        "sha256": "183609e2df7b3d4d57cfad66f7b7be3a0474a58727069dc7ec5bac5d7a9e4603"
+      },
+      "mutant": {
+        "path": "../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/mutant/closure.json",
+        "sha256": "8181aeb7279e2599d66d5dff4daa7f8b22d98baa3db13bb8df0c5f18bcd6b4a9"
+      },
+      "disturbance_twin": {
+        "path": "../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/twin/closure.json",
+        "sha256": "23e14f7326ec126e69d2b012b847994b205d4749fc8166b13eb40f78f93232e5"
+      }
+    },
+    "compiled_variants": {
+      "clean": {
+        "r1cs_path": "../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/compiled/clean/zkfdo_injection_target.r1cs",
+        "r1cs_sha256": "f5eeb8381d536d0acf116364768fd8549460f8b60e0fd13919fffc7e104af09e",
+        "sym_path": "../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/compiled/clean/zkfdo_injection_target.sym",
+        "sym_sha256": "2c95d70153819a9bc0061982329e1fc92032252ddc9f32e57ff79ea332275423",
+        "shape": {
+          "wires": 43,
+          "labels": 84,
+          "public_outputs": 41,
+          "public_inputs": 0,
+          "private_inputs": 1,
+          "constraints": 42
+        }
+      },
+      "mutant": {
+        "r1cs_path": "../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/compiled/mutant/zkfdo_injection_target.r1cs",
+        "r1cs_sha256": "381923c6d852eda539bd12276642460d3c9a19a8d6a62cdc72e3b2c2148f9ac7",
+        "sym_path": "../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/compiled/mutant/zkfdo_injection_target.sym",
+        "sym_sha256": "e51cb7645e09c329193e34d4911db476b538c6bf836c0454080037dca6da20b4",
+        "shape": {
+          "wires": 43,
+          "labels": 43,
+          "public_outputs": 41,
+          "public_inputs": 0,
+          "private_inputs": 1,
+          "constraints": 1
+        }
+      },
+      "disturbance_twin": {
+        "r1cs_path": "../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/compiled/twin/zkfdo_injection_target.r1cs",
+        "r1cs_sha256": "381923c6d852eda539bd12276642460d3c9a19a8d6a62cdc72e3b2c2148f9ac7",
+        "sym_path": "../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/compiled/twin/zkfdo_injection_target.sym",
+        "sym_sha256": "e51cb7645e09c329193e34d4911db476b538c6bf836c0454080037dca6da20b4",
+        "shape": {
+          "wires": 43,
+          "labels": 43,
+          "public_outputs": 41,
+          "public_inputs": 0,
+          "private_inputs": 1,
+          "constraints": 1
+        }
+      }
+    },
+    "compilation_manifest": {
+      "path": "compilation.json",
+      "sha256": "9f522acf8b5923e614ee3b4a4599afa26822be2e916c5c98a84999fb2bb31bef"
+    },
+    "projection_manifest": {
+      "path": "projection.json",
+      "sha256": "13a0c6cc9795e11889d6e1bc945a95a030a4126c2308ea721739dfcbc3f683a6"
+    },
+    "expected_clean_constraint_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40
+    ],
+    "clean_relation_exclusion": {
+      "method": "fully-fixed-constraint",
+      "certificate_path": "certificate.json",
+      "certificate_sha256": "1cf7b99c0330006fb613378488a22b36ef3fb8d4796e4df8471390476b381b03",
+      "verifier_manifest_path": "relation-verifier.json",
+      "verifier_manifest_sha256": "c50f658f3ac8fbf8edca3ca89fea72b19773aad00655e795d7b2bdf44e44d6db"
+    }
+  }
+}

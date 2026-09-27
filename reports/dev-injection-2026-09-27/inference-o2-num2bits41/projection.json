@@ -1,0 +1,343 @@
+{
+  "schema_version": 1,
+  "operator_id": "O2",
+  "operator_justification": "O2 removes the boolean constraint that Num2Bits places on every decomposed bit through AssertBit. The disturbance twin moves one unit of bit 1 into bit 0 as the value 2, which keeps the weighted bit sum equal to the input.",
+  "mappings": [
+    {
+      "clean_wire_index": 1,
+      "clean_signal_names": [
+        "main.out[0]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[0]"
+    },
+    {
+      "clean_wire_index": 2,
+      "clean_signal_names": [
+        "main.out[1]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[1]"
+    },
+    {
+      "clean_wire_index": 3,
+      "clean_signal_names": [
+        "main.out[2]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[2]"
+    },
+    {
+      "clean_wire_index": 4,
+      "clean_signal_names": [
+        "main.out[3]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[3]"
+    },
+    {
+      "clean_wire_index": 5,
+      "clean_signal_names": [
+        "main.out[4]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[4]"
+    },
+    {
+      "clean_wire_index": 6,
+      "clean_signal_names": [
+        "main.out[5]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[5]"
+    },
+    {
+      "clean_wire_index": 7,
+      "clean_signal_names": [
+        "main.out[6]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[6]"
+    },
+    {
+      "clean_wire_index": 8,
+      "clean_signal_names": [
+        "main.out[7]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[7]"
+    },
+    {
+      "clean_wire_index": 9,
+      "clean_signal_names": [
+        "main.out[8]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[8]"
+    },
+    {
+      "clean_wire_index": 10,
+      "clean_signal_names": [
+        "main.out[9]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[9]"
+    },
+    {
+      "clean_wire_index": 11,
+      "clean_signal_names": [
+        "main.out[10]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[10]"
+    },
+    {
+      "clean_wire_index": 12,
+      "clean_signal_names": [
+        "main.out[11]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[11]"
+    },
+    {
+      "clean_wire_index": 13,
+      "clean_signal_names": [
+        "main.out[12]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[12]"
+    },
+    {
+      "clean_wire_index": 14,
+      "clean_signal_names": [
+        "main.out[13]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[13]"
+    },
+    {
+      "clean_wire_index": 15,
+      "clean_signal_names": [
+        "main.out[14]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[14]"
+    },
+    {
+      "clean_wire_index": 16,
+      "clean_signal_names": [
+        "main.out[15]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[15]"
+    },
+    {
+      "clean_wire_index": 17,
+      "clean_signal_names": [
+        "main.out[16]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[16]"
+    },
+    {
+      "clean_wire_index": 18,
+      "clean_signal_names": [
+        "main.out[17]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[17]"
+    },
+    {
+      "clean_wire_index": 19,
+      "clean_signal_names": [
+        "main.out[18]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[18]"
+    },
+    {
+      "clean_wire_index": 20,
+      "clean_signal_names": [
+        "main.out[19]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[19]"
+    },
+    {
+      "clean_wire_index": 21,
+      "clean_signal_names": [
+        "main.out[20]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[20]"
+    },
+    {
+      "clean_wire_index": 22,
+      "clean_signal_names": [
+        "main.out[21]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[21]"
+    },
+    {
+      "clean_wire_index": 23,
+      "clean_signal_names": [
+        "main.out[22]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[22]"
+    },
+    {
+      "clean_wire_index": 24,
+      "clean_signal_names": [
+        "main.out[23]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[23]"
+    },
+    {
+      "clean_wire_index": 25,
+      "clean_signal_names": [
+        "main.out[24]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[24]"
+    },
+    {
+      "clean_wire_index": 26,
+      "clean_signal_names": [
+        "main.out[25]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[25]"
+    },
+    {
+      "clean_wire_index": 27,
+      "clean_signal_names": [
+        "main.out[26]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[26]"
+    },
+    {
+      "clean_wire_index": 28,
+      "clean_signal_names": [
+        "main.out[27]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[27]"
+    },
+    {
+      "clean_wire_index": 29,
+      "clean_signal_names": [
+        "main.out[28]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[28]"
+    },
+    {
+      "clean_wire_index": 30,
+      "clean_signal_names": [
+        "main.out[29]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[29]"
+    },
+    {
+      "clean_wire_index": 31,
+      "clean_signal_names": [
+        "main.out[30]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[30]"
+    },
+    {
+      "clean_wire_index": 32,
+      "clean_signal_names": [
+        "main.out[31]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[31]"
+    },
+    {
+      "clean_wire_index": 33,
+      "clean_signal_names": [
+        "main.out[32]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[32]"
+    },
+    {
+      "clean_wire_index": 34,
+      "clean_signal_names": [
+        "main.out[33]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[33]"
+    },
+    {
+      "clean_wire_index": 35,
+      "clean_signal_names": [
+        "main.out[34]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[34]"
+    },
+    {
+      "clean_wire_index": 36,
+      "clean_signal_names": [
+        "main.out[35]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[35]"
+    },
+    {
+      "clean_wire_index": 37,
+      "clean_signal_names": [
+        "main.out[36]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[36]"
+    },
+    {
+      "clean_wire_index": 38,
+      "clean_signal_names": [
+        "main.out[37]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[37]"
+    },
+    {
+      "clean_wire_index": 39,
+      "clean_signal_names": [
+        "main.out[38]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[38]"
+    },
+    {
+      "clean_wire_index": 40,
+      "clean_signal_names": [
+        "main.out[39]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[39]"
+    },
+    {
+      "clean_wire_index": 41,
+      "clean_signal_names": [
+        "main.out[40]"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.out[40]"
+    },
+    {
+      "clean_wire_index": 42,
+      "clean_signal_names": [
+        "main.in"
+      ],
+      "source_kind": "disturbance-signal",
+      "source_signal_name": "main.in"
+    }
+  ]
+}

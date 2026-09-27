@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "completion": "complete",
+  "entrypoint_target_id": "sha256:b8928e97cfc1431028c9761a4e6e457e6bce07e82b36084043932f56d7d8be90",
+  "entrypoint_source_sha256": "f1b6abc4987d25cb53f9da6a72ade48703e99ba9499badb8c3dfee242c3a7464",
+  "source_closure_sha256": "8181aeb7279e2599d66d5dff4daa7f8b22d98baa3db13bb8df0c5f18bcd6b4a9",
+  "target_instance_key": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-injection-2026-09-27/inference-o2-num2bits41/mutant/src/clampTensor.circom::Num2Bits(41)",
+  "instances": [
+    {
+      "instance_key": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-injection-2026-09-27/inference-o2-num2bits41/mutant/src/clampTensor.circom::Num2Bits(41)",
+      "parent_instance_key": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-injection-2026-09-27/inference-o2-num2bits41/mutant/src/clampTensor.circom::LessThan(40)",
+      "target_id": "sha256:174985eced581b1eeb5da89ead90fc39b10d6666b39b33fadee16365b4ba2cb9",
+      "template": "Num2Bits",
+      "concrete_parameters": [
+        {
+          "position": 0,
+          "name": "n",
+          "kind": "integer",
+          "value_decimal": "41"
+        }
+      ],
+      "source_path": "../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/mutant/src/clampTensor.circom",
+      "source_sha256": "442dd682f7925983614256be6c52a3712c7663f7a71a68f12c9585a69ad6359d",
+      "start_byte": 22,
+      "end_byte": 277
+    },
+    {
+      "instance_key": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-injection-2026-09-27/inference-o2-num2bits41/mutant/src/clampTensor.circom::LessThan(40)",
+      "parent_instance_key": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-injection-2026-09-27/inference-o2-num2bits41/mutant/src/distanceFromScore.circom::DistanceFromScore(40)",
+      "target_id": "sha256:3a64ff3308c3a6ecbbce91280dcad3bffedaa938d776ff0e70cedf1cc410dc78",
+      "template": "LessThan",
+      "concrete_parameters": [
+        {
+          "position": 0,
+          "name": "n",
+          "kind": "integer",
+          "value_decimal": "40"
+        }
+      ],
+      "source_path": "../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/mutant/src/clampTensor.circom",
+      "source_sha256": "442dd682f7925983614256be6c52a3712c7663f7a71a68f12c9585a69ad6359d",
+      "start_byte": 347,
+      "end_byte": 545
+    },
+    {
+      "instance_key": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-injection-2026-09-27/inference-o2-num2bits41/mutant/src/distanceFromScore.circom::DistanceFromScore(40)",
+      "parent_instance_key": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-injection-2026-09-27/inference-o2-num2bits41/mutant/src/circuit.circom::IncentiveMechansim(256, 40)",
+      "target_id": "sha256:973639926b30815c3036f95dfd93cfb4fe881b9c6cdc68d763158a9c3cc96d59",
+      "template": "DistanceFromScore",
+      "concrete_parameters": [
+        {
+          "position": 0,
+          "name": "b",
+          "kind": "integer",
+          "value_decimal": "40"
+        }
+      ],
+      "source_path": "../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/mutant/src/distanceFromScore.circom",
+      "source_sha256": "5d832250f7aa30cf9f31f7ccdc7a38fb86d94bc8236203a891dd4c548f790255",
+      "start_byte": 81,
+      "end_byte": 797
+    },
+    {
+      "instance_key": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-injection-2026-09-27/inference-o2-num2bits41/mutant/src/circuit.circom::IncentiveMechansim(256, 40)",
+      "parent_instance_key": null,
+      "target_id": "sha256:b8928e97cfc1431028c9761a4e6e457e6bce07e82b36084043932f56d7d8be90",
+      "template": "IncentiveMechansim",
+      "concrete_parameters": [
+        {
+          "position": 0,
+          "name": "batch_size",
+          "kind": "integer",
+          "value_decimal": "256"
+        },
+        {
+          "position": 1,
+          "name": "bits",
+          "kind": "integer",
+          "value_decimal": "40"
+        }
+      ],
+      "source_path": "../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/mutant/src/circuit.circom",
+      "source_sha256": "f1b6abc4987d25cb53f9da6a72ade48703e99ba9499badb8c3dfee242c3a7464",
+      "start_byte": 332,
+      "end_byte": 5885
+    }
+  ],
+  "unsupported": [],
+  "unresolved": []
+}

@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "verifier_id": "zkfdo-targets-discovery-rerun",
+  "source_manifest_path": "engine-source-manifest.json",
+  "source_manifest_sha256": "d06d2d08d554ad4e121d0e21f34bf653fbb81028ff6ea605bbf6e2fb166dbacc",
+  "discovery_report_path": "../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/discovery-mutant/ba3877c7-f3c4-4dd3-919d-39e597ca61f1/discovery.json",
+  "discovery_report_sha256": "edd6752d9cdf956bf2be4090f4d559d2a6aa3bb361d088788ded9330ea046c56"
+}

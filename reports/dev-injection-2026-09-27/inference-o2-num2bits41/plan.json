@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "injection_id": "dev-inference-o2-num2bits41",
+  "root_cause_id": "dev-injection/inference-labs-inc/subnet-2-circom/o2-num2bits41-bit-booleanity",
+  "operator": {
+    "id": "O2",
+    "justification": "O2 removes the boolean constraint that Num2Bits places on every decomposed bit through AssertBit. The disturbance twin moves one unit of bit 1 into bit 0 as the value 2, which keeps the weighted bit sum equal to the input."
+  },
+  "project": {
+    "name": "inference-labs-inc/subnet-2-circom",
+    "revision": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+    "checkout": "../../../runs/dev-projects/inference",
+    "entrypoint": "src/circuit.circom",
+    "library_paths": []
+  },
+  "target": {
+    "source_path": "src/clampTensor.circom",
+    "template": "Num2Bits",
+    "concrete_parameters": [
+      {
+        "position": 0,
+        "name": "n",
+        "kind": "integer",
+        "value_decimal": "41"
+      }
+    ]
+  },
+  "mutant_edit": {
+    "find": "    AssertBit()(out[i]);\n",
+    "replace": ""
+  },
+  "twin_edit": {
+    "find": "    out[i] <-- (in >> i) & 1;\n",
+    "replace": "    out[i] <-- i == 0 ? (in & 1) + 2 * ((in >> 1) & 1) : (i == 1 ? 0 : (in >> i) & 1);\n"
+  },
+  "contract": {
+    "input_contract_id": "num2bits-input-below-2-pow-n",
+    "property_id": "num2bits-output-bits-boolean",
+    "input_contract_statement": "main.in is a canonical field element below 2^n for the concrete n.",
+    "property_statement": "Every decomposed output bit main.out[i] is 0 or 1.",
+    "input_contract": {
+      "kind": "bounded",
+      "enforcement": "unverified"
+    },
+    "input_signal_names": [
+      "main.in"
+    ],
+    "property_signal_names": [
+      "main.out[0]",
+      "main.out[1]",
+      "main.out[2]",
+      "main.out[3]",
+      "main.out[4]",
+      "main.out[5]",
+      "main.out[6]",
+      "main.out[7]",
+      "main.out[8]",
+      "main.out[9]",
+      "main.out[10]",
+      "main.out[11]",
+      "main.out[12]",
+      "main.out[13]",
+      "main.out[14]",
+      "main.out[15]",
+      "main.out[16]",
+      "main.out[17]",
+      "main.out[18]",
+      "main.out[19]",
+      "main.out[20]",
+      "main.out[21]",
+      "main.out[22]",
+      "main.out[23]",
+      "main.out[24]",
+      "main.out[25]",
+      "main.out[26]",
+      "main.out[27]",
+      "main.out[28]",
+      "main.out[29]",
+      "main.out[30]",
+      "main.out[31]",
+      "main.out[32]",
+      "main.out[33]",
+      "main.out[34]",
+      "main.out[35]",
+      "main.out[36]",
+      "main.out[37]",
+      "main.out[38]",
+      "main.out[39]",
+      "main.out[40]"
+    ],
+    "predicate": {
+      "path": "../predicates/bit_decomposition.py",
+      "config": {
+        "bits": 41,
+        "input": "main.in",
+        "output": "main.out"
+      },
+      "allowed_results": [
+        {
+          "criterion": "input_preconditions",
+          "verdict": "satisfied",
+          "reason_code": "contract-satisfied",
+          "note": "The input is a canonical field element below 2^n."
+        },
+        {
+          "criterion": "input_preconditions",
+          "verdict": "not-satisfied",
+          "reason_code": "input-out-of-range",
+          "note": "The input is not a canonical field element below 2^n."
+        },
+        {
+          "criterion": "specified_property_violation",
+          "verdict": "satisfied",
+          "reason_code": "property-violated",
+          "note": "At least one decomposed output bit is neither 0 nor 1."
+        },
+        {
+          "criterion": "specified_property_violation",
+          "verdict": "not-satisfied",
+          "reason_code": "property-holds",
+          "note": "Every decomposed output bit is 0 or 1."
+        },
+        {
+          "criterion": "specified_property_violation",
+          "verdict": "unknown",
+          "reason_code": "input-precondition-unresolved",
+          "note": "The property is not evaluated because the input precondition failed."
+        }
+      ],
+      "allowed_violation_classes": [
+        "non-boolean-output-bit"
+      ]
+    }
+  },
+  "common_input": "../../../runs/dev-injection-2026-09-27/inputs/inference-o2-num2bits41.json",
+  "relation_exclusion": "fully-fixed-constraint",
+  "workspace": "../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41",
+  "output": "."
+}

@@ -1,0 +1,301 @@
+{
+  "schema_version": 1,
+  "report_id": "dev-inference-o2-num2bits41/qualification",
+  "kind": "injection-ground-truth",
+  "status": "complete",
+  "review_request": {
+    "path": "../request.json",
+    "sha256": "4d909f5ab5166e35d98af221212c6728bb233cc831f5880b507b1a62a934a34b"
+  },
+  "review_specs": [
+    {
+      "path": "../spec.json",
+      "sha256": "e821c0370fdc7c0b1238e27676cca16511024ac10fd23fb37202bd90f8bd3170"
+    }
+  ],
+  "engine": {
+    "version": "candidate-review-schema1",
+    "source_revision": "worktree-engine-manifest:d06d2d08d554ad4e121d0e21f34bf653fbb81028ff6ea605bbf6e2fb166dbacc",
+    "source_manifest_path": "../engine-source-manifest.json",
+    "source_manifest_sha256": "d06d2d08d554ad4e121d0e21f34bf653fbb81028ff6ea605bbf6e2fb166dbacc",
+    "executable_path": "../../../../runs/dev-injection-2026-09-27/zkfDO",
+    "executable_sha256": "029c0e142db799d84da26c3f9fc23660117ab097856efa555d7172e29a71081a",
+    "predicate_runner_path": "../../../../../../../../opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+    "predicate_runner_sha256": "87d4df53fd91304be5bac391fb204643c36b7df2023c04a0953bcbc7d4fdf634"
+  },
+  "adapters": [
+    {
+      "id": "wtns-json-v1",
+      "implementation_sha256": "7d0f123d84079048b28822011c380791725dcb049c88239253b27bd214875138"
+    }
+  ],
+  "failure": null,
+  "candidate_inventory": null,
+  "executions": [],
+  "candidate_errors": [],
+  "unreviewed_candidates": [],
+  "reviews": [
+    {
+      "review_kind": "injection-ground-truth",
+      "candidate_record_id": null,
+      "candidate": null,
+      "binding": null,
+      "assignments": {
+        "disturbance": {
+          "path": "../../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/witness/twin.assignment.json",
+          "sha256": "3ce7535fc6488d8c2326bfc853630665b37e10bdb7c8305ec0670fb9e711414a"
+        },
+        "clean_reference": {
+          "path": "../../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/witness/clean.assignment.json",
+          "sha256": "748482b31c991e94ca7c08eecf9bcc2d2a198c01d6920b29a76a75bbd49597fb"
+        }
+      },
+      "review_spec": {
+        "id": "dev-inference-o2-num2bits41/spec",
+        "path": "../spec.json",
+        "sha256": "e821c0370fdc7c0b1238e27676cca16511024ac10fd23fb37202bd90f8bd3170"
+      },
+      "root_cause_id": "dev-injection/inference-labs-inc/subnet-2-circom/o2-num2bits41-bit-booleanity",
+      "injection_id": "dev-inference-o2-num2bits41",
+      "artifact_verification": {
+        "mutant_r1cs": true,
+        "mutant_sym": true,
+        "clean_r1cs": true,
+        "clean_sym": true,
+        "twin_r1cs": true,
+        "twin_sym": true,
+        "generation_reproduced": true
+      },
+      "failed_target_constraint_count": 0,
+      "failed_target_constraint_indices": [],
+      "failed_clean_constraint_count": 1,
+      "failed_clean_constraint_indices": [
+        0
+      ],
+      "criteria": {
+        "assignment_encoding": {
+          "verdict": "satisfied",
+          "reason_code": "canonical",
+          "evidence": [
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/witness/twin.assignment.json",
+              "sha256": "3ce7535fc6488d8c2326bfc853630665b37e10bdb7c8305ec0670fb9e711414a"
+            }
+          ],
+          "note": "All field-valued disturbance assignment entries are canonical."
+        },
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "reason_code": "contract-satisfied",
+          "evidence": [
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/witness/twin.assignment.json",
+              "sha256": "3ce7535fc6488d8c2326bfc853630665b37e10bdb7c8305ec0670fb9e711414a"
+            },
+            {
+              "path": "../contract.json",
+              "sha256": "3752db3f51a78c919ecf8c156b09740edf248cbd2ff422401298da8d567b8a25"
+            }
+          ],
+          "note": "The input is a canonical field element below 2^n."
+        },
+        "fixed_target_constraints": {
+          "verdict": "satisfied",
+          "reason_code": "all-constraints-satisfied",
+          "evidence": [
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/witness/twin.assignment.json",
+              "sha256": "3ce7535fc6488d8c2326bfc853630665b37e10bdb7c8305ec0670fb9e711414a"
+            },
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/compiled/mutant/zkfdo_injection_target.r1cs",
+              "sha256": "381923c6d852eda539bd12276642460d3c9a19a8d6a62cdc72e3b2c2148f9ac7"
+            }
+          ],
+          "note": "All constraints in the fixed injected-mutant R1CS are satisfied."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "reason_code": "property-violated",
+          "evidence": [
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/witness/twin.assignment.json",
+              "sha256": "3ce7535fc6488d8c2326bfc853630665b37e10bdb7c8305ec0670fb9e711414a"
+            },
+            {
+              "path": "../contract.json",
+              "sha256": "3752db3f51a78c919ecf8c156b09740edf248cbd2ff422401298da8d567b8a25"
+            }
+          ],
+          "note": "At least one decomposed output bit is neither 0 nor 1."
+        }
+      },
+      "qualification_criteria": {
+        "twin_r1cs_identity": {
+          "verdict": "satisfied",
+          "reason_code": "twin-r1cs-identical",
+          "evidence": [
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/compiled/mutant/zkfdo_injection_target.r1cs",
+              "sha256": "381923c6d852eda539bd12276642460d3c9a19a8d6a62cdc72e3b2c2148f9ac7"
+            },
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/compiled/twin/zkfdo_injection_target.r1cs",
+              "sha256": "381923c6d852eda539bd12276642460d3c9a19a8d6a62cdc72e3b2c2148f9ac7"
+            }
+          ],
+          "note": "The disturbance twin and mutant R1CS raw hashes are identical."
+        },
+        "twin_sym_identity": {
+          "verdict": "satisfied",
+          "reason_code": "twin-sym-identical",
+          "evidence": [
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/compiled/mutant/zkfdo_injection_target.sym",
+              "sha256": "e51cb7645e09c329193e34d4911db476b538c6bf836c0454080037dca6da20b4"
+            },
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/compiled/twin/zkfdo_injection_target.sym",
+              "sha256": "e51cb7645e09c329193e34d4911db476b538c6bf836c0454080037dca6da20b4"
+            }
+          ],
+          "note": "The disturbance twin and mutant SYM raw hashes are identical."
+        },
+        "generation_reproducibility": {
+          "verdict": "satisfied",
+          "reason_code": "generation-reproduced",
+          "evidence": [
+            {
+              "path": "../generation.json",
+              "sha256": "50782e18b0dd08b73fd5efd0a4bb8c8e0d7b33aa5c86cdc71aef145d44959a31"
+            }
+          ],
+          "note": "Both pinned generators reproduced their witness and assignment hashes."
+        },
+        "clean_reference_assignment_encoding": {
+          "verdict": "satisfied",
+          "reason_code": "canonical",
+          "evidence": [
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/witness/clean.assignment.json",
+              "sha256": "748482b31c991e94ca7c08eecf9bcc2d2a198c01d6920b29a76a75bbd49597fb"
+            }
+          ],
+          "note": "The clean reference assignment is complete and canonical."
+        },
+        "clean_reference_constraints": {
+          "verdict": "satisfied",
+          "reason_code": "clean-reference-satisfies-constraints",
+          "evidence": [
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/witness/clean.assignment.json",
+              "sha256": "748482b31c991e94ca7c08eecf9bcc2d2a198c01d6920b29a76a75bbd49597fb"
+            },
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/compiled/clean/zkfdo_injection_target.r1cs",
+              "sha256": "f5eeb8381d536d0acf116364768fd8549460f8b60e0fd13919fffc7e104af09e"
+            },
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/compiled/clean/zkfdo_injection_target.sym",
+              "sha256": "2c95d70153819a9bc0061982329e1fc92032252ddc9f32e57ff79ea332275423"
+            }
+          ],
+          "note": "The same-input clean reference satisfies every clean R1CS constraint."
+        },
+        "clean_input_equivalence": {
+          "verdict": "satisfied",
+          "reason_code": "clean-inputs-equal",
+          "evidence": [
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/witness/twin.assignment.json",
+              "sha256": "3ce7535fc6488d8c2326bfc853630665b37e10bdb7c8305ec0670fb9e711414a"
+            },
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/witness/clean.assignment.json",
+              "sha256": "748482b31c991e94ca7c08eecf9bcc2d2a198c01d6920b29a76a75bbd49597fb"
+            }
+          ],
+          "note": "The clean and disturbance assignments have identical contract inputs."
+        },
+        "clean_rejection": {
+          "verdict": "satisfied",
+          "reason_code": "clean-projection-rejected",
+          "evidence": [
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/witness/twin.assignment.json",
+              "sha256": "3ce7535fc6488d8c2326bfc853630665b37e10bdb7c8305ec0670fb9e711414a"
+            },
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/compiled/clean/zkfdo_injection_target.r1cs",
+              "sha256": "f5eeb8381d536d0acf116364768fd8549460f8b60e0fd13919fffc7e104af09e"
+            },
+            {
+              "path": "../projection.json",
+              "sha256": "13a0c6cc9795e11889d6e1bc945a95a030a4126c2308ea721739dfcbc3f683a6"
+            }
+          ],
+          "note": "The projected disturbance fails a predeclared injection-related clean constraint."
+        },
+        "clean_relation_exclusion": {
+          "verdict": "satisfied",
+          "reason_code": "clean-relation-excluded",
+          "evidence": [
+            {
+              "path": "../certificate.json",
+              "sha256": "1cf7b99c0330006fb613378488a22b36ef3fb8d4796e4df8471390476b381b03"
+            },
+            {
+              "path": "../relation-verifier.json",
+              "sha256": "c50f658f3ac8fbf8edca3ca89fea72b19773aad00655e795d7b2bdf44e44d6db"
+            }
+          ],
+          "note": "A pinned verifier excludes every clean extension for the fixed contract signals."
+        },
+        "production_reachability": {
+          "verdict": "satisfied",
+          "reason_code": "production-reachable",
+          "evidence": [
+            {
+              "path": "../reachability.json",
+              "sha256": "decd3669ae591cbffa7fac607ff0375751ac4bde15843c363d4edcefd4d3b68f"
+            },
+            {
+              "path": "../reachability-verifier.json",
+              "sha256": "a0057bd95c11b8f31f71a4b2604b96286b6b1624c7f7b7dc015b4807bd1b758c"
+            },
+            {
+              "path": "../../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/discovery-mutant/ba3877c7-f3c4-4dd3-919d-39e597ca61f1/discovery.json",
+              "sha256": "edd6752d9cdf956bf2be4090f4d559d2a6aa3bb361d088788ded9330ea046c56"
+            }
+          ],
+          "note": "A complete pinned parent-instance chain reaches the production entrypoint."
+        }
+      },
+      "disposition": "validated",
+      "cause_attribution": {
+        "verdict": "matched",
+        "reason_code": "injection-source-transition-matched",
+        "evidence": [
+          {
+            "path": "../single.diff",
+            "sha256": "ccb444f9e9f40324354fe43f011d6f64a86b90088f2dfa97e6401e41ca60633b"
+          }
+        ]
+      },
+      "ground_truth_qualification": "qualified",
+      "violation_class": "non-boolean-output-bit",
+      "confirmation_eligible": false,
+      "automated_review_seconds": 1.370013334,
+      "predicate_stream_nonempty": false
+    }
+  ],
+  "summary": {
+    "validated": 1,
+    "rejected": 0,
+    "unresolved": 0,
+    "review_error": 0,
+    "qualified": 1
+  },
+  "semantic_result_sha256": "7159a1f6c531f659ffc84ea67ea92b2afc500893ecdf428d264e22da857050ab",
+  "raw_values_persisted": false
+}

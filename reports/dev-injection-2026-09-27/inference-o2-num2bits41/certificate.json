@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "method": "fully-fixed-constraint",
+  "clean_constraint_indices": [
+    0
+  ],
+  "fixed_signal_names": [
+    "main.out[0]"
+  ]
+}

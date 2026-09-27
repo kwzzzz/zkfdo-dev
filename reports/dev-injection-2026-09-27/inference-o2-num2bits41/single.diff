@@ -1,0 +1,10 @@
+--- a/src/clampTensor.circom
++++ b/src/clampTensor.circom
+@@ -10,7 +10,6 @@
+ 
+   for (var i = 0; i < n; i++) {
+     out[i] <-- (in >> i) & 1;
+-    AssertBit()(out[i]);
+ 
+     lc += out[i] * bit_value;
+     bit_value <<= 1;

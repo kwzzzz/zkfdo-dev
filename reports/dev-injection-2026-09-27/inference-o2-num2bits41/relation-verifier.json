@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "api_version": 1,
+  "verifier_id": "zkfdo-builtin-fully-fixed-constraint",
+  "method": "fully-fixed-constraint",
+  "implementation": {
+    "kind": "engine-builtin",
+    "executable_path": null,
+    "executable_sha256": null,
+    "source_manifest_path": "engine-source-manifest.json",
+    "source_manifest_sha256": "d06d2d08d554ad4e121d0e21f34bf653fbb81028ff6ea605bbf6e2fb166dbacc"
+  },
+  "certificate_format": "fully-fixed-constraint-v1",
+  "allowed_results": [
+    {
+      "verdict": "satisfied",
+      "reason_code": "clean-relation-excluded"
+    },
+    {
+      "verdict": "not-satisfied",
+      "reason_code": "clean-extension-not-excluded"
+    }
+  ]
+}
