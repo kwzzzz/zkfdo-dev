@@ -5,21 +5,21 @@
   "status": "complete",
   "review_request": {
     "path": "../request.json",
-    "sha256": "4d909f5ab5166e35d98af221212c6728bb233cc831f5880b507b1a62a934a34b"
+    "sha256": "b272b6b62c1c89a0c38e54aa876003632a8f88307362331efb1491cf6c4afcd3"
   },
   "review_specs": [
     {
       "path": "../spec.json",
-      "sha256": "e821c0370fdc7c0b1238e27676cca16511024ac10fd23fb37202bd90f8bd3170"
+      "sha256": "77eb555397cb98ea3a64e3b9e2aa03a9618d6668bdb9aa8b75b3f77a948d6730"
     }
   ],
   "engine": {
     "version": "candidate-review-schema1",
-    "source_revision": "worktree-engine-manifest:d06d2d08d554ad4e121d0e21f34bf653fbb81028ff6ea605bbf6e2fb166dbacc",
+    "source_revision": "worktree-engine-manifest:aecb52ee821153c9d200f79dca6c092a753d9c7fdee3b5dea7bb7f3c013e88f6",
     "source_manifest_path": "../engine-source-manifest.json",
-    "source_manifest_sha256": "d06d2d08d554ad4e121d0e21f34bf653fbb81028ff6ea605bbf6e2fb166dbacc",
-    "executable_path": "../../../../runs/dev-injection-2026-09-27/zkfDO",
-    "executable_sha256": "029c0e142db799d84da26c3f9fc23660117ab097856efa555d7172e29a71081a",
+    "source_manifest_sha256": "aecb52ee821153c9d200f79dca6c092a753d9c7fdee3b5dea7bb7f3c013e88f6",
+    "executable_path": "../../../../runs/dev-injection-2026-09-27/bin/zkfDO",
+    "executable_sha256": "7ff5c85c033d823f674599528bf3f09469bb5c0795ec25a970a9fc95b1b0e7ef",
     "predicate_runner_path": "../../../../../../../../opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
     "predicate_runner_sha256": "87d4df53fd91304be5bac391fb204643c36b7df2023c04a0953bcbc7d4fdf634"
   },
@@ -53,7 +53,7 @@
       "review_spec": {
         "id": "dev-inference-o2-num2bits41/spec",
         "path": "../spec.json",
-        "sha256": "e821c0370fdc7c0b1238e27676cca16511024ac10fd23fb37202bd90f8bd3170"
+        "sha256": "77eb555397cb98ea3a64e3b9e2aa03a9618d6668bdb9aa8b75b3f77a948d6730"
       },
       "root_cause_id": "dev-injection/inference-labs-inc/subnet-2-circom/o2-num2bits41-bit-booleanity",
       "injection_id": "dev-inference-o2-num2bits41",
@@ -242,11 +242,11 @@
           "evidence": [
             {
               "path": "../certificate.json",
-              "sha256": "1cf7b99c0330006fb613378488a22b36ef3fb8d4796e4df8471390476b381b03"
+              "sha256": "ba36f433331183e64cb5ee6e60bbf8e75ab2fd2cd945844a8807e90197ba1ff6"
             },
             {
               "path": "../relation-verifier.json",
-              "sha256": "c50f658f3ac8fbf8edca3ca89fea72b19773aad00655e795d7b2bdf44e44d6db"
+              "sha256": "99f7ae2775ba4cfa5d214980c63fdf805b91b212c1f6eb208354796970b3a1f5"
             }
           ],
           "note": "A pinned verifier excludes every clean extension for the fixed contract signals."
@@ -261,11 +261,11 @@
             },
             {
               "path": "../reachability-verifier.json",
-              "sha256": "a0057bd95c11b8f31f71a4b2604b96286b6b1624c7f7b7dc015b4807bd1b758c"
+              "sha256": "7b701758be3fb87f9081290e5108c9bf12477b3904a7c1d580418c8a7108e6cc"
             },
             {
-              "path": "../../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/discovery-mutant/ba3877c7-f3c4-4dd3-919d-39e597ca61f1/discovery.json",
-              "sha256": "edd6752d9cdf956bf2be4090f4d559d2a6aa3bb361d088788ded9330ea046c56"
+              "path": "../../../../runs/dev-injection-2026-09-27/inference-o2-num2bits41/discovery-mutant/2e76a6ef-777b-4e63-b986-7c0f56ae9f87/discovery.json",
+              "sha256": "2d9e4132ea7813e55479bb2889623bc1e1847988496a81207b9eb911dda74bdd"
             }
           ],
           "note": "A complete pinned parent-instance chain reaches the production entrypoint."
@@ -285,7 +285,7 @@
       "ground_truth_qualification": "qualified",
       "violation_class": "non-boolean-output-bit",
       "confirmation_eligible": false,
-      "automated_review_seconds": 1.370013334,
+      "automated_review_seconds": 1.21795825,
       "predicate_stream_nonempty": false
     }
   ],
@@ -296,6 +296,6 @@
     "review_error": 0,
     "qualified": 1
   },
-  "semantic_result_sha256": "7159a1f6c531f659ffc84ea67ea92b2afc500893ecdf428d264e22da857050ab",
+  "semantic_result_sha256": "9516a922d96c4ea108986a86866b2b65f6c4bb611103d1d1c8d34961145d389c",
   "raw_values_persisted": false
 }

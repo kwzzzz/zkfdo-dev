@@ -117,7 +117,7 @@
     "evidence_path": "reachability.json",
     "evidence_sha256": "5533c5fc822d4093e0cbe049ecc0de2ac4edb6abc61210a7f936356fd3bbcb7a",
     "verifier_manifest_path": "reachability-verifier.json",
-    "verifier_manifest_sha256": "65a420ce77318df477a9968f669311bab332dc5c71ed3dacc596c6b1b57ffa8c"
+    "verifier_manifest_sha256": "a4e827583ba9421a9b53f986a3723d11c334d196ccf6553c099478f41263df9d"
   },
   "injection_ground_truth": {
     "injection_id": "dev-inference-o1-where",
@@ -207,7 +207,7 @@
       "certificate_path": "certificate.json",
       "certificate_sha256": "ab8f89187aa16665e33038bff69c833e5b0e32b341fcdd28e7e0808a3af1649f",
       "verifier_manifest_path": "relation-verifier.json",
-      "verifier_manifest_sha256": "abe704381e9fde9eadda5eb3ec58ce9f0947f59caaec6c346f9f1d7c0efddf95"
+      "verifier_manifest_sha256": "751a0aeae483ef513685b3b3785af1556a0a3445322869fd1fd355119ee01779"
     }
   }
 }

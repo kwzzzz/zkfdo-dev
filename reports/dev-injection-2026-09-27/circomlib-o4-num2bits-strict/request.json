@@ -4,7 +4,7 @@
   "request_id": "dev-circomlib-o4-num2bits-strict/qualification",
   "review_spec": {
     "path": "spec.json",
-    "sha256": "694bff623df930189459a79aa9805d7a0d5499f9b6ac4559fb6dd3127255d72a"
+    "sha256": "cb6f69a8cb2caca4e49ef48987857e6474dac1e3f514b2e3fe7667e99a5ab587"
   },
   "generation_manifest": {
     "path": "generation.json",

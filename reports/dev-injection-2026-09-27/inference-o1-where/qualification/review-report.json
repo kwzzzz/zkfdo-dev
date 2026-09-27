@@ -5,21 +5,21 @@
   "status": "complete",
   "review_request": {
     "path": "../request.json",
-    "sha256": "e1fd01ff0164c42ffe3c0a4de6d5ccdee56232e06747f82602d16d80697f17c2"
+    "sha256": "72669c5055c878f862d45afb672d9eabd852a5e8f265971d1f0cd3febf0510b0"
   },
   "review_specs": [
     {
       "path": "../spec.json",
-      "sha256": "f4109feb5360b2174262e130e3bfc3e2bc1539b69e85655aa091f5dbcd3bbf53"
+      "sha256": "ad1e0b19d62d3540e337700e563a7b10325e41b93704e18b6b0787b08348e18a"
     }
   ],
   "engine": {
     "version": "candidate-review-schema1",
-    "source_revision": "worktree-engine-manifest:717b01a6e3986db1643d98f7f542b045a1366491d40956caa169d0304f8e3a74",
+    "source_revision": "worktree-engine-manifest:aecb52ee821153c9d200f79dca6c092a753d9c7fdee3b5dea7bb7f3c013e88f6",
     "source_manifest_path": "../engine-source-manifest.json",
-    "source_manifest_sha256": "717b01a6e3986db1643d98f7f542b045a1366491d40956caa169d0304f8e3a74",
-    "executable_path": "../../../../runs/dev-injection-2026-09-27/bin-dev/zkfDO",
-    "executable_sha256": "4d94870c9e64a34bbeaec32d6ca1ac5129e5bc1149e8a7417025e58f0f7bb1db",
+    "source_manifest_sha256": "aecb52ee821153c9d200f79dca6c092a753d9c7fdee3b5dea7bb7f3c013e88f6",
+    "executable_path": "../../../../runs/dev-injection-2026-09-27/bin/zkfDO",
+    "executable_sha256": "7ff5c85c033d823f674599528bf3f09469bb5c0795ec25a970a9fc95b1b0e7ef",
     "predicate_runner_path": "../../../../../../../../opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
     "predicate_runner_sha256": "87d4df53fd91304be5bac391fb204643c36b7df2023c04a0953bcbc7d4fdf634"
   },
@@ -53,7 +53,7 @@
       "review_spec": {
         "id": "dev-inference-o1-where/spec",
         "path": "../spec.json",
-        "sha256": "f4109feb5360b2174262e130e3bfc3e2bc1539b69e85655aa091f5dbcd3bbf53"
+        "sha256": "ad1e0b19d62d3540e337700e563a7b10325e41b93704e18b6b0787b08348e18a"
       },
       "root_cause_id": "dev-injection/inference-labs-inc/subnet-2-circom/o1-where-output",
       "injection_id": "dev-inference-o1-where",
@@ -246,7 +246,7 @@
             },
             {
               "path": "../relation-verifier.json",
-              "sha256": "abe704381e9fde9eadda5eb3ec58ce9f0947f59caaec6c346f9f1d7c0efddf95"
+              "sha256": "751a0aeae483ef513685b3b3785af1556a0a3445322869fd1fd355119ee01779"
             }
           ],
           "note": "A pinned verifier excludes every clean extension for the fixed contract signals."
@@ -261,11 +261,11 @@
             },
             {
               "path": "../reachability-verifier.json",
-              "sha256": "65a420ce77318df477a9968f669311bab332dc5c71ed3dacc596c6b1b57ffa8c"
+              "sha256": "a4e827583ba9421a9b53f986a3723d11c334d196ccf6553c099478f41263df9d"
             },
             {
-              "path": "../../../../runs/dev-injection-2026-09-27/inference-o1-where/discovery-mutant/99f4fbef-cc17-4690-bead-b2129a394e5b/discovery.json",
-              "sha256": "0f7a11061c55e8722bc64d17b7f346ee7f3d94f917fd8a49a6e4ea2adecf7078"
+              "path": "../../../../runs/dev-injection-2026-09-27/inference-o1-where/discovery-mutant/347534fa-8850-48b5-ab11-4e49c9a50ecb/discovery.json",
+              "sha256": "71f0b23f359972c3cbbb9c576d4caa471534c944c419cc1f8f783e298600ba0d"
             }
           ],
           "note": "A complete pinned parent-instance chain reaches the production entrypoint."
@@ -285,7 +285,7 @@
       "ground_truth_qualification": "qualified",
       "violation_class": "selected-output-mismatch",
       "confirmation_eligible": false,
-      "automated_review_seconds": 1.79470925,
+      "automated_review_seconds": 1.577581125,
       "predicate_stream_nonempty": false
     }
   ],
@@ -296,6 +296,6 @@
     "review_error": 0,
     "qualified": 1
   },
-  "semantic_result_sha256": "29367f29249758b151d49dc0550471e19be039a1fdce26546c98f8156208900f",
+  "semantic_result_sha256": "cd730f9b8d3cfb45e15508009e3b262b5c41b3f5c61d87226812c8e8475cb616",
   "raw_values_persisted": false
 }

@@ -718,7 +718,7 @@
       "certificate_path": "certificate.json",
       "certificate_sha256": "abf92f4b0c1fdce28667db27c8d1a0be7285b028c36a4d24eab73b7477ceed44",
       "verifier_manifest_path": "relation-verifier.json",
-      "verifier_manifest_sha256": "51432c70d1b4d7156baca077393c009a467cfdc54ec1b82a3be174b8e0b52381"
+      "verifier_manifest_sha256": "20796cb858be83c5367b61e58fad89e364a41d6dfef8795fd43ebd31df6309be"
     }
   }
 }

@@ -63,8 +63,8 @@
     },
     {
       "path": "../../../src/injection.rs",
-      "size": 99307,
-      "sha256": "c1c56981e4939661e085fbe0b46ddbe1572c24716217fd3a14d41785145686f4"
+      "size": 99967,
+      "sha256": "530da1cae0fec61c5da4d89545a023be5aa2d6ce1cdb72065e1b0d69a6253968"
     },
     {
       "path": "../../../src/structure.rs",

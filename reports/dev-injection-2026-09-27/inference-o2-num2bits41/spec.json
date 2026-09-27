@@ -159,7 +159,7 @@
     "evidence_path": "reachability.json",
     "evidence_sha256": "decd3669ae591cbffa7fac607ff0375751ac4bde15843c363d4edcefd4d3b68f",
     "verifier_manifest_path": "reachability-verifier.json",
-    "verifier_manifest_sha256": "a0057bd95c11b8f31f71a4b2604b96286b6b1624c7f7b7dc015b4807bd1b758c"
+    "verifier_manifest_sha256": "7b701758be3fb87f9081290e5108c9bf12477b3904a7c1d580418c8a7108e6cc"
   },
   "injection_ground_truth": {
     "injection_id": "dev-inference-o2-num2bits41",
@@ -287,9 +287,9 @@
     "clean_relation_exclusion": {
       "method": "fully-fixed-constraint",
       "certificate_path": "certificate.json",
-      "certificate_sha256": "1cf7b99c0330006fb613378488a22b36ef3fb8d4796e4df8471390476b381b03",
+      "certificate_sha256": "ba36f433331183e64cb5ee6e60bbf8e75ab2fd2cd945844a8807e90197ba1ff6",
       "verifier_manifest_path": "relation-verifier.json",
-      "verifier_manifest_sha256": "c50f658f3ac8fbf8edca3ca89fea72b19773aad00655e795d7b2bdf44e44d6db"
+      "verifier_manifest_sha256": "99f7ae2775ba4cfa5d214980c63fdf805b91b212c1f6eb208354796970b3a1f5"
     }
   }
 }

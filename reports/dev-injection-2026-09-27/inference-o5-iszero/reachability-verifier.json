@@ -2,7 +2,7 @@
   "schema_version": 1,
   "verifier_id": "zkfdo-targets-discovery-rerun",
   "source_manifest_path": "engine-source-manifest.json",
-  "source_manifest_sha256": "457062ab146c1868283547483bbe8f768f691b74cde8198d8db1f57bc4c15768",
-  "discovery_report_path": "../../../runs/dev-injection-2026-09-27/inference-o5-iszero/discovery-mutant/8e50ee8c-b765-4f1d-89a2-76620463339a/discovery.json",
-  "discovery_report_sha256": "bb011d914419953da8da1657eeac4e7f22f35051b3feeecc3c3736223360d761"
+  "source_manifest_sha256": "aecb52ee821153c9d200f79dca6c092a753d9c7fdee3b5dea7bb7f3c013e88f6",
+  "discovery_report_path": "../../../runs/dev-injection-2026-09-27/inference-o5-iszero/discovery-mutant/fe2a59ca-04b9-46b8-9b01-116d36d4bd7d/discovery.json",
+  "discovery_report_sha256": "32da7beb297d0fceff9aed7937e311e9bdebb9fd9d8e3bd8a97b795e46417066"
 }

@@ -4,15 +4,15 @@
   "injection_id": "dev-inference-o2-num2bits41",
   "review_spec": {
     "path": "../spec.json",
-    "sha256": "e821c0370fdc7c0b1238e27676cca16511024ac10fd23fb37202bd90f8bd3170"
+    "sha256": "77eb555397cb98ea3a64e3b9e2aa03a9618d6668bdb9aa8b75b3f77a948d6730"
   },
   "review_request": {
     "path": "../request.json",
-    "sha256": "4d909f5ab5166e35d98af221212c6728bb233cc831f5880b507b1a62a934a34b"
+    "sha256": "b272b6b62c1c89a0c38e54aa876003632a8f88307362331efb1491cf6c4afcd3"
   },
   "review_report": {
     "path": "review-report.json",
-    "sha256": "e6ce1f66963de7b68f94da92c6ecb62184c57bc11286f23aba0e55b046a644af"
+    "sha256": "f1c20b7c280bd645e6810546cac832427f28810fcddbd9ddc8beb978df475f6f"
   },
   "qualification": "qualified"
 }

@@ -8,8 +8,13 @@
     },
     {
       "path": "../../../Cargo.toml",
-      "size": 964,
-      "sha256": "87b748c379bd4db4809336b5eab3ce7fd99d78a709773c39417663099d667007"
+      "size": 1044,
+      "sha256": "3f7bae5b9f8e8b9293e5581a1d9aa29498a379f8ef5a2e86c51840e64062ea48"
+    },
+    {
+      "path": "../../../src/bin/relation_verifier.rs",
+      "size": 626,
+      "sha256": "1266a4b80cc1122ec701fbdf712667068da42ef5418f81d11d6bb9fd9a191898"
     },
     {
       "path": "../../../src/candidate_review/engine.rs",
@@ -43,13 +48,13 @@
     },
     {
       "path": "../../../src/cli.rs",
-      "size": 15509,
-      "sha256": "91af6eefb410a1d81b971ced6e1603931907e6e887089f3860b7a383bcd7fc1f"
+      "size": 16078,
+      "sha256": "b770a3d4a55a2ff40e9b99fa832e00917c4eec301934202f1cbb3ee81556cefa"
     },
     {
       "path": "../../../src/corpus.rs",
-      "size": 36377,
-      "sha256": "80450cc7e88743715367a6956a4946b0cab4d95240a4ba9ef3a0262f6aa642d3"
+      "size": 37123,
+      "sha256": "549e86c3248f50f43c1c5953131b11b85a2add5bb0f84f37e7d973bd809dddf5"
     },
     {
       "path": "../../../src/experiment.rs",
@@ -58,8 +63,8 @@
     },
     {
       "path": "../../../src/injection.rs",
-      "size": 71910,
-      "sha256": "881d5f9f1d26714c487f68b07b23ca78052e646ff83ad2a7fcd4e4f8cac16aa6"
+      "size": 99967,
+      "sha256": "530da1cae0fec61c5da4d89545a023be5aa2d6ce1cdb72065e1b0d69a6253968"
     },
     {
       "path": "../../../src/structure.rs",
@@ -68,8 +73,8 @@
     },
     {
       "path": "../../../src/targets.rs",
-      "size": 130337,
-      "sha256": "667cbb89f88f37588985d5235ca09c3c1ac648ffe46d26391ca4a0e822b8056a"
+      "size": 131762,
+      "sha256": "82be17abcb21c96907a8358760fac0fac14de93a85e021be4bc5c6eb47ec24c6"
     }
   ]
 }

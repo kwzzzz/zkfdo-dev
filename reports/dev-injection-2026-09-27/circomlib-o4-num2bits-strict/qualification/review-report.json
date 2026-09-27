@@ -5,21 +5,21 @@
   "status": "complete",
   "review_request": {
     "path": "../request.json",
-    "sha256": "eb73ebb1273f1bb4da0bf43086e758a3bbe0503c121713a90c6e6b6393729c74"
+    "sha256": "26301fe569bae8eacdcb6a001124458f12e9a1314e368c60307a7648675eda57"
   },
   "review_specs": [
     {
       "path": "../spec.json",
-      "sha256": "694bff623df930189459a79aa9805d7a0d5499f9b6ac4559fb6dd3127255d72a"
+      "sha256": "cb6f69a8cb2caca4e49ef48987857e6474dac1e3f514b2e3fe7667e99a5ab587"
     }
   ],
   "engine": {
     "version": "candidate-review-schema1",
-    "source_revision": "worktree-engine-manifest:6add67113743f003996e4dd159b28950327bd64eb3f4cafcdd3220caf51d006c",
+    "source_revision": "worktree-engine-manifest:aecb52ee821153c9d200f79dca6c092a753d9c7fdee3b5dea7bb7f3c013e88f6",
     "source_manifest_path": "../engine-source-manifest.json",
-    "source_manifest_sha256": "6add67113743f003996e4dd159b28950327bd64eb3f4cafcdd3220caf51d006c",
-    "executable_path": "../../../../runs/dev-injection-2026-09-27/bin-dev/zkfDO",
-    "executable_sha256": "793c46229a71a72fab12abeaa71656683594a350b56de13416c70384da50992a",
+    "source_manifest_sha256": "aecb52ee821153c9d200f79dca6c092a753d9c7fdee3b5dea7bb7f3c013e88f6",
+    "executable_path": "../../../../runs/dev-injection-2026-09-27/bin/zkfDO",
+    "executable_sha256": "7ff5c85c033d823f674599528bf3f09469bb5c0795ec25a970a9fc95b1b0e7ef",
     "predicate_runner_path": "../../../../../../../../opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
     "predicate_runner_sha256": "87d4df53fd91304be5bac391fb204643c36b7df2023c04a0953bcbc7d4fdf634"
   },
@@ -53,7 +53,7 @@
       "review_spec": {
         "id": "dev-circomlib-o4-num2bits-strict/spec",
         "path": "../spec.json",
-        "sha256": "694bff623df930189459a79aa9805d7a0d5499f9b6ac4559fb6dd3127255d72a"
+        "sha256": "cb6f69a8cb2caca4e49ef48987857e6474dac1e3f514b2e3fe7667e99a5ab587"
       },
       "root_cause_id": "dev-injection/iden3/circomlib/o4-num2bits-strict-alias",
       "injection_id": "dev-circomlib-o4-num2bits-strict",
@@ -324,7 +324,7 @@
             },
             {
               "path": "../relation-verifier.json",
-              "sha256": "51432c70d1b4d7156baca077393c009a467cfdc54ec1b82a3be174b8e0b52381"
+              "sha256": "20796cb858be83c5367b61e58fad89e364a41d6dfef8795fd43ebd31df6309be"
             }
           ],
           "note": "A pinned verifier excludes every clean extension for the fixed contract signals."
@@ -335,7 +335,7 @@
           "evidence": [
             {
               "path": "../spec.json",
-              "sha256": "694bff623df930189459a79aa9805d7a0d5499f9b6ac4559fb6dd3127255d72a"
+              "sha256": "cb6f69a8cb2caca4e49ef48987857e6474dac1e3f514b2e3fe7667e99a5ab587"
             }
           ],
           "note": "Production reachability has not been established by a complete pinned discovery."
@@ -355,7 +355,7 @@
       "ground_truth_qualification": "unresolved",
       "violation_class": "non-canonical-bit-decomposition",
       "confirmation_eligible": false,
-      "automated_review_seconds": 0.838005875,
+      "automated_review_seconds": 0.610431625,
       "predicate_stream_nonempty": false
     }
   ],
@@ -366,6 +366,6 @@
     "review_error": 0,
     "qualified": 0
   },
-  "semantic_result_sha256": "b0d17e50bbb941eafed8b3705b7ce38c4e0d4720b35087dc11d0c774b44e1187",
+  "semantic_result_sha256": "f3e6742755b849fb60998a9d8268dc6e2872250a15b5fb7539ea417ac207f83a",
   "raw_values_persisted": false
 }

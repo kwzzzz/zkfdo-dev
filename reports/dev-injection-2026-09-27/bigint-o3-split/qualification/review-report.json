@@ -18,7 +18,7 @@
     "source_revision": "worktree-engine-manifest:aecb52ee821153c9d200f79dca6c092a753d9c7fdee3b5dea7bb7f3c013e88f6",
     "source_manifest_path": "../engine-source-manifest.json",
     "source_manifest_sha256": "aecb52ee821153c9d200f79dca6c092a753d9c7fdee3b5dea7bb7f3c013e88f6",
-    "executable_path": "../../../../runs/dev-injection-2026-09-27/bin-dev/zkfDO",
+    "executable_path": "../../../../runs/dev-injection-2026-09-27/bin/zkfDO",
     "executable_sha256": "7ff5c85c033d823f674599528bf3f09469bb5c0795ec25a970a9fc95b1b0e7ef",
     "predicate_runner_path": "../../../../../../../../opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
     "predicate_runner_sha256": "87d4df53fd91304be5bac391fb204643c36b7df2023c04a0953bcbc7d4fdf634"
@@ -277,7 +277,7 @@
       "ground_truth_qualification": "unresolved",
       "violation_class": "non-canonical-limb-split",
       "confirmation_eligible": false,
-      "automated_review_seconds": 0.701509209,
+      "automated_review_seconds": 0.522249584,
       "predicate_stream_nonempty": false
     }
   ],

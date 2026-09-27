@@ -4,7 +4,7 @@
   "request_id": "dev-inference-o2-num2bits41/qualification",
   "review_spec": {
     "path": "spec.json",
-    "sha256": "e821c0370fdc7c0b1238e27676cca16511024ac10fd23fb37202bd90f8bd3170"
+    "sha256": "77eb555397cb98ea3a64e3b9e2aa03a9618d6668bdb9aa8b75b3f77a948d6730"
   },
   "generation_manifest": {
     "path": "generation.json",

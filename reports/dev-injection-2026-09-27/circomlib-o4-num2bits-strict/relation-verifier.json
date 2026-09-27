@@ -6,9 +6,9 @@
   "implementation": {
     "kind": "external",
     "executable_path": "../../../runs/dev-injection-2026-09-27/circomlib-o4-num2bits-strict/verifier/zkfdo-relation-verifier",
-    "executable_sha256": "e6a2c5b9e890eb21cf5c857d29db69e3046253d08cba4d28041a3ec94326a8a3",
+    "executable_sha256": "e8d8b2462d52940d068002989532a9a09a94113e36352dffd4698ad846a1b9e5",
     "source_manifest_path": "engine-source-manifest.json",
-    "source_manifest_sha256": "6add67113743f003996e4dd159b28950327bd64eb3f4cafcdd3220caf51d006c"
+    "source_manifest_sha256": "aecb52ee821153c9d200f79dca6c092a753d9c7fdee3b5dea7bb7f3c013e88f6"
   },
   "certificate_format": "unique-propagation-v1",
   "allowed_results": [

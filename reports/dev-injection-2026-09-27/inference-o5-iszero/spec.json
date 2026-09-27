@@ -111,7 +111,7 @@
     "evidence_path": "reachability.json",
     "evidence_sha256": "97ea4a33e115d2901d0f3fb4e275d710c98ce6a8101fe02cab2df2b5c2238243",
     "verifier_manifest_path": "reachability-verifier.json",
-    "verifier_manifest_sha256": "4123a0d720c189015825814f4fb194e503464f83eeb40c5f81ec71fb46680644"
+    "verifier_manifest_sha256": "6fa90a043ce46e963d4783d00f8bd97f31a1618fa8a72a71af22a1c559c858aa"
   },
   "injection_ground_truth": {
     "injection_id": "dev-inference-o5-iszero",
@@ -201,7 +201,7 @@
       "certificate_path": "certificate.json",
       "certificate_sha256": "4919951de5c9eb3f42f33e23972bb4b747cc02e7ab36ed3f04b06f8517f1c5da",
       "verifier_manifest_path": "relation-verifier.json",
-      "verifier_manifest_sha256": "79da166430ed411e6ce8272c464434be96d885f80c1df2931697da7f3f922378"
+      "verifier_manifest_sha256": "99f7ae2775ba4cfa5d214980c63fdf805b91b212c1f6eb208354796970b3a1f5"
     }
   }
 }
