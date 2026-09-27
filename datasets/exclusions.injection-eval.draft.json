@@ -60,7 +60,11 @@
       "semaphore-protocol/semaphore"
     ],
     "t6_calibration": [],
-    "development_injection": [],
+    "development_injection": [
+      "inference-labs-inc/subnet-2-circom",
+      "iden3/circomlib",
+      "0xbok/circom-bigint"
+    ],
     "development_dataset": [
       "zksecurity/zkbugs"
     ]
