@@ -212,6 +212,7 @@ B1 설계 초안 ─► T4 검토 엔진·개발용 주입(제외 스냅샷 프�
 - **완료 조건:** 연산자마다 개발 프로젝트에서 `qualified` 1건 이상을 얻거나, 얻지 못한 이유와 B에서의 처리(연산자 제외 등)를 기록한다. `cargo fmt`, `cargo clippy --all-targets --all-features -- -D warnings`, `cargo test` 통과.
 - **금지:** 스냅샷 밖의 프로젝트를 열지 않는다. 의존성 라이브러리(circomlib 등)는 변형하지 않는다. 원시 입력·witness·assignment는 ignored `runs/`에만 둔다. qualification 판정에 zkFuzz를 쓰지 않는다. 탈락한 위치를 기록 없이 버리지 않는다.
 - **진행 (2026-09-27):** `experiment inject` 도구와 고정 외부 verifier `zkfdo-relation-verifier`(unique-propagation)를 구현했다. inference 프로젝트에서 O2(`Num2Bits(41)`), O1(`Where`), O5(`IsZero`)가 13개 기준을 모두 통과해 `qualified`다. B2 입력이 될 발견 사항 4가지를 [중간 기록](../reports/dev-injection-2026-09-27/README.md)에 남겼다: O1은 대부분 propagation 증명이 필요함, O3는 보조 신호 범위 검사에만 맞음, 코퍼스 inspection·target ID의 라이브러리 경로 미지원(B prepare에도 영향), backend 판정용 명세 속성 필요.
+- **완료 (2026-09-27):** O3(circom-bigint `Split(64, 64)`, 보조 신호 범위 검사)와 O4(circomlib `Num2Bits_strict`)도 교란 규칙과 relation exclusion이 동작해 12개 기준을 통과했다. 두 대상에 완전한 탐색으로 도달하는 entrypoint가 개발 프로젝트에 없어 production 도달성은 `unknown`, 판정은 `unresolved`다. unique-propagation에 불리언 비트 분해 규칙을 더했고, 코퍼스 inspection과 target ID가 `-l` 라이브러리 경로를 쓰도록 보완했다(기존 target ID 불변). 다섯 사례를 하나의 보존 실행 파일로 다시 만들었다. [설계 초안](injection_evaluation_design.md) 4.1절에 연산자 규칙 초안을 적었다. 자동 위치 탐색·표집, 탈락 기록, backend 속성 방식, 라이브러리 내부 탐색 방식은 B2 준비로 넘긴다.
 
 ### T5. `cost-aware` 전략과 동점 기록 — 담당: miiz
 
@@ -293,7 +294,7 @@ B1 설계 초안 ─► T4 검토 엔진·개발용 주입(제외 스냅샷 프�
 | T3 | 대기 | | T2b는 0건. B+C 결정(2-1절)에 따라 B3 뒤에 B 프로젝트의 manifest·contracts·plan 해시를 고정 |
 | T4a | 완료 (2026-09-26) | miiz | 공통 review-spec/request/report, predicate API, R1CS/SYM 고정, 교란 쌍둥이 검증 형식 결정 |
 | T4b | 완료 (2026-09-27) | miiz | 공용 엔진·confirmation adapter 구현, v1.1~v3 후보 73개와 220개 실행 행 회귀, backend·주입 실패 경계 시험 완료 |
-| T4c | 진행 중 (2026-09-27 시작) | miiz | 주입 도구·unique-propagation verifier 구현. inference에서 O1·O2·O5 qualified. O3·O4는 라이브러리 경로 inspection 보완 필요([중간 기록](../reports/dev-injection-2026-09-27/README.md)) |
+| T4c | 완료 (2026-09-27) | miiz | 주입 도구·unique-propagation verifier. O1·O2·O5 qualified(inference), O3·O4는 도달 entrypoint가 없어 unresolved(12개 기준 통과). 발견 사항과 B2 준비 과제는 [보고서](../reports/dev-injection-2026-09-27/README.md) |
 | T5 | 완료 (2026-09-26 확인) | miiz | cost-aware(휴리스틱) 유지 확정, schema 2 `ties` 검증 |
 | T6a | 완료 (2026-09-26) | miiz | 탐색·익명 호출·컴파일 재사용·도구 고정 |
 | T6 | 대기 | | T6 풀 프로젝트만. 결함을 주입하지 않은 원본으로 feasibility와 비용 보정 |
