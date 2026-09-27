@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "files": [
+    {
+      "path": "../../../datasets/controlled-v1/subtract/vulnerable/circuit.circom",
+      "size": 87,
+      "sha256": "5160da57762a5a561cf797a44f2dd6f009126536be476cbcec0926459362e079"
+    },
+    {
+      "path": "../../../datasets/controlled-v1/subtract/vulnerable/subtractTensor.circom",
+      "size": 154,
+      "sha256": "502ee44b70a368066fafcf09cc2d0356479f8a862bfa726bde8097c728c83cc1"
+    }
+  ]
+}

@@ -152,6 +152,8 @@ pub enum ExperimentCommands {
     Run(ExperimentRunArgs),
     /// Evaluate stored results using optional reviewed defect confirmations.
     Evaluate(ExperimentEvaluateArgs),
+    /// Review preserved backend candidates or qualify injected ground truth.
+    Review(ExperimentReviewArgs),
 }
 
 #[derive(Debug, Args)]
@@ -264,6 +266,29 @@ pub struct ExperimentEvaluateArgs {
     /// Destination evaluation JSON file.
     #[arg(short, long)]
     pub output: PathBuf,
+}
+
+#[derive(Debug, Args)]
+pub struct ExperimentReviewArgs {
+    /// Strict schema-1 backend or injection review request.
+    #[arg(long)]
+    pub request: PathBuf,
+
+    /// New directory for the value-free report, confirmations, and bundle index.
+    #[arg(short, long)]
+    pub output: PathBuf,
+
+    /// Python interpreter used for hash-pinned predicate workers.
+    #[arg(long, default_value = "python3")]
+    pub python_bin: PathBuf,
+
+    /// Source identity label (Git revision or pinned worktree-manifest hash).
+    #[arg(long)]
+    pub source_revision: String,
+
+    /// Sorted source-file manifest that fixes the review engine implementation.
+    #[arg(long)]
+    pub engine_source_manifest: PathBuf,
 }
 
 pub fn run() -> Result<()> {
@@ -398,6 +423,18 @@ fn handle_experiment(args: ExperimentArgs) -> Result<()> {
                 &args.output,
             )?;
             println!("{}", serde_json::to_string_pretty(&evaluation)?);
+        }
+        ExperimentCommands::Review(args) => {
+            let output =
+                crate::candidate_review::review(&crate::candidate_review::ReviewOptions {
+                    request: args.request,
+                    output: args.output,
+                    python_bin: args.python_bin,
+                    source_revision: args.source_revision,
+                    engine_source_manifest: args.engine_source_manifest,
+                    executable: std::env::current_exe()?,
+                })?;
+            println!("{}", serde_json::to_string_pretty(&output)?);
         }
     }
     Ok(())

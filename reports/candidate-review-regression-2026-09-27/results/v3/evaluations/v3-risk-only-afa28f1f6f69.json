@@ -1,0 +1,117 @@
+{
+  "schema_version": 2,
+  "report_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/candidate-review-regression-2026-09-27/results/.zkfdo-candidate-review-84d9cc19-d1fa-44e3-a3e1-fddaab3ba633.staging/evaluations/v3-risk-only-afa28f1f6f69.json",
+  "plan_id": "117a6076-a970-4b72-94ec-46e319296445",
+  "outcome_id": "e4bfe183-6c07-4b7d-b364-e8b452f8cc29",
+  "strategy": "risk-only",
+  "target_count": 4,
+  "preparation_excluded_target_count": 0,
+  "manifest_exclusion_count": 0,
+  "planned_target_ids": [
+    "sha256:6f2c43c5a4a81b1a77099f29be2a769c06075f817315f3ee0e8f12c12e3d8352",
+    "sha256:7aa9cb58574b90108bca0ca60b88ea35e81320f887aa5bac39503980ce2c2d61",
+    "sha256:1c00a72631bc6e31451c6fca4a5b21827784504727eb1648e3dd90376e530be6",
+    "sha256:593ebf069393e830a57a6cf4f611cee14562ae6b351e218495ea86b38530fd21"
+  ],
+  "actual_process_start_target_ids": [
+    "sha256:6f2c43c5a4a81b1a77099f29be2a769c06075f817315f3ee0e8f12c12e3d8352",
+    "sha256:7aa9cb58574b90108bca0ca60b88ea35e81320f887aa5bac39503980ce2c2d61",
+    "sha256:1c00a72631bc6e31451c6fca4a5b21827784504727eb1648e3dd90376e530be6",
+    "sha256:593ebf069393e830a57a6cf4f611cee14562ae6b351e218495ea86b38530fd21"
+  ],
+  "status_counts": {
+    "bug_found": 1,
+    "no_counterexample": 1,
+    "not_started": 0,
+    "runner_failure": 0,
+    "timeout": 2
+  },
+  "known_defect_target_count": 2,
+  "known_defect_root_cause_count": 2,
+  "known_target_ranks": [
+    {
+      "target_id": "sha256:7aa9cb58574b90108bca0ca60b88ea35e81320f887aa5bac39503980ce2c2d61",
+      "rank": 2,
+      "root_cause_ids": [
+        "unirep/unirep/big-less-than-num2bits-alias"
+      ]
+    },
+    {
+      "target_id": "sha256:593ebf069393e830a57a6cf4f611cee14562ae6b351e218495ea86b38530fd21",
+      "rank": 4,
+      "root_cause_ids": [
+        "iden3/circomlib/decoder-unconstrained-one-hot-output"
+      ]
+    }
+  ],
+  "recall_at_k": [
+    {
+      "k": 1,
+      "retrieved_known_targets": 0,
+      "total_known_targets": 2,
+      "recall": 0.0
+    },
+    {
+      "k": 3,
+      "retrieved_known_targets": 1,
+      "total_known_targets": 2,
+      "recall": 0.5
+    },
+    {
+      "k": 4,
+      "retrieved_known_targets": 2,
+      "total_known_targets": 2,
+      "recall": 1.0
+    }
+  ],
+  "backend_bug_candidate_count": 1,
+  "preserved_counterexample_count": 1,
+  "reviewed_confirmation_count": 1,
+  "confirmed_project_defect_count": 0,
+  "confirmed_original_component_defect_count": 1,
+  "wrapper_only_confirmation_count": 0,
+  "reachability_unknown_confirmation_count": 0,
+  "evidence_origin_counts": {
+    "backend-execution": 1
+  },
+  "confirmed_project_root_causes": [],
+  "confirmed_original_component_root_causes": [
+    "iden3/circomlib/decoder-unconstrained-one-hot-output"
+  ],
+  "detection_curve": [],
+  "original_component_detection_curve": [
+    {
+      "root_cause_id": "iden3/circomlib/decoder-unconstrained-one-hot-output",
+      "target_id": "sha256:593ebf069393e830a57a6cf4f611cee14562ae6b351e218495ea86b38530fd21",
+      "run_id": "3aeddcd0-c608-4449-93c9-515d57d3e019",
+      "observed_by_seconds": 74.155606875,
+      "cumulative_confirmed_original_component_defects": 1
+    }
+  ],
+  "first_confirmed_defect_observed_by_seconds": null,
+  "first_confirmed_original_component_defect_observed_by_seconds": 74.155606875,
+  "timings": {
+    "preparation_seconds": 1.62043375,
+    "preparation_accounting": {
+      "inspection_seconds": 0.06995462599999999,
+      "snapshot_seconds": 0.00741675,
+      "structure_seconds": 0.5618697069999999,
+      "semantic_seconds": 0.110126874,
+      "legacy_seconds": 0.073920125,
+      "excluded_target_elapsed_seconds": 0.0,
+      "orchestration_overhead_seconds": 0.7896377909999999
+    },
+    "planning_seconds": 0.017085833,
+    "fuzzing_scheduler_seconds": 74.155615542,
+    "evaluation_seconds": 0.020978584,
+    "separate_phase_sum_seconds": 75.81411370900001
+  },
+  "limitations": [
+    "Recall@K uses the target as its unit and only manifest-annotated known-defect targets as its denominator; unlabeled targets are not safe negatives.",
+    "Original-component execution metrics require backend-execution evidence plus satisfied reviews of input preconditions, fixed-original constraints, and the pre-specified property violation; file existence and reviewer declarations are validated structurally, not independently proven.",
+    "Legacy project metrics retain their schema-1 meaning. A project record contributes to the original-component metric only when it also supplies the complete satisfied component review.",
+    "Static warnings, manual source review, known-defect annotations, crashes, and counterexample files do not contribute to execution-discovered defect curves.",
+    "Detection timestamps are scheduler completion upper bounds for linked runs, not exact discovery or human confirmation times; post-run review time is not part of the fuzzing budget.",
+    "Separate phase durations may have occurred in different invocations; their sum is accounting, not a single uninterrupted wall-clock measurement."
+  ]
+}

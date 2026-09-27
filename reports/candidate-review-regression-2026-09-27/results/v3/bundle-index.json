@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "kind": "backend-review-bundle",
+  "review_specs": [
+    {
+      "path": "../../inputs/v3-spec.json",
+      "sha256": "3d27ae23465e5cd350ce22a694ac9e3b974d20ab66959a2bc52bc8ff156b9ad7"
+    }
+  ],
+  "review_request": {
+    "path": "../../inputs/v3-request.json",
+    "sha256": "fbd702282035313eb2e2e2c64e495ffa94f4a18de01f7e7b717ea67b1f58a880"
+  },
+  "review_report": {
+    "path": "review-report.json",
+    "sha256": "374259482ac273f521f65a62da641a93564acfcb24db3cb941794f9f8096664d"
+  },
+  "execution_evaluations": [
+    {
+      "execution_id": "v3-risk-only",
+      "confirmation": {
+        "path": "confirmations/v3-risk-only-afa28f1f6f69.schema2.json",
+        "sha256": "cee2eee110fd0de107c81d980932408e87ca5f7fe97e5d107722c918e10f6e03"
+      },
+      "evaluator_output": {
+        "path": "evaluations/v3-risk-only-afa28f1f6f69.json",
+        "sha256": "5e54908dd40dc8fd05614d832f0c90e74a974dc91a52eb8a6b6fbe7bb084e013"
+      }
+    }
+  ],
+  "campaign_summary": {
+    "pair_count": 1,
+    "by_execution": [
+      {
+        "execution_id": "v3-risk-only",
+        "campaign_coordinates": null,
+        "validated_attributed_root_cause_ids": [
+          "iden3/circomlib/decoder-unconstrained-one-hot-output"
+        ]
+      }
+    ],
+    "unique_validated_root_cause_ids": [
+      "iden3/circomlib/decoder-unconstrained-one-hot-output"
+    ],
+    "unique_validated_root_cause_count": 1
+  }
+}

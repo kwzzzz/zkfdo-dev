@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "files": [
+    {
+      "path": "../../../datasets/controlled-v3/circomlib-decoder/vulnerable/project/circuit.circom",
+      "size": 91,
+      "sha256": "6bc3815b73ef588fb6fb08e82e663baba305820df680332b37636e1145b58d2d"
+    },
+    {
+      "path": "../../../datasets/controlled-v3/circomlib-decoder/vulnerable/project/circuits/multiplexer.circom",
+      "size": 3033,
+      "sha256": "d955fa5da40c3066442f2a4b5688f3e2985bca4cec0607b20310babc97f97116"
+    }
+  ]
+}

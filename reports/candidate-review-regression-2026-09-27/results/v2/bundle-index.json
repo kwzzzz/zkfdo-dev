@@ -1,0 +1,785 @@
+{
+  "schema_version": 1,
+  "kind": "backend-review-bundle",
+  "review_specs": [
+    {
+      "path": "../../inputs/v2-spec.json",
+      "sha256": "37df9936e4f6db7beea7458929bb26fafb6a0756357d89173719b12e3409b88f"
+    }
+  ],
+  "review_request": {
+    "path": "../../inputs/v2-request.json",
+    "sha256": "b66a86922d503eb1dc5c3fbb348b5107729832927b562c10e571cbf5f1282f3d"
+  },
+  "review_report": {
+    "path": "review-report.json",
+    "sha256": "90011e8ba2f31ff8c67c9e75683128219f09a5d7015d3182d24821fdec49dd46"
+  },
+  "execution_evaluations": [
+    {
+      "execution_id": "v2-block-01-random",
+      "confirmation": {
+        "path": "confirmations/v2-block-01-random-3b34951b7a86.schema2.json",
+        "sha256": "858ae6c3864427972f4d948b0231b543d9a6499de31261cd62554106460429ef"
+      },
+      "evaluator_output": {
+        "path": "evaluations/v2-block-01-random-3b34951b7a86.json",
+        "sha256": "0d334bfa635a78388e290cb8d9464b7e81be52bf874c429067e694b35b4d68f9"
+      }
+    },
+    {
+      "execution_id": "v2-block-01-risk-only",
+      "confirmation": {
+        "path": "confirmations/v2-block-01-risk-only-3bede178751d.schema2.json",
+        "sha256": "fd671d87d5aa9da17f986e231d8177aee7e9f31ce817ef8443582ef8295665d2"
+      },
+      "evaluator_output": {
+        "path": "evaluations/v2-block-01-risk-only-3bede178751d.json",
+        "sha256": "cba409969d83e6eb7b3a54c5514b359688dddb5af1e1127edcfb5ff8370bf33a"
+      }
+    },
+    {
+      "execution_id": "v2-block-01-small-first",
+      "confirmation": {
+        "path": "confirmations/v2-block-01-small-first-9dadedb9992f.schema2.json",
+        "sha256": "0322eea0d39c2eba235ad78bb1ac63a13d327a422a54a0d6a7b6f49f4ac9819f"
+      },
+      "evaluator_output": {
+        "path": "evaluations/v2-block-01-small-first-9dadedb9992f.json",
+        "sha256": "b99b7226000943393ba37b23b215c683194fee4900804850a6ab05aa31cc6f69"
+      }
+    },
+    {
+      "execution_id": "v2-block-02-random",
+      "confirmation": {
+        "path": "confirmations/v2-block-02-random-20e1b6facee5.schema2.json",
+        "sha256": "d97d600441f4dbbb8de15f031666cab84d0292bb0c28c1d600a14ea54a1051d3"
+      },
+      "evaluator_output": {
+        "path": "evaluations/v2-block-02-random-20e1b6facee5.json",
+        "sha256": "bb4928f0dbb71978992618ed5cf0b79bfcefa30f2cd65ab6e0b245b396915618"
+      }
+    },
+    {
+      "execution_id": "v2-block-02-risk-only",
+      "confirmation": {
+        "path": "confirmations/v2-block-02-risk-only-fdb049aa655a.schema2.json",
+        "sha256": "f872d7d94bd779445df3255726641e4d83f744f4919559a11d540826c9078bef"
+      },
+      "evaluator_output": {
+        "path": "evaluations/v2-block-02-risk-only-fdb049aa655a.json",
+        "sha256": "3fd5291664c80e67829db98a1ff1642315c497a028bd4c1cf7bdb9d3cab678e2"
+      }
+    },
+    {
+      "execution_id": "v2-block-02-small-first",
+      "confirmation": {
+        "path": "confirmations/v2-block-02-small-first-322ad4fa1877.schema2.json",
+        "sha256": "e49a807a8358c74d1a6e43c300abc7bed5088a4a2a4092af959a55ea66edd551"
+      },
+      "evaluator_output": {
+        "path": "evaluations/v2-block-02-small-first-322ad4fa1877.json",
+        "sha256": "3e811341670470e709aaf5424b717445df4797711fc2148a9d1236910e5e00d0"
+      }
+    },
+    {
+      "execution_id": "v2-block-03-random",
+      "confirmation": {
+        "path": "confirmations/v2-block-03-random-237a1cc070ad.schema2.json",
+        "sha256": "dbf5f9aae2e0b4a7d05fbaa85004cb3d692c5396669e35b4f2e7cf2d146c224f"
+      },
+      "evaluator_output": {
+        "path": "evaluations/v2-block-03-random-237a1cc070ad.json",
+        "sha256": "f426439089e070c569b2aa9e21f3676b7d1807f5e6f53060d749fe37ca244ef4"
+      }
+    },
+    {
+      "execution_id": "v2-block-03-risk-only",
+      "confirmation": {
+        "path": "confirmations/v2-block-03-risk-only-6a48125a7cfe.schema2.json",
+        "sha256": "bb1f7161b62b99157014719501f8a597b69b1c0cf3e95eeb7683a72d7add97d0"
+      },
+      "evaluator_output": {
+        "path": "evaluations/v2-block-03-risk-only-6a48125a7cfe.json",
+        "sha256": "343ea8c3311840abc56571962d2923b9fb743fa5df43859c1a1ae426a87c315d"
+      }
+    },
+    {
+      "execution_id": "v2-block-03-small-first",
+      "confirmation": {
+        "path": "confirmations/v2-block-03-small-first-ccad260cdda3.schema2.json",
+        "sha256": "ffa4abef7c8e81a50304d6cd5423afb5a8b25a4e31beb7c61f3e09d936263b61"
+      },
+      "evaluator_output": {
+        "path": "evaluations/v2-block-03-small-first-ccad260cdda3.json",
+        "sha256": "e3405f19a9ab984af94cf61ea4a9180436f21dc22b310fecd6028ecd6903df36"
+      }
+    },
+    {
+      "execution_id": "v2-block-04-random",
+      "confirmation": {
+        "path": "confirmations/v2-block-04-random-670db7e09a87.schema2.json",
+        "sha256": "420e20a8f489bf70b7e696798f47f1e24d0eacfdb5999bf17360c9afa7c525a0"
+      },
+      "evaluator_output": {
+        "path": "evaluations/v2-block-04-random-670db7e09a87.json",
+        "sha256": "f2adfe8633921186a44d1eb8687adf731ebf57d9afdb42d70514b6848385aafa"
+      }
+    },
+    {
+      "execution_id": "v2-block-04-risk-only",
+      "confirmation": {
+        "path": "confirmations/v2-block-04-risk-only-4191d2e9ae68.schema2.json",
+        "sha256": "8e7a1b1c60f86fa78d27f48628c1542512bd9303ad7d5e69b013354c05fe81ef"
+      },
+      "evaluator_output": {
+        "path": "evaluations/v2-block-04-risk-only-4191d2e9ae68.json",
+        "sha256": "c7a5069a11c9634bcf9555140012ad7d7ecbc6e963a621b6572eb130fb3dec72"
+      }
+    },
+    {
+      "execution_id": "v2-block-04-small-first",
+      "confirmation": {
+        "path": "confirmations/v2-block-04-small-first-60b0d9e5f355.schema2.json",
+        "sha256": "96d31179cc5e3315098cd61ee450370546379515d9c38c760929b13e754d6344"
+      },
+      "evaluator_output": {
+        "path": "evaluations/v2-block-04-small-first-60b0d9e5f355.json",
+        "sha256": "6b530ffbaff882790f61c19a469dccba94dd267754748dfa15dda8fd301546ed"
+      }
+    },
+    {
+      "execution_id": "v2-block-05-random",
+      "confirmation": {
+        "path": "confirmations/v2-block-05-random-3b6d99a2f8fc.schema2.json",
+        "sha256": "e76d7499665507aff3e258c15c240236991f8ae95ff24f45039d2c82970bc7a8"
+      },
+      "evaluator_output": {
+        "path": "evaluations/v2-block-05-random-3b6d99a2f8fc.json",
+        "sha256": "a2e8664231907c245771dce58d424dcbe84dccb4ad13386f432413cef5cd5945"
+      }
+    },
+    {
+      "execution_id": "v2-block-05-risk-only",
+      "confirmation": {
+        "path": "confirmations/v2-block-05-risk-only-802bad76a806.schema2.json",
+        "sha256": "be08a68b01c64f0dbada2c3930cb99b69a57dd2fd96422d66b84f9d6d64f5a06"
+      },
+      "evaluator_output": {
+        "path": "evaluations/v2-block-05-risk-only-802bad76a806.json",
+        "sha256": "a6e55d235473636c278d003729b6b8bf3341d87140c4d01d7f80a7054f56dd03"
+      }
+    },
+    {
+      "execution_id": "v2-block-05-small-first",
+      "confirmation": {
+        "path": "confirmations/v2-block-05-small-first-5b773c87d6d5.schema2.json",
+        "sha256": "f8accc3096650c0deefef94ffc19f600171833a4196f90a2e3d3c35ababf57da"
+      },
+      "evaluator_output": {
+        "path": "evaluations/v2-block-05-small-first-5b773c87d6d5.json",
+        "sha256": "a26cd15469e8ba4e0b4dd811a35e1ddee7a7155b99cfed5385033585537d0c2e"
+      }
+    },
+    {
+      "execution_id": "v2-block-06-random",
+      "confirmation": {
+        "path": "confirmations/v2-block-06-random-7b28b8c2fe1c.schema2.json",
+        "sha256": "24a32591869c24a1a1b5f2c8193b77e8544ef99ccddfe298b499866e5b3b341e"
+      },
+      "evaluator_output": {
+        "path": "evaluations/v2-block-06-random-7b28b8c2fe1c.json",
+        "sha256": "3f69f35e82976aff9a6fa7c28f11c2b4e2b5939159bb6269f625df4b6b4fc5d1"
+      }
+    },
+    {
+      "execution_id": "v2-block-06-risk-only",
+      "confirmation": {
+        "path": "confirmations/v2-block-06-risk-only-eb7fa7ea252a.schema2.json",
+        "sha256": "65f1a37d75517be8f2de93f98a8b4af712c2eddffc8effb407a165b4154f81b6"
+      },
+      "evaluator_output": {
+        "path": "evaluations/v2-block-06-risk-only-eb7fa7ea252a.json",
+        "sha256": "56013cd15fdcc04c6c18ad127230d5428f626de09d03542dbf6e6facb7e577b2"
+      }
+    },
+    {
+      "execution_id": "v2-block-06-small-first",
+      "confirmation": {
+        "path": "confirmations/v2-block-06-small-first-62cf1071b6eb.schema2.json",
+        "sha256": "d8faa4c101432247102c2e0022d9a5a0dcd183055be26f80998b00ee81232d1d"
+      },
+      "evaluator_output": {
+        "path": "evaluations/v2-block-06-small-first-62cf1071b6eb.json",
+        "sha256": "79c42e6c16163d49add677de0e68d7e5cfe746d5210ca14a708ec1d7d951de7c"
+      }
+    },
+    {
+      "execution_id": "v2-block-07-random",
+      "confirmation": {
+        "path": "confirmations/v2-block-07-random-a216e4decdfb.schema2.json",
+        "sha256": "208e5889cddc19f28393175e8ec0273d3c3c8a554ee5256f90669408931df5b3"
+      },
+      "evaluator_output": {
+        "path": "evaluations/v2-block-07-random-a216e4decdfb.json",
+        "sha256": "b8b4dbc3b81e0ca93a62a199989599dc5abb275503fd3dc6f011539370bef1b7"
+      }
+    },
+    {
+      "execution_id": "v2-block-07-risk-only",
+      "confirmation": {
+        "path": "confirmations/v2-block-07-risk-only-171d2f431c25.schema2.json",
+        "sha256": "0ae0c2c1a3baf8f6d81e0eae0b94a1f88790e27add767cb015c945af328ce07f"
+      },
+      "evaluator_output": {
+        "path": "evaluations/v2-block-07-risk-only-171d2f431c25.json",
+        "sha256": "dc9f28a76e7977bc6a6c03dcc7fedfbd94b26ed2e6f9fc7914bb8b4b7ccb654a"
+      }
+    },
+    {
+      "execution_id": "v2-block-07-small-first",
+      "confirmation": {
+        "path": "confirmations/v2-block-07-small-first-3d492a9501d2.schema2.json",
+        "sha256": "617a43a6c50431088eff137b39c0a637e235dd435d34000203594ab5ab6b4abb"
+      },
+      "evaluator_output": {
+        "path": "evaluations/v2-block-07-small-first-3d492a9501d2.json",
+        "sha256": "6d1f26a804be63d49a0a5b310b8c5fc3d004cec75cefd0f28993fd0c11fe7823"
+      }
+    },
+    {
+      "execution_id": "v2-block-08-random",
+      "confirmation": {
+        "path": "confirmations/v2-block-08-random-e690c5308298.schema2.json",
+        "sha256": "983481c3dc87473b8aba477fa5e1918aa2ed4e83e9d36101e107eee1f5db4cea"
+      },
+      "evaluator_output": {
+        "path": "evaluations/v2-block-08-random-e690c5308298.json",
+        "sha256": "c6227856a9bc56da9756d55ff270e576685e868b851679ab805d0756a330a3e8"
+      }
+    },
+    {
+      "execution_id": "v2-block-08-risk-only",
+      "confirmation": {
+        "path": "confirmations/v2-block-08-risk-only-917485011660.schema2.json",
+        "sha256": "47fee164ec8843d00040677dad9bbf6df5a7a7c545e97adcaaffc88ca10b3404"
+      },
+      "evaluator_output": {
+        "path": "evaluations/v2-block-08-risk-only-917485011660.json",
+        "sha256": "5d00c218fffbea8de8dd5a756e40b5887f48815f72c36f079218b5bb7e679c07"
+      }
+    },
+    {
+      "execution_id": "v2-block-08-small-first",
+      "confirmation": {
+        "path": "confirmations/v2-block-08-small-first-3d6c87fbc85c.schema2.json",
+        "sha256": "342f36d7a30fd6623930c8ecb1962546a2721becedf5f58c99bd20ca5078b2ac"
+      },
+      "evaluator_output": {
+        "path": "evaluations/v2-block-08-small-first-3d6c87fbc85c.json",
+        "sha256": "c1e308e1ea49672ede1afb4c1f5beff24cff554c6f911ff0d32f7038c4641627"
+      }
+    },
+    {
+      "execution_id": "v2-block-09-random",
+      "confirmation": {
+        "path": "confirmations/v2-block-09-random-f5e18e89f501.schema2.json",
+        "sha256": "27c63784bc788aaf039db6fa63c737c2a3baff60c04d2f2cc1f8176a8678fdcd"
+      },
+      "evaluator_output": {
+        "path": "evaluations/v2-block-09-random-f5e18e89f501.json",
+        "sha256": "23aa45ffb1f107e1f4cfc7268a3605df54f4f2306d868c3c5bc04b07d381dcc1"
+      }
+    },
+    {
+      "execution_id": "v2-block-09-risk-only",
+      "confirmation": {
+        "path": "confirmations/v2-block-09-risk-only-1ccdf776e629.schema2.json",
+        "sha256": "08c5f033e26a9f7f3792e454ce8ed722baa212bc66e616b0955b359b02e39769"
+      },
+      "evaluator_output": {
+        "path": "evaluations/v2-block-09-risk-only-1ccdf776e629.json",
+        "sha256": "bd8e5ce7dbc0be0dea11d8ae7ba3c67b95e87e3ab2f915a77c6652c0fe51bd07"
+      }
+    },
+    {
+      "execution_id": "v2-block-09-small-first",
+      "confirmation": {
+        "path": "confirmations/v2-block-09-small-first-95b5541b879e.schema2.json",
+        "sha256": "b71484d079b69faf718a30a53fc7088410c5ed2fe5bfdae9c99be6cf27567837"
+      },
+      "evaluator_output": {
+        "path": "evaluations/v2-block-09-small-first-95b5541b879e.json",
+        "sha256": "e0c5bed30b967cd76a210c70a022343b468f4696c9d7d909a9d36d43b292301c"
+      }
+    },
+    {
+      "execution_id": "v2-block-10-random",
+      "confirmation": {
+        "path": "confirmations/v2-block-10-random-f9c783333643.schema2.json",
+        "sha256": "29e2240df7deb1549d2437c0cb84cf65c7bb1d07a26b87227f54e3f36483341f"
+      },
+      "evaluator_output": {
+        "path": "evaluations/v2-block-10-random-f9c783333643.json",
+        "sha256": "c1314691d2d9a95dc0a82e1b5dba4d514aa23a5be5b55e765cb57f1109228a7f"
+      }
+    },
+    {
+      "execution_id": "v2-block-10-risk-only",
+      "confirmation": {
+        "path": "confirmations/v2-block-10-risk-only-3c91de3a8461.schema2.json",
+        "sha256": "c950ca9944b65794eb75b27fa3d1179c303ba09493e8c3647dada557befc6e28"
+      },
+      "evaluator_output": {
+        "path": "evaluations/v2-block-10-risk-only-3c91de3a8461.json",
+        "sha256": "9732c224648eae879ee99f732eb4e2d1cf3e8fe213e578264c536fb0c05b000e"
+      }
+    },
+    {
+      "execution_id": "v2-block-10-small-first",
+      "confirmation": {
+        "path": "confirmations/v2-block-10-small-first-6b1d56bcda0c.schema2.json",
+        "sha256": "474453848042bed8324de874588c6a456aafc23474706a7a3e75969637584d58"
+      },
+      "evaluator_output": {
+        "path": "evaluations/v2-block-10-small-first-6b1d56bcda0c.json",
+        "sha256": "39571d1ba6e3682464bc0bdd8f3a131159fa444b61f1378fb89c3739ccbff5b8"
+      }
+    },
+    {
+      "execution_id": "v2-block-11-random",
+      "confirmation": {
+        "path": "confirmations/v2-block-11-random-e214493d42fa.schema2.json",
+        "sha256": "5254fa61accd53afa456b33ddd9ac4a8d3926d74ccf9865ad3426d03e4a1927e"
+      },
+      "evaluator_output": {
+        "path": "evaluations/v2-block-11-random-e214493d42fa.json",
+        "sha256": "2a58b0eb10eb4685e41746347b7f289b518c675ebeb6d53d971c827d6f64ed23"
+      }
+    },
+    {
+      "execution_id": "v2-block-11-risk-only",
+      "confirmation": {
+        "path": "confirmations/v2-block-11-risk-only-e65d5c8c7004.schema2.json",
+        "sha256": "a12b3ea44e81f278b99a9ae3ed3678c320fc8b95fe7a5e2e2f9d8417e1dbc88d"
+      },
+      "evaluator_output": {
+        "path": "evaluations/v2-block-11-risk-only-e65d5c8c7004.json",
+        "sha256": "ae01acce3d8df3d5d87ad516caaedc937397fe1b6db12703ee638f057ff866a7"
+      }
+    },
+    {
+      "execution_id": "v2-block-11-small-first",
+      "confirmation": {
+        "path": "confirmations/v2-block-11-small-first-b7bf33893124.schema2.json",
+        "sha256": "dfea83c8c08f53181bcbf3242c91a547c86c097054bb73279df495ccd42fb175"
+      },
+      "evaluator_output": {
+        "path": "evaluations/v2-block-11-small-first-b7bf33893124.json",
+        "sha256": "5854f0a341158e01b161e330cf9ffdcc68deaffabd1a2580498e42f2bc3fd41a"
+      }
+    },
+    {
+      "execution_id": "v2-block-12-random",
+      "confirmation": {
+        "path": "confirmations/v2-block-12-random-1b6517fb2f45.schema2.json",
+        "sha256": "0163ec1886ad824d8700429f769f2558d25f9f0a79ca26508a43015f11bb4163"
+      },
+      "evaluator_output": {
+        "path": "evaluations/v2-block-12-random-1b6517fb2f45.json",
+        "sha256": "92aaa105ffcfa3402a4fd8275e1b056d1e4da89ca9886f15a0898fde06d08f2a"
+      }
+    },
+    {
+      "execution_id": "v2-block-12-risk-only",
+      "confirmation": {
+        "path": "confirmations/v2-block-12-risk-only-62a2220a6f96.schema2.json",
+        "sha256": "ffc1578140491f737e4a09aee81abb30f57becb24704eb2a218807f05c282a44"
+      },
+      "evaluator_output": {
+        "path": "evaluations/v2-block-12-risk-only-62a2220a6f96.json",
+        "sha256": "89c4fc950ea516f9a03d74d875129acef929291b8867fb6e1b1c1594d6b3eaa0"
+      }
+    },
+    {
+      "execution_id": "v2-block-12-small-first",
+      "confirmation": {
+        "path": "confirmations/v2-block-12-small-first-2cf444686be7.schema2.json",
+        "sha256": "edae1158932dfdec2d55e8867ebe3574bfb3f59bbe77d650f5466f4aebdab6f4"
+      },
+      "evaluator_output": {
+        "path": "evaluations/v2-block-12-small-first-2cf444686be7.json",
+        "sha256": "80219564c6736ff3004c79df47808ffd4a11b60b1f320acc100b0ae64216935f"
+      }
+    }
+  ],
+  "campaign_summary": {
+    "pair_count": 36,
+    "by_execution": [
+      {
+        "execution_id": "v2-block-01-random",
+        "campaign_coordinates": {
+          "block": 1,
+          "strategy": "random"
+        },
+        "validated_attributed_root_cause_ids": [
+          "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+        ]
+      },
+      {
+        "execution_id": "v2-block-01-risk-only",
+        "campaign_coordinates": {
+          "block": 1,
+          "strategy": "risk-only"
+        },
+        "validated_attributed_root_cause_ids": [
+          "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+        ]
+      },
+      {
+        "execution_id": "v2-block-01-small-first",
+        "campaign_coordinates": {
+          "block": 1,
+          "strategy": "small-first"
+        },
+        "validated_attributed_root_cause_ids": [
+          "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+        ]
+      },
+      {
+        "execution_id": "v2-block-02-random",
+        "campaign_coordinates": {
+          "block": 2,
+          "strategy": "random"
+        },
+        "validated_attributed_root_cause_ids": [
+          "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+        ]
+      },
+      {
+        "execution_id": "v2-block-02-risk-only",
+        "campaign_coordinates": {
+          "block": 2,
+          "strategy": "risk-only"
+        },
+        "validated_attributed_root_cause_ids": [
+          "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+        ]
+      },
+      {
+        "execution_id": "v2-block-02-small-first",
+        "campaign_coordinates": {
+          "block": 2,
+          "strategy": "small-first"
+        },
+        "validated_attributed_root_cause_ids": [
+          "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+        ]
+      },
+      {
+        "execution_id": "v2-block-03-random",
+        "campaign_coordinates": {
+          "block": 3,
+          "strategy": "random"
+        },
+        "validated_attributed_root_cause_ids": [
+          "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+        ]
+      },
+      {
+        "execution_id": "v2-block-03-risk-only",
+        "campaign_coordinates": {
+          "block": 3,
+          "strategy": "risk-only"
+        },
+        "validated_attributed_root_cause_ids": [
+          "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+        ]
+      },
+      {
+        "execution_id": "v2-block-03-small-first",
+        "campaign_coordinates": {
+          "block": 3,
+          "strategy": "small-first"
+        },
+        "validated_attributed_root_cause_ids": [
+          "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+        ]
+      },
+      {
+        "execution_id": "v2-block-04-random",
+        "campaign_coordinates": {
+          "block": 4,
+          "strategy": "random"
+        },
+        "validated_attributed_root_cause_ids": [
+          "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+        ]
+      },
+      {
+        "execution_id": "v2-block-04-risk-only",
+        "campaign_coordinates": {
+          "block": 4,
+          "strategy": "risk-only"
+        },
+        "validated_attributed_root_cause_ids": [
+          "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+        ]
+      },
+      {
+        "execution_id": "v2-block-04-small-first",
+        "campaign_coordinates": {
+          "block": 4,
+          "strategy": "small-first"
+        },
+        "validated_attributed_root_cause_ids": [
+          "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+        ]
+      },
+      {
+        "execution_id": "v2-block-05-random",
+        "campaign_coordinates": {
+          "block": 5,
+          "strategy": "random"
+        },
+        "validated_attributed_root_cause_ids": [
+          "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+        ]
+      },
+      {
+        "execution_id": "v2-block-05-risk-only",
+        "campaign_coordinates": {
+          "block": 5,
+          "strategy": "risk-only"
+        },
+        "validated_attributed_root_cause_ids": [
+          "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+        ]
+      },
+      {
+        "execution_id": "v2-block-05-small-first",
+        "campaign_coordinates": {
+          "block": 5,
+          "strategy": "small-first"
+        },
+        "validated_attributed_root_cause_ids": [
+          "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+        ]
+      },
+      {
+        "execution_id": "v2-block-06-random",
+        "campaign_coordinates": {
+          "block": 6,
+          "strategy": "random"
+        },
+        "validated_attributed_root_cause_ids": [
+          "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+        ]
+      },
+      {
+        "execution_id": "v2-block-06-risk-only",
+        "campaign_coordinates": {
+          "block": 6,
+          "strategy": "risk-only"
+        },
+        "validated_attributed_root_cause_ids": [
+          "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+        ]
+      },
+      {
+        "execution_id": "v2-block-06-small-first",
+        "campaign_coordinates": {
+          "block": 6,
+          "strategy": "small-first"
+        },
+        "validated_attributed_root_cause_ids": [
+          "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+        ]
+      },
+      {
+        "execution_id": "v2-block-07-random",
+        "campaign_coordinates": {
+          "block": 7,
+          "strategy": "random"
+        },
+        "validated_attributed_root_cause_ids": [
+          "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+        ]
+      },
+      {
+        "execution_id": "v2-block-07-risk-only",
+        "campaign_coordinates": {
+          "block": 7,
+          "strategy": "risk-only"
+        },
+        "validated_attributed_root_cause_ids": [
+          "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+        ]
+      },
+      {
+        "execution_id": "v2-block-07-small-first",
+        "campaign_coordinates": {
+          "block": 7,
+          "strategy": "small-first"
+        },
+        "validated_attributed_root_cause_ids": [
+          "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+        ]
+      },
+      {
+        "execution_id": "v2-block-08-random",
+        "campaign_coordinates": {
+          "block": 8,
+          "strategy": "random"
+        },
+        "validated_attributed_root_cause_ids": [
+          "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+        ]
+      },
+      {
+        "execution_id": "v2-block-08-risk-only",
+        "campaign_coordinates": {
+          "block": 8,
+          "strategy": "risk-only"
+        },
+        "validated_attributed_root_cause_ids": [
+          "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+        ]
+      },
+      {
+        "execution_id": "v2-block-08-small-first",
+        "campaign_coordinates": {
+          "block": 8,
+          "strategy": "small-first"
+        },
+        "validated_attributed_root_cause_ids": [
+          "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+        ]
+      },
+      {
+        "execution_id": "v2-block-09-random",
+        "campaign_coordinates": {
+          "block": 9,
+          "strategy": "random"
+        },
+        "validated_attributed_root_cause_ids": [
+          "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+        ]
+      },
+      {
+        "execution_id": "v2-block-09-risk-only",
+        "campaign_coordinates": {
+          "block": 9,
+          "strategy": "risk-only"
+        },
+        "validated_attributed_root_cause_ids": [
+          "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+        ]
+      },
+      {
+        "execution_id": "v2-block-09-small-first",
+        "campaign_coordinates": {
+          "block": 9,
+          "strategy": "small-first"
+        },
+        "validated_attributed_root_cause_ids": [
+          "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+        ]
+      },
+      {
+        "execution_id": "v2-block-10-random",
+        "campaign_coordinates": {
+          "block": 10,
+          "strategy": "random"
+        },
+        "validated_attributed_root_cause_ids": [
+          "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+        ]
+      },
+      {
+        "execution_id": "v2-block-10-risk-only",
+        "campaign_coordinates": {
+          "block": 10,
+          "strategy": "risk-only"
+        },
+        "validated_attributed_root_cause_ids": [
+          "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+        ]
+      },
+      {
+        "execution_id": "v2-block-10-small-first",
+        "campaign_coordinates": {
+          "block": 10,
+          "strategy": "small-first"
+        },
+        "validated_attributed_root_cause_ids": [
+          "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+        ]
+      },
+      {
+        "execution_id": "v2-block-11-random",
+        "campaign_coordinates": {
+          "block": 11,
+          "strategy": "random"
+        },
+        "validated_attributed_root_cause_ids": [
+          "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+        ]
+      },
+      {
+        "execution_id": "v2-block-11-risk-only",
+        "campaign_coordinates": {
+          "block": 11,
+          "strategy": "risk-only"
+        },
+        "validated_attributed_root_cause_ids": [
+          "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+        ]
+      },
+      {
+        "execution_id": "v2-block-11-small-first",
+        "campaign_coordinates": {
+          "block": 11,
+          "strategy": "small-first"
+        },
+        "validated_attributed_root_cause_ids": [
+          "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+        ]
+      },
+      {
+        "execution_id": "v2-block-12-random",
+        "campaign_coordinates": {
+          "block": 12,
+          "strategy": "random"
+        },
+        "validated_attributed_root_cause_ids": [
+          "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+        ]
+      },
+      {
+        "execution_id": "v2-block-12-risk-only",
+        "campaign_coordinates": {
+          "block": 12,
+          "strategy": "risk-only"
+        },
+        "validated_attributed_root_cause_ids": [
+          "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+        ]
+      },
+      {
+        "execution_id": "v2-block-12-small-first",
+        "campaign_coordinates": {
+          "block": 12,
+          "strategy": "small-first"
+        },
+        "validated_attributed_root_cause_ids": [
+          "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+        ]
+      }
+    ],
+    "unique_validated_root_cause_ids": [
+      "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+    ],
+    "unique_validated_root_cause_count": 1
+  }
+}

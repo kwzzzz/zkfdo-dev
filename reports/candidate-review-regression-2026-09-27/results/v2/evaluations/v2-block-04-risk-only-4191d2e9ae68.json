@@ -1,0 +1,117 @@
+{
+  "schema_version": 2,
+  "report_path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/candidate-review-regression-2026-09-27/results/.zkfdo-candidate-review-411fde99-c3f9-4424-bbaa-a7bc84b4354e.staging/evaluations/v2-block-04-risk-only-4191d2e9ae68.json",
+  "plan_id": "8b0489ea-7cfc-48b1-977d-3c813e3bcaa6",
+  "outcome_id": "6117ba02-6805-45de-be97-319f30c1a09f",
+  "strategy": "risk-only",
+  "target_count": 4,
+  "preparation_excluded_target_count": 0,
+  "manifest_exclusion_count": 6,
+  "planned_target_ids": [
+    "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+    "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+    "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+    "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377"
+  ],
+  "actual_process_start_target_ids": [
+    "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+    "sha256:c7216c1efd7084100b27458fdbf6f4a00d7f9ddb13c09ee485d4bcbfaa0c5a5c",
+    "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+    "sha256:46bff69377a67f20a7dd7f5fd4070fa92f97c88cb5d267d40a6fff6b2803e377"
+  ],
+  "status_counts": {
+    "bug_found": 1,
+    "no_counterexample": 2,
+    "not_started": 0,
+    "runner_failure": 0,
+    "timeout": 1
+  },
+  "known_defect_target_count": 2,
+  "known_defect_root_cause_count": 2,
+  "known_target_ranks": [
+    {
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "rank": 1,
+      "root_cause_ids": [
+        "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+      ]
+    },
+    {
+      "target_id": "sha256:39ece08d569693c46d9896a351d6ccd4228b5e9f1b4debb10b2346d4ae0eded5",
+      "rank": 3,
+      "root_cause_ids": [
+        "tangle-network/protocol-solidity/set-membership-zero-initialization"
+      ]
+    }
+  ],
+  "recall_at_k": [
+    {
+      "k": 1,
+      "retrieved_known_targets": 1,
+      "total_known_targets": 2,
+      "recall": 0.5
+    },
+    {
+      "k": 3,
+      "retrieved_known_targets": 2,
+      "total_known_targets": 2,
+      "recall": 1.0
+    },
+    {
+      "k": 4,
+      "retrieved_known_targets": 2,
+      "total_known_targets": 2,
+      "recall": 1.0
+    }
+  ],
+  "backend_bug_candidate_count": 1,
+  "preserved_counterexample_count": 1,
+  "reviewed_confirmation_count": 1,
+  "confirmed_project_defect_count": 0,
+  "confirmed_original_component_defect_count": 1,
+  "wrapper_only_confirmation_count": 0,
+  "reachability_unknown_confirmation_count": 0,
+  "evidence_origin_counts": {
+    "backend-execution": 1
+  },
+  "confirmed_project_root_causes": [],
+  "confirmed_original_component_root_causes": [
+    "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range"
+  ],
+  "detection_curve": [],
+  "original_component_detection_curve": [
+    {
+      "root_cause_id": "banyancomputer/hot-proofs-blake3-circom/check-depth-comparator-range",
+      "target_id": "sha256:b99bf2694b89536d1c7ca1ef97933456981930df93e7bfc08d0b61149a7bc496",
+      "run_id": "df75e3db-56c7-4949-83d1-d2bfebbca213",
+      "observed_by_seconds": 0.032839083,
+      "cumulative_confirmed_original_component_defects": 1
+    }
+  ],
+  "first_confirmed_defect_observed_by_seconds": null,
+  "first_confirmed_original_component_defect_observed_by_seconds": 0.032839083,
+  "timings": {
+    "preparation_seconds": 1.754529292,
+    "preparation_accounting": {
+      "inspection_seconds": 0.251417,
+      "snapshot_seconds": 0.012788583,
+      "structure_seconds": 0.4896125830000001,
+      "semantic_seconds": 0.145684873,
+      "legacy_seconds": 0.072833335,
+      "excluded_target_elapsed_seconds": 0.0,
+      "orchestration_overhead_seconds": 0.769192417
+    },
+    "planning_seconds": 0.02126275,
+    "fuzzing_scheduler_seconds": 37.744355541,
+    "evaluation_seconds": 0.030909,
+    "separate_phase_sum_seconds": 39.551056583
+  },
+  "limitations": [
+    "Recall@K uses the target as its unit and only manifest-annotated known-defect targets as its denominator; unlabeled targets are not safe negatives.",
+    "Original-component execution metrics require backend-execution evidence plus satisfied reviews of input preconditions, fixed-original constraints, and the pre-specified property violation; file existence and reviewer declarations are validated structurally, not independently proven.",
+    "Legacy project metrics retain their schema-1 meaning. A project record contributes to the original-component metric only when it also supplies the complete satisfied component review.",
+    "Static warnings, manual source review, known-defect annotations, crashes, and counterexample files do not contribute to execution-discovered defect curves.",
+    "Detection timestamps are scheduler completion upper bounds for linked runs, not exact discovery or human confirmation times; post-run review time is not part of the fuzzing budget.",
+    "Separate phase durations may have occurred in different invocations; their sum is accounting, not a single uninterrupted wall-clock measurement."
+  ]
+}

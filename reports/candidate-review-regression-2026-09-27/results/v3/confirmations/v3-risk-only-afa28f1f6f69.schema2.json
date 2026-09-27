@@ -1,0 +1,43 @@
+{
+  "schema_version": 2,
+  "confirmations": [
+    {
+      "run_id": "3aeddcd0-c608-4449-93c9-515d57d3e019",
+      "target_id": "sha256:593ebf069393e830a57a6cf4f611cee14562ae6b351e218495ea86b38530fd21",
+      "root_cause_id": "iden3/circomlib/decoder-unconstrained-one-hot-output",
+      "scope": "original-component",
+      "evidence_origin": "backend-execution",
+      "original_component_review": {
+        "input_preconditions": {
+          "verdict": "satisfied",
+          "evidence": [
+            "../../../../../datasets/contracts.controlled-v3-development.json",
+            "../../../../../runs/controlled-v3-development/pilot-2026-09-23/execution/execution-aa47e6bc-8901-443b-b921-7e7d0f664464/counterexample-candidates/0004/circuit.circom_VF1ZAmVHFu_counterexample.json"
+          ],
+          "note": "The predeclared input contract is satisfied."
+        },
+        "fixed_original_constraints": {
+          "verdict": "satisfied",
+          "evidence": [
+            "../../../../../runs/controlled-v3-development/pilot-2026-09-23/execution/execution-aa47e6bc-8901-443b-b921-7e7d0f664464/counterexample-candidates/0004/circuit.circom_VF1ZAmVHFu_counterexample.json",
+            "../../../../../runs/controlled-v3-development/pilot-2026-09-23/review-decoder-r1cs/circuit.r1cs"
+          ],
+          "note": "All constraints in the fixed target R1CS are satisfied."
+        },
+        "specified_property_violation": {
+          "verdict": "satisfied",
+          "evidence": [
+            "../../../../../datasets/contracts.controlled-v3-development.json",
+            "../../../../../runs/controlled-v3-development/pilot-2026-09-23/execution/execution-aa47e6bc-8901-443b-b921-7e7d0f664464/counterexample-candidates/0004/circuit.circom_VF1ZAmVHFu_counterexample.json"
+          ],
+          "note": "The predeclared property is violated."
+        }
+      },
+      "evidence": [
+        "../review-report.json",
+        "../../../inputs/v3-spec.json"
+      ],
+      "note": "Automated review validated the fixed candidate contract and cause binding."
+    }
+  ]
+}

@@ -11,6 +11,7 @@ use anyhow::{ensure, Context, Result};
 use chrono::{DateTime, Utc};
 use regex::Regex;
 use serde::{Deserialize, Serialize};
+use sha2::{Digest, Sha256};
 
 pub const STRUCTURAL_METRIC: &str = "root_ast_if_plus_while";
 
@@ -64,6 +65,9 @@ pub struct StructureProfile {
     pub size: Option<u64>,
     pub size_source: Option<String>,
     pub r1cs_path: Option<PathBuf>,
+    /// Raw artifact hash. Older frozen profiles predate this field and deserialize as None.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub r1cs_sha256: Option<String>,
     pub complexity: Option<u64>,
     pub metric: String,
     pub parameter_reflected: bool,
@@ -279,6 +283,7 @@ pub fn profile_target_with_ast(
     }
     let mut size = None;
     let mut r1cs_path = None;
+    let mut r1cs_sha256 = None;
     if compile.success {
         let parsed = (|| -> Result<u64> {
             let stem = entrypoint
@@ -297,6 +302,7 @@ pub fn profile_target_with_ast(
                 fs::read_to_string(&compile.stderr_path)?
             );
             let count = parse_constraint_count(&output)?;
+            r1cs_sha256 = Some(format!("{:x}", Sha256::digest(fs::read(&expected)?)));
             r1cs_path = Some(expected);
             Ok(count)
         })();
@@ -329,6 +335,7 @@ pub fn profile_target_with_ast(
         size,
         size_source: size.map(|_| "Circom R1CS compiler summary: non-linear constraints + linear constraints under recorded compile settings".to_owned()),
         r1cs_path,
+        r1cs_sha256,
         complexity,
         metric: STRUCTURAL_METRIC.to_owned(),
         parameter_reflected: false,

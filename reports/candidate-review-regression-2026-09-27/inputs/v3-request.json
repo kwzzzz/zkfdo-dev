@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "request_id": "candidate-review-regression-v3",
+  "kind": "backend-candidates",
+  "review_specs": [
+    {
+      "path": "v3-spec.json",
+      "sha256": "3d27ae23465e5cd350ce22a694ac9e3b974d20ab66959a2bc52bc8ff156b9ad7"
+    }
+  ],
+  "executions": [
+    {
+      "execution_id": "v3-risk-only",
+      "campaign_coordinates": null,
+      "plan": {
+        "path": "../../controlled-v3-preflight-2026-09-23/evidence/plan.json",
+        "sha256": "cf4e11f82b5dd2fc5fbc608cbe8b9c9b758c4d4ee13103d79c8230193a8e781e"
+      },
+      "outcome": {
+        "path": "../../controlled-v3-pilot-2026-09-23/evidence/outcome.json",
+        "sha256": "42049cf693223a328598cd82b4c3e6bbb08519c5b9d0d1459b4fe7e4e7226a4d"
+      }
+    }
+  ],
+  "candidate_adapter": {
+    "id": "zkfuzz-counterexample-v1",
+    "implementation_sha256": "3a266f8bf9d7a06fc740ad32e0d1e1fcefd87794ca649620c55a76751a3dced2"
+  },
+  "candidate_policy": "all-outcome-candidates",
+  "unmatched_candidate_policy": "record-unreviewed",
+  "qualification_bundles": []
+}
