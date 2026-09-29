@@ -1,0 +1,95 @@
+{
+  "case": "zkemail-rsa-test",
+  "entrypoint": "packages/circuits/tests/test-circuits/rsa-test.circom",
+  "discovery_complete": false,
+  "unsupported_constructs": 496,
+  "call_sites": 206,
+  "unique_pieces": 4,
+  "library_instances_not_pieces": 8,
+  "ground_truth_pieces": [
+    "FpMul(121, 17)"
+  ],
+  "prepared": {
+    "random": {
+      "path": "runs/dev-rq1-pilot-2026-09-29/zkemail-rsa-test/prepared/random/prepare-2b81538c-3925-4394-9b94-d3dd72dc8644/prepared.json",
+      "sha256": "3a5fc521da4a0f36fc0cd8bc5f9f950f402808163a1a1d833e0c343731df046e",
+      "eligible": 0,
+      "total": 4,
+      "eligible_ground_truth": [],
+      "excluded": {
+        "packages/circuits/lib/bigint.circom::BigLessThan(121, 17)": [
+          "preparation failed: identity dependency is outside project root: prefix not found"
+        ],
+        "packages/circuits/lib/fp.circom::FpMul(121, 17)": [
+          "preparation failed: identity dependency is outside project root: prefix not found",
+          "unsupported inspection: component tCheck = CheckCarryToZero(n, n + n + log_ceil ( k ) + 2, 2 * k - 1): template parameters are not concrete: unknown compile-time value log_ceil",
+          "unsupported inspection: var ab [ 200 ] = poly_interp ( 2 * k - 1 , v_ab ): compile-time variable arrays are unsupported by this MVP"
+        ],
+        "packages/circuits/lib/rsa.circom::FpPow65537Mod(121, 17)": [
+          "preparation failed: identity dependency is outside project root: prefix not found",
+          "unsupported inspection: component tCheck = CheckCarryToZero(n, n + n + log_ceil ( k ) + 2, 2 * k - 1): template parameters are not concrete: unknown compile-time value log_ceil",
+          "unsupported inspection: var ab [ 200 ] = poly_interp ( 2 * k - 1 , v_ab ): compile-time variable arrays are unsupported by this MVP"
+        ],
+        "packages/circuits/lib/rsa.circom::RSAPad(121, 17)": [
+          "preparation failed: identity dependency is outside project root: prefix not found",
+          "unsupported inspection: component modulusZero[...]: component array length is not concrete: unsupported expression \\ 8",
+          "unsupported inspection: modulusZero[...]: component array index is not concrete: unknown compile-time value idx"
+        ]
+      }
+    },
+    "small-first": {
+      "path": "runs/dev-rq1-pilot-2026-09-29/zkemail-rsa-test/prepared/small-first/prepare-d7a0ee78-0dd6-4743-a7e9-2980f5a90beb/prepared.json",
+      "sha256": "16f80ee3d3b6a8a2105ea109b0f6796734f6be2c258042d160fbf407633c79cc",
+      "eligible": 0,
+      "total": 4,
+      "eligible_ground_truth": [],
+      "excluded": {
+        "packages/circuits/lib/bigint.circom::BigLessThan(121, 17)": [
+          "preparation failed: identity dependency is outside project root: prefix not found"
+        ],
+        "packages/circuits/lib/fp.circom::FpMul(121, 17)": [
+          "preparation failed: identity dependency is outside project root: prefix not found",
+          "unsupported inspection: component tCheck = CheckCarryToZero(n, n + n + log_ceil ( k ) + 2, 2 * k - 1): template parameters are not concrete: unknown compile-time value log_ceil",
+          "unsupported inspection: var ab [ 200 ] = poly_interp ( 2 * k - 1 , v_ab ): compile-time variable arrays are unsupported by this MVP"
+        ],
+        "packages/circuits/lib/rsa.circom::FpPow65537Mod(121, 17)": [
+          "preparation failed: identity dependency is outside project root: prefix not found",
+          "unsupported inspection: component tCheck = CheckCarryToZero(n, n + n + log_ceil ( k ) + 2, 2 * k - 1): template parameters are not concrete: unknown compile-time value log_ceil",
+          "unsupported inspection: var ab [ 200 ] = poly_interp ( 2 * k - 1 , v_ab ): compile-time variable arrays are unsupported by this MVP"
+        ],
+        "packages/circuits/lib/rsa.circom::RSAPad(121, 17)": [
+          "preparation failed: identity dependency is outside project root: prefix not found",
+          "unsupported inspection: component modulusZero[...]: component array length is not concrete: unsupported expression \\ 8",
+          "unsupported inspection: modulusZero[...]: component array index is not concrete: unknown compile-time value idx"
+        ]
+      }
+    },
+    "path-order": {
+      "path": "runs/dev-rq1-pilot-2026-09-29/zkemail-rsa-test/prepared/path-order/prepare-2ccc5f10-cb4d-42ee-b731-a195a206337a/prepared.json",
+      "sha256": "f2f305074a550cc9df30676b6fe5d35bfff01b6287bc89e669ed8451f3ba990a",
+      "eligible": 0,
+      "total": 4,
+      "eligible_ground_truth": [],
+      "excluded": {
+        "packages/circuits/lib/bigint.circom::BigLessThan(121, 17)": [
+          "preparation failed: identity dependency is outside project root: prefix not found"
+        ],
+        "packages/circuits/lib/fp.circom::FpMul(121, 17)": [
+          "preparation failed: identity dependency is outside project root: prefix not found",
+          "unsupported inspection: component tCheck = CheckCarryToZero(n, n + n + log_ceil ( k ) + 2, 2 * k - 1): template parameters are not concrete: unknown compile-time value log_ceil",
+          "unsupported inspection: var ab [ 200 ] = poly_interp ( 2 * k - 1 , v_ab ): compile-time variable arrays are unsupported by this MVP"
+        ],
+        "packages/circuits/lib/rsa.circom::FpPow65537Mod(121, 17)": [
+          "preparation failed: identity dependency is outside project root: prefix not found",
+          "unsupported inspection: component tCheck = CheckCarryToZero(n, n + n + log_ceil ( k ) + 2, 2 * k - 1): template parameters are not concrete: unknown compile-time value log_ceil",
+          "unsupported inspection: var ab [ 200 ] = poly_interp ( 2 * k - 1 , v_ab ): compile-time variable arrays are unsupported by this MVP"
+        ],
+        "packages/circuits/lib/rsa.circom::RSAPad(121, 17)": [
+          "preparation failed: identity dependency is outside project root: prefix not found",
+          "unsupported inspection: component modulusZero[...]: component array length is not concrete: unsupported expression \\ 8",
+          "unsupported inspection: modulusZero[...]: component array index is not concrete: unknown compile-time value idx"
+        ]
+      }
+    }
+  }
+}

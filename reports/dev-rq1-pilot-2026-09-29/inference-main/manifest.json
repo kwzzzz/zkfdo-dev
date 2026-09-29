@@ -1,0 +1,542 @@
+{
+  "schema_version": 2,
+  "name": "dev-rq1-pilot-inference-main",
+  "description": "Unique instances reachable from the case entrypoint; development pilot.",
+  "targets": [
+    {
+      "label": "inference-main src/calculatedScoreFraction.circom::CalculatedScoreFraction(40)",
+      "project": "inference-labs-inc/subnet-2-circom",
+      "revision": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+      "project_root": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+      "entrypoint": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree/zkfdo-targets/src__calculatedScoreFraction__CalculatedScoreFraction_40.circom",
+      "template_name": "CalculatedScoreFraction",
+      "concrete_parameters": [
+        "40"
+      ],
+      "prime": "bn128",
+      "compile_args": [
+        "-l",
+        "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies/circomlib"
+      ],
+      "mode": "direct",
+      "input_assumptions": "Development pilot piece without a specified input contract.",
+      "input_contract": {
+        "kind": "field_only"
+      },
+      "known_defects": []
+    },
+    {
+      "label": "inference-main src/clampTensor.circom::AssertBit()",
+      "project": "inference-labs-inc/subnet-2-circom",
+      "revision": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+      "project_root": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+      "entrypoint": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree/zkfdo-targets/src__clampTensor__AssertBit.circom",
+      "template_name": "AssertBit",
+      "concrete_parameters": [],
+      "prime": "bn128",
+      "compile_args": [
+        "-l",
+        "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies/circomlib"
+      ],
+      "mode": "direct",
+      "input_assumptions": "Development pilot piece without a specified input contract.",
+      "input_contract": {
+        "kind": "field_only"
+      },
+      "known_defects": []
+    },
+    {
+      "label": "inference-main src/clampTensor.circom::Clamp(40)",
+      "project": "inference-labs-inc/subnet-2-circom",
+      "revision": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+      "project_root": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+      "entrypoint": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree/zkfdo-targets/src__clampTensor__Clamp_40.circom",
+      "template_name": "Clamp",
+      "concrete_parameters": [
+        "40"
+      ],
+      "prime": "bn128",
+      "compile_args": [
+        "-l",
+        "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies/circomlib"
+      ],
+      "mode": "direct",
+      "input_assumptions": "Development pilot piece without a specified input contract.",
+      "input_contract": {
+        "kind": "field_only"
+      },
+      "known_defects": []
+    },
+    {
+      "label": "inference-main src/clampTensor.circom::LessThan(120)",
+      "project": "inference-labs-inc/subnet-2-circom",
+      "revision": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+      "project_root": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+      "entrypoint": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree/zkfdo-targets/src__clampTensor__LessThan_120.circom",
+      "template_name": "LessThan",
+      "concrete_parameters": [
+        "120"
+      ],
+      "prime": "bn128",
+      "compile_args": [
+        "-l",
+        "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies/circomlib"
+      ],
+      "mode": "direct",
+      "input_assumptions": "Development pilot piece without a specified input contract.",
+      "input_contract": {
+        "kind": "field_only"
+      },
+      "known_defects": []
+    },
+    {
+      "label": "inference-main src/clampTensor.circom::LessThan(40)",
+      "project": "inference-labs-inc/subnet-2-circom",
+      "revision": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+      "project_root": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+      "entrypoint": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree/zkfdo-targets/src__clampTensor__LessThan_40.circom",
+      "template_name": "LessThan",
+      "concrete_parameters": [
+        "40"
+      ],
+      "prime": "bn128",
+      "compile_args": [
+        "-l",
+        "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies/circomlib"
+      ],
+      "mode": "direct",
+      "input_assumptions": "Development pilot piece without a specified input contract.",
+      "input_contract": {
+        "kind": "field_only"
+      },
+      "known_defects": []
+    },
+    {
+      "label": "inference-main src/clampTensor.circom::LessThan(80)",
+      "project": "inference-labs-inc/subnet-2-circom",
+      "revision": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+      "project_root": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+      "entrypoint": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree/zkfdo-targets/src__clampTensor__LessThan_80.circom",
+      "template_name": "LessThan",
+      "concrete_parameters": [
+        "80"
+      ],
+      "prime": "bn128",
+      "compile_args": [
+        "-l",
+        "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies/circomlib"
+      ],
+      "mode": "direct",
+      "input_assumptions": "Development pilot piece without a specified input contract.",
+      "input_contract": {
+        "kind": "field_only"
+      },
+      "known_defects": []
+    },
+    {
+      "label": "inference-main src/clampTensor.circom::Num2Bits(121)",
+      "project": "inference-labs-inc/subnet-2-circom",
+      "revision": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+      "project_root": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+      "entrypoint": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree/zkfdo-targets/src__clampTensor__Num2Bits_121.circom",
+      "template_name": "Num2Bits",
+      "concrete_parameters": [
+        "121"
+      ],
+      "prime": "bn128",
+      "compile_args": [
+        "-l",
+        "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies/circomlib"
+      ],
+      "mode": "direct",
+      "input_assumptions": "Development pilot piece without a specified input contract.",
+      "input_contract": {
+        "kind": "field_only"
+      },
+      "known_defects": []
+    },
+    {
+      "label": "inference-main src/clampTensor.circom::Num2Bits(41)",
+      "project": "inference-labs-inc/subnet-2-circom",
+      "revision": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+      "project_root": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+      "entrypoint": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree/zkfdo-targets/src__clampTensor__Num2Bits_41.circom",
+      "template_name": "Num2Bits",
+      "concrete_parameters": [
+        "41"
+      ],
+      "prime": "bn128",
+      "compile_args": [
+        "-l",
+        "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies/circomlib"
+      ],
+      "mode": "direct",
+      "input_assumptions": "Development pilot piece without a specified input contract.",
+      "input_contract": {
+        "kind": "field_only"
+      },
+      "known_defects": []
+    },
+    {
+      "label": "inference-main src/clampTensor.circom::Num2Bits(81)",
+      "project": "inference-labs-inc/subnet-2-circom",
+      "revision": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+      "project_root": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+      "entrypoint": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree/zkfdo-targets/src__clampTensor__Num2Bits_81.circom",
+      "template_name": "Num2Bits",
+      "concrete_parameters": [
+        "81"
+      ],
+      "prime": "bn128",
+      "compile_args": [
+        "-l",
+        "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies/circomlib"
+      ],
+      "mode": "direct",
+      "input_assumptions": "Development pilot piece without a specified input contract.",
+      "input_contract": {
+        "kind": "field_only"
+      },
+      "known_defects": []
+    },
+    {
+      "label": "inference-main src/distanceFromScore.circom::DistanceFromScore(40)",
+      "project": "inference-labs-inc/subnet-2-circom",
+      "revision": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+      "project_root": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+      "entrypoint": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree/zkfdo-targets/src__distanceFromScore__DistanceFromScore_40.circom",
+      "template_name": "DistanceFromScore",
+      "concrete_parameters": [
+        "40"
+      ],
+      "prime": "bn128",
+      "compile_args": [
+        "-l",
+        "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies/circomlib"
+      ],
+      "mode": "direct",
+      "input_assumptions": "Development pilot piece without a specified input contract.",
+      "input_contract": {
+        "kind": "field_only"
+      },
+      "known_defects": []
+    },
+    {
+      "label": "inference-main src/finalNewScore.circom::FinalNewScore()",
+      "project": "inference-labs-inc/subnet-2-circom",
+      "revision": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+      "project_root": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+      "entrypoint": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree/zkfdo-targets/src__finalNewScore__FinalNewScore.circom",
+      "template_name": "FinalNewScore",
+      "concrete_parameters": [],
+      "prime": "bn128",
+      "compile_args": [
+        "-l",
+        "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies/circomlib"
+      ],
+      "mode": "direct",
+      "input_assumptions": "Development pilot piece without a specified input contract.",
+      "input_contract": {
+        "kind": "field_only"
+      },
+      "known_defects": []
+    },
+    {
+      "label": "inference-main src/integerDivision.circom::IntDiv(120)",
+      "project": "inference-labs-inc/subnet-2-circom",
+      "revision": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+      "project_root": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+      "entrypoint": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree/zkfdo-targets/src__integerDivision__IntDiv_120.circom",
+      "template_name": "IntDiv",
+      "concrete_parameters": [
+        "120"
+      ],
+      "prime": "bn128",
+      "compile_args": [
+        "-l",
+        "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies/circomlib"
+      ],
+      "mode": "direct",
+      "input_assumptions": "Development pilot piece without a specified input contract.",
+      "input_contract": {
+        "kind": "field_only"
+      },
+      "known_defects": []
+    },
+    {
+      "label": "inference-main src/integerDivision.circom::IntDiv(40)",
+      "project": "inference-labs-inc/subnet-2-circom",
+      "revision": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+      "project_root": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+      "entrypoint": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree/zkfdo-targets/src__integerDivision__IntDiv_40.circom",
+      "template_name": "IntDiv",
+      "concrete_parameters": [
+        "40"
+      ],
+      "prime": "bn128",
+      "compile_args": [
+        "-l",
+        "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies/circomlib"
+      ],
+      "mode": "direct",
+      "input_assumptions": "Development pilot piece without a specified input contract.",
+      "input_contract": {
+        "kind": "field_only"
+      },
+      "known_defects": []
+    },
+    {
+      "label": "inference-main src/integerDivision.circom::IntDiv(80)",
+      "project": "inference-labs-inc/subnet-2-circom",
+      "revision": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+      "project_root": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+      "entrypoint": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree/zkfdo-targets/src__integerDivision__IntDiv_80.circom",
+      "template_name": "IntDiv",
+      "concrete_parameters": [
+        "80"
+      ],
+      "prime": "bn128",
+      "compile_args": [
+        "-l",
+        "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies/circomlib"
+      ],
+      "mode": "direct",
+      "input_assumptions": "Development pilot piece without a specified input contract.",
+      "input_contract": {
+        "kind": "field_only"
+      },
+      "known_defects": []
+    },
+    {
+      "label": "inference-main src/integerDivision.circom::IsZero()",
+      "project": "inference-labs-inc/subnet-2-circom",
+      "revision": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+      "project_root": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+      "entrypoint": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree/zkfdo-targets/src__integerDivision__IsZero.circom",
+      "template_name": "IsZero",
+      "concrete_parameters": [],
+      "prime": "bn128",
+      "compile_args": [
+        "-l",
+        "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies/circomlib"
+      ],
+      "mode": "direct",
+      "input_assumptions": "Development pilot piece without a specified input contract.",
+      "input_contract": {
+        "kind": "field_only"
+      },
+      "known_defects": []
+    },
+    {
+      "label": "inference-main src/rateOfChange.circom::RateOfChange()",
+      "project": "inference-labs-inc/subnet-2-circom",
+      "revision": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+      "project_root": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+      "entrypoint": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree/zkfdo-targets/src__rateOfChange__RateOfChange.circom",
+      "template_name": "RateOfChange",
+      "concrete_parameters": [],
+      "prime": "bn128",
+      "compile_args": [
+        "-l",
+        "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies/circomlib"
+      ],
+      "mode": "direct",
+      "input_assumptions": "Development pilot piece without a specified input contract.",
+      "input_contract": {
+        "kind": "field_only"
+      },
+      "known_defects": []
+    },
+    {
+      "label": "inference-main src/responseTimeMetric.circom::ResponseTimeMetric(40)",
+      "project": "inference-labs-inc/subnet-2-circom",
+      "revision": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+      "project_root": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+      "entrypoint": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree/zkfdo-targets/src__responseTimeMetric__ResponseTimeMetric_40.circom",
+      "template_name": "ResponseTimeMetric",
+      "concrete_parameters": [
+        "40"
+      ],
+      "prime": "bn128",
+      "compile_args": [
+        "-l",
+        "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies/circomlib"
+      ],
+      "mode": "direct",
+      "input_assumptions": "Development pilot piece without a specified input contract.",
+      "input_contract": {
+        "kind": "field_only"
+      },
+      "known_defects": []
+    },
+    {
+      "label": "inference-main src/responseTimeMetric.circom::ScoringFunction(40)",
+      "project": "inference-labs-inc/subnet-2-circom",
+      "revision": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+      "project_root": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+      "entrypoint": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree/zkfdo-targets/src__responseTimeMetric__ScoringFunction_40.circom",
+      "template_name": "ScoringFunction",
+      "concrete_parameters": [
+        "40"
+      ],
+      "prime": "bn128",
+      "compile_args": [
+        "-l",
+        "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies/circomlib"
+      ],
+      "mode": "direct",
+      "input_assumptions": "Development pilot piece without a specified input contract.",
+      "input_contract": {
+        "kind": "field_only"
+      },
+      "known_defects": []
+    },
+    {
+      "label": "inference-main src/responseTimeNormalized.circom::ResponseTimeNormalized(40)",
+      "project": "inference-labs-inc/subnet-2-circom",
+      "revision": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+      "project_root": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+      "entrypoint": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree/zkfdo-targets/src__responseTimeNormalized__ResponseTimeNormalized_40.circom",
+      "template_name": "ResponseTimeNormalized",
+      "concrete_parameters": [
+        "40"
+      ],
+      "prime": "bn128",
+      "compile_args": [
+        "-l",
+        "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies/circomlib"
+      ],
+      "mode": "direct",
+      "input_assumptions": "Development pilot piece without a specified input contract.",
+      "input_contract": {
+        "kind": "field_only"
+      },
+      "known_defects": []
+    },
+    {
+      "label": "inference-main src/subtractTensor.circom::Subtract()",
+      "project": "inference-labs-inc/subnet-2-circom",
+      "revision": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+      "project_root": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+      "entrypoint": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree/zkfdo-targets/src__subtractTensor__Subtract.circom",
+      "template_name": "Subtract",
+      "concrete_parameters": [],
+      "prime": "bn128",
+      "compile_args": [
+        "-l",
+        "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies/circomlib"
+      ],
+      "mode": "direct",
+      "input_assumptions": "Development pilot piece without a specified input contract.",
+      "input_contract": {
+        "kind": "field_only"
+      },
+      "known_defects": []
+    },
+    {
+      "label": "inference-main src/where.circom::Where()",
+      "project": "inference-labs-inc/subnet-2-circom",
+      "revision": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+      "project_root": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+      "entrypoint": "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree/zkfdo-targets/src__where__Where.circom",
+      "template_name": "Where",
+      "concrete_parameters": [],
+      "prime": "bn128",
+      "compile_args": [
+        "-l",
+        "../../../runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies/circomlib"
+      ],
+      "mode": "direct",
+      "input_assumptions": "Development pilot piece without a specified input contract.",
+      "input_contract": {
+        "kind": "field_only"
+      },
+      "known_defects": []
+    }
+  ],
+  "exclusions": []
+}

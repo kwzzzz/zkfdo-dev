@@ -1,0 +1,116 @@
+{
+  "schema_version": 2,
+  "name": "dev-rq1-pilot-zkemail-rsa-test",
+  "description": "Unique instances reachable from the case entrypoint; development pilot.",
+  "targets": [
+    {
+      "label": "zkemail-rsa-test packages/circuits/lib/bigint.circom::BigLessThan(121, 17)",
+      "project": "zkemail/zk-email-verify",
+      "revision": "fc9949763858ca363a73a2764d9c1d26ef227478",
+      "project_root": "../../../runs/dev-rq1-pilot-2026-09-29/zkemail-rsa-test/tree",
+      "entrypoint": "../../../runs/dev-rq1-pilot-2026-09-29/zkemail-rsa-test/tree/zkfdo-targets/packages__circuits__lib__bigint__BigLessThan_121_17.circom",
+      "template_name": "BigLessThan",
+      "concrete_parameters": [
+        "121",
+        "17"
+      ],
+      "prime": "bn128",
+      "compile_args": [
+        "-l",
+        "../../../runs/dev-rq1-pilot-2026-09-29/zkemail-rsa-test/tree",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies/circomlib"
+      ],
+      "mode": "direct",
+      "input_assumptions": "Development pilot piece without a specified input contract.",
+      "input_contract": {
+        "kind": "field_only"
+      },
+      "known_defects": []
+    },
+    {
+      "label": "zkemail-rsa-test packages/circuits/lib/fp.circom::FpMul(121, 17)",
+      "project": "zkemail/zk-email-verify",
+      "revision": "fc9949763858ca363a73a2764d9c1d26ef227478",
+      "project_root": "../../../runs/dev-rq1-pilot-2026-09-29/zkemail-rsa-test/tree",
+      "entrypoint": "../../../runs/dev-rq1-pilot-2026-09-29/zkemail-rsa-test/tree/zkfdo-targets/packages__circuits__lib__fp__FpMul_121_17.circom",
+      "template_name": "FpMul",
+      "concrete_parameters": [
+        "121",
+        "17"
+      ],
+      "prime": "bn128",
+      "compile_args": [
+        "-l",
+        "../../../runs/dev-rq1-pilot-2026-09-29/zkemail-rsa-test/tree",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies/circomlib"
+      ],
+      "mode": "direct",
+      "input_assumptions": "Development pilot piece without a specified input contract.",
+      "input_contract": {
+        "kind": "field_only"
+      },
+      "known_defects": []
+    },
+    {
+      "label": "zkemail-rsa-test packages/circuits/lib/rsa.circom::FpPow65537Mod(121, 17)",
+      "project": "zkemail/zk-email-verify",
+      "revision": "fc9949763858ca363a73a2764d9c1d26ef227478",
+      "project_root": "../../../runs/dev-rq1-pilot-2026-09-29/zkemail-rsa-test/tree",
+      "entrypoint": "../../../runs/dev-rq1-pilot-2026-09-29/zkemail-rsa-test/tree/zkfdo-targets/packages__circuits__lib__rsa__FpPow65537Mod_121_17.circom",
+      "template_name": "FpPow65537Mod",
+      "concrete_parameters": [
+        "121",
+        "17"
+      ],
+      "prime": "bn128",
+      "compile_args": [
+        "-l",
+        "../../../runs/dev-rq1-pilot-2026-09-29/zkemail-rsa-test/tree",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies/circomlib"
+      ],
+      "mode": "direct",
+      "input_assumptions": "Development pilot piece without a specified input contract.",
+      "input_contract": {
+        "kind": "field_only"
+      },
+      "known_defects": []
+    },
+    {
+      "label": "zkemail-rsa-test packages/circuits/lib/rsa.circom::RSAPad(121, 17)",
+      "project": "zkemail/zk-email-verify",
+      "revision": "fc9949763858ca363a73a2764d9c1d26ef227478",
+      "project_root": "../../../runs/dev-rq1-pilot-2026-09-29/zkemail-rsa-test/tree",
+      "entrypoint": "../../../runs/dev-rq1-pilot-2026-09-29/zkemail-rsa-test/tree/zkfdo-targets/packages__circuits__lib__rsa__RSAPad_121_17.circom",
+      "template_name": "RSAPad",
+      "concrete_parameters": [
+        "121",
+        "17"
+      ],
+      "prime": "bn128",
+      "compile_args": [
+        "-l",
+        "../../../runs/dev-rq1-pilot-2026-09-29/zkemail-rsa-test/tree",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies",
+        "-l",
+        "../../../.external/zkbugs/dataset/circom/dependencies/circomlib"
+      ],
+      "mode": "direct",
+      "input_assumptions": "Development pilot piece without a specified input contract.",
+      "input_contract": {
+        "kind": "field_only"
+      },
+      "known_defects": []
+    }
+  ],
+  "exclusions": []
+}

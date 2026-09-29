@@ -1,0 +1,47 @@
+{
+  "case": "inference-main",
+  "entrypoint": "src/circuit.circom",
+  "discovery_complete": true,
+  "unsupported_constructs": 0,
+  "call_sites": 2576,
+  "unique_pieces": 21,
+  "ground_truth_pieces": [
+    "Clamp(40)",
+    "Subtract()"
+  ],
+  "prepared": {
+    "random": {
+      "path": "runs/dev-rq1-pilot-2026-09-29/inference-main/prepared/random/prepare-39ed98f9-b169-4350-858b-00f200ec363d/prepared.json",
+      "sha256": "a4688bf973b00307d70d650468da75dbe6d6c74c207bd8ce0dc276c1454a2887",
+      "eligible": 21,
+      "total": 21,
+      "eligible_ground_truth": [
+        "Clamp(40)",
+        "Subtract()"
+      ],
+      "excluded": {}
+    },
+    "small-first": {
+      "path": "runs/dev-rq1-pilot-2026-09-29/inference-main/prepared/small-first/prepare-099c7c89-5866-43fc-9e72-49beac54420d/prepared.json",
+      "sha256": "da6b439618f1250c9d55cf6319dc6a04cc10ae251c87bbe7215cacd31b244122",
+      "eligible": 21,
+      "total": 21,
+      "eligible_ground_truth": [
+        "Clamp(40)",
+        "Subtract()"
+      ],
+      "excluded": {}
+    },
+    "path-order": {
+      "path": "runs/dev-rq1-pilot-2026-09-29/inference-main/prepared/path-order/prepare-aec7f9c3-ad6e-495f-9bca-20512ba6b0c9/prepared.json",
+      "sha256": "cfc8dac0911de616956dbb5376d42d9428ddfaa6b2bac3f019363f0f47805f27",
+      "eligible": 21,
+      "total": 21,
+      "eligible_ground_truth": [
+        "Clamp(40)",
+        "Subtract()"
+      ],
+      "excluded": {}
+    }
+  }
+}
