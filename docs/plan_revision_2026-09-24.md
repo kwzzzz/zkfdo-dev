@@ -305,7 +305,7 @@ B1 설계 초안 ─► T4 검토 엔진·개발용 주입(제외 스냅샷 프�
 | T4c | 완료 (2026-09-27) | miiz | 주입 도구·unique-propagation verifier. O1·O2·O5 qualified(inference), O3·O4는 도달 entrypoint가 없어 unresolved(12개 기준 통과). 발견 사항과 B2 준비 과제는 [보고서](../reports/dev-injection-2026-09-27/README.md) |
 | P1 | 완료 (2026-09-27) | miiz | 개발용 순위 파일럿 45회. O1만 탐지, 위험 기반 전략의 이점은 주입이 바꾼 특징 때문. 부족 조건 27/45 실패. 엔진 결속 결함 수정 |
 | R0 | 제안 (2026-09-27) | miiz | [계획 개정 제안](plan_revision_2026-09-27.md). RQ1 규모 한계, RQ2 순위 효과를 실제 결함으로 시험, B 보류. 지도교수 논의 후 확정 |
-| P2 | 진행 중 (2026-09-29) | miiz | 개발용 RQ1 파일럿: 개발 노출 실제 결함으로 통째 대 분할 비교([계획 개정 제안](plan_revision_2026-09-27.md) P2) |
+| P2 | 완료 (2026-09-29) | miiz | 개발용 RQ1 파일럿: inference는 분할만 두 결함을 찾음, zk-email은 두 방식 모두 못 찾음([보고서](../reports/dev-rq1-pilot-2026-09-29/README.md)) |
 | T5 | 완료 (2026-09-26 확인) | miiz | cost-aware(휴리스틱) 유지 확정, schema 2 `ties` 검증 |
 | T6a | 완료 (2026-09-26) | miiz | 탐색·익명 호출·컴파일 재사용·도구 고정 |
 | T6 | 대기 | | T6 풀 프로젝트만. 결함을 주입하지 않은 원본으로 feasibility와 비용 보정 |

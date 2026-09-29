@@ -1,0 +1,440 @@
+{
+  "schema_version": 1,
+  "rows": [
+    {
+      "case": "inference-main",
+      "lane": "whole",
+      "block": 1,
+      "found": false,
+      "found_at_seconds": null,
+      "generations_completed": 0,
+      "pieces_started": null,
+      "pieces_planned": null,
+      "ground_truth": null
+    },
+    {
+      "case": "inference-main",
+      "lane": "whole",
+      "block": 2,
+      "found": false,
+      "found_at_seconds": null,
+      "generations_completed": 0,
+      "pieces_started": null,
+      "pieces_planned": null,
+      "ground_truth": null
+    },
+    {
+      "case": "inference-main",
+      "lane": "whole",
+      "block": 3,
+      "found": false,
+      "found_at_seconds": null,
+      "generations_completed": 0,
+      "pieces_started": null,
+      "pieces_planned": null,
+      "ground_truth": null
+    },
+    {
+      "case": "inference-main",
+      "lane": "random",
+      "block": 1,
+      "found": true,
+      "found_at_seconds": 60.054,
+      "generations_completed": null,
+      "pieces_started": 21,
+      "pieces_planned": 21,
+      "ground_truth": {
+        "Subtract()": {
+          "rank": 3,
+          "status": "bug_found",
+          "completed_at_seconds": 60.054,
+          "wall_seconds": 0.03
+        },
+        "Clamp(40)": {
+          "rank": 20,
+          "status": "bug_found",
+          "completed_at_seconds": 206.094,
+          "wall_seconds": 0.031
+        }
+      }
+    },
+    {
+      "case": "inference-main",
+      "lane": "random",
+      "block": 2,
+      "found": true,
+      "found_at_seconds": 197.754,
+      "generations_completed": null,
+      "pieces_started": 21,
+      "pieces_planned": 21,
+      "ground_truth": {
+        "Subtract()": {
+          "rank": 17,
+          "status": "bug_found",
+          "completed_at_seconds": 197.754,
+          "wall_seconds": 0.03
+        },
+        "Clamp(40)": {
+          "rank": 20,
+          "status": "bug_found",
+          "completed_at_seconds": 202.376,
+          "wall_seconds": 0.035
+        }
+      }
+    },
+    {
+      "case": "inference-main",
+      "lane": "random",
+      "block": 3,
+      "found": true,
+      "found_at_seconds": 203.256,
+      "generations_completed": null,
+      "pieces_started": 21,
+      "pieces_planned": 21,
+      "ground_truth": {
+        "Subtract()": {
+          "rank": 20,
+          "status": "bug_found",
+          "completed_at_seconds": 203.256,
+          "wall_seconds": 0.035
+        },
+        "Clamp(40)": {
+          "rank": 21,
+          "status": "bug_found",
+          "completed_at_seconds": 203.293,
+          "wall_seconds": 0.035
+        }
+      }
+    },
+    {
+      "case": "inference-main",
+      "lane": "small-first",
+      "block": 1,
+      "found": true,
+      "found_at_seconds": 1.521,
+      "generations_completed": null,
+      "pieces_started": 21,
+      "pieces_planned": 21,
+      "ground_truth": {
+        "Subtract()": {
+          "rank": 2,
+          "status": "bug_found",
+          "completed_at_seconds": 1.521,
+          "wall_seconds": 0.03
+        },
+        "Clamp(40)": {
+          "rank": 14,
+          "status": "bug_found",
+          "completed_at_seconds": 144.827,
+          "wall_seconds": 0.031
+        }
+      }
+    },
+    {
+      "case": "inference-main",
+      "lane": "small-first",
+      "block": 2,
+      "found": true,
+      "found_at_seconds": 1.647,
+      "generations_completed": null,
+      "pieces_started": 21,
+      "pieces_planned": 21,
+      "ground_truth": {
+        "Subtract()": {
+          "rank": 2,
+          "status": "bug_found",
+          "completed_at_seconds": 1.647,
+          "wall_seconds": 0.03
+        },
+        "Clamp(40)": {
+          "rank": 14,
+          "status": "bug_found",
+          "completed_at_seconds": 145.849,
+          "wall_seconds": 0.027
+        }
+      }
+    },
+    {
+      "case": "inference-main",
+      "lane": "small-first",
+      "block": 3,
+      "found": true,
+      "found_at_seconds": 1.364,
+      "generations_completed": null,
+      "pieces_started": 21,
+      "pieces_planned": 21,
+      "ground_truth": {
+        "Subtract()": {
+          "rank": 2,
+          "status": "bug_found",
+          "completed_at_seconds": 1.364,
+          "wall_seconds": 0.035
+        },
+        "Clamp(40)": {
+          "rank": 14,
+          "status": "bug_found",
+          "completed_at_seconds": 142.639,
+          "wall_seconds": 0.035
+        }
+      }
+    },
+    {
+      "case": "inference-main",
+      "lane": "path-order",
+      "block": 1,
+      "found": true,
+      "found_at_seconds": 1.589,
+      "generations_completed": null,
+      "pieces_started": 21,
+      "pieces_planned": 21,
+      "ground_truth": {
+        "Clamp(40)": {
+          "rank": 3,
+          "status": "bug_found",
+          "completed_at_seconds": 1.589,
+          "wall_seconds": 0.03
+        },
+        "Subtract()": {
+          "rank": 20,
+          "status": "bug_found",
+          "completed_at_seconds": 201.607,
+          "wall_seconds": 0.03
+        }
+      }
+    },
+    {
+      "case": "inference-main",
+      "lane": "path-order",
+      "block": 2,
+      "found": true,
+      "found_at_seconds": 1.64,
+      "generations_completed": null,
+      "pieces_started": 21,
+      "pieces_planned": 21,
+      "ground_truth": {
+        "Clamp(40)": {
+          "rank": 3,
+          "status": "bug_found",
+          "completed_at_seconds": 1.64,
+          "wall_seconds": 0.031
+        },
+        "Subtract()": {
+          "rank": 20,
+          "status": "bug_found",
+          "completed_at_seconds": 198.703,
+          "wall_seconds": 0.035
+        }
+      }
+    },
+    {
+      "case": "inference-main",
+      "lane": "path-order",
+      "block": 3,
+      "found": true,
+      "found_at_seconds": 1.372,
+      "generations_completed": null,
+      "pieces_started": 21,
+      "pieces_planned": 21,
+      "ground_truth": {
+        "Clamp(40)": {
+          "rank": 3,
+          "status": "bug_found",
+          "completed_at_seconds": 1.372,
+          "wall_seconds": 0.035
+        },
+        "Subtract()": {
+          "rank": 20,
+          "status": "bug_found",
+          "completed_at_seconds": 199.977,
+          "wall_seconds": 0.035
+        }
+      }
+    },
+    {
+      "case": "zkemail-rsa-test",
+      "lane": "whole",
+      "block": 1,
+      "found": false,
+      "found_at_seconds": null,
+      "generations_completed": 20,
+      "pieces_started": null,
+      "pieces_planned": null,
+      "ground_truth": null
+    },
+    {
+      "case": "zkemail-rsa-test",
+      "lane": "whole",
+      "block": 2,
+      "found": false,
+      "found_at_seconds": null,
+      "generations_completed": 27,
+      "pieces_started": null,
+      "pieces_planned": null,
+      "ground_truth": null
+    },
+    {
+      "case": "zkemail-rsa-test",
+      "lane": "whole",
+      "block": 3,
+      "found": false,
+      "found_at_seconds": null,
+      "generations_completed": 26,
+      "pieces_started": null,
+      "pieces_planned": null,
+      "ground_truth": null
+    },
+    {
+      "case": "zkemail-rsa-test",
+      "lane": "random",
+      "block": 1,
+      "found": false,
+      "found_at_seconds": null,
+      "generations_completed": null,
+      "pieces_started": 4,
+      "pieces_planned": 4,
+      "ground_truth": {
+        "FpMul(121, 17)": {
+          "rank": 4,
+          "status": "finished",
+          "completed_at_seconds": 90.163
+        }
+      }
+    },
+    {
+      "case": "zkemail-rsa-test",
+      "lane": "random",
+      "block": 2,
+      "found": false,
+      "found_at_seconds": null,
+      "generations_completed": null,
+      "pieces_started": 4,
+      "pieces_planned": 4,
+      "ground_truth": {
+        "FpMul(121, 17)": {
+          "rank": 2,
+          "status": "finished",
+          "completed_at_seconds": 30.2
+        }
+      }
+    },
+    {
+      "case": "zkemail-rsa-test",
+      "lane": "random",
+      "block": 3,
+      "found": false,
+      "found_at_seconds": null,
+      "generations_completed": null,
+      "pieces_started": 4,
+      "pieces_planned": 4,
+      "ground_truth": {
+        "FpMul(121, 17)": {
+          "rank": 2,
+          "status": "finished",
+          "completed_at_seconds": 59.437
+        }
+      }
+    },
+    {
+      "case": "zkemail-rsa-test",
+      "lane": "small-first",
+      "block": 1,
+      "found": false,
+      "found_at_seconds": null,
+      "generations_completed": null,
+      "pieces_started": 4,
+      "pieces_planned": 4,
+      "ground_truth": {
+        "FpMul(121, 17)": {
+          "rank": 3,
+          "status": "finished",
+          "completed_at_seconds": 60.896
+        }
+      }
+    },
+    {
+      "case": "zkemail-rsa-test",
+      "lane": "small-first",
+      "block": 2,
+      "found": false,
+      "found_at_seconds": null,
+      "generations_completed": null,
+      "pieces_started": 4,
+      "pieces_planned": 4,
+      "ground_truth": {
+        "FpMul(121, 17)": {
+          "rank": 3,
+          "status": "finished",
+          "completed_at_seconds": 59.386
+        }
+      }
+    },
+    {
+      "case": "zkemail-rsa-test",
+      "lane": "small-first",
+      "block": 3,
+      "found": false,
+      "found_at_seconds": null,
+      "generations_completed": null,
+      "pieces_started": 4,
+      "pieces_planned": 4,
+      "ground_truth": {
+        "FpMul(121, 17)": {
+          "rank": 3,
+          "status": "finished",
+          "completed_at_seconds": 59.954
+        }
+      }
+    },
+    {
+      "case": "zkemail-rsa-test",
+      "lane": "path-order",
+      "block": 1,
+      "found": false,
+      "found_at_seconds": null,
+      "generations_completed": null,
+      "pieces_started": 4,
+      "pieces_planned": 4,
+      "ground_truth": {
+        "FpMul(121, 17)": {
+          "rank": 2,
+          "status": "finished",
+          "completed_at_seconds": 28.188
+        }
+      }
+    },
+    {
+      "case": "zkemail-rsa-test",
+      "lane": "path-order",
+      "block": 2,
+      "found": false,
+      "found_at_seconds": null,
+      "generations_completed": null,
+      "pieces_started": 4,
+      "pieces_planned": 4,
+      "ground_truth": {
+        "FpMul(121, 17)": {
+          "rank": 2,
+          "status": "finished",
+          "completed_at_seconds": 30.713
+        }
+      }
+    },
+    {
+      "case": "zkemail-rsa-test",
+      "lane": "path-order",
+      "block": 3,
+      "found": false,
+      "found_at_seconds": null,
+      "generations_completed": null,
+      "pieces_started": 4,
+      "pieces_planned": 4,
+      "ground_truth": {
+        "FpMul(121, 17)": {
+          "rank": 2,
+          "status": "finished",
+          "completed_at_seconds": 29.696
+        }
+      }
+    }
+  ]
+}

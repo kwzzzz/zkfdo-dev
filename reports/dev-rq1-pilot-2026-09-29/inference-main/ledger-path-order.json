@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "case": "inference-main",
+  "lane": "path-order",
+  "executions": [
+    {
+      "block": 1,
+      "zkfuzz_seed": 2026092931,
+      "random_ranking_seed": null,
+      "plan": {
+        "path": "runs/dev-rq1-pilot-2026-09-29/inference-main/campaign/path-order/block-1/plan.json",
+        "sha256": "f1cb06784741bad1b0284731f7ff786df5d7f86f4a4b92de53f964db23a162cb"
+      },
+      "outcome": {
+        "path": "runs/dev-rq1-pilot-2026-09-29/inference-main/campaign/path-order/block-1/execution/execution-4d7f20e3-ffd2-41b1-b40a-af66ce2e2a8c/outcome.json",
+        "sha256": "799596d14c0d5786a7caa813167eaa4aa9a58084d3fec6c9bb35007923cf0f36"
+      },
+      "pieces_planned": 21,
+      "pieces_started": 21,
+      "elapsed_seconds": 205.726,
+      "ground_truth": {
+        "Clamp(40)": {
+          "rank": 3,
+          "status": "bug_found",
+          "completed_at_seconds": 1.589,
+          "wall_seconds": 0.03
+        },
+        "Subtract()": {
+          "rank": 20,
+          "status": "bug_found",
+          "completed_at_seconds": 201.607,
+          "wall_seconds": 0.03
+        }
+      },
+      "found": true,
+      "found_at_seconds": 1.589,
+      "candidate_pieces": [
+        "CalculatedScoreFraction(40)",
+        "Clamp(40)",
+        "DistanceFromScore(40)",
+        "IntDiv(120)",
+        "IntDiv(40)",
+        "IntDiv(80)",
+        "ResponseTimeMetric(40)",
+        "ResponseTimeNormalized(40)",
+        "ScoringFunction(40)",
+        "Subtract()"
+      ]
+    },
+    {
+      "block": 2,
+      "zkfuzz_seed": 2026092932,
+      "random_ranking_seed": null,
+      "plan": {
+        "path": "runs/dev-rq1-pilot-2026-09-29/inference-main/campaign/path-order/block-2/plan.json",
+        "sha256": "b6301580e087aa8bf7cac7f96bdfe9e3af28497951a427a6e36abdc70189fe7b"
+      },
+      "outcome": {
+        "path": "runs/dev-rq1-pilot-2026-09-29/inference-main/campaign/path-order/block-2/execution/execution-9009b884-4de3-4d61-96a2-2e5d9aeaaa1e/outcome.json",
+        "sha256": "dec0cd0165babc24978f61bc82846c202c2b538a7aacb412e5322f77d05da015"
+      },
+      "pieces_planned": 21,
+      "pieces_started": 21,
+      "elapsed_seconds": 202.123,
+      "ground_truth": {
+        "Clamp(40)": {
+          "rank": 3,
+          "status": "bug_found",
+          "completed_at_seconds": 1.64,
+          "wall_seconds": 0.031
+        },
+        "Subtract()": {
+          "rank": 20,
+          "status": "bug_found",
+          "completed_at_seconds": 198.703,
+          "wall_seconds": 0.035
+        }
+      },
+      "found": true,
+      "found_at_seconds": 1.64,
+      "candidate_pieces": [
+        "CalculatedScoreFraction(40)",
+        "Clamp(40)",
+        "DistanceFromScore(40)",
+        "IntDiv(120)",
+        "IntDiv(40)",
+        "IntDiv(80)",
+        "ResponseTimeMetric(40)",
+        "ResponseTimeNormalized(40)",
+        "ScoringFunction(40)",
+        "Subtract()"
+      ]
+    },
+    {
+      "block": 3,
+      "zkfuzz_seed": 2026092933,
+      "random_ranking_seed": null,
+      "plan": {
+        "path": "runs/dev-rq1-pilot-2026-09-29/inference-main/campaign/path-order/block-3/plan.json",
+        "sha256": "12734c47b61cff0df7cf77e7632f4257b992255dc2cbda6afa0d3258a805738e"
+      },
+      "outcome": {
+        "path": "runs/dev-rq1-pilot-2026-09-29/inference-main/campaign/path-order/block-3/execution/execution-967a8079-0187-405b-83e5-a5b083347d69/outcome.json",
+        "sha256": "6ceb3c594ce9159d320f617970a8984866d9fbd1807638b2e6d0b3b1e1166ee9"
+      },
+      "pieces_planned": 21,
+      "pieces_started": 21,
+      "elapsed_seconds": 203.486,
+      "ground_truth": {
+        "Clamp(40)": {
+          "rank": 3,
+          "status": "bug_found",
+          "completed_at_seconds": 1.372,
+          "wall_seconds": 0.035
+        },
+        "Subtract()": {
+          "rank": 20,
+          "status": "bug_found",
+          "completed_at_seconds": 199.977,
+          "wall_seconds": 0.035
+        }
+      },
+      "found": true,
+      "found_at_seconds": 1.372,
+      "candidate_pieces": [
+        "CalculatedScoreFraction(40)",
+        "Clamp(40)",
+        "DistanceFromScore(40)",
+        "IntDiv(120)",
+        "IntDiv(40)",
+        "IntDiv(80)",
+        "ResponseTimeMetric(40)",
+        "ResponseTimeNormalized(40)",
+        "ScoringFunction(40)",
+        "Subtract()"
+      ]
+    }
+  ]
+}

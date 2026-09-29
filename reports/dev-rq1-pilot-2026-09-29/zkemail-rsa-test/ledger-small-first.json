@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "case": "zkemail-rsa-test",
+  "lane": "small-first",
+  "executions": [
+    {
+      "block": 1,
+      "zkfuzz_seed": 2026092931,
+      "random_ranking_seed": null,
+      "runner": "direct",
+      "pieces_planned": 4,
+      "pieces_started": 4,
+      "elapsed_seconds": 91.109,
+      "runs": [
+        {
+          "rank": 1,
+          "piece": "BigLessThan(121, 17)",
+          "status": "bug_found",
+          "completed_at_seconds": 0.51,
+          "generations_completed": 1
+        },
+        {
+          "rank": 2,
+          "piece": "RSAPad(121, 17)",
+          "status": "timeout",
+          "completed_at_seconds": 30.71,
+          "generations_completed": 0
+        },
+        {
+          "rank": 3,
+          "piece": "FpMul(121, 17)",
+          "status": "finished",
+          "completed_at_seconds": 60.896,
+          "generations_completed": 500
+        },
+        {
+          "rank": 4,
+          "piece": "FpPow65537Mod(121, 17)",
+          "status": "timeout",
+          "completed_at_seconds": 91.109,
+          "generations_completed": 59
+        }
+      ],
+      "ground_truth": {
+        "FpMul(121, 17)": {
+          "rank": 3,
+          "status": "finished",
+          "completed_at_seconds": 60.896
+        }
+      },
+      "found": false,
+      "found_at_seconds": null
+    },
+    {
+      "block": 2,
+      "zkfuzz_seed": 2026092932,
+      "random_ranking_seed": null,
+      "runner": "direct",
+      "pieces_planned": 4,
+      "pieces_started": 4,
+      "elapsed_seconds": 89.646,
+      "runs": [
+        {
+          "rank": 1,
+          "piece": "BigLessThan(121, 17)",
+          "status": "bug_found",
+          "completed_at_seconds": 0.509,
+          "generations_completed": 1
+        },
+        {
+          "rank": 2,
+          "piece": "RSAPad(121, 17)",
+          "status": "timeout",
+          "completed_at_seconds": 30.698,
+          "generations_completed": 0
+        },
+        {
+          "rank": 3,
+          "piece": "FpMul(121, 17)",
+          "status": "finished",
+          "completed_at_seconds": 59.386,
+          "generations_completed": 500
+        },
+        {
+          "rank": 4,
+          "piece": "FpPow65537Mod(121, 17)",
+          "status": "timeout",
+          "completed_at_seconds": 89.646,
+          "generations_completed": 55
+        }
+      ],
+      "ground_truth": {
+        "FpMul(121, 17)": {
+          "rank": 3,
+          "status": "finished",
+          "completed_at_seconds": 59.386
+        }
+      },
+      "found": false,
+      "found_at_seconds": null
+    },
+    {
+      "block": 3,
+      "zkfuzz_seed": 2026092933,
+      "random_ranking_seed": null,
+      "runner": "direct",
+      "pieces_planned": 4,
+      "pieces_started": 4,
+      "elapsed_seconds": 90.188,
+      "runs": [
+        {
+          "rank": 1,
+          "piece": "BigLessThan(121, 17)",
+          "status": "bug_found",
+          "completed_at_seconds": 0.511,
+          "generations_completed": 1
+        },
+        {
+          "rank": 2,
+          "piece": "RSAPad(121, 17)",
+          "status": "timeout",
+          "completed_at_seconds": 30.736,
+          "generations_completed": 0
+        },
+        {
+          "rank": 3,
+          "piece": "FpMul(121, 17)",
+          "status": "finished",
+          "completed_at_seconds": 59.954,
+          "generations_completed": 500
+        },
+        {
+          "rank": 4,
+          "piece": "FpPow65537Mod(121, 17)",
+          "status": "timeout",
+          "completed_at_seconds": 90.188,
+          "generations_completed": 58
+        }
+      ],
+      "ground_truth": {
+        "FpMul(121, 17)": {
+          "rank": 3,
+          "status": "finished",
+          "completed_at_seconds": 59.954
+        }
+      },
+      "found": false,
+      "found_at_seconds": null
+    }
+  ]
+}

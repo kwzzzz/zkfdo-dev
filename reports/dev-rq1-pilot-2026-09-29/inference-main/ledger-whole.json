@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "case": "inference-main",
+  "lane": "whole",
+  "executions": [
+    {
+      "block": 1,
+      "zkfuzz_seed": 2026092931,
+      "status": "timeout",
+      "elapsed_seconds": 600.267,
+      "found": false,
+      "found_at_seconds": null,
+      "generations_completed": 0,
+      "first_generation_seconds": null,
+      "verification": [],
+      "log": "runs/dev-rq1-pilot-2026-09-29/inference-main/campaign/whole/block-1/zkfuzz.log"
+    },
+    {
+      "block": 2,
+      "zkfuzz_seed": 2026092932,
+      "status": "timeout",
+      "elapsed_seconds": 600.235,
+      "found": false,
+      "found_at_seconds": null,
+      "generations_completed": 0,
+      "first_generation_seconds": null,
+      "verification": [],
+      "log": "runs/dev-rq1-pilot-2026-09-29/inference-main/campaign/whole/block-2/zkfuzz.log"
+    },
+    {
+      "block": 3,
+      "zkfuzz_seed": 2026092933,
+      "status": "timeout",
+      "elapsed_seconds": 600.134,
+      "found": false,
+      "found_at_seconds": null,
+      "generations_completed": 0,
+      "first_generation_seconds": null,
+      "verification": [],
+      "log": "runs/dev-rq1-pilot-2026-09-29/inference-main/campaign/whole/block-3/zkfuzz.log"
+    }
+  ]
+}
