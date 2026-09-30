@@ -20,10 +20,16 @@
 - **SoK 논문** (Kolozyan et al., arXiv 2607.23752, 2026-07): 실제 결함 70건을 **격리 모드**(결함 코드만 떼어 낸 최소 wrapper)와 **프로젝트 모드**(원래 코드베이스)에서 비교했다. 제한 시간은 600초다.
   - 도구 전체: 격리 모드 32/70(45.7%) → 프로젝트 모드 11/56(19.6%)
   - zkFuzz: 격리 모드 탐지 25건(시간 초과 25, 미탐 16, 오류 4) → 프로젝트 모드 탐지 4건(시간 초과 36, 미탐 12, 오류 4)
-  - 두 모드 모두 컴파일되는 56건 중 14건은 격리 모드에서만 탐지됐다(도구 전체 기준).
-  - 결론: 지금 도구들은 작은 코드 조각 분석에 더 맞는다.
+  - 두 모드 모두 컴파일되는 56건 중 31건은 두 모드 모두 미탐, 6건은 두 모드 모두 탐지, 14건은 격리 모드에서만, 나머지 5건은 프로젝트 모드에서만 탐지됐다(도구 전체 기준, V절).
+  - 결론(V절): 도구는 아직 미성숙하고 큰 코드베이스에서 효과가 떨어지며, 지금은 작은 코드 조각 분석에 더 맞다. 격리 모드는 실용 효과를 과대평가할 수 있다.
+  - 오탐은 측정하지 않았고 향후 과제로 남겼다(III-B절). 명세가 필요한 도구도 명세 없는 모드로만 돌렸다.
 - SoK는 Chaliasos et al.(USENIX Security 2024)의 데이터셋을 Circom 70건으로 확장했다고 밝혔다. 우리가 써 온 zkbugs(`a0eed74`)도 같은 데이터셋 계열이고 Circom 70건이다. 두 목록이 같은지는 R1에서 SoK 공개 산출물과 대조해 확인한다.
-- **프로젝트 모드의 실제 구성 (2026-09-29 확인):** zkbugs 설정의 `Original Entrypoint`가 비어 있는 사례가 14건으로, SoK에서 프로젝트 모드로 컴파일되지 않은 건수(70 − 56)와 같다. 따라서 SoK의 프로젝트 모드는 zkbugs의 `Original Entrypoint`를 실행한 것으로 보인다(R1에서 확인). 그 56건 중 43건은 프로젝트 안의 실제 회로 파일이고, 13건은 결함 템플릿 하나만 감싼 생성 파일(예: `src/generated/subtract_main.circom`)이다. 생성 파일 13건은 이미 격리 모드에 가까우므로, 분해의 효과는 주로 43건에서 나타날 것이다.
+- **프로젝트 모드의 실제 구성 (2026-09-30 정정):** SoK는 데이터셋의 원래 프로젝트 커밋으로 프로젝트 모드를 돌렸다고만 적었고(III-B절), 정확한 entrypoint는 공개 harness에서 확인해야 한다(R1). zkbugs 설정에서 `Original Entrypoint`가 비어 있는 14건이 SoK에서 컴파일되지 않은 건수(70 − 56)와 같으므로, 나머지 56건은 이 entrypoint를 썼을 가능성이 크다. 56건의 entrypoint는 세 종류다.
+  - (a) 프로젝트 저장소 안의 파일 42건. 일부는 결함 템플릿을 바로 main으로 둔 테스트 회로일 수 있다(예: circom-bigint `BigMod(2, 2)`).
+  - (b) zkbugs 다운로드 스크립트가 만든 파일 중 프로젝트의 최상위 템플릿을 main으로 둔 것 7건: Semaphore, hydraS2, Unirep `EpochKeyLite`, Self `VC_AND_DISCLOSE_Aadhaar` 2건, Arianee `CreditVerifier`·`OwnershipVerifier`.
+  - (c) zkbugs 스크립트가 결함 템플릿 하나만 main으로 감싼 것 7건: inference `Subtract`·`Clamp`, Banyan `CheckDepth`, Aptos `Base64DecodedLength`, SIV 2건, Unirep `BigLessThan`.
+
+  (c)는 사실상 격리 모드라서 분해 효과는 (a)와 (b)에서 나타난다. 2026-09-29에 "43건·13건"으로 적은 것은 경로에 `generated`가 들어 있는지로만 나눈 잘못된 분류였다.
 
 ### 1.2 우리 측정 (개발 프로젝트 inference)
 
@@ -87,26 +93,46 @@
 5. **도구 제약:** Circomspect(0.9.0)는 익명 컴포넌트가 있는 템플릿을 분석하지 못한다. 우리 탐색은 circomlib Poseidon 등에서 불완전해진다. zkbugs에는 취약·패치 쌍과 production 연결을 모두 갖춘 독립 후보가 없었다(T2b).
 6. **아직 없는 것:** 순위 전략이 일반적으로 낫다는 근거, 프로젝트 호출 경로까지 검증된 새 결함.
 
-### 2.4 기여 판단 기준
+### 2.4 기여 판단 기준 (2026-09-30 개정)
 
-zkFuzz 논문과 SoK 논문에 이미 있는 내용은 우리 기여로 주장하지 않는다. 우리 측정이 같은 내용을 보여도 재현이나 배경으로만 쓴다.
+zkFuzz 논문과 SoK 논문에 이미 있는 내용은 우리 기여로 주장하지 않는다. 우리 측정이 같은 내용을 보여도 재현이나 배경으로만 쓴다. 2026-09-30에 두 논문을 원문으로 다시 확인하고 관련 연구를 조사한 결과, 다른 선행 연구에도 우리 아이디어의 일부가 이미 있었다.
 
-| 두 논문에 이미 있는 것 (기여 아님) | 출처 |
+**두 논문에 이미 있는 것 (기여 아님)**
+
+| 내용 | 출처 |
 |---|---|
-| 큰 대상을 잘라서 일부만 실행한다는 아이디어 | zkFuzz 8절 |
-| 대상이 크면 실행 시간이 늘고, 프로젝트 모드에서 시간 초과가 많다 | zkFuzz 8절, SoK |
-| 격리 모드가 프로젝트 모드보다 결함을 많이 찾는다 | SoK |
-| 떼어 내도 zkFuzz가 못 찾는 결함이 있다 | SoK 격리 모드 미탐, zkFuzz의 범위 밖 결함 |
-| 라운드마다 변형 30개 × 입력 30개를 실행하는 구조, `IsZero`·`Num2Bits` 화이트리스트 | zkFuzz 4~6절 |
+| 큰 대상을 잘라서 일부만 실행하면 나아질 수 있다는 아이디어 | zkFuzz 8절 |
+| 대상이 크면 실행 시간이 늘고, 프로젝트 모드에서 시간 초과가 많다 | zkFuzz 8절, SoK V절 |
+| 격리 모드가 프로젝트 모드보다 결함을 많이 찾고, 격리 모드는 실용 효과를 과대평가할 수 있다 | SoK V절 |
+| 떼어 내도 zkFuzz가 못 찾는 결함이 있다 | SoK 그림 2(격리 모드 미탐 16건) |
+| 세대마다 변형 30개 × 입력 30개, `IsZero`·`Num2Bits` 화이트리스트, `LessThan`의 암묵적 입력 가정 | zkFuzz 5~6절, 부록 B |
+| 오탐 분석이 필요하다는 것(수행은 안 함) | SoK III-B절 |
 
-두 논문에 없는 **기여 후보**는 다음과 같다. 모두 정식 평가로 확인해야 한다.
+**다른 선행 연구에 이미 있는 것 (아이디어로는 기여 아님)**
 
-1. 결함 위치를 모르는 상태에서 자동으로 분할·실행해, 같은 예산에서 프로젝트 모드가 놓친 결함을 얼마나 되찾는지 (RQ1). 두 논문에는 이 방법도, 이 측정도 없다. 격리 모드는 사람이 결함 위치를 알고 자른 것이다.
-2. 조각이 예산 안에 다 돌 수 없을 때 어떤 순서가 결함을 더 빨리·많이 찾는지 (RQ2)
-3. 분할의 부작용: 호출하는 쪽 맥락이 빠진 조각에서 생기는 오탐의 규모
-4. (가설) 통째 실행은 라운드가 느릴 뿐 아니라 라운드마다 결함을 건드릴 확률도 낮은지. 실험으로 확인될 때만 기여가 된다
+| 내용 | 출처 |
+|---|---|
+| 큰 회로는 부분 회로 단위로 퍼징하되, 부분 회로에서 나온 결과는 전체 회로에서 다시 확인해야 오탐을 막는다는 제안(구현·평가 없음) | Chaliasos, Al-Fath, Donaldson, ISSTA Companion 2025, 3.2절 |
+| 함수 단위로 잘라 퍼징하면 호출자가 막는 입력 때문에 실제로는 불가능한 충돌이 나올 수 있다(일반 소프트웨어, 해결은 안 함) | FuzzSlice, ICSE 2024 |
+| 큰 Circom 회로를 컴포넌트 단위로 나눠 모듈식으로 검증하고, 호출자 가정을 전제·후제 조건과 tag로 표현 | CIVER, S&P 2024 |
+| 회로를 부분 회로로 나눠 반례를 점진적으로 조립 | Picus(QED²), PLDI 2023, 6절 |
+| 제약 전파로 신호 값 범위를 추론하고 signal tag를 입력 전제로 쓰는 기법 | CCC-Check, S&P 2026 |
+| 여러 프로그램에 퍼징 시간을 배분하는 스케줄러가 큰 차이를 낸다 | Nikolic & Jain, arXiv 2406.18058 |
+| 정적 지표로 퍼징 대상 위치를 고르는 방법 비교 | Weissberg et al., AsiaCCS 2024 |
 
-도구 자체(실제 프로젝트에서 조각을 자동으로 찾아 실행하는 구현)는 두 논문에 없지만, 아이디어는 zkFuzz 논문에 있으므로 1의 결과가 받쳐 줄 때만 의미가 있다.
+**이미 만들었고 두 논문에 없는 것 (시스템 기여, RQ1 결과가 받쳐 줄 때 의미가 커진다)**
+
+1. 실제 entrypoint에서 도달하는 구체 템플릿 인스턴스를 자동으로 찾아 조각으로 만드는 탐색기. 컴파일 타임 계산을 해석하고, 처리하지 못하는 구문은 "탐색 불완전"으로 표시한다. inference는 호출 위치 2,576곳이 고유 조각 21개로 줄었다.
+2. 조각 컴파일 재사용. 제외된 프로젝트 3개(entrypoint 18개)에서 호출 위치 5,240곳이 컴파일 63번으로, 컴파일 시간이 159.8초에서 4.0초로 줄었고 결과는 모두 같았다([T6a](../reports/t6a-compile-reuse-2026-09-26/REPORT.md)). 기법 자체(같은 입력의 결과 재사용)는 흔하지만, 자동 분해가 대형 프로젝트에서 실용적이 되려면 필요한 부분이다.
+3. 조각당·전체 시간 제한이 있는 예산 스케줄러.
+4. 반례를 고정 원본 제약, 입력 계약, 속성 predicate로 다시 계산해 판정하는 자동 검토 엔진과 회귀 검증(후보 73개, 실행 행 220개).
+
+**기여 후보 (정식 평가 필요)**
+
+1. **RQ1:** 결함 위치를 모르는 상태에서 자동 분해로, 같은 예산에서 통째 실행이 놓친 실제 결함을 얼마나 되찾는가. 부분 회로 퍼징은 제안만 있었고 구현·평가는 없다. SoK의 격리 모드는 사람이 결함 위치를 알고 자른 것이다.
+2. **분해 오탐의 측정과 제어:** 부분 회로 반례를 전체 회로 맥락에서 자동으로 확인하는 구체적 방법, 그리고 분해 때문에 생기는 오탐 비율의 첫 측정. 필요성은 ISSTA 2025 단편 논문이 제안했고, 오탐 측정은 SoK가 향후 과제로 남겼다. 전파 기법은 CCC-Check·Picus와 비교해 위치를 정해야 한다.
+3. **RQ2:** 조각이 예산 안에 다 돌 수 없을 때의 순서. 일반 퍼징의 스케줄링·대상 선택 연구는 있으므로, ZK 회로 조각에 맞는 신호(비용 추정 등)가 무엇인지가 새로운 부분이다.
+4. **작은 관찰:** 이름 기반 화이트리스트가 프로젝트가 직접 정의한 같은 이름의 템플릿까지 건너뛴다는 점, 세대당 비용이 제약 수로 예측되지 않는다는 점, 결함 주입이 순위 특징을 바꾼다는 점. 모두 개발 사례에서 본 것이라 더 넓은 확인이 필요하다.
 
 ## 3. 무엇을 바꾸는가
 
@@ -142,7 +168,7 @@ zkFuzz 논문과 SoK 논문에 이미 있는 내용은 우리 기여로 주장�
 ### P2. 개발용 RQ1 파일럿 (실제 결함) — 담당: miiz
 
 - **목적:** 정식 평가를 준비하는 동안, 이미 개발에 써서 오염 걱정이 없는 실제 결함으로 "통째 실행 대 분할 실행"을 먼저 비교해 본다. 기준선 실행 절차와 판정 방법도 여기서 시험한다. 독립 평가 결과가 아니다.
-- **사례:** 개발 노출 결함 22건 중 `Original Entrypoint`가 프로젝트 회로 파일이고, 해당 커밋의 로컬 사본이 있으며, 고정 도구로 컴파일과 조각 탐색이 되는 것. inference `Subtract`는 production entrypoint(`src/circuit.circom`)로도 비교한다.
+- **사례:** 개발 노출 결함 22건 중 `Original Entrypoint`가 프로젝트 전체 회로이고(1.1절의 (a)·(b)), 해당 커밋의 로컬 사본이 있으며, 고정 도구로 컴파일과 조각 탐색이 되는 것. inference `Subtract`는 production entrypoint(`src/circuit.circom`)로도 비교한다.
 - **순서:** 후보 컴파일·조각 탐색(zkFuzz 없음) → 설정 파일 고정 → 실행 → 결함 위치 판정 → 보고서
 - **보고서:** `reports/dev-rq1-pilot-2026-09-29/`
 
@@ -154,7 +180,7 @@ zkFuzz 논문과 SoK 논문에 이미 있는 내용은 우리 기여로 주장�
 ### R1. 평가 자료 확정 (zkFuzz 실행 금지) — 담당:
 
 - SoK 공개 산출물(<https://github.com/t-sorger/zkp-security-tools>)에서 결함 목록, 프로젝트 모드의 entrypoint와 컴파일 설정, 도구 설정, 결과를 가져와 zkbugs `a0eed74`와 대조한다.
-- 결함마다 노출 단계, `Original Entrypoint`의 종류(프로젝트 회로 파일·생성 파일·없음), 고정 circom 2.2.3으로 프로젝트 모드 컴파일 가능 여부, 결함 템플릿 위치, 결함 템플릿이 entrypoint의 루트 템플릿인지 여부, 화이트리스트 이름 여부, SoK의 zkFuzz 결과(격리·프로젝트 모드)를 기록한다.
+- 결함마다 노출 단계, `Original Entrypoint`의 종류(1.1절의 (a) 프로젝트 파일, (b) zkbugs가 만든 최상위 main, (c) zkbugs가 만든 단일 템플릿 wrapper, 없음), 고정 circom 2.2.3으로 프로젝트 모드 컴파일 가능 여부, 결함 템플릿 위치, 결함 템플릿이 entrypoint의 루트 템플릿인지 여부, 화이트리스트 이름 여부, SoK의 zkFuzz 결과(격리·프로젝트 모드)를 기록한다.
 - 산출물: 값 없는 평가 자료 목록(`datasets/`)과 보고서
 - 금지: 평가 사례에 zkFuzz 실행, 평가 사례를 보고 도구를 사례별로 조정하는 것
 
@@ -173,7 +199,7 @@ zkFuzz 논문과 SoK 논문에 이미 있는 내용은 우리 기여로 주장�
 
 다음을 고정한다.
 
-- 사례 집합과 노출 단계별 보고 방식. 평가 단위는 결함 하나(취약 커밋과 프로젝트 모드 entrypoint)다. RQ1의 주 집합은 `Original Entrypoint`가 프로젝트 회로 파일인 사례로 두고, 생성 파일 사례는 따로 보고한다.
+- 사례 집합과 노출 단계별 보고 방식. 평가 단위는 결함 하나(취약 커밋과 프로젝트 모드 entrypoint)다. RQ1의 주 집합은 entrypoint의 루트가 결함 템플릿이 아닌 사례(1.1절의 (a)·(b) 중 R1에서 확인한 것)로 두고, (c)와 루트가 결함 템플릿인 사례는 따로 보고한다.
 - 예산: RQ1의 600초 조건과 RQ2의 부족 조건 예산
 - 전략: 전체 실행 기준선, `random`(여러 ranking seed), `small-first`, `path-order`, `risk-only`, `cost-aware`
 - zkFuzz seed 수, 병렬 실행 수
@@ -246,6 +272,14 @@ zkFuzz 논문과 SoK 논문에 이미 있는 내용은 우리 기여로 주장�
 | R5 | 대기 | | R4 후 |
 
 ## 참고 문헌
+
+- S. Chaliasos, I. Al-Fath, A. F. Donaldson. "Towards Fuzzing Zero-Knowledge Proof Circuits (Short Paper)." ISSTA Companion 2025. arXiv:2504.14881.
+- A. Murali et al. "FuzzSlice: Pruning False Positives in Static Analysis Warnings Through Function-Level Fuzzing." ICSE 2024. arXiv:2402.01923.
+- M. Isabel, C. Rodríguez-Núñez, A. Rubio. "Scalable Verification of Zero-Knowledge Protocols." IEEE S&P 2024. (CIVER)
+- S. Pailoor et al. "Automated Detection of Under-Constrained Circuits in Zero-Knowledge Proofs." PLDI 2023. (Picus)
+- A. Kolozyan et al. "Language-Agnostic Detection of Computation-Constraint Inconsistencies in ZKP Programs via Value Inference." IEEE S&P 2026. IACR ePrint 2025/2120. (CCC-Check)
+- I. Nikolic, R. Jain. "Fuzzing at Scale: The Untold Story of the Scheduler." arXiv:2406.18058.
+- F. Weissberg et al. "SoK: Where to Fuzz? Assessing Target Selection Methods in Directed Fuzzing." AsiaCCS 2024. arXiv:2502.08341.
 
 - H. Takahashi, J. Kim, S. Jana, J. Yang. "zkFuzz: Foundation and Framework for Effective Fuzzing of Zero-Knowledge Circuits." IEEE S&P 2026. arXiv:2504.11961.
 - A. Kolozyan, T. Sorger, A. Hicks, S. Chaliasos. "ZKP Security Tools and Verification: Coverage, Effectiveness, Adoption, and Challenges." arXiv:2607.23752, 2026.
