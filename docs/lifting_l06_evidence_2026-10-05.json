@@ -1,0 +1,3337 @@
+{
+ "schema": "zkfdo-l06-evidence-v1",
+ "date": "2026-10-05",
+ "note": "Value-free index. Raw candidates, inputs, witnesses and z3 models stay under ignored runs/l06-2026-10-03/. No zkFuzz run.",
+ "engine": {
+  "binary_sha256": "d43fd5f730fa9be6cc1b5bed6cc53cf8d4ff4798523f1182143852dd59199bf6",
+  "circom_sha256": "8991887889c2a74d6fc704d5689ada4cc76fba004e866c987de6cbf3b3db6227",
+  "sources": {
+   "src/candidate_review/lifting/mod.rs": "5c347d2bd2a328cba9c166b1d50ab62b9b4132907086bbca486830066218fa94",
+   "src/candidate_review/lifting/repair.rs": "8b59f9465f479b5054801a5d4a84203baba0f383e7ba12099b6c91d841638d60"
+  }
+ },
+ "scripts": {
+  "runs/l06-2026-10-03/run_l06.py": "a872d5002a5f6df775b1a18267f5a3ac144bf6e2a176d38b9036621ba17ebc13",
+  "runs/l06-2026-10-03/summarize.py": "bcfd98e2d9d0203d9e1b00eeb6a87b185bba7cc0182aba7ba412019888bad9f5",
+  "runs/l06-2026-10-03/write_evidence.py": "219c73497f9861252b514ab5095e7f970b6ddc157fb73d5a23ab4b6e44892742",
+  "scripts/f01_cleanup_artifacts.py": "68404e870e7d9279f4915624c2b25582a395f3ae69a71f8f870235b30bfc6e07"
+ },
+ "clone": {
+  "path": "runs/dev-projects/inference",
+  "remote": "https://github.com/inference-labs-inc/subnet-2-circom",
+  "original": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+  "original_tree": "runs/dev-rq1-pilot-2026-09-29/inference-main/tree (16 files identical to d310309)"
+ },
+ "revisions": {
+  "r_intdiv": {
+   "base": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+   "overrides": {
+    "src/integerDivision.circom": "9221e8dfff3c13153eadeaaba46458060056873b"
+   },
+   "changed_files": [
+    "src/integerDivision.circom"
+   ],
+   "diff": {
+    "path": "runs/l06-2026-10-03/trees/r_intdiv.diff",
+    "sha256": "995f85019acc659fb31953a6bb782154404ae8c85c6619df0859cc247a439cb5"
+   }
+  },
+  "c9221e8d": {
+   "base": "9221e8dfff3c13153eadeaaba46458060056873b",
+   "overrides": {},
+   "changed_files": [
+    "src/integerDivision.circom",
+    "src/subtractTensor.circom"
+   ],
+   "diff": {
+    "path": "runs/l06-2026-10-03/trees/c9221e8d.diff",
+    "sha256": "7dffdc1e68f26fcf530e602677141a372a5ceda11125d12a80b7bc2689fad94b"
+   }
+  },
+  "c79f42ee": {
+   "base": "79f42eef3fc103638fed9fefaeae12dcbf0b9cf2",
+   "overrides": {},
+   "changed_files": [
+    "src/distanceFromScore.circom",
+    "src/integerDivision.circom",
+    "src/subtractTensor.circom"
+   ],
+   "diff": {
+    "path": "runs/l06-2026-10-03/trees/c79f42ee.diff",
+    "sha256": "782f9b52209b7a95b822e731fecfa01375597c40b3cb58e5ed8d2bfefdf3f6f1"
+   }
+  },
+  "c771c61c": {
+   "base": "771c61c221a647f35ecab3c9f278dfa7bcc1a359",
+   "overrides": {},
+   "changed_files": [
+    "src/clampTensor.circom",
+    "src/distanceFromScore.circom",
+    "src/integerDivision.circom",
+    "src/subtractTensor.circom"
+   ],
+   "diff": {
+    "path": "runs/l06-2026-10-03/trees/c771c61c.diff",
+    "sha256": "9ba65ff17645ab72e2cf54c9b0336d66adcdcfeffba195595acc8938890299bd"
+   }
+  },
+  "c771c61c_p": {
+   "base": "771c61c221a647f35ecab3c9f278dfa7bcc1a359",
+   "overrides": {
+    "src/clampTensor.circom": "024227fc4db8877b499836fac4f6447468c80de1"
+   },
+   "changed_files": [
+    "src/clampTensor.circom",
+    "src/distanceFromScore.circom",
+    "src/integerDivision.circom",
+    "src/subtractTensor.circom"
+   ],
+   "diff": {
+    "path": "runs/l06-2026-10-03/trees/c771c61c_p.diff",
+    "sha256": "7227783603ae5e9e960b6348e11b16ac77d8ae53527bb25cb47ff82256dd44df"
+   }
+  },
+  "loo_clamp": {
+   "base": "b8f92bdec1694138df0e069921f1aa0bdc94053e",
+   "overrides": {
+    "src/clampTensor.circom": "d310309c141d36504b3486cebd96ed70ef3a4fdf"
+   },
+   "changed_files": [
+    "src/circuit.circom",
+    "src/distanceFromScore.circom",
+    "src/integerDivision.circom",
+    "src/metricNormalized.circom",
+    "src/responseTimeMetric.circom",
+    "src/responseTimeNormalized.circom",
+    "src/subtractTensor.circom"
+   ],
+   "diff": {
+    "path": "runs/l06-2026-10-03/trees/loo_clamp.diff",
+    "sha256": "0446e86cf5415a7af4cc51d5df3a7dbbd69115f926688d691c9599fd35d42b35"
+   }
+  },
+  "loo_dfs": {
+   "base": "b8f92bdec1694138df0e069921f1aa0bdc94053e",
+   "overrides": {
+    "src/clampTensor.circom": "024227fc4db8877b499836fac4f6447468c80de1",
+    "src/distanceFromScore.circom": "d310309c141d36504b3486cebd96ed70ef3a4fdf"
+   },
+   "changed_files": [
+    "src/circuit.circom",
+    "src/clampTensor.circom",
+    "src/integerDivision.circom",
+    "src/metricNormalized.circom",
+    "src/responseTimeMetric.circom",
+    "src/responseTimeNormalized.circom",
+    "src/subtractTensor.circom"
+   ],
+   "diff": {
+    "path": "runs/l06-2026-10-03/trees/loo_dfs.diff",
+    "sha256": "c58c09a5e213db989b79c1da98c7745a84bffb5cf28aebc40ce719d1cb8a4ca4"
+   }
+  },
+  "all_fixed": {
+   "base": "b8f92bdec1694138df0e069921f1aa0bdc94053e",
+   "overrides": {
+    "src/clampTensor.circom": "024227fc4db8877b499836fac4f6447468c80de1"
+   },
+   "changed_files": [
+    "src/circuit.circom",
+    "src/clampTensor.circom",
+    "src/distanceFromScore.circom",
+    "src/integerDivision.circom",
+    "src/metricNormalized.circom",
+    "src/responseTimeMetric.circom",
+    "src/responseTimeNormalized.circom",
+    "src/subtractTensor.circom"
+   ],
+   "diff": {
+    "path": "runs/l06-2026-10-03/trees/all_fixed.diff",
+    "sha256": "1f8f2814841244e37eb95b6a979d04faec77d69960d28238e80b722b5956f9c7"
+   }
+  }
+ },
+ "component_check": [
+  {
+   "template": "DistanceFromScore(40)",
+   "revision": "r_intdiv",
+   "o0": false,
+   "identical": true,
+   "compiled": true
+  },
+  {
+   "template": "DistanceFromScore(40)",
+   "revision": "c9221e8d",
+   "o0": false,
+   "identical": true,
+   "compiled": true
+  },
+  {
+   "template": "DistanceFromScore(40)",
+   "revision": "c79f42ee",
+   "o0": false,
+   "identical": false,
+   "compiled": true
+  },
+  {
+   "template": "DistanceFromScore(40)",
+   "revision": "c771c61c",
+   "o0": false,
+   "identical": false,
+   "compiled": true
+  },
+  {
+   "template": "DistanceFromScore(40)",
+   "revision": "c771c61c_p",
+   "o0": false,
+   "identical": false,
+   "compiled": true
+  },
+  {
+   "template": "DistanceFromScore(40)",
+   "revision": "loo_clamp",
+   "o0": false,
+   "identical": false,
+   "compiled": true
+  },
+  {
+   "template": "DistanceFromScore(40)",
+   "revision": "loo_dfs",
+   "o0": false,
+   "identical": true,
+   "compiled": true
+  },
+  {
+   "template": "DistanceFromScore(40)",
+   "revision": "all_fixed",
+   "o0": false,
+   "identical": false,
+   "compiled": true
+  },
+  {
+   "template": "DistanceFromScore(40)",
+   "revision": "r_intdiv",
+   "o0": true,
+   "identical": true,
+   "compiled": true
+  },
+  {
+   "template": "DistanceFromScore(40)",
+   "revision": "c9221e8d",
+   "o0": true,
+   "identical": true,
+   "compiled": true
+  },
+  {
+   "template": "DistanceFromScore(40)",
+   "revision": "c79f42ee",
+   "o0": true,
+   "identical": false,
+   "compiled": true
+  },
+  {
+   "template": "DistanceFromScore(40)",
+   "revision": "c771c61c",
+   "o0": true,
+   "identical": false,
+   "compiled": true
+  },
+  {
+   "template": "DistanceFromScore(40)",
+   "revision": "c771c61c_p",
+   "o0": true,
+   "identical": false,
+   "compiled": true
+  },
+  {
+   "template": "DistanceFromScore(40)",
+   "revision": "loo_clamp",
+   "o0": true,
+   "identical": false,
+   "compiled": true
+  },
+  {
+   "template": "DistanceFromScore(40)",
+   "revision": "loo_dfs",
+   "o0": true,
+   "identical": true,
+   "compiled": true
+  },
+  {
+   "template": "DistanceFromScore(40)",
+   "revision": "all_fixed",
+   "o0": true,
+   "identical": false,
+   "compiled": true
+  },
+  {
+   "template": "Clamp(40)",
+   "revision": "r_intdiv",
+   "o0": false,
+   "identical": true,
+   "compiled": true
+  },
+  {
+   "template": "Clamp(40)",
+   "revision": "c9221e8d",
+   "o0": false,
+   "identical": true,
+   "compiled": true
+  },
+  {
+   "template": "Clamp(40)",
+   "revision": "c79f42ee",
+   "o0": false,
+   "identical": true,
+   "compiled": true
+  },
+  {
+   "template": "Clamp(40)",
+   "revision": "c771c61c",
+   "o0": false,
+   "identical": false,
+   "compiled": false
+  },
+  {
+   "template": "Clamp(40)",
+   "revision": "c771c61c_p",
+   "o0": false,
+   "identical": false,
+   "compiled": true
+  },
+  {
+   "template": "Clamp(40)",
+   "revision": "loo_clamp",
+   "o0": false,
+   "identical": true,
+   "compiled": true
+  },
+  {
+   "template": "Clamp(40)",
+   "revision": "loo_dfs",
+   "o0": false,
+   "identical": false,
+   "compiled": true
+  },
+  {
+   "template": "Clamp(40)",
+   "revision": "all_fixed",
+   "o0": false,
+   "identical": false,
+   "compiled": true
+  },
+  {
+   "template": "Clamp(40)",
+   "revision": "r_intdiv",
+   "o0": true,
+   "identical": true,
+   "compiled": true
+  },
+  {
+   "template": "Clamp(40)",
+   "revision": "c9221e8d",
+   "o0": true,
+   "identical": true,
+   "compiled": true
+  },
+  {
+   "template": "Clamp(40)",
+   "revision": "c79f42ee",
+   "o0": true,
+   "identical": true,
+   "compiled": true
+  },
+  {
+   "template": "Clamp(40)",
+   "revision": "c771c61c",
+   "o0": true,
+   "identical": false,
+   "compiled": false
+  },
+  {
+   "template": "Clamp(40)",
+   "revision": "c771c61c_p",
+   "o0": true,
+   "identical": false,
+   "compiled": true
+  },
+  {
+   "template": "Clamp(40)",
+   "revision": "loo_clamp",
+   "o0": true,
+   "identical": true,
+   "compiled": true
+  },
+  {
+   "template": "Clamp(40)",
+   "revision": "loo_dfs",
+   "o0": true,
+   "identical": false,
+   "compiled": true
+  },
+  {
+   "template": "Clamp(40)",
+   "revision": "all_fixed",
+   "o0": true,
+   "identical": false,
+   "compiled": true
+  },
+  {
+   "template": "CalculatedScoreFraction(40)",
+   "revision": "r_intdiv",
+   "o0": false,
+   "identical": true,
+   "compiled": true
+  },
+  {
+   "template": "CalculatedScoreFraction(40)",
+   "revision": "c9221e8d",
+   "o0": false,
+   "identical": true,
+   "compiled": true
+  },
+  {
+   "template": "CalculatedScoreFraction(40)",
+   "revision": "c79f42ee",
+   "o0": false,
+   "identical": true,
+   "compiled": true
+  },
+  {
+   "template": "CalculatedScoreFraction(40)",
+   "revision": "c771c61c",
+   "o0": false,
+   "identical": false,
+   "compiled": false
+  },
+  {
+   "template": "CalculatedScoreFraction(40)",
+   "revision": "c771c61c_p",
+   "o0": false,
+   "identical": false,
+   "compiled": true
+  },
+  {
+   "template": "CalculatedScoreFraction(40)",
+   "revision": "loo_clamp",
+   "o0": false,
+   "identical": true,
+   "compiled": true
+  },
+  {
+   "template": "CalculatedScoreFraction(40)",
+   "revision": "loo_dfs",
+   "o0": false,
+   "identical": false,
+   "compiled": true
+  },
+  {
+   "template": "CalculatedScoreFraction(40)",
+   "revision": "all_fixed",
+   "o0": false,
+   "identical": false,
+   "compiled": true
+  },
+  {
+   "template": "CalculatedScoreFraction(40)",
+   "revision": "r_intdiv",
+   "o0": true,
+   "identical": true,
+   "compiled": true
+  },
+  {
+   "template": "CalculatedScoreFraction(40)",
+   "revision": "c9221e8d",
+   "o0": true,
+   "identical": true,
+   "compiled": true
+  },
+  {
+   "template": "CalculatedScoreFraction(40)",
+   "revision": "c79f42ee",
+   "o0": true,
+   "identical": true,
+   "compiled": true
+  },
+  {
+   "template": "CalculatedScoreFraction(40)",
+   "revision": "c771c61c",
+   "o0": true,
+   "identical": false,
+   "compiled": false
+  },
+  {
+   "template": "CalculatedScoreFraction(40)",
+   "revision": "c771c61c_p",
+   "o0": true,
+   "identical": false,
+   "compiled": true
+  },
+  {
+   "template": "CalculatedScoreFraction(40)",
+   "revision": "loo_clamp",
+   "o0": true,
+   "identical": true,
+   "compiled": true
+  },
+  {
+   "template": "CalculatedScoreFraction(40)",
+   "revision": "loo_dfs",
+   "o0": true,
+   "identical": false,
+   "compiled": true
+  },
+  {
+   "template": "CalculatedScoreFraction(40)",
+   "revision": "all_fixed",
+   "o0": true,
+   "identical": false,
+   "compiled": true
+  }
+ ],
+ "verdicts": [
+  {
+   "order": 3,
+   "label": "DistanceFromScore(40)",
+   "revision": "original",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 1
+   },
+   "classes": [
+    {
+     "representative": "main.distance_from_score_fn[0]",
+     "verdict": "assumption_input_reachable",
+     "reason": "input_reached",
+     "input_origin": "synthesized_b_hint_injection",
+     "rust_unsatisfied": 0,
+     "snarkjs": "correct",
+     "synthesis_hints": [
+      "IntDiv@src/integerDivision.circom:31.out"
+     ],
+     "synthesis_changed_inputs": [
+      "RATE_OF_DECAY",
+      "RATE_OF_RECOVERY"
+     ],
+     "predicates": [
+      {
+       "instance": "main.distance_from_score_fn[0].positive",
+       "verdict": "assumption_violation_reachable",
+       "reason": "predicate_holds_on_reached_witness",
+       "method": "candidate_witness",
+       "rust_unsatisfied": 0,
+       "snarkjs": "correct",
+       "o0_o1_agree": true,
+       "semantic_deviation_observed": true,
+       "hints": [],
+       "search_outcome": null,
+       "changed_inputs": []
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": true,
+   "subtract_hint": false
+  },
+  {
+   "order": 3,
+   "label": "DistanceFromScore(40)",
+   "revision": "r_intdiv",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 1
+   },
+   "classes": [
+    {
+     "representative": "main.distance_from_score_fn[0]",
+     "verdict": "excluded_in_context",
+     "reason": "closed_cone_unsat",
+     "input_origin": "direct",
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": [],
+     "predicates": [
+      {
+       "instance": "main.distance_from_score_fn[0].positive",
+       "verdict": "unknown",
+       "reason": "predicate_search_not_reached",
+       "method": null,
+       "rust_unsatisfied": null,
+       "snarkjs": null,
+       "o0_o1_agree": null,
+       "semantic_deviation_observed": false,
+       "hints": [],
+       "search_outcome": "cycle",
+       "changed_inputs": [
+        "previous_score[0]"
+       ]
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 3,
+   "label": "DistanceFromScore(40)",
+   "revision": "c9221e8d",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 1
+   },
+   "classes": [
+    {
+     "representative": "main.distance_from_score_fn[0]",
+     "verdict": "excluded_in_context",
+     "reason": "closed_cone_unsat",
+     "input_origin": "direct",
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": [],
+     "predicates": [
+      {
+       "instance": "main.distance_from_score_fn[0].positive",
+       "verdict": "unknown",
+       "reason": "predicate_search_not_reached",
+       "method": null,
+       "rust_unsatisfied": null,
+       "snarkjs": null,
+       "o0_o1_agree": null,
+       "semantic_deviation_observed": false,
+       "hints": [],
+       "search_outcome": "cycle",
+       "changed_inputs": [
+        "previous_score[0]"
+       ]
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 3,
+   "label": "DistanceFromScore(40)",
+   "revision": "c79f42ee",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": null,
+   "violated_condition": {
+    "kind": null,
+    "lessthan_instances": null
+   },
+   "classes": [
+    {
+     "representative": "main.distance_from_score_fn[0]",
+     "verdict": "excluded_in_context",
+     "reason": "closed_cone_unsat",
+     "input_origin": "direct",
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": [],
+     "predicates": []
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 3,
+   "label": "DistanceFromScore(40)",
+   "revision": "c771c61c",
+   "status": "no_classes",
+   "preparation": "preparation_failure",
+   "reason": "entrypoint_compile_failed",
+   "detail": "circom failed: see runs/l06-2026-10-03/cache-c771c61c/84f1dfd7c17dfe49d87fc77eb7889c9acacee47b732768eae408fe4ac37e64e4/compile.log",
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 3,
+   "label": "DistanceFromScore(40)",
+   "revision": "c771c61c_p",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": null,
+   "violated_condition": {
+    "kind": null,
+    "lessthan_instances": null
+   },
+   "classes": [
+    {
+     "representative": "main.distance_from_score_fn[0]",
+     "verdict": "excluded_in_context",
+     "reason": "closed_cone_unsat",
+     "input_origin": "direct",
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": [],
+     "predicates": []
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 3,
+   "label": "DistanceFromScore(40)",
+   "revision": "loo_clamp",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": null,
+   "violated_condition": {
+    "kind": null,
+    "lessthan_instances": null
+   },
+   "classes": [
+    {
+     "representative": "main.distance_from_score_fn[0]",
+     "verdict": "excluded_in_context",
+     "reason": "closed_cone_unsat",
+     "input_origin": "direct",
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": [],
+     "predicates": []
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 3,
+   "label": "DistanceFromScore(40)",
+   "revision": "loo_dfs",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 1
+   },
+   "classes": [
+    {
+     "representative": "main.distance_from_score_fn[0]",
+     "verdict": "excluded_in_context",
+     "reason": "closed_cone_unsat",
+     "input_origin": "direct",
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": [],
+     "predicates": [
+      {
+       "instance": "main.distance_from_score_fn[0].positive",
+       "verdict": "unknown",
+       "reason": "predicate_search_not_reached",
+       "method": null,
+       "rust_unsatisfied": null,
+       "snarkjs": null,
+       "o0_o1_agree": null,
+       "semantic_deviation_observed": false,
+       "hints": [],
+       "search_outcome": "no_progress",
+       "changed_inputs": [
+        "previous_score[0]"
+       ]
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 3,
+   "label": "DistanceFromScore(40)",
+   "revision": "all_fixed",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": null,
+   "violated_condition": {
+    "kind": null,
+    "lessthan_instances": null
+   },
+   "classes": [
+    {
+     "representative": "main.distance_from_score_fn[0]",
+     "verdict": "excluded_in_context",
+     "reason": "closed_cone_unsat",
+     "input_origin": "direct",
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": [],
+     "predicates": []
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 13,
+   "label": "DistanceFromScore(40)",
+   "revision": "original",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 1
+   },
+   "classes": [
+    {
+     "representative": "main.distance_from_score_fn[0]",
+     "verdict": "assumption_input_reachable",
+     "reason": "input_reached",
+     "input_origin": "synthesized_b_hint_injection",
+     "rust_unsatisfied": 0,
+     "snarkjs": "correct",
+     "synthesis_hints": [
+      "IntDiv@src/integerDivision.circom:31.out"
+     ],
+     "synthesis_changed_inputs": [
+      "RATE_OF_DECAY",
+      "RATE_OF_RECOVERY"
+     ],
+     "predicates": [
+      {
+       "instance": "main.distance_from_score_fn[0].positive",
+       "verdict": "assumption_violation_reachable",
+       "reason": "predicate_holds_on_reached_witness",
+       "method": "candidate_witness",
+       "rust_unsatisfied": 0,
+       "snarkjs": "correct",
+       "o0_o1_agree": true,
+       "semantic_deviation_observed": true,
+       "hints": [],
+       "search_outcome": null,
+       "changed_inputs": []
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": true,
+   "subtract_hint": false
+  },
+  {
+   "order": 13,
+   "label": "DistanceFromScore(40)",
+   "revision": "r_intdiv",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 1
+   },
+   "classes": [
+    {
+     "representative": "main.distance_from_score_fn[0]",
+     "verdict": "assumption_input_reachable",
+     "reason": "input_reached",
+     "input_origin": "synthesized_a",
+     "rust_unsatisfied": 0,
+     "snarkjs": "correct",
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": [
+      "maximum_score[0]"
+     ],
+     "predicates": [
+      {
+       "instance": "main.distance_from_score_fn[0].positive",
+       "verdict": "assumption_violation_reachable",
+       "reason": "predicate_holds_on_reached_witness",
+       "method": "candidate_witness",
+       "rust_unsatisfied": 0,
+       "snarkjs": "correct",
+       "o0_o1_agree": true,
+       "semantic_deviation_observed": true,
+       "hints": [],
+       "search_outcome": null,
+       "changed_inputs": []
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 13,
+   "label": "DistanceFromScore(40)",
+   "revision": "c9221e8d",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 1
+   },
+   "classes": [
+    {
+     "representative": "main.distance_from_score_fn[0]",
+     "verdict": "assumption_input_reachable",
+     "reason": "input_reached",
+     "input_origin": "synthesized_a",
+     "rust_unsatisfied": 0,
+     "snarkjs": "correct",
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": [
+      "maximum_score[0]"
+     ],
+     "predicates": [
+      {
+       "instance": "main.distance_from_score_fn[0].positive",
+       "verdict": "assumption_violation_reachable",
+       "reason": "predicate_holds_on_reached_witness",
+       "method": "candidate_witness",
+       "rust_unsatisfied": 0,
+       "snarkjs": "correct",
+       "o0_o1_agree": true,
+       "semantic_deviation_observed": true,
+       "hints": [],
+       "search_outcome": null,
+       "changed_inputs": []
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 13,
+   "label": "DistanceFromScore(40)",
+   "revision": "c79f42ee",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": null,
+   "violated_condition": {
+    "kind": null,
+    "lessthan_instances": null
+   },
+   "classes": [
+    {
+     "representative": "main.distance_from_score_fn[0]",
+     "verdict": "excluded_in_context",
+     "reason": "closed_cone_unsat",
+     "input_origin": "direct",
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": [],
+     "predicates": []
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 13,
+   "label": "DistanceFromScore(40)",
+   "revision": "c771c61c",
+   "status": "no_classes",
+   "preparation": "preparation_failure",
+   "reason": "entrypoint_compile_failed",
+   "detail": "circom failed: see runs/l06-2026-10-03/cache-c771c61c/84f1dfd7c17dfe49d87fc77eb7889c9acacee47b732768eae408fe4ac37e64e4/compile.log",
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 13,
+   "label": "DistanceFromScore(40)",
+   "revision": "c771c61c_p",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": null,
+   "violated_condition": {
+    "kind": null,
+    "lessthan_instances": null
+   },
+   "classes": [
+    {
+     "representative": "main.distance_from_score_fn[0]",
+     "verdict": "excluded_in_context",
+     "reason": "closed_cone_unsat",
+     "input_origin": "direct",
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": [],
+     "predicates": []
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 13,
+   "label": "DistanceFromScore(40)",
+   "revision": "loo_clamp",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": null,
+   "violated_condition": {
+    "kind": null,
+    "lessthan_instances": null
+   },
+   "classes": [
+    {
+     "representative": "main.distance_from_score_fn[0]",
+     "verdict": "excluded_in_context",
+     "reason": "closed_cone_unsat",
+     "input_origin": "direct",
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": [],
+     "predicates": []
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 13,
+   "label": "DistanceFromScore(40)",
+   "revision": "loo_dfs",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 1
+   },
+   "classes": [
+    {
+     "representative": "main.distance_from_score_fn[0]",
+     "verdict": "assumption_input_reachable",
+     "reason": "input_reached",
+     "input_origin": "synthesized_a",
+     "rust_unsatisfied": 0,
+     "snarkjs": "correct",
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": [
+      "maximum_score[0]"
+     ],
+     "predicates": [
+      {
+       "instance": "main.distance_from_score_fn[0].positive",
+       "verdict": "assumption_violation_reachable",
+       "reason": "predicate_holds_on_reached_witness",
+       "method": "candidate_witness",
+       "rust_unsatisfied": 0,
+       "snarkjs": "correct",
+       "o0_o1_agree": true,
+       "semantic_deviation_observed": true,
+       "hints": [],
+       "search_outcome": null,
+       "changed_inputs": []
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 13,
+   "label": "DistanceFromScore(40)",
+   "revision": "all_fixed",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": null,
+   "violated_condition": {
+    "kind": null,
+    "lessthan_instances": null
+   },
+   "classes": [
+    {
+     "representative": "main.distance_from_score_fn[0]",
+     "verdict": "excluded_in_context",
+     "reason": "closed_cone_unsat",
+     "input_origin": "direct",
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": [],
+     "predicates": []
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 23,
+   "label": "DistanceFromScore(40)",
+   "revision": "original",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 1
+   },
+   "classes": [
+    {
+     "representative": "main.distance_from_score_fn[0]",
+     "verdict": "assumption_input_reachable",
+     "reason": "input_reached",
+     "input_origin": "synthesized_b_hint_injection",
+     "rust_unsatisfied": 0,
+     "snarkjs": "correct",
+     "synthesis_hints": [
+      "IntDiv@src/integerDivision.circom:31.out"
+     ],
+     "synthesis_changed_inputs": [
+      "RATE_OF_DECAY",
+      "RATE_OF_RECOVERY"
+     ],
+     "predicates": [
+      {
+       "instance": "main.distance_from_score_fn[0].positive",
+       "verdict": "assumption_violation_reachable",
+       "reason": "predicate_holds_on_reached_witness",
+       "method": "candidate_witness",
+       "rust_unsatisfied": 0,
+       "snarkjs": "correct",
+       "o0_o1_agree": true,
+       "semantic_deviation_observed": true,
+       "hints": [],
+       "search_outcome": null,
+       "changed_inputs": []
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": true,
+   "subtract_hint": false
+  },
+  {
+   "order": 23,
+   "label": "DistanceFromScore(40)",
+   "revision": "r_intdiv",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 1
+   },
+   "classes": [
+    {
+     "representative": "main.distance_from_score_fn[0]",
+     "verdict": "unknown",
+     "reason": "abort_on_constraint_unresolved",
+     "input_origin": "direct",
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": [],
+     "predicates": [
+      {
+       "instance": "main.distance_from_score_fn[0].positive",
+       "verdict": "unknown",
+       "reason": "predicate_search_not_reached",
+       "method": null,
+       "rust_unsatisfied": null,
+       "snarkjs": null,
+       "o0_o1_agree": null,
+       "semantic_deviation_observed": false,
+       "hints": [],
+       "search_outcome": "cycle",
+       "changed_inputs": [
+        "previous_score[0]"
+       ]
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 23,
+   "label": "DistanceFromScore(40)",
+   "revision": "c9221e8d",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 1
+   },
+   "classes": [
+    {
+     "representative": "main.distance_from_score_fn[0]",
+     "verdict": "unknown",
+     "reason": "abort_on_constraint_unresolved",
+     "input_origin": "direct",
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": [],
+     "predicates": [
+      {
+       "instance": "main.distance_from_score_fn[0].positive",
+       "verdict": "unknown",
+       "reason": "predicate_search_not_reached",
+       "method": null,
+       "rust_unsatisfied": null,
+       "snarkjs": null,
+       "o0_o1_agree": null,
+       "semantic_deviation_observed": false,
+       "hints": [],
+       "search_outcome": "cycle",
+       "changed_inputs": [
+        "previous_score[0]"
+       ]
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 23,
+   "label": "DistanceFromScore(40)",
+   "revision": "c79f42ee",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": null,
+   "violated_condition": {
+    "kind": null,
+    "lessthan_instances": null
+   },
+   "classes": [
+    {
+     "representative": "main.distance_from_score_fn[0]",
+     "verdict": "excluded_in_context",
+     "reason": "closed_cone_unsat",
+     "input_origin": "direct",
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": [],
+     "predicates": []
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 23,
+   "label": "DistanceFromScore(40)",
+   "revision": "c771c61c",
+   "status": "no_classes",
+   "preparation": "preparation_failure",
+   "reason": "entrypoint_compile_failed",
+   "detail": "circom failed: see runs/l06-2026-10-03/cache-c771c61c/84f1dfd7c17dfe49d87fc77eb7889c9acacee47b732768eae408fe4ac37e64e4/compile.log",
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 23,
+   "label": "DistanceFromScore(40)",
+   "revision": "c771c61c_p",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": null,
+   "violated_condition": {
+    "kind": null,
+    "lessthan_instances": null
+   },
+   "classes": [
+    {
+     "representative": "main.distance_from_score_fn[0]",
+     "verdict": "excluded_in_context",
+     "reason": "closed_cone_unsat",
+     "input_origin": "direct",
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": [],
+     "predicates": []
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 23,
+   "label": "DistanceFromScore(40)",
+   "revision": "loo_clamp",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": null,
+   "violated_condition": {
+    "kind": null,
+    "lessthan_instances": null
+   },
+   "classes": [
+    {
+     "representative": "main.distance_from_score_fn[0]",
+     "verdict": "excluded_in_context",
+     "reason": "closed_cone_unsat",
+     "input_origin": "direct",
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": [],
+     "predicates": []
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 23,
+   "label": "DistanceFromScore(40)",
+   "revision": "loo_dfs",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 1
+   },
+   "classes": [
+    {
+     "representative": "main.distance_from_score_fn[0]",
+     "verdict": "unknown",
+     "reason": "abort_on_constraint_unresolved",
+     "input_origin": "direct",
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": [],
+     "predicates": [
+      {
+       "instance": "main.distance_from_score_fn[0].positive",
+       "verdict": "unknown",
+       "reason": "predicate_search_not_reached",
+       "method": null,
+       "rust_unsatisfied": null,
+       "snarkjs": null,
+       "o0_o1_agree": null,
+       "semantic_deviation_observed": false,
+       "hints": [],
+       "search_outcome": "no_progress",
+       "changed_inputs": [
+        "previous_score[0]"
+       ]
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 23,
+   "label": "DistanceFromScore(40)",
+   "revision": "all_fixed",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": null,
+   "violated_condition": {
+    "kind": null,
+    "lessthan_instances": null
+   },
+   "classes": [
+    {
+     "representative": "main.distance_from_score_fn[0]",
+     "verdict": "excluded_in_context",
+     "reason": "closed_cone_unsat",
+     "input_origin": "direct",
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": [],
+     "predicates": []
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 5,
+   "label": "Clamp(40)",
+   "revision": "original",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 2
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0].clamp",
+     "verdict": "excluded_in_context",
+     "reason": "constant_input_mismatch",
+     "input_origin": null,
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": null,
+     "predicates": [
+      {
+       "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+       "verdict": "assumption_violation_reachable",
+       "reason": "predicate_holds_on_found_witness",
+       "method": "predicate_search_hint_injection",
+       "rust_unsatisfied": 0,
+       "snarkjs": "correct",
+       "o0_o1_agree": true,
+       "semantic_deviation_observed": true,
+       "hints": [
+        "Num2Bits@src/clampTensor.circom:12.out",
+        "IntDiv@src/integerDivision.circom:31.out"
+       ],
+       "search_outcome": "reached",
+       "changed_inputs": []
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": true,
+   "subtract_hint": false
+  },
+  {
+   "order": 5,
+   "label": "Clamp(40)",
+   "revision": "r_intdiv",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 2
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0].clamp",
+     "verdict": "excluded_in_context",
+     "reason": "constant_input_mismatch",
+     "input_origin": null,
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": null,
+     "predicates": [
+      {
+       "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+       "verdict": "unknown",
+       "reason": "predicate_search_not_reached",
+       "method": null,
+       "rust_unsatisfied": null,
+       "snarkjs": null,
+       "o0_o1_agree": null,
+       "semantic_deviation_observed": false,
+       "hints": [],
+       "search_outcome": "no_progress",
+       "changed_inputs": []
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 5,
+   "label": "Clamp(40)",
+   "revision": "c9221e8d",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 2
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0].clamp",
+     "verdict": "excluded_in_context",
+     "reason": "constant_input_mismatch",
+     "input_origin": null,
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": null,
+     "predicates": [
+      {
+       "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+       "verdict": "unknown",
+       "reason": "predicate_search_not_reached",
+       "method": null,
+       "rust_unsatisfied": null,
+       "snarkjs": null,
+       "o0_o1_agree": null,
+       "semantic_deviation_observed": false,
+       "hints": [],
+       "search_outcome": "no_progress",
+       "changed_inputs": []
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 5,
+   "label": "Clamp(40)",
+   "revision": "c79f42ee",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 2
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0].clamp",
+     "verdict": "excluded_in_context",
+     "reason": "constant_input_mismatch",
+     "input_origin": null,
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": null,
+     "predicates": [
+      {
+       "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+       "verdict": "unknown",
+       "reason": "predicate_search_not_reached",
+       "method": null,
+       "rust_unsatisfied": null,
+       "snarkjs": null,
+       "o0_o1_agree": null,
+       "semantic_deviation_observed": false,
+       "hints": [],
+       "search_outcome": "no_progress",
+       "changed_inputs": []
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 5,
+   "label": "Clamp(40)",
+   "revision": "c771c61c",
+   "status": "no_classes",
+   "preparation": "preparation_failure",
+   "reason": "component_compile_failed",
+   "detail": "circom failed: see runs/l06-2026-10-03/c771c61c/a02-05-attempt13/raw/component-o0/compile.log",
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 5,
+   "label": "Clamp(40)",
+   "revision": "c771c61c_p",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": null,
+   "violated_condition": {
+    "kind": null,
+    "lessthan_instances": null
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0].clamp",
+     "verdict": "excluded_in_context",
+     "reason": "constant_input_mismatch",
+     "input_origin": null,
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": null,
+     "predicates": []
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 5,
+   "label": "Clamp(40)",
+   "revision": "loo_clamp",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 2
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0].clamp",
+     "verdict": "excluded_in_context",
+     "reason": "constant_input_mismatch",
+     "input_origin": null,
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": null,
+     "predicates": [
+      {
+       "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+       "verdict": "unknown",
+       "reason": "predicate_search_not_reached",
+       "method": null,
+       "rust_unsatisfied": null,
+       "snarkjs": null,
+       "o0_o1_agree": null,
+       "semantic_deviation_observed": false,
+       "hints": [],
+       "search_outcome": "no_progress",
+       "changed_inputs": []
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 5,
+   "label": "Clamp(40)",
+   "revision": "loo_dfs",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": null,
+   "violated_condition": {
+    "kind": null,
+    "lessthan_instances": null
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0].clamp",
+     "verdict": "excluded_in_context",
+     "reason": "constant_input_mismatch",
+     "input_origin": null,
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": null,
+     "predicates": []
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 5,
+   "label": "Clamp(40)",
+   "revision": "all_fixed",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": null,
+   "violated_condition": {
+    "kind": null,
+    "lessthan_instances": null
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0].clamp",
+     "verdict": "excluded_in_context",
+     "reason": "constant_input_mismatch",
+     "input_origin": null,
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": null,
+     "predicates": []
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 15,
+   "label": "Clamp(40)",
+   "revision": "original",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 2
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0].clamp",
+     "verdict": "excluded_in_context",
+     "reason": "constant_input_mismatch",
+     "input_origin": null,
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": null,
+     "predicates": [
+      {
+       "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+       "verdict": "assumption_violation_reachable",
+       "reason": "predicate_holds_on_found_witness",
+       "method": "predicate_search_hint_injection",
+       "rust_unsatisfied": 0,
+       "snarkjs": "correct",
+       "o0_o1_agree": true,
+       "semantic_deviation_observed": true,
+       "hints": [
+        "Num2Bits@src/clampTensor.circom:12.out",
+        "IntDiv@src/integerDivision.circom:31.out"
+       ],
+       "search_outcome": "reached",
+       "changed_inputs": []
+      },
+      {
+       "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[1]",
+       "verdict": "unknown",
+       "reason": "predicate_search_not_reached",
+       "method": null,
+       "rust_unsatisfied": null,
+       "snarkjs": null,
+       "o0_o1_agree": null,
+       "semantic_deviation_observed": false,
+       "hints": [],
+       "search_outcome": "no_progress",
+       "changed_inputs": []
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": true,
+   "subtract_hint": false
+  },
+  {
+   "order": 15,
+   "label": "Clamp(40)",
+   "revision": "r_intdiv",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 2
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0].clamp",
+     "verdict": "excluded_in_context",
+     "reason": "constant_input_mismatch",
+     "input_origin": null,
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": null,
+     "predicates": [
+      {
+       "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+       "verdict": "unknown",
+       "reason": "predicate_search_not_reached",
+       "method": null,
+       "rust_unsatisfied": null,
+       "snarkjs": null,
+       "o0_o1_agree": null,
+       "semantic_deviation_observed": false,
+       "hints": [],
+       "search_outcome": "no_progress",
+       "changed_inputs": []
+      },
+      {
+       "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[1]",
+       "verdict": "unknown",
+       "reason": "predicate_search_not_reached",
+       "method": null,
+       "rust_unsatisfied": null,
+       "snarkjs": null,
+       "o0_o1_agree": null,
+       "semantic_deviation_observed": false,
+       "hints": [],
+       "search_outcome": "no_progress",
+       "changed_inputs": []
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 15,
+   "label": "Clamp(40)",
+   "revision": "c9221e8d",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 2
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0].clamp",
+     "verdict": "excluded_in_context",
+     "reason": "constant_input_mismatch",
+     "input_origin": null,
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": null,
+     "predicates": [
+      {
+       "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+       "verdict": "unknown",
+       "reason": "predicate_search_not_reached",
+       "method": null,
+       "rust_unsatisfied": null,
+       "snarkjs": null,
+       "o0_o1_agree": null,
+       "semantic_deviation_observed": false,
+       "hints": [],
+       "search_outcome": "no_progress",
+       "changed_inputs": []
+      },
+      {
+       "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[1]",
+       "verdict": "unknown",
+       "reason": "predicate_search_not_reached",
+       "method": null,
+       "rust_unsatisfied": null,
+       "snarkjs": null,
+       "o0_o1_agree": null,
+       "semantic_deviation_observed": false,
+       "hints": [],
+       "search_outcome": "no_progress",
+       "changed_inputs": []
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 15,
+   "label": "Clamp(40)",
+   "revision": "c79f42ee",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 2
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0].clamp",
+     "verdict": "excluded_in_context",
+     "reason": "constant_input_mismatch",
+     "input_origin": null,
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": null,
+     "predicates": [
+      {
+       "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+       "verdict": "unknown",
+       "reason": "predicate_search_not_reached",
+       "method": null,
+       "rust_unsatisfied": null,
+       "snarkjs": null,
+       "o0_o1_agree": null,
+       "semantic_deviation_observed": false,
+       "hints": [],
+       "search_outcome": "no_progress",
+       "changed_inputs": []
+      },
+      {
+       "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[1]",
+       "verdict": "unknown",
+       "reason": "predicate_search_not_reached",
+       "method": null,
+       "rust_unsatisfied": null,
+       "snarkjs": null,
+       "o0_o1_agree": null,
+       "semantic_deviation_observed": false,
+       "hints": [],
+       "search_outcome": "no_progress",
+       "changed_inputs": []
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 15,
+   "label": "Clamp(40)",
+   "revision": "c771c61c",
+   "status": "no_classes",
+   "preparation": "preparation_failure",
+   "reason": "component_compile_failed",
+   "detail": "circom failed: see runs/l06-2026-10-03/c771c61c/a02-15-attempt34/raw/component-o0/compile.log",
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 15,
+   "label": "Clamp(40)",
+   "revision": "c771c61c_p",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": null,
+   "violated_condition": {
+    "kind": null,
+    "lessthan_instances": null
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0].clamp",
+     "verdict": "excluded_in_context",
+     "reason": "constant_input_mismatch",
+     "input_origin": null,
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": null,
+     "predicates": []
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 15,
+   "label": "Clamp(40)",
+   "revision": "loo_clamp",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 2
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0].clamp",
+     "verdict": "excluded_in_context",
+     "reason": "constant_input_mismatch",
+     "input_origin": null,
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": null,
+     "predicates": [
+      {
+       "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+       "verdict": "unknown",
+       "reason": "predicate_search_not_reached",
+       "method": null,
+       "rust_unsatisfied": null,
+       "snarkjs": null,
+       "o0_o1_agree": null,
+       "semantic_deviation_observed": false,
+       "hints": [],
+       "search_outcome": "no_progress",
+       "changed_inputs": []
+      },
+      {
+       "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[1]",
+       "verdict": "unknown",
+       "reason": "predicate_search_not_reached",
+       "method": null,
+       "rust_unsatisfied": null,
+       "snarkjs": null,
+       "o0_o1_agree": null,
+       "semantic_deviation_observed": false,
+       "hints": [],
+       "search_outcome": "no_progress",
+       "changed_inputs": []
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 15,
+   "label": "Clamp(40)",
+   "revision": "loo_dfs",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": null,
+   "violated_condition": {
+    "kind": null,
+    "lessthan_instances": null
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0].clamp",
+     "verdict": "excluded_in_context",
+     "reason": "constant_input_mismatch",
+     "input_origin": null,
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": null,
+     "predicates": []
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 15,
+   "label": "Clamp(40)",
+   "revision": "all_fixed",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": null,
+   "violated_condition": {
+    "kind": null,
+    "lessthan_instances": null
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0].clamp",
+     "verdict": "excluded_in_context",
+     "reason": "constant_input_mismatch",
+     "input_origin": null,
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": null,
+     "predicates": []
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 25,
+   "label": "Clamp(40)",
+   "revision": "original",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 2
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0].clamp",
+     "verdict": "excluded_in_context",
+     "reason": "constant_input_mismatch",
+     "input_origin": null,
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": null,
+     "predicates": [
+      {
+       "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+       "verdict": "assumption_violation_reachable",
+       "reason": "predicate_holds_on_found_witness",
+       "method": "predicate_search_hint_injection",
+       "rust_unsatisfied": 0,
+       "snarkjs": "correct",
+       "o0_o1_agree": true,
+       "semantic_deviation_observed": true,
+       "hints": [
+        "Num2Bits@src/clampTensor.circom:12.out",
+        "IntDiv@src/integerDivision.circom:31.out"
+       ],
+       "search_outcome": "reached",
+       "changed_inputs": []
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": true,
+   "subtract_hint": false
+  },
+  {
+   "order": 25,
+   "label": "Clamp(40)",
+   "revision": "r_intdiv",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 2
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0].clamp",
+     "verdict": "excluded_in_context",
+     "reason": "constant_input_mismatch",
+     "input_origin": null,
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": null,
+     "predicates": [
+      {
+       "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+       "verdict": "unknown",
+       "reason": "predicate_search_not_reached",
+       "method": null,
+       "rust_unsatisfied": null,
+       "snarkjs": null,
+       "o0_o1_agree": null,
+       "semantic_deviation_observed": false,
+       "hints": [],
+       "search_outcome": "no_progress",
+       "changed_inputs": []
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 25,
+   "label": "Clamp(40)",
+   "revision": "c9221e8d",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 2
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0].clamp",
+     "verdict": "excluded_in_context",
+     "reason": "constant_input_mismatch",
+     "input_origin": null,
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": null,
+     "predicates": [
+      {
+       "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+       "verdict": "unknown",
+       "reason": "predicate_search_not_reached",
+       "method": null,
+       "rust_unsatisfied": null,
+       "snarkjs": null,
+       "o0_o1_agree": null,
+       "semantic_deviation_observed": false,
+       "hints": [],
+       "search_outcome": "no_progress",
+       "changed_inputs": []
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 25,
+   "label": "Clamp(40)",
+   "revision": "c79f42ee",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 2
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0].clamp",
+     "verdict": "excluded_in_context",
+     "reason": "constant_input_mismatch",
+     "input_origin": null,
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": null,
+     "predicates": [
+      {
+       "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+       "verdict": "unknown",
+       "reason": "predicate_search_not_reached",
+       "method": null,
+       "rust_unsatisfied": null,
+       "snarkjs": null,
+       "o0_o1_agree": null,
+       "semantic_deviation_observed": false,
+       "hints": [],
+       "search_outcome": "no_progress",
+       "changed_inputs": []
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 25,
+   "label": "Clamp(40)",
+   "revision": "c771c61c",
+   "status": "no_classes",
+   "preparation": "preparation_failure",
+   "reason": "component_compile_failed",
+   "detail": "circom failed: see runs/l06-2026-10-03/c771c61c/a02-25-attempt55/raw/component-o0/compile.log",
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 25,
+   "label": "Clamp(40)",
+   "revision": "c771c61c_p",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": null,
+   "violated_condition": {
+    "kind": null,
+    "lessthan_instances": null
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0].clamp",
+     "verdict": "excluded_in_context",
+     "reason": "constant_input_mismatch",
+     "input_origin": null,
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": null,
+     "predicates": []
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 25,
+   "label": "Clamp(40)",
+   "revision": "loo_clamp",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 2
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0].clamp",
+     "verdict": "excluded_in_context",
+     "reason": "constant_input_mismatch",
+     "input_origin": null,
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": null,
+     "predicates": [
+      {
+       "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+       "verdict": "unknown",
+       "reason": "predicate_search_not_reached",
+       "method": null,
+       "rust_unsatisfied": null,
+       "snarkjs": null,
+       "o0_o1_agree": null,
+       "semantic_deviation_observed": false,
+       "hints": [],
+       "search_outcome": "no_progress",
+       "changed_inputs": []
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 25,
+   "label": "Clamp(40)",
+   "revision": "loo_dfs",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": null,
+   "violated_condition": {
+    "kind": null,
+    "lessthan_instances": null
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0].clamp",
+     "verdict": "excluded_in_context",
+     "reason": "constant_input_mismatch",
+     "input_origin": null,
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": null,
+     "predicates": []
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 25,
+   "label": "Clamp(40)",
+   "revision": "all_fixed",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": null,
+   "violated_condition": {
+    "kind": null,
+    "lessthan_instances": null
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0].clamp",
+     "verdict": "excluded_in_context",
+     "reason": "constant_input_mismatch",
+     "input_origin": null,
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": null,
+     "predicates": []
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 6,
+   "label": "CalculatedScoreFraction(40)",
+   "revision": "original",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 2
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0]",
+     "verdict": "excluded_in_context",
+     "reason": "constant_input_mismatch",
+     "input_origin": null,
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": null,
+     "predicates": [
+      {
+       "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+       "verdict": "assumption_violation_reachable",
+       "reason": "predicate_holds_on_found_witness",
+       "method": "predicate_search_hint_injection",
+       "rust_unsatisfied": 0,
+       "snarkjs": "correct",
+       "o0_o1_agree": true,
+       "semantic_deviation_observed": true,
+       "hints": [
+        "Num2Bits@src/clampTensor.circom:12.out",
+        "IntDiv@src/integerDivision.circom:31.out"
+       ],
+       "search_outcome": "reached",
+       "changed_inputs": []
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": true,
+   "subtract_hint": false
+  },
+  {
+   "order": 6,
+   "label": "CalculatedScoreFraction(40)",
+   "revision": "r_intdiv",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 2
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0]",
+     "verdict": "excluded_in_context",
+     "reason": "constant_input_mismatch",
+     "input_origin": null,
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": null,
+     "predicates": [
+      {
+       "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+       "verdict": "unknown",
+       "reason": "predicate_search_not_reached",
+       "method": null,
+       "rust_unsatisfied": null,
+       "snarkjs": null,
+       "o0_o1_agree": null,
+       "semantic_deviation_observed": false,
+       "hints": [],
+       "search_outcome": "no_progress",
+       "changed_inputs": []
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 6,
+   "label": "CalculatedScoreFraction(40)",
+   "revision": "c9221e8d",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 2
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0]",
+     "verdict": "excluded_in_context",
+     "reason": "constant_input_mismatch",
+     "input_origin": null,
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": null,
+     "predicates": [
+      {
+       "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+       "verdict": "unknown",
+       "reason": "predicate_search_not_reached",
+       "method": null,
+       "rust_unsatisfied": null,
+       "snarkjs": null,
+       "o0_o1_agree": null,
+       "semantic_deviation_observed": false,
+       "hints": [],
+       "search_outcome": "no_progress",
+       "changed_inputs": []
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 6,
+   "label": "CalculatedScoreFraction(40)",
+   "revision": "c79f42ee",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 2
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0]",
+     "verdict": "excluded_in_context",
+     "reason": "constant_input_mismatch",
+     "input_origin": null,
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": null,
+     "predicates": [
+      {
+       "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+       "verdict": "unknown",
+       "reason": "predicate_search_not_reached",
+       "method": null,
+       "rust_unsatisfied": null,
+       "snarkjs": null,
+       "o0_o1_agree": null,
+       "semantic_deviation_observed": false,
+       "hints": [],
+       "search_outcome": "no_progress",
+       "changed_inputs": []
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 6,
+   "label": "CalculatedScoreFraction(40)",
+   "revision": "c771c61c",
+   "status": "no_classes",
+   "preparation": "preparation_failure",
+   "reason": "component_compile_failed",
+   "detail": "circom failed: see runs/l06-2026-10-03/c771c61c/a02-06-attempt14/raw/component-o0/compile.log",
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 6,
+   "label": "CalculatedScoreFraction(40)",
+   "revision": "c771c61c_p",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": null,
+   "violated_condition": {
+    "kind": null,
+    "lessthan_instances": null
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0]",
+     "verdict": "excluded_in_context",
+     "reason": "constant_input_mismatch",
+     "input_origin": null,
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": null,
+     "predicates": []
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 6,
+   "label": "CalculatedScoreFraction(40)",
+   "revision": "loo_clamp",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 2
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0]",
+     "verdict": "excluded_in_context",
+     "reason": "constant_input_mismatch",
+     "input_origin": null,
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": null,
+     "predicates": [
+      {
+       "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+       "verdict": "unknown",
+       "reason": "predicate_search_not_reached",
+       "method": null,
+       "rust_unsatisfied": null,
+       "snarkjs": null,
+       "o0_o1_agree": null,
+       "semantic_deviation_observed": false,
+       "hints": [],
+       "search_outcome": "no_progress",
+       "changed_inputs": []
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 6,
+   "label": "CalculatedScoreFraction(40)",
+   "revision": "loo_dfs",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": null,
+   "violated_condition": {
+    "kind": null,
+    "lessthan_instances": null
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0]",
+     "verdict": "excluded_in_context",
+     "reason": "constant_input_mismatch",
+     "input_origin": null,
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": null,
+     "predicates": []
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 6,
+   "label": "CalculatedScoreFraction(40)",
+   "revision": "all_fixed",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": null,
+   "violated_condition": {
+    "kind": null,
+    "lessthan_instances": null
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0]",
+     "verdict": "excluded_in_context",
+     "reason": "constant_input_mismatch",
+     "input_origin": null,
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": null,
+     "predicates": []
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 16,
+   "label": "CalculatedScoreFraction(40)",
+   "revision": "original",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 2
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0]",
+     "verdict": "excluded_in_context",
+     "reason": "constant_input_mismatch",
+     "input_origin": null,
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": null,
+     "predicates": [
+      {
+       "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+       "verdict": "assumption_violation_reachable",
+       "reason": "predicate_holds_on_found_witness",
+       "method": "predicate_search_hint_injection",
+       "rust_unsatisfied": 0,
+       "snarkjs": "correct",
+       "o0_o1_agree": true,
+       "semantic_deviation_observed": true,
+       "hints": [
+        "Num2Bits@src/clampTensor.circom:12.out",
+        "IntDiv@src/integerDivision.circom:31.out"
+       ],
+       "search_outcome": "reached",
+       "changed_inputs": []
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": true,
+   "subtract_hint": false
+  },
+  {
+   "order": 16,
+   "label": "CalculatedScoreFraction(40)",
+   "revision": "r_intdiv",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 2
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0]",
+     "verdict": "excluded_in_context",
+     "reason": "constant_input_mismatch",
+     "input_origin": null,
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": null,
+     "predicates": [
+      {
+       "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+       "verdict": "unknown",
+       "reason": "predicate_search_not_reached",
+       "method": null,
+       "rust_unsatisfied": null,
+       "snarkjs": null,
+       "o0_o1_agree": null,
+       "semantic_deviation_observed": false,
+       "hints": [],
+       "search_outcome": "no_progress",
+       "changed_inputs": []
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 16,
+   "label": "CalculatedScoreFraction(40)",
+   "revision": "c9221e8d",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 2
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0]",
+     "verdict": "excluded_in_context",
+     "reason": "constant_input_mismatch",
+     "input_origin": null,
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": null,
+     "predicates": [
+      {
+       "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+       "verdict": "unknown",
+       "reason": "predicate_search_not_reached",
+       "method": null,
+       "rust_unsatisfied": null,
+       "snarkjs": null,
+       "o0_o1_agree": null,
+       "semantic_deviation_observed": false,
+       "hints": [],
+       "search_outcome": "no_progress",
+       "changed_inputs": []
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 16,
+   "label": "CalculatedScoreFraction(40)",
+   "revision": "c79f42ee",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 2
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0]",
+     "verdict": "excluded_in_context",
+     "reason": "constant_input_mismatch",
+     "input_origin": null,
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": null,
+     "predicates": [
+      {
+       "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+       "verdict": "unknown",
+       "reason": "predicate_search_not_reached",
+       "method": null,
+       "rust_unsatisfied": null,
+       "snarkjs": null,
+       "o0_o1_agree": null,
+       "semantic_deviation_observed": false,
+       "hints": [],
+       "search_outcome": "no_progress",
+       "changed_inputs": []
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 16,
+   "label": "CalculatedScoreFraction(40)",
+   "revision": "c771c61c",
+   "status": "no_classes",
+   "preparation": "preparation_failure",
+   "reason": "component_compile_failed",
+   "detail": "circom failed: see runs/l06-2026-10-03/c771c61c/a02-16-attempt35/raw/component-o0/compile.log",
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 16,
+   "label": "CalculatedScoreFraction(40)",
+   "revision": "c771c61c_p",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": null,
+   "violated_condition": {
+    "kind": null,
+    "lessthan_instances": null
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0]",
+     "verdict": "excluded_in_context",
+     "reason": "constant_input_mismatch",
+     "input_origin": null,
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": null,
+     "predicates": []
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 16,
+   "label": "CalculatedScoreFraction(40)",
+   "revision": "loo_clamp",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 2
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0]",
+     "verdict": "excluded_in_context",
+     "reason": "constant_input_mismatch",
+     "input_origin": null,
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": null,
+     "predicates": [
+      {
+       "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+       "verdict": "unknown",
+       "reason": "predicate_search_not_reached",
+       "method": null,
+       "rust_unsatisfied": null,
+       "snarkjs": null,
+       "o0_o1_agree": null,
+       "semantic_deviation_observed": false,
+       "hints": [],
+       "search_outcome": "no_progress",
+       "changed_inputs": []
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 16,
+   "label": "CalculatedScoreFraction(40)",
+   "revision": "loo_dfs",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": null,
+   "violated_condition": {
+    "kind": null,
+    "lessthan_instances": null
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0]",
+     "verdict": "excluded_in_context",
+     "reason": "constant_input_mismatch",
+     "input_origin": null,
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": null,
+     "predicates": []
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 16,
+   "label": "CalculatedScoreFraction(40)",
+   "revision": "all_fixed",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": null,
+   "violated_condition": {
+    "kind": null,
+    "lessthan_instances": null
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0]",
+     "verdict": "excluded_in_context",
+     "reason": "constant_input_mismatch",
+     "input_origin": null,
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": null,
+     "predicates": []
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 26,
+   "label": "CalculatedScoreFraction(40)",
+   "revision": "original",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 2
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0]",
+     "verdict": "unknown",
+     "reason": "budget_exhausted",
+     "input_origin": "direct",
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": [],
+     "predicates": [
+      {
+       "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[1]",
+       "verdict": "unknown",
+       "reason": "predicate_search_not_reached",
+       "method": null,
+       "rust_unsatisfied": null,
+       "snarkjs": null,
+       "o0_o1_agree": null,
+       "semantic_deviation_observed": false,
+       "hints": [],
+       "search_outcome": "no_progress",
+       "changed_inputs": []
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 26,
+   "label": "CalculatedScoreFraction(40)",
+   "revision": "r_intdiv",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 2
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0]",
+     "verdict": "excluded_in_context",
+     "reason": "closed_cone_unsat",
+     "input_origin": "direct",
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": [],
+     "predicates": [
+      {
+       "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[1]",
+       "verdict": "unknown",
+       "reason": "predicate_search_not_reached",
+       "method": null,
+       "rust_unsatisfied": null,
+       "snarkjs": null,
+       "o0_o1_agree": null,
+       "semantic_deviation_observed": false,
+       "hints": [],
+       "search_outcome": "no_progress",
+       "changed_inputs": []
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 26,
+   "label": "CalculatedScoreFraction(40)",
+   "revision": "c9221e8d",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 2
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0]",
+     "verdict": "excluded_in_context",
+     "reason": "closed_cone_unsat",
+     "input_origin": "direct",
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": [],
+     "predicates": [
+      {
+       "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[1]",
+       "verdict": "unknown",
+       "reason": "predicate_search_not_reached",
+       "method": null,
+       "rust_unsatisfied": null,
+       "snarkjs": null,
+       "o0_o1_agree": null,
+       "semantic_deviation_observed": false,
+       "hints": [],
+       "search_outcome": "no_progress",
+       "changed_inputs": []
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 26,
+   "label": "CalculatedScoreFraction(40)",
+   "revision": "c79f42ee",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 2
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0]",
+     "verdict": "excluded_in_context",
+     "reason": "closed_cone_unsat",
+     "input_origin": "direct",
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": [],
+     "predicates": [
+      {
+       "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[1]",
+       "verdict": "unknown",
+       "reason": "predicate_search_not_reached",
+       "method": null,
+       "rust_unsatisfied": null,
+       "snarkjs": null,
+       "o0_o1_agree": null,
+       "semantic_deviation_observed": false,
+       "hints": [],
+       "search_outcome": "no_progress",
+       "changed_inputs": []
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 26,
+   "label": "CalculatedScoreFraction(40)",
+   "revision": "c771c61c",
+   "status": "no_classes",
+   "preparation": "preparation_failure",
+   "reason": "component_compile_failed",
+   "detail": "circom failed: see runs/l06-2026-10-03/c771c61c/a02-26-attempt56/raw/component-o0/compile.log",
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 26,
+   "label": "CalculatedScoreFraction(40)",
+   "revision": "c771c61c_p",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": null,
+   "violated_condition": {
+    "kind": null,
+    "lessthan_instances": null
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0]",
+     "verdict": "excluded_in_context",
+     "reason": "closed_cone_unsat",
+     "input_origin": "direct",
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": [],
+     "predicates": []
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 26,
+   "label": "CalculatedScoreFraction(40)",
+   "revision": "loo_clamp",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": true,
+   "violated_condition": {
+    "kind": "lessthan_semantic",
+    "lessthan_instances": 2
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0]",
+     "verdict": "excluded_in_context",
+     "reason": "closed_cone_unsat",
+     "input_origin": "direct",
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": [],
+     "predicates": [
+      {
+       "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[1]",
+       "verdict": "unknown",
+       "reason": "predicate_search_not_reached",
+       "method": null,
+       "rust_unsatisfied": null,
+       "snarkjs": null,
+       "o0_o1_agree": null,
+       "semantic_deviation_observed": false,
+       "hints": [],
+       "search_outcome": "no_progress",
+       "changed_inputs": []
+      }
+     ]
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 26,
+   "label": "CalculatedScoreFraction(40)",
+   "revision": "loo_dfs",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": null,
+   "violated_condition": {
+    "kind": null,
+    "lessthan_instances": null
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0]",
+     "verdict": "excluded_in_context",
+     "reason": "closed_cone_unsat",
+     "input_origin": "direct",
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": [],
+     "predicates": []
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  },
+  {
+   "order": 26,
+   "label": "CalculatedScoreFraction(40)",
+   "revision": "all_fixed",
+   "status": "ok",
+   "preparation": "ok",
+   "component_satisfied": null,
+   "violated_condition": {
+    "kind": null,
+    "lessthan_instances": null
+   },
+   "classes": [
+    {
+     "representative": "main.calculated_score_fraction_comp[0]",
+     "verdict": "excluded_in_context",
+     "reason": "closed_cone_unsat",
+     "input_origin": "direct",
+     "rust_unsatisfied": null,
+     "snarkjs": null,
+     "synthesis_hints": [],
+     "synthesis_changed_inputs": [],
+     "predicates": []
+    }
+   ],
+   "intdiv_hint": false,
+   "subtract_hint": false
+  }
+ ],
+ "dfs13_original_honest_check": {
+  "input": "runs/l06-2026-10-03/r_intdiv/a02-13-attempt30/raw/site-000/input.json",
+  "input_sha256": "cb589bb9fe759018bd80b2d941358f753a6a11e45f20380e211c2056905645af",
+  "original_o0_build": "runs/l05-2026-10-03/cache-a02/c5c9b0b748b3fa16ee9b0e7131c3a40b850df8b3f9207c5dc1a0bdb1c285762f/",
+  "generator_exit": 0,
+  "out": 1,
+  "integer_less": false,
+  "broken": true,
+  "witness_o1_sha256": "a123d8725c3ae30aad8adb1ec7170207f081ec637f6bd6e92ba5e0069c4a9be2",
+  "witness_o0_sha256": "dbed958f933c83e79fedb329e3d47f6aef35964ef6a97748df46b7993fe70cfc",
+  "snarkjs_o1": "WITNESS IS CORRECT",
+  "snarkjs_o0": "WITNESS IS CORRECT"
+ },
+ "a02_rerun": {
+  "a02-cold": {
+   "requests": 31,
+   "same_verdicts": 31,
+   "l05_wall_total": 1594.251796128,
+   "wall_total": 2358.731506045,
+   "l05_compile_total": 584.876328131,
+   "compile_total": 811.071609711,
+   "cache_hits": 132,
+   "differences": []
+  },
+  "a02-warm": {
+   "requests": 31,
+   "same_verdicts": 31,
+   "l05_wall_total": 1594.251796128,
+   "wall_total": 1691.396328291,
+   "l05_compile_total": 584.876328131,
+   "compile_total": 197.157075418,
+   "cache_hits": 287,
+   "differences": []
+  }
+ },
+ "walls": {
+  "r_intdiv": {
+   "lifts": 9,
+   "wall_total": 331.49847391596995,
+   "nonzero_exit": []
+  },
+  "c9221e8d": {
+   "lifts": 9,
+   "wall_total": 394.52960887388326,
+   "nonzero_exit": []
+  },
+  "c79f42ee": {
+   "lifts": 9,
+   "wall_total": 307.54877395916265,
+   "nonzero_exit": []
+  },
+  "c771c61c": {
+   "lifts": 9,
+   "wall_total": 1.5506971660070121,
+   "nonzero_exit": []
+  },
+  "c771c61c_p": {
+   "lifts": 9,
+   "wall_total": 999.5332190832123,
+   "nonzero_exit": []
+  },
+  "loo_clamp": {
+   "lifts": 9,
+   "wall_total": 642.7585066681495,
+   "nonzero_exit": []
+  },
+  "loo_dfs": {
+   "lifts": 9,
+   "wall_total": 615.9244370419765,
+   "nonzero_exit": []
+  },
+  "all_fixed": {
+   "lifts": 9,
+   "wall_total": 457.63844220829196,
+   "nonzero_exit": []
+  },
+  "a02-cold": {
+   "lifts": 31,
+   "wall_total": 2360.748286916176,
+   "nonzero_exit": []
+  },
+  "a02-warm": {
+   "lifts": 31,
+   "wall_total": 1693.2463135790313,
+   "nonzero_exit": []
+  }
+ },
+ "artifact_cleanup": [
+  {
+   "path": "runs/l06-2026-10-03/artifact-cleanup-20261004T160745Z.json",
+   "sha256": "75e8265918a999a0fbfc1bbe844e35c4b8f3f7f0c3e21a14037546456a7693a4",
+   "files": 1054,
+   "bytes": 27161349001,
+   "by_suffix": {
+    ".r1cs": 552,
+    ".wasm": 502
+   }
+  }
+ ]
+}

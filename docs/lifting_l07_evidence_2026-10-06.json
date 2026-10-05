@@ -1,0 +1,2114 @@
+{
+ "schema": "zkfdo-l07-evidence-v1",
+ "date": "2026-10-06",
+ "note": "Value-free index. Inputs, witnesses and z3 models stay under ignored runs/l07-2026-10-05/. No zkFuzz run.",
+ "engine": {
+  "binary_sha256": "e5cb01845422c1dd59c0bb2822d8652c1bafc583d8c111814dfbd9127a96e1ed",
+  "circom_sha256": "8991887889c2a74d6fc704d5689ada4cc76fba004e866c987de6cbf3b3db6227",
+  "sources": {
+   "src/candidate_review/lifting/bitrange.rs": "6aba67868821cc1d9e1eb557549f4554453f1b4d3be43a60524f1f6dbaf4aacd",
+   "src/candidate_review/lifting/condition.rs": "cc1e521ce23167f6c0d9458cb40267e6d2c797bfbd6a9f370057c9e9e5c062b0",
+   "src/candidate_review/lifting/instances.rs": "a586bd7c5f47f26e1c3057a3d8d788b5bc7c9abf81e23f75baf00dc39a40db8c",
+   "src/candidate_review/lifting/mod.rs": "294d1c297814a6842d1313205e91eced41408a1b014e5c534a1662bfb36df005",
+   "src/candidate_review/lifting/predicate.rs": "c5b9c7c43b926a66313ec7f6110a177d079fcd1c75d62f898d393d305803c84d",
+   "src/candidate_review/lifting/refute.rs": "749582abb169c99a6d5a8c2dec8ef342cf804a0a0ff09d7ec1b6b5a997ce9ea8",
+   "src/candidate_review/lifting/repair.rs": "e2fbc35d4ea6a52377e26e96f992346d475137cae60bf1092ba90ac885d24894",
+   "src/candidate_review/lifting/source.rs": "b96f8afb5fbcd8bdf8947f7809ad8e3f2b6b1fcf10f689f65947c3bb63bd9a2b",
+   "src/candidate_review/lifting/synth.rs": "e84a31c0d17463edae6a76a3880814c09f9b83628caa239b9f36bc40723cf75c",
+   "src/candidate_review/lifting/wtns.rs": "9f77d2454e2e62867a8c8e8d2ed9830de5d0142def38df5c44eb1b91f0382fb9",
+   "src/cli.rs": "d07870900f9e00715b5c6032dd8fc8acbb0fcd247beabd4cebb4896ab70484dd"
+  }
+ },
+ "scripts": {
+  "runs/l07-2026-10-05/run_l07.py": "c1b5429ae501b6c5f6d77fc98404e0ff53254b57e4200380c08af1e107500930",
+  "runs/l07-2026-10-05/summarize.py": "a8c724cf643251cbe704af451f8a9a5faf86fd1e1b77f347f3d918b2b085ae65",
+  "runs/l07-2026-10-05/write_evidence.py": "a024bb25a86dea51466adfcc0f698fb8973fbd79caa27a3762ca38f840b99800",
+  "scripts/f01_cleanup_artifacts.py": "f55f61fd8a5b7353270dab9c0c0a79b0527db0c0771979d7a64d645cd26d542e"
+ },
+ "tests": {
+  "tests/lifting_engine_regression_test.rs": "30bab0406f3ab0503cffc0b928b56898a9bc3d85bc0e9f6015feff33b9c34489",
+  "tests/fixtures/lifting_engine/lessthan_excluded/base_input.json": "e56a775c9445cce9eb0f1c2823d487e38fceb62ffd66d04bbb7a56b1fbc4b155",
+  "tests/fixtures/lifting_engine/lessthan_excluded/candidate.json": "fe90fb3f56a00b845033f0cc1b719a770a90cce49c305ece990c1d9246f1ed99",
+  "tests/fixtures/lifting_engine/lessthan_excluded/request.json": "f03735fbd1e087f66b7809588941d41041ac3ee1800c676612cd4eaafdd9dd50",
+  "tests/fixtures/lifting_engine/lessthan_excluded/src/component.circom": "c06670239d3b57ff5c6aaf68d1b09d414a618ed5041a933f2815f5219453c9ed",
+  "tests/fixtures/lifting_engine/lessthan_excluded/src/entrypoint.circom": "15b8b3cf6c76f565c89e47c05f802d1390ff691ac11b365000c4335eea27ae0b",
+  "tests/fixtures/lifting_engine/lessthan_excluded/src/standalone.circom": "f4dab205b53f6a05be94dc1d7fe742e8e1d751fcf674e6165d9e4f0f84e330a9",
+  "tests/fixtures/lifting_engine/lessthan_fixed_component/base_input.json": "e56a775c9445cce9eb0f1c2823d487e38fceb62ffd66d04bbb7a56b1fbc4b155",
+  "tests/fixtures/lifting_engine/lessthan_fixed_component/candidate.json": "fe90fb3f56a00b845033f0cc1b719a770a90cce49c305ece990c1d9246f1ed99",
+  "tests/fixtures/lifting_engine/lessthan_fixed_component/request.json": "88bedf01996df720ab3d7292097a9e3ebc7894412634956ea5fbc2ba9682c052",
+  "tests/fixtures/lifting_engine/lessthan_fixed_component/src/component.circom": "f8392ce8cdf4b0f7d28514d134bf37be2720c0ac008619de89e0c7992507d46f",
+  "tests/fixtures/lifting_engine/lessthan_fixed_component/src/entrypoint.circom": "78e76941fcd16a8b0831060f8c2b4e79f0856f34682a2c058f6c1c56b94bac32",
+  "tests/fixtures/lifting_engine/lessthan_fixed_component/src/standalone.circom": "f4dab205b53f6a05be94dc1d7fe742e8e1d751fcf674e6165d9e4f0f84e330a9",
+  "tests/fixtures/lifting_engine/lessthan_private/base_input.json": "e56a775c9445cce9eb0f1c2823d487e38fceb62ffd66d04bbb7a56b1fbc4b155",
+  "tests/fixtures/lifting_engine/lessthan_private/candidate.json": "fe90fb3f56a00b845033f0cc1b719a770a90cce49c305ece990c1d9246f1ed99",
+  "tests/fixtures/lifting_engine/lessthan_private/request.json": "e9a9693ac0b826205929b55ae41b8aa157f23e5d6fb846774915c16b6337d600",
+  "tests/fixtures/lifting_engine/lessthan_private/src/component.circom": "c06670239d3b57ff5c6aaf68d1b09d414a618ed5041a933f2815f5219453c9ed",
+  "tests/fixtures/lifting_engine/lessthan_private/src/entrypoint.circom": "20a816e5bc2913bd3f58b4281f2f25165fdb0dd868d62bd33f1eb46f343d2201",
+  "tests/fixtures/lifting_engine/lessthan_private/src/standalone.circom": "f4dab205b53f6a05be94dc1d7fe742e8e1d751fcf674e6165d9e4f0f84e330a9",
+  "tests/fixtures/lifting_engine/lessthan_propagation/base_input.json": "e56a775c9445cce9eb0f1c2823d487e38fceb62ffd66d04bbb7a56b1fbc4b155",
+  "tests/fixtures/lifting_engine/lessthan_propagation/candidate.json": "fe90fb3f56a00b845033f0cc1b719a770a90cce49c305ece990c1d9246f1ed99",
+  "tests/fixtures/lifting_engine/lessthan_propagation/request.json": "48e4ccb9e8345a387c0546d4c4de9c36774eeaf0c6943e058c69ddb2920b9f9d",
+  "tests/fixtures/lifting_engine/lessthan_propagation/src/component.circom": "c06670239d3b57ff5c6aaf68d1b09d414a618ed5041a933f2815f5219453c9ed",
+  "tests/fixtures/lifting_engine/lessthan_propagation/src/entrypoint.circom": "15a60a3d09cb3b7bd4d0f28775765f8538b65c3503ee2a69d4774c2879ae68ba",
+  "tests/fixtures/lifting_engine/lessthan_propagation/src/standalone.circom": "f4dab205b53f6a05be94dc1d7fe742e8e1d751fcf674e6165d9e4f0f84e330a9",
+  "tests/fixtures/lifting_engine/lessthan_reachable/base_input.json": "e56a775c9445cce9eb0f1c2823d487e38fceb62ffd66d04bbb7a56b1fbc4b155",
+  "tests/fixtures/lifting_engine/lessthan_reachable/candidate.json": "fe90fb3f56a00b845033f0cc1b719a770a90cce49c305ece990c1d9246f1ed99",
+  "tests/fixtures/lifting_engine/lessthan_reachable/request.json": "3afb2c4343023d8f9e29993b8f85d34da04842a9d30556f079fc16e6e5dcf36b",
+  "tests/fixtures/lifting_engine/lessthan_reachable/src/component.circom": "c06670239d3b57ff5c6aaf68d1b09d414a618ed5041a933f2815f5219453c9ed",
+  "tests/fixtures/lifting_engine/lessthan_reachable/src/entrypoint.circom": "90eeb33803c69eb1fbfbbed20f4a53fdee7159aa441108a18af3b4f6be367ba1",
+  "tests/fixtures/lifting_engine/lessthan_reachable/src/standalone.circom": "f4dab205b53f6a05be94dc1d7fe742e8e1d751fcf674e6165d9e4f0f84e330a9",
+  "tests/fixtures/lifting_engine/lessthan_search/base_input.json": "bd649bda1ec0e29b99e6a099e82b446bcca3bdcb5931fd109bb60c064800f2f7",
+  "tests/fixtures/lifting_engine/lessthan_search/candidate.json": "fe90fb3f56a00b845033f0cc1b719a770a90cce49c305ece990c1d9246f1ed99",
+  "tests/fixtures/lifting_engine/lessthan_search/request.json": "263775529dc6434fb152aa0dfdf1bf6a793bb00440fc4b14ebcb7fe63420fde7",
+  "tests/fixtures/lifting_engine/lessthan_search/src/component.circom": "c06670239d3b57ff5c6aaf68d1b09d414a618ed5041a933f2815f5219453c9ed",
+  "tests/fixtures/lifting_engine/lessthan_search/src/entrypoint.circom": "0350a175168cc079c269776c06cc7d98d9e4611212828550afe002092413c8e9",
+  "tests/fixtures/lifting_engine/lessthan_search/src/standalone.circom": "f4dab205b53f6a05be94dc1d7fe742e8e1d751fcf674e6165d9e4f0f84e330a9"
+ },
+ "groups": {
+  "a02": {
+   "classes": 62,
+   "instances": 5,
+   "instance_verdicts": {
+    "assumption_violation_reachable": 4,
+    "unknown": 1
+   },
+   "conflicts": 0,
+   "changed_by_sharing": 0,
+   "reach_classification": {
+    "private_only": 1,
+    "public_inputs_changed": 3
+   }
+  },
+  "banyan": {
+   "classes": 36,
+   "instances": 2,
+   "instance_verdicts": {
+    "assumption_violation_reachable": 2
+   },
+   "conflicts": 0,
+   "changed_by_sharing": 0,
+   "reach_classification": {
+    "private_only": 2
+   }
+  },
+  "zkemail": {
+   "classes": 9,
+   "instances": 13,
+   "instance_verdicts": {
+    "assumption_excluded_in_context": 13
+   },
+   "conflicts": 0,
+   "changed_by_sharing": 0,
+   "reach_classification": {}
+  },
+  "r_intdiv": {
+   "classes": 9,
+   "instances": 3,
+   "instance_verdicts": {
+    "assumption_excluded_in_context": 1,
+    "assumption_violation_reachable": 1,
+    "unknown": 1
+   },
+   "conflicts": 0,
+   "changed_by_sharing": 1,
+   "reach_classification": {
+    "public_inputs_changed": 1
+   }
+  },
+  "c9221e8d": {
+   "classes": 9,
+   "instances": 3,
+   "instance_verdicts": {
+    "assumption_excluded_in_context": 1,
+    "assumption_violation_reachable": 1,
+    "unknown": 1
+   },
+   "conflicts": 0,
+   "changed_by_sharing": 1,
+   "reach_classification": {
+    "public_inputs_changed": 1
+   }
+  },
+  "c79f42ee": {
+   "classes": 9,
+   "instances": 3,
+   "instance_verdicts": {
+    "assumption_excluded_in_context": 2,
+    "unknown": 1
+   },
+   "conflicts": 0,
+   "changed_by_sharing": 0,
+   "reach_classification": {}
+  },
+  "c771c61c_p": {
+   "classes": 9,
+   "instances": 3,
+   "instance_verdicts": {
+    "assumption_excluded_in_context": 3
+   },
+   "conflicts": 0,
+   "changed_by_sharing": 0,
+   "reach_classification": {}
+  },
+  "loo_clamp": {
+   "classes": 9,
+   "instances": 3,
+   "instance_verdicts": {
+    "assumption_excluded_in_context": 2,
+    "unknown": 1
+   },
+   "conflicts": 0,
+   "changed_by_sharing": 0,
+   "reach_classification": {}
+  },
+  "loo_dfs": {
+   "classes": 9,
+   "instances": 3,
+   "instance_verdicts": {
+    "assumption_excluded_in_context": 2,
+    "assumption_violation_reachable": 1
+   },
+   "conflicts": 0,
+   "changed_by_sharing": 1,
+   "reach_classification": {
+    "public_inputs_changed": 1
+   }
+  },
+  "all_fixed": {
+   "classes": 9,
+   "instances": 3,
+   "instance_verdicts": {
+    "assumption_excluded_in_context": 3
+   },
+   "conflicts": 0,
+   "changed_by_sharing": 0,
+   "reach_classification": {}
+  }
+ },
+ "changes": [
+  {
+   "group": "r_intdiv",
+   "request": "a02-03-attempt9",
+   "class": "main.distance_from_score_fn[0]",
+   "changes": {
+    "effective": [
+     "unknown",
+     "assumption_violation_reachable"
+    ]
+   },
+   "causes": [
+    "instance_join"
+   ],
+   "targets_before": [
+    "main.distance_from_score_fn[0].positive"
+   ],
+   "targets_after": [
+    "main.distance_from_score_fn[0].positive"
+   ],
+   "methods": [
+    ""
+   ],
+   "reach": []
+  },
+  {
+   "group": "r_intdiv",
+   "request": "a02-05-attempt13",
+   "class": "main.calculated_score_fraction_comp[0].clamp",
+   "changes": {
+    "predicate": [
+     "unknown",
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "range_propagation"
+   ],
+   "targets_before": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]"
+   ],
+   "targets_after": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]"
+   ],
+   "methods": [
+    "z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "r_intdiv",
+   "request": "a02-06-attempt14",
+   "class": "main.calculated_score_fraction_comp[0]",
+   "changes": {
+    "predicate": [
+     "unknown",
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "instance_store",
+    "range_propagation"
+   ],
+   "targets_before": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]"
+   ],
+   "targets_after": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]"
+   ],
+   "methods": [
+    "shared_instance:z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "r_intdiv",
+   "request": "a02-16-attempt35",
+   "class": "main.calculated_score_fraction_comp[0]",
+   "changes": {
+    "predicate": [
+     "unknown",
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "instance_store",
+    "range_propagation"
+   ],
+   "targets_before": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]"
+   ],
+   "targets_after": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]"
+   ],
+   "methods": [
+    "shared_instance:z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "r_intdiv",
+   "request": "a02-23-attempt51",
+   "class": "main.distance_from_score_fn[0]",
+   "changes": {
+    "predicate": [
+     "unknown",
+     "assumption_violation_reachable"
+    ]
+   },
+   "causes": [
+    "instance_store"
+   ],
+   "targets_before": [
+    "main.distance_from_score_fn[0].positive"
+   ],
+   "targets_after": [
+    "main.distance_from_score_fn[0].positive"
+   ],
+   "methods": [
+    "shared_instance:candidate_witness"
+   ],
+   "reach": [
+    "public_inputs_changed"
+   ]
+  },
+  {
+   "group": "r_intdiv",
+   "request": "a02-25-attempt55",
+   "class": "main.calculated_score_fraction_comp[0].clamp",
+   "changes": {
+    "predicate": [
+     "unknown",
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "instance_store",
+    "range_propagation"
+   ],
+   "targets_before": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]"
+   ],
+   "targets_after": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]"
+   ],
+   "methods": [
+    "shared_instance:z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "c9221e8d",
+   "request": "a02-03-attempt9",
+   "class": "main.distance_from_score_fn[0]",
+   "changes": {
+    "effective": [
+     "unknown",
+     "assumption_violation_reachable"
+    ]
+   },
+   "causes": [
+    "instance_join"
+   ],
+   "targets_before": [
+    "main.distance_from_score_fn[0].positive"
+   ],
+   "targets_after": [
+    "main.distance_from_score_fn[0].positive"
+   ],
+   "methods": [
+    ""
+   ],
+   "reach": []
+  },
+  {
+   "group": "c9221e8d",
+   "request": "a02-05-attempt13",
+   "class": "main.calculated_score_fraction_comp[0].clamp",
+   "changes": {
+    "predicate": [
+     "unknown",
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "range_propagation"
+   ],
+   "targets_before": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]"
+   ],
+   "targets_after": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]"
+   ],
+   "methods": [
+    "z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "c9221e8d",
+   "request": "a02-06-attempt14",
+   "class": "main.calculated_score_fraction_comp[0]",
+   "changes": {
+    "predicate": [
+     "unknown",
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "instance_store",
+    "range_propagation"
+   ],
+   "targets_before": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]"
+   ],
+   "targets_after": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]"
+   ],
+   "methods": [
+    "shared_instance:z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "c9221e8d",
+   "request": "a02-16-attempt35",
+   "class": "main.calculated_score_fraction_comp[0]",
+   "changes": {
+    "predicate": [
+     "unknown",
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "instance_store",
+    "range_propagation"
+   ],
+   "targets_before": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]"
+   ],
+   "targets_after": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]"
+   ],
+   "methods": [
+    "shared_instance:z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "c9221e8d",
+   "request": "a02-23-attempt51",
+   "class": "main.distance_from_score_fn[0]",
+   "changes": {
+    "predicate": [
+     "unknown",
+     "assumption_violation_reachable"
+    ]
+   },
+   "causes": [
+    "instance_store"
+   ],
+   "targets_before": [
+    "main.distance_from_score_fn[0].positive"
+   ],
+   "targets_after": [
+    "main.distance_from_score_fn[0].positive"
+   ],
+   "methods": [
+    "shared_instance:candidate_witness"
+   ],
+   "reach": [
+    "public_inputs_changed"
+   ]
+  },
+  {
+   "group": "c9221e8d",
+   "request": "a02-25-attempt55",
+   "class": "main.calculated_score_fraction_comp[0].clamp",
+   "changes": {
+    "predicate": [
+     "unknown",
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "instance_store",
+    "range_propagation"
+   ],
+   "targets_before": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]"
+   ],
+   "targets_after": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]"
+   ],
+   "methods": [
+    "shared_instance:z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "c79f42ee",
+   "request": "a02-03-attempt9",
+   "class": "main.distance_from_score_fn[0]",
+   "changes": {
+    "predicate": [
+     null,
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "candidate_independent_targets",
+    "range_propagation"
+   ],
+   "targets_before": [],
+   "targets_after": [
+    "main.distance_from_score_fn[0].positive"
+   ],
+   "methods": [
+    "z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "c79f42ee",
+   "request": "a02-05-attempt13",
+   "class": "main.calculated_score_fraction_comp[0].clamp",
+   "changes": {
+    "predicate": [
+     "unknown",
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "range_propagation"
+   ],
+   "targets_before": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]"
+   ],
+   "targets_after": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]"
+   ],
+   "methods": [
+    "z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "c79f42ee",
+   "request": "a02-06-attempt14",
+   "class": "main.calculated_score_fraction_comp[0]",
+   "changes": {
+    "predicate": [
+     "unknown",
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "instance_store",
+    "range_propagation"
+   ],
+   "targets_before": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]"
+   ],
+   "targets_after": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]"
+   ],
+   "methods": [
+    "shared_instance:z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "c79f42ee",
+   "request": "a02-13-attempt30",
+   "class": "main.distance_from_score_fn[0]",
+   "changes": {
+    "predicate": [
+     null,
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "instance_store",
+    "candidate_independent_targets",
+    "range_propagation"
+   ],
+   "targets_before": [],
+   "targets_after": [
+    "main.distance_from_score_fn[0].positive"
+   ],
+   "methods": [
+    "shared_instance:z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "c79f42ee",
+   "request": "a02-16-attempt35",
+   "class": "main.calculated_score_fraction_comp[0]",
+   "changes": {
+    "predicate": [
+     "unknown",
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "instance_store",
+    "range_propagation"
+   ],
+   "targets_before": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]"
+   ],
+   "targets_after": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]"
+   ],
+   "methods": [
+    "shared_instance:z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "c79f42ee",
+   "request": "a02-23-attempt51",
+   "class": "main.distance_from_score_fn[0]",
+   "changes": {
+    "predicate": [
+     null,
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "instance_store",
+    "candidate_independent_targets",
+    "range_propagation"
+   ],
+   "targets_before": [],
+   "targets_after": [
+    "main.distance_from_score_fn[0].positive"
+   ],
+   "methods": [
+    "shared_instance:z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "c79f42ee",
+   "request": "a02-25-attempt55",
+   "class": "main.calculated_score_fraction_comp[0].clamp",
+   "changes": {
+    "predicate": [
+     "unknown",
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "instance_store",
+    "range_propagation"
+   ],
+   "targets_before": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]"
+   ],
+   "targets_after": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]"
+   ],
+   "methods": [
+    "shared_instance:z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "c771c61c_p",
+   "request": "a02-03-attempt9",
+   "class": "main.distance_from_score_fn[0]",
+   "changes": {
+    "predicate": [
+     null,
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "candidate_independent_targets",
+    "range_propagation"
+   ],
+   "targets_before": [],
+   "targets_after": [
+    "main.distance_from_score_fn[0].positive"
+   ],
+   "methods": [
+    "z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "c771c61c_p",
+   "request": "a02-05-attempt13",
+   "class": "main.calculated_score_fraction_comp[0].clamp",
+   "changes": {
+    "predicate": [
+     null,
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "candidate_independent_targets",
+    "range_propagation"
+   ],
+   "targets_before": [],
+   "targets_after": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[1]"
+   ],
+   "methods": [
+    "z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "c771c61c_p",
+   "request": "a02-06-attempt14",
+   "class": "main.calculated_score_fraction_comp[0]",
+   "changes": {
+    "predicate": [
+     null,
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "instance_store",
+    "candidate_independent_targets",
+    "range_propagation"
+   ],
+   "targets_before": [],
+   "targets_after": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[1]"
+   ],
+   "methods": [
+    "shared_instance:z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "c771c61c_p",
+   "request": "a02-13-attempt30",
+   "class": "main.distance_from_score_fn[0]",
+   "changes": {
+    "predicate": [
+     null,
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "instance_store",
+    "candidate_independent_targets",
+    "range_propagation"
+   ],
+   "targets_before": [],
+   "targets_after": [
+    "main.distance_from_score_fn[0].positive"
+   ],
+   "methods": [
+    "shared_instance:z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "c771c61c_p",
+   "request": "a02-15-attempt34",
+   "class": "main.calculated_score_fraction_comp[0].clamp",
+   "changes": {
+    "predicate": [
+     null,
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "instance_store",
+    "candidate_independent_targets",
+    "range_propagation"
+   ],
+   "targets_before": [],
+   "targets_after": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[1]"
+   ],
+   "methods": [
+    "shared_instance:z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "c771c61c_p",
+   "request": "a02-16-attempt35",
+   "class": "main.calculated_score_fraction_comp[0]",
+   "changes": {
+    "predicate": [
+     null,
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "instance_store",
+    "candidate_independent_targets",
+    "range_propagation"
+   ],
+   "targets_before": [],
+   "targets_after": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[1]"
+   ],
+   "methods": [
+    "shared_instance:z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "c771c61c_p",
+   "request": "a02-23-attempt51",
+   "class": "main.distance_from_score_fn[0]",
+   "changes": {
+    "predicate": [
+     null,
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "instance_store",
+    "candidate_independent_targets",
+    "range_propagation"
+   ],
+   "targets_before": [],
+   "targets_after": [
+    "main.distance_from_score_fn[0].positive"
+   ],
+   "methods": [
+    "shared_instance:z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "c771c61c_p",
+   "request": "a02-25-attempt55",
+   "class": "main.calculated_score_fraction_comp[0].clamp",
+   "changes": {
+    "predicate": [
+     null,
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "instance_store",
+    "candidate_independent_targets",
+    "range_propagation"
+   ],
+   "targets_before": [],
+   "targets_after": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[1]"
+   ],
+   "methods": [
+    "shared_instance:z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "c771c61c_p",
+   "request": "a02-26-attempt56",
+   "class": "main.calculated_score_fraction_comp[0]",
+   "changes": {
+    "predicate": [
+     null,
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "instance_store",
+    "candidate_independent_targets",
+    "range_propagation"
+   ],
+   "targets_before": [],
+   "targets_after": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[1]"
+   ],
+   "methods": [
+    "shared_instance:z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "loo_clamp",
+   "request": "a02-03-attempt9",
+   "class": "main.distance_from_score_fn[0]",
+   "changes": {
+    "predicate": [
+     null,
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "candidate_independent_targets",
+    "range_propagation"
+   ],
+   "targets_before": [],
+   "targets_after": [
+    "main.distance_from_score_fn[0].positive"
+   ],
+   "methods": [
+    "z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "loo_clamp",
+   "request": "a02-05-attempt13",
+   "class": "main.calculated_score_fraction_comp[0].clamp",
+   "changes": {
+    "predicate": [
+     "unknown",
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "range_propagation"
+   ],
+   "targets_before": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]"
+   ],
+   "targets_after": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]"
+   ],
+   "methods": [
+    "z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "loo_clamp",
+   "request": "a02-06-attempt14",
+   "class": "main.calculated_score_fraction_comp[0]",
+   "changes": {
+    "predicate": [
+     "unknown",
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "instance_store",
+    "range_propagation"
+   ],
+   "targets_before": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]"
+   ],
+   "targets_after": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]"
+   ],
+   "methods": [
+    "shared_instance:z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "loo_clamp",
+   "request": "a02-13-attempt30",
+   "class": "main.distance_from_score_fn[0]",
+   "changes": {
+    "predicate": [
+     null,
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "instance_store",
+    "candidate_independent_targets",
+    "range_propagation"
+   ],
+   "targets_before": [],
+   "targets_after": [
+    "main.distance_from_score_fn[0].positive"
+   ],
+   "methods": [
+    "shared_instance:z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "loo_clamp",
+   "request": "a02-16-attempt35",
+   "class": "main.calculated_score_fraction_comp[0]",
+   "changes": {
+    "predicate": [
+     "unknown",
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "instance_store",
+    "range_propagation"
+   ],
+   "targets_before": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]"
+   ],
+   "targets_after": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]"
+   ],
+   "methods": [
+    "shared_instance:z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "loo_clamp",
+   "request": "a02-23-attempt51",
+   "class": "main.distance_from_score_fn[0]",
+   "changes": {
+    "predicate": [
+     null,
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "instance_store",
+    "candidate_independent_targets",
+    "range_propagation"
+   ],
+   "targets_before": [],
+   "targets_after": [
+    "main.distance_from_score_fn[0].positive"
+   ],
+   "methods": [
+    "shared_instance:z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "loo_clamp",
+   "request": "a02-25-attempt55",
+   "class": "main.calculated_score_fraction_comp[0].clamp",
+   "changes": {
+    "predicate": [
+     "unknown",
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "instance_store",
+    "range_propagation"
+   ],
+   "targets_before": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]"
+   ],
+   "targets_after": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]"
+   ],
+   "methods": [
+    "shared_instance:z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "loo_dfs",
+   "request": "a02-03-attempt9",
+   "class": "main.distance_from_score_fn[0]",
+   "changes": {
+    "effective": [
+     "unknown",
+     "assumption_violation_reachable"
+    ]
+   },
+   "causes": [
+    "instance_join"
+   ],
+   "targets_before": [
+    "main.distance_from_score_fn[0].positive"
+   ],
+   "targets_after": [
+    "main.distance_from_score_fn[0].positive"
+   ],
+   "methods": [
+    ""
+   ],
+   "reach": []
+  },
+  {
+   "group": "loo_dfs",
+   "request": "a02-05-attempt13",
+   "class": "main.calculated_score_fraction_comp[0].clamp",
+   "changes": {
+    "predicate": [
+     null,
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "candidate_independent_targets",
+    "range_propagation"
+   ],
+   "targets_before": [],
+   "targets_after": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[1]"
+   ],
+   "methods": [
+    "z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "loo_dfs",
+   "request": "a02-06-attempt14",
+   "class": "main.calculated_score_fraction_comp[0]",
+   "changes": {
+    "predicate": [
+     null,
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "instance_store",
+    "candidate_independent_targets",
+    "range_propagation"
+   ],
+   "targets_before": [],
+   "targets_after": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[1]"
+   ],
+   "methods": [
+    "shared_instance:z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "loo_dfs",
+   "request": "a02-15-attempt34",
+   "class": "main.calculated_score_fraction_comp[0].clamp",
+   "changes": {
+    "predicate": [
+     null,
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "instance_store",
+    "candidate_independent_targets",
+    "range_propagation"
+   ],
+   "targets_before": [],
+   "targets_after": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[1]"
+   ],
+   "methods": [
+    "shared_instance:z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "loo_dfs",
+   "request": "a02-16-attempt35",
+   "class": "main.calculated_score_fraction_comp[0]",
+   "changes": {
+    "predicate": [
+     null,
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "instance_store",
+    "candidate_independent_targets",
+    "range_propagation"
+   ],
+   "targets_before": [],
+   "targets_after": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[1]"
+   ],
+   "methods": [
+    "shared_instance:z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "loo_dfs",
+   "request": "a02-23-attempt51",
+   "class": "main.distance_from_score_fn[0]",
+   "changes": {
+    "predicate": [
+     "unknown",
+     "assumption_violation_reachable"
+    ]
+   },
+   "causes": [
+    "instance_store"
+   ],
+   "targets_before": [
+    "main.distance_from_score_fn[0].positive"
+   ],
+   "targets_after": [
+    "main.distance_from_score_fn[0].positive"
+   ],
+   "methods": [
+    "shared_instance:candidate_witness"
+   ],
+   "reach": [
+    "public_inputs_changed"
+   ]
+  },
+  {
+   "group": "loo_dfs",
+   "request": "a02-25-attempt55",
+   "class": "main.calculated_score_fraction_comp[0].clamp",
+   "changes": {
+    "predicate": [
+     null,
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "instance_store",
+    "candidate_independent_targets",
+    "range_propagation"
+   ],
+   "targets_before": [],
+   "targets_after": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[1]"
+   ],
+   "methods": [
+    "shared_instance:z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "loo_dfs",
+   "request": "a02-26-attempt56",
+   "class": "main.calculated_score_fraction_comp[0]",
+   "changes": {
+    "predicate": [
+     null,
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "instance_store",
+    "candidate_independent_targets",
+    "range_propagation"
+   ],
+   "targets_before": [],
+   "targets_after": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[1]"
+   ],
+   "methods": [
+    "shared_instance:z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "all_fixed",
+   "request": "a02-03-attempt9",
+   "class": "main.distance_from_score_fn[0]",
+   "changes": {
+    "predicate": [
+     null,
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "candidate_independent_targets",
+    "range_propagation"
+   ],
+   "targets_before": [],
+   "targets_after": [
+    "main.distance_from_score_fn[0].positive"
+   ],
+   "methods": [
+    "z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "all_fixed",
+   "request": "a02-05-attempt13",
+   "class": "main.calculated_score_fraction_comp[0].clamp",
+   "changes": {
+    "predicate": [
+     null,
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "candidate_independent_targets",
+    "range_propagation"
+   ],
+   "targets_before": [],
+   "targets_after": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[1]"
+   ],
+   "methods": [
+    "z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "all_fixed",
+   "request": "a02-06-attempt14",
+   "class": "main.calculated_score_fraction_comp[0]",
+   "changes": {
+    "predicate": [
+     null,
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "instance_store",
+    "candidate_independent_targets",
+    "range_propagation"
+   ],
+   "targets_before": [],
+   "targets_after": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[1]"
+   ],
+   "methods": [
+    "shared_instance:z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "all_fixed",
+   "request": "a02-13-attempt30",
+   "class": "main.distance_from_score_fn[0]",
+   "changes": {
+    "predicate": [
+     null,
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "instance_store",
+    "candidate_independent_targets",
+    "range_propagation"
+   ],
+   "targets_before": [],
+   "targets_after": [
+    "main.distance_from_score_fn[0].positive"
+   ],
+   "methods": [
+    "shared_instance:z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "all_fixed",
+   "request": "a02-15-attempt34",
+   "class": "main.calculated_score_fraction_comp[0].clamp",
+   "changes": {
+    "predicate": [
+     null,
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "instance_store",
+    "candidate_independent_targets",
+    "range_propagation"
+   ],
+   "targets_before": [],
+   "targets_after": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[1]"
+   ],
+   "methods": [
+    "shared_instance:z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "all_fixed",
+   "request": "a02-16-attempt35",
+   "class": "main.calculated_score_fraction_comp[0]",
+   "changes": {
+    "predicate": [
+     null,
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "instance_store",
+    "candidate_independent_targets",
+    "range_propagation"
+   ],
+   "targets_before": [],
+   "targets_after": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[1]"
+   ],
+   "methods": [
+    "shared_instance:z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "all_fixed",
+   "request": "a02-23-attempt51",
+   "class": "main.distance_from_score_fn[0]",
+   "changes": {
+    "predicate": [
+     null,
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "instance_store",
+    "candidate_independent_targets",
+    "range_propagation"
+   ],
+   "targets_before": [],
+   "targets_after": [
+    "main.distance_from_score_fn[0].positive"
+   ],
+   "methods": [
+    "shared_instance:z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "all_fixed",
+   "request": "a02-25-attempt55",
+   "class": "main.calculated_score_fraction_comp[0].clamp",
+   "changes": {
+    "predicate": [
+     null,
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "instance_store",
+    "candidate_independent_targets",
+    "range_propagation"
+   ],
+   "targets_before": [],
+   "targets_after": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[1]"
+   ],
+   "methods": [
+    "shared_instance:z3_cone_with_range_facts"
+   ],
+   "reach": []
+  },
+  {
+   "group": "all_fixed",
+   "request": "a02-26-attempt56",
+   "class": "main.calculated_score_fraction_comp[0]",
+   "changes": {
+    "predicate": [
+     null,
+     "assumption_excluded_in_context"
+    ]
+   },
+   "causes": [
+    "instance_store",
+    "candidate_independent_targets",
+    "range_propagation"
+   ],
+   "targets_before": [],
+   "targets_after": [
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+    "main.calculated_score_fraction_comp[0].clamp.LessThan[1]"
+   ],
+   "methods": [
+    "shared_instance:z3_cone_with_range_facts"
+   ],
+   "reach": []
+  }
+ ],
+ "change_counts": {
+  "r_intdiv|effective|instance_join": 1,
+  "r_intdiv|predicate|range_propagation": 1,
+  "r_intdiv|predicate|instance_store,range_propagation": 3,
+  "r_intdiv|predicate|instance_store": 1,
+  "c9221e8d|effective|instance_join": 1,
+  "c9221e8d|predicate|range_propagation": 1,
+  "c9221e8d|predicate|instance_store,range_propagation": 3,
+  "c9221e8d|predicate|instance_store": 1,
+  "c79f42ee|predicate|candidate_independent_targets,range_propagation": 1,
+  "c79f42ee|predicate|range_propagation": 1,
+  "c79f42ee|predicate|instance_store,range_propagation": 3,
+  "c79f42ee|predicate|instance_store,candidate_independent_targets,range_propagation": 2,
+  "c771c61c_p|predicate|candidate_independent_targets,range_propagation": 2,
+  "c771c61c_p|predicate|instance_store,candidate_independent_targets,range_propagation": 7,
+  "loo_clamp|predicate|candidate_independent_targets,range_propagation": 1,
+  "loo_clamp|predicate|range_propagation": 1,
+  "loo_clamp|predicate|instance_store,range_propagation": 3,
+  "loo_clamp|predicate|instance_store,candidate_independent_targets,range_propagation": 2,
+  "loo_dfs|effective|instance_join": 1,
+  "loo_dfs|predicate|candidate_independent_targets,range_propagation": 1,
+  "loo_dfs|predicate|instance_store,candidate_independent_targets,range_propagation": 5,
+  "loo_dfs|predicate|instance_store": 1,
+  "all_fixed|predicate|candidate_independent_targets,range_propagation": 2,
+  "all_fixed|predicate|instance_store,candidate_independent_targets,range_propagation": 7
+ },
+ "instances": {
+  "a02": {
+   "file": {
+    "path": "runs/l07-2026-10-05/instances-a02.json",
+    "sha256": "96c223657d5b793832f66de07affa092a83ab186057b57dc3a88c1c045ef1289"
+   },
+   "counts": {
+    "assumption_violation_reachable": 4,
+    "unknown": 1
+   },
+   "conflicts": 0,
+   "changed_by_sharing": 0,
+   "instances": [
+    {
+     "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+     "verdict": "assumption_violation_reachable",
+     "reach_classification": "private_only",
+     "reached_by": 5,
+     "excluded_by": 0,
+     "unknown_in": 0,
+     "first_method": "predicate_search_hint_injection"
+    },
+    {
+     "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[1]",
+     "verdict": "unknown",
+     "reach_classification": null,
+     "reached_by": 0,
+     "excluded_by": 0,
+     "unknown_in": 2,
+     "first_method": null
+    },
+    {
+     "instance": "main.distance_from_score_fn[0].positive",
+     "verdict": "assumption_violation_reachable",
+     "reach_classification": "public_inputs_changed",
+     "reached_by": 3,
+     "excluded_by": 0,
+     "unknown_in": 0,
+     "first_method": "candidate_witness"
+    },
+    {
+     "instance": "main.response_time_normalized_fn[0].LessThan",
+     "verdict": "assumption_violation_reachable",
+     "reach_classification": "public_inputs_changed",
+     "reached_by": 3,
+     "excluded_by": 0,
+     "unknown_in": 0,
+     "first_method": "candidate_witness"
+    },
+    {
+     "instance": "main.response_time_reward_metric_fn[0].scoring_function.lt",
+     "verdict": "assumption_violation_reachable",
+     "reach_classification": "public_inputs_changed",
+     "reached_by": 6,
+     "excluded_by": 0,
+     "unknown_in": 0,
+     "first_method": "candidate_witness"
+    }
+   ]
+  },
+  "all_fixed": {
+   "file": {
+    "path": "runs/l07-2026-10-05/instances-all_fixed.json",
+    "sha256": "e4ff696d7cdddd60e2ea84b6f5b77d3012707a2e32ef69b82e53637d3dc37299"
+   },
+   "counts": {
+    "assumption_excluded_in_context": 3
+   },
+   "conflicts": 0,
+   "changed_by_sharing": 0,
+   "instances": [
+    {
+     "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+     "verdict": "assumption_excluded_in_context",
+     "reach_classification": null,
+     "reached_by": 0,
+     "excluded_by": 6,
+     "unknown_in": 0,
+     "first_method": "z3_cone_with_range_facts"
+    },
+    {
+     "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[1]",
+     "verdict": "assumption_excluded_in_context",
+     "reach_classification": null,
+     "reached_by": 0,
+     "excluded_by": 6,
+     "unknown_in": 0,
+     "first_method": "z3_cone_with_range_facts"
+    },
+    {
+     "instance": "main.distance_from_score_fn[0].positive",
+     "verdict": "assumption_excluded_in_context",
+     "reach_classification": null,
+     "reached_by": 0,
+     "excluded_by": 3,
+     "unknown_in": 0,
+     "first_method": "z3_cone_with_range_facts"
+    }
+   ]
+  },
+  "banyan": {
+   "file": {
+    "path": "runs/l07-2026-10-05/instances-banyan.json",
+    "sha256": "d25ec385f857a4e75cedd327647363cb4747add2d46e65b37e3dae8fb1463e6a"
+   },
+   "counts": {
+    "assumption_violation_reachable": 2
+   },
+   "conflicts": 0,
+   "changed_by_sharing": 0,
+   "instances": [
+    {
+     "instance": "main.check_depth.check_parent",
+     "verdict": "assumption_violation_reachable",
+     "reach_classification": "private_only",
+     "reached_by": 30,
+     "excluded_by": 0,
+     "unknown_in": 0,
+     "first_method": "candidate_witness"
+    },
+    {
+     "instance": "main.check_depth.exceed_depth.lt",
+     "verdict": "assumption_violation_reachable",
+     "reach_classification": "private_only",
+     "reached_by": 36,
+     "excluded_by": 0,
+     "unknown_in": 0,
+     "first_method": "candidate_witness"
+    }
+   ]
+  },
+  "c771c61c_p": {
+   "file": {
+    "path": "runs/l07-2026-10-05/instances-c771c61c_p.json",
+    "sha256": "2d79f7e25b358867243287c4e76aaad470bd46cbbec3828112840e26f95d0235"
+   },
+   "counts": {
+    "assumption_excluded_in_context": 3
+   },
+   "conflicts": 0,
+   "changed_by_sharing": 0,
+   "instances": [
+    {
+     "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+     "verdict": "assumption_excluded_in_context",
+     "reach_classification": null,
+     "reached_by": 0,
+     "excluded_by": 6,
+     "unknown_in": 0,
+     "first_method": "z3_cone_with_range_facts"
+    },
+    {
+     "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[1]",
+     "verdict": "assumption_excluded_in_context",
+     "reach_classification": null,
+     "reached_by": 0,
+     "excluded_by": 6,
+     "unknown_in": 0,
+     "first_method": "z3_cone_with_range_facts"
+    },
+    {
+     "instance": "main.distance_from_score_fn[0].positive",
+     "verdict": "assumption_excluded_in_context",
+     "reach_classification": null,
+     "reached_by": 0,
+     "excluded_by": 3,
+     "unknown_in": 0,
+     "first_method": "z3_cone_with_range_facts"
+    }
+   ]
+  },
+  "c79f42ee": {
+   "file": {
+    "path": "runs/l07-2026-10-05/instances-c79f42ee.json",
+    "sha256": "7c61ffbfc665be672c63e5936395543fd41a097bb0910e27a8b70d2a3da5c347"
+   },
+   "counts": {
+    "assumption_excluded_in_context": 2,
+    "unknown": 1
+   },
+   "conflicts": 0,
+   "changed_by_sharing": 0,
+   "instances": [
+    {
+     "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+     "verdict": "assumption_excluded_in_context",
+     "reach_classification": null,
+     "reached_by": 0,
+     "excluded_by": 5,
+     "unknown_in": 0,
+     "first_method": "z3_cone_with_range_facts"
+    },
+    {
+     "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[1]",
+     "verdict": "unknown",
+     "reach_classification": null,
+     "reached_by": 0,
+     "excluded_by": 0,
+     "unknown_in": 2,
+     "first_method": null
+    },
+    {
+     "instance": "main.distance_from_score_fn[0].positive",
+     "verdict": "assumption_excluded_in_context",
+     "reach_classification": null,
+     "reached_by": 0,
+     "excluded_by": 3,
+     "unknown_in": 0,
+     "first_method": "z3_cone_with_range_facts"
+    }
+   ]
+  },
+  "c9221e8d": {
+   "file": {
+    "path": "runs/l07-2026-10-05/instances-c9221e8d.json",
+    "sha256": "0e63da0235ab94ecd59827975b75e58f51204e1743732d8b5d9555f36388f0e6"
+   },
+   "counts": {
+    "assumption_excluded_in_context": 1,
+    "assumption_violation_reachable": 1,
+    "unknown": 1
+   },
+   "conflicts": 0,
+   "changed_by_sharing": 1,
+   "instances": [
+    {
+     "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+     "verdict": "assumption_excluded_in_context",
+     "reach_classification": null,
+     "reached_by": 0,
+     "excluded_by": 5,
+     "unknown_in": 0,
+     "first_method": "z3_cone_with_range_facts"
+    },
+    {
+     "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[1]",
+     "verdict": "unknown",
+     "reach_classification": null,
+     "reached_by": 0,
+     "excluded_by": 0,
+     "unknown_in": 2,
+     "first_method": null
+    },
+    {
+     "instance": "main.distance_from_score_fn[0].positive",
+     "verdict": "assumption_violation_reachable",
+     "reach_classification": "public_inputs_changed",
+     "reached_by": 2,
+     "excluded_by": 0,
+     "unknown_in": 1,
+     "first_method": "candidate_witness"
+    }
+   ]
+  },
+  "loo_clamp": {
+   "file": {
+    "path": "runs/l07-2026-10-05/instances-loo_clamp.json",
+    "sha256": "dd59b01c5e21c7b0a55d6b19f4abaff7935fe764854adfce57a4be0e8c560929"
+   },
+   "counts": {
+    "assumption_excluded_in_context": 2,
+    "unknown": 1
+   },
+   "conflicts": 0,
+   "changed_by_sharing": 0,
+   "instances": [
+    {
+     "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+     "verdict": "assumption_excluded_in_context",
+     "reach_classification": null,
+     "reached_by": 0,
+     "excluded_by": 5,
+     "unknown_in": 0,
+     "first_method": "z3_cone_with_range_facts"
+    },
+    {
+     "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[1]",
+     "verdict": "unknown",
+     "reach_classification": null,
+     "reached_by": 0,
+     "excluded_by": 0,
+     "unknown_in": 2,
+     "first_method": null
+    },
+    {
+     "instance": "main.distance_from_score_fn[0].positive",
+     "verdict": "assumption_excluded_in_context",
+     "reach_classification": null,
+     "reached_by": 0,
+     "excluded_by": 3,
+     "unknown_in": 0,
+     "first_method": "z3_cone_with_range_facts"
+    }
+   ]
+  },
+  "loo_dfs": {
+   "file": {
+    "path": "runs/l07-2026-10-05/instances-loo_dfs.json",
+    "sha256": "48c9115e98009795df21539e655f7d4da8afffa2d281d484ee0d584f3f621cb0"
+   },
+   "counts": {
+    "assumption_excluded_in_context": 2,
+    "assumption_violation_reachable": 1
+   },
+   "conflicts": 0,
+   "changed_by_sharing": 1,
+   "instances": [
+    {
+     "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+     "verdict": "assumption_excluded_in_context",
+     "reach_classification": null,
+     "reached_by": 0,
+     "excluded_by": 6,
+     "unknown_in": 0,
+     "first_method": "z3_cone_with_range_facts"
+    },
+    {
+     "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[1]",
+     "verdict": "assumption_excluded_in_context",
+     "reach_classification": null,
+     "reached_by": 0,
+     "excluded_by": 6,
+     "unknown_in": 0,
+     "first_method": "z3_cone_with_range_facts"
+    },
+    {
+     "instance": "main.distance_from_score_fn[0].positive",
+     "verdict": "assumption_violation_reachable",
+     "reach_classification": "public_inputs_changed",
+     "reached_by": 2,
+     "excluded_by": 0,
+     "unknown_in": 1,
+     "first_method": "candidate_witness"
+    }
+   ]
+  },
+  "r_intdiv": {
+   "file": {
+    "path": "runs/l07-2026-10-05/instances-r_intdiv.json",
+    "sha256": "2b82b2dfd95e718b09181de658fc5e897e1ca217d12cf6c3dd9d9735b6431db4"
+   },
+   "counts": {
+    "assumption_excluded_in_context": 1,
+    "assumption_violation_reachable": 1,
+    "unknown": 1
+   },
+   "conflicts": 0,
+   "changed_by_sharing": 1,
+   "instances": [
+    {
+     "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[0]",
+     "verdict": "assumption_excluded_in_context",
+     "reach_classification": null,
+     "reached_by": 0,
+     "excluded_by": 5,
+     "unknown_in": 0,
+     "first_method": "z3_cone_with_range_facts"
+    },
+    {
+     "instance": "main.calculated_score_fraction_comp[0].clamp.LessThan[1]",
+     "verdict": "unknown",
+     "reach_classification": null,
+     "reached_by": 0,
+     "excluded_by": 0,
+     "unknown_in": 2,
+     "first_method": null
+    },
+    {
+     "instance": "main.distance_from_score_fn[0].positive",
+     "verdict": "assumption_violation_reachable",
+     "reach_classification": "public_inputs_changed",
+     "reached_by": 2,
+     "excluded_by": 0,
+     "unknown_in": 1,
+     "first_method": "candidate_witness"
+    }
+   ]
+  },
+  "zkemail": {
+   "file": {
+    "path": "runs/l07-2026-10-05/instances-zkemail.json",
+    "sha256": "0e71201bff6f3c852a5fbf007955657aa8a5beb2101b2679c11d845be1a9a290"
+   },
+   "counts": {
+    "assumption_excluded_in_context": 13
+   },
+   "conflicts": 0,
+   "changed_by_sharing": 0,
+   "instances": [
+    {
+     "instance": "main.bigLessThan.lt[0]",
+     "verdict": "assumption_excluded_in_context",
+     "reach_classification": null,
+     "reached_by": 0,
+     "excluded_by": 9,
+     "unknown_in": 0,
+     "first_method": "z3_cone_with_range_facts"
+    },
+    {
+     "instance": "main.bigLessThan.lt[11]",
+     "verdict": "assumption_excluded_in_context",
+     "reach_classification": null,
+     "reached_by": 0,
+     "excluded_by": 6,
+     "unknown_in": 0,
+     "first_method": "z3_cone_with_range_facts"
+    },
+    {
+     "instance": "main.bigLessThan.lt[12]",
+     "verdict": "assumption_excluded_in_context",
+     "reach_classification": null,
+     "reached_by": 0,
+     "excluded_by": 6,
+     "unknown_in": 0,
+     "first_method": "z3_cone_with_range_facts"
+    },
+    {
+     "instance": "main.bigLessThan.lt[15]",
+     "verdict": "assumption_excluded_in_context",
+     "reach_classification": null,
+     "reached_by": 0,
+     "excluded_by": 3,
+     "unknown_in": 0,
+     "first_method": "z3_cone_with_range_facts"
+    },
+    {
+     "instance": "main.bigLessThan.lt[16]",
+     "verdict": "assumption_excluded_in_context",
+     "reach_classification": null,
+     "reached_by": 0,
+     "excluded_by": 6,
+     "unknown_in": 0,
+     "first_method": "z3_cone_with_range_facts"
+    },
+    {
+     "instance": "main.bigLessThan.lt[1]",
+     "verdict": "assumption_excluded_in_context",
+     "reach_classification": null,
+     "reached_by": 0,
+     "excluded_by": 3,
+     "unknown_in": 0,
+     "first_method": "z3_cone_with_range_facts"
+    },
+    {
+     "instance": "main.bigLessThan.lt[2]",
+     "verdict": "assumption_excluded_in_context",
+     "reach_classification": null,
+     "reached_by": 0,
+     "excluded_by": 9,
+     "unknown_in": 0,
+     "first_method": "z3_cone_with_range_facts"
+    },
+    {
+     "instance": "main.bigLessThan.lt[4]",
+     "verdict": "assumption_excluded_in_context",
+     "reach_classification": null,
+     "reached_by": 0,
+     "excluded_by": 6,
+     "unknown_in": 0,
+     "first_method": "z3_cone_with_range_facts"
+    },
+    {
+     "instance": "main.bigLessThan.lt[5]",
+     "verdict": "assumption_excluded_in_context",
+     "reach_classification": null,
+     "reached_by": 0,
+     "excluded_by": 6,
+     "unknown_in": 0,
+     "first_method": "z3_cone_with_range_facts"
+    },
+    {
+     "instance": "main.bigLessThan.lt[6]",
+     "verdict": "assumption_excluded_in_context",
+     "reach_classification": null,
+     "reached_by": 0,
+     "excluded_by": 3,
+     "unknown_in": 0,
+     "first_method": "z3_cone_with_range_facts"
+    },
+    {
+     "instance": "main.bigLessThan.lt[7]",
+     "verdict": "assumption_excluded_in_context",
+     "reach_classification": null,
+     "reached_by": 0,
+     "excluded_by": 3,
+     "unknown_in": 0,
+     "first_method": "z3_cone_with_range_facts"
+    },
+    {
+     "instance": "main.bigLessThan.lt[8]",
+     "verdict": "assumption_excluded_in_context",
+     "reach_classification": null,
+     "reached_by": 0,
+     "excluded_by": 3,
+     "unknown_in": 0,
+     "first_method": "z3_cone_with_range_facts"
+    },
+    {
+     "instance": "main.bigLessThan.lt[9]",
+     "verdict": "assumption_excluded_in_context",
+     "reach_classification": null,
+     "reached_by": 0,
+     "excluded_by": 6,
+     "unknown_in": 0,
+     "first_method": "z3_cone_with_range_facts"
+    }
+   ]
+  }
+ },
+ "walls": {
+  "zkemail": {
+   "lifts": 9,
+   "wall_total": 107.49480133177713,
+   "nonzero_exit": [],
+   "compile_seconds": 7.142303041,
+   "cache_hits": 16,
+   "store_hits": 56
+  },
+  "banyan": {
+   "lifts": 36,
+   "wall_total": 109.45886595500633,
+   "nonzero_exit": [],
+   "compile_seconds": 3.345402208,
+   "cache_hits": 70,
+   "store_hits": 0
+  },
+  "r_intdiv": {
+   "lifts": 9,
+   "wall_total": 325.7003703347873,
+   "nonzero_exit": [],
+   "compile_seconds": 120.455528332,
+   "cache_hits": 16,
+   "store_hits": 5
+  },
+  "loo_clamp": {
+   "lifts": 9,
+   "wall_total": 195.04527616722044,
+   "nonzero_exit": [],
+   "compile_seconds": 87.379347247,
+   "cache_hits": 12,
+   "store_hits": 6
+  },
+  "c79f42ee": {
+   "lifts": 9,
+   "wall_total": 272.88454108382575,
+   "nonzero_exit": [],
+   "compile_seconds": 115.766841626,
+   "cache_hits": 12,
+   "store_hits": 6
+  },
+  "all_fixed": {
+   "lifts": 9,
+   "wall_total": 391.66282837395556,
+   "nonzero_exit": [],
+   "compile_seconds": 215.622653461,
+   "cache_hits": 12,
+   "store_hits": 12
+  },
+  "c9221e8d": {
+   "lifts": 9,
+   "wall_total": 324.6898879148066,
+   "nonzero_exit": [],
+   "compile_seconds": 106.282713499,
+   "cache_hits": 16,
+   "store_hits": 5
+  },
+  "a02": {
+   "lifts": 31,
+   "wall_total": 1344.5966749158688,
+   "nonzero_exit": [],
+   "compile_seconds": 375.196895376,
+   "cache_hits": 133,
+   "store_hits": 5
+  },
+  "c771c61c_p": {
+   "lifts": 9,
+   "wall_total": 280.9003627500497,
+   "nonzero_exit": [],
+   "compile_seconds": 170.664133412,
+   "cache_hits": 12,
+   "store_hits": 12
+  },
+  "loo_dfs": {
+   "lifts": 9,
+   "wall_total": 376.81503595784307,
+   "nonzero_exit": [],
+   "compile_seconds": 186.31264646,
+   "cache_hits": 14,
+   "store_hits": 11
+  }
+ },
+ "store": {
+  "path": "runs/l07-2026-10-05/store",
+  "entries": 36
+ },
+ "artifact_cleanup": [
+  {
+   "path": "runs/l07-2026-10-05/artifact-cleanup-20261005T151215Z.json",
+   "sha256": "90d3daa71a9a6aa2c10903c8c9db55f8d0519a604edbed34d8e12b411803c51c",
+   "files": 278,
+   "bytes": 12413552,
+   "by_suffix": {
+    ".r1cs": 139,
+    ".wasm": 139
+   }
+  },
+  {
+   "path": "runs/l07-2026-10-05/tree-cleanup-20261005T151210Z.json",
+   "sha256": "e82d165b71fcfefd7e0e5f903c6552f59a06f4ee722bcdf82cf7e65d903fe2e5",
+   "files": 2240,
+   "bytes": 44607868341,
+   "by_suffix": {
+    "": 320,
+    ".js": 640,
+    ".log": 320,
+    ".r1cs": 320,
+    ".sym": 320,
+    ".wasm": 320
+   }
+  }
+ ]
+}
