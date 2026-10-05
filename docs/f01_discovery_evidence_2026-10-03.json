@@ -1,0 +1,1623 @@
+{
+ "schema_version": 1,
+ "task": "F-01",
+ "date": "2026-10-03",
+ "owner": "miiz",
+ "zkfuzz_executions": 0,
+ "binaries": {
+  "main_measurement_and_neutrality": {
+   "created_at": "2026-10-03T06:07:01.667247+00:00",
+   "tools": [
+    {
+     "path": "runs/f01-2026-10-03/tools/zkfDO",
+     "original_path": "target/release/zkfDO",
+     "sha256": "39bf0048f0893a6fdad10ceae02865a31896dbc8c27148224921b260f1db2b1c"
+    },
+    {
+     "path": "runs/c02-corpus-2026-10-02/tools/circom",
+     "sha256": "8991887889c2a74d6fc704d5689ada4cc76fba004e866c987de6cbf3b3db6227"
+    }
+   ]
+  },
+  "supplement_var_scope": {
+   "created_at": "2026-10-03T07:34:13.179293+00:00",
+   "tools": [
+    {
+     "path": "runs/f01-2026-10-03/supplement-var-scope/tools/zkfDO",
+     "original_path": "target/release/zkfDO",
+     "sha256": "f8c9f64defd3993ebd845279bc0a245857e23a1ae759ce175e94f369cdd9f4c1"
+    },
+    {
+     "path": "runs/c02-corpus-2026-10-02/tools/circom",
+     "sha256": "8991887889c2a74d6fc704d5689ada4cc76fba004e866c987de6cbf3b3db6227"
+    }
+   ]
+  },
+  "build": "cargo release profile (C-03 used a debug build)"
+ },
+ "neutrality": [
+  {
+   "name": "c03-00179d01189bf56145702aeb",
+   "entrypoint": "runs/c03-corpus-2026-10-02/recovery-v3/repositories/ArmanKolozyan__CCC-Check/clone/src/CirC/circom-benches/ver/libs/zksolid-libs/circomlib/test/circuits/lesseqthan.circom",
+   "status": "captured",
+   "complete": true,
+   "instances": 3,
+   "capture_compile_seconds": 0.028,
+   "original_o0_compile_seconds": 0.029,
+   "original_constraints": 39,
+   "diagnostic_constraints": 47,
+   "capture_constraints_removed": 8,
+   "capture_signals_removed": 8,
+   "signals_compared": 40,
+   "identical": true,
+   "diagnostic_r1cs": {
+    "sha256": "c7bbc0f720c270d5746f87d5888ef19df7bf3d248b71df053349072b379815a0",
+    "bytes": 6936
+   },
+   "report": {
+    "path": "runs/f01-2026-10-03/neutrality/c03-00179d01189bf56145702aeb/capture/capture-report.json",
+    "sha256": "f001102ab9245b7e15db415a7901a5582d6506ae759ae9c3ddfe3608287cc2fa"
+   }
+  },
+  {
+   "name": "c03-06cc8481a30c53fa36c365d4",
+   "entrypoint": "runs/c03-corpus-2026-10-02/recovery-v3/repositories/rarimo__passport-zk-circuits/clone/circuits/lib/circuits/ec/m2.circom",
+   "status": "captured",
+   "complete": true,
+   "instances": 92,
+   "capture_compile_seconds": 336.741,
+   "original_o0_compile_seconds": 145.558,
+   "original_constraints": 9947,
+   "diagnostic_constraints": 10320,
+   "capture_constraints_removed": 373,
+   "capture_signals_removed": 314,
+   "signals_compared": 10065,
+   "identical": true,
+   "diagnostic_r1cs": {
+    "sha256": "930e88bc5b01ff4356bafc2d062efac53ede9bed04b547f0fad3a7b1aa8ced89",
+    "bytes": 1286776
+   },
+   "report": {
+    "path": "runs/f01-2026-10-03/neutrality/c03-06cc8481a30c53fa36c365d4/capture/capture-report.json",
+    "sha256": "a83e60346f477b7cf6925a1bc6f657e4fc2d5d17ea8f1f3c5e5a543a5afbbaae"
+   }
+  },
+  {
+   "name": "c03-b5b5cf5dacdeebd430b519f8",
+   "entrypoint": "runs/c03-corpus-2026-10-02/recovery-v3/repositories/iden3__circuits/clone/circuits/credentialAtomicQueryV3.circom",
+   "status": "captured",
+   "complete": true,
+   "instances": 30650,
+   "capture_compile_seconds": 7.314,
+   "original_o0_compile_seconds": 3.194,
+   "original_constraints": 196801,
+   "diagnostic_constraints": 456881,
+   "capture_constraints_removed": 260080,
+   "capture_signals_removed": 69171,
+   "signals_compared": 196926,
+   "identical": true,
+   "diagnostic_r1cs": {
+    "sha256": "f0d94152daaa2b91259557307df4675c5efc204297b64f84a1e38d728328366e",
+    "bytes": 46451400
+   },
+   "report": {
+    "path": "runs/f01-2026-10-03/neutrality/c03-b5b5cf5dacdeebd430b519f8/capture/capture-report.json",
+    "sha256": "e46aee0c2d061ce1a3088cd5287fd94b9130b16ba716ed7639f000742d0706a1"
+   }
+  },
+  {
+   "name": "c03-e71f158d85178fd29e1ba300",
+   "entrypoint": "runs/c03-corpus-2026-10-02/recovery-v3/repositories/tangle-network__protocol-solidity/clone/circuits/main/poseidon_vanchor_16_2.circom",
+   "status": "captured",
+   "complete": true,
+   "instances": 86439,
+   "capture_compile_seconds": 10.073,
+   "original_o0_compile_seconds": 4.888,
+   "original_constraints": 434014,
+   "diagnostic_constraints": 1229542,
+   "capture_constraints_removed": 795528,
+   "capture_signals_removed": 199280,
+   "signals_compared": 434400,
+   "identical": true,
+   "diagnostic_r1cs": {
+    "sha256": "fab414a041407e0ab687d30f157c9240a2f6d0e6eb1ca33df452fe4b96124ae4",
+    "bytes": 120200344
+   },
+   "report": {
+    "path": "runs/f01-2026-10-03/neutrality/c03-e71f158d85178fd29e1ba300/capture/capture-report.json",
+    "sha256": "18057cbca25542a8f11741aa73361d7712103b9ee9a854f97951686348fa5168"
+   }
+  },
+  {
+   "name": "fixture-instance-capture",
+   "entrypoint": "tests/fixtures/instance_capture/main.circom",
+   "status": "captured",
+   "complete": true,
+   "instances": 11,
+   "capture_compile_seconds": 0.037,
+   "original_o0_compile_seconds": 0.032,
+   "original_constraints": 23,
+   "diagnostic_constraints": 86,
+   "capture_constraints_removed": 63,
+   "capture_signals_removed": 36,
+   "signals_compared": 24,
+   "identical": true,
+   "diagnostic_r1cs": {
+    "sha256": "3ac05c39d7a954b47d196b45624ebb1a656ecd6ac85961a57dfa4f6a7bd8ee22",
+    "bytes": 7536
+   },
+   "report": {
+    "path": "runs/f01-2026-10-03/neutrality/fixture-instance-capture/capture/capture-report.json",
+    "sha256": "462c60e4e3db4dc36f5fcd29eee1edef85a973dea30910c7b161d9dd475e35a9"
+   }
+  },
+  {
+   "name": "fixture-target-discovery",
+   "entrypoint": "tests/fixtures/target_discovery/main.circom",
+   "status": "captured",
+   "complete": true,
+   "instances": 8,
+   "capture_compile_seconds": 0.028,
+   "original_o0_compile_seconds": 0.026,
+   "original_constraints": 15,
+   "diagnostic_constraints": 39,
+   "capture_constraints_removed": 24,
+   "capture_signals_removed": 24,
+   "signals_compared": 16,
+   "identical": true,
+   "diagnostic_r1cs": {
+    "sha256": "3e1aa430df36f0219ee66ec53bd94bec78f3e7d83b2e274d7047f542bb7a9f6c",
+    "bytes": 3680
+   },
+   "report": {
+    "path": "runs/f01-2026-10-03/neutrality/fixture-target-discovery/capture/capture-report.json",
+    "sha256": "d2603b6af629cb2dac16dc61834a6c639fa4611c09ca40e04397866b26a5c87a"
+   }
+  },
+  {
+   "name": "probe-poseidon2",
+   "entrypoint": "runs/f01-2026-10-03/probe/poseidon/p2.circom",
+   "status": "captured",
+   "complete": true,
+   "instances": 156,
+   "capture_compile_seconds": 0.681,
+   "original_o0_compile_seconds": 0.328,
+   "original_constraints": 765,
+   "diagnostic_constraints": 2195,
+   "capture_constraints_removed": 1430,
+   "capture_signals_removed": 362,
+   "signals_compared": 767,
+   "identical": true,
+   "diagnostic_r1cs": {
+    "sha256": "7dd04779a8018a0900b5c359c2301d36e290c0cb08c84cd03d8badb79d39d824",
+    "bytes": 211352
+   },
+   "report": {
+    "path": "runs/f01-2026-10-03/neutrality/probe-poseidon2/capture/capture-report.json",
+    "sha256": "ec5132c11d938467c4cce7a38288b8057dc59d8aebfae2f05ab8d63b2933c0a2"
+   }
+  },
+  {
+   "name": "probe-small",
+   "entrypoint": "runs/f01-2026-10-03/probe/small/small.circom",
+   "status": "captured",
+   "complete": true,
+   "instances": 7,
+   "capture_compile_seconds": 0.028,
+   "original_o0_compile_seconds": 0.03,
+   "original_constraints": 17,
+   "diagnostic_constraints": 46,
+   "capture_constraints_removed": 29,
+   "capture_signals_removed": 24,
+   "signals_compared": 18,
+   "identical": true,
+   "diagnostic_r1cs": {
+    "sha256": "a58bb536ee582708722d026cf1e0c242f3a84382b8028ad00c178c4a55637ac3",
+    "bytes": 4284
+   },
+   "report": {
+    "path": "runs/f01-2026-10-03/neutrality/probe-small/capture/capture-report.json",
+    "sha256": "e1cb583032ffddd79b141aa8f8c1c30d4118f321dc4c495e2322e3d061fecdad"
+   }
+  }
+ ],
+ "artifact_cleanup": {
+  "record": {
+   "path": "runs/f01-2026-10-03/artifact-cleanup-20261003T074354Z.json",
+   "sha256": "5b7ada8ed665bcd820aceed78375cb092257bc002b3bc1ce41b9b5e3d0e48117"
+  },
+  "files": 23884,
+  "bytes": 16914757569,
+  "by_suffix": {
+   ".cpp": 8,
+   ".dat": 2,
+   ".r1cs": 23873,
+   ".wasm": 1
+  },
+  "suffixes": [
+   ".cpp",
+   ".dat",
+   ".o",
+   ".r1cs",
+   ".wasm"
+  ],
+  "kept": "clones, node_modules, JSON, logs, .sym, preparation source snapshots (prepared/*/targets/*/sources), runs/c02-corpus-2026-10-02/tools",
+  "regeneration_check_record": {
+   "path": "runs/f01-2026-10-03/artifact-cleanup-20261003T120405Z.json",
+   "sha256": "cf16782072b74761e6477c0cf739d42aac0e5ef822647eca860eb81f9105c67b",
+   "files": 4,
+   "bytes": 47749296
+  }
+ },
+ "superseded_outputs": "non-final binary trial and measurement outputs under runs/f01-2026-10-03 were deleted before the final measurement; their logs remain as logs/*-superseded.log",
+ "population": {
+  "total": 1493,
+  "production": 656,
+  "regression": 881,
+  "both": 44,
+  "measured": 1493,
+  "missing": []
+ },
+ "production": {
+  "entrypoints": 656,
+  "compile_success": 174,
+  "automatic_before": {
+   "success": 44,
+   "partial": 71,
+   "unsupported": 58,
+   "failed": 483
+  },
+  "automatic_after": {
+   "success": 107,
+   "partial": 64,
+   "failed": 485
+  },
+  "compiled_component_before": {
+   "success": 44,
+   "partial": 71,
+   "unsupported": 58,
+   "failed": 1
+  },
+  "compiled_component_after": {
+   "success": 107,
+   "partial": 64,
+   "failed": 3
+  },
+  "compiled_transitions": {
+   "failed -> partial": 1,
+   "partial -> failed": 1,
+   "partial -> partial": 42,
+   "partial -> success": 28,
+   "success -> success": 44,
+   "unsupported -> failed": 2,
+   "unsupported -> partial": 21,
+   "unsupported -> success": 35
+  },
+  "all_component_before": {
+   "success": 44,
+   "partial": 109,
+   "unsupported": 141,
+   "failed": 362
+  },
+  "all_component_after": {
+   "success": 107,
+   "partial": 103,
+   "unsupported": 82,
+   "failed": 364
+  },
+  "compiled_capture": {
+   "compiler_complete": 174
+  },
+  "all_capture": {
+   "capture_compile_failed": 480,
+   "compiler_complete": 176
+  },
+  "compiled_failure_types_after": {
+   "compiled_size_or_compile_unavailable": 60,
+   "compiled_size_unavailable": 60,
+   "unit_compile_failed": 60,
+   "wrapper_compile_failed": 58,
+   "unit_compile_timeout": 5,
+   "wrapper_unsupported": 5,
+   "prepare_process_timeout": 3,
+   "plan_timeout": 2,
+   "wrapper_compile_timed_out": 1
+  },
+  "compiled_capture_failures": {},
+  "compiled_wrapper_failures": {
+   "template_file_lacks_include": 106,
+   "wrapper_compile_timeout": 8,
+   "main_component_tagged_inputs": 302
+  },
+  "compiled_entrypoints_with_wrapper_failures": {
+   "template_file_lacks_include": 43,
+   "wrapper_compile_timeout": 2,
+   "main_component_tagged_inputs": 34
+  },
+  "compiled_compiler_unsupported_reasons": {}
+ },
+ "large_entrypoints": [
+  {
+   "identifier": "340107e1f1d8b0a45656cffa",
+   "repository": "DoraFactory/Vota-Circuits",
+   "path": "circuits/maci/power/prod/tally.circom",
+   "constraints": 4802568,
+   "c03_status": "failed",
+   "c03_failure_types": [
+    "compiled_size_or_compile_unavailable",
+    "compiled_size_unavailable",
+    "discovery_unsupported",
+    "inspection_unsupported",
+    "plan_failure",
+    "unit_compile_failed",
+    "unit_compile_timeout"
+   ],
+   "c03_callsites": 0,
+   "c03_units": 0,
+   "c03_eligible": 0,
+   "c03_expected": 1,
+   "c03_discovery_seconds": 0.9246345839928836,
+   "c03_preparation_seconds": 62.01855379098561,
+   "f01_status": "partial",
+   "capture": "compiler_complete",
+   "capture_failure": null,
+   "interpreter_targets": 0,
+   "compiler_targets": 1605,
+   "f01_callsites": 1605,
+   "f01_units": 274,
+   "f01_eligible": 274,
+   "f01_expected": 275,
+   "capture_compile_seconds": 74.556587833,
+   "capture_read_seconds": 20.134255708,
+   "capture_assemble_seconds": 30.509662584,
+   "f01_discovery_seconds": 210.78833958297037,
+   "f01_preparation_seconds": 175.14943474996835,
+   "wrapper_failures": {},
+   "remaining": [
+    "compiled_size_or_compile_unavailable",
+    "compiled_size_unavailable",
+    "unit_compile_failed",
+    "unit_compile_timeout"
+   ]
+  },
+  {
+   "identifier": "b5b5cf5dacdeebd430b519f8",
+   "repository": "iden3/circuits",
+   "path": "circuits/credentialAtomicQueryV3.circom",
+   "constraints": 114758,
+   "c03_status": "partial",
+   "c03_failure_types": [
+    "compiled_size_or_compile_unavailable",
+    "compiled_size_unavailable",
+    "discovery_unsupported",
+    "inspection_unsupported",
+    "unit_compile_failed",
+    "wrapper_compile_failed"
+   ],
+   "c03_callsites": 519,
+   "c03_units": 104,
+   "c03_eligible": 66,
+   "c03_expected": 105,
+   "c03_discovery_seconds": 14.931579291995149,
+   "c03_preparation_seconds": 56.01135120802792,
+   "f01_status": "partial",
+   "capture": "compiler_complete",
+   "capture_failure": null,
+   "interpreter_targets": 519,
+   "compiler_targets": 1735,
+   "f01_callsites": 1735,
+   "f01_units": 401,
+   "f01_eligible": 385,
+   "f01_expected": 402,
+   "capture_compile_seconds": 6.264383166,
+   "capture_read_seconds": 0.842764875,
+   "capture_assemble_seconds": 0.701061041,
+   "f01_discovery_seconds": 65.26934029196855,
+   "f01_preparation_seconds": 102.54030495800544,
+   "wrapper_failures": {
+    "template_file_lacks_include": 3,
+    "main_component_tagged_inputs": 14
+   },
+   "remaining": [
+    "compiled_size_or_compile_unavailable",
+    "compiled_size_unavailable",
+    "unit_compile_failed",
+    "wrapper_compile_failed"
+   ]
+  },
+  {
+   "identifier": "649f4c09f42142566a7e856e",
+   "repository": "iden3/circuits",
+   "path": "circuits/credentialAtomicQueryV3OnChain-16-16-64-16-32.circom",
+   "constraints": 135876,
+   "c03_status": "unsupported",
+   "c03_failure_types": [
+    "discovery_unsupported",
+    "inspection_unsupported",
+    "plan_failure"
+   ],
+   "c03_callsites": 0,
+   "c03_units": 0,
+   "c03_eligible": 0,
+   "c03_expected": 1,
+   "c03_discovery_seconds": 0.9506018329993822,
+   "c03_preparation_seconds": 5.448931666964199,
+   "f01_status": "partial",
+   "capture": "compiler_complete",
+   "capture_failure": null,
+   "interpreter_targets": 0,
+   "compiler_targets": 2050,
+   "f01_callsites": 2050,
+   "f01_units": 554,
+   "f01_eligible": 534,
+   "f01_expected": 555,
+   "capture_compile_seconds": 9.644776875,
+   "capture_read_seconds": 0.774413042,
+   "capture_assemble_seconds": 0.589156958,
+   "f01_discovery_seconds": 98.25210991699714,
+   "f01_preparation_seconds": 158.02684762491845,
+   "wrapper_failures": {
+    "main_component_tagged_inputs": 18,
+    "template_file_lacks_include": 3
+   },
+   "remaining": [
+    "compiled_size_or_compile_unavailable",
+    "compiled_size_unavailable",
+    "unit_compile_failed",
+    "wrapper_compile_failed"
+   ]
+  },
+  {
+   "identifier": "9ce681de7b32dd0683e306ad",
+   "repository": "iden3/circuits",
+   "path": "circuits/credentialAtomicQueryV3OnChain.circom",
+   "constraints": 225612,
+   "c03_status": "unsupported",
+   "c03_failure_types": [
+    "discovery_unsupported",
+    "inspection_unsupported",
+    "plan_failure"
+   ],
+   "c03_callsites": 0,
+   "c03_units": 0,
+   "c03_eligible": 0,
+   "c03_expected": 1,
+   "c03_discovery_seconds": 1.045613416004926,
+   "c03_preparation_seconds": 6.769567832991015,
+   "f01_status": "partial",
+   "capture": "compiler_complete",
+   "capture_failure": null,
+   "interpreter_targets": 0,
+   "compiler_targets": 2322,
+   "f01_callsites": 2322,
+   "f01_units": 556,
+   "f01_eligible": 535,
+   "f01_expected": 557,
+   "capture_compile_seconds": 7.262773208,
+   "capture_read_seconds": 0.843629292,
+   "capture_assemble_seconds": 1.3645733340000001,
+   "f01_discovery_seconds": 101.69066929200199,
+   "f01_preparation_seconds": 168.18623354204465,
+   "wrapper_failures": {
+    "main_component_tagged_inputs": 18,
+    "template_file_lacks_include": 4
+   },
+   "remaining": [
+    "compiled_size_or_compile_unavailable",
+    "compiled_size_unavailable",
+    "unit_compile_failed",
+    "wrapper_compile_failed"
+   ]
+  },
+  {
+   "identifier": "350e5c37e2f7368baa1d73e8",
+   "repository": "iden3/circuits",
+   "path": "circuits/credentialAtomicQueryV3Universal.circom",
+   "constraints": 129263,
+   "c03_status": "unsupported",
+   "c03_failure_types": [
+    "discovery_unsupported",
+    "inspection_unsupported",
+    "plan_failure"
+   ],
+   "c03_callsites": 0,
+   "c03_units": 0,
+   "c03_eligible": 0,
+   "c03_expected": 1,
+   "c03_discovery_seconds": 0.902525041019544,
+   "c03_preparation_seconds": 5.562100958020892,
+   "f01_status": "partial",
+   "capture": "compiler_complete",
+   "capture_failure": null,
+   "interpreter_targets": 0,
+   "compiler_targets": 1952,
+   "f01_callsites": 1952,
+   "f01_units": 480,
+   "f01_eligible": 464,
+   "f01_expected": 481,
+   "capture_compile_seconds": 6.362039584,
+   "capture_read_seconds": 0.466496958,
+   "capture_assemble_seconds": 0.565157917,
+   "f01_discovery_seconds": 89.82295391696971,
+   "f01_preparation_seconds": 161.00095566699747,
+   "wrapper_failures": {
+    "template_file_lacks_include": 3,
+    "main_component_tagged_inputs": 14
+   },
+   "remaining": [
+    "compiled_size_or_compile_unavailable",
+    "compiled_size_unavailable",
+    "unit_compile_failed",
+    "wrapper_compile_failed"
+   ]
+  },
+  {
+   "identifier": "1783944d42833a2a0a33d1e5",
+   "repository": "iden3/circuits",
+   "path": "circuits/linkedMultiQuery.circom",
+   "constraints": 381182,
+   "c03_status": "unsupported",
+   "c03_failure_types": [
+    "discovery_unsupported",
+    "inspection_unsupported",
+    "plan_failure"
+   ],
+   "c03_callsites": 0,
+   "c03_units": 0,
+   "c03_eligible": 0,
+   "c03_expected": 1,
+   "c03_discovery_seconds": 0.8981518750078976,
+   "c03_preparation_seconds": 9.445428958977573,
+   "f01_status": "partial",
+   "capture": "compiler_complete",
+   "capture_failure": null,
+   "interpreter_targets": 0,
+   "compiler_targets": 995,
+   "f01_callsites": 995,
+   "f01_units": 351,
+   "f01_eligible": 347,
+   "f01_expected": 352,
+   "capture_compile_seconds": 7.572424917,
+   "capture_read_seconds": 1.854906583,
+   "capture_assemble_seconds": 1.8263318339999999,
+   "f01_discovery_seconds": 69.15571887500118,
+   "f01_preparation_seconds": 109.75334337505046,
+   "wrapper_failures": {
+    "template_file_lacks_include": 2,
+    "main_component_tagged_inputs": 3
+   },
+   "remaining": [
+    "compiled_size_or_compile_unavailable",
+    "compiled_size_unavailable",
+    "unit_compile_failed",
+    "wrapper_compile_failed"
+   ]
+  },
+  {
+   "identifier": "60271bae486ade95f8b72540",
+   "repository": "iden3/circuits",
+   "path": "circuits/linkedMultiQuery3.circom",
+   "constraints": 116498,
+   "c03_status": "unsupported",
+   "c03_failure_types": [
+    "discovery_unsupported",
+    "inspection_unsupported",
+    "plan_failure"
+   ],
+   "c03_callsites": 0,
+   "c03_units": 0,
+   "c03_eligible": 0,
+   "c03_expected": 1,
+   "c03_discovery_seconds": 0.907953166984953,
+   "c03_preparation_seconds": 4.461861916992348,
+   "f01_status": "partial",
+   "capture": "compiler_complete",
+   "capture_failure": null,
+   "interpreter_targets": 0,
+   "compiler_targets": 995,
+   "f01_callsites": 995,
+   "f01_units": 351,
+   "f01_eligible": 347,
+   "f01_expected": 352,
+   "capture_compile_seconds": 6.49648225,
+   "capture_read_seconds": 0.604442333,
+   "capture_assemble_seconds": 0.639716125,
+   "f01_discovery_seconds": 72.86997320794035,
+   "f01_preparation_seconds": 112.01826749998145,
+   "wrapper_failures": {
+    "template_file_lacks_include": 2,
+    "main_component_tagged_inputs": 3
+   },
+   "remaining": [
+    "compiled_size_or_compile_unavailable",
+    "compiled_size_unavailable",
+    "unit_compile_failed",
+    "wrapper_compile_failed"
+   ]
+  },
+  {
+   "identifier": "8efdc0326fbb36512cb6b1a1",
+   "repository": "iden3/circuits",
+   "path": "circuits/linkedMultiQuery5.circom",
+   "constraints": 192122,
+   "c03_status": "unsupported",
+   "c03_failure_types": [
+    "discovery_unsupported",
+    "inspection_unsupported",
+    "plan_failure"
+   ],
+   "c03_callsites": 0,
+   "c03_units": 0,
+   "c03_eligible": 0,
+   "c03_expected": 1,
+   "c03_discovery_seconds": 0.9068918750272132,
+   "c03_preparation_seconds": 6.318498874956276,
+   "f01_status": "partial",
+   "capture": "compiler_complete",
+   "capture_failure": null,
+   "interpreter_targets": 0,
+   "compiler_targets": 995,
+   "f01_callsites": 995,
+   "f01_units": 351,
+   "f01_eligible": 347,
+   "f01_expected": 352,
+   "capture_compile_seconds": 4.610614416,
+   "capture_read_seconds": 0.661605583,
+   "capture_assemble_seconds": 0.600680417,
+   "f01_discovery_seconds": 50.72697583306581,
+   "f01_preparation_seconds": 85.18808237509802,
+   "wrapper_failures": {
+    "template_file_lacks_include": 2,
+    "main_component_tagged_inputs": 3
+   },
+   "remaining": [
+    "compiled_size_or_compile_unavailable",
+    "compiled_size_unavailable",
+    "unit_compile_failed",
+    "wrapper_compile_failed"
+   ]
+  },
+  {
+   "identifier": "4c221df76273c0d7cf18048c",
+   "repository": "pantherfoundation/panther-core",
+   "path": "circuits/circuits/mainZAccountRenewalV1.circom",
+   "constraints": 111270,
+   "c03_status": "partial",
+   "c03_failure_types": [
+    "compiled_size_or_compile_unavailable",
+    "compiled_size_unavailable",
+    "discovery_unsupported",
+    "inspection_unsupported",
+    "unit_compile_failed",
+    "wrapper_compile_failed"
+   ],
+   "c03_callsites": 757,
+   "c03_units": 85,
+   "c03_eligible": 39,
+   "c03_expected": 86,
+   "c03_discovery_seconds": 11.634334708971437,
+   "c03_preparation_seconds": 47.76178208400961,
+   "f01_status": "partial",
+   "capture": "compiler_complete",
+   "capture_failure": null,
+   "interpreter_targets": 757,
+   "compiler_targets": 3426,
+   "f01_callsites": 3426,
+   "f01_units": 811,
+   "f01_eligible": 786,
+   "f01_expected": 812,
+   "capture_compile_seconds": 22.949163167000002,
+   "capture_read_seconds": 1.0156085,
+   "capture_assemble_seconds": 0.880567083,
+   "f01_discovery_seconds": 192.7849463749444,
+   "f01_preparation_seconds": 275.582162209088,
+   "wrapper_failures": {
+    "main_component_tagged_inputs": 25,
+    "template_file_lacks_include": 1
+   },
+   "remaining": [
+    "compiled_size_or_compile_unavailable",
+    "compiled_size_unavailable",
+    "unit_compile_failed",
+    "wrapper_compile_failed"
+   ]
+  },
+  {
+   "identifier": "b1b66c36fc8652ec72869a37",
+   "repository": "pantherfoundation/panther-core",
+   "path": "circuits/circuits/mainZSwapV1.circom",
+   "constraints": 276422,
+   "c03_status": "unsupported",
+   "c03_failure_types": [
+    "discovery_unsupported",
+    "inspection_unsupported",
+    "plan_failure"
+   ],
+   "c03_callsites": 0,
+   "c03_units": 0,
+   "c03_eligible": 0,
+   "c03_expected": 1,
+   "c03_discovery_seconds": 1.0639495420036837,
+   "c03_preparation_seconds": 11.446292957989499,
+   "f01_status": "partial",
+   "capture": "compiler_complete",
+   "capture_failure": null,
+   "interpreter_targets": 0,
+   "compiler_targets": 4600,
+   "f01_callsites": 4600,
+   "f01_units": 1126,
+   "f01_eligible": 1087,
+   "f01_expected": 1127,
+   "capture_compile_seconds": 22.904720958,
+   "capture_read_seconds": 0.926594208,
+   "capture_assemble_seconds": 0.937567541,
+   "f01_discovery_seconds": 188.310824041022,
+   "f01_preparation_seconds": 286.94157733302563,
+   "wrapper_failures": {
+    "main_component_tagged_inputs": 39,
+    "template_file_lacks_include": 1
+   },
+   "remaining": [
+    "compiled_size_or_compile_unavailable",
+    "compiled_size_unavailable",
+    "plan_timeout",
+    "unit_compile_failed",
+    "wrapper_compile_failed"
+   ]
+  },
+  {
+   "identifier": "633f374def3740dea16af186",
+   "repository": "pantherfoundation/panther-core",
+   "path": "circuits/circuits/mainZTransactionV1.circom",
+   "constraints": 260153,
+   "c03_status": "unsupported",
+   "c03_failure_types": [
+    "discovery_unsupported",
+    "inspection_unsupported",
+    "plan_failure"
+   ],
+   "c03_callsites": 0,
+   "c03_units": 0,
+   "c03_eligible": 0,
+   "c03_expected": 1,
+   "c03_discovery_seconds": 1.0460625420091674,
+   "c03_preparation_seconds": 13.302539375028573,
+   "f01_status": "failed",
+   "capture": "compiler_complete",
+   "capture_failure": null,
+   "interpreter_targets": 0,
+   "compiler_targets": 4564,
+   "f01_callsites": 4564,
+   "f01_units": 1122,
+   "f01_eligible": null,
+   "f01_expected": 1123,
+   "capture_compile_seconds": 30.477096292,
+   "capture_read_seconds": 2.385251208,
+   "capture_assemble_seconds": 2.873741458,
+   "f01_discovery_seconds": 216.2403519579675,
+   "f01_preparation_seconds": 300.29074924997985,
+   "wrapper_failures": {
+    "main_component_tagged_inputs": 38,
+    "template_file_lacks_include": 1
+   },
+   "remaining": [
+    "prepare_process_timeout"
+   ]
+  },
+  {
+   "identifier": "f268c31e5a416006bc8552a6",
+   "repository": "rarimo/passport-zk-circuits",
+   "path": "circuits/lib/circuits/ec/m.circom",
+   "constraints": 815996,
+   "c03_status": "unsupported",
+   "c03_failure_types": [
+    "manifest_generation_unsupported"
+   ],
+   "c03_callsites": 0,
+   "c03_units": 0,
+   "c03_eligible": null,
+   "c03_expected": null,
+   "c03_discovery_seconds": 15.649435333965812,
+   "c03_preparation_seconds": null,
+   "f01_status": "failed",
+   "capture": "compiler_complete",
+   "capture_failure": null,
+   "interpreter_targets": 0,
+   "compiler_targets": 1182,
+   "f01_callsites": 1182,
+   "f01_units": 37,
+   "f01_eligible": null,
+   "f01_expected": 38,
+   "capture_compile_seconds": 138.06374729200002,
+   "capture_read_seconds": 0.354786125,
+   "capture_assemble_seconds": 0.065975542,
+   "f01_discovery_seconds": 511.2171810840955,
+   "f01_preparation_seconds": 300.2588015840156,
+   "wrapper_failures": {
+    "wrapper_compile_timeout": 6
+   },
+   "remaining": [
+    "prepare_process_timeout"
+   ]
+  },
+  {
+   "identifier": "cd7ecd4d88a298913e927197",
+   "repository": "rarimo/passport-zk-circuits",
+   "path": "circuits/lib/circuits/eth/m.circom",
+   "constraints": 240360,
+   "c03_status": "partial",
+   "c03_failure_types": [
+    "discovery_unsupported",
+    "inspection_unsupported"
+   ],
+   "c03_callsites": 616,
+   "c03_units": 169,
+   "c03_eligible": 91,
+   "c03_expected": 170,
+   "c03_discovery_seconds": 236.6765921660117,
+   "c03_preparation_seconds": 275.4859211250441,
+   "f01_status": "failed",
+   "capture": "compiler_complete",
+   "capture_failure": null,
+   "interpreter_targets": 616,
+   "compiler_targets": 633,
+   "f01_callsites": 633,
+   "f01_units": 169,
+   "f01_eligible": null,
+   "f01_expected": 170,
+   "capture_compile_seconds": 33.790417417,
+   "capture_read_seconds": 2.109591167,
+   "capture_assemble_seconds": 1.873505084,
+   "f01_discovery_seconds": 336.6494662499754,
+   "f01_preparation_seconds": 300.1636825420428,
+   "wrapper_failures": {},
+   "remaining": [
+    "prepare_process_timeout"
+   ]
+  },
+  {
+   "identifier": "a8b2aa9c2857e79c017805bb",
+   "repository": "rarimo/passport-zk-circuits",
+   "path": "circuits/lib/circuits/signatures/m.circom",
+   "constraints": 733264,
+   "c03_status": "partial",
+   "c03_failure_types": [
+    "compiled_size_or_compile_unavailable",
+    "compiled_size_unavailable",
+    "discovery_unsupported",
+    "inspection_unsupported",
+    "unit_compile_failed",
+    "unit_compile_timeout",
+    "wrapper_compile_failed"
+   ],
+   "c03_callsites": 473,
+   "c03_units": 15,
+   "c03_eligible": 7,
+   "c03_expected": 16,
+   "c03_discovery_seconds": 24.165448208979797,
+   "c03_preparation_seconds": 112.81778145796852,
+   "f01_status": "partial",
+   "capture": "compiler_complete",
+   "capture_failure": null,
+   "interpreter_targets": 473,
+   "compiler_targets": 4004,
+   "f01_callsites": 4004,
+   "f01_units": 38,
+   "f01_eligible": 35,
+   "f01_expected": 39,
+   "capture_compile_seconds": 142.025134875,
+   "capture_read_seconds": 1.544323083,
+   "capture_assemble_seconds": 1.7907278340000001,
+   "f01_discovery_seconds": 172.41413437505253,
+   "f01_preparation_seconds": 89.59134437493049,
+   "wrapper_failures": {
+    "template_file_lacks_include": 3
+   },
+   "remaining": [
+    "compiled_size_or_compile_unavailable",
+    "compiled_size_unavailable",
+    "unit_compile_failed",
+    "unit_compile_timeout",
+    "wrapper_compile_failed"
+   ]
+  },
+  {
+   "identifier": "77e0f2db173d0c1812de503a",
+   "repository": "tanctl/zylith-old",
+   "path": "circuits/private_liquidity.circom",
+   "constraints": 311639,
+   "c03_status": "partial",
+   "c03_failure_types": [
+    "compiled_size_or_compile_unavailable",
+    "compiled_size_unavailable",
+    "discovery_unsupported",
+    "inspection_unsupported",
+    "unit_compile_failed",
+    "wrapper_compile_failed",
+    "wrapper_unsupported"
+   ],
+   "c03_callsites": 428,
+   "c03_units": 62,
+   "c03_eligible": 48,
+   "c03_expected": 63,
+   "c03_discovery_seconds": 11.27546400000574,
+   "c03_preparation_seconds": 41.729968249972444,
+   "f01_status": "partial",
+   "capture": "compiler_complete",
+   "capture_failure": null,
+   "interpreter_targets": 428,
+   "compiler_targets": 1263,
+   "f01_callsites": 1263,
+   "f01_units": 311,
+   "f01_eligible": 305,
+   "f01_expected": 312,
+   "capture_compile_seconds": 6.5439105,
+   "capture_read_seconds": 0.351731958,
+   "capture_assemble_seconds": 0.104786875,
+   "f01_discovery_seconds": 58.93159987498075,
+   "f01_preparation_seconds": 93.50117687496822,
+   "wrapper_failures": {
+    "template_file_lacks_include": 7
+   },
+   "remaining": [
+    "compiled_size_or_compile_unavailable",
+    "compiled_size_unavailable",
+    "unit_compile_failed",
+    "wrapper_compile_failed",
+    "wrapper_unsupported"
+   ]
+  },
+  {
+   "identifier": "8c645f1983ad0a1694b05ff0",
+   "repository": "tanctl/zylith-old",
+   "path": "circuits/private_swap_exact_out_one_for_zero.circom",
+   "constraints": 2411961,
+   "c03_status": "partial",
+   "c03_failure_types": [
+    "compiled_size_or_compile_unavailable",
+    "compiled_size_unavailable",
+    "discovery_unsupported",
+    "inspection_unsupported",
+    "unit_compile_failed",
+    "wrapper_compile_failed"
+   ],
+   "c03_callsites": 78,
+   "c03_units": 27,
+   "c03_eligible": 19,
+   "c03_expected": 28,
+   "c03_discovery_seconds": 3.617505165981129,
+   "c03_preparation_seconds": 61.553588500013575,
+   "f01_status": "partial",
+   "capture": "compiler_complete",
+   "capture_failure": null,
+   "interpreter_targets": 78,
+   "compiler_targets": 1237,
+   "f01_callsites": 1237,
+   "f01_units": 207,
+   "f01_eligible": 204,
+   "f01_expected": 208,
+   "capture_compile_seconds": 18.032565917,
+   "capture_read_seconds": 1.29185875,
+   "capture_assemble_seconds": 0.655564708,
+   "f01_discovery_seconds": 49.899561709025875,
+   "f01_preparation_seconds": 85.41295916691888,
+   "wrapper_failures": {
+    "template_file_lacks_include": 4
+   },
+   "remaining": [
+    "compiled_size_or_compile_unavailable",
+    "compiled_size_unavailable",
+    "unit_compile_failed",
+    "wrapper_compile_failed"
+   ]
+  },
+  {
+   "identifier": "3478ee34213b144bfc37aedb",
+   "repository": "tanctl/zylith-old",
+   "path": "circuits/private_swap_exact_out_zero_for_one.circom",
+   "constraints": 2411945,
+   "c03_status": "partial",
+   "c03_failure_types": [
+    "compiled_size_or_compile_unavailable",
+    "compiled_size_unavailable",
+    "discovery_unsupported",
+    "inspection_unsupported",
+    "unit_compile_failed",
+    "wrapper_compile_failed"
+   ],
+   "c03_callsites": 78,
+   "c03_units": 27,
+   "c03_eligible": 19,
+   "c03_expected": 28,
+   "c03_discovery_seconds": 4.602600084035657,
+   "c03_preparation_seconds": 76.87939941696823,
+   "f01_status": "partial",
+   "capture": "compiler_complete",
+   "capture_failure": null,
+   "interpreter_targets": 78,
+   "compiler_targets": 1237,
+   "f01_callsites": 1237,
+   "f01_units": 207,
+   "f01_eligible": 203,
+   "f01_expected": 208,
+   "capture_compile_seconds": 24.926739292,
+   "capture_read_seconds": 2.004134917,
+   "capture_assemble_seconds": 0.66373675,
+   "f01_discovery_seconds": 67.85154974996112,
+   "f01_preparation_seconds": 127.98723866604269,
+   "wrapper_failures": {
+    "template_file_lacks_include": 4
+   },
+   "remaining": [
+    "compiled_size_or_compile_unavailable",
+    "compiled_size_unavailable",
+    "unit_compile_failed",
+    "unit_compile_timeout",
+    "wrapper_compile_failed"
+   ]
+  },
+  {
+   "identifier": "3badcb947fc0df104d5ccdc8",
+   "repository": "tanctl/zylith-old",
+   "path": "circuits/private_swap_one_for_zero.circom",
+   "constraints": 2409993,
+   "c03_status": "partial",
+   "c03_failure_types": [
+    "compiled_size_or_compile_unavailable",
+    "compiled_size_unavailable",
+    "discovery_unsupported",
+    "inspection_unsupported",
+    "unit_compile_failed",
+    "wrapper_compile_failed"
+   ],
+   "c03_callsites": 78,
+   "c03_units": 27,
+   "c03_eligible": 19,
+   "c03_expected": 28,
+   "c03_discovery_seconds": 3.366021834022831,
+   "c03_preparation_seconds": 63.968584957998246,
+   "f01_status": "partial",
+   "capture": "compiler_complete",
+   "capture_failure": null,
+   "interpreter_targets": 78,
+   "compiler_targets": 1232,
+   "f01_callsites": 1232,
+   "f01_units": 207,
+   "f01_eligible": 203,
+   "f01_expected": 208,
+   "capture_compile_seconds": 43.363436917,
+   "capture_read_seconds": 2.938547458,
+   "capture_assemble_seconds": 1.022931458,
+   "f01_discovery_seconds": 99.91155762504786,
+   "f01_preparation_seconds": 147.677907000063,
+   "wrapper_failures": {
+    "template_file_lacks_include": 4
+   },
+   "remaining": [
+    "compiled_size_or_compile_unavailable",
+    "compiled_size_unavailable",
+    "unit_compile_failed",
+    "unit_compile_timeout",
+    "wrapper_compile_failed"
+   ]
+  },
+  {
+   "identifier": "f79405e7d34a0500b51d14a5",
+   "repository": "tanctl/zylith-old",
+   "path": "circuits/private_swap_zero_for_one.circom",
+   "constraints": 2409977,
+   "c03_status": "partial",
+   "c03_failure_types": [
+    "compiled_size_or_compile_unavailable",
+    "compiled_size_unavailable",
+    "discovery_unsupported",
+    "inspection_unsupported",
+    "unit_compile_failed",
+    "wrapper_compile_failed"
+   ],
+   "c03_callsites": 78,
+   "c03_units": 27,
+   "c03_eligible": 19,
+   "c03_expected": 28,
+   "c03_discovery_seconds": 3.46851533401059,
+   "c03_preparation_seconds": 62.752586583956145,
+   "f01_status": "partial",
+   "capture": "compiler_complete",
+   "capture_failure": null,
+   "interpreter_targets": 78,
+   "compiler_targets": 1232,
+   "f01_callsites": 1232,
+   "f01_units": 207,
+   "f01_eligible": 204,
+   "f01_expected": 208,
+   "capture_compile_seconds": 25.821519417,
+   "capture_read_seconds": 2.052781625,
+   "capture_assemble_seconds": 0.661565792,
+   "f01_discovery_seconds": 73.27431604196317,
+   "f01_preparation_seconds": 102.1749187920941,
+   "wrapper_failures": {
+    "template_file_lacks_include": 4
+   },
+   "remaining": [
+    "compiled_size_or_compile_unavailable",
+    "compiled_size_unavailable",
+    "unit_compile_failed",
+    "wrapper_compile_failed"
+   ]
+  },
+  {
+   "identifier": "69d653f1729e1a4c835e5383",
+   "repository": "tanctl/zylith-old",
+   "path": "circuits/test/fixtures/clmm_step_wrapper.circom",
+   "constraints": 129393,
+   "c03_status": "success",
+   "c03_failure_types": [],
+   "c03_callsites": 228,
+   "c03_units": 37,
+   "c03_eligible": 38,
+   "c03_expected": 38,
+   "c03_discovery_seconds": 3.991478207986802,
+   "c03_preparation_seconds": 9.753936624969356,
+   "f01_status": "success",
+   "capture": "compiler_complete",
+   "capture_failure": null,
+   "interpreter_targets": 228,
+   "compiler_targets": 228,
+   "f01_callsites": 228,
+   "f01_units": 37,
+   "f01_eligible": 38,
+   "f01_expected": 38,
+   "capture_compile_seconds": 1.53967075,
+   "capture_read_seconds": 0.086952584,
+   "capture_assemble_seconds": 0.018879625,
+   "f01_discovery_seconds": 6.758513665990904,
+   "f01_preparation_seconds": 9.67740591603797,
+   "wrapper_failures": {},
+   "remaining": []
+  },
+  {
+   "identifier": "e71f158d85178fd29e1ba300",
+   "repository": "tangle-network/protocol-solidity",
+   "path": "circuits/main/poseidon_vanchor_16_2.circom",
+   "constraints": 290196,
+   "c03_status": "unsupported",
+   "c03_failure_types": [
+    "manifest_generation_unsupported"
+   ],
+   "c03_callsites": 0,
+   "c03_units": 0,
+   "c03_eligible": null,
+   "c03_expected": null,
+   "c03_discovery_seconds": 0.7175014159874991,
+   "c03_preparation_seconds": null,
+   "f01_status": "success",
+   "capture": "compiler_complete",
+   "capture_failure": null,
+   "interpreter_targets": 0,
+   "compiler_targets": 923,
+   "f01_callsites": 923,
+   "f01_units": 291,
+   "f01_eligible": 292,
+   "f01_expected": 292,
+   "capture_compile_seconds": 6.078382792,
+   "capture_read_seconds": 0.947355542,
+   "capture_assemble_seconds": 0.973020666,
+   "f01_discovery_seconds": 49.139379666070454,
+   "f01_preparation_seconds": 75.3909476660192,
+   "wrapper_failures": {},
+   "remaining": []
+  },
+  {
+   "identifier": "673001c71119a054d93ce5ad",
+   "repository": "tangle-network/protocol-solidity",
+   "path": "circuits/main/poseidon_vanchor_16_8.circom",
+   "constraints": 290388,
+   "c03_status": "unsupported",
+   "c03_failure_types": [
+    "manifest_generation_unsupported"
+   ],
+   "c03_callsites": 0,
+   "c03_units": 0,
+   "c03_eligible": null,
+   "c03_expected": null,
+   "c03_discovery_seconds": 0.8364240840310231,
+   "c03_preparation_seconds": null,
+   "f01_status": "success",
+   "capture": "compiler_complete",
+   "capture_failure": null,
+   "interpreter_targets": 0,
+   "compiler_targets": 923,
+   "f01_callsites": 923,
+   "f01_units": 291,
+   "f01_eligible": 292,
+   "f01_expected": 292,
+   "capture_compile_seconds": 8.646260375,
+   "capture_read_seconds": 1.1765909589999999,
+   "capture_assemble_seconds": 1.167409416,
+   "f01_discovery_seconds": 56.59741979104001,
+   "f01_preparation_seconds": 88.30961233295966,
+   "wrapper_failures": {},
+   "remaining": []
+  },
+  {
+   "identifier": "7e8573844e0f70b55a9464c5",
+   "repository": "tangle-network/protocol-solidity",
+   "path": "circuits/main/vanchor_forest_16_2.circom",
+   "constraints": 331892,
+   "c03_status": "unsupported",
+   "c03_failure_types": [
+    "manifest_generation_unsupported"
+   ],
+   "c03_callsites": 0,
+   "c03_units": 0,
+   "c03_eligible": null,
+   "c03_expected": null,
+   "c03_discovery_seconds": 0.7407258749590255,
+   "c03_preparation_seconds": null,
+   "f01_status": "success",
+   "capture": "compiler_complete",
+   "capture_failure": null,
+   "interpreter_targets": 0,
+   "compiler_targets": 936,
+   "f01_callsites": 936,
+   "f01_units": 294,
+   "f01_eligible": 295,
+   "f01_expected": 295,
+   "capture_compile_seconds": 5.808371625,
+   "capture_read_seconds": 1.306089042,
+   "capture_assemble_seconds": 1.348884459,
+   "f01_discovery_seconds": 48.264864083961584,
+   "f01_preparation_seconds": 77.49874954205006,
+   "wrapper_failures": {},
+   "remaining": []
+  },
+  {
+   "identifier": "099cf19a5056e81cac7ed6f0",
+   "repository": "tangle-network/protocol-solidity",
+   "path": "circuits/main/vanchor_forest_16_8.circom",
+   "constraints": 332084,
+   "c03_status": "unsupported",
+   "c03_failure_types": [
+    "manifest_generation_unsupported"
+   ],
+   "c03_callsites": 0,
+   "c03_units": 0,
+   "c03_eligible": null,
+   "c03_expected": null,
+   "c03_discovery_seconds": 0.791961667011492,
+   "c03_preparation_seconds": null,
+   "f01_status": "success",
+   "capture": "compiler_complete",
+   "capture_failure": null,
+   "interpreter_targets": 0,
+   "compiler_targets": 936,
+   "f01_callsites": 936,
+   "f01_units": 294,
+   "f01_eligible": 295,
+   "f01_expected": 295,
+   "capture_compile_seconds": 8.781093083,
+   "capture_read_seconds": 3.035523375,
+   "capture_assemble_seconds": 2.07726525,
+   "f01_discovery_seconds": 72.92621033301111,
+   "f01_preparation_seconds": 108.28789033391513,
+   "wrapper_failures": {},
+   "remaining": []
+  },
+  {
+   "identifier": "76053f7fb015aba5e093d82d",
+   "repository": "Zellic/zkerc20",
+   "path": "circuits/circuit.circom",
+   "constraints": 331643,
+   "c03_status": "partial",
+   "c03_failure_types": [
+    "discovery_unsupported",
+    "inspection_unsupported"
+   ],
+   "c03_callsites": 72,
+   "c03_units": 11,
+   "c03_eligible": 3,
+   "c03_expected": 12,
+   "c03_discovery_seconds": 2.29811445903033,
+   "c03_preparation_seconds": 12.837528500007465,
+   "f01_status": "success",
+   "capture": "compiler_complete",
+   "capture_failure": null,
+   "interpreter_targets": 72,
+   "compiler_targets": 404,
+   "f01_callsites": 404,
+   "f01_units": 152,
+   "f01_eligible": 153,
+   "f01_expected": 153,
+   "capture_compile_seconds": 3.695591459,
+   "capture_read_seconds": 0.308396625,
+   "capture_assemble_seconds": 0.05201,
+   "f01_discovery_seconds": 27.444548832951114,
+   "f01_preparation_seconds": 52.83846833393909,
+   "wrapper_failures": {},
+   "remaining": []
+  }
+ ],
+ "regression": {
+  "records": 881,
+  "summary": {
+   "different": 1,
+   "f01_status_success": 881,
+   "identical": 880,
+   "selected_compiler": 875,
+   "selected_interpreter": 6
+  },
+  "mismatches": [
+   {
+    "identifier": "b09e0845af138b9ea4cb5331",
+    "repository": "erhant/circom101",
+    "entrypoint_key": "source_main:circuits/test/comparators/sign.circom",
+    "kind": "different",
+    "f01_captured_arguments": {
+     "runs/c03-corpus-2026-10-02/recovery-v3/repositories/erhant__circom101/clone/circuits/bits/index.circom::Num2Bits(135)": [
+      {
+       "kind": "scalar",
+       "value": "135"
+      }
+     ],
+     "runs/c03-corpus-2026-10-02/recovery-v3/repositories/erhant__circom101/clone/circuits/comparators/constant.circom::CompConstant(10944121435919637611123202872628637544274182200208017171849102093287904247808)": [
+      {
+       "kind": "scalar",
+       "value": "10944121435919637611123202872628637544274182200208017171849102093287904247808"
+      }
+     ]
+    },
+    "capture": "compiler_complete",
+    "root_equal": true,
+    "c03_root_instance_key": "runs/c03-corpus-2026-10-02/recovery-v3/repositories/erhant__circom101/clone/circuits/comparators/constant.circom::Sign()",
+    "f01_root_instance_key": "runs/c03-corpus-2026-10-02/recovery-v3/repositories/erhant__circom101/clone/circuits/comparators/constant.circom::Sign()",
+    "slot_difference_kinds": {
+     "c03_only": 1,
+     "f01_only": 1,
+     "both": 1
+    },
+    "slot_differences": [
+     {
+      "parent_instance_key": "runs/c03-corpus-2026-10-02/recovery-v3/repositories/erhant__circom101/clone/circuits/comparators/constant.circom::CompConstant(-1)",
+      "component_name": "num2bits",
+      "line": 103,
+      "c03": [
+       "runs/c03-corpus-2026-10-02/recovery-v3/repositories/erhant__circom101/clone/circuits/bits/index.circom::Num2Bits(135)"
+      ],
+      "f01": []
+     },
+     {
+      "parent_instance_key": "runs/c03-corpus-2026-10-02/recovery-v3/repositories/erhant__circom101/clone/circuits/comparators/constant.circom::CompConstant(10944121435919637611123202872628637544274182200208017171849102093287904247808)",
+      "component_name": "num2bits",
+      "line": 103,
+      "c03": [],
+      "f01": [
+       "runs/c03-corpus-2026-10-02/recovery-v3/repositories/erhant__circom101/clone/circuits/bits/index.circom::Num2Bits(135)"
+      ]
+     },
+     {
+      "parent_instance_key": "runs/c03-corpus-2026-10-02/recovery-v3/repositories/erhant__circom101/clone/circuits/comparators/constant.circom::Sign()",
+      "component_name": "comparator",
+      "line": 137,
+      "c03": [
+       "runs/c03-corpus-2026-10-02/recovery-v3/repositories/erhant__circom101/clone/circuits/comparators/constant.circom::CompConstant(-1)"
+      ],
+      "f01": [
+       "runs/c03-corpus-2026-10-02/recovery-v3/repositories/erhant__circom101/clone/circuits/comparators/constant.circom::CompConstant(10944121435919637611123202872628637544274182200208017171849102093287904247808)"
+      ]
+     }
+    ],
+    "compile_unit_instance_keys_only_c03": [
+     "runs/c03-corpus-2026-10-02/recovery-v3/repositories/erhant__circom101/clone/circuits/comparators/constant.circom::CompConstant(-1)"
+    ],
+    "compile_unit_instance_keys_only_f01": [
+     "runs/c03-corpus-2026-10-02/recovery-v3/repositories/erhant__circom101/clone/circuits/comparators/constant.circom::CompConstant(10944121435919637611123202872628637544274182200208017171849102093287904247808)"
+    ]
+   }
+  ]
+ },
+ "supplement": {
+  "tool_lock": {
+   "created_at": "2026-10-03T07:34:13.179293+00:00",
+   "tools": [
+    {
+     "path": "runs/f01-2026-10-03/supplement-var-scope/tools/zkfDO",
+     "original_path": "target/release/zkfDO",
+     "sha256": "f8c9f64defd3993ebd845279bc0a245857e23a1ae759ce175e94f369cdd9f4c1"
+    },
+    {
+     "path": "runs/c02-corpus-2026-10-02/tools/circom",
+     "sha256": "8991887889c2a74d6fc704d5689ada4cc76fba004e866c987de6cbf3b3db6227"
+    }
+   ]
+  },
+  "entries": [
+   {
+    "identifier": "405a83342cfb9b66915e72cc",
+    "repository": "erhant/circom101",
+    "entrypoint_key": "source_main:circuits/test/arrays/is_distinct_3.circom",
+    "role": "education_example",
+    "main_capture": "capture_compile_failed",
+    "main_capture_failure": "the diagnostic copy does not compile: error[T2021]: Undeclared symbol",
+    "supplement_capture": "compiler_complete",
+    "compiler_targets": 3,
+    "c03_status": "success",
+    "main_status": "success",
+    "supplement_status": "success",
+    "regression_identical": true
+   },
+   {
+    "identifier": "460a6fcd3727a71a37ddcc0d",
+    "repository": "erhant/circom101",
+    "entrypoint_key": "source_main:circuits/test/arrays/arr_read_10.circom",
+    "role": "education_example",
+    "main_capture": "capture_compile_failed",
+    "main_capture_failure": "the diagnostic copy does not compile: error[T2021]: Undeclared symbol",
+    "supplement_capture": "compiler_complete",
+    "compiler_targets": 3,
+    "c03_status": "success",
+    "main_status": "success",
+    "supplement_status": "success",
+    "regression_identical": true
+   },
+   {
+    "identifier": "48fdaf6b8f8707b5ce046eb4",
+    "repository": "erhant/circom101",
+    "entrypoint_key": "source_main:circuits/test/arrays/arr_assert_sorted_10_16.circom",
+    "role": "education_example",
+    "main_capture": "capture_compile_failed",
+    "main_capture_failure": "the diagnostic copy does not compile: error[T2021]: Undeclared symbol",
+    "supplement_capture": "compiler_complete",
+    "compiler_targets": 6,
+    "c03_status": "success",
+    "main_status": "success",
+    "supplement_status": "success",
+    "regression_identical": true
+   },
+   {
+    "identifier": "b8b4201d7a05cdc17122d2d7",
+    "repository": "erhant/circom101",
+    "entrypoint_key": "source_main:circuits/test/arrays/arr_sum_10.circom",
+    "role": "education_example",
+    "main_capture": "capture_compile_failed",
+    "main_capture_failure": "the diagnostic copy does not compile: error[T2021]: Undeclared symbol",
+    "supplement_capture": "compiler_complete",
+    "compiler_targets": 3,
+    "c03_status": "success",
+    "main_status": "success",
+    "supplement_status": "success",
+    "regression_identical": true
+   },
+   {
+    "identifier": "ba22379ffb53b708fefcb816",
+    "repository": "erhant/circom101",
+    "entrypoint_key": "source_main:circuits/test/arrays/arr_is_sorted_10_16.circom",
+    "role": "education_example",
+    "main_capture": "capture_compile_failed",
+    "main_capture_failure": "the diagnostic copy does not compile: error[T2021]: Undeclared symbol",
+    "supplement_capture": "compiler_complete",
+    "compiler_targets": 7,
+    "c03_status": "success",
+    "main_status": "success",
+    "supplement_status": "success",
+    "regression_identical": true
+   },
+   {
+    "identifier": "ee96457fe8db8737b393b801",
+    "repository": "erhant/circom101",
+    "entrypoint_key": "source_main:circuits/test/arrays/distinct_3.circom",
+    "role": "education_example",
+    "main_capture": "capture_compile_failed",
+    "main_capture_failure": "the diagnostic copy does not compile: error[T2021]: Undeclared symbol",
+    "supplement_capture": "compiler_complete",
+    "compiler_targets": 2,
+    "c03_status": "success",
+    "main_status": "success",
+    "supplement_status": "success",
+    "regression_identical": true
+   }
+  ]
+ },
+ "cost": {
+  "capture_compile_seconds": {
+   "n": 1493,
+   "total": 1636.307,
+   "median": 0.035,
+   "p90": 0.222,
+   "max": 370.274
+  },
+  "capture_compile_attempts": {
+   "1": 1486,
+   "2": 7
+  },
+  "capture_read_seconds": {
+   "n": 1493,
+   "total": 86.228,
+   "median": 0.0,
+   "p90": 0.002,
+   "max": 24.105
+  },
+  "capture_assemble_seconds": {
+   "n": 1493,
+   "total": 92.024,
+   "median": 0.0,
+   "p90": 0.001,
+   "max": 31.638
+  },
+  "capture_scan_seconds": {
+   "n": 1493,
+   "total": 414.575,
+   "median": 0.001,
+   "p90": 0.042,
+   "max": 7.965
+  },
+  "capture_constraints": {
+   "n": 1007,
+   "total": 28072730,
+   "median": 4,
+   "p90": 1442,
+   "max": 7738137
+  },
+  "f01_discovery_seconds": {
+   "n": 1493,
+   "total": 9071.842,
+   "median": 1.367,
+   "p90": 6.415,
+   "max": 789.696
+  },
+  "f01_discovery_over_c03_cap_300": 4,
+  "f01_preparation_seconds": {
+   "n": 1411,
+   "total": 8531.95,
+   "median": 0.337,
+   "p90": 4.391,
+   "max": 300.291
+  },
+  "f01_preparation_timeouts": 4
+ },
+ "diagnostic_copies_cleanup": {
+  "decided_by": "miiz",
+  "record": {
+   "path": "runs/f01-2026-10-03/diagnostic-copies-cleanup-20261003T121002Z.json",
+   "sha256": "5c6d75c413e15b518e2bc45296558e57fd4c337c552a8c3fea0dada414553e62"
+  },
+  "trees": 1520,
+  "files": 1391441,
+  "links": 508505,
+  "bytes": 41707718657,
+  "precheck": {
+   "records": 1499,
+   "neutrality_captures": 8,
+   "captured_records": 1013,
+   "compile_failed_records_with_reason": 486,
+   "instances": 4662267,
+   "distinct_arrays_with_full_values": 975,
+   "problems": 0
+  },
+  "regeneration": {
+   "binaries": {
+    "main": "39bf0048f0893a6fdad10ceae02865a31896dbc8c27148224921b260f1db2b1c",
+    "supplement": "f8c9f64defd3993ebd845279bc0a245857e23a1ae759ce175e94f369cdd9f4c1"
+   },
+   "commits": "docs/c03_corpus_results_2026-10-02.json repositories[].commit_sha; each measurement record's commit",
+   "rule": "zkfDO capture (or targets --instance-capture) with the discovery report's project root, entrypoint and library paths; copies only .circom of the project root and outside library paths, recreates links as links, applies the planned capture insertions without newlines",
+   "check": [
+    {
+     "identifier": "06cc8481a30c53fa36c365d4",
+     "identical_files": 301
+    },
+    {
+     "identifier": "b5b5cf5dacdeebd430b519f8",
+     "identical_files": 208
+    },
+    {
+     "identifier": "00179d01189bf56145702aeb",
+     "identical_files": 2624
+    },
+    {
+     "identifier": "405a83342cfb9b66915e72cc",
+     "identical_files": 185
+    }
+   ]
+  }
+ }
+}
