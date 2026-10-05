@@ -1,0 +1,1418 @@
+{
+  "schema_version": 1,
+  "task": "M-01",
+  "date": "2026-10-03",
+  "owner": "miiz",
+  "deadline": "2026-10-05",
+  "status": "complete",
+  "zkfuzz_invocations": 0,
+  "scope": {
+    "entrypoints": 125,
+    "large_entrypoints_at_least_100k": 49,
+    "repositories": 6,
+    "procedure_lock": {
+      "path": "runs/m01-2026-10-03/procedure-lock.json",
+      "sha256": "905b02ba4cdb3fe196fb834a6aff4283602e15973c3a6ccbc277783621b15ca3"
+    },
+    "e01_results": {
+      "path": "docs/e01_setup_results_2026-10-03.json",
+      "sha256": "317a2a1b2dadc83a1126e244e0fb6407d6a912ad8733ca0c0bf3aa25ae591143"
+    },
+    "stages": [
+      "target_discovery_with_instance_capture",
+      "experiment_prepare",
+      "experiment_plan"
+    ],
+    "excluded_stages": [
+      "dependency_setup",
+      "original_entrypoint_compile",
+      "zkfuzz"
+    ]
+  },
+  "measurement_window": {
+    "started_at": "2026-10-03T12:49:27.969670+00:00",
+    "finished_at": "2026-10-05T13:05:30.778642+00:00"
+  },
+  "tools": {
+    "zkfDO_source": {
+      "path": "runs/f01-2026-10-03/supplement-var-scope/tools/zkfDO",
+      "sha256": "f8c9f64defd3993ebd845279bc0a245857e23a1ae759ce175e94f369cdd9f4c1"
+    },
+    "zkfDO_copy": {
+      "path": "runs/m01-2026-10-03/tools/zkfDO",
+      "sha256": "f8c9f64defd3993ebd845279bc0a245857e23a1ae759ce175e94f369cdd9f4c1"
+    },
+    "circom": {
+      "path": "runs/c02-corpus-2026-10-02/tools/circom",
+      "sha256": "8991887889c2a74d6fc704d5689ada4cc76fba004e866c987de6cbf3b3db6227"
+    }
+  },
+  "icloud_window_check": {
+    "window_kst": "2026-10-03 19:30--20:16",
+    "e01_measurement_window_kst": "2026-10-03 13:43--16:35",
+    "overlap": false,
+    "path_loss_errors": 0
+  },
+  "history": [
+    {
+      "kind": "sandbox_preflight_blocked",
+      "completed_results": 0,
+      "permission_errors": 125,
+      "reason": "sandbox denied /bin/ps before the child-process runner could start",
+      "log": {
+        "path": "runs/m01-2026-10-03/measurement.log",
+        "sha256": "7bd11ee68483bc7f91bed8ff4e76cf0ae59e9d60c3a1b8410ec682ed46c859fb"
+      }
+    },
+    {
+      "kind": "actual_measurement",
+      "completed_results": 125,
+      "log": {
+        "path": "runs/m01-2026-10-03/measurement-escalated.log",
+        "sha256": "1b42cf831a5952c0bed2ba71e1b0b837586cbad3ecb789eaeaace48b9279b05c"
+      }
+    }
+  ],
+  "overall": {
+    "e01_preparation": {
+      "success": 18,
+      "partial": 86,
+      "unsupported": 18,
+      "failed": 3
+    },
+    "m01_preparation": {
+      "success": 97,
+      "partial": 22,
+      "failed": 6
+    },
+    "transitions": {
+      "failed -> failed": 1,
+      "failed -> partial": 2,
+      "partial -> failed": 3,
+      "partial -> partial": 20,
+      "partial -> success": 63,
+      "success -> success": 18,
+      "unsupported -> failed": 2,
+      "unsupported -> success": 16
+    },
+    "capture": {
+      "compiler_complete": 125
+    },
+    "discovery_status": {
+      "success": 125
+    },
+    "plan_status": {
+      "success": 118,
+      "not_started": 6,
+      "timeout": 1
+    }
+  },
+  "repositories": [
+    {
+      "repository": "Galactica-corp/galactica-monorepo",
+      "commit_sha": "08dad664214dc96849cfb7e67130ed48b7699387",
+      "entrypoints": 25,
+      "large_entrypoints": 0,
+      "e01_preparation": {
+        "success": 3,
+        "partial": 17,
+        "unsupported": 5
+      },
+      "m01_preparation": {
+        "success": 23,
+        "partial": 1,
+        "failed": 1
+      },
+      "transitions": {
+        "partial -> failed": 1,
+        "partial -> partial": 1,
+        "partial -> success": 15,
+        "success -> success": 3,
+        "unsupported -> success": 5
+      },
+      "capture": {
+        "compiler_complete": 25
+      }
+    },
+    {
+      "repository": "anon-aadhaar/anon-aadhaar",
+      "commit_sha": "4dad918761cfb1d7d5ed9918dcd796d0cb23ae82",
+      "entrypoints": 3,
+      "large_entrypoints": 2,
+      "e01_preparation": {
+        "partial": 2,
+        "unsupported": 1
+      },
+      "m01_preparation": {
+        "success": 2,
+        "failed": 1
+      },
+      "transitions": {
+        "partial -> success": 2,
+        "unsupported -> failed": 1
+      },
+      "capture": {
+        "compiler_complete": 3
+      }
+    },
+    {
+      "repository": "proofcarryingdata/zupass",
+      "commit_sha": "d553fd1dd9ec9c4a641fa01326a14ef90e4d20f1",
+      "entrypoints": 5,
+      "large_entrypoints": 0,
+      "e01_preparation": {
+        "success": 3,
+        "partial": 2
+      },
+      "m01_preparation": {
+        "success": 4,
+        "partial": 1
+      },
+      "transitions": {
+        "partial -> partial": 1,
+        "partial -> success": 1,
+        "success -> success": 3
+      },
+      "capture": {
+        "compiler_complete": 5
+      }
+    },
+    {
+      "repository": "selfxyz/self",
+      "commit_sha": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+      "entrypoints": 42,
+      "large_entrypoints": 32,
+      "e01_preparation": {
+        "success": 6,
+        "partial": 35,
+        "unsupported": 1
+      },
+      "m01_preparation": {
+        "success": 22,
+        "partial": 18,
+        "failed": 2
+      },
+      "transitions": {
+        "partial -> failed": 2,
+        "partial -> partial": 18,
+        "partial -> success": 15,
+        "success -> success": 6,
+        "unsupported -> success": 1
+      },
+      "capture": {
+        "compiler_complete": 42
+      }
+    },
+    {
+      "repository": "zkemail/zk-email-verify",
+      "commit_sha": "066c8742a5e60519597697e579333b703ffa6ad2",
+      "entrypoints": 21,
+      "large_entrypoints": 8,
+      "e01_preparation": {
+        "success": 6,
+        "partial": 5,
+        "unsupported": 7,
+        "failed": 3
+      },
+      "m01_preparation": {
+        "success": 17,
+        "partial": 2,
+        "failed": 2
+      },
+      "transitions": {
+        "failed -> failed": 1,
+        "failed -> partial": 2,
+        "partial -> success": 5,
+        "success -> success": 6,
+        "unsupported -> failed": 1,
+        "unsupported -> success": 6
+      },
+      "capture": {
+        "compiler_complete": 21
+      }
+    },
+    {
+      "repository": "zkp2p/zkp2p-v1-monorepo",
+      "commit_sha": "fa4274dbca8547963f92364ceacb7f62aecc8fd4",
+      "entrypoints": 29,
+      "large_entrypoints": 7,
+      "e01_preparation": {
+        "partial": 25,
+        "unsupported": 4
+      },
+      "m01_preparation": {
+        "success": 29
+      },
+      "transitions": {
+        "partial -> success": 25,
+        "unsupported -> success": 4
+      },
+      "capture": {
+        "compiler_complete": 29
+      }
+    }
+  ],
+  "large_entrypoints": [
+    {
+      "identifier": "6079a717f929aaf04a04e329",
+      "repository": "anon-aadhaar/anon-aadhaar",
+      "entrypoint": "packages/circuits/src/aadhaar-verifier.circom",
+      "entrypoint_key": "source_main:packages/circuits/src/aadhaar-verifier.circom",
+      "constraints": 1115080,
+      "e01_status": "unsupported",
+      "m01_status": "failed",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 75920,
+      "callsites": 10661,
+      "unique_compile_units": 389,
+      "eligible": null,
+      "expected_targets": 390,
+      "remaining_reasons": [
+        "preparation:prepare_process_timeout"
+      ]
+    },
+    {
+      "identifier": "07f40107b236e59d24124305",
+      "repository": "anon-aadhaar/anon-aadhaar",
+      "entrypoint": "packages/circuits/test/circuits/extractor-test.circom",
+      "entrypoint_key": "source_main:packages/circuits/test/circuits/extractor-test.circom",
+      "constraints": 129004,
+      "e01_status": "partial",
+      "m01_status": "success",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 12502,
+      "callsites": 5745,
+      "unique_compile_units": 40,
+      "eligible": 41,
+      "expected_targets": 41,
+      "remaining_reasons": []
+    },
+    {
+      "identifier": "830792399bd1cbfcd535862a",
+      "repository": "selfxyz/self",
+      "entrypoint": "circuits/circuits/tests/utils/ecdsa/test_brainpoolP224r1.circom",
+      "entrypoint_key": "source_main:circuits/circuits/tests/utils/ecdsa/test_brainpoolP224r1.circom",
+      "constraints": 1992814,
+      "e01_status": "partial",
+      "m01_status": "failed",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 63808,
+      "callsites": 13248,
+      "unique_compile_units": 57,
+      "eligible": null,
+      "expected_targets": 58,
+      "remaining_reasons": [
+        "preparation:prepare_process_timeout"
+      ]
+    },
+    {
+      "identifier": "68c9759bed468699b0cf8dc5",
+      "repository": "selfxyz/self",
+      "entrypoint": "circuits/circuits/tests/utils/ecdsa/test_brainpoolP256r1.circom",
+      "entrypoint_key": "source_main:circuits/circuits/tests/utils/ecdsa/test_brainpoolP256r1.circom",
+      "constraints": 1847135,
+      "e01_status": "partial",
+      "m01_status": "failed",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 53959,
+      "callsites": 12908,
+      "unique_compile_units": 57,
+      "eligible": null,
+      "expected_targets": 58,
+      "remaining_reasons": [
+        "preparation:prepare_process_timeout"
+      ]
+    },
+    {
+      "identifier": "cde0a1f96220c1e21515efd5",
+      "repository": "selfxyz/self",
+      "entrypoint": "circuits/circuits/tests/utils/extractQrData_tester.circom",
+      "entrypoint_key": "source_main:circuits/circuits/tests/utils/extractQrData_tester.circom",
+      "constraints": 205382,
+      "e01_status": "partial",
+      "m01_status": "success",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 23736,
+      "callsites": 7307,
+      "unique_compile_units": 205,
+      "eligible": 206,
+      "expected_targets": 206,
+      "remaining_reasons": []
+    },
+    {
+      "identifier": "a6b41fa424f767094a3cb55d",
+      "repository": "selfxyz/self",
+      "entrypoint": "circuits/circuits/tests/utils/rsa/test_rsa_sha1_64321_4096.circom",
+      "entrypoint_key": "source_main:circuits/circuits/tests/utils/rsa/test_rsa_sha1_64321_4096.circom",
+      "constraints": 429973,
+      "e01_status": "partial",
+      "m01_status": "success",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 4095,
+      "callsites": 968,
+      "unique_compile_units": 15,
+      "eligible": 16,
+      "expected_targets": 16,
+      "remaining_reasons": []
+    },
+    {
+      "identifier": "10e19d43301d326bebadb33c",
+      "repository": "selfxyz/self",
+      "entrypoint": "circuits/circuits/tests/utils/rsa/test_rsa_sha1_65537_2048.circom",
+      "entrypoint_key": "source_main:circuits/circuits/tests/utils/rsa/test_rsa_sha1_65537_2048.circom",
+      "constraints": 322825,
+      "e01_status": "partial",
+      "m01_status": "success",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 3255,
+      "callsites": 962,
+      "unique_compile_units": 15,
+      "eligible": 16,
+      "expected_targets": 16,
+      "remaining_reasons": []
+    },
+    {
+      "identifier": "aa2e1258ad91e8a76557b783",
+      "repository": "selfxyz/self",
+      "entrypoint": "circuits/circuits/tests/utils/rsa/test_rsa_sha224_65537_2048.circom",
+      "entrypoint_key": "source_main:circuits/circuits/tests/utils/rsa/test_rsa_sha224_65537_2048.circom",
+      "constraints": 322777,
+      "e01_status": "partial",
+      "m01_status": "success",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 3243,
+      "callsites": 950,
+      "unique_compile_units": 15,
+      "eligible": 16,
+      "expected_targets": 16,
+      "remaining_reasons": []
+    },
+    {
+      "identifier": "f5160f8314978c9ff4bad97d",
+      "repository": "selfxyz/self",
+      "entrypoint": "circuits/circuits/tests/utils/rsa/test_rsa_sha256_107903_4096.circom",
+      "entrypoint_key": "source_main:circuits/circuits/tests/utils/rsa/test_rsa_sha256_107903_4096.circom",
+      "constraints": 501341,
+      "e01_status": "partial",
+      "m01_status": "success",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 4639,
+      "callsites": 956,
+      "unique_compile_units": 15,
+      "eligible": 16,
+      "expected_targets": 16,
+      "remaining_reasons": []
+    },
+    {
+      "identifier": "b500c90033001ef0814f5580",
+      "repository": "selfxyz/self",
+      "entrypoint": "circuits/circuits/tests/utils/rsa/test_rsa_sha256_122125_4096.circom",
+      "entrypoint_key": "source_main:circuits/circuits/tests/utils/rsa/test_rsa_sha256_122125_4096.circom",
+      "constraints": 465625,
+      "e01_status": "partial",
+      "m01_status": "success",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 4359,
+      "callsites": 954,
+      "unique_compile_units": 15,
+      "eligible": 16,
+      "expected_targets": 16,
+      "remaining_reasons": []
+    },
+    {
+      "identifier": "449f30169c7ae77abfe070eb",
+      "repository": "selfxyz/self",
+      "entrypoint": "circuits/circuits/tests/utils/rsa/test_rsa_sha256_130689_4096.circom",
+      "entrypoint_key": "source_main:circuits/circuits/tests/utils/rsa/test_rsa_sha256_130689_4096.circom",
+      "constraints": 465625,
+      "e01_status": "partial",
+      "m01_status": "success",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 4359,
+      "callsites": 954,
+      "unique_compile_units": 15,
+      "eligible": 16,
+      "expected_targets": 16,
+      "remaining_reasons": []
+    },
+    {
+      "identifier": "f6e5e4dacbd49ba68833cc89",
+      "repository": "selfxyz/self",
+      "entrypoint": "circuits/circuits/tests/utils/rsa/test_rsa_sha256_56611_4096.circom",
+      "entrypoint_key": "source_main:circuits/circuits/tests/utils/rsa/test_rsa_sha256_56611_4096.circom",
+      "constraints": 429909,
+      "e01_status": "partial",
+      "m01_status": "success",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 4079,
+      "callsites": 952,
+      "unique_compile_units": 15,
+      "eligible": 16,
+      "expected_targets": 16,
+      "remaining_reasons": []
+    },
+    {
+      "identifier": "063a983eac2f9b1763584d61",
+      "repository": "selfxyz/self",
+      "entrypoint": "circuits/circuits/tests/utils/rsa/test_rsa_sha256_65537_2048.circom",
+      "entrypoint_key": "source_main:circuits/circuits/tests/utils/rsa/test_rsa_sha256_65537_2048.circom",
+      "constraints": 322761,
+      "e01_status": "partial",
+      "m01_status": "success",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 3239,
+      "callsites": 946,
+      "unique_compile_units": 15,
+      "eligible": 16,
+      "expected_targets": 16,
+      "remaining_reasons": []
+    },
+    {
+      "identifier": "b782883897d1a0010fb9da9d",
+      "repository": "selfxyz/self",
+      "entrypoint": "circuits/circuits/tests/utils/rsa/test_rsa_sha256_65537_3072.circom",
+      "entrypoint_key": "source_main:circuits/circuits/tests/utils/rsa/test_rsa_sha256_65537_3072.circom",
+      "constraints": 322761,
+      "e01_status": "partial",
+      "m01_status": "success",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 3239,
+      "callsites": 946,
+      "unique_compile_units": 15,
+      "eligible": 16,
+      "expected_targets": 16,
+      "remaining_reasons": []
+    },
+    {
+      "identifier": "f530052987b4903fe6884edf",
+      "repository": "selfxyz/self",
+      "entrypoint": "circuits/circuits/tests/utils/rsa/test_rsa_sha256_65537_4096.circom",
+      "entrypoint_key": "source_main:circuits/circuits/tests/utils/rsa/test_rsa_sha256_65537_4096.circom",
+      "constraints": 322761,
+      "e01_status": "partial",
+      "m01_status": "success",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 3239,
+      "callsites": 946,
+      "unique_compile_units": 15,
+      "eligible": 16,
+      "expected_targets": 16,
+      "remaining_reasons": []
+    },
+    {
+      "identifier": "f1da60f904e67ea84d96a272",
+      "repository": "selfxyz/self",
+      "entrypoint": "circuits/circuits/tests/utils/rsa/test_rsa_sha512_65537_4096.circom",
+      "entrypoint_key": "source_main:circuits/circuits/tests/utils/rsa/test_rsa_sha512_65537_4096.circom",
+      "constraints": 322633,
+      "e01_status": "partial",
+      "m01_status": "success",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 3207,
+      "callsites": 914,
+      "unique_compile_units": 15,
+      "eligible": 16,
+      "expected_targets": 16,
+      "remaining_reasons": []
+    },
+    {
+      "identifier": "1f7904aaa43cc45c692d4c12",
+      "repository": "selfxyz/self",
+      "entrypoint": "circuits/circuits/tests/utils/rsapss/test_rsapss_sha256_3_2048_32.circom",
+      "entrypoint_key": "source_main:circuits/circuits/tests/utils/rsapss/test_rsapss_sha256_3_2048_32.circom",
+      "constraints": 666076,
+      "e01_status": "partial",
+      "m01_status": "partial",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 144352,
+      "callsites": 4402,
+      "unique_compile_units": 35,
+      "eligible": 33,
+      "expected_targets": 36,
+      "remaining_reasons": [
+        "preparation:compiled_size_or_compile_unavailable",
+        "preparation:compiled_size_unavailable",
+        "preparation:unit_compile_failed",
+        "preparation:wrapper_compile_failed"
+      ]
+    },
+    {
+      "identifier": "98569786fe8ab3bd98ce44e4",
+      "repository": "selfxyz/self",
+      "entrypoint": "circuits/circuits/tests/utils/rsapss/test_rsapss_sha256_3_2048_64.circom",
+      "entrypoint_key": "source_main:circuits/circuits/tests/utils/rsapss/test_rsapss_sha256_3_2048_64.circom",
+      "constraints": 666076,
+      "e01_status": "partial",
+      "m01_status": "partial",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 144352,
+      "callsites": 4402,
+      "unique_compile_units": 35,
+      "eligible": 33,
+      "expected_targets": 36,
+      "remaining_reasons": [
+        "preparation:compiled_size_or_compile_unavailable",
+        "preparation:compiled_size_unavailable",
+        "preparation:unit_compile_failed",
+        "preparation:wrapper_compile_failed"
+      ]
+    },
+    {
+      "identifier": "293e3d2ad999302a96788ead",
+      "repository": "selfxyz/self",
+      "entrypoint": "circuits/circuits/tests/utils/rsapss/test_rsapss_sha256_3_3072_32.circom",
+      "entrypoint_key": "source_main:circuits/circuits/tests/utils/rsapss/test_rsapss_sha256_3_3072_32.circom",
+      "constraints": 942864,
+      "e01_status": "partial",
+      "m01_status": "partial",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 208304,
+      "callsites": 4682,
+      "unique_compile_units": 35,
+      "eligible": 33,
+      "expected_targets": 36,
+      "remaining_reasons": [
+        "preparation:compiled_size_or_compile_unavailable",
+        "preparation:compiled_size_unavailable",
+        "preparation:unit_compile_failed",
+        "preparation:wrapper_compile_failed"
+      ]
+    },
+    {
+      "identifier": "e1bbdeb4b3f5458c477d58e9",
+      "repository": "selfxyz/self",
+      "entrypoint": "circuits/circuits/tests/utils/rsapss/test_rsapss_sha256_3_3072_64.circom",
+      "entrypoint_key": "source_main:circuits/circuits/tests/utils/rsapss/test_rsapss_sha256_3_3072_64.circom",
+      "constraints": 942864,
+      "e01_status": "partial",
+      "m01_status": "partial",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 208304,
+      "callsites": 4682,
+      "unique_compile_units": 35,
+      "eligible": 33,
+      "expected_targets": 36,
+      "remaining_reasons": [
+        "preparation:compiled_size_or_compile_unavailable",
+        "preparation:compiled_size_unavailable",
+        "preparation:unit_compile_failed",
+        "preparation:wrapper_compile_failed",
+        "preparation:wrapper_compile_timed_out"
+      ]
+    },
+    {
+      "identifier": "2f21be0f7c55b1f57f0717b4",
+      "repository": "selfxyz/self",
+      "entrypoint": "circuits/circuits/tests/utils/rsapss/test_rsapss_sha256_3_4096_32.circom",
+      "entrypoint_key": "source_main:circuits/circuits/tests/utils/rsapss/test_rsapss_sha256_3_4096_32.circom",
+      "constraints": 1219654,
+      "e01_status": "partial",
+      "m01_status": "partial",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 272258,
+      "callsites": 4964,
+      "unique_compile_units": 35,
+      "eligible": 33,
+      "expected_targets": 36,
+      "remaining_reasons": [
+        "preparation:compiled_size_or_compile_unavailable",
+        "preparation:compiled_size_unavailable",
+        "preparation:unit_compile_failed",
+        "preparation:wrapper_compile_failed"
+      ]
+    },
+    {
+      "identifier": "6ad0cb6644218e05ca4be909",
+      "repository": "selfxyz/self",
+      "entrypoint": "circuits/circuits/tests/utils/rsapss/test_rsapss_sha256_3_4096_64.circom",
+      "entrypoint_key": "source_main:circuits/circuits/tests/utils/rsapss/test_rsapss_sha256_3_4096_64.circom",
+      "constraints": 1219654,
+      "e01_status": "partial",
+      "m01_status": "partial",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 272258,
+      "callsites": 4964,
+      "unique_compile_units": 35,
+      "eligible": 32,
+      "expected_targets": 36,
+      "remaining_reasons": [
+        "preparation:compiled_size_or_compile_unavailable",
+        "preparation:compiled_size_unavailable",
+        "preparation:unit_compile_failed",
+        "preparation:unit_compile_timeout",
+        "preparation:wrapper_compile_failed",
+        "preparation:wrapper_compile_timed_out"
+      ]
+    },
+    {
+      "identifier": "1c48d24acfad2a81733c5a9f",
+      "repository": "selfxyz/self",
+      "entrypoint": "circuits/circuits/tests/utils/rsapss/test_rsapss_sha256_65537_2048_32.circom",
+      "entrypoint_key": "source_main:circuits/circuits/tests/utils/rsapss/test_rsapss_sha256_65537_2048_32.circom",
+      "constraints": 933946,
+      "e01_status": "partial",
+      "m01_status": "partial",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 146452,
+      "callsites": 4417,
+      "unique_compile_units": 35,
+      "eligible": 33,
+      "expected_targets": 36,
+      "remaining_reasons": [
+        "preparation:compiled_size_or_compile_unavailable",
+        "preparation:compiled_size_unavailable",
+        "preparation:unit_compile_failed",
+        "preparation:wrapper_compile_failed"
+      ]
+    },
+    {
+      "identifier": "a3c0f78864e31a6ae0f4d76a",
+      "repository": "selfxyz/self",
+      "entrypoint": "circuits/circuits/tests/utils/rsapss/test_rsapss_sha256_65537_2048_64.circom",
+      "entrypoint_key": "source_main:circuits/circuits/tests/utils/rsapss/test_rsapss_sha256_65537_2048_64.circom",
+      "constraints": 933946,
+      "e01_status": "partial",
+      "m01_status": "partial",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 146452,
+      "callsites": 4417,
+      "unique_compile_units": 35,
+      "eligible": 33,
+      "expected_targets": 36,
+      "remaining_reasons": [
+        "preparation:compiled_size_or_compile_unavailable",
+        "preparation:compiled_size_unavailable",
+        "preparation:unit_compile_failed",
+        "preparation:wrapper_compile_failed"
+      ]
+    },
+    {
+      "identifier": "ea39b9d959b5cfb7a279c0d1",
+      "repository": "selfxyz/self",
+      "entrypoint": "circuits/circuits/tests/utils/rsapss/test_rsapss_sha256_65537_3072_32.circom",
+      "entrypoint_key": "source_main:circuits/circuits/tests/utils/rsapss/test_rsapss_sha256_65537_3072_32.circom",
+      "constraints": 1210734,
+      "e01_status": "partial",
+      "m01_status": "partial",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 210404,
+      "callsites": 4697,
+      "unique_compile_units": 35,
+      "eligible": 33,
+      "expected_targets": 36,
+      "remaining_reasons": [
+        "preparation:compiled_size_or_compile_unavailable",
+        "preparation:compiled_size_unavailable",
+        "preparation:unit_compile_failed",
+        "preparation:wrapper_compile_failed",
+        "preparation:wrapper_compile_timed_out"
+      ]
+    },
+    {
+      "identifier": "d831948df5b3fc8e488f5dfb",
+      "repository": "selfxyz/self",
+      "entrypoint": "circuits/circuits/tests/utils/rsapss/test_rsapss_sha256_65537_3072_64.circom",
+      "entrypoint_key": "source_main:circuits/circuits/tests/utils/rsapss/test_rsapss_sha256_65537_3072_64.circom",
+      "constraints": 1210734,
+      "e01_status": "partial",
+      "m01_status": "partial",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 210404,
+      "callsites": 4697,
+      "unique_compile_units": 35,
+      "eligible": 32,
+      "expected_targets": 36,
+      "remaining_reasons": [
+        "preparation:compiled_size_or_compile_unavailable",
+        "preparation:compiled_size_unavailable",
+        "preparation:unit_compile_failed",
+        "preparation:unit_compile_timeout",
+        "preparation:wrapper_compile_failed",
+        "preparation:wrapper_compile_timed_out"
+      ]
+    },
+    {
+      "identifier": "6e46daa4f0baa4ea93b47a44",
+      "repository": "selfxyz/self",
+      "entrypoint": "circuits/circuits/tests/utils/rsapss/test_rsapss_sha256_65537_4096_32.circom",
+      "entrypoint_key": "source_main:circuits/circuits/tests/utils/rsapss/test_rsapss_sha256_65537_4096_32.circom",
+      "constraints": 1487524,
+      "e01_status": "partial",
+      "m01_status": "partial",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 274358,
+      "callsites": 4979,
+      "unique_compile_units": 35,
+      "eligible": 33,
+      "expected_targets": 36,
+      "remaining_reasons": [
+        "preparation:compiled_size_or_compile_unavailable",
+        "preparation:compiled_size_unavailable",
+        "preparation:unit_compile_failed",
+        "preparation:wrapper_compile_failed"
+      ]
+    },
+    {
+      "identifier": "b2f4c35c5c86940c158e2f4b",
+      "repository": "selfxyz/self",
+      "entrypoint": "circuits/circuits/tests/utils/rsapss/test_rsapss_sha256_65537_4096_64.circom",
+      "entrypoint_key": "source_main:circuits/circuits/tests/utils/rsapss/test_rsapss_sha256_65537_4096_64.circom",
+      "constraints": 1487524,
+      "e01_status": "partial",
+      "m01_status": "partial",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 274358,
+      "callsites": 4979,
+      "unique_compile_units": 35,
+      "eligible": 31,
+      "expected_targets": 36,
+      "remaining_reasons": [
+        "preparation:compiled_size_or_compile_unavailable",
+        "preparation:compiled_size_unavailable",
+        "preparation:unit_compile_failed",
+        "preparation:unit_compile_timeout",
+        "preparation:wrapper_compile_failed"
+      ]
+    },
+    {
+      "identifier": "b0f56abe3343e96e25261f73",
+      "repository": "selfxyz/self",
+      "entrypoint": "circuits/circuits/tests/utils/rsapss/test_rsapss_sha384_3_3072_48.circom",
+      "entrypoint_key": "source_main:circuits/circuits/tests/utils/rsapss/test_rsapss_sha384_3_3072_48.circom",
+      "constraints": 1439092,
+      "e01_status": "partial",
+      "m01_status": "partial",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 316726,
+      "callsites": 9985,
+      "unique_compile_units": 36,
+      "eligible": 31,
+      "expected_targets": 37,
+      "remaining_reasons": [
+        "preparation:compiled_size_or_compile_unavailable",
+        "preparation:compiled_size_unavailable",
+        "preparation:unit_compile_failed",
+        "preparation:wrapper_compile_failed"
+      ]
+    },
+    {
+      "identifier": "88a6f06f49e12f118d267a9d",
+      "repository": "selfxyz/self",
+      "entrypoint": "circuits/circuits/tests/utils/rsapss/test_rsapss_sha384_3_4096_48.circom",
+      "entrypoint_key": "source_main:circuits/circuits/tests/utils/rsapss/test_rsapss_sha384_3_4096_48.circom",
+      "constraints": 1961825,
+      "e01_status": "partial",
+      "m01_status": "partial",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 435272,
+      "callsites": 10265,
+      "unique_compile_units": 36,
+      "eligible": 30,
+      "expected_targets": 37,
+      "remaining_reasons": [
+        "preparation:compiled_size_or_compile_unavailable",
+        "preparation:compiled_size_unavailable",
+        "preparation:unit_compile_failed",
+        "preparation:unit_compile_timeout",
+        "preparation:wrapper_compile_failed"
+      ]
+    },
+    {
+      "identifier": "030f55db2478198e4813697c",
+      "repository": "selfxyz/self",
+      "entrypoint": "circuits/circuits/tests/utils/rsapss/test_rsapss_sha384_65537_3072_48.circom",
+      "entrypoint_key": "source_main:circuits/circuits/tests/utils/rsapss/test_rsapss_sha384_65537_3072_48.circom",
+      "constraints": 1706962,
+      "e01_status": "partial",
+      "m01_status": "partial",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 318826,
+      "callsites": 10000,
+      "unique_compile_units": 36,
+      "eligible": 30,
+      "expected_targets": 37,
+      "remaining_reasons": [
+        "preparation:compiled_size_or_compile_unavailable",
+        "preparation:compiled_size_unavailable",
+        "preparation:unit_compile_failed",
+        "preparation:unit_compile_timeout",
+        "preparation:wrapper_compile_failed"
+      ]
+    },
+    {
+      "identifier": "71cc8ed29e33c1a195029adc",
+      "repository": "selfxyz/self",
+      "entrypoint": "circuits/circuits/tests/utils/rsapss/test_rsapss_sha384_65537_4096_48.circom",
+      "entrypoint_key": "source_main:circuits/circuits/tests/utils/rsapss/test_rsapss_sha384_65537_4096_48.circom",
+      "constraints": 2229695,
+      "e01_status": "partial",
+      "m01_status": "partial",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 437372,
+      "callsites": 10280,
+      "unique_compile_units": 36,
+      "eligible": 29,
+      "expected_targets": 37,
+      "remaining_reasons": [
+        "preparation:compiled_size_or_compile_unavailable",
+        "preparation:compiled_size_unavailable",
+        "preparation:unit_compile_failed",
+        "preparation:unit_compile_timeout",
+        "preparation:wrapper_compile_failed",
+        "preparation:wrapper_compile_timed_out"
+      ]
+    },
+    {
+      "identifier": "4a27f23974fd9a5598fe5b23",
+      "repository": "selfxyz/self",
+      "entrypoint": "circuits/circuits/tests/utils/rsapss/test_rsapss_sha512_3_2048_64.circom",
+      "entrypoint_key": "source_main:circuits/circuits/tests/utils/rsapss/test_rsapss_sha512_3_2048_64.circom",
+      "constraints": 916184,
+      "e01_status": "partial",
+      "m01_status": "partial",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 198161,
+      "callsites": 9691,
+      "unique_compile_units": 36,
+      "eligible": 31,
+      "expected_targets": 37,
+      "remaining_reasons": [
+        "preparation:compiled_size_or_compile_unavailable",
+        "preparation:compiled_size_unavailable",
+        "preparation:unit_compile_failed",
+        "preparation:wrapper_compile_failed"
+      ]
+    },
+    {
+      "identifier": "32f9d240ba542e69a9131476",
+      "repository": "selfxyz/self",
+      "entrypoint": "circuits/circuits/tests/utils/rsapss/test_rsapss_sha512_3_4096_64.circom",
+      "entrypoint_key": "source_main:circuits/circuits/tests/utils/rsapss/test_rsapss_sha512_3_4096_64.circom",
+      "constraints": 1615390,
+      "e01_status": "partial",
+      "m01_status": "partial",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 356403,
+      "callsites": 10245,
+      "unique_compile_units": 36,
+      "eligible": 31,
+      "expected_targets": 37,
+      "remaining_reasons": [
+        "preparation:compiled_size_or_compile_unavailable",
+        "preparation:compiled_size_unavailable",
+        "preparation:unit_compile_failed",
+        "preparation:wrapper_compile_failed"
+      ]
+    },
+    {
+      "identifier": "5b85f802b85bdd6cd71a18eb",
+      "repository": "zkemail/zk-email-verify",
+      "entrypoint": "packages/circuits/tests/test-circuits/count-substring-occurrences-test.circom",
+      "entrypoint_key": "source_main:packages/circuits/tests/test-circuits/count-substring-occurrences-test.circom",
+      "constraints": 526335,
+      "e01_status": "unsupported",
+      "m01_status": "success",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 133122,
+      "callsites": 1027,
+      "unique_compile_units": 3,
+      "eligible": 4,
+      "expected_targets": 4,
+      "remaining_reasons": []
+    },
+    {
+      "identifier": "af51679fa278167cc9e36480",
+      "repository": "zkemail/zk-email-verify",
+      "entrypoint": "packages/circuits/tests/test-circuits/email-verifier-no-body-test.circom",
+      "entrypoint_key": "source_main:packages/circuits/tests/test-circuits/email-verifier-no-body-test.circom",
+      "constraints": 535950,
+      "e01_status": "unsupported",
+      "m01_status": "success",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 29595,
+      "callsites": 2644,
+      "unique_compile_units": 201,
+      "eligible": 202,
+      "expected_targets": 202,
+      "remaining_reasons": []
+    },
+    {
+      "identifier": "778927ccacd3550fe6ad47b6",
+      "repository": "zkemail/zk-email-verify",
+      "entrypoint": "packages/circuits/tests/test-circuits/email-verifier-test.circom",
+      "entrypoint_key": "source_main:packages/circuits/tests/test-circuits/email-verifier-test.circom",
+      "constraints": 1570377,
+      "e01_status": "failed",
+      "m01_status": "partial",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 313948,
+      "callsites": 139311,
+      "unique_compile_units": 235,
+      "eligible": 235,
+      "expected_targets": 236,
+      "remaining_reasons": [
+        "preparation:compiled_size_or_compile_unavailable",
+        "preparation:compiled_size_unavailable",
+        "preparation:unit_compile_failed",
+        "preparation:unit_compile_timeout"
+      ]
+    },
+    {
+      "identifier": "7c31571332321f7f5b944303",
+      "repository": "zkemail/zk-email-verify",
+      "entrypoint": "packages/circuits/tests/test-circuits/email-verifier-with-body-mask-test.circom",
+      "entrypoint_key": "source_main:packages/circuits/tests/test-circuits/email-verifier-with-body-mask-test.circom",
+      "constraints": 1571913,
+      "e01_status": "failed",
+      "m01_status": "partial",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 314717,
+      "callsites": 140080,
+      "unique_compile_units": 237,
+      "eligible": 237,
+      "expected_targets": 238,
+      "remaining_reasons": [
+        "preparation:compiled_size_or_compile_unavailable",
+        "preparation:compiled_size_unavailable",
+        "preparation:unit_compile_failed",
+        "preparation:unit_compile_timeout"
+      ]
+    },
+    {
+      "identifier": "93c7e6678e12425ad483677c",
+      "repository": "zkemail/zk-email-verify",
+      "entrypoint": "packages/circuits/tests/test-circuits/email-verifier-with-header-mask-test.circom",
+      "entrypoint_key": "source_main:packages/circuits/tests/test-circuits/email-verifier-with-header-mask-test.circom",
+      "constraints": 1571657,
+      "e01_status": "unsupported",
+      "m01_status": "failed",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 314589,
+      "callsites": 139952,
+      "unique_compile_units": 237,
+      "eligible": null,
+      "expected_targets": 238,
+      "remaining_reasons": [
+        "preparation:prepare_process_timeout"
+      ]
+    },
+    {
+      "identifier": "2d1370ba5a0bd8856148920b",
+      "repository": "zkemail/zk-email-verify",
+      "entrypoint": "packages/circuits/tests/test-circuits/email-verifier-with-soft-line-breaks-test.circom",
+      "entrypoint_key": "source_main:packages/circuits/tests/test-circuits/email-verifier-with-soft-line-breaks-test.circom",
+      "constraints": 2399785,
+      "e01_status": "failed",
+      "m01_status": "failed",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 428776,
+      "callsites": 142651,
+      "unique_compile_units": 571,
+      "eligible": null,
+      "expected_targets": 572,
+      "remaining_reasons": [
+        "preparation:prepare_process_timeout"
+      ]
+    },
+    {
+      "identifier": "0f8289bc27ea28fbb3b3a9a9",
+      "repository": "zkemail/zk-email-verify",
+      "entrypoint": "packages/circuits/tests/test-circuits/rsa-test.circom",
+      "entrypoint_key": "source_main:packages/circuits/tests/test-circuits/rsa-test.circom",
+      "constraints": 190945,
+      "e01_status": "partial",
+      "m01_status": "success",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 3538,
+      "callsites": 445,
+      "unique_compile_units": 14,
+      "eligible": 15,
+      "expected_targets": 15,
+      "remaining_reasons": []
+    },
+    {
+      "identifier": "bf81b5cdec9fe2199596c4a4",
+      "repository": "zkemail/zk-email-verify",
+      "entrypoint": "packages/circuits/tests/test-circuits/sha-test.circom",
+      "entrypoint_key": "source_main:packages/circuits/tests/test-circuits/sha-test.circom",
+      "constraints": 333524,
+      "e01_status": "unsupported",
+      "m01_status": "success",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 24551,
+      "callsites": 1332,
+      "unique_compile_units": 107,
+      "eligible": 108,
+      "expected_targets": 108,
+      "remaining_reasons": []
+    },
+    {
+      "identifier": "ca0a126fa33189fbd2eadd93",
+      "repository": "zkp2p/zkp2p-v1-monorepo",
+      "entrypoint": "circuits-circom/circuits/common-v2/test/mocks/test_body_hash_regex_v2.circom",
+      "entrypoint_key": "source_main:circuits-circom/circuits/common-v2/test/mocks/test_body_hash_regex_v2.circom",
+      "constraints": 145247,
+      "e01_status": "partial",
+      "m01_status": "success",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 62503,
+      "callsites": 36012,
+      "unique_compile_units": 14,
+      "eligible": 15,
+      "expected_targets": 15,
+      "remaining_reasons": []
+    },
+    {
+      "identifier": "faf3a4f002f5a8da154f6d03",
+      "repository": "zkp2p/zkp2p-v1-monorepo",
+      "entrypoint": "circuits-circom/circuits/common-v2/test/mocks/test_body_suffix_hasher.circom",
+      "entrypoint_key": "source_main:circuits-circom/circuits/common-v2/test/mocks/test_body_suffix_hasher.circom",
+      "constraints": 168823,
+      "e01_status": "unsupported",
+      "m01_status": "success",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 13061,
+      "callsites": 1089,
+      "unique_compile_units": 114,
+      "eligible": 115,
+      "expected_targets": 115,
+      "remaining_reasons": []
+    },
+    {
+      "identifier": "b4b0234768639bedab260de0",
+      "repository": "zkp2p/zkp2p-v1-monorepo",
+      "entrypoint": "circuits-circom/circuits/garanti/test/mocks/test_garanti_payer_details.circom",
+      "entrypoint_key": "source_main:circuits-circom/circuits/garanti/test/mocks/test_garanti_payer_details.circom",
+      "constraints": 204950,
+      "e01_status": "partial",
+      "m01_status": "success",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 68267,
+      "callsites": 43005,
+      "unique_compile_units": 20,
+      "eligible": 21,
+      "expected_targets": 21,
+      "remaining_reasons": []
+    },
+    {
+      "identifier": "09b67d7217f9af757d60e9d4",
+      "repository": "zkp2p/zkp2p-v1-monorepo",
+      "entrypoint": "circuits-circom/circuits/namecheap/test/mocks/test_namecheap_transfer_details.circom",
+      "entrypoint_key": "source_main:circuits-circom/circuits/namecheap/test/mocks/test_namecheap_transfer_details.circom",
+      "constraints": 302282,
+      "e01_status": "partial",
+      "m01_status": "success",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 113554,
+      "callsites": 80525,
+      "unique_compile_units": 23,
+      "eligible": 24,
+      "expected_targets": 24,
+      "remaining_reasons": []
+    },
+    {
+      "identifier": "965415704fe6aab363327283",
+      "repository": "zkp2p/zkp2p-v1-monorepo",
+      "entrypoint": "circuits-circom/circuits/paylah/test/mocks/test_paylah_payment_details.circom",
+      "entrypoint_key": "source_main:circuits-circom/circuits/paylah/test/mocks/test_paylah_payment_details.circom",
+      "constraints": 122342,
+      "e01_status": "partial",
+      "m01_status": "success",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 57383,
+      "callsites": 44472,
+      "unique_compile_units": 14,
+      "eligible": 15,
+      "expected_targets": 15,
+      "remaining_reasons": []
+    },
+    {
+      "identifier": "32261a17b5485a4d8113a1fc",
+      "repository": "zkp2p/zkp2p-v1-monorepo",
+      "entrypoint": "circuits-circom/circuits/venmo/test/mocks/test_venmo_actor_id.circom",
+      "entrypoint_key": "source_main:circuits-circom/circuits/venmo/test/mocks/test_venmo_actor_id.circom",
+      "constraints": 402551,
+      "e01_status": "partial",
+      "m01_status": "success",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 204297,
+      "callsites": 173702,
+      "unique_compile_units": 11,
+      "eligible": 12,
+      "expected_targets": 12,
+      "remaining_reasons": []
+    },
+    {
+      "identifier": "585289d039e745460709bf22",
+      "repository": "zkp2p/zkp2p-v1-monorepo",
+      "entrypoint": "circuits-circom/circuits/venmo/test/mocks/test_venmo_send_id.circom",
+      "entrypoint_key": "source_main:circuits-circom/circuits/venmo/test/mocks/test_venmo_send_id.circom",
+      "constraints": 404271,
+      "e01_status": "partial",
+      "m01_status": "success",
+      "capture": "compiler_complete",
+      "capture_status": "captured",
+      "compiler_complete": true,
+      "captured_instances": 204297,
+      "callsites": 173702,
+      "unique_compile_units": 11,
+      "eligible": 12,
+      "expected_targets": 12,
+      "remaining_reasons": []
+    }
+  ],
+  "instance_capture_completeness": {
+    "population": 125,
+    "compiler_complete": 125,
+    "capture_reports_recorded": 125,
+    "captured_values_preserved_in_json": true
+  },
+  "remaining_limitations": {
+    "preparation:compiled_size_or_compile_unavailable": 20,
+    "preparation:compiled_size_unavailable": 20,
+    "preparation:unit_compile_failed": 20,
+    "preparation:wrapper_compile_failed": 18,
+    "preparation:unit_compile_timeout": 8,
+    "preparation:prepare_process_timeout": 6,
+    "preparation:wrapper_compile_timed_out": 5,
+    "preparation:wrapper_unsupported": 1,
+    "preparation:plan_timeout": 1
+  },
+  "cost": {
+    "discovery_seconds": {
+      "n": 125,
+      "total": 9535.845,
+      "median": 32.981,
+      "max": 857.461
+    },
+    "capture_compile_seconds": {
+      "n": 125,
+      "total": 1993.91,
+      "median": 5.017,
+      "max": 206.988
+    },
+    "preparation_seconds": {
+      "n": 125,
+      "total": 8328.42,
+      "median": 25.752,
+      "max": 301.017
+    },
+    "plan_seconds": {
+      "n": 119,
+      "total": 314.2,
+      "median": 0.183,
+      "max": 31.145
+    }
+  },
+  "cleanup": {
+    "schema_version": 1,
+    "task": "M-01",
+    "created_at": "2026-10-05T13:10:03.739379+00:00",
+    "manifest": {
+      "path": "runs/m01-2026-10-03/deleted-artifacts.json",
+      "sha256": "c078814dfdf791ca9aa5bf0fd6edc5fc21bc9025b5df98db473b55b64cfc2c93"
+    },
+    "deleted_count": 25033,
+    "deleted_bytes": 32673355992,
+    "deleted_by_kind": {
+      "compiled_artifact": 9954,
+      "diagnostic_circom_copy": 15079
+    },
+    "skipped_count": 0,
+    "skipped": [],
+    "preserved": [
+      "clone",
+      "node_modules",
+      ".json",
+      ".log",
+      ".sym",
+      "tools/zkfDO"
+    ]
+  },
+  "post_cleanup_audit": {
+    "schema_version": 1,
+    "task": "M-01",
+    "created_at": "2026-10-05T13:19:48.753854+00:00",
+    "cleanup_manifest": {
+      "path": "runs/m01-2026-10-03/deleted-artifacts.json",
+      "sha256": "c078814dfdf791ca9aa5bf0fd6edc5fc21bc9025b5df98db473b55b64cfc2c93"
+    },
+    "counts": {
+      "compiled_artifacts": 0,
+      "diagnostic_circom_deletable": 0,
+      "diagnostic_circom_protected_node_modules": 66481,
+      "json": 19983,
+      "log": 61238,
+      "sym": 125,
+      "broken_symlinks": 55455
+    },
+    "preserved_bytes_lstat": {
+      "json": 13501795814,
+      "log": 8248982444,
+      "sym": 10451442377
+    },
+    "capture_json_records": 125,
+    "raw_results": 125,
+    "binary": {
+      "path": "runs/m01-2026-10-03/tools/zkfDO",
+      "sha256": "f8c9f64defd3993ebd845279bc0a245857e23a1ae759ce175e94f369cdd9f4c1"
+    },
+    "interpretation": "diagnostic .circom below node_modules is protected and intentionally retained; no deletable diagnostic .circom or compiled artifact remains"
+  },
+  "checks": {
+    "schema_version": 1,
+    "task": "M-01",
+    "created_at": "2026-10-05T13:21:09.954022+00:00",
+    "python_m01_unittest": {
+      "status": "pass",
+      "passed": 5,
+      "log": {
+        "path": "runs/m01-2026-10-03/checks/python-m01.log",
+        "sha256": "02d7617346e9f87c612f55601950949c0ec7e0d104526080a7bc5831b1c51497"
+      }
+    },
+    "result_validation": {
+      "status": "pass",
+      "records": 125,
+      "large": 49,
+      "capture_complete": 125,
+      "zkfuzz": 0,
+      "log": {
+        "path": "runs/m01-2026-10-03/checks/result-validation.log",
+        "sha256": "32a1ae29a05d67284c5e81d8a308d791072a873e3e850f3731cf5bc30376114b"
+      }
+    },
+    "cargo_fmt": {
+      "status": "pass",
+      "src_files_changed": 0
+    },
+    "cargo_clippy_all_targets_all_features_D_warnings": {
+      "status": "pass",
+      "log": {
+        "path": "runs/m01-2026-10-03/checks/cargo-clippy.log",
+        "sha256": "45f75b19e5718ce74d75d27dc949e2b0cc21908a1e53dca4d31c24e03ebe8e09"
+      }
+    },
+    "cargo_test": {
+      "status": "pass",
+      "passed": 344,
+      "ignored": 22,
+      "failed": 0,
+      "log": {
+        "path": "runs/m01-2026-10-03/checks/cargo-test.log",
+        "sha256": "87d3ef27ddf5d632688b62c8ccc3cf250e15cc5186c57c7f000202d983987d51"
+      }
+    },
+    "cleanup_audit": {
+      "status": "pass",
+      "record": {
+        "path": "runs/m01-2026-10-03/post-cleanup-audit.json",
+        "sha256": "372ca69f9c102e2ea4e65d342d6c2f41a42e410f75171bc2b4f8574cddb7b7f1"
+      },
+      "compiled_remaining": 0,
+      "diagnostic_circom_deletable_remaining": 0,
+      "protected_node_modules_circom": 66481
+    }
+  },
+  "limitations": [
+    "The preparation statuses are structural discovery/compile/plan outcomes, not semantic correctness or fuzzing evidence.",
+    "Original compile outcomes and constraint counts are reused from E-01; M-01 did not rerun the original compile stage.",
+    "The corpus contains E-01 compile successes only and does not estimate setup or original-compile success."
+  ]
+}
