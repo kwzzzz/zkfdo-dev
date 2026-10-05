@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "entrypoint_inputs": {
+    "preimage": [
+      "1",
+      "2"
+    ]
+  },
+  "selected_call_path": "main.child"
+}

@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "entrypoint_inputs": {
+    "x": "1",
+    "y": "2"
+  },
+  "selected_call_path": "main.child"
+}

@@ -54,6 +54,7 @@ fn fixture() -> Fixture {
                 local_reproduction: "synthetic-test-only".to_owned(), tcct_status: "not-evaluated".to_owned(),
                 reachability: "synthetic-test-only".to_owned(), evidence: vec![],
             }],
+            instance_capture: None,
         }
     }).collect();
     let manifest_path = directory.path().join("manifest.json");

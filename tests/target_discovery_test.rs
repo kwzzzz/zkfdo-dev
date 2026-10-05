@@ -618,6 +618,7 @@ fn wrapper_compilation_passes_project_and_library_paths_and_records_the_command(
         library_paths: vec![library.path().to_path_buf()],
         circom_bin: Some(compiler),
         compile_timeout_seconds: 30,
+        ..DiscoveryOptions::default()
     };
     let report =
         discover_project_targets_with(project.path(), output.path(), &options).expect("discovery");
@@ -664,6 +665,7 @@ fn wrapper_compilation_timeout_kills_the_compiler_process_group() {
         library_paths: vec![library.path().to_path_buf()],
         circom_bin: Some(compiler),
         compile_timeout_seconds: 1,
+        ..DiscoveryOptions::default()
     };
     let started = Instant::now();
     let report =

@@ -26,6 +26,9 @@ pub enum Commands {
     /// Discover concrete, reachable template instantiations and generate wrappers.
     Targets(TargetDiscoveryArgs),
 
+    /// Capture every template instance and its arguments from an instrumented O0 compile (F-01).
+    Capture(CaptureArgs),
+
     /// Extract static features from Circom targets.
     Features(ProjectPathArgs),
 
@@ -100,6 +103,45 @@ pub struct TargetDiscoveryArgs {
     /// Per-wrapper compile limit; the compiler process group is killed when it expires.
     #[arg(long, default_value_t = targets::DEFAULT_WRAPPER_COMPILE_TIMEOUT_SECONDS)]
     pub compile_timeout_seconds: u64,
+
+    /// Also discover instances from an instrumented O0 compile of the entrypoint (F-01). The
+    /// interpreter still runs; the report says which result each target came from.
+    #[arg(long, requires = "entrypoint")]
+    pub instance_capture: bool,
+
+    /// Compile limit for the instrumented copy.
+    #[arg(long, default_value_t = targets::DEFAULT_CAPTURE_TIMEOUT_SECONDS)]
+    pub capture_timeout_seconds: u64,
+}
+
+#[derive(Debug, Args)]
+pub struct CaptureArgs {
+    /// Circom project root.
+    #[arg(short, long)]
+    pub project: PathBuf,
+
+    /// Entrypoint with `component main`.
+    #[arg(long)]
+    pub entrypoint: PathBuf,
+
+    /// Circom library directory (-l); repeatable.
+    #[arg(long = "library-path")]
+    pub library_paths: Vec<PathBuf>,
+
+    /// New directory for instance-capture.json and the diagnostic build.
+    #[arg(short, long)]
+    pub output: PathBuf,
+
+    #[arg(long, default_value = "circom")]
+    pub circom_bin: PathBuf,
+
+    #[arg(long, default_value_t = targets::DEFAULT_CAPTURE_TIMEOUT_SECONDS)]
+    pub timeout_seconds: u64,
+
+    /// Also compile the original at O0 and check that removing the capture signals and their
+    /// constraints gives back the original O0 R1CS.
+    #[arg(long)]
+    pub verify_neutrality: bool,
 }
 
 #[derive(Debug, Args)]
@@ -154,8 +196,16 @@ pub enum ExperimentCommands {
     Evaluate(ExperimentEvaluateArgs),
     /// Review preserved backend candidates or qualify injected ground truth.
     Review(ExperimentReviewArgs),
+    /// Import value-free whole/split metadata and existing review claims; no execution.
+    Record(ExperimentRecordArgs),
+    /// Aggregate hash-pinned evidence metadata offline; no candidate or evidence execution.
+    Aggregate(ExperimentAggregateArgs),
     /// Build the review inputs that qualify one planned development injection.
     Inject(ExperimentInjectArgs),
+    /// Lift one component candidate to the entrypoint's call sites (L-01 feasibility).
+    Lift(ExperimentLiftArgs),
+    /// Join assumption-predicate verdicts per (entrypoint, instance) over lift results.
+    LiftInstances(ExperimentLiftInstancesArgs),
 }
 
 #[derive(Debug, Args)]
@@ -271,6 +321,28 @@ pub struct ExperimentEvaluateArgs {
 }
 
 #[derive(Debug, Args)]
+pub struct ExperimentRecordArgs {
+    /// Schema-1 or schema-2 offline evidence import request with hash-pinned metadata.
+    #[arg(long)]
+    pub request: PathBuf,
+
+    /// New JSON file; existing files are never overwritten.
+    #[arg(short, long)]
+    pub output: PathBuf,
+}
+
+#[derive(Debug, Args)]
+pub struct ExperimentAggregateArgs {
+    /// Schema-1 aggregate request listing hash-pinned v1/v2 evidence records.
+    #[arg(long)]
+    pub request: PathBuf,
+
+    /// New JSON file; existing files are never overwritten.
+    #[arg(short, long)]
+    pub output: PathBuf,
+}
+
+#[derive(Debug, Args)]
 pub struct ExperimentReviewArgs {
     /// Strict schema-1 backend or injection review request.
     #[arg(long)]
@@ -312,6 +384,49 @@ pub struct ExperimentInjectArgs {
     pub relation_verifier_bin: Option<PathBuf>,
 }
 
+#[derive(Debug, Args)]
+pub struct ExperimentLiftArgs {
+    /// Lifting request (zkfdo-lifting-request-v1).
+    #[arg(long)]
+    pub request: PathBuf,
+
+    /// New directory for result.json and the raw (value-bearing) artifacts.
+    #[arg(short, long)]
+    pub output: PathBuf,
+
+    /// Optional directory that reuses entrypoint compilations across requests.
+    #[arg(long)]
+    pub cache: Option<PathBuf>,
+
+    #[arg(long, default_value = "circom")]
+    pub circom_bin: PathBuf,
+
+    #[arg(long, default_value = "node")]
+    pub node_bin: PathBuf,
+
+    #[arg(long, default_value = "snarkjs")]
+    pub snarkjs_bin: PathBuf,
+
+    /// z3 for bounded local input synthesis (optional; stage b is skipped if absent).
+    #[arg(long, default_value = "z3")]
+    pub z3_bin: PathBuf,
+
+    /// Directory of proved assumption-predicate verdicts shared by (entrypoint, instance).
+    #[arg(long)]
+    pub instance_store: Option<PathBuf>,
+}
+
+#[derive(Debug, Args)]
+pub struct ExperimentLiftInstancesArgs {
+    /// Lift result.json files to join.
+    #[arg(long, required = true, num_args = 1..)]
+    pub result: Vec<PathBuf>,
+
+    /// Output JSON (zkfdo-instance-verdicts-v1).
+    #[arg(short, long)]
+    pub output: PathBuf,
+}
+
 pub fn run() -> Result<()> {
     tracing_subscriber::fmt()
         .with_env_filter(tracing_subscriber::EnvFilter::from_default_env())
@@ -330,12 +445,26 @@ pub fn handle(cli: Cli) -> Result<()> {
             let targets = scanner::scan_project(&args.project)?;
             println!("{}", serde_json::to_string_pretty(&targets)?);
         }
+        Commands::Capture(args) => {
+            let report = crate::instance_capture::capture_command(
+                &args.project,
+                &args.entrypoint,
+                &args.library_paths,
+                &args.output,
+                &args.circom_bin,
+                args.timeout_seconds,
+                args.verify_neutrality,
+            )?;
+            println!("{}", serde_json::to_string_pretty(&report)?);
+        }
         Commands::Targets(args) => {
             let options = targets::DiscoveryOptions {
                 entrypoint: args.entrypoint,
                 library_paths: args.library_paths,
-                circom_bin: (!args.no_validate).then_some(args.circom_bin),
+                circom_bin: (!args.no_validate).then_some(args.circom_bin.clone()),
                 compile_timeout_seconds: args.compile_timeout_seconds,
+                instance_capture: args.instance_capture.then_some(args.circom_bin),
+                capture_timeout_seconds: args.capture_timeout_seconds,
             };
             let report =
                 targets::discover_project_targets_with(&args.project, &args.output, &options)?;
@@ -445,6 +574,15 @@ fn handle_experiment(args: ExperimentArgs) -> Result<()> {
             )?;
             println!("{}", serde_json::to_string_pretty(&evaluation)?);
         }
+        ExperimentCommands::Record(args) => {
+            let record = crate::evidence_record::import_record(&args.request, &args.output)?;
+            println!("{}", serde_json::to_string_pretty(&record)?);
+        }
+        ExperimentCommands::Aggregate(args) => {
+            let report =
+                crate::evidence_record::aggregate::aggregate_records(&args.request, &args.output)?;
+            println!("{}", serde_json::to_string_pretty(&report)?);
+        }
         ExperimentCommands::Review(args) => {
             let output =
                 crate::candidate_review::review(&crate::candidate_review::ReviewOptions {
@@ -456,6 +594,44 @@ fn handle_experiment(args: ExperimentArgs) -> Result<()> {
                     executable: std::env::current_exe()?,
                 })?;
             println!("{}", serde_json::to_string_pretty(&output)?);
+        }
+        ExperimentCommands::Lift(args) => {
+            let result = crate::candidate_review::lifting::lift(
+                &crate::candidate_review::lifting::LiftOptions {
+                    request: args.request,
+                    output: args.output,
+                    cache: args.cache,
+                    circom_bin: args.circom_bin,
+                    node_bin: args.node_bin,
+                    snarkjs_bin: args.snarkjs_bin,
+                    z3_bin: args.z3_bin,
+                    instance_store: args.instance_store,
+                },
+            )?;
+            println!(
+                "{}",
+                serde_json::to_string_pretty(&serde_json::json!({
+                    "request_id": result.request_id,
+                    "preparation": result.preparation,
+                    "sites_found": result.sites_found,
+                    "verdict_counts": result.verdict_counts,
+                    "total_seconds": result.costs.total_seconds,
+                }))?
+            );
+        }
+        ExperimentCommands::LiftInstances(args) => {
+            let verdicts =
+                crate::candidate_review::lifting::instances::write(&args.result, &args.output)?;
+            println!(
+                "{}",
+                serde_json::to_string_pretty(&serde_json::json!({
+                    "results": verdicts.results.len(),
+                    "instances": verdicts.instances.len(),
+                    "counts": verdicts.counts,
+                    "conflicts": verdicts.conflicts,
+                    "changed_by_sharing": verdicts.changed_by_sharing,
+                }))?
+            );
         }
         ExperimentCommands::Inject(args) => {
             let relation_verifier_bin = match args.relation_verifier_bin {

@@ -1,0 +1,13 @@
+{
+  "schema": "zkfdo-lifting-request-v1",
+  "id": "lessthan_excluded",
+  "source_root": "src",
+  "library_paths": [],
+  "component_wrapper": "src/standalone.circom",
+  "entrypoint": "src/entrypoint.circom",
+  "base_input": "base_input.json",
+  "candidate": {
+    "format": "named",
+    "path": "candidate.json"
+  }
+}

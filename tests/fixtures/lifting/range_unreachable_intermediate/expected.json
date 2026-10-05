@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "case_id": "range_unreachable_intermediate",
+  "compiler": {
+    "version": "2.2.3",
+    "field": "bn128",
+    "component_optimization": "O0",
+    "entrypoint_optimization": "O0"
+  },
+  "candidate": {
+    "verdict": "excluded_in_context",
+    "reason": "후보 입력 300은 모든 공개 입력에서 8개 boolean bit의 합 0..255와 양립할 수 없어 해당 호출 맥락에서 배제된다.",
+    "component_r1cs_satisfied": true,
+    "component_differs_from_honest": true,
+    "entrypoint_r1cs_satisfied": false,
+    "top_output_differs": null
+  },
+  "control": {
+    "schema_version": 2,
+    "semantic_verdict": "no_violation",
+    "lifting_verdict": null,
+    "sites": {},
+    "sites_found": 0,
+    "preparation": {
+      "status": "not_tcct_deviation",
+      "reason": "component_equals_honest"
+    },
+    "reason": "정직한 컴포넌트와 같은 할당은 TCCT 후보가 아니므로 호출 맥락 판정 전에 비이탈 자료로 분리한다."
+  },
+  "mapping": {
+    "component_prefix": "main",
+    "entrypoint_prefix": "main.child",
+    "required_boundary_signals": [
+      "x",
+      "out"
+    ]
+  },
+  "sites": {
+    "main.child": "excluded_in_context"
+  },
+  "sites_found": 1,
+  "preparation": {
+    "status": "ok",
+    "reason": null
+  },
+  "notes": [
+    "request의 base_input은 후보 중간값에 도달하지 않는다. 별도 구체 입력 oracle을 엔진에 공급해 역산 성공으로 처리하지 않는다.",
+    "실제 O0 R1CS의 8개 boolean 제약·합식·child 입력 연결을 검사하고 256개 bit 조합을 전수 확인하는 별도 fixture 증명이 있다.",
+    "이 증명은 특정 public 입력에만 한정되지 않는다. 엔진이 이 증거를 얻지 못하면 unknown이 정당하며, 단순 정상 계산 실패만으로 excluded를 요구하지 않는다.",
+    "L-03: the closed-cone z3 unsat proof is promoted to excluded_in_context (owner decision 2026-10-02); the pending_engine snapshot was removed."
+  ]
+}

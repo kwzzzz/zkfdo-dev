@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "case_id": "linear_inversion",
+  "compiler": {
+    "version": "2.2.3",
+    "field": "bn128",
+    "component_optimization": "O0",
+    "entrypoint_optimization": "O0"
+  },
+  "candidate": {
+    "verdict": "entrypoint_violation",
+    "reason": "공개 입력의 선형식에 대한 구체 해가 존재하며 그 입력에서 후보를 담는 전체 할당이 제약을 만족하고 출력이 다르다.",
+    "component_r1cs_satisfied": true,
+    "component_differs_from_honest": true,
+    "entrypoint_r1cs_satisfied": true,
+    "top_output_differs": true
+  },
+  "control": {
+    "schema_version": 2,
+    "semantic_verdict": "no_violation",
+    "lifting_verdict": null,
+    "sites": {},
+    "sites_found": 0,
+    "preparation": {
+      "status": "not_tcct_deviation",
+      "reason": "component_equals_honest"
+    },
+    "reason": "정직한 컴포넌트와 같은 할당은 TCCT 후보가 아니므로 호출 맥락 판정 전에 비이탈 자료로 분리한다."
+  },
+  "mapping": {
+    "component_prefix": "main",
+    "entrypoint_prefix": "main.child",
+    "required_boundary_signals": [
+      "x",
+      "out"
+    ]
+  },
+  "sites": {
+    "main.child": "entrypoint_violation"
+  },
+  "sites_found": 1,
+  "preparation": {
+    "status": "ok",
+    "reason": null
+  },
+  "pending_engine": {
+    "capability": "reverse_input_synthesis",
+    "sites": {
+      "main.child": "unknown"
+    },
+    "sites_found": 1,
+    "reasons": {
+      "main.child": "input_requires_inversion"
+    },
+    "preparation": {
+      "status": "ok",
+      "reason": null
+    }
+  },
+  "notes": [
+    "sites는 달성해야 할 의미 판정이며 pending_engine은 기능 구현 전의 제한된 현재 결과다. 두 층의 통과를 혼합하지 않는다.",
+    "request의 base_input은 후보 중간값에 도달하지 않는다. 별도 구체 입력 oracle을 엔진에 공급해 역산 성공으로 처리하지 않는다.",
+    "역산 결과의 유일성은 요구하지 않는다. 엔진은 별도 구체 oracle과 다른 public 입력을 찾아도 전체 제약과 같은 입력의 출력 차이를 검증하면 된다."
+  ]
+}

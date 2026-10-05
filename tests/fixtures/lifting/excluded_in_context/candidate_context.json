@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "component_inputs": {
+    "x": "8"
+  },
+  "entrypoint_inputs": {
+    "x": "8"
+  },
+  "entrypoint_assignment": {
+    "main.x": "8",
+    "main.child.x": "8",
+    "main.child.square": "64",
+    "main.child.out": "10",
+    "main.out": "10",
+    "main.range.in": "8",
+    "main.range.bits[0]": "0",
+    "main.range.bits[1]": "0",
+    "main.range.bits[2]": "0"
+  }
+}

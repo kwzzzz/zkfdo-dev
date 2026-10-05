@@ -1,0 +1,17 @@
+{
+  "schema_version": 2,
+  "semantic_verdict": "no_violation",
+  "lifting_verdict": null,
+  "sites": {},
+  "sites_found": 0,
+  "preparation": {
+    "status": "not_tcct_deviation",
+    "reason": "component_equals_honest"
+  },
+  "reason": "정직한 컴포넌트와 같은 할당은 TCCT 후보가 아니므로 호출 맥락 판정 전에 비이탈 자료로 분리한다.",
+  "supersedes_control_expectation": "expected.json",
+  "notes": [
+    "기존 expected.json은 당시 엔진 결과의 이력으로 보존한다.",
+    "정상 entrypoint 계산·대응 검사는 별도 진위 suite에서 유지한다."
+  ]
+}

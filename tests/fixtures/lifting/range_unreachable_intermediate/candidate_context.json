@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "component_inputs": {
+    "x": "300"
+  },
+  "entrypoint_inputs": null,
+  "entrypoint_assignment": null,
+  "oracle_input_role": "no reachability witness; original-R1CS boolean-range contradiction is checked independently"
+}

@@ -1,6 +1,6 @@
 //! Curated executable targets and reproducible, read-only feature preparation.
 use std::{
-    collections::{BTreeMap, BTreeSet},
+    collections::{BTreeMap, BTreeSet, HashMap},
     fs,
     path::{Path, PathBuf},
     time::Instant,
@@ -62,6 +62,10 @@ pub struct CorpusTarget {
     pub input_contract: Option<InputContract>,
     #[serde(default)]
     pub known_defects: Vec<KnownDefect>,
+    /// F-01: an `instance-capture.json` from discovery. When set, the inspection is built from
+    /// the captured instances (the interpreter still runs, for comparison).
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub instance_capture: Option<PathBuf>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -171,6 +175,23 @@ pub struct PreparedTarget {
     pub timings: PreparationTimings,
     pub elapsed_seconds: f64,
     pub limitations: Vec<String>,
+    /// F-01: where the inspection came from and how the interpreter's compares.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub instance_inspection: Option<InspectionSource>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
+pub struct InspectionSource {
+    /// `compiler` (from the instance capture) or `interpreter`.
+    pub source: String,
+    pub capture_path: PathBuf,
+    pub capture_sha256: String,
+    pub compiler_complete: bool,
+    pub interpreter_complete: bool,
+    pub interpreter_unsupported: usize,
+    /// Distinct (source, template, parameters) instances found by one method only.
+    pub instances_only_interpreter: Vec<String>,
+    pub instances_only_compiler: Vec<String>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -440,13 +461,15 @@ pub fn prepare_manifest(
         }
     }
     let mut targets = Vec::new();
+    // Instance captures shared by the manifest's targets, parsed once (F-01).
+    let mut captures = HashMap::new();
     for (index, target) in manifest.targets.into_iter().enumerate() {
         let definition = resolve_definition(target, manifest_dir);
         let directory = output_dir.join("targets").join(format!("{index:04}"));
         fs::create_dir_all(&directory)?;
         let mut prepared = empty_target(definition)?;
         let target_start = Instant::now();
-        if let Err(error) = prepare_target(&mut prepared, &options, &directory) {
+        if let Err(error) = prepare_target(&mut prepared, &options, &directory, &mut captures) {
             prepared
                 .exclusion_reasons
                 .push(format!("preparation failed: {error:#}"));
@@ -515,6 +538,7 @@ fn prepare_target(
     target: &mut PreparedTarget,
     options: &PrepareOptions,
     directory: &Path,
+    captures: &mut HashMap<PathBuf, (String, crate::instance_capture::InstanceCapture)>,
 ) -> Result<()> {
     for (name, value) in [
         ("label", &target.definition.label),
@@ -538,11 +562,56 @@ fn prepare_target(
         );
     }
     let start = Instant::now();
-    let inspection = inspect_entrypoint_with_libraries(
+    let mut inspection = inspect_entrypoint_with_libraries(
         &target.definition.entrypoint,
         &target.definition.project_root,
         &compile_library_paths(&target.definition),
     )?;
+    if let Some(capture_path) = target.definition.instance_capture.clone() {
+        if !captures.contains_key(&capture_path) {
+            let bytes = fs::read(&capture_path)
+                .with_context(|| format!("read instance capture {}", capture_path.display()))?;
+            let capture: crate::instance_capture::InstanceCapture =
+                serde_json::from_slice(&bytes).context("parse instance capture")?;
+            captures.insert(capture_path.clone(), (sha256(&bytes), capture));
+        }
+        let (capture_sha256, capture) = &captures[&capture_path];
+        let captured = crate::targets::inspect_entrypoint_from_capture(
+            &target.definition.entrypoint,
+            &target.definition.project_root,
+            &compile_library_paths(&target.definition),
+            capture,
+        )?;
+        let describe = |instance: &crate::targets::InspectedTemplateInstance| {
+            format!(
+                "{}::{}({})",
+                instance.path.display(),
+                instance.template_name,
+                instance.concrete_parameters.join(", ")
+            )
+        };
+        let compiler = captured
+            .instances
+            .iter()
+            .map(describe)
+            .collect::<BTreeSet<_>>();
+        let interpreter = inspection
+            .instances
+            .iter()
+            .map(describe)
+            .collect::<BTreeSet<_>>();
+        target.instance_inspection = Some(InspectionSource {
+            source: "compiler".to_owned(),
+            capture_path,
+            capture_sha256: capture_sha256.clone(),
+            compiler_complete: captured.complete,
+            interpreter_complete: inspection.complete,
+            interpreter_unsupported: inspection.unsupported.len(),
+            instances_only_interpreter: interpreter.difference(&compiler).cloned().collect(),
+            instances_only_compiler: compiler.difference(&interpreter).cloned().collect(),
+        });
+        inspection = captured;
+    }
     target.timings.inspection_seconds = start.elapsed().as_secs_f64();
     if !inspection.complete {
         target
@@ -823,6 +892,7 @@ fn empty_target(definition: CorpusTarget) -> Result<PreparedTarget> {
         ranking, eligible: false, exclusion_reasons: Vec::new(), source_fingerprints: Vec::new(),
         snapshot_fingerprints: Vec::new(), timings: PreparationTimings::default(), elapsed_seconds: 0.0,
         limitations: vec!["Semantic locations refer to the fingerprinted original sources; compiler/AST execution and future fuzzing use the copied entrypoint. Absolute includes can retain read-only original dependencies.".to_owned()],
+        instance_inspection: None,
     })
 }
 
@@ -878,6 +948,9 @@ fn source_common_root(inspection: &EntrypointInspection) -> Result<&Path> {
 fn resolve_definition(mut target: CorpusTarget, parent: &Path) -> CorpusTarget {
     target.project_root = resolve_path(parent, &target.project_root);
     target.entrypoint = resolve_path(parent, &target.entrypoint);
+    if let Some(capture) = &target.instance_capture {
+        target.instance_capture = Some(resolve_path(parent, capture));
+    }
     if let Some(InputContract::Bounded {
         evidence: Some(evidence),
         ..

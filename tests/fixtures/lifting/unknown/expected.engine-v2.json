@@ -1,0 +1,20 @@
+{
+  "schema_version": 2,
+  "sites": {
+    "main.child": "entrypoint_violation"
+  },
+  "sites_found": 1,
+  "reasons": {
+    "main.child": "output_differs"
+  },
+  "preparation": {
+    "status": "ok",
+    "reason": null
+  },
+  "supersedes_engine_expectation": "expected.json",
+  "reason": "역방향 입력 합성을 지원하는 엔진에서는 작은 비암호학적 ToyHash의 구체 preimage를 찾아 전체 제약과 출력 차이를 검증한다.",
+  "notes": [
+    "기존 unknown은 역산을 지원하지 않는 정방향 프로필의 결과이며 역상 부재를 뜻하지 않았다.",
+    "이 파일은 역산 지원 엔진의 기대값이다. 기존 회로·후보·expected.json은 보존한다."
+  ]
+}

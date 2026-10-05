@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "case_id": "entrypoint_violation",
+  "compiler": {
+    "version": "2.2.3",
+    "field": "bn128",
+    "component_optimization": "O0",
+    "entrypoint_optimization": "O0"
+  },
+  "candidate": {
+    "verdict": "entrypoint_violation",
+    "reason": "무제약 컴포넌트 출력의 차이가 전체 제약을 만족하면서 최상위 출력에 전달된다.",
+    "component_r1cs_satisfied": true,
+    "component_differs_from_honest": true,
+    "entrypoint_r1cs_satisfied": true,
+    "top_output_differs": true
+  },
+  "control": {
+    "semantic_verdict": "no_violation",
+    "lifting_verdict": "compatible_no_top_violation_observed",
+    "reason": "알려진 정상 entrypoint 입력으로 계산한 정직한 witness에는 출력 위반이 없다.",
+    "sites": {
+      "main.child": "compatible_no_top_violation_observed"
+    },
+    "sites_found": 1
+  },
+  "mapping": {
+    "component_prefix": "main",
+    "entrypoint_prefix": "main.child",
+    "required_boundary_signals": [
+      "x",
+      "out"
+    ]
+  },
+  "support_profile": {
+    "input_linking": "direct_input",
+    "hash_inversion": false,
+    "eliminated_signal_recovery": false
+  },
+  "sites": {
+    "main.child": "entrypoint_violation"
+  },
+  "sites_found": 1
+}

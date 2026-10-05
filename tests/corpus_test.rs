@@ -31,6 +31,7 @@ fn definition(project: &Path, entrypoint: &Path, argument: &str) -> CorpusTarget
         input_assumptions: "Synthetic test only; no public defect claim.".to_owned(),
         input_contract: None,
         known_defects: vec![],
+        instance_capture: None,
     }
 }
 

@@ -1,0 +1,15 @@
+{
+  "schema_version": 3,
+  "supersedes": "expected.control-v2.json and expected.json control",
+  "property": "input_assumption",
+  "component_classification": "not_tcct_deviation",
+  "sites": {
+    "main.child": "assumption_input_reachable"
+  },
+  "sites_found": 1,
+  "preparation": {
+    "status": "ok",
+    "reason": null
+  },
+  "reason": "L-03: an honest control equals the honest component computation, so it is judged for the input-assumption property; its site inputs come from an honest entrypoint input and are reachable by construction."
+}

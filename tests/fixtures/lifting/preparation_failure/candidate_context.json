@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "component_inputs": {
+    "x": "3"
+  },
+  "entrypoint_inputs": {
+    "x": "3"
+  },
+  "entrypoint_assignment": null
+}

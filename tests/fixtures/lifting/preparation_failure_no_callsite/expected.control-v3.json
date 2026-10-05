@@ -1,0 +1,13 @@
+{
+  "schema_version": 3,
+  "supersedes": "expected.json control",
+  "property": null,
+  "component_classification": "not_tcct_deviation",
+  "sites": {},
+  "sites_found": 0,
+  "preparation": {
+    "status": "preparation_failure",
+    "reason": "no_call_site"
+  },
+  "reason": "L-03: the honest control reaches site enumeration for the input-assumption property and fails there because the entrypoint never instantiates the component."
+}

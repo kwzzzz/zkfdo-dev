@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "case_id": "unknown",
+  "compiler": {
+    "version": "2.2.3",
+    "field": "bn128",
+    "component_optimization": "O0",
+    "entrypoint_optimization": "O0"
+  },
+  "candidate": {
+    "verdict": "unknown",
+    "reason": "고정된 정방향 연결 절차에는 후보 입력에 대응하는 public preimage와 역산 기능이 없다.",
+    "component_r1cs_satisfied": true,
+    "component_differs_from_honest": true,
+    "entrypoint_r1cs_satisfied": null,
+    "top_output_differs": null
+  },
+  "control": {
+    "semantic_verdict": "no_violation",
+    "lifting_verdict": "compatible_no_top_violation_observed",
+    "reason": "알려진 정상 entrypoint 입력으로 계산한 정직한 witness에는 출력 위반이 없다.",
+    "sites": {
+      "main.child": "compatible_no_top_violation_observed"
+    },
+    "sites_found": 1
+  },
+  "mapping": {
+    "component_prefix": "main",
+    "entrypoint_prefix": "main.child",
+    "required_boundary_signals": [
+      "x",
+      "out"
+    ]
+  },
+  "support_profile": {
+    "input_linking": "forward_hash_only",
+    "hash_inversion": false,
+    "eliminated_signal_recovery": false
+  },
+  "notes": [
+    "ToyHash는 비암호학적 합성 연결 stub이며 역상 부재나 암호학적 역산 난이도를 주장하지 않는다.",
+    "unknown은 고정된 정방향 연결 절차의 지원 한계이며 후보 배제가 아니다.",
+    "정직한 대조군의 알려진 preimage는 후보 입력의 preimage로 재사용하지 않는다."
+  ],
+  "sites": {
+    "main.child": "unknown"
+  },
+  "sites_found": 1
+}

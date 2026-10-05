@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "case_id": "bitdecomp_inversion",
+  "compiler": {
+    "version": "2.2.3",
+    "field": "bn128",
+    "component_optimization": "O0",
+    "entrypoint_optimization": "O0"
+  },
+  "candidate": {
+    "verdict": "entrypoint_violation",
+    "reason": "4비트 분해·역순 재조합을 역산한 공개 입력에서 후보를 담는 전체 할당이 제약을 만족하고 출력이 다르다.",
+    "component_r1cs_satisfied": true,
+    "component_differs_from_honest": true,
+    "entrypoint_r1cs_satisfied": true,
+    "top_output_differs": true
+  },
+  "control": {
+    "schema_version": 2,
+    "semantic_verdict": "no_violation",
+    "lifting_verdict": null,
+    "sites": {},
+    "sites_found": 0,
+    "preparation": {
+      "status": "not_tcct_deviation",
+      "reason": "component_equals_honest"
+    },
+    "reason": "정직한 컴포넌트와 같은 할당은 TCCT 후보가 아니므로 호출 맥락 판정 전에 비이탈 자료로 분리한다."
+  },
+  "mapping": {
+    "component_prefix": "main",
+    "entrypoint_prefix": "main.child",
+    "required_boundary_signals": [
+      "x",
+      "out"
+    ]
+  },
+  "sites": {
+    "main.child": "entrypoint_violation"
+  },
+  "sites_found": 1,
+  "preparation": {
+    "status": "ok",
+    "reason": null
+  },
+  "pending_engine": {
+    "capability": "reverse_input_synthesis",
+    "sites": {
+      "main.child": "unknown"
+    },
+    "sites_found": 1,
+    "reasons": {
+      "main.child": "synthesis_local_unsat"
+    },
+    "preparation": {
+      "status": "ok",
+      "reason": null
+    },
+    "note": "개발 중 관측된 제한된 국소 풀이의 UNSAT snapshot이며 전체 호출 맥락 불가능성의 증명이 아니다. 목표 판정이 나오면 목표 충족으로 집계한다."
+  },
+  "notes": [
+    "sites는 달성해야 할 의미 판정이며 pending_engine은 개발 중 관측된 제한 결과의 snapshot이다. 두 층의 통과를 혼합하지 않는다.",
+    "request의 base_input은 후보 중간값에 도달하지 않는다. 별도 구체 입력 oracle을 엔진에 공급해 역산 성공으로 처리하지 않는다.",
+    "역산 결과의 유일성은 요구하지 않는다. 엔진은 별도 구체 oracle과 다른 public 입력을 찾아도 전체 제약과 같은 입력의 출력 차이를 검증하면 된다."
+  ]
+}

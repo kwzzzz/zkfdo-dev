@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "case_id": "preparation_failure_input_wire",
+  "compiler": {
+    "version": "2.2.3",
+    "field": "bn128",
+    "component_optimization": "O0",
+    "entrypoint_optimization": "O0"
+  },
+  "candidate": {
+    "verdict": "preparation_failure",
+    "reason": "O0 wire는 존재하지만 dotted bus 입력 payload.x를 직접 main 입력으로 식별하지 못해 준비가 중단된다.",
+    "component_r1cs_satisfied": true,
+    "component_differs_from_honest": true,
+    "entrypoint_r1cs_satisfied": null,
+    "top_output_differs": null
+  },
+  "control": {
+    "semantic_verdict": "no_violation",
+    "lifting_verdict": "preparation_failure",
+    "reason": "정직한 컴포넌트와 entrypoint 계산에는 위반이 없으며 같은 준비 장애는 후보 차이와 무관하게 남는다.",
+    "sites": {},
+    "sites_found": 0,
+    "preparation": {
+      "status": "preparation_failure",
+      "reason": "component_inputs_unresolved"
+    }
+  },
+  "mapping": {
+    "component_prefix": "main",
+    "entrypoint_prefix": "main.child",
+    "required_boundary_signals": [
+      "payload.x",
+      "out"
+    ]
+  },
+  "support_profile": {
+    "input_linking": "dotted_bus_input",
+    "hash_inversion": false,
+    "eliminated_signal_recovery": false
+  },
+  "sites": {},
+  "sites_found": 0,
+  "preparation": {
+    "status": "preparation_failure",
+    "reason": "component_inputs_unresolved"
+  },
+  "notes": [
+    "준비 실패는 후보 배제나 최상위 출력 동일성을 뜻하지 않는다.",
+    "후보와 정직한 대조군의 컴포넌트 진위는 엔진 준비 단계와 독립적으로 검사한다.",
+    "Circom 2.2.3 O0의 main.payload.x wire가 존재함을 검사한다. 신호 소실·모호한 compiler 산출물을 만들지 않는다.",
+    "component_inputs_unresolved는 호출 위치 열거 전 실패하므로 sites_found 0은 실제 호출 위치 부재를 뜻하지 않는다. 원본에는 main.child 한 위치가 있다.",
+    "site_input_has_no_o0_wire 경로는 이 fixture가 다루지 않는다. 실제 실패는 direct-main 입력 이름 해석의 미지원이다.",
+    "알려진 정상 bus 입력의 entrypoint witness는 계산 가능하고 제약을 만족한다."
+  ]
+}

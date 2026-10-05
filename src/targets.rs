@@ -1,5 +1,5 @@
 use std::{
-    collections::{HashMap, HashSet},
+    collections::{BTreeMap, BTreeSet, HashMap, HashSet},
     fs,
     path::{Path, PathBuf},
 };
@@ -106,6 +106,16 @@ pub struct ConcreteFuzzTarget {
     /// True when the result was reused from an earlier call site in the same compile unit.
     #[serde(default)]
     pub compile_reused: bool,
+    /// Wrapper arguments when they differ from `concrete_parameters`: array arguments are keyed
+    /// by a value hash but passed to the wrapper as literals (F-01).
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub wrapper_arguments: Option<Vec<String>>,
+    /// `compiler` or `interpreter`, when instance capture ran (F-01).
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub instance_source: Option<String>,
+    /// Whether the other discovery method found the same child instance at this call site.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub methods_agree: Option<bool>,
 }
 
 #[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq, PartialOrd, Ord)]
@@ -184,6 +194,54 @@ pub struct TargetDiscoveryReport {
     /// Attempts whose compiler process was actually started.
     #[serde(default)]
     pub compile_process_count: usize,
+    /// Compiler-based instance discovery and its comparison with the interpreter (F-01).
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub instance_discovery: Option<InstanceDiscovery>,
+}
+
+/// One call site (parent instance, component name, line) and the child instances each method
+/// found there. Anonymous component names are compared without the interpreter's bracketed
+/// binding context, which the compiler does not report.
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq, PartialOrd, Ord)]
+pub struct SlotDifference {
+    pub parent_instance_key: String,
+    pub component_name: String,
+    pub line: usize,
+    pub interpreter: Vec<String>,
+    pub compiler: Vec<String>,
+}
+
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+pub struct InstanceDiscovery {
+    /// Which method's targets the report carries: `compiler` when the instrumented copy
+    /// compiled and was read, otherwise `interpreter`.
+    pub selected: String,
+    pub capture_status: String,
+    pub capture_failure: Option<String>,
+    pub capture_path: PathBuf,
+    /// Full argument values per instance key (array keys hash these values).
+    pub instance_args_path: Option<PathBuf>,
+    pub capture_compile_seconds: f64,
+    pub capture_compile_attempts: usize,
+    pub capture_scan_seconds: f64,
+    pub capture_read_seconds: f64,
+    #[serde(default)]
+    pub capture_assemble_seconds: f64,
+    pub interpreter_complete: bool,
+    pub compiler_complete: bool,
+    pub interpreter_targets: usize,
+    pub compiler_targets: usize,
+    pub interpreter_root_instance_key: Option<String>,
+    pub compiler_root_instance_key: Option<String>,
+    pub slots_compared: usize,
+    /// Call sites where the methods found different child instances (an empty side means the
+    /// site was found by the other method only).
+    pub slot_differences: Vec<SlotDifference>,
+    /// Distinct target instance keys (the fragment composition) found by one method only.
+    pub instance_keys_only_interpreter: Vec<String>,
+    pub instance_keys_only_compiler: Vec<String>,
+    /// The interpreter's unsupported cases when the compiler result was selected.
+    pub interpreter_unsupported: Vec<UnsupportedCase>,
 }
 
 /// Operational cap for one wrapper compilation, not an empirically derived bound.
@@ -198,7 +256,13 @@ pub struct DiscoveryOptions {
     /// None generates wrappers without compiling them.
     pub circom_bin: Option<PathBuf>,
     pub compile_timeout_seconds: u64,
+    /// With a compiler: also discover instances from an instrumented O0 compile (F-01).
+    pub instance_capture: Option<PathBuf>,
+    pub capture_timeout_seconds: u64,
 }
+
+/// Operational cap for the instrumented O0 compile, not an empirically derived bound.
+pub const DEFAULT_CAPTURE_TIMEOUT_SECONDS: u64 = 600;
 
 impl Default for DiscoveryOptions {
     fn default() -> Self {
@@ -207,6 +271,8 @@ impl Default for DiscoveryOptions {
             library_paths: Vec::new(),
             circom_bin: None,
             compile_timeout_seconds: DEFAULT_WRAPPER_COMPILE_TIMEOUT_SECONDS,
+            instance_capture: None,
+            capture_timeout_seconds: DEFAULT_CAPTURE_TIMEOUT_SECONDS,
         }
     }
 }
@@ -219,7 +285,7 @@ pub struct TemplateSourceScope {
     pub end_line: usize,
 }
 
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq)]
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq, Hash)]
 pub struct InspectedTemplateInstance {
     pub path: PathBuf,
     pub template_name: String,
@@ -325,17 +391,17 @@ struct TemplateCall {
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
-struct Token {
-    kind: TokenKind,
-    line: usize,
+pub(crate) struct Token {
+    pub(crate) kind: TokenKind,
+    pub(crate) line: usize,
     /// Character offset retained for stable anonymous-instance identities.
-    offset: usize,
+    pub(crate) offset: usize,
     /// UTF-8 byte offset used only when binding source evidence ranges.
-    byte_offset: usize,
+    pub(crate) byte_offset: usize,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
-enum TokenKind {
+pub(crate) enum TokenKind {
     Identifier(String),
     Number(String),
     StringLiteral(String),
@@ -553,6 +619,339 @@ pub fn inspect_entrypoint_with_libraries(
         complete: unsupported.is_empty(),
         unsupported,
     })
+}
+
+/// F-01: an inspection of `entrypoint` built from an instance capture instead of the
+/// interpreter. The root is the capture's `main` when `entrypoint` is the captured entrypoint;
+/// otherwise `entrypoint` must be a wrapper whose `component main` literal arguments equal a
+/// captured instance's, and that instance's subtree is used. Dependency paths and scope checks
+/// are the interpreter's; instance arguments come only from the capture.
+pub fn inspect_entrypoint_from_capture(
+    entrypoint: &Path,
+    project_root: &Path,
+    library_paths: &[PathBuf],
+    capture: &crate::instance_capture::InstanceCapture,
+) -> Result<EntrypointInspection> {
+    use crate::instance_capture::CapturedValue;
+    let entrypoint = fs::canonicalize(entrypoint)
+        .with_context(|| format!("resolve selected entrypoint {}", entrypoint.display()))?;
+    let project_root = fs::canonicalize(project_root)?;
+    let library_paths = library_paths
+        .iter()
+        .map(fs::canonicalize)
+        .collect::<std::io::Result<Vec<_>>>()?;
+    let mut parsed_files = HashMap::new();
+    let mut visited = HashSet::new();
+    let mut walk_issues = Vec::new();
+    load_inspection_files(
+        &entrypoint,
+        &project_root,
+        &library_paths,
+        &mut parsed_files,
+        &mut visited,
+        &mut walk_issues,
+    );
+    // Template-syntax limits of the interpreter do not apply; unreadable or unresolved
+    // sources do.
+    let mut unsupported = walk_issues
+        .into_iter()
+        .filter(|issue| issue.construct == "source file" || issue.construct.starts_with("include"))
+        .collect::<Vec<_>>();
+    let prime = capture.prime()?;
+    let root = if entrypoint == capture.entrypoint {
+        capture.root().cloned()
+    } else {
+        let file = parsed_files.get(&entrypoint);
+        let call = file
+            .and_then(|file| (file.mains.len() == 1).then(|| file.mains[0].call.clone()))
+            .flatten();
+        match call {
+            None => {
+                unsupported.push(UnsupportedCase {
+                    source_path: entrypoint.clone(),
+                    line: None,
+                    construct: "component main".into(),
+                    reason: "wrapper must declare exactly one parsable component main".into(),
+                });
+                None
+            }
+            Some(call) => {
+                let tokens = call
+                    .arguments
+                    .iter()
+                    .map(|argument| {
+                        literal_value(argument, &prime).and_then(|value| {
+                            value.key_token(&prime).map_err(|error| error.to_string())
+                        })
+                    })
+                    .collect::<std::result::Result<Vec<_>, String>>();
+                match tokens {
+                    Err(reason) => {
+                        unsupported.push(UnsupportedCase {
+                            source_path: entrypoint.clone(),
+                            line: None,
+                            construct: format_source_call(&call),
+                            reason: format!("wrapper argument is not a literal: {reason}"),
+                        });
+                        None
+                    }
+                    Ok(tokens) => {
+                        let found = capture.instances.iter().find(|instance| {
+                            instance.template_name == call.template_name
+                                && instance
+                                    .arguments
+                                    .as_ref()
+                                    .and_then(|arguments| {
+                                        arguments
+                                            .iter()
+                                            .map(|value: &CapturedValue| value.key_token(&prime))
+                                            .collect::<Result<Vec<_>>>()
+                                            .ok()
+                                    })
+                                    .is_some_and(|captured| captured == tokens)
+                        });
+                        if found.is_none() {
+                            unsupported.push(UnsupportedCase {
+                                source_path: entrypoint.clone(),
+                                line: None,
+                                construct: format_source_call(&call),
+                                reason:
+                                    "no captured instance has the wrapper's template and arguments"
+                                        .into(),
+                            });
+                        }
+                        found.cloned()
+                    }
+                }
+            }
+        }
+    };
+    let token_list = |instance: &crate::instance_capture::CapturedInstance| {
+        instance.arguments.as_ref().map(|arguments| {
+            arguments
+                .iter()
+                .map(|value| value.key_token(&prime))
+                .collect::<Result<Vec<_>>>()
+        })
+    };
+    let mut root_instance = None;
+    let mut instances = Vec::new();
+    let mut seen = HashSet::new();
+    if let Some(root) = &root {
+        let prefix = format!("{}.", root.path);
+        for instance in std::iter::once(root).chain(
+            capture
+                .instances
+                .iter()
+                .filter(|instance| instance.path.starts_with(&prefix)),
+        ) {
+            match token_list(instance).transpose()? {
+                Some(tokens) => {
+                    let inspected = InspectedTemplateInstance {
+                        path: instance.source_path.clone(),
+                        template_name: instance.template_name.clone(),
+                        concrete_parameters: tokens,
+                    };
+                    if instance.path == root.path {
+                        root_instance = Some(inspected.clone());
+                    }
+                    if seen.insert(inspected.clone()) {
+                        instances.push(inspected);
+                    }
+                }
+                None => unsupported.push(UnsupportedCase {
+                    source_path: instance.source_path.clone(),
+                    line: instance.line,
+                    construct: format!("{} ({})", instance.path, instance.template_name),
+                    reason: format!(
+                        "instance capture: {}",
+                        instance.unsupported.clone().unwrap_or_default()
+                    ),
+                }),
+            }
+        }
+    }
+    let mut scopes = Vec::new();
+    for instance in &instances {
+        if let Some(template) = capture.templates.iter().find(|template| {
+            template.name == instance.template_name && template.source_path == instance.path
+        }) {
+            let scope = TemplateSourceScope {
+                path: template.source_path.clone(),
+                template_name: template.name.clone(),
+                start_line: template.start_line,
+                end_line: template.end_line,
+            };
+            if !scopes.contains(&scope) {
+                scopes.push(scope);
+            }
+        }
+    }
+    scopes.sort_by(|a, b| {
+        a.path
+            .cmp(&b.path)
+            .then_with(|| a.start_line.cmp(&b.start_line))
+    });
+    for scope in &scopes {
+        for other in capture
+            .templates
+            .iter()
+            .filter(|other| other.source_path == scope.path)
+        {
+            if other.name != scope.template_name
+                && scope.start_line <= other.end_line
+                && other.start_line <= scope.end_line
+            {
+                unsupported.push(UnsupportedCase {
+                    source_path: scope.path.clone(),
+                    line: Some(scope.start_line),
+                    construct: format!("template {}", scope.template_name),
+                    reason: "template source lines overlap another definition; line-based warning attribution is ambiguous".into(),
+                });
+            }
+        }
+    }
+    instances.sort_by(|a, b| {
+        a.path
+            .cmp(&b.path)
+            .then_with(|| a.template_name.cmp(&b.template_name))
+            .then_with(|| a.concrete_parameters.cmp(&b.concrete_parameters))
+    });
+    let mut dependency_paths = visited.into_iter().collect::<Vec<_>>();
+    dependency_paths.sort();
+    unsupported.sort_by(|a, b| {
+        a.source_path
+            .cmp(&b.source_path)
+            .then_with(|| a.line.cmp(&b.line))
+            .then_with(|| a.reason.cmp(&b.reason))
+    });
+    unsupported.dedup();
+    Ok(EntrypointInspection {
+        entrypoint,
+        project_root,
+        root: root_instance,
+        instances,
+        scopes,
+        dependency_paths,
+        complete: unsupported.is_empty(),
+        unsupported,
+    })
+}
+
+/// The template and literal argument values of a source file's single `component main` call;
+/// an argument that is not an integer or nested array literal maps to the reason.
+pub(crate) fn main_literal_arguments(
+    path: &Path,
+    source: &str,
+    prime: &num_bigint::BigUint,
+) -> std::result::Result<
+    (
+        String,
+        Vec<std::result::Result<crate::instance_capture::CapturedValue, String>>,
+    ),
+    String,
+> {
+    let file = parse_file(path, source).map_err(|case| case.reason)?;
+    let [main] = file.mains.as_slice() else {
+        return Err("the entrypoint does not declare exactly one component main".into());
+    };
+    let call = main
+        .call
+        .as_ref()
+        .ok_or_else(|| "the component main call is not parsable".to_owned())?;
+    Ok((
+        call.template_name.clone(),
+        call.arguments
+            .iter()
+            .map(|argument| literal_value(argument, prime))
+            .collect(),
+    ))
+}
+
+/// A wrapper argument literal: an integer (optionally negated) or a nested array of them.
+fn literal_value(
+    tokens: &[Token],
+    prime: &num_bigint::BigUint,
+) -> std::result::Result<crate::instance_capture::CapturedValue, String> {
+    use crate::instance_capture::CapturedValue;
+    fn integer(
+        tokens: &[Token],
+        prime: &num_bigint::BigUint,
+    ) -> std::result::Result<String, String> {
+        let (negative, rest) = match tokens {
+            [first, rest @ ..] if first.kind == TokenKind::Symbol('-') => (true, rest),
+            _ => (false, tokens),
+        };
+        let [token] = rest else {
+            return Err(format!(
+                "`{}` is not an integer literal",
+                tokens_to_text(tokens)
+            ));
+        };
+        let TokenKind::Number(text) = &token.kind else {
+            return Err(format!(
+                "`{}` is not an integer literal",
+                tokens_to_text(tokens)
+            ));
+        };
+        let value = if let Some(hex) = text.strip_prefix("0x") {
+            num_bigint::BigUint::parse_bytes(hex.as_bytes(), 16)
+        } else {
+            text.parse::<num_bigint::BigUint>().ok()
+        }
+        .ok_or_else(|| format!("`{text}` is not an integer"))?
+            % prime;
+        Ok(if negative && value != num_bigint::BigUint::default() {
+            (prime - value).to_string()
+        } else {
+            value.to_string()
+        })
+    }
+    fn array(
+        tokens: &[Token],
+        prime: &num_bigint::BigUint,
+        dims: &mut Vec<usize>,
+        depth: usize,
+        values: &mut Vec<String>,
+    ) -> std::result::Result<(), String> {
+        let is_array = tokens
+            .first()
+            .is_some_and(|t| t.kind == TokenKind::Symbol('['));
+        if !is_array {
+            if depth != dims.len() {
+                return Err("ragged array literal".into());
+            }
+            values.push(integer(tokens, prime)?);
+            return Ok(());
+        }
+        let close = find_matching(tokens, 0, '[', ']').ok_or("unbalanced array literal")?;
+        if close + 1 != tokens.len() {
+            return Err("trailing tokens after an array literal".into());
+        }
+        let items = split_top_level(&tokens[1..close], ',')?;
+        if depth == dims.len() {
+            dims.push(items.len());
+        } else if dims.get(depth) != Some(&items.len()) {
+            return Err("ragged array literal".into());
+        }
+        for item in items {
+            array(&item, prime, dims, depth + 1, values)?;
+        }
+        Ok(())
+    }
+    if tokens
+        .first()
+        .is_some_and(|t| t.kind == TokenKind::Symbol('['))
+    {
+        let mut dims = Vec::new();
+        let mut values = Vec::new();
+        array(tokens, prime, &mut dims, 0, &mut values)?;
+        Ok(CapturedValue::Array { dims, values })
+    } else {
+        Ok(CapturedValue::Scalar {
+            value: integer(tokens, prime)?,
+        })
+    }
 }
 
 /// Returns the exact half-open UTF-8 byte range occupied by one template definition.
@@ -1261,6 +1660,23 @@ pub fn discover_project_targets_with(
         });
     }
 
+    let instance_discovery = match (&options.instance_capture, &selected_entrypoint) {
+        (Some(circom), Some(entrypoint)) if entrypoint_status == EntrypointStatus::Found => {
+            Some(apply_instance_capture(
+                circom,
+                options.capture_timeout_seconds,
+                entrypoint,
+                &project_root,
+                &library_paths,
+                &work_dir,
+                &mut targets,
+                &mut unsupported,
+                &mut root_instance_key,
+            )?)
+        }
+        _ => None,
+    };
+
     let compile_units = generate_and_validate_wrappers(
         &mut targets,
         &work_dir,
@@ -1312,9 +1728,315 @@ pub fn discover_project_targets_with(
         compile_units,
         compile_attempt_count,
         compile_process_count,
+        instance_discovery,
     };
     write_report(&work_dir, &report)?;
     Ok(report)
+}
+
+type SlotKey = (String, String, usize);
+
+fn slot_key(target: &ConcreteFuzzTarget) -> SlotKey {
+    let name = &target.origin.component_name;
+    let name = if name.starts_with("@anonymous:") {
+        name.split('[').next().unwrap_or(name)
+    } else {
+        name
+    };
+    (
+        target.parent_instance_key.clone(),
+        name.to_owned(),
+        target.origin.line,
+    )
+}
+
+fn slots(targets: &[ConcreteFuzzTarget]) -> BTreeMap<SlotKey, BTreeSet<String>> {
+    let mut slots: BTreeMap<SlotKey, BTreeSet<String>> = BTreeMap::new();
+    for target in targets {
+        slots
+            .entry(slot_key(target))
+            .or_default()
+            .insert(target.instance_key.clone());
+    }
+    slots
+}
+
+fn format_call_tokens(template_name: &str, tokens: &[String]) -> String {
+    format!("{template_name}({})", tokens.join(", "))
+}
+
+/// F-01: runs instance capture, builds compiler targets with the interpreter's identity format,
+/// compares the two, and keeps the compiler result when the instrumented copy compiled and was
+/// read. Otherwise the interpreter result stays, labeled as such.
+#[allow(clippy::too_many_arguments)]
+fn apply_instance_capture(
+    circom: &Path,
+    timeout_seconds: u64,
+    entrypoint: &Path,
+    project_root: &Path,
+    library_paths: &[PathBuf],
+    work_dir: &Path,
+    targets: &mut Vec<ConcreteFuzzTarget>,
+    unsupported: &mut Vec<UnsupportedCase>,
+    root_instance_key: &mut Option<String>,
+) -> Result<InstanceDiscovery> {
+    use crate::instance_capture::{capture_instances, CaptureRequest};
+    let capture = capture_instances(&CaptureRequest {
+        entrypoint,
+        project_root,
+        library_paths,
+        circom_bin: circom,
+        work_dir: &work_dir.join("instance-capture"),
+        timeout_seconds,
+    })?;
+    let capture_path = work_dir.join("instance-capture.json");
+    fs::write(&capture_path, serde_json::to_vec(&capture.interned())?)?;
+    let interpreter_complete = unsupported.is_empty();
+    let mut discovery = InstanceDiscovery {
+        selected: "interpreter".to_owned(),
+        capture_status: capture.status.clone(),
+        capture_failure: capture.failure.clone(),
+        capture_path,
+        instance_args_path: None,
+        capture_compile_seconds: capture.compile_seconds,
+        capture_compile_attempts: capture.compile_attempts,
+        capture_scan_seconds: capture.scan_seconds,
+        capture_read_seconds: capture.read_seconds,
+        capture_assemble_seconds: capture.assemble_seconds,
+        interpreter_complete,
+        compiler_complete: capture.complete(),
+        interpreter_targets: targets.len(),
+        compiler_targets: 0,
+        interpreter_root_instance_key: root_instance_key.clone(),
+        compiler_root_instance_key: None,
+        slots_compared: 0,
+        slot_differences: Vec::new(),
+        instance_keys_only_interpreter: Vec::new(),
+        instance_keys_only_compiler: Vec::new(),
+        interpreter_unsupported: Vec::new(),
+    };
+    if capture.status != "captured" {
+        for target in targets.iter_mut() {
+            target.instance_source = Some("interpreter".to_owned());
+        }
+        return Ok(discovery);
+    }
+    let prime = capture.prime()?;
+    let by_path = capture
+        .instances
+        .iter()
+        .map(|instance| (instance.path.as_str(), instance))
+        .collect::<HashMap<_, _>>();
+    let tokens_of =
+        |instance: &crate::instance_capture::CapturedInstance| -> Result<Option<Vec<String>>> {
+            instance
+                .arguments
+                .as_ref()
+                .map(|arguments| {
+                    arguments
+                        .iter()
+                        .map(|value| value.key_token(&prime))
+                        .collect()
+                })
+                .transpose()
+        };
+    let interned = capture.interned();
+    let mut arguments_by_key = BTreeMap::new();
+    for instance in &interned.instances {
+        if let Some(key) = interned.instance_key(instance)? {
+            arguments_by_key.insert(
+                key,
+                serde_json::json!({
+                    "template": instance.template_name,
+                    "source_path": instance.source_path,
+                    "arguments": instance.arguments,
+                }),
+            );
+        }
+    }
+    let args_path = work_dir.join("instance-args.json");
+    fs::write(
+        &args_path,
+        serde_json::to_vec_pretty(&serde_json::json!({
+            "schema": "zkfdo-instance-args-v1",
+            "prime": capture.prime,
+            "array_key_encoding": "[sha256:<hex>] of compact JSON {\"dims\":[...],\"values\":[...]}, values row-major as decimals in [0, p)",
+            "instances": arguments_by_key,
+            "arrays": interned.arrays,
+        }))?,
+    )?;
+    discovery.instance_args_path = Some(args_path);
+    let mut compiler_targets = Vec::new();
+    let mut compiler_unsupported = capture.unsupported.clone();
+    let mut seen = HashSet::new();
+    // Depth-first in path order, like the interpreter's expansion.
+    let mut ordered = capture.instances.iter().collect::<Vec<_>>();
+    ordered.sort_by_cached_key(|instance| natural_path_key(&instance.path));
+    for instance in ordered {
+        if instance.path == "main" {
+            if let Some(tokens) = tokens_of(instance)? {
+                discovery.compiler_root_instance_key = Some(instance_key(
+                    &instance.source_path,
+                    &instance.template_name,
+                    &tokens,
+                ));
+            }
+            continue;
+        }
+        let (Some(parent_path), Some(component_name), Some(line)) =
+            (&instance.parent, &instance.component_name, instance.line)
+        else {
+            continue;
+        };
+        let Some(parent) = by_path.get(parent_path.as_str()) else {
+            continue;
+        };
+        let (Some(tokens), Some(parent_tokens)) = (tokens_of(instance)?, tokens_of(parent)?) else {
+            if instance.arguments.is_some() {
+                compiler_unsupported.push(UnsupportedCase {
+                    source_path: parent.source_path.clone(),
+                    line: Some(line),
+                    construct: format!("{} ({})", instance.path, instance.template_name),
+                    reason: "instance capture: the parent instance's arguments were not captured"
+                        .to_owned(),
+                });
+            }
+            continue;
+        };
+        let identity = format!(
+            "{}:{}:{}:{}->{}",
+            parent.source_path.display(),
+            line,
+            format_call_tokens(&parent.template_name, &parent_tokens),
+            component_name,
+            format_call_tokens(&instance.template_name, &tokens)
+        );
+        if !seen.insert(identity.clone()) {
+            continue;
+        }
+        let arguments = instance.arguments.as_ref().expect("tokens imply arguments");
+        let wrapper_arguments = if arguments
+            .iter()
+            .any(|value| !matches!(value, crate::instance_capture::CapturedValue::Scalar { .. }))
+        {
+            Some(
+                arguments
+                    .iter()
+                    .map(|value| capture.literal(value, &prime))
+                    .collect::<Result<Vec<_>>>()?,
+            )
+        } else {
+            None
+        };
+        compiler_targets.push(ConcreteFuzzTarget {
+            identity,
+            source_path: instance.source_path.clone(),
+            template_name: instance.template_name.clone(),
+            concrete_parameters: tokens.clone(),
+            origin: TargetOrigin {
+                source_path: parent.source_path.clone(),
+                parent_template: parent.template_name.clone(),
+                parent_parameters: parent_tokens.clone(),
+                component_name: component_name.clone(),
+                line,
+            },
+            generated_wrapper_path: None,
+            wrapper_status: WrapperStatus::NotGenerated,
+            compiler_stdout_path: None,
+            compiler_stderr_path: None,
+            failure_reason: None,
+            compile: None,
+            instance_key: instance_key(&instance.source_path, &instance.template_name, &tokens),
+            parent_instance_key: instance_key(
+                &parent.source_path,
+                &parent.template_name,
+                &parent_tokens,
+            ),
+            compile_unit: None,
+            compile_reused: false,
+            wrapper_arguments,
+            instance_source: Some("compiler".to_owned()),
+            methods_agree: None,
+        });
+    }
+    // Comparison by call site: (parent instance, component, line) -> child instances.
+    let interpreter_slots = slots(targets);
+    let compiler_slots = slots(&compiler_targets);
+    let keys = interpreter_slots
+        .keys()
+        .chain(compiler_slots.keys())
+        .cloned()
+        .collect::<BTreeSet<_>>();
+    discovery.slots_compared = keys.len();
+    for key in keys {
+        let empty = BTreeSet::new();
+        let (interpreter, compiler) = (
+            interpreter_slots.get(&key).unwrap_or(&empty),
+            compiler_slots.get(&key).unwrap_or(&empty),
+        );
+        if interpreter != compiler {
+            discovery.slot_differences.push(SlotDifference {
+                parent_instance_key: key.0,
+                component_name: key.1,
+                line: key.2,
+                interpreter: interpreter.iter().cloned().collect(),
+                compiler: compiler.iter().cloned().collect(),
+            });
+        }
+    }
+    let interpreter_keys = targets
+        .iter()
+        .map(|target| target.instance_key.clone())
+        .collect::<BTreeSet<_>>();
+    let compiler_keys = compiler_targets
+        .iter()
+        .map(|target| target.instance_key.clone())
+        .collect::<BTreeSet<_>>();
+    discovery.instance_keys_only_interpreter = interpreter_keys
+        .difference(&compiler_keys)
+        .cloned()
+        .collect();
+    discovery.instance_keys_only_compiler = compiler_keys
+        .difference(&interpreter_keys)
+        .cloned()
+        .collect();
+    for target in &mut compiler_targets {
+        target.methods_agree = Some(
+            interpreter_slots
+                .get(&slot_key(target))
+                .is_some_and(|keys| keys.contains(&target.instance_key)),
+        );
+    }
+    discovery.compiler_targets = compiler_targets.len();
+    discovery.selected = "compiler".to_owned();
+    discovery.interpreter_unsupported = std::mem::take(unsupported);
+    *unsupported = compiler_unsupported;
+    *targets = compiler_targets;
+    *root_instance_key = discovery.compiler_root_instance_key.clone();
+    Ok(discovery)
+}
+
+/// Orders instance paths depth-first with numeric indices compared as numbers.
+fn natural_path_key(path: &str) -> Vec<(String, u64)> {
+    let mut key = Vec::new();
+    let mut text = String::new();
+    let mut digits = String::new();
+    for character in path.chars() {
+        if character.is_ascii_digit() {
+            digits.push(character);
+        } else {
+            if !digits.is_empty() {
+                key.push((
+                    std::mem::take(&mut text),
+                    digits.parse().unwrap_or(u64::MAX),
+                ));
+                digits.clear();
+            }
+            text.push(character);
+        }
+    }
+    key.push((text, digits.parse().unwrap_or(0)));
+    key
 }
 
 fn build_template_index<'a>(
@@ -1701,6 +2423,9 @@ fn expand_body(
                     parent_instance_key,
                     compile_unit: None,
                     compile_reused: false,
+                    wrapper_arguments: None,
+                    instance_source: None,
+                    methods_agree: None,
                 });
 
                 let key = (child.name.clone(), parameters.clone());
@@ -1953,7 +2678,11 @@ fn generate_and_validate_wrappers(
             .to_string_lossy()
             .replace('\\', "/")
             .replace('"', "\\\"");
-        let parameters = target.concrete_parameters.join(", ");
+        let parameters = target
+            .wrapper_arguments
+            .as_ref()
+            .unwrap_or(&target.concrete_parameters)
+            .join(", ");
         let wrapper = format!(
             "pragma circom 2.1.6;\n\ninclude \"{include_path}\";\n\ncomponent main = {}({parameters});\n",
             target.template_name
@@ -2130,7 +2859,11 @@ fn sha256_hex(bytes: &[u8]) -> String {
     format!("{:x}", Sha256::digest(bytes))
 }
 
-fn instance_key(source_path: &Path, template_name: &str, parameters: &[String]) -> String {
+pub(crate) fn instance_key(
+    source_path: &Path,
+    template_name: &str,
+    parameters: &[String],
+) -> String {
     format!(
         "{}::{template_name}({})",
         source_path.display(),
@@ -3264,7 +3997,7 @@ fn parse_anonymous_component_calls(
     Ok(calls)
 }
 
-fn find_statement_end(tokens: &[Token], start: usize) -> Option<usize> {
+pub(crate) fn find_statement_end(tokens: &[Token], start: usize) -> Option<usize> {
     let mut round = 0_usize;
     let mut square = 0_usize;
     let mut curly = 0_usize;
@@ -3285,7 +4018,12 @@ fn find_statement_end(tokens: &[Token], start: usize) -> Option<usize> {
     None
 }
 
-fn find_matching(tokens: &[Token], start: usize, open: char, close: char) -> Option<usize> {
+pub(crate) fn find_matching(
+    tokens: &[Token],
+    start: usize,
+    open: char,
+    close: char,
+) -> Option<usize> {
     let mut depth = 0_usize;
     for (index, token) in tokens.iter().enumerate().skip(start) {
         if token_is_symbol(token, open) {
@@ -3321,7 +4059,7 @@ fn find_top_level_symbol(tokens: &[Token], symbol: char) -> Option<usize> {
     None
 }
 
-fn split_top_level(
+pub(crate) fn split_top_level(
     tokens: &[Token],
     separator: char,
 ) -> std::result::Result<Vec<Vec<Token>>, String> {
@@ -3368,7 +4106,7 @@ fn split_top_level(
     Ok(groups)
 }
 
-fn lex(source: &str) -> std::result::Result<Vec<Token>, (usize, String)> {
+pub(crate) fn lex(source: &str) -> std::result::Result<Vec<Token>, (usize, String)> {
     let chars = source.chars().collect::<Vec<_>>();
     let mut byte_offsets = source
         .char_indices()
@@ -3515,7 +4253,7 @@ fn lex(source: &str) -> std::result::Result<Vec<Token>, (usize, String)> {
     Ok(tokens)
 }
 
-fn token_identifier(token: &Token) -> Option<&str> {
+pub(crate) fn token_identifier(token: &Token) -> Option<&str> {
     if let TokenKind::Identifier(identifier) = &token.kind {
         Some(identifier)
     } else {
@@ -3523,11 +4261,11 @@ fn token_identifier(token: &Token) -> Option<&str> {
     }
 }
 
-fn token_is_identifier(token: &Token, expected: &str) -> bool {
+pub(crate) fn token_is_identifier(token: &Token, expected: &str) -> bool {
     token_identifier(token) == Some(expected)
 }
 
-fn token_is_symbol(token: &Token, expected: char) -> bool {
+pub(crate) fn token_is_symbol(token: &Token, expected: char) -> bool {
     token.kind == TokenKind::Symbol(expected)
 }
 
@@ -3539,7 +4277,7 @@ fn tokens_to_text(tokens: &[Token]) -> String {
         .join(" ")
 }
 
-fn token_to_text(token: &Token) -> String {
+pub(crate) fn token_to_text(token: &Token) -> String {
     match &token.kind {
         TokenKind::Identifier(value) | TokenKind::Number(value) | TokenKind::Operator(value) => {
             value.clone()

@@ -1354,6 +1354,7 @@ fn synthetic_definition(root: &Path) -> CorpusTarget {
         input_assumptions: "The toy input is a canonical field element.".to_owned(),
         input_contract: Some(InputContract::FieldOnly),
         known_defects: Vec::new(),
+        instance_capture: None,
     }
 }
 

@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "component_inputs": {
+    "payload": {
+      "x": "3"
+    }
+  },
+  "entrypoint_inputs": {
+    "payload": {
+      "x": "3"
+    }
+  },
+  "entrypoint_assignment": {
+    "main.payload.x": "3",
+    "main.child.payload.x": "3",
+    "main.child.square": "9",
+    "main.child.out": "5",
+    "main.out": "5"
+  }
+}

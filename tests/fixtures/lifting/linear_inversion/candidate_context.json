@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "component_inputs": {
+    "x": "20"
+  },
+  "entrypoint_inputs": {
+    "x": "4",
+    "y": "3"
+  },
+  "entrypoint_assignment": {
+    "main.x": "4",
+    "main.y": "3",
+    "main.intermediate": "20",
+    "main.child.x": "20",
+    "main.child.out": "22",
+    "main.child.square": "400",
+    "main.out": "22"
+  },
+  "oracle_input_role": "authored reachability witness for fixture validation only; never supplied as request base input"
+}

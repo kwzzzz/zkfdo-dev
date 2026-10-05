@@ -2873,6 +2873,8 @@ fn reproduce_compiled_variant(
             library_paths: library_paths.clone(),
             circom_bin: None,
             compile_timeout_seconds: targets::DEFAULT_WRAPPER_COMPILE_TIMEOUT_SECONDS,
+            instance_capture: None,
+            capture_timeout_seconds: targets::DEFAULT_CAPTURE_TIMEOUT_SECONDS,
         },
     )?;
     let expected_instance_key =
@@ -4278,6 +4280,8 @@ fn reproduce_reachability_discovery(
             library_paths: pinned.library_paths.clone(),
             circom_bin: None,
             compile_timeout_seconds: targets::DEFAULT_WRAPPER_COMPILE_TIMEOUT_SECONDS,
+            instance_capture: None,
+            capture_timeout_seconds: targets::DEFAULT_CAPTURE_TIMEOUT_SECONDS,
         },
     )?;
     ensure!(

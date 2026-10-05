@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "case_id": "compatible_no_top_violation_observed",
+  "compiler": {
+    "version": "2.2.3",
+    "field": "bn128",
+    "component_optimization": "O0",
+    "entrypoint_optimization": "O0"
+  },
+  "candidate": {
+    "verdict": "compatible_no_top_violation_observed",
+    "reason": "컴포넌트 출력은 달라도 최상위 출력은 입력만으로 계산되어 동일하다.",
+    "component_r1cs_satisfied": true,
+    "component_differs_from_honest": true,
+    "entrypoint_r1cs_satisfied": true,
+    "top_output_differs": false
+  },
+  "control": {
+    "semantic_verdict": "no_violation",
+    "lifting_verdict": "compatible_no_top_violation_observed",
+    "reason": "알려진 정상 entrypoint 입력으로 계산한 정직한 witness에는 출력 위반이 없다.",
+    "sites": {
+      "main.child": "compatible_no_top_violation_observed"
+    },
+    "sites_found": 1
+  },
+  "mapping": {
+    "component_prefix": "main",
+    "entrypoint_prefix": "main.child",
+    "required_boundary_signals": [
+      "x",
+      "out"
+    ]
+  },
+  "support_profile": {
+    "input_linking": "direct_input",
+    "hash_inversion": false,
+    "eliminated_signal_recovery": false
+  },
+  "sites": {
+    "main.child": "compatible_no_top_violation_observed"
+  },
+  "sites_found": 1
+}

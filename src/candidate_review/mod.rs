@@ -1,4 +1,5 @@
 mod engine;
+pub mod lifting;
 mod predicate;
 pub(crate) mod r1cs;
 pub mod schema;

@@ -725,6 +725,7 @@ pub fn build(options: &InjectOptions) -> Result<InjectOutput> {
         input_assumptions: plan.contract.input_contract_statement.clone(),
         input_contract: Some(plan.contract.input_contract.clone()),
         known_defects: Vec::new(),
+        instance_capture: None,
     };
     let target_id = target_identity(&target_definition)?;
     let identity_dir = workspace.join("identity-wrappers");
@@ -1226,6 +1227,8 @@ fn discovery_options(entrypoint: &Path, libraries: &[PathBuf]) -> DiscoveryOptio
         library_paths: libraries.to_vec(),
         circom_bin: None,
         compile_timeout_seconds: targets::DEFAULT_WRAPPER_COMPILE_TIMEOUT_SECONDS,
+        instance_capture: None,
+        capture_timeout_seconds: targets::DEFAULT_CAPTURE_TIMEOUT_SECONDS,
     }
 }
 
@@ -2158,6 +2161,7 @@ fn chain_definition(
         input_assumptions: "Reachability-chain instance identity; not a planned target.".to_owned(),
         input_contract: None,
         known_defects: Vec::new(),
+        instance_capture: None,
     }
 }
 

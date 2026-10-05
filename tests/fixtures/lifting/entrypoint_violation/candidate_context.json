@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "component_inputs": {
+    "x": "3"
+  },
+  "entrypoint_inputs": {
+    "x": "3"
+  },
+  "entrypoint_assignment": {
+    "main.x": "3",
+    "main.child.x": "3",
+    "main.child.square": "9",
+    "main.child.out": "5",
+    "main.out": "5"
+  }
+}

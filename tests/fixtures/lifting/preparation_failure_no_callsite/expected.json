@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "case_id": "preparation_failure_no_callsite",
+  "compiler": {
+    "version": "2.2.3",
+    "field": "bn128",
+    "component_optimization": "O0",
+    "entrypoint_optimization": "O0"
+  },
+  "candidate": {
+    "verdict": "preparation_failure",
+    "reason": "entrypoint에 후보 컴포넌트가 인스턴스화되지 않아 대응할 호출 위치가 없다.",
+    "component_r1cs_satisfied": true,
+    "component_differs_from_honest": true,
+    "entrypoint_r1cs_satisfied": null,
+    "top_output_differs": null
+  },
+  "control": {
+    "schema_version": 2,
+    "semantic_verdict": "no_violation",
+    "lifting_verdict": null,
+    "sites": {},
+    "sites_found": 0,
+    "preparation": {
+      "status": "not_tcct_deviation",
+      "reason": "component_equals_honest"
+    },
+    "reason": "정직한 컴포넌트와 같은 할당은 TCCT 후보가 아니므로 호출 맥락 판정 전에 비이탈 자료로 분리한다."
+  },
+  "mapping": {
+    "component_prefix": "main",
+    "entrypoint_prefix": null,
+    "required_boundary_signals": [
+      "x",
+      "out"
+    ]
+  },
+  "support_profile": {
+    "input_linking": "no_callsite",
+    "hash_inversion": false,
+    "eliminated_signal_recovery": false
+  },
+  "sites": {},
+  "sites_found": 0,
+  "preparation": {
+    "status": "preparation_failure",
+    "reason": "no_call_site"
+  },
+  "notes": [
+    "준비 실패는 후보 배제나 최상위 출력 동일성을 뜻하지 않는다.",
+    "후보와 정직한 대조군의 컴포넌트 진위는 엔진 준비 단계와 독립적으로 검사한다."
+  ]
+}

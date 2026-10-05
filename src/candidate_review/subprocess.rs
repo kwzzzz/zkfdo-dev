@@ -81,6 +81,43 @@ pub(crate) fn run_bounded(command: &mut Command, timeout: Duration) -> Result<Bo
     })
 }
 
+/// Runs like [`run_bounded`], but writes stdout and stderr to `log` so callers can read
+/// tool verdicts afterwards. Returns the exit status and whether the deadline expired.
+pub(crate) fn run_bounded_logged(
+    command: &mut Command,
+    timeout: Duration,
+    log: &std::path::Path,
+) -> Result<(ExitStatus, bool)> {
+    ensure!(!timeout.is_zero(), "subprocess timeout must be positive");
+    let deadline = Instant::now()
+        .checked_add(timeout)
+        .context("subprocess deadline exceeds clock range")?;
+    let file = std::fs::File::create(log).context("create subprocess log")?;
+    command
+        .stdin(Stdio::null())
+        .stdout(file.try_clone().context("clone subprocess log")?)
+        .stderr(file);
+    #[cfg(unix)]
+    {
+        use std::os::unix::process::CommandExt;
+        command.process_group(0);
+    }
+    let mut child = command.spawn().context("start bounded subprocess")?;
+    loop {
+        if let Some(status) = child.try_wait().context("poll bounded subprocess")? {
+            return Ok((status, false));
+        }
+        let remaining = deadline.saturating_duration_since(Instant::now());
+        if remaining.is_zero() {
+            let kill_result = kill_process_group(&mut child);
+            let status = child.wait().context("reap timed-out subprocess")?;
+            kill_result?;
+            return Ok((status, true));
+        }
+        thread::sleep(Duration::from_millis(10).min(remaining));
+    }
+}
+
 fn drain_stream(mut stream: impl Read) -> io::Result<bool> {
     let mut nonempty = false;
     let mut buffer = [0_u8; 8 * 1024];
