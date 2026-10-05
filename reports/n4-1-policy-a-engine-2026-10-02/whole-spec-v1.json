@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "campaign_id": "A-02-inference-main-whole-v1",
+  "method": "whole",
+  "project": "inference-labs-inc/subnet-2-circom",
+  "recorded_revision": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+  "execution_sequence": "whole_then_split",
+  "total_budget_seconds": 600,
+  "attempt_cap_seconds": 600,
+  "initial_seed": 2026092931,
+  "seed_rule": "increment_per_pass",
+  "concurrency": 1,
+  "require_save_output": true,
+  "require_pinned_command_tools": true,
+  "preflight_compile_timeout_seconds": 600,
+  "source_snapshots": [
+    {
+      "id": "inference-main-clean-tree",
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-rq1-pilot-2026-09-29/inference-main/tree",
+      "tree_sha256": "adff17f27909f8719fc2883e7a54b9c1e4924df92961878c3f4a257d592bbf5d",
+      "candidate_globs": [
+        "**/*counterexample*.json"
+      ],
+      "expected_baseline_candidates": 0
+    }
+  ],
+  "seed_transport": {
+    "kind": "mutation_settings",
+    "argument": "--path_to_mutation_setting",
+    "base": {}
+  },
+  "pinned_files": [
+    {
+      "label": "plan",
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-rq1-pilot-2026-09-29/inference-main/campaign/small-first/block-1/plan.json",
+      "sha256": "b8843d8b816c6b36934556a98b78d75f711f714212015688e3b0025e76e1cc7f"
+    },
+    {
+      "label": "pilot-config",
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/dev-rq1-pilot-2026-09-29/pilot-config.json",
+      "sha256": "dc8adb794e6d8656ae71b5d778318381899fe3f771891caf37c5c3a415912d9b"
+    },
+    {
+      "label": "project-manifest",
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/reports/dev-rq1-pilot-2026-09-29/inference-main/manifest.json",
+      "sha256": "01df2a3c7495d26c574a401bfb42ce9b8b7efd4ea11f8426ff0553ef2eea5804"
+    },
+    {
+      "label": "prepared-metadata",
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/dev-rq1-pilot-2026-09-29/inference-main/prepared/small-first/prepare-099c7c89-5866-43fc-9e72-49beac54420d/prepared.json",
+      "sha256": "da6b439618f1250c9d55cf6319dc6a04cc10ae251c87bbe7215cacd31b244122"
+    },
+    {
+      "label": "ranking-config",
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/configs/static-ranking.json",
+      "sha256": "8fed87764b001245d600307f7ba7d8453e88e3b977afda656014eac83ea32d26"
+    },
+    {
+      "label": "zkfuzz",
+      "path": "/Users/miiz/.cargo/bin/zkfuzz",
+      "sha256": "ac2d9d16fd97ff803b121b7994aef804b4e191636f3f78660ff6ecd6c9ae4edd"
+    },
+    {
+      "label": "circom",
+      "path": "/Users/miiz/.cargo/bin/circom",
+      "sha256": "8991887889c2a74d6fc704d5689ada4cc76fba004e866c987de6cbf3b3db6227"
+    },
+    {
+      "label": "runner",
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/scripts/run_policy_a_engine.py",
+      "sha256": "c408ccbad8cc0847bc471b7b38cde0c21d81071157c50b95ab943b16055f874d"
+    },
+    {
+      "label": "runner-test",
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/tests/policy_a_engine_test.py",
+      "sha256": "09413460e37e1bf0174ddbf615e5bf21024b78ac7fbbdeb9945f8138b70db78e"
+    }
+  ],
+  "pinned_trees": [
+    {
+      "label": "zkbugs-circom-dependencies",
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies",
+      "tree_sha256": "5641746c77ce4fde88750166331d4bc4d6d32acfaddc9d5f71de947988392abf"
+    }
+  ],
+  "review_policy": "all new candidates unreviewed; location and hash are not defect or cause verdicts",
+  "targets": [
+    {
+      "target_id": "inference-main-production-entrypoint",
+      "label": "inference-main src/circuit.circom production entrypoint",
+      "source_snapshot_id": "inference-main-clean-tree",
+      "entrypoint_relative": "src/circuit.circom",
+      "entrypoint_sha256": "f1b6abc4987d25cb53f9da6a72ade48703e99ba9499badb8c3dfee242c3a7464",
+      "command": [
+        "/Users/miiz/.cargo/bin/zkfuzz",
+        "{entrypoint}",
+        "--prime",
+        "bn128",
+        "--search_mode",
+        "ga",
+        "--save_output",
+        "-l",
+        "{workspace}",
+        "-l",
+        "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies",
+        "-l",
+        "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies/circomlib"
+      ],
+      "preflight_compile_command": [
+        "/Users/miiz/.cargo/bin/circom",
+        "{entrypoint}",
+        "--r1cs",
+        "--prime",
+        "bn128",
+        "--output",
+        "{compile_output}",
+        "-l",
+        "{workspace}",
+        "-l",
+        "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies",
+        "-l",
+        "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies/circomlib"
+      ]
+    }
+  ]
+}

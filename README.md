@@ -1,14 +1,16 @@
 # zkfDO
 
-`zkfDO` is a Rust CLI by team `kwzzzz` for ranking Circom fuzzing targets and scheduling zkFuzz runs under a limited time budget.
+`zkfDO` is a Rust CLI by team `kwzzzz` for constructing Circom component-analysis targets from a project entrypoint, managing zkFuzz runs, and linking results to review evidence.
 
 Repository: <https://github.com/kwzzzz/zkfdo-dev>
 
-The project does not reimplement zkFuzz. It scans Circom projects, extracts target features, ranks targets by estimated vulnerability risk and execution cost, and invokes an existing zkFuzz binary as a budget-limited subprocess.
+The project does not reimplement zkFuzz. Its current research focus is the applicability, reviewed discoveries, and total cost of automatic decomposition compared with whole-circuit analysis. Caller-context screening is a proposed validity component; static ranking is a secondary analysis. See the [current goals and task list](docs/plan_revision_2026-10-01.md) and [evaluation design](docs/evaluation_plan_2026-10-01.md).
 
 ## Status
 
-As of 2026-09-23, the explicit prepare → plan → run → evaluate pipeline has rediscovered and reviewed one distinct known original-component cause in each of the controlled-v1.1, controlled-v2, and controlled-v3 development campaigns. These campaigns have different targets and protocols, so their findings are not a pooled performance score. No project-caller defect is confirmed. Controlled-v3's static risk scores tied within both vulnerable/fixed pairs and its fixed variants were ordered first; general ranking superiority is unproven. A non-zkbugs large-project study and a broader held-out evaluation remain open. See the [research goal](docs/problem_statement.md), [evaluation plan](docs/evaluation_plan.md), and [controlled-v3 development pilot](reports/controlled-v3-pilot-2026-09-23/REPORT.md).
+For paper writing, start with the [evidence index](docs/paper_evidence_index.md) and [research checkpoint](reports/research-checkpoint-2026-10-01/REPORT.md). The latest work adds normal-execution evidence on two small fixtures and fixes the reproduced offline aggregation errors (297 Rust tests passed, 22 ignored, as reported by the repair task). Preparation savings do not establish lower total processing cost. The [next normal compatibility experiment](docs/next_normal_compatibility_2026-10-01.md) is ready for handoff and has not started.
+
+As of 2026-10-01, controlled-v1.1, controlled-v2, and controlled-v3 each contain a reviewed rediscovery of a different known original-component cause. Their protocols differ, so the findings are not a pooled performance score. The later [P2 development pilot](reports/dev-rq1-pilot-2026-09-29/README.md) gives a positive decomposition signal on inference, but its known-defect candidates were not separately reviewed; zk-email required manual component runs after preparation failed. These are development observations, not independent evidence of general superiority or confirmed project impact. A broader held-out evaluation and caller-context screening remain unfinished. The [N1 metadata audit](reports/sok-artifact-audit-2026-10-01/REPORT.md) and [N2 methodology review](reports/methodology-review-2026-10-01/REVIEW.md) are complete. miiz's [versioned N3 decision](docs/scope_decision_accepted_2026-10-01.md) adopts the corrected scope, design A preference, comparability-first stage order, and work caps. N3 is complete; the [N4-1 recording and offline aggregation paths](docs/evidence_aggregate_v1.md) are implemented and structurally tested with non-security synthetic metadata. N4 remains in progress and N4-2 has not started. The preserved draft, final-decision source, and review retain their historical text. The protocol remains unfrozen; this scope includes no repeated-fuzzing runner or new candidate-generation features or runs. Structural checks do not establish whole-candidate semantic validity or pass the full N4-1 gate.
 
 Implemented now:
 
@@ -25,6 +27,7 @@ Implemented now:
 - uniform per-target budget scheduling and experiment summaries
 - explicit corpus preparation, eight static ranking strategies, saved plans, and execution in ranked order under a total budget
 - evaluation JSON separating backend candidates, reviewed original-component defects, and project-context defects
+- offline common evidence/review records with source hashes, explicit unknown reasons, separated review levels, time bases, and cause links
 - repeated-pilot validation and aggregation over paired backend seeds
 - placeholder modules for reports and database storage
 
@@ -66,6 +69,8 @@ New corpus manifests can use schema 2 to declare an `input_contract` for each ta
 
 `experiment evaluate --confirmations FILE` accepts legacy confirmation schema 1 and structured schema 2. Schema 2 can record the review of input preconditions, fixed-original constraints, and a pre-specified property violation. Only records whose evidence origin is `backend-execution`, whose run and target match the plan, and whose backend status is `bug_found` can contribute to execution-discovery metrics. The evaluator checks this structure and the existence of evidence files; it does not prove the reviewer's conclusions.
 
+Stored metadata can also be imported offline with `zkfDO experiment record --request import-request.json --output new-record.json`. It writes a new hash-linked record without overwriting inputs, opening candidate payloads, generating candidates, or rerunning semantic review. Aggregate these records with `zkfDO experiment aggregate --request aggregate-request.json --output new-aggregate.json`. The [aggregation guide](docs/evidence_aggregate_v1.md) describes v1/v2 compatibility, conflict handling, completeness, scoped cause registration, and candidate-linked timing. The [original record v1 guide](docs/evidence_record_v1.md) is preserved as version history. Existing `experiment evaluate` behavior is unchanged; the new record is not a replacement evaluation score.
+
 ## Commands
 
 - `scan`: discover Circom files in a project
@@ -76,6 +81,7 @@ New corpus manifests can use schema 2 to declare an `input_contract` for each ta
 - `run`: execute or dry-run zkFuzz for one target
 - `report`: reserved report command (currently a placeholder)
 - `experiment prepare|plan|run|evaluate`: prepare explicit targets, freeze a static order, execute it, and evaluate stored evidence
+- `experiment record`: import stored value-free execution/review metadata into a new common record; no candidate generation or semantic re-review
 
 ## Development
 

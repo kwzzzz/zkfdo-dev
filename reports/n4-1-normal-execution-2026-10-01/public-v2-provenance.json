@@ -1,0 +1,30 @@
+{
+  "version": "normal-preparation-publication-v2",
+  "edited_at": "2026-10-01",
+  "owner": "miiz",
+  "kind": "editorial-copy-not-new-execution",
+  "preserves": [
+    "measurements",
+    "conditions",
+    "verdicts",
+    "original-bytes"
+  ],
+  "edits": [
+    {
+      "source": "reports/n4-1-normal-execution-2026-10-01/REPORT.md",
+      "source_sha256": "d70d3213914a642f7bb71682a8d04456eee8ab17970f60150f61f6ebecda636c",
+      "public_copy": "reports/n4-1-normal-execution-2026-10-01/REPORT.public-v2.md",
+      "public_sha256": "70734820e1c31a5a2d84854be49f01ed1fd5d27ca20aa78f40b9d0b8f7a55823",
+      "replaced_phrases": 2,
+      "change": "neutral-work-assignment-wording-only"
+    },
+    {
+      "source": "reports/n4-1-normal-execution-2026-10-01/SCOPE.md",
+      "source_sha256": "1d6f37dee7313168f83af7376b60e1dd97c9d6e33f0f486da99bd762e75b9953",
+      "public_copy": "reports/n4-1-normal-execution-2026-10-01/SCOPE.public-v2.md",
+      "public_sha256": "0e548d0a27d3223d317f6e98317f8cd3e7bf0018f5134eb785dd952ae3fc54c2",
+      "replaced_phrases": 1,
+      "change": "neutral-work-assignment-wording-only"
+    }
+  ]
+}

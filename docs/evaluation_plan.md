@@ -1,5 +1,7 @@
 # Evaluation Plan
 
+> **Current plan (2026-10-01):** use [evaluation_plan_2026-10-01.md](evaluation_plan_2026-10-01.md) and [plan_revision_2026-10-01.md](plan_revision_2026-10-01.md). RQ1 now centers on applicability, reviewed discoveries, and total cost; caller-context screening is a validity requirement, and ranking is secondary. The evaluation protocol is not frozen. Everything below is historical reference, including the earlier research-question numbering and strategy requirements.
+
 > **Revised 2026-09-24:** see [plan_revision_2026-09-24.md](plan_revision_2026-09-24.md). The held-out evaluation uses budget-constrained project target sets; the required baselines are `random`, `small-first`, `path-order`, `risk-only`, and a new `cost-aware`; `analyzer-aware` and `adaptive` (RQ4) are moved to future work. Scarcity is created by one elapsed-time budget per project run in a single campaign (the separate top-K start-limit condition was cancelled on 2026-09-26); ranking quality is analyzed separately as planned placement of known defects and as execution-verified discoveries within the first k targets. Runs are per project, and results are aggregated with equal project weight and reported descriptively. The original plan below is kept for reference.
 
 Evaluation will compare target ordering, bug discovery latency, and useful fuzzing progress under equal fuzzing budgets. The goal is to show whether zkfDO makes zkFuzz more effective and manageable on larger Circom projects than naive execution strategies.

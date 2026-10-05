@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "evidence_id": "S-03-first-occurrence-metadata-v1",
+  "owner": "miiz",
+  "date": "2026-10-02",
+  "status": "partial_metadata_complete_semantic_review_not_performed",
+  "scope": {
+    "path": "reports/n4-1-a02-first-occurrence-metadata-2026-10-02/SCOPE.md",
+    "sha256": "4b74d66e02716f412b2718dafbe757cee5e8612b9722a45da406c914a4915845"
+  },
+  "inventory": {
+    "path": "reports/n4-1-a02-first-occurrence-metadata-2026-10-02/occurrence-inventory-v1.json",
+    "sha256": "344585cd7270db2dec889222eac323d5362088408d70d2d5ce22e23fd0ab48cc"
+  },
+  "inventory_table": {
+    "path": "reports/n4-1-a02-first-occurrence-metadata-2026-10-02/INVENTORY.md",
+    "sha256": "dd222bda6b67d772cdeefb3cd17b43fd33cadeff8af7ffbdc8909616f565c47d"
+  },
+  "cost_measurement": {
+    "path": "runs/n4-1-a02-first-occurrence-metadata-2026-10-02/inventory-measurement-v1.json",
+    "sha256": "cf57abdf09cf4dc0d7c76f7ade53b714006ac74026303bee2e07ae9badf934d0"
+  },
+  "scope_pin": {
+    "path": "runs/n4-1-a02-first-occurrence-metadata-2026-10-02/scope-pin-v1.json",
+    "sha256": "e7a0127351148c72ccc13429e298c704c40b97cbda920b0eae8740d9ba4e0fe1"
+  },
+  "selection": {
+    "observed_order": 1,
+    "attempt_index": 1,
+    "recorded_sha256": "dae6e8b397f2b25269f9711443449b73ba6ba86f4ca7a4397cf318fbfc143258",
+    "handoff_selection_matches": true,
+    "first_observed_among_ledger_occurrences": true,
+    "exact_first_generation_time_established": false,
+    "first_confirmed_defect_time_established": false
+  },
+  "selected_parent_observation_offset_seconds": 1.108243333,
+  "selected_attempt_completion_offset_seconds": 1.117240042,
+  "selected_semantics": {
+    "original_r1cs_satisfaction": "not_performed",
+    "two_independent_constraint_checks": 0,
+    "honest_witness_computation": "not_performed",
+    "output_or_abort_relation": "unresolved",
+    "first_divergence": "unresolved",
+    "cause_attribution": "unresolved",
+    "same_cause_as_S01": "hypothesis_only_not_verified",
+    "same_r1cs_as_S01": "not_verified",
+    "calling_context": "not_attempted",
+    "entrypoint_projection": "not_attempted",
+    "entrypoint_TCCT": "unresolved",
+    "reason": "specific_vulnerability_reproduction_and_validation_not_performed_under_current_execution_limits; not_a_technical_failure_or_negative_verdict"
+  },
+  "denominators": {
+    "source_occurrences": 31,
+    "selected": 1,
+    "selected_semantically_reviewed": 0,
+    "other_occurrences_not_reviewed_by_this_task": 30,
+    "semantic_reviews_completed_by_this_task": 0,
+    "source_snapshot_unreviewed": 31,
+    "concurrent_S04_status_imported": false,
+    "confirmed_cause_count": null,
+    "confirmed_cause_count_reason": "semantic_evidence_absent_not_a_zero_cause_claim"
+  },
+  "verification": {
+    "ledger_attempts_contiguous": true,
+    "occurrences_match_evidence_v2": 31,
+    "time_missing": 0,
+    "time_ties": 0,
+    "metadata_mismatches": 0,
+    "candidate_file_presence_checks": 31,
+    "candidate_file_size_checks": 31,
+    "candidate_file_content_reads": 0,
+    "candidate_file_rehashes": 0,
+    "independent_metadata_crosscheck": "same selection/counts/timing confirmed; no candidate or raw log access"
+  },
+  "cost": {
+    "metadata_extract_compare_write_wall_seconds": 0.013461457972880453,
+    "metadata_measurement_boundary": "metadata input parsing, SHA of four metadata source files, candidate stat only, comparison, inventory JSON and Markdown writes; excludes setup, other document reads, discussion, and report writing",
+    "semantic_process_count": 0,
+    "semantic_review_wall_seconds": null,
+    "semantic_review_unknown_reason": "not_performed; zero process count does not mean a completed zero-cost review",
+    "human_active_seconds": null,
+    "human_active_unknown_reason": "not_measured"
+  },
+  "code_changes": false,
+  "cargo_checks": "not_run_no_code_or_test_changes",
+  "N4_1_complete": false,
+  "N5_frozen": false
+}

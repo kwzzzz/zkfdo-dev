@@ -1,0 +1,424 @@
+{
+  "schema_version": 1,
+  "record_version": "normal-preparation-results-v1",
+  "owner": "miiz",
+  "scope": {
+    "path": "reports/n4-1-normal-execution-2026-10-01/SCOPE.md",
+    "sha256": "1d6f37dee7313168f83af7376b60e1dd97c9d6e33f0f486da99bd762e75b9953"
+  },
+  "conditions": {
+    "path": "runs/n4-1-normal-execution-2026-10-01/run-v1/conditions.json",
+    "sha256": "226ad292a809678f6ac1c5b97d5b3b6343453f4b08d34fd235d550e1a842da00"
+  },
+  "raw_summary": {
+    "path": "runs/n4-1-normal-execution-2026-10-01/run-v1/summary.json",
+    "sha256": "fa9efa9d36cd61114642d3312c1d295ab221be2979361e0052c223f2c967b4f0"
+  },
+  "process_ledger": {
+    "path": "runs/n4-1-normal-execution-2026-10-01/run-v1/commands.jsonl",
+    "sha256": "284c8a280da3be5f7544eaf283a8eb20aff94b04a79e333ccb4e751eea3e3f14"
+  },
+  "artifact_manifest": {
+    "path": "runs/n4-1-normal-execution-2026-10-01/run-v1/artifact-manifest.json",
+    "sha256": "201b19c09ab7c06d9d988274d4de4f4030e81180a01507a7594b6399cc7fb9ca"
+  },
+  "tool_snapshots": {
+    "path": "runs/n4-1-normal-execution-2026-10-01/provenance-v1/receipt.json",
+    "sha256": "95e1be8b08e3ffb1c2aa831f801d8526b8d543b0417e3838f8da3e239ca043b7"
+  },
+  "execution_script": {
+    "path": "runs/n4-1-normal-execution-2026-10-01/run-v1/measurement-script.py",
+    "sha256": "3cc384a4fa6e52f048073bc1626e03b9370049d221c90090a05f181d6fa80880"
+  },
+  "script": {
+    "path": "scripts/measure_normal_preparation.py",
+    "sha256": "3cc384a4fa6e52f048073bc1626e03b9370049d221c90090a05f181d6fa80880"
+  },
+  "test": {
+    "path": "tests/normal_preparation_test.py",
+    "sha256": "5eafd2a320d5599e4692b05f4dc0f98860ca22131c5e29d46b51612fdd29e278"
+  },
+  "tools": {
+    "circom": {
+      "file": {
+        "path": "/Users/miiz/.cargo/bin/circom",
+        "sha256": "8991887889c2a74d6fc704d5689ada4cc76fba004e866c987de6cbf3b3db6227"
+      },
+      "version_line": "circom compiler 2.2.3",
+      "version_command": "0000-version"
+    },
+    "node": {
+      "file": {
+        "path": "/opt/homebrew/Cellar/node/26.0.0/bin/node",
+        "sha256": "08dad0581f00a0cabf4d49ec92ca1f25fdfd01c2c18fa8e92b35f04d4c24c164"
+      },
+      "version_line": "v26.0.0",
+      "version_command": "0001-version"
+    },
+    "snarkjs": {
+      "file": {
+        "path": "/opt/homebrew/lib/node_modules/snarkjs/build/cli.cjs",
+        "sha256": "6d787e37a4d1a2c6dd6032dadca09c0b3b007d4d4578bb6232a98136555d051a"
+      },
+      "version_line": "snarkjs@0.7.6",
+      "version_command": "0002-version"
+    },
+    "zkfdo": {
+      "file": {
+        "path": "target/debug/zkfDO",
+        "sha256": "227921c4c6aaf946580cbefc4a416c4833f41b200879d22751bbcf2498d83a60"
+      },
+      "version_line": "zkfDO 0.1.0",
+      "version_command": "0003-version"
+    }
+  },
+  "source_files": [
+    {
+      "path": "runs/n4-1-normal-execution-2026-10-01/run-v1/projects/arithmetic-control/library.circom",
+      "sha256": "8f8f740c206672dd31ec37e4f64db2f0a05bba49c0ca3e71f2247917a08cd2a5"
+    },
+    {
+      "path": "runs/n4-1-normal-execution-2026-10-01/run-v1/projects/arithmetic-control/main.circom",
+      "sha256": "f317a8833233b0da8e81da8553906e00b59bf6c7f0739966b05457cfc66803a1"
+    },
+    {
+      "path": "runs/n4-1-normal-execution-2026-10-01/run-v1/projects/existing-discovery/helpers.circom",
+      "sha256": "b34a868d3ced029cdb2e6aff4a940f2a613ccf8f60b796a8b9618f63d7bf970e"
+    },
+    {
+      "path": "runs/n4-1-normal-execution-2026-10-01/run-v1/projects/existing-discovery/library.circom",
+      "sha256": "02ff57ffa4abd9de316c0815636284886f34a0f375d7fa9f2fe4c4a4b055589c"
+    },
+    {
+      "path": "runs/n4-1-normal-execution-2026-10-01/run-v1/projects/existing-discovery/main.circom",
+      "sha256": "765001555cd4121290909f5b4282385a6301cda4c3c2e8df794960252479bc94"
+    }
+  ],
+  "host": "Darwin-25.2.0-arm64-arm-64bit-Mach-O",
+  "machine": "arm64",
+  "python": "3.14.7",
+  "compiler_flags": [
+    "--O0",
+    "--r1cs",
+    "--wasm",
+    "--sym",
+    "--inspect",
+    "--prime",
+    "bn128"
+  ],
+  "cache_conditions": "empty per arm; compile reuse within arm only; OS cache not flushed",
+  "order": [
+    [
+      1,
+      "per-call"
+    ],
+    [
+      1,
+      "per-unit"
+    ],
+    [
+      2,
+      "per-unit"
+    ],
+    [
+      2,
+      "per-call"
+    ]
+  ],
+  "process_stage_counts": {
+    "version": 4,
+    "discovery": 8,
+    "compile": 52,
+    "normal-calculate": 168,
+    "constraint-check": 168,
+    "witness-export": 168
+  },
+  "pipeline_failed_processes": 0,
+  "version_probe_nonzero": [
+    {
+      "id": "0002-version",
+      "exit_code": 99,
+      "stdout": {
+        "path": "runs/n4-1-normal-execution-2026-10-01/run-v1/versions/0002-version.stdout.log",
+        "sha256": "61f4814554a9eb564e2e5f155ee34ac235c1eef8e5424e2cc7a30a4c3fe57f19"
+      },
+      "stderr": {
+        "path": "runs/n4-1-normal-execution-2026-10-01/run-v1/versions/0002-version.stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "arms": [
+    {
+      "case": "existing-discovery",
+      "repetition": 1,
+      "mode": "per-call",
+      "status": "passed",
+      "call_sites": 7,
+      "compile_units": 7,
+      "boundary_instances": 7,
+      "compile_attempts": 8,
+      "compile_processes": 8,
+      "compile_successes": 8,
+      "compile_failures": 0,
+      "preparation_seconds": 0.17262637498788536,
+      "normal_check_seconds": 10.377362833009101,
+      "compile_wall_seconds_sum": 0.11054316599620506,
+      "discovery_wall_seconds": 0.018974625039845705,
+      "blocked_stage": null,
+      "failures": [],
+      "original_normal_checks": 3,
+      "boundary_normal_checks": 21,
+      "boundary_matches": 21,
+      "result": {
+        "path": "runs/n4-1-normal-execution-2026-10-01/run-v1/existing-discovery/repeat-1-per-call/result.json",
+        "sha256": "e55d894b517579b8406cb069d68506df839db688d59b3d99ab6a35f68494795a"
+      }
+    },
+    {
+      "case": "existing-discovery",
+      "repetition": 1,
+      "mode": "per-unit",
+      "status": "passed",
+      "call_sites": 7,
+      "compile_units": 7,
+      "boundary_instances": 7,
+      "compile_attempts": 8,
+      "compile_processes": 8,
+      "compile_successes": 8,
+      "compile_failures": 0,
+      "preparation_seconds": 0.15268370800185949,
+      "normal_check_seconds": 10.141683374997228,
+      "compile_wall_seconds_sum": 0.09987103997264057,
+      "discovery_wall_seconds": 0.010530499974265695,
+      "blocked_stage": null,
+      "failures": [],
+      "original_normal_checks": 3,
+      "boundary_normal_checks": 21,
+      "boundary_matches": 21,
+      "result": {
+        "path": "runs/n4-1-normal-execution-2026-10-01/run-v1/existing-discovery/repeat-1-per-unit/result.json",
+        "sha256": "efcd7a570f2bac29928969cf9e3e42e15ee650cf7db5f082f579b7953a74ff2f"
+      }
+    },
+    {
+      "case": "existing-discovery",
+      "repetition": 2,
+      "mode": "per-unit",
+      "status": "passed",
+      "call_sites": 7,
+      "compile_units": 7,
+      "boundary_instances": 7,
+      "compile_attempts": 8,
+      "compile_processes": 8,
+      "compile_successes": 8,
+      "compile_failures": 0,
+      "preparation_seconds": 0.14897916599875316,
+      "normal_check_seconds": 10.303434291970916,
+      "compile_wall_seconds_sum": 0.08767258404986933,
+      "discovery_wall_seconds": 0.02045933302724734,
+      "blocked_stage": null,
+      "failures": [],
+      "original_normal_checks": 3,
+      "boundary_normal_checks": 21,
+      "boundary_matches": 21,
+      "result": {
+        "path": "runs/n4-1-normal-execution-2026-10-01/run-v1/existing-discovery/repeat-2-per-unit/result.json",
+        "sha256": "6903d4f20e88d1a81866ab5f0b0041a70ca4f7307c8829ace3385d2d8face105"
+      }
+    },
+    {
+      "case": "existing-discovery",
+      "repetition": 2,
+      "mode": "per-call",
+      "status": "passed",
+      "call_sites": 7,
+      "compile_units": 7,
+      "boundary_instances": 7,
+      "compile_attempts": 8,
+      "compile_processes": 8,
+      "compile_successes": 8,
+      "compile_failures": 0,
+      "preparation_seconds": 0.1422110419953242,
+      "normal_check_seconds": 10.482520000019576,
+      "compile_wall_seconds_sum": 0.09025087498594075,
+      "discovery_wall_seconds": 0.010017291002441198,
+      "blocked_stage": null,
+      "failures": [],
+      "original_normal_checks": 3,
+      "boundary_normal_checks": 21,
+      "boundary_matches": 21,
+      "result": {
+        "path": "runs/n4-1-normal-execution-2026-10-01/run-v1/existing-discovery/repeat-2-per-call/result.json",
+        "sha256": "01295a01c413d75d8a23aef38496c6315bfce9f531a0f0b9cb89b7a7d4940f50"
+      }
+    },
+    {
+      "case": "arithmetic-control",
+      "repetition": 1,
+      "mode": "per-call",
+      "status": "passed",
+      "call_sites": 5,
+      "compile_units": 3,
+      "boundary_instances": 5,
+      "compile_attempts": 6,
+      "compile_processes": 6,
+      "compile_successes": 6,
+      "compile_failures": 0,
+      "preparation_seconds": 0.15976216696435586,
+      "normal_check_seconds": 7.815335916006006,
+      "compile_wall_seconds_sum": 0.08993383194319904,
+      "discovery_wall_seconds": 0.03735554200829938,
+      "blocked_stage": null,
+      "failures": [],
+      "original_normal_checks": 3,
+      "boundary_normal_checks": 15,
+      "boundary_matches": 15,
+      "result": {
+        "path": "runs/n4-1-normal-execution-2026-10-01/run-v1/arithmetic-control/repeat-1-per-call/result.json",
+        "sha256": "7a4f8eb0ab46cfd30f8fe32d4f41561d9a050ff4a3654e00f589b796f1821931"
+      }
+    },
+    {
+      "case": "arithmetic-control",
+      "repetition": 1,
+      "mode": "per-unit",
+      "status": "passed",
+      "call_sites": 5,
+      "compile_units": 3,
+      "boundary_instances": 5,
+      "compile_attempts": 4,
+      "compile_processes": 4,
+      "compile_successes": 4,
+      "compile_failures": 0,
+      "preparation_seconds": 0.07942654198268428,
+      "normal_check_seconds": 7.639796333969571,
+      "compile_wall_seconds_sum": 0.04030758293811232,
+      "discovery_wall_seconds": 0.010230041982140392,
+      "blocked_stage": null,
+      "failures": [],
+      "original_normal_checks": 3,
+      "boundary_normal_checks": 15,
+      "boundary_matches": 15,
+      "result": {
+        "path": "runs/n4-1-normal-execution-2026-10-01/run-v1/arithmetic-control/repeat-1-per-unit/result.json",
+        "sha256": "5eb14bedee4509a88feecb0fe3a137eb66ad1d6bdeaa029be815280ff074e990"
+      }
+    },
+    {
+      "case": "arithmetic-control",
+      "repetition": 2,
+      "mode": "per-unit",
+      "status": "passed",
+      "call_sites": 5,
+      "compile_units": 3,
+      "boundary_instances": 5,
+      "compile_attempts": 4,
+      "compile_processes": 4,
+      "compile_successes": 4,
+      "compile_failures": 0,
+      "preparation_seconds": 0.07790750003186986,
+      "normal_check_seconds": 7.759046582970768,
+      "compile_wall_seconds_sum": 0.039300457981880754,
+      "discovery_wall_seconds": 0.009904915990773588,
+      "blocked_stage": null,
+      "failures": [],
+      "original_normal_checks": 3,
+      "boundary_normal_checks": 15,
+      "boundary_matches": 15,
+      "result": {
+        "path": "runs/n4-1-normal-execution-2026-10-01/run-v1/arithmetic-control/repeat-2-per-unit/result.json",
+        "sha256": "f5bbd44f9881c77d5d7192544e76a663137abd22a9688418a97169bfbad22ef9"
+      }
+    },
+    {
+      "case": "arithmetic-control",
+      "repetition": 2,
+      "mode": "per-call",
+      "status": "passed",
+      "call_sites": 5,
+      "compile_units": 3,
+      "boundary_instances": 5,
+      "compile_attempts": 6,
+      "compile_processes": 6,
+      "compile_successes": 6,
+      "compile_failures": 0,
+      "preparation_seconds": 0.10051279200706631,
+      "normal_check_seconds": 7.308391083963215,
+      "compile_wall_seconds_sum": 0.058692291961051524,
+      "discovery_wall_seconds": 0.010298374982085079,
+      "blocked_stage": null,
+      "failures": [],
+      "original_normal_checks": 3,
+      "boundary_normal_checks": 15,
+      "boundary_matches": 15,
+      "result": {
+        "path": "runs/n4-1-normal-execution-2026-10-01/run-v1/arithmetic-control/repeat-2-per-call/result.json",
+        "sha256": "da83bacc7f418ae20f7d5517b825a5b0e51119c270b5001a62a0b6a4c0ec71e2"
+      }
+    }
+  ],
+  "condition_totals": [
+    {
+      "case": "existing-discovery",
+      "mode": "per-call",
+      "repetitions": 2,
+      "compile_processes": 16,
+      "preparation_mean_seconds": 0.15741870849160478,
+      "normal_check_mean_seconds": 10.429941416514339,
+      "compile_wall_mean_seconds": 0.10039702049107291,
+      "boundary_matches": 42
+    },
+    {
+      "case": "existing-discovery",
+      "mode": "per-unit",
+      "repetitions": 2,
+      "compile_processes": 16,
+      "preparation_mean_seconds": 0.15083143700030632,
+      "normal_check_mean_seconds": 10.222558833484072,
+      "compile_wall_mean_seconds": 0.09377181201125495,
+      "boundary_matches": 42
+    },
+    {
+      "case": "arithmetic-control",
+      "mode": "per-call",
+      "repetitions": 2,
+      "compile_processes": 12,
+      "preparation_mean_seconds": 0.13013747948571108,
+      "normal_check_mean_seconds": 7.561863499984611,
+      "compile_wall_mean_seconds": 0.07431306195212528,
+      "boundary_matches": 30
+    },
+    {
+      "case": "arithmetic-control",
+      "mode": "per-unit",
+      "repetitions": 2,
+      "compile_processes": 8,
+      "preparation_mean_seconds": 0.07866702100727707,
+      "normal_check_mean_seconds": 7.6994214584701695,
+      "compile_wall_mean_seconds": 0.039804020459996536,
+      "boundary_matches": 30
+    }
+  ],
+  "validation": {
+    "cargo_fmt": "cargo fmt -- --check passed; formatter check avoids modifying concurrently owned record/aggregate sources",
+    "clippy": "cargo clippy --all-targets --all-features -- -D warnings passed",
+    "cargo_test": {
+      "passed": 285,
+      "failed": 0,
+      "ignored": 22
+    },
+    "python_tests": {
+      "command": "python3 -m unittest discover -s tests -p 'normal_preparation_test.py' -v",
+      "passed": 4,
+      "failed": 0
+    }
+  },
+  "limitations": [
+    "Two fixed benign arithmetic fixtures; three normal inputs per arm.",
+    "Current automatic discovery/wrappers held constant; actual artifact compile cache disabled/enabled, not historical binary comparison.",
+    "OS cache not flushed; two order-balanced repetitions; no statistical performance or cold-cache claim.",
+    "Normal computation, all-constraint satisfaction and scalar boundary agreement only; no general semantic equivalence or detection claim.",
+    "No experiment aggregate, fuzzing, defect reproduction, new external or evaluation candidates."
+  ]
+}

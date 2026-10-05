@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "artifact_id": "C-01-normal-boundary-readiness-v1",
+  "owner": "miiz",
+  "date": "2026-10-02",
+  "status": "partial_existing_normal_regressions_checked_production_mapping_not_performed",
+  "scope": {
+    "path": "reports/c01-normal-boundary-readiness-2026-10-02/SCOPE.md",
+    "sha256": "d0c53e1a169b27721357a0c92839c94f19c0505131f5739ee083750bd27c5d7d"
+  },
+  "baseline": {
+    "path": "runs/c01-normal-boundary-readiness-2026-10-02/baseline-v1.json",
+    "sha256": "87dbb15fc134cdbb1ee139d087855c3de79eff3a32d45a7c3dc9c96dff9b17e8"
+  },
+  "test_results": {
+    "path": "runs/c01-normal-boundary-readiness-2026-10-02/test-results-v1.json",
+    "sha256": "6767fc8219292ad7b68ee8b0db25aeef37f74f90ded067ec0c71556af759a0d5"
+  },
+  "existing_regressions": {
+    "passed": 16,
+    "failed": 0,
+    "test_file_counts": [
+      15,
+      1
+    ],
+    "new_tests_added": 0,
+    "process_wall_seconds_sum": 0.25881379103520885
+  },
+  "production": {
+    "requested_template_configurations": 2,
+    "callsite_count": null,
+    "callsite_count_unknown_reason": "target_specific_enumeration_not_performed_under_execution_limits; not_a_zero_or_missing_source_claim",
+    "callsite_inventory_complete": false,
+    "source_and_plan_mapping": "not_performed",
+    "compiled_symbol_mapping": "not_performed",
+    "normal_input_availability": "unknown_not_inspected",
+    "normal_witness_availability": "unknown_not_inspected",
+    "normal_boundary_execution": "not_run",
+    "normal_boundary_success_count": null,
+    "normal_boundary_unsupported_count": null,
+    "success_rate": null,
+    "candidate_reachability": "unresolved",
+    "entrypoint_TCCT": "unresolved",
+    "project_defect": "unresolved"
+  },
+  "historical_NB01": {
+    "source_report": {
+      "path": "reports/n4-1-normal-boundary-replay-2026-10-02/REPORT.md",
+      "sha256": "cc70c99ed3c3a9bf1eb392d666328e6ef7ba7cfcb96f3919d346561752659d7a"
+    },
+    "original_input_conditions": 9,
+    "unique_callsites": 15,
+    "boundary_input_conditions": 45,
+    "callsites_per_fixture": [
+      7,
+      5,
+      3
+    ],
+    "wrapper_compile_configurations_per_fixture": [
+      7,
+      3,
+      2
+    ],
+    "new_45_boundary_replay": false,
+    "normal_fixture_evidence_not_production_evidence": true
+  },
+  "limits": [
+    "Target-specific production signal bindings would support projection of known vulnerability candidates and were not implemented.",
+    "Original candidate JSON values, production source/plan/symbol/witness contents, and S-05 files were not opened.",
+    "The tested helper supports only in/out scalar or contiguous one-dimensional ports of length 1..8.",
+    "No optimizer signal recovery or arbitrary-port mapping was added.",
+    "A normal fixture result is not a candidate reachability, entrypoint TCCT, or project-defect verdict."
+  ],
+  "cost": {
+    "regression_process_wall_seconds_sum": 0.25881379103520885,
+    "production_preparation_seconds": null,
+    "production_preparation_status": "not_performed",
+    "production_normal_verification_seconds": null,
+    "production_normal_verification_status": "not_performed",
+    "human_active_seconds": null,
+    "human_active_unknown_reason": "not_measured"
+  },
+  "code_changes": false,
+  "cargo_checks": "not_run_no_code_or_test_changes",
+  "N4_1_complete": false,
+  "N5_frozen": false
+}
