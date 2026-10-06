@@ -90,3 +90,7 @@ cargo fmt
 cargo clippy --all-targets --all-features -- -D warnings
 cargo test
 ```
+
+## License
+
+zkfDO's own code is licensed under the [MIT License](LICENSE). The `datasets/`, `reports/` and `experiments/` directories also contain third-party circuits and patches kept as research evidence. Those files keep their upstream licenses, and some upstream projects grant no license at all. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) before reusing or publishing them.
