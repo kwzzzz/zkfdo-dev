@@ -1,0 +1,1255 @@
+{
+ "schema_version": 1,
+ "task": "N6 branch B target list",
+ "protocol": "docs/n5_evaluation_protocol_v1_2026-10-06.md",
+ "rule": {
+  "role": "deployment_main (E-02 path rule)",
+  "min_constraints": 100000,
+  "preparation": [
+   "success",
+   "partial"
+  ],
+  "stage1_max": 10,
+  "per_repository": 2,
+  "stage1_order": "round-robin over repositories in case-insensitive name order; within a repository by constraints then entrypoint key",
+  "clarification": "N5 v1 did not say how to cap at 10 when more than 5 repositories qualify; this round-robin was fixed before any branch-B zkFuzz run"
+ },
+ "zkfuzz_results_seen": false,
+ "stage1": [
+  {
+   "source": "E-02",
+   "identifier": "6079a717f929aaf04a04e329",
+   "repository": "anon-aadhaar/anon-aadhaar",
+   "commit": "4dad918761cfb1d7d5ed9918dcd796d0cb23ae82",
+   "entrypoint_key": "source_main:packages/circuits/src/aadhaar-verifier.circom",
+   "constraints": 1115080,
+   "preparation_status": "success",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/6079a717f929aaf04a04e329",
+   "zkbugs_project": false,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/6079a717f929aaf04a04e329/plan.json",
+    "sha256": "e05eff0f81da30da3b02dd34fac5696dd478dff62b195faa9a0a0628b1075f10"
+   },
+   "stage": 1
+  },
+  {
+   "source": "F-01",
+   "identifier": "340107e1f1d8b0a45656cffa",
+   "repository": "DoraFactory/Vota-Circuits",
+   "commit": "916579f6063b69dfd3cc2fce406888024faf7ecf",
+   "entrypoint_key": "source_main:circuits/maci/power/prod/tally.circom",
+   "constraints": 4802568,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/f01-2026-10-03/measurements/340107e1f1d8b0a45656cffa",
+   "zkbugs_project": false,
+   "plan": {
+    "path": "runs/f01-2026-10-03/measurements/340107e1f1d8b0a45656cffa/plan.json",
+    "sha256": "f1cc1707d59016a8168a015bbc7993bdaf5f286ecd1a2049923e0c4293fbfe35"
+   },
+   "stage": 1
+  },
+  {
+   "source": "F-01",
+   "identifier": "b5b5cf5dacdeebd430b519f8",
+   "repository": "iden3/circuits",
+   "commit": "360715607a240041f49eb46c543fc450051c4cb7",
+   "entrypoint_key": "source_main:circuits/credentialAtomicQueryV3.circom",
+   "constraints": 114758,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/f01-2026-10-03/measurements/b5b5cf5dacdeebd430b519f8",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/f01-2026-10-03/measurements/b5b5cf5dacdeebd430b519f8/plan.json",
+    "sha256": "32311bdb54716657123a6ea2f75dcf45b383fd1a330aaa15b1276d0b8569dde9"
+   },
+   "stage": 1
+  },
+  {
+   "source": "F-01",
+   "identifier": "4c221df76273c0d7cf18048c",
+   "repository": "pantherfoundation/panther-core",
+   "commit": "0b078c8398de69a21b77e24405d86bdf3401fc82",
+   "entrypoint_key": "source_main:circuits/circuits/mainZAccountRenewalV1.circom",
+   "constraints": 111270,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/f01-2026-10-03/measurements/4c221df76273c0d7cf18048c",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/f01-2026-10-03/measurements/4c221df76273c0d7cf18048c/plan.json",
+    "sha256": "a23f9922eb63cc49ec71bfe77d3ca91c7ba974cdb44b144028506d0999a8207b"
+   },
+   "stage": 1
+  },
+  {
+   "source": "F-01",
+   "identifier": "a8b2aa9c2857e79c017805bb",
+   "repository": "rarimo/passport-zk-circuits",
+   "commit": "30b0be2e83062e19f21237c03317c9a26f2dab59",
+   "entrypoint_key": "source_main:circuits/lib/circuits/signatures/m.circom",
+   "constraints": 733264,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/f01-2026-10-03/measurements/a8b2aa9c2857e79c017805bb",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/f01-2026-10-03/measurements/a8b2aa9c2857e79c017805bb/plan.json",
+    "sha256": "bf78bbe42cff1b551dbac4d904a006ea6d5b701c8df22f1bb43d1177f925d45d"
+   },
+   "stage": 1
+  },
+  {
+   "source": "E-02",
+   "identifier": "83cc00608fdaa7191b839ed6",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/disclose/vc_and_disclose_kyc.circom",
+   "constraints": 102406,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/83cc00608fdaa7191b839ed6",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/83cc00608fdaa7191b839ed6/plan.json",
+    "sha256": "c05006fbeb2c37f71a29ee2cf4bbc0373ef8fcfbbeefc5f4d51d341bebb6b364"
+   },
+   "stage": 1
+  },
+  {
+   "source": "F-01",
+   "identifier": "77e0f2db173d0c1812de503a",
+   "repository": "tanctl/zylith-old",
+   "commit": "44c0eeee4e8a1935c3d8de4ea54f8bcbc7538dd0",
+   "entrypoint_key": "source_main:circuits/private_liquidity.circom",
+   "constraints": 311639,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/f01-2026-10-03/measurements/77e0f2db173d0c1812de503a",
+   "zkbugs_project": false,
+   "plan": {
+    "path": "runs/f01-2026-10-03/measurements/77e0f2db173d0c1812de503a/plan.json",
+    "sha256": "a12d4a1a8144e2538f2375a4620061f8047522e76cd5737dac6f51816f4c33bd"
+   },
+   "stage": 1
+  },
+  {
+   "source": "F-01",
+   "identifier": "e71f158d85178fd29e1ba300",
+   "repository": "tangle-network/protocol-solidity",
+   "commit": "a42b4bc2696b4b812034fd0199d6462ae4fbbb8e",
+   "entrypoint_key": "source_main:circuits/main/poseidon_vanchor_16_2.circom",
+   "constraints": 290196,
+   "preparation_status": "success",
+   "measurement_dir": "runs/f01-2026-10-03/measurements/e71f158d85178fd29e1ba300",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/f01-2026-10-03/measurements/e71f158d85178fd29e1ba300/plan.json",
+    "sha256": "cf1f4279993c013a41b36d565782213a14e42975814c7fb28afe32b5adf3e18d"
+   },
+   "stage": 1
+  },
+  {
+   "source": "F-01",
+   "identifier": "76053f7fb015aba5e093d82d",
+   "repository": "Zellic/zkerc20",
+   "commit": "ff7b1016390074d428c8d469df7f5d47f99a6628",
+   "entrypoint_key": "source_main:circuits/circuit.circom",
+   "constraints": 331643,
+   "preparation_status": "success",
+   "measurement_dir": "runs/f01-2026-10-03/measurements/76053f7fb015aba5e093d82d",
+   "zkbugs_project": false,
+   "plan": {
+    "path": "runs/f01-2026-10-03/measurements/76053f7fb015aba5e093d82d/plan.json",
+    "sha256": "792f04ec0fea96d0a5bf3ba8336ac840926c6726441aac4db116d623a49c4d74"
+   },
+   "stage": 1
+  },
+  {
+   "source": "F-01",
+   "identifier": "60271bae486ade95f8b72540",
+   "repository": "iden3/circuits",
+   "commit": "360715607a240041f49eb46c543fc450051c4cb7",
+   "entrypoint_key": "source_main:circuits/linkedMultiQuery3.circom",
+   "constraints": 116498,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/f01-2026-10-03/measurements/60271bae486ade95f8b72540",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/f01-2026-10-03/measurements/60271bae486ade95f8b72540/plan.json",
+    "sha256": "23d58d4b51322e66e4309ddbba15f5ec47b9f5ca6710e8913e199fdd99d75b38"
+   },
+   "stage": 1
+  }
+ ],
+ "stage2": [
+  {
+   "source": "F-01",
+   "identifier": "350e5c37e2f7368baa1d73e8",
+   "repository": "iden3/circuits",
+   "commit": "360715607a240041f49eb46c543fc450051c4cb7",
+   "entrypoint_key": "source_main:circuits/credentialAtomicQueryV3Universal.circom",
+   "constraints": 129263,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/f01-2026-10-03/measurements/350e5c37e2f7368baa1d73e8",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/f01-2026-10-03/measurements/350e5c37e2f7368baa1d73e8/plan.json",
+    "sha256": "8b4ce35830eac745e4e5c48853181d2cb659be21121bd419836a7de9c91b07f9"
+   },
+   "stage": 2
+  },
+  {
+   "source": "F-01",
+   "identifier": "649f4c09f42142566a7e856e",
+   "repository": "iden3/circuits",
+   "commit": "360715607a240041f49eb46c543fc450051c4cb7",
+   "entrypoint_key": "source_main:circuits/credentialAtomicQueryV3OnChain-16-16-64-16-32.circom",
+   "constraints": 135876,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/f01-2026-10-03/measurements/649f4c09f42142566a7e856e",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/f01-2026-10-03/measurements/649f4c09f42142566a7e856e/plan.json",
+    "sha256": "4b0b1e2b1807faba19e6e66b79f4847f212ec5848f76ea416720f94929915283"
+   },
+   "stage": 2
+  },
+  {
+   "source": "F-01",
+   "identifier": "8efdc0326fbb36512cb6b1a1",
+   "repository": "iden3/circuits",
+   "commit": "360715607a240041f49eb46c543fc450051c4cb7",
+   "entrypoint_key": "source_main:circuits/linkedMultiQuery5.circom",
+   "constraints": 192122,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/f01-2026-10-03/measurements/8efdc0326fbb36512cb6b1a1",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/f01-2026-10-03/measurements/8efdc0326fbb36512cb6b1a1/plan.json",
+    "sha256": "839f2ddc9cbbc969e3fbf37e823b295639f27eef9076cfc7506aa202a16b53ba"
+   },
+   "stage": 2
+  },
+  {
+   "source": "F-01",
+   "identifier": "9ce681de7b32dd0683e306ad",
+   "repository": "iden3/circuits",
+   "commit": "360715607a240041f49eb46c543fc450051c4cb7",
+   "entrypoint_key": "source_main:circuits/credentialAtomicQueryV3OnChain.circom",
+   "constraints": 225612,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/f01-2026-10-03/measurements/9ce681de7b32dd0683e306ad",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/f01-2026-10-03/measurements/9ce681de7b32dd0683e306ad/plan.json",
+    "sha256": "bba76a1d0d8b6aee97866d2824c8761ccadfaeb257234076f63608a90c03238d"
+   },
+   "stage": 2
+  },
+  {
+   "source": "F-01",
+   "identifier": "1783944d42833a2a0a33d1e5",
+   "repository": "iden3/circuits",
+   "commit": "360715607a240041f49eb46c543fc450051c4cb7",
+   "entrypoint_key": "source_main:circuits/linkedMultiQuery.circom",
+   "constraints": 381182,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/f01-2026-10-03/measurements/1783944d42833a2a0a33d1e5",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/f01-2026-10-03/measurements/1783944d42833a2a0a33d1e5/plan.json",
+    "sha256": "ae1299fa16cf26b47d573b85f86b0619b8209c02f3bbd292c0b6fe7b71c7cac4"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "9cf7e8b77bc67d33a721e3ab",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/disclose/vc_and_disclose_id.circom",
+   "constraints": 106209,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/9cf7e8b77bc67d33a721e3ab",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/9cf7e8b77bc67d33a721e3ab/plan.json",
+    "sha256": "b03df2082c13fc06829f9c553c3f8538ef7ab2de590d7ad5096069798399a388"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "610c51ca9e3005c4122a7ffd",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/disclose/vc_and_disclose.circom",
+   "constraints": 145731,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/610c51ca9e3005c4122a7ffd",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/610c51ca9e3005c4122a7ffd/plan.json",
+    "sha256": "bae35801b90037d64fbe155d9b453a393e701031ce1a5b5aeddad267bab6f1b5"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "7cd9bb3aeac4aaba586971ec",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/register/instances/register_sha256_sha256_sha256_rsa_3_4096.circom",
+   "constraints": 713033,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/7cd9bb3aeac4aaba586971ec",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/7cd9bb3aeac4aaba586971ec/plan.json",
+    "sha256": "9deb8ba50706746886d168b0db776669a522aee2de60b309f539196a97f83877"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "a97b5303aac4ce1483d4249e",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/register_id/instances/register_id_sha256_sha256_sha256_rsa_3_4096.circom",
+   "constraints": 713201,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/a97b5303aac4ce1483d4249e",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/a97b5303aac4ce1483d4249e/plan.json",
+    "sha256": "1245b8ed649dc7818a0ff4f02e5b8daad2e2830cf8b460f42367bea0ff1bcd7c"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "5a787bb652598bf9a41d0aed",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/register/instances/register_sha1_sha1_sha1_rsa_65537_4096.circom",
+   "constraints": 760553,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/5a787bb652598bf9a41d0aed",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/5a787bb652598bf9a41d0aed/plan.json",
+    "sha256": "764e52f1f9e378e2f8d32898cd8f006c645cec9cb36cd4dd0cb3cec0866e0133"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "5811f6151b01081a0ed4bfd6",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/register_id/instances/register_id_sha1_sha1_sha1_rsa_65537_4096.circom",
+   "constraints": 760721,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/5811f6151b01081a0ed4bfd6",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/5811f6151b01081a0ed4bfd6/plan.json",
+    "sha256": "ee3fe84d17e44e4806f4a5a00b2bc3ffe91ba125eb62cab5e5c508c25c1a0c67"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "592d0cadd8913033eb634dba",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/register/instances/register_sha1_sha256_sha256_rsa_65537_4096.circom",
+   "constraints": 837869,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/592d0cadd8913033eb634dba",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/592d0cadd8913033eb634dba/plan.json",
+    "sha256": "7de2835ece7108a75c41eaea505adb215470e5d46fc5a09179eb69afb99a4a18"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "8ad5744b32ffd9ce7f7a9d6a",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/register_id/instances/register_id_sha1_sha256_sha256_rsa_65537_4096.circom",
+   "constraints": 838037,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/8ad5744b32ffd9ce7f7a9d6a",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/8ad5744b32ffd9ce7f7a9d6a/plan.json",
+    "sha256": "f4049920762163fe506bf2ca49bca65789cd6e1780d6ec2aadf532ecf8e9547a"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "7e3a4e278daeec243cc0eea4",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/register/instances/register_sha1_sha1_sha1_rsa_64321_4096.circom",
+   "constraints": 867701,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/7e3a4e278daeec243cc0eea4",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/7e3a4e278daeec243cc0eea4/plan.json",
+    "sha256": "27435d35a0776e046858879f8fce997f92893a671a85a11087aad53f2658f294"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "84302f8db878ba8d17c952cd",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/register/instances/register_sha256_sha1_sha1_rsa_65537_4096.circom",
+   "constraints": 901280,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/84302f8db878ba8d17c952cd",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/84302f8db878ba8d17c952cd/plan.json",
+    "sha256": "28a23268c3682d31f5cba77bca8d93323af7770f51856a3b7c7088be86d2f3a4"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "560810ce48aa7cc329f5f54e",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/register/instances/register_sha256_sha256_sha256_rsa_65537_4096.circom",
+   "constraints": 980978,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/560810ce48aa7cc329f5f54e",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/560810ce48aa7cc329f5f54e/plan.json",
+    "sha256": "7b0edbf4bddae6e0055dd013544c0f076c2461e7ac67f0dfb02960a0e937b091"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "261dac47a72aec2b3d896e5a",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/register_id/instances/register_id_sha256_sha256_sha256_rsa_65537_4096.circom",
+   "constraints": 981146,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/261dac47a72aec2b3d896e5a",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/261dac47a72aec2b3d896e5a/plan.json",
+    "sha256": "380071b60b4755d8b8610cbb22bb0ad06a42997a0a61351a1cbcfeb7797ab5b9"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "8c059cd14f1e535534a3de21",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/register/instances/register_aadhaar.circom",
+   "constraints": 1222046,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/8c059cd14f1e535534a3de21",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/8c059cd14f1e535534a3de21/plan.json",
+    "sha256": "80de2b7e1132b74f1adba1aaba698fc9cfa970e8c0c64c49be45240bd75bdcba"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "cbaeae4ed92a9d959a7e7009",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/register/instances/register_sha256_sha256_sha256_rsapss_3_32_2048.circom",
+   "constraints": 1324218,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/cbaeae4ed92a9d959a7e7009",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/cbaeae4ed92a9d959a7e7009/plan.json",
+    "sha256": "08a62f0ff74d443ebdb2032e81e83d2e656ed3717248947ff4fa1ea0a8371ecd"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "4459456e6d7e98304d6be7eb",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/register_id/instances/register_id_sha256_sha256_sha256_rsapss_3_32_2048.circom",
+   "constraints": 1324386,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/4459456e6d7e98304d6be7eb",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/4459456e6d7e98304d6be7eb/plan.json",
+    "sha256": "fda2a5db12b0b123ec447f68db11701f5bcef68a183594705a3a94846719e119"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "960bab7e8bfa09226faabfa7",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/dsc/instances/dsc_sha1_rsa_65537_4096.circom",
+   "constraints": 1419421,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/960bab7e8bfa09226faabfa7",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/960bab7e8bfa09226faabfa7/plan.json",
+    "sha256": "0fe15e1ef7d61828759075e8c62efe0c9d02021b3a1b88bb82b9fca278026e58"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "75bbb6863d33e29f7c6ca66b",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/dsc/instances/dsc_sha256_rsa_65537_4096.circom",
+   "constraints": 1452445,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/75bbb6863d33e29f7c6ca66b",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/75bbb6863d33e29f7c6ca66b/plan.json",
+    "sha256": "e0b766cde78f91f1942910ac604b2ff1fe9f9e102415acabdd09aadd53e37e8d"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "17e998628fd8b8d306d2e0ae",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/dsc/instances/dsc_sha256_rsa_56611_4096.circom",
+   "constraints": 1559593,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/17e998628fd8b8d306d2e0ae",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/17e998628fd8b8d306d2e0ae/plan.json",
+    "sha256": "2280c80f9eb599cf57478214c77079136745bc8eadf1af48fd07fe2d46a20759"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "9dedfd04d29534bcf602678b",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/register/instances/register_sha256_sha256_sha256_rsapss_65537_32_2048.circom",
+   "constraints": 1592163,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/9dedfd04d29534bcf602678b",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/9dedfd04d29534bcf602678b/plan.json",
+    "sha256": "427de8cd5567cfa7082b9c2ae9b52de49be050048f2e43b2669ad98907f749a2"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "30cfe1e677dfd34434a23633",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/register/instances/register_sha256_sha256_sha256_rsapss_65537_64_2048.circom",
+   "constraints": 1592163,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/30cfe1e677dfd34434a23633",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/30cfe1e677dfd34434a23633/plan.json",
+    "sha256": "612a2997170117ac93c6f16abcff093af11b120ff213a16bdd912a111fc40347"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "03f8cf2308c583bf7053faf1",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/register_id/instances/register_id_sha256_sha256_sha256_rsapss_65537_32_2048.circom",
+   "constraints": 1592331,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/03f8cf2308c583bf7053faf1",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/03f8cf2308c583bf7053faf1/plan.json",
+    "sha256": "9beeb56dc2e3195b6e75e6de09f96d43c31b91f0e93d25f9aca920552ac48ff7"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "6b84f6c71c656a9985f1ba3d",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/register_id/instances/register_id_sha256_sha256_sha256_rsapss_65537_64_2048.circom",
+   "constraints": 1592331,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/6b84f6c71c656a9985f1ba3d",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/6b84f6c71c656a9985f1ba3d/plan.json",
+    "sha256": "23f9f46954667454444eecee0bb07a8245ddc88b4908fafc51529a436d6d8e82"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "a138964361e9e791d9fb8a11",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/dsc/instances/dsc_sha256_rsa_122125_4096.circom",
+   "constraints": 1595309,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/a138964361e9e791d9fb8a11",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/a138964361e9e791d9fb8a11/plan.json",
+    "sha256": "20d322f92424817a6299ca50214e78ac22fafa24d4bb08f55881ec7222829fb4"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "0c0bfd9c9c7f4b01f154c062",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/dsc/instances/dsc_sha256_rsa_130689_4096.circom",
+   "constraints": 1595309,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/0c0bfd9c9c7f4b01f154c062",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/0c0bfd9c9c7f4b01f154c062/plan.json",
+    "sha256": "42b3a446d16fdb6c50988fc47ed303acfca69ac53d547e31970873dc21b39738"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "7382e4c8c32eb4bf5eb7f60f",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/dsc/instances/dsc_sha256_rsa_107903_4096.circom",
+   "constraints": 1631025,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/7382e4c8c32eb4bf5eb7f60f",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/7382e4c8c32eb4bf5eb7f60f/plan.json",
+    "sha256": "3462be65a508227886572f0476df77eae48b301f82f6e00b16579aad72d645bf"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "12635f5b4c03e4034f0c5772",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/register/instances/register_sha256_sha256_sha256_rsapss_65537_32_3072.circom",
+   "constraints": 1868951,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/12635f5b4c03e4034f0c5772",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/12635f5b4c03e4034f0c5772/plan.json",
+    "sha256": "b30414ab2a23d2927ea7d9e8584b072df4efdc6e110e0328a7a89bee8e8da724"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "bd102320e9d6e6a290bc8f22",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/register_id/instances/register_id_sha256_sha256_sha256_rsapss_65537_32_3072.circom",
+   "constraints": 1869119,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/bd102320e9d6e6a290bc8f22",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/bd102320e9d6e6a290bc8f22/plan.json",
+    "sha256": "2ba427f7a6d0a0fc3f908575e7708ff17cec3a2910cbe7a9e7a229c33ef23d11"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "d2d807fafc0d23f1e6ae15bf",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/register/instances/register_sha512_sha512_sha256_rsa_65537_4096.circom",
+   "constraints": 1998762,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/d2d807fafc0d23f1e6ae15bf",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/d2d807fafc0d23f1e6ae15bf/plan.json",
+    "sha256": "d59d93369cc59d493e3792935fa92511e9895b0641915eabc246142290b17252"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "c998b8b35bb3439933702dbe",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/register_id/instances/register_id_sha512_sha512_sha256_rsa_65537_4096.circom",
+   "constraints": 1998930,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/c998b8b35bb3439933702dbe",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/c998b8b35bb3439933702dbe/plan.json",
+    "sha256": "44971f1f360c4d800e524c41b548be97d2f11f8f8288bbe70b6dfab9480d7dfa"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "033aaee54ddfdc6bb31dfdc6",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/dsc/instances/dsc_sha256_rsapss_3_32_3072.circom",
+   "constraints": 2072473,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/033aaee54ddfdc6bb31dfdc6",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/033aaee54ddfdc6bb31dfdc6/plan.json",
+    "sha256": "ce036b0e5212e42444bf87bf5a825c6ca1b06c23c1db0f9afcd927eac4f99f5e"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "4ba27a8202ea746ec6a51fac",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/register/instances/register_sha256_sha256_sha256_rsapss_65537_32_4096.circom",
+   "constraints": 2145741,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/4ba27a8202ea746ec6a51fac",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/4ba27a8202ea746ec6a51fac/plan.json",
+    "sha256": "c6b3bd3b50ef77d7aa2a3b505b79abc498e1b656062412b425619d37dc2d215b"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "e39703c8086479907f4d4561",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/register/instances/register_sha512_sha512_sha512_rsa_65537_4096.circom",
+   "constraints": 2222499,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/e39703c8086479907f4d4561",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/e39703c8086479907f4d4561/plan.json",
+    "sha256": "d4f095ff96b380d60b03b397f2d850c63760718778e093f12664d2a2767ec60e"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "7aad0c6d04c3db1e4469597a",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/register_id/instances/register_id_sha512_sha512_sha512_rsa_65537_4096.circom",
+   "constraints": 2222667,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/7aad0c6d04c3db1e4469597a",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/7aad0c6d04c3db1e4469597a/plan.json",
+    "sha256": "dabc539ba529176d37446464bc566f8198bc5f43563357b32308ee1b51efe6d9"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "3675fbbf9bc09a3a0bd79db8",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/dsc/instances/dsc_sha256_rsapss_65537_32_3072.circom",
+   "constraints": 2340418,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/3675fbbf9bc09a3a0bd79db8",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/3675fbbf9bc09a3a0bd79db8/plan.json",
+    "sha256": "3553a177baffd110698c2cf2184ae79dd1f3037731ccc7a0785e8ddde740e9e0"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "84662c52e2b16680f8cfef6c",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/register_id/instances/register_id_sha1_sha1_sha1_ecdsa_brainpoolP224r1.circom",
+   "constraints": 2399632,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/84662c52e2b16680f8cfef6c",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/84662c52e2b16680f8cfef6c/plan.json",
+    "sha256": "c030e219ecdad983d9e860716591a3f4522f565ed45a1027a53ebfea6e827f16"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "cec46d605e795c0bc14340a7",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/register/instances/register_sha512_sha512_sha256_rsapss_65537_32_2048.circom",
+   "constraints": 2609947,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/cec46d605e795c0bc14340a7",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/cec46d605e795c0bc14340a7/plan.json",
+    "sha256": "a23f3eb58b414b6da37170f2bd599839f50fa2fd85baaa4bc7aa5c3e3ffe9786"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "a11d8df71d6f35a4990af89a",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/register_id/instances/register_id_sha512_sha512_sha256_rsapss_65537_32_2048.circom",
+   "constraints": 2610115,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/a11d8df71d6f35a4990af89a",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/a11d8df71d6f35a4990af89a/plan.json",
+    "sha256": "ae7b35f77d45542af17fe1f6226f94dbb88743b5ee555c62ef798716a4b1495c"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "ccdb2948715caf29e315c2de",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/dsc/instances/dsc_sha256_rsapss_65537_32_4096.circom",
+   "constraints": 2617208,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/ccdb2948715caf29e315c2de",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/ccdb2948715caf29e315c2de/plan.json",
+    "sha256": "e837412e8d46d1c2d98e76c81d5e7c952d1da7c0a95150530a2146ee04695739"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "94fcde252e20f3dcbd0f6192",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/dsc/instances/dsc_sha1_ecdsa_brainpoolP256r1.circom",
+   "constraints": 2912861,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/94fcde252e20f3dcbd0f6192",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/94fcde252e20f3dcbd0f6192/plan.json",
+    "sha256": "22e44692618bd5931bdd834ee07448188b358511a415218f0effe99fbe674b3c"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "6cfed982cf5c5a85ee3c69a0",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/dsc/instances/dsc_sha1_ecdsa_secp256r1.circom",
+   "constraints": 2912861,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/6cfed982cf5c5a85ee3c69a0",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/6cfed982cf5c5a85ee3c69a0/plan.json",
+    "sha256": "48279d96ec01169ea5ebb1c4829d20a7108b6a74f1f77872820f6804b1dd8eb9"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "5edbf37a391cbba50c57f990",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/dsc/instances/dsc_sha256_ecdsa_secp256r1.circom",
+   "constraints": 2945949,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/5edbf37a391cbba50c57f990",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/5edbf37a391cbba50c57f990/plan.json",
+    "sha256": "463f1e53d9e522b2bdcb82700fa5bb109b21420d6d1726449a7d38944bf41365"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "8b7f88653748c955d68f8a2c",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/dsc/instances/dsc_sha512_rsa_65537_4096.circom",
+   "constraints": 3002556,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/8b7f88653748c955d68f8a2c",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/8b7f88653748c955d68f8a2c/plan.json",
+    "sha256": "66ead153b9ee756256cbe3ee08abadc1f694e9823b742709319966b1f0023d6a"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "0ba6d38e4ef073f15343c36f",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/register/instances/register_sha384_sha384_sha384_rsapss_65537_48_2048.circom",
+   "constraints": 3070915,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/0ba6d38e4ef073f15343c36f",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/0ba6d38e4ef073f15343c36f/plan.json",
+    "sha256": "73bc0ef91bd440ccf2295e9444797a17cf363c523f8737aeb682088a0593d497"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "2f82ff130583e8b49d94486a",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/register_id/instances/register_id_sha384_sha384_sha384_rsapss_65537_48_2048.circom",
+   "constraints": 3071083,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/2f82ff130583e8b49d94486a",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/2f82ff130583e8b49d94486a/plan.json",
+    "sha256": "1596907342ac050fc520bbdb773da925f584a4bc210b0371e2442c77b20de923"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "8a7ca1d4b826e891988995b9",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/register/instances/register_sha512_sha512_sha512_rsapss_65537_64_2048.circom",
+   "constraints": 3083920,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/8a7ca1d4b826e891988995b9",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/8a7ca1d4b826e891988995b9/plan.json",
+    "sha256": "e58b13e53b2efcc4d2b7c47efcab00f45547f36066c5df600cc9c2e03aad7cbb"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "340c1bae08fb02421c9f0e25",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/register_id/instances/register_id_sha512_sha512_sha512_rsapss_65537_64_2048.circom",
+   "constraints": 3084088,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/340c1bae08fb02421c9f0e25",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/340c1bae08fb02421c9f0e25/plan.json",
+    "sha256": "b57792e19c8b3f5eb48c8f384022353201f5ab7e0ae034358af97a4a0f6a08f3"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "dcc4c28bf163556fa1879a69",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/dsc/instances/dsc_sha384_rsapss_65537_48_3072.circom",
+   "constraints": 4375620,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/dcc4c28bf163556fa1879a69",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/dcc4c28bf163556fa1879a69/plan.json",
+    "sha256": "e9e548459d7e78e046d9989d322a36689b739b1773568402dc33b0f9116d142d"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "8885da5d2871ec3cd4cb546a",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/dsc/instances/dsc_sha512_rsapss_65537_64_4096.circom",
+   "constraints": 4563183,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/8885da5d2871ec3cd4cb546a",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/8885da5d2871ec3cd4cb546a/plan.json",
+    "sha256": "b47ec7967482044ff9c1b777282770606eea0f4edf6c12074e9a58419365afbc"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "7363bafb0b6181fd53e91895",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/dsc/instances/dsc_sha256_ecdsa_brainpoolP384r1.circom",
+   "constraints": 5416205,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/7363bafb0b6181fd53e91895",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/7363bafb0b6181fd53e91895/plan.json",
+    "sha256": "4a1153065510846c3c90a5fa5ca06561af5e731e8e4fbeb20427524206407a00"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "7fffba7903b97e73ada2034e",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/register_id/instances/register_id_sha384_sha384_sha384_ecdsa_brainpoolP384r1.circom",
+   "constraints": 6000245,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/7fffba7903b97e73ada2034e",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/7fffba7903b97e73ada2034e/plan.json",
+    "sha256": "59914f7fc5a145c79e45971611841402db4857072fff12d7552d708d6ce76a87"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "e5595955c702d72ee8dfc266",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/dsc/instances/dsc_sha384_ecdsa_secp384r1.circom",
+   "constraints": 6955180,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/e5595955c702d72ee8dfc266",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/e5595955c702d72ee8dfc266/plan.json",
+    "sha256": "b789a45c323ea6deb48fba754e404500dcfb90da2228f7d9ab8d20a0a5f38a6b"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "86655f477a919c332f50b4a8",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/dsc/instances/dsc_sha512_ecdsa_brainpoolP512r1.circom",
+   "constraints": 10668692,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/86655f477a919c332f50b4a8",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/86655f477a919c332f50b4a8/plan.json",
+    "sha256": "5cbcb93fe45ca4c5456ae0803eda07b155ff56d134f48f30d574da65d702da2b"
+   },
+   "stage": 2
+  },
+  {
+   "source": "E-02",
+   "identifier": "61232cfca281f5cc8b3cb8dc",
+   "repository": "selfxyz/self",
+   "commit": "be761b35e69d85e48dd1c6f3eca7422a4ae43add",
+   "entrypoint_key": "source_main:circuits/circuits/dsc/instances/dsc_sha512_ecdsa_secp521r1.circom",
+   "constraints": 11090103,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/e02-production-mains-2026-10-05/preparation-measurements/61232cfca281f5cc8b3cb8dc",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/e02-production-mains-2026-10-05/preparation-measurements/61232cfca281f5cc8b3cb8dc/plan.json",
+    "sha256": "23876b0969ad49372bf0e78175b1e2d3a6475b93949284289192f8bbe82cc137"
+   },
+   "stage": 2
+  },
+  {
+   "source": "F-01",
+   "identifier": "f79405e7d34a0500b51d14a5",
+   "repository": "tanctl/zylith-old",
+   "commit": "44c0eeee4e8a1935c3d8de4ea54f8bcbc7538dd0",
+   "entrypoint_key": "source_main:circuits/private_swap_zero_for_one.circom",
+   "constraints": 2409977,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/f01-2026-10-03/measurements/f79405e7d34a0500b51d14a5",
+   "zkbugs_project": false,
+   "plan": {
+    "path": "runs/f01-2026-10-03/measurements/f79405e7d34a0500b51d14a5/plan.json",
+    "sha256": "94a190ade9f165b305d7e1a4502d0dc1830f7612a45e0a852f4adaab05e0d326"
+   },
+   "stage": 2
+  },
+  {
+   "source": "F-01",
+   "identifier": "3badcb947fc0df104d5ccdc8",
+   "repository": "tanctl/zylith-old",
+   "commit": "44c0eeee4e8a1935c3d8de4ea54f8bcbc7538dd0",
+   "entrypoint_key": "source_main:circuits/private_swap_one_for_zero.circom",
+   "constraints": 2409993,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/f01-2026-10-03/measurements/3badcb947fc0df104d5ccdc8",
+   "zkbugs_project": false,
+   "plan": {
+    "path": "runs/f01-2026-10-03/measurements/3badcb947fc0df104d5ccdc8/plan.json",
+    "sha256": "f968e738d6dc898204c71e3b68f9a6165664dea89dc703e601ec2c41af027fdd"
+   },
+   "stage": 2
+  },
+  {
+   "source": "F-01",
+   "identifier": "3478ee34213b144bfc37aedb",
+   "repository": "tanctl/zylith-old",
+   "commit": "44c0eeee4e8a1935c3d8de4ea54f8bcbc7538dd0",
+   "entrypoint_key": "source_main:circuits/private_swap_exact_out_zero_for_one.circom",
+   "constraints": 2411945,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/f01-2026-10-03/measurements/3478ee34213b144bfc37aedb",
+   "zkbugs_project": false,
+   "plan": {
+    "path": "runs/f01-2026-10-03/measurements/3478ee34213b144bfc37aedb/plan.json",
+    "sha256": "a7ee2250ee5836e41603686e5ede4aa1aef9539b9cdddeaf8657fc7ce2189225"
+   },
+   "stage": 2
+  },
+  {
+   "source": "F-01",
+   "identifier": "8c645f1983ad0a1694b05ff0",
+   "repository": "tanctl/zylith-old",
+   "commit": "44c0eeee4e8a1935c3d8de4ea54f8bcbc7538dd0",
+   "entrypoint_key": "source_main:circuits/private_swap_exact_out_one_for_zero.circom",
+   "constraints": 2411961,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/f01-2026-10-03/measurements/8c645f1983ad0a1694b05ff0",
+   "zkbugs_project": false,
+   "plan": {
+    "path": "runs/f01-2026-10-03/measurements/8c645f1983ad0a1694b05ff0/plan.json",
+    "sha256": "6589fb521e5bbee5cc45eab43cfc5be8190d7e59d075b615b32a4fb5da9eb58a"
+   },
+   "stage": 2
+  },
+  {
+   "source": "F-01",
+   "identifier": "673001c71119a054d93ce5ad",
+   "repository": "tangle-network/protocol-solidity",
+   "commit": "a42b4bc2696b4b812034fd0199d6462ae4fbbb8e",
+   "entrypoint_key": "source_main:circuits/main/poseidon_vanchor_16_8.circom",
+   "constraints": 290388,
+   "preparation_status": "success",
+   "measurement_dir": "runs/f01-2026-10-03/measurements/673001c71119a054d93ce5ad",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/f01-2026-10-03/measurements/673001c71119a054d93ce5ad/plan.json",
+    "sha256": "8b29789ffd89d7437bfa8ab7835824172c245eabbc4876ba69d152ea9f8c7b67"
+   },
+   "stage": 2
+  },
+  {
+   "source": "F-01",
+   "identifier": "7e8573844e0f70b55a9464c5",
+   "repository": "tangle-network/protocol-solidity",
+   "commit": "a42b4bc2696b4b812034fd0199d6462ae4fbbb8e",
+   "entrypoint_key": "source_main:circuits/main/vanchor_forest_16_2.circom",
+   "constraints": 331892,
+   "preparation_status": "success",
+   "measurement_dir": "runs/f01-2026-10-03/measurements/7e8573844e0f70b55a9464c5",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/f01-2026-10-03/measurements/7e8573844e0f70b55a9464c5/plan.json",
+    "sha256": "ea1b47537e812096d1cc98c4cfd10449d0fa082507d7b43eb36b26e37bccb4d6"
+   },
+   "stage": 2
+  },
+  {
+   "source": "F-01",
+   "identifier": "099cf19a5056e81cac7ed6f0",
+   "repository": "tangle-network/protocol-solidity",
+   "commit": "a42b4bc2696b4b812034fd0199d6462ae4fbbb8e",
+   "entrypoint_key": "source_main:circuits/main/vanchor_forest_16_8.circom",
+   "constraints": 332084,
+   "preparation_status": "success",
+   "measurement_dir": "runs/f01-2026-10-03/measurements/099cf19a5056e81cac7ed6f0",
+   "zkbugs_project": true,
+   "plan": {
+    "path": "runs/f01-2026-10-03/measurements/099cf19a5056e81cac7ed6f0/plan.json",
+    "sha256": "43dc7cb3bd145ff6ff10afe8bb360fe01bc68f00075377c30466e58bdb54558e"
+   },
+   "stage": 2
+  }
+ ],
+ "excluded": [
+  {
+   "source": "F-01",
+   "identifier": "b1b66c36fc8652ec72869a37",
+   "repository": "pantherfoundation/panther-core",
+   "commit": "0b078c8398de69a21b77e24405d86bdf3401fc82",
+   "entrypoint_key": "source_main:circuits/circuits/mainZSwapV1.circom",
+   "constraints": 276422,
+   "preparation_status": "partial",
+   "measurement_dir": "runs/f01-2026-10-03/measurements/b1b66c36fc8652ec72869a37",
+   "zkbugs_project": true,
+   "reason": "plan_missing"
+  },
+  {
+   "source": "F-01",
+   "identifier": "69d653f1729e1a4c835e5383",
+   "repository": "tanctl/zylith-old",
+   "commit": "44c0eeee4e8a1935c3d8de4ea54f8bcbc7538dd0",
+   "entrypoint_key": "source_main:circuits/test/fixtures/clmm_step_wrapper.circom",
+   "constraints": 129393,
+   "preparation_status": "success",
+   "measurement_dir": "runs/f01-2026-10-03/measurements/69d653f1729e1a4c835e5383",
+   "zkbugs_project": false,
+   "reason": "role_test_mock_harness"
+  }
+ ],
+ "counts": {
+  "pool": 75,
+  "stage1": 10,
+  "stage2": 65,
+  "excluded": 2,
+  "repositories": 9
+ }
+}
