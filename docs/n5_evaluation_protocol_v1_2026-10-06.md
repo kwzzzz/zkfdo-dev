@@ -142,8 +142,29 @@ W와 S+J를 **같은 수준**에서 비교한다. 도달은 반드시 공개/사
 
 (E-02 완료 후, zkFuzz 실행 전에 기록한다.)
 
+### A 실행 전 제외(2026-10-08, A 결과 열람 전)
+
+`aq-038-4e5dcd2256b8`(zk-regex leave-one-out)은 W와 S, seed 3개 모두 A execute에서 제외한다. A1의 leave-one-out 생성기는 계획 범위 `email_addr_with_name_regex.circom:6-190`과 겹치는 수정 diff의 단일 hunk `@@ -9,815 +8,0 @@ template EmailAddrWithNameRegex(msg_bytes) {` 전체를 역적용했다. 그 결과 고정 revision의 템플릿 닫는 중괄호 다음에 취약 revision의 본문 815줄이 붙었고, 21:2의 `var num_bytes = msg_bytes+1;`가 템플릿 바깥에 놓여 W preflight에서 P1012 구문 오류가 발생했다. 이는 평가 대상의 특성이 아니라 우리 패치 hunk 선택이 만든 손상이다. 손상 patch는 `runs/n6-a1-2026-10-07/units/aq-038-4e5dcd2256b8/leave-one-out.patch`(SHA-256 `5f30c3390b1086d9670594cabbfb1820ca8944832d36d2220c3e32430ce035f5`)로 보존한다. S가 별도로 컴파일되더라도 깨진 revision에서 유래하므로 실행하지 않는다. 고정 A 목록과 70건 배치는 바꾸지 않으며, 실행 제외 사유와 W·S 6개 spec의 미실행을 결과 분모에 남긴다.
+
+### A 준비 보충 규칙(2026-10-08, miiz 결정, A 결과 열람 전)
+
+1. 기본 clone에 없는 commit은 전체 SHA로 `git fetch origin <full-sha>` 하며, 이는 zkbugs `scripts/download_sources.sh`와 같은 방식이다. Panther의 전체 SHA `b464348b33155a5877f67c085c7206dc29ad7cb7`와 `06a818632053719b56ace37ef12c9b31904af1e2`는 이 경로로 확보한다. 원격과 GitHub API에서 해석되지 않는 Panther의 짧은 Fix Commit 11개(`0621e84`, `1055906`, `1763ca4`, `3375335`, `54d4d0a`, `69db60e`, `6dfcc56`, `7ff5ba7`, `8fdab18`, `903edd3`, `ccb2a8b`)는 `fix_commit_unretrievable`로 기록한다. 해당 결함 revision은 준비·실행하여 RQ1 탐지 분모에는 포함하되, 수정 전·후 쌍이 필요한 RQ-C에서는 제외하고 사유를 보존한다.
+2. A 코드베이스는 zkbugs가 정의한 공식 `scripts/download_sources.sh`의 clone·checkout·`scripts/patches` 호환 패치·의존성 설치·entrypoint 생성 절차로 준비한다. 적용 패치, 생성 entrypoint, 설치 결과의 경로와 SHA-256을 단위별로 기록한다. 저장소 스크립트 실행 금지(`--ignore-scripts` 또는 동등 설정)는 유지하며, 공식 절차가 저장소 스크립트 실행을 요구하면 해당 단계를 실패로 기록한다. 공식 절차가 실패한 항목만 기존 E-01 자동 설치 정책으로 재시도하고 준비 절차 종류를 표시한다. 프로젝트별 수동 수선은 허용하지 않는다.
+3. N6-A1의 W preflight 실패 7단위(`inference-loo-clamp`, `inference-loo-dfs`, `inference-all-fixed`, `aq-036`, `aq-037`, `aq-038`, `aq-039`)와 discovery `compiler_or_tool_error` 8단위는 stderr의 오류 코드·파일·줄을 확인해 결과 문서에 기록한다. 공통 원인은 묶어 보고하되, 원인 조사 과정에서 프로젝트 소스를 수정하지 않는다.
+4. 고정 A 목록 SHA-256 `6410b49e50b4da6a565955f6b9a6fa3ed1cd996b7923d96710e28ddfa2cf6758`과 70건 배치는 바꾸지 않는다. A-D 12개와 A-Q 1단계 41개 revision 단위를 모두 다시 준비하고, 성공 단위의 W/S spec과 `preflight-all`을 새 버전으로 만든다. 후보 탐색과 campaign `execute`는 이 보충 준비에 포함하지 않는다.
+
+### A 목록 생성 전 보정·보충 규칙(2026-10-07, miiz 결정)
+
+1. §3의 “zkbugs `Direct Entrypoint`·`Original` 입력”에서 entrypoint는 문구 오류다. A의 W/S+J는 각 항목 `zkbugs_vars.sh`의 `CIRCOM_CIRCUIT_ORIGINAL`(original 모드)과 `input.json`을 쓴다. `Direct Entrypoint`는 결함 템플릿만 감싼 SoK 격리 wrapper라 위치 정보를 포함하므로, 위치 정보 없는 분해와 호출 맥락을 비교하는 RQ1·RQ-C 실행에는 쓰지 않고 목록의 참고 열에만 남긴다. original 모드는 SoK 프로젝트 모드와 같은 설정이다.
+2. 각 항목은 original entrypoint를 `project_main`(프로젝트 소스의 main), `project_test`(경로에 test가 있는 테스트 회로), `original_is_direct`(`CIRCOM_CIRCUIT_ORIGINAL`이 `$CIRCOM_CIRCUIT_DIRECT`), `zkbugs_thin`(zkbugs 설치 스크립트가 만든 얇은 main)으로 분류한다. 결과는 종류별로 나눠 집계한다. Original entrypoint가 없거나 컴파일되지 않아도 분모에 남기고 사유를 기록하며 Direct로 대체하지 않는다.
+3. zkbugs `Project` URL과 설치 기록은 GitHub owner/name을 대소문자 없이 정확히 비교한다. 기록된 리다이렉트가 있으면 해석한 owner/name을 쓰며 fork는 별도 프로젝트로 취급한다.
+4. C-03·E-01·E-02 중 하나라도 같은 저장소의 setup 성공을 기록했으면 “설치 기록 있음”으로 판정한다.
+5. `inference-labs-inc/subnet-2-circom`, `banyancomputer/hot-proofs-blake3-circom`, `zkemail/zk-email-verify` 항목은 A-Q보다 A-D를 우선한다.
+6. 필드 누락·commit 부재 등은 분모에서 빼거나 목록 생성을 중단하는 사유가 아니다. 해당 값을 `unknown`과 사유로 기록한다. 이 규칙들로도 결정할 수 없는 선택이 있을 때만 목록 생성을 중단한다.
+
 | 갈래 | 파일 | SHA-256 | 생성 | 내용 |
 |---|---|---|---|---|
+| A | [n6_targets_a_2026-10-07.json](n6_targets_a_2026-10-07.json) | `6410b49e50b4da6a565955f6b9a6fa3ed1cd996b7923d96710e28ddfa2cf6758` | 2026-10-07, `scripts/n6_make_targets_a.py`, A 준비·preflight와 zkFuzz 실행 전 | zkbugs 70건 전수: A-D 5, A-Q 1단계 24, A-Q 2단계 21, 수정 전 전용 20. Original 종류 project main 47, project test 7, original=direct 14, zkbugs thin 2. 공유 수정 5그룹·leave-one-out 대상 11건 |
 | B | [n6_targets_b_2026-10-06.json](n6_targets_b_2026-10-06.json) | `853eef3b91698ea4f6c8e9189e0bfb765b697d7f6a505800cb7e42644d07dca6` | 2026-10-06, `scripts/n6_make_targets.py`, B 대상 zkFuzz 실행 전 | 후보군 75(저장소 9), 1단계 10, 2단계 65, 제외 2(역할 규칙 1, plan 없음 1) |
 
 **B 1단계 선택 보충(목록 생성 전 기록):** §3은 저장소가 5개보다 많을 때 10개로 자르는 방법을 정하지 않았다. 후보 저장소가 9개라서 다음 규칙을 목록 생성 전에 정했다. 저장소 이름(대소문자 무시) 순으로 각 저장소에서 원본 제약 수가 가장 작은 것을 하나씩 고르고, 같은 순서로 두 번째를 골라 10개까지 채운다. 저장소당 최대 2개는 그대로다. 이 규칙은 저장소 다양성을 우선하며 B 대상의 퍼징 결과를 보기 전에 정했다.
@@ -151,3 +172,69 @@ W와 S+J를 **같은 수준**에서 비교한다. 도달은 반드시 공개/사
 **실행 안전 규칙(실행 전 기록, 2026-10-06, miiz 결정):** zkFuzz 시도 하나(프로세스 트리)의 메모리가 10 GiB를 넘으면 그 시도를 종료하고 `memory_cap`으로 기록한다. 통째(W)와 분할(S)에 똑같이 적용하며, 종료된 시도도 예산을 쓴 것으로 센다. 원본 제약 100만 이상 대상(B 1단계의 anon-aadhaar `aadhaar-verifier`, Vota `tally`)의 실행 단위끼리는 동시에 돌지 않도록 대기열 순서를 정한다. 대기열 순서는 실행 일정일 뿐이며, 같은 단위 안의 W와 S는 연달아 같은 조건에서 실행한다.
 
 **실행기:** §5의 실행기 v2는 A-02 전용(조각 21개 고정, 대상 1개)이라 N6 대상을 받을 수 없다. 같은 상태기와 프로세스 처리(첫 시도 전체 예산의 W, 고정 순서 순환과 시도 상한의 S, 패스마다 seed + 1, process group 정리, `stderr_report` 모드)를 유지하고 대상 수·조각별 소스·메모리 상한만 일반화한 v3를 새 파일로 만든다. v1·v2는 수정하지 않는다.
+### 실행 환경 보정(2026-10-07, A 결과·후보 열람 전)
+
+miiz는 N6-A2 중단 뒤 다음 실행 환경 보정을 채택했다. 이 보정은 대상·예산·seed·순서·`aq-038` 제외를 바꾸지 않는다.
+
+- Policy A 실행기는 v4를 사용한다. 시도별 프로세스 트리의 macOS `proc_pid_rusage(..., RUSAGE_INFO_V0)` `ri_phys_footprint` 합을 1초마다 측정하고 10 GiB를 초과하면 종료한다. 이 값은 압축·스왑된 물리 메모리를 포함한다. 같은 표본의 프로세스 트리 RSS도 별도로 기록한다. 어느 프로세스의 값을 읽지 못하면 시도를 감시 없이 계속하지 않고 종료해 `resource_monitor_failure`로 기록한다.
+- 실행 시작 전 AC 전원, `pmset lowpowermode 0`, `pmset -g therm` 경고 없음, `kern.memorystatus_level >= 50`, 직전 60초 swap 사용량 증가 없음이 모두 필요하다. 하나라도 실패하면 campaign을 시작하지 않는다.
+- 새 단위는 `kern.memorystatus_level >= 40`이고 직전 60초 swap 증가가 없을 때만 시작한다. 만족하지 못한 시간과 실제 동시 실행 수를 단위별로 기록한다.
+- 실행 중 1초마다 memorystatus level·swap 사용량·load average를, 1분마다 thermal 경고 여부를 기록한다. 단위 실행 중 swap이 512 MiB 넘게 증가하거나 memorystatus level이 15 미만이 되거나 thermal 경고가 생기면 그 실행을 `environment_pressure`로 표시한다. 표시된 단위는 대기열 끝에서 동시 실행 1로 다시 수행하며 두 기록을 모두 보존한다. 본 결과표에는 표시되지 않은 실행만 쓴다.
+- A는 `aq-038` 제외를 유지한 전체 A-D 36단위와 A-Q 45단위를 v4로 다시 실행한다. 중단된 v3 결과를 이어 붙이거나 선택하지 않는다. B 실행도 v4와 같은 환경 관문·건강 기록을 사용한다.
+- 총예산은 A 600초·B 3,600초를 유지하고, 분할 시도 상한 30초, seed 3개, 10 GiB 상한과 고정 대기열 순서도 유지한다. 새 실행 출력 폴더는 Spotlight 색인을 피하도록 `.noindex`로 끝낸다.
+
+### 대기열 실행기 v4.1(2026-10-07, A 결과·후보 열람 전)
+
+A v4 첫 시작(2026-10-07 10:51 UTC)은 시작 관문에서 종료됐다(campaign 0). `scripts/run_n6_v4_queue.py`가 관문 표본 시간을 전원·발열 확인 전부터 재서 첫 표본부터 마지막 표본까지가 60초가 안 됐기 때문이다(59.985초, `swap_window_short`). 관문 기준은 바꾸지 않고 시간 기준만 첫 표본으로 고친 `scripts/run_n6_v4_1_queue.py`(SHA-256 `675a9998e7af842f441525de8a57fe419a56f3eee66e28810159fa789f538414`)로 A를 실행한다. 실패 기록은 `a-execute.noindex`에 보존하고, 실행 출력은 `a-execute-2.noindex`다. 자세한 기록은 [n6_a2b_queue_v4_1_2026-10-07.md](n6_a2b_queue_v4_1_2026-10-07.md)에 있다.
+
+### 메모리 상한 민감도 보완 실행(2026-10-07, miiz 결정, A 결과·후보 열람 전)
+
+본 실행의 10 GiB 상한은 그대로 두고, 상한이 결과를 바꿨는지 따로 확인한다. 보완 결과는 본 표와 섞지 않고 민감도 분석으로만 보고한다.
+
+1. 대상: A 본 실행에서 W 또는 S의 시도가 하나라도 `memory_cap`으로 끝난 단위(단위 = 대상·seed). `environment_pressure` 재실행이 있는 단위는 본 표에 쓰는 실행을 기준으로 판정한다.
+2. 조건: 같은 spec(대상·seed·총예산 600초·S 시도 상한 30초)에서 `memory_cap_bytes`만 20 GiB로 바꾸고, 같은 단위의 W와 S를 연달아 동시 실행 1로 수행한다. 시작 관문·새 단위 관문·건강 기록·`environment_pressure` 처리는 본 실행과 같다. 출력은 새 `.noindex` 폴더에 둔다.
+3. 보고: 단위별로 10 GiB 결과와 20 GiB 결과를 나란히 적는다. 대상은 시도별 종료 사유, 물리 메모리 최댓값, 첫 후보까지 시간, 후보 수, 맥락 판정(J) 결과다. 20 GiB에서도 `memory_cap`이면 그대로 기록한다. 결과가 달라진 단위 수를 W·S 따로 센다.
+4. 이 규칙은 A 결과와 후보를 열람하기 전에 기록했다. 보완 대상 목록은 본 실행 `state.json`과 run 기록의 종료 사유만으로 정하며 후보 내용은 보지 않는다. B에도 같은 규칙을 적용할지는 B 실행 전에 따로 정한다.
+
+### zkFuzz 파서 버전 보정(2026-10-08, miiz 결정, A 후보 열람 전)
+
+A 본 실행에서 `aq-035-8f826c822cb8`(fixed)·`aq-036-6d7df64759b6`(vulnerable)의 W 시도는 전부 1초 안에 `error[P1003]`(파일이 `pragma circom 2.2.2`를 요구하나 zkFuzz 내장 circom 파서는 2.2.1)로 끝나 퍼징을 한 번도 하지 못했다. aq-035 S의 조각 2개도 같은 이유로 실패했다. A1b preflight는 circom 2.2.3 컴파일만 확인해 이 실패를 잡지 못했다. 이 판단은 엔진 stderr와 시도 종료 사유만 보고 내렸으며 후보 내용은 열람하지 않았다.
+
+1. 보정: 두 대상의 프로젝트 사본에서 `pragma circom 2.2.2;` 줄만 `pragma circom 2.2.1;`로 바꾼다. 다른 줄은 바꾸지 않는다. 원본 준비 폴더는 수정하지 않는다.
+2. 동등성 조건: 고정 circom(2.2.3)으로 원본과 보정본의 W entrypoint를 같은 옵션으로 컴파일해 R1CS가 바이트 단위로 같아야 한다. 다르면 보정하지 않고 두 대상의 W를 `engine_unsupported`로 보고한다.
+3. 실행: 두 대상 × seed 3 = 6단위의 W·S를 본 실행과 같은 조건(600초, S 시도 30초, 10 GiB, 동시 3, v4 관문·건강 기록)으로 새 출력 폴더에 다시 실행한다. 본 표에는 보정 실행을 쓰고, 원래 실행은 "파서 버전 불일치로 실행 불가" 사례로 함께 보고한다.
+4. 같은 규칙을 B에 미리 적용한다. B 실행 전 preflight에 zkFuzz 파서 수용 확인(짧게 띄워 P 오류 없음)을 넣고, `pragma` 요구 버전 때문에 실패하는 대상에만 1·2를 적용한다.
+5. 보충(2026-10-08, 리드 판단, A 후보 열람 전): 분할 조각 wrapper가 보정 대상 프로젝트 파일을 절대 경로로 include하면, wrapper의 versioned 사본에서 그 include 경로만 보정 사본의 같은 상대 위치로 바꾼다. 조건은 1·2와 같다. 원본 wrapper+원본 프로젝트와 보정 wrapper+보정 프로젝트를 같은 옵션으로 컴파일해 조각 R1CS가 바이트 단위로 같아야 하고, 다르면 그 조각은 `engine_unsupported`로 보고한다. 조각 식별자가 바뀌면 원래 식별자와의 대응을 기록해 J와 정답 대조에서 같은 조각으로 다룬다.
+
+### A 맥락 판정(J) 실행 규칙(2026-10-09, 리드 판단, J 결과 열람 전)
+
+A 본 실행과 보완 실행이 끝난 뒤, J를 한 번도 실행하지 않은 상태에서 기록한다. §5의 J 행(S·W 후보 전부, L-07 엔진, entrypoint 리비전별 인스턴스 저장소)을 실행 가능한 형태로 구체화한다. 후보 값은 엔진만 읽는다.
+
+1. 대상 후보: A 본 표 run(`a-execute-2.noindex`에서 각 단위의 압박 없는 마지막 run, 단 aq-035·036은 `pragma-b-execute-2.noindex`)의 W·S 후보 파일 전부. 원래 aq-035·036 run은 "파서 버전 불일치로 실행 불가" 사례로만 보고하고 J를 하지 않는다. 메모리 20 GiB 보완 run(`mem20-execute-2.noindex`)의 후보는 민감도 보고용으로 따로 판정한다.
+2. 엔진과 요청: 판정 zkfDO `e5cb0184…`(`runs/l07-2026-10-05/tools/zkfDO`), circom `8991887…`. 후보 하나당 `zkfdo-lifting-request-v1` 요청 하나. S는 그 조각의 wrapper, W는 entrypoint 자체를 `component_wrapper`로 둔다. entrypoint는 해당 단위의 W entrypoint다(aq-035·036은 보정 사본).
+3. 기준 입력: 리비전마다 아래 순서로 처음 통과하는 것 하나를 쓴다. 통과 조건은 그 리비전 원본 entrypoint에서 정직 witness 생성이 성공하고 원본 R1CS를 두 방법(Rust·snarkjs)으로 만족하는 것이다.
+   - (a) 단위에 연결된 zkbugs 항목의 `input.json`(항목이 여럿이면 목록 순서)
+   - (b) 같은 entrypoint 경로에 이미 쓰인 개발 기준 입력(L-시리즈 요청의 `base_input`)
+   - (c) 그 리비전 프로젝트 안에 커밋된 JSON 파일 중 최상위 키 집합이 entrypoint main 입력 이름 집합과 정확히 같은 것(`node_modules` 제외, 경로 사전순)
+   - (d) 모든 입력을 0으로 채운 입력
+   - 모두 실패하면 `base_input_unavailable`이다. 그 리비전의 후보는 전부 J `preparation_failure`로 분모에 남긴다. 사람이 입력을 만들거나 프로젝트 스크립트를 돌려 입력을 만들지 않는다.
+4. 저장소와 최종 판정: 인스턴스 저장소는 리비전(대상)마다 하나이며 그 리비전의 W·S·seed가 공유한다. 최종 판정은 `experiment lift-instances`의 인스턴스 판정과 클래스 실효 판정(실행 순서 무관)이다. 후보 자신의 판정도 함께 남긴다. 메모리 보완 후보는 새 저장소로 따로 판정한다.
+5. L1과 시각: 후보가 `entrypoint_violation`이거나 실효 판정이 가정 술어 도달이면 L1이다. 후보의 L1 시각은 그 후보를 낸 시도의 `completion_offset_seconds`이고, 단위의 최초 L1 시각은 그중 최솟값이다(없으면 600초 검열). 도달은 `reach_inputs` 분류와 함께 보고한다.
+6. 엔진 결함(예: W 요청 처리 불가)이나 기준 입력 실패를 본 뒤 이 규칙을 바꾸지 않는다. 바꿔야 하면 새 판으로 기록하고, 바뀐 뒤의 판정은 탐색층으로 따로 보고한다.
+
+### B 실행 전 보충(2026-10-09, 리드 판단, B 실행 전)
+
+B campaign을 한 번도 실행하지 않은 상태에서 기록한다. 대상·예산·seed·순서·10 GiB 본 상한은 바꾸지 않는다.
+
+1. 메모리 상한 민감도 보완을 B에도 적용한다. 규칙은 위 "메모리 상한 민감도 보완 실행" 1~4항과 같고 예산만 B 값(총예산 3,600초, S 시도 30초)을 쓴다. 대상은 B 본 실행 `state.json`과 run 기록의 종료 사유만으로 정하며, 보완 실행은 B 본 실행 직후 B J 전에 한다. 이유: B에는 백만 제약 이상 단위가 6개 있어 10 GiB 상한이 W·S 비교를 바꿀 가능성이 A보다 크다.
+2. 대기열 실행기 v4.3: v4.2에 전원 상태 기록만 더한다. 1분마다(thermal 표본과 같은 주기) AC 전원 여부를 건강 기록에 남기고, 새 단위는 가장 최근 AC 표본이 연결일 때만 시작한다(아니면 기다린다). 단위 실행 중 AC 미연결 표본이 하나라도 있으면 그 실행을 `environment_pressure`(사유 `ac_power_lost`)로 표시해 기존 규칙대로 대기열 끝에서 동시 1로 다시 수행한다. 전원 확인 실패는 표본 오류로 다룬다. 이유: A3 재실행 첫 시도가 충전기 미연결로 시작 관문에서 멈췄고, v4.2는 실행 중 전원 상태를 기록하지 않아 배터리로 돈 단위를 구별할 수 없다. v4.3 SHA-256은 N6-B2 준비 문서에 기록한다.
+3. zkFuzz 파서 수용 확인은 위 "zkFuzz 파서 버전 보정" 4·5항대로 B 60 spec 전부에 실행 전에 수행한다.
+
+### A 맥락 판정(J) 기준 입력 보충(2026-10-10, 리드 판단, J 실행 전)
+
+J와 기준 입력 통과 검사(witness 생성)를 한 번도 실행하지 않은 상태에서 기록한다. 계기는 리드의 정적 확인이다. 입력 없는 A-Q 13리비전(4프로젝트) 중 6리비전에서 (c)에 맞는 커밋 JSON이 0개였고, 대신 프로젝트 자체 테스트가 같은 main 회로로 정직 witness를 계산한다. 위 "A 맥락 판정(J) 실행 규칙" 3항을 아래처럼 바꾼다. 6항(결과를 본 뒤 규칙을 바꾸지 않음)은 그대로다.
+
+1. 순서: (a) zkbugs `input.json` → (b) L-시리즈 기준 입력 → (c) 커밋 JSON → (d) 프로젝트 테스트 입력 → (e) 모든 입력 0. 통과 조건은 그대로다.
+2. (d) 프로젝트 테스트 입력: 그 리비전 프로젝트의 테스트·입력 도구 파일(`node_modules` 제외, 경로 사전순) 중 그 entrypoint 파일이나 같은 main 템플릿·같은 템플릿 인자의 회로로 witness를 계산하거나 입력을 만드는 것을 그대로 실행한다. witness 계산 함수(또는 입력 도구 출력)에 넘어간 입력 객체를 나온 순서대로 기록하고, 최상위 키 집합이 main 입력 이름 집합과 같은 것 중 처음 통과하는 것을 쓴다. 테스트·도구·입력은 고치지 않고, circom은 고정 circom을 쓴다. 실행 실패, 네트워크 설치 필요, 리비전당 30분 초과는 (d) 실패로 기록한다.
+3. 보고: 리비전별로 원래 규칙(위 3항)이었으면 쓰였을 단계와 이 규칙으로 쓰인 단계를 둘 다 적고, (d)로 기준 입력을 얻은 리비전의 후보 판정 수를 따로 센다.
+4. 사람이 입력을 만들거나 고치지 않는다.
