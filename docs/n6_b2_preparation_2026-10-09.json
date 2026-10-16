@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "document": "docs/n6_b2_preparation_2026-10-09.md",
+  "basis": [
+    "docs/n5_evaluation_protocol_v1_2026-10-06.md",
+    "runs/handoff/n6_b2_instruction_2026-10-09.md"
+  ],
+  "status": "prepared_gate_failed_in_sandbox",
+  "b_campaign_executed": false,
+  "j_executed": false,
+  "report_items": [
+    {
+      "number": 1,
+      "name": "고정 입력 해시 확인",
+      "status": "passed",
+      "evidence": [
+        {"path": "runs/n6-b2-2026-10-09.noindex/fixed-input-check.json", "sha256": "99e3880379773d335fe323b35c0c6753e2743cc57cdb11970c6ba7b5e58999f0"},
+        {"path": "runs/n6-a2b-2026-10-08.noindex/queue-b-v4.json", "sha256": "d39e821fd65cea1852ad6a20b88ab59e03a7c363be9022224221986716161600"},
+        {"path": "runs/n6-a2b-2026-10-08.noindex/preflight-reuse-b-v4.json", "sha256": "4af095fcd9f7370e01cf0fe48fa32d2164a19b2f98273859355f0c7d284be030"},
+        {"path": "scripts/run_policy_a_engine_v4.py", "sha256": "ff36c6db0a7475064c388a9bd0b0a1845863329f1fe2e2b40f06dec641fa9451"},
+        {"path": "/Users/miiz/.cargo/bin/zkfuzz", "sha256": "ac2d9d16fd97ff803b121b7994aef804b4e191636f3f78660ff6ecd6c9ae4edd"},
+        {"path": "/Users/miiz/.cargo/bin/circom", "sha256": "8991887889c2a74d6fc704d5689ada4cc76fba004e866c987de6cbf3b3db6227"}
+      ],
+      "counts": {"units": 30, "specs": 60, "preflight_rows": 60}
+    },
+    {
+      "number": 2,
+      "name": "include 출처",
+      "status": "passed",
+      "evidence": [
+        {"path": "runs/n6-b2-2026-10-09.noindex/include-provenance-v3.json", "sha256": "792af9508592d26c6e67e5f53f38c67bd5ff9a86d33cceccc4424f7d3e63c03d"},
+        {"path": "runs/n6-b2-2026-10-09.noindex/include-provenance-final-v3.json", "sha256": "833a1910d1afe431d1e3bc749cad6425ce12fcfe5b31c8c398dd48f4ae5e49a6"},
+        {"path": "runs/n6-b2-2026-10-09.noindex/parser-static-pragma-final.json", "sha256": "ba8ce9f80db6ce39e8230d3cd9aeaaf383a3d1a93cec4d20fb3068d2c6559c53"},
+        {"path": "scripts/n6_b2_include_provenance.py", "sha256": "b44eff86842a49d4f62147d08c847e46b697be9dd4bcd8220d8e1ff2c2b0ff70"}
+      ],
+      "counts": {"specs": 60, "unique_closures": 3393, "external_references": 10992, "external_unique_files": 231, "library_root_external_references": 57, "library_root_external_unique_files": 21, "unresolved": 0, "snapshot_missing": 0, "snapshot_mismatch": 0, "pragma_above_2_2_1_final": 0}
+    },
+    {
+      "number": 3,
+      "name": "절대경로 include 목록",
+      "status": "passed",
+      "evidence": [
+        {"path": "runs/n6-b2-2026-10-09.noindex/include-provenance-v3.json", "sha256": "792af9508592d26c6e67e5f53f38c67bd5ff9a86d33cceccc4424f7d3e63c03d"},
+        {"path": "runs/n6-b2-2026-10-09.noindex/include-provenance-final-v3.json", "sha256": "833a1910d1afe431d1e3bc749cad6425ce12fcfe5b31c8c398dd48f4ae5e49a6"}
+      ],
+      "counts": {"original_absolute_references": 3375, "original_distinct_include_paths": 151, "corrected_wrapper_include_paths": 304, "final_absolute_references": 3375}
+    },
+    {
+      "number": 4,
+      "name": "파서 표와 보정 여부",
+      "status": "passed_after_pragma_correction",
+      "evidence": [
+        {"path": "runs/n6-b2-2026-10-09.noindex/parser-static-pragma.json", "sha256": "759214d2b626baba3cd6e66a65a6b41f4fa9b4923ab014850e8a4f6e78b84b8c"},
+        {"path": "runs/n6-b2-2026-10-09.noindex/parser-source-equivalence.json", "sha256": "7dd081cfd5529895c129e8d39ba9eeb4a39d18c54fc1ad5756befa55412c889"},
+        {"path": "runs/n6-b2-2026-10-09.noindex/parser-acceptance-summary.json", "sha256": "00a47218051feab2d0289d75cf214d044a5c6f1d348639ff1892f3c07367f56b"},
+        {"path": "runs/n6-b2-2026-10-09.noindex/parser-high-version-p-errors.json", "sha256": "85a8fd0c067c6ec874e32d5d878eafb726a8bd4957cbde3a4715718352766d15"},
+        {"path": "runs/n6-b2-2026-10-09.noindex/pragma-77e0f2db173d0c1812de503a/source-evidence.json", "sha256": "ef900f2ac42c74f1fb66f2108077a788ed01170b1edb3c5ab9852c5e36a8ea10"},
+        {"path": "runs/n6-b2-2026-10-09.noindex/pragma-77e0f2db173d0c1812de503a/r1cs-equivalence.json", "sha256": "9d6afaa3d05e4a850f47f56c6d80c50b9af1591e03eb9cee1a081ff6f6675795"},
+        {"path": "runs/n6-b2-2026-10-09.noindex/pragma-77e0f2db173d0c1812de503a/parser-check-v2.json", "sha256": "2c17a7536ed5c6a481a5ec66102171d79ddfcdf93bddc624c000d08d370b1de3"}
+      ],
+      "counts": {"representative_entrypoints_checked": 3393, "accepted_original": 3331, "p1003_original": 62, "other_p_errors": 0, "corrected_w_r1cs_equal": 1, "corrected_s_r1cs_equal": 305, "corrected_parser_accepted": 306, "remaining_parse_unconfirmed": 0, "remaining_process_groups": 0}
+    },
+    {
+      "number": 5,
+      "name": "v4.3 diff·테스트",
+      "status": "passed",
+      "evidence": [
+        {"path": "scripts/run_n6_v4_3_queue.py", "sha256": "7a63986e7a6aa43b445128fdde32b6aeb087049684b07d86481f776e62183b9e"}
+      ],
+      "counts": {"v4_2_python_tests_passed": 12, "v4_3_python_tests_passed": 15}
+    },
+    {
+      "number": 6,
+      "name": "mem20 준비 스크립트·테스트",
+      "status": "prepared_not_executed_on_b_data",
+      "evidence": [
+        {"path": "scripts/n6_b_mem20_prepare.py", "sha256": "a44b86b75f72c0a3f291c4913bc7b377f91c55a3864069ab485590a55fee69ac"}
+      ],
+      "counts": {"fake_ledger_tests_passed": 4}
+    },
+    {
+      "number": 7,
+      "name": "관문 결과",
+      "status": "failed_closed_process_inventory_permission",
+      "evidence": [
+        {"path": "runs/n6-b2-2026-10-09.noindex/gates/prestart-gates.json", "sha256": "6f3d774414d0657edf5175cf6f83f22007c1f06051f7215e4553159bd59a83b8"}
+      ],
+      "counts": {"process_inventory_available": 0, "new_gate_record_required_before_campaign": 1},
+      "reason": "ps: Operation not permitted; no passed gate record exists"
+    },
+    {
+      "number": 8,
+      "name": "최종 queue 해시·validate-only",
+      "status": "valid",
+      "evidence": [
+        {"path": "runs/n6-b2-2026-10-09.noindex/pragma-77e0f2db173d0c1812de503a/queue-b-pragma.json", "sha256": "0fbaa62e4437c2f7bf8cfea45391d5375476a1090aaf39cc4433e6eff66e9b19"},
+        {"path": "runs/n6-b2-2026-10-09.noindex/pragma-77e0f2db173d0c1812de503a/preflight-proof.json", "sha256": "83cf19c8cd142ad27cd230a2b5a7afb27ed69c369bd57eed67c8ce3a983c4f2b"},
+        {"path": "runs/n6-b2-2026-10-09.noindex/pragma-77e0f2db173d0c1812de503a/final-queue.json", "sha256": "eb0d11f249348e0a7f838186b78796e62bd1ce3320122e18f77d4037fa31ff2a"},
+        {"path": "runs/n6-b2-2026-10-09.noindex/b-execution-inputs.sha256", "sha256": "27b1c98ed1f0ff7d5315b79a7b33303a3f05e932eb9c87d3b3bc622a736d7d0b"},
+        {"path": "scripts/n6_b2_prestart_gate.py", "sha256": "89bb2563d6f692cafe3204777b86c0824667ea365a2be1ca53570a2b866959fa"}
+      ],
+      "counts": {"units": 30, "specs": 60, "preflight_rows_passed": 60, "preflight_rows_reused": 54, "preflight_rows_fresh": 6, "manifest_hash_checks_passed": 4, "cargo_fmt_exit_code": 0, "cargo_clippy_exit_code": 0, "cargo_test_exit_code": 0}
+    },
+    {
+      "number": 9,
+      "name": "터미널 명령·예상 시간",
+      "status": "command_prepared_not_executed",
+      "evidence": [
+        {"path": "runs/n6-b2-2026-10-09.noindex/b-execution-inputs.sha256", "sha256": "27b1c98ed1f0ff7d5315b79a7b33303a3f05e932eb9c87d3b3bc622a736d7d0b"}
+      ],
+      "counts": {"units": 30, "seconds_per_method": 3600, "methods_per_unit": 2, "concurrency": 3, "simple_lower_bound_hours": 20},
+      "command_document_section": 9,
+      "output_path": "runs/n6-b2-2026-10-09.noindex/b-execute.noindex",
+      "log_path": "runs/n6-b2-2026-10-09.noindex/terminal-b.log"
+    }
+  ],
+  "n5_priority_difference": "B2 4절은 첫 seed 명령으로 probe하지만 N5는 60 spec 전체 수용을 요구한다. 세 seed의 source snapshot, target 명령, pinned files/trees 동등성 증명으로 대표 3393 entrypoint 결과를 60 spec에 결속했다."
+}
