@@ -1,0 +1,3578 @@
+{
+  "correction": "N5 appendix A pre-list correction, 2026-10-07, miiz decision",
+  "counts": {
+    "A-D": 5,
+    "A-Q-stage1": 24,
+    "A-Q-stage2": 21,
+    "all": 70,
+    "leave_one_out_items": 11,
+    "original_entrypoint_kinds": {
+      "original_is_direct": 14,
+      "project_main": 47,
+      "project_test": 7,
+      "zkbugs_thin": 2
+    },
+    "shared_fix_groups": 5,
+    "vulnerable_only": 20,
+    "with_fix_commit": 50,
+    "without_fix_commit": 20
+  },
+  "development_units": [
+    {
+      "entrypoint": "src/circuit.circom",
+      "evidence": "docs/lifting_l06_results_2026-10-05.md",
+      "project": "inference-labs-inc/subnet-2-circom",
+      "revision": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+      "source": "runs/dev-projects/inference",
+      "unit_id": "inference-original"
+    },
+    {
+      "diff": {
+        "path": "runs/l06-2026-10-03/trees/r_intdiv.diff",
+        "sha256": "995f85019acc659fb31953a6bb782154404ae8c85c6619df0859cc247a439cb5"
+      },
+      "entrypoint": "src/circuit.circom",
+      "evidence": "docs/lifting_l06_results_2026-10-05.md",
+      "project": "inference-labs-inc/subnet-2-circom",
+      "revision": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+      "revision_tree": "r_intdiv",
+      "source": "runs/dev-projects/inference",
+      "unit_id": "inference-r-intdiv"
+    },
+    {
+      "diff": {
+        "path": "runs/l06-2026-10-03/trees/c9221e8d.diff",
+        "sha256": "7dffdc1e68f26fcf530e602677141a372a5ceda11125d12a80b7bc2689fad94b"
+      },
+      "entrypoint": "src/circuit.circom",
+      "evidence": "docs/lifting_l06_results_2026-10-05.md",
+      "project": "inference-labs-inc/subnet-2-circom",
+      "revision": "9221e8dfff3c13153eadeaaba46458060056873b",
+      "revision_tree": "c9221e8d",
+      "source": "runs/dev-projects/inference",
+      "unit_id": "inference-c9221e8d"
+    },
+    {
+      "diff": {
+        "path": "runs/l06-2026-10-03/trees/c79f42ee.diff",
+        "sha256": "782f9b52209b7a95b822e731fecfa01375597c40b3cb58e5ed8d2bfefdf3f6f1"
+      },
+      "entrypoint": "src/circuit.circom",
+      "evidence": "docs/lifting_l06_results_2026-10-05.md",
+      "project": "inference-labs-inc/subnet-2-circom",
+      "revision": "79f42eef3fc103638fed9fefaeae12dcbf0b9cf2",
+      "revision_tree": "c79f42ee",
+      "source": "runs/dev-projects/inference",
+      "unit_id": "inference-c79f42ee"
+    },
+    {
+      "diff": {
+        "path": "runs/l06-2026-10-03/trees/c771c61c_p.diff",
+        "sha256": "7227783603ae5e9e960b6348e11b16ac77d8ae53527bb25cb47ff82256dd44df"
+      },
+      "entrypoint": "src/circuit.circom",
+      "evidence": "docs/lifting_l06_results_2026-10-05.md",
+      "project": "inference-labs-inc/subnet-2-circom",
+      "revision": "771c61c221a647f35ecab3c9f278dfa7bcc1a359",
+      "revision_tree": "c771c61c_p",
+      "source": "runs/dev-projects/inference",
+      "unit_id": "inference-c771c61c-p"
+    },
+    {
+      "diff": {
+        "path": "runs/l06-2026-10-03/trees/loo_clamp.diff",
+        "sha256": "0446e86cf5415a7af4cc51d5df3a7dbbd69115f926688d691c9599fd35d42b35"
+      },
+      "entrypoint": "src/circuit.circom",
+      "evidence": "docs/lifting_l06_results_2026-10-05.md",
+      "project": "inference-labs-inc/subnet-2-circom",
+      "revision": "b8f92bdec1694138df0e069921f1aa0bdc94053e",
+      "revision_tree": "loo_clamp",
+      "source": "runs/dev-projects/inference",
+      "unit_id": "inference-loo-clamp"
+    },
+    {
+      "diff": {
+        "path": "runs/l06-2026-10-03/trees/loo_dfs.diff",
+        "sha256": "c58c09a5e213db989b79c1da98c7745a84bffb5cf28aebc40ce719d1cb8a4ca4"
+      },
+      "entrypoint": "src/circuit.circom",
+      "evidence": "docs/lifting_l06_results_2026-10-05.md",
+      "project": "inference-labs-inc/subnet-2-circom",
+      "revision": "b8f92bdec1694138df0e069921f1aa0bdc94053e",
+      "revision_tree": "loo_dfs",
+      "source": "runs/dev-projects/inference",
+      "unit_id": "inference-loo-dfs"
+    },
+    {
+      "diff": {
+        "path": "runs/l06-2026-10-03/trees/all_fixed.diff",
+        "sha256": "1f8f2814841244e37eb95b6a979d04faec77d69960d28238e80b722b5956f9c7"
+      },
+      "entrypoint": "src/circuit.circom",
+      "evidence": "docs/lifting_l06_results_2026-10-05.md",
+      "project": "inference-labs-inc/subnet-2-circom",
+      "revision": "b8f92bdec1694138df0e069921f1aa0bdc94053e",
+      "revision_tree": "all_fixed",
+      "source": "runs/dev-projects/inference",
+      "unit_id": "inference-all-fixed"
+    },
+    {
+      "entrypoint": "circuit.circom",
+      "evidence": "datasets/controlled-v2/banyan-check-depth/manifest.json",
+      "project": "banyancomputer/hot-proofs-blake3-circom",
+      "revision": "76b83107eb00c8f886bde82172eaa3cdd5d57f25",
+      "source": "datasets/controlled-v2/banyan-check-depth/vulnerable/project",
+      "unit_id": "banyan-vulnerable"
+    },
+    {
+      "entrypoint": "circuit.circom",
+      "evidence": "datasets/controlled-v2/banyan-check-depth/manifest.json",
+      "project": "banyancomputer/hot-proofs-blake3-circom",
+      "revision": "e37eb56e29b304024055f3d0a1681e6f22132ecc",
+      "source": "datasets/controlled-v2/banyan-check-depth/fixed/project",
+      "unit_id": "banyan-fixed"
+    },
+    {
+      "entrypoint": "packages/circuits/tests/test-circuits/rsa-test.circom",
+      "evidence": "reports/dev-rq1-pilot-2026-09-29/README.md",
+      "project": "zkemail/zk-email-verify",
+      "revision": "fc9949763858ca363a73a2764d9c1d26ef227478",
+      "source": "runs/dev-projects/zkemail",
+      "unit_id": "zkemail-fpmul-vulnerable"
+    },
+    {
+      "entrypoint": "packages/circuits/tests/test-circuits/rsa-test.circom",
+      "evidence": "reports/dev-rq1-pilot-2026-09-29/README.md",
+      "project": "zkemail/zk-email-verify",
+      "revision": "9ed3769dc3d96fb0d7c45f1f014dcd9bfb63675b",
+      "source": "runs/dev-projects/zkemail",
+      "unit_id": "zkemail-fpmul-fixed"
+    }
+  ],
+  "items": [
+    {
+      "bucket": "A-Q-stage2",
+      "bucket_reason": "fix_commit_but_no_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/0xbok/circom-bigint/veridise_missing_range_checks_in_bigmod/zkbugs_config.json",
+        "sha256": "f596c22b67108d99a67dcfbaac2b2e5abe4981760949cceae624d60aeb795535"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/0xbok/circom-bigint/veridise_missing_range_checks_in_bigmod",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "d3edd7503f48f98a71b6013c248ef3ad55e19703"
+      ],
+      "id": "0xbok/circom-bigint/veridise-V-BIGINT-COD-001",
+      "leave_one_out": null,
+      "location": {
+        "Function": "BigMod",
+        "Line": "371-381",
+        "Path": "circuits/bigint.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "test/circuits/test_bigmod_22.circom",
+      "original_entrypoint_kind": "project_test",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/0xbok/circom-bigint/veridise_missing_range_checks_in_bigmod/input.json",
+        "sha256": "970d2026560f05a907869554c7a6b812d6f6d4b15b6231bfed647b6146b16e91"
+      },
+      "project": "0xbok/circom-bigint",
+      "project_match_key": "0xbok/circom-bigint",
+      "setup_observations": [
+        {
+          "source": "C-03/E-01/E-02",
+          "status": "not_recorded"
+        }
+      ],
+      "setup_success": false,
+      "title": "Missing range checks in BigMod",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/0xbok/circom-bigint/veridise_missing_range_checks_in_bigmod/zkbugs_vars.sh",
+        "sha256": "4bb01bdb9b6245d6613f1ce86449675c59005f16b348345617ce09fef9e700fe"
+      },
+      "vulnerable_commit": "436665bf01728ae8c581fdb39e8428cb6b835c37"
+    },
+    {
+      "bucket": "A-Q-stage1",
+      "bucket_reason": "fix_commit_and_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/Arianee/arianee-sdk/veridise_creditnoteproofs_can_be_stolen/zkbugs_config.json",
+        "sha256": "dd82bbf409485adb454c72e7246513dc54ff4ee235eb13c415370f61218236ea"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/Arianee/arianee-sdk/veridise_creditnoteproofs_can_be_stolen",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "095a366101c50ba46601402805c0935650558aab"
+      ],
+      "id": "Arianee/arianee-sdk/veridise_creditnoteproofs_can_be_stolen",
+      "leave_one_out": null,
+      "location": {
+        "Function": "CreditVerifier",
+        "Line": "11-77",
+        "Path": "packages/privacy-circuits/src/circom/creditVerifier/creditVerifier.circom"
+      },
+      "missing_or_unknown": [
+        "original_input_missing_locally"
+      ],
+      "original_entrypoint": "packages/privacy-circuits/src/circom/creditVerifier/generated/creditVerifier_main.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": false,
+        "path": ".external/zkbugs/dataset/circom/Arianee/arianee-sdk/veridise_creditnoteproofs_can_be_stolen/input.json",
+        "sha256": null
+      },
+      "project": "Arianee/arianee-sdk",
+      "project_match_key": "arianee/arianee-sdk",
+      "setup_observations": [
+        {
+          "repository": "Arianee/arianee-sdk",
+          "source": "C-03",
+          "status": "success"
+        }
+      ],
+      "setup_success": true,
+      "title": "CreditNoteProofs can be stolen",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/Arianee/arianee-sdk/veridise_creditnoteproofs_can_be_stolen/zkbugs_vars.sh",
+        "sha256": "883f84a8793ada04b18e78eb2922bed7a0cb6f10e8f2108b5e0d6341329fbb46"
+      },
+      "vulnerable_commit": "b7da01e0c81b9cccdc257040997c3500eb59db4f"
+    },
+    {
+      "bucket": "vulnerable_only",
+      "bucket_reason": "fix_commit_not_recorded_RQ-C_excluded",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/Arianee/arianee-sdk/veridise_ownershipproofs_could_identify_issuers/zkbugs_config.json",
+        "sha256": "499ddf811082285b4c24fbf9444839975da851555738f45d36689d468e6b3659"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/Arianee/arianee-sdk/veridise_ownershipproofs_could_identify_issuers",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [],
+      "id": "Arianee/arianee-sdk/veridise_ownershipproofs_could_identify_issuers",
+      "leave_one_out": null,
+      "location": {
+        "Function": "OwnershipVerifier",
+        "Line": "5-31",
+        "Path": "packages/privacy-circuits/src/circom/ownershipVerifier/ownershipVerifier.circom"
+      },
+      "missing_or_unknown": [
+        "original_input_missing_locally"
+      ],
+      "original_entrypoint": "packages/privacy-circuits/src/circom/ownershipVerifier/generated/ownershipVerifier_main.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": false,
+        "path": ".external/zkbugs/dataset/circom/Arianee/arianee-sdk/veridise_ownershipproofs_could_identify_issuers/input.json",
+        "sha256": null
+      },
+      "project": "Arianee/arianee-sdk",
+      "project_match_key": "arianee/arianee-sdk",
+      "setup_observations": [
+        {
+          "repository": "Arianee/arianee-sdk",
+          "source": "C-03",
+          "status": "success"
+        }
+      ],
+      "setup_success": true,
+      "title": "OwnershipProofs could identify issuers",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/Arianee/arianee-sdk/veridise_ownershipproofs_could_identify_issuers/zkbugs_vars.sh",
+        "sha256": "d6ed4fbea4fccf206edef4b33529b45727771c6c09d929ad97d8b6f848ead997"
+      },
+      "vulnerable_commit": "b7da01e0c81b9cccdc257040997c3500eb59db4f"
+    },
+    {
+      "bucket": "A-Q-stage1",
+      "bucket_reason": "fix_commit_and_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/Moonsong-Labs/zksync-social-login-circuit/openzeppelin_mismatched_base64url_decoding_may_break_completeness/zkbugs_config.json",
+        "sha256": "577f9c8a0fbb587bd60b7e7afa749c80f33b37da92f4a595d98a6131b4a30c1e"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/Moonsong-Labs/zksync-social-login-circuit/openzeppelin_mismatched_base64url_decoding_may_break_completeness",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "0548942278a414d85e2f3d406e171eeac325349e"
+      ],
+      "id": "Moonsong-Labs/zksync-social-login-circuit/openzeppelin_mismatched_base64url_decoding_may_break_completeness",
+      "leave_one_out": null,
+      "location": {
+        "Function": "JwtVerify",
+        "Line": "91-93",
+        "Path": "utils/jwt-verify.circom"
+      },
+      "missing_or_unknown": [
+        "original_input_missing_locally"
+      ],
+      "original_entrypoint": "jwt-tx-validation.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": false,
+        "path": ".external/zkbugs/dataset/circom/Moonsong-Labs/zksync-social-login-circuit/openzeppelin_mismatched_base64url_decoding_may_break_completeness/input.json",
+        "sha256": null
+      },
+      "project": "Moonsong-Labs/zksync-social-login-circuit",
+      "project_match_key": "moonsong-labs/zksync-social-login-circuit",
+      "setup_observations": [
+        {
+          "repository": "Moonsong-Labs/zksync-social-login-circuit",
+          "source": "C-03",
+          "status": "success"
+        }
+      ],
+      "setup_success": true,
+      "title": "Mismatched Base64url Decoding May Break Completeness",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/Moonsong-Labs/zksync-social-login-circuit/openzeppelin_mismatched_base64url_decoding_may_break_completeness/zkbugs_vars.sh",
+        "sha256": "a8854e04de1171a07aed8599698fead1fad4556423007c9536f1ac7d7f630ee9"
+      },
+      "vulnerable_commit": "27cda6e74492fbad4aa3ca37ff5084ed391b534b"
+    },
+    {
+      "bucket": "A-Q-stage1",
+      "bucket_reason": "fix_commit_and_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/Moonsong-Labs/zksync-social-login-circuit/openzeppelin_non_determinism_of_some_inputs/zkbugs_config.json",
+        "sha256": "bd44a900d906a21e48d5c03d3c2a20fd4614bf578052ab3e9a92096bec479aed"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/Moonsong-Labs/zksync-social-login-circuit/openzeppelin_non_determinism_of_some_inputs",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "5d02de9e550b6e671b732a432c590c02cb8bab3d"
+      ],
+      "id": "Moonsong-Labs/zksync-social-login-circuit/openzeppelin_non_determinism_of_some_inputs",
+      "leave_one_out": null,
+      "location": {
+        "Function": "ExtractNonce / ExtractIssuer / ExtractAud / ExtractSub",
+        "Line": "19-124",
+        "Path": "utils/fields.circom"
+      },
+      "missing_or_unknown": [
+        "original_input_missing_locally"
+      ],
+      "original_entrypoint": "jwt-tx-validation.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": false,
+        "path": ".external/zkbugs/dataset/circom/Moonsong-Labs/zksync-social-login-circuit/openzeppelin_non_determinism_of_some_inputs/input.json",
+        "sha256": null
+      },
+      "project": "Moonsong-Labs/zksync-social-login-circuit",
+      "project_match_key": "moonsong-labs/zksync-social-login-circuit",
+      "setup_observations": [
+        {
+          "repository": "Moonsong-Labs/zksync-social-login-circuit",
+          "source": "C-03",
+          "status": "success"
+        }
+      ],
+      "setup_success": true,
+      "title": "Non-Determinism of Some Inputs",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/Moonsong-Labs/zksync-social-login-circuit/openzeppelin_non_determinism_of_some_inputs/zkbugs_vars.sh",
+        "sha256": "de96f04c8aa4ba9e616b47748f97d2f189efa5600a6d11e2f699eb3b6bd9d128"
+      },
+      "vulnerable_commit": "27cda6e74492fbad4aa3ca37ff5084ed391b534b"
+    },
+    {
+      "bucket": "vulnerable_only",
+      "bucket_reason": "fix_commit_not_recorded_RQ-C_excluded",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/Rate-Limiting-Nullifier/circom-rln/veridise_spammers_may_slash_themselves/zkbugs_config.json",
+        "sha256": "f79c9dc2e6fae482464591a5d4dafa03ab40cc5a98f0a3e5b5d43bd101bf2ed6"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/Rate-Limiting-Nullifier/circom-rln/veridise_spammers_may_slash_themselves",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [],
+      "id": "Rate-Limiting-Nullifier/circom-rln/veridise_spammers_may_slash_themselves",
+      "leave_one_out": null,
+      "location": {
+        "Function": "Withdraw",
+        "Line": "5-12",
+        "Path": "circuits/withdraw.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "circuits/withdraw.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/Rate-Limiting-Nullifier/circom-rln/veridise_spammers_may_slash_themselves/input.json",
+        "sha256": "9d43aadd1a03032a7bb6a67aae7ba43bc4c1b6404084985b577927f208a9177f"
+      },
+      "project": "Rate-Limiting-Nullifier/circom-rln",
+      "project_match_key": "rate-limiting-nullifier/circom-rln",
+      "setup_observations": [
+        {
+          "source": "C-03/E-01/E-02",
+          "status": "not_recorded"
+        }
+      ],
+      "setup_success": false,
+      "title": "Spammers may slash themselves",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/Rate-Limiting-Nullifier/circom-rln/veridise_spammers_may_slash_themselves/zkbugs_vars.sh",
+        "sha256": "2910e71656b8d79fc79c051d8f83fd479263b6a93740b12b200371ffbc39d45e"
+      },
+      "vulnerable_commit": "022b690b5615d1e26874013cf216136875d8f3ab"
+    },
+    {
+      "bucket": "A-Q-stage2",
+      "bucket_reason": "fix_commit_but_no_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/Unirep/Unirep/veridise_missing_range_checks_on_comparison_circuits/zkbugs_config.json",
+        "sha256": "5c1b481e9e29bb122b73bbf0572ad335fd2c13a70a60029868b1ec5da1817a39"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/Unirep/Unirep/veridise_missing_range_checks_on_comparison_circuits",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "f7b0bcd39383d5ec4d17edec2ad91bc01333bf36"
+      ],
+      "id": "Unirep/Unirep/veridise-V-UNI-VUL-002",
+      "leave_one_out": null,
+      "location": {
+        "Function": "EpochKeyLite",
+        "Line": "45-48",
+        "Path": "packages/circuits/circuits/epochKeyLite.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "packages/circuits/generated/epochKeyLite.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/Unirep/Unirep/veridise_missing_range_checks_on_comparison_circuits/input.json",
+        "sha256": "e226a54cff652fefba168c04df5e29748115adad66fb71c3a7e3daad37a7c429"
+      },
+      "project": "Unirep/Unirep",
+      "project_match_key": "unirep/unirep",
+      "setup_observations": [
+        {
+          "source": "C-03/E-01/E-02",
+          "status": "not_recorded"
+        }
+      ],
+      "setup_success": false,
+      "title": "Missing Range Checks on Comparison Circuits",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/Unirep/Unirep/veridise_missing_range_checks_on_comparison_circuits/zkbugs_vars.sh",
+        "sha256": "4752b1a315d76eafef7d2e3896d7bf001787f6057105a0645b2d39cfa72a5234"
+      },
+      "vulnerable_commit": "0985a28c38c8b2e7b7a9e80f43e63179fdd08b89"
+    },
+    {
+      "bucket": "A-Q-stage2",
+      "bucket_reason": "fix_commit_but_no_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/Unirep/Unirep/veridise_underconstrained_circuit_allows_invalid_comparison/zkbugs_config.json",
+        "sha256": "81b119671f92e129be9a0077fd2712bfc03a195e115ff352861bc451febe58e3"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/Unirep/Unirep/veridise_underconstrained_circuit_allows_invalid_comparison",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "3348caa362d5d632d29c532ffa88023d55628eab"
+      ],
+      "id": "Unirep/Unirep/veridise-V-UNI-VUL-001",
+      "leave_one_out": null,
+      "location": {
+        "Function": "BigLessThan",
+        "Line": "41-45",
+        "Path": "packages/circuits/circuits/bigComparators.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "packages/circuits/generated/bigComparators.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/Unirep/Unirep/veridise_underconstrained_circuit_allows_invalid_comparison/input.json",
+        "sha256": "aed6bd15e47fedaabe447529bc0e0d621277c8efca4529a6c9a4af1456cf47a2"
+      },
+      "project": "Unirep/Unirep",
+      "project_match_key": "unirep/unirep",
+      "setup_observations": [
+        {
+          "source": "C-03/E-01/E-02",
+          "status": "not_recorded"
+        }
+      ],
+      "setup_success": false,
+      "title": "Underconstrained Circuit allows Invalid Comparison",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/Unirep/Unirep/veridise_underconstrained_circuit_allows_invalid_comparison/zkbugs_vars.sh",
+        "sha256": "d6dbb8d921d71ce114cfa3a92fc590d88e3f299c2c35e43048b0826f233b538a"
+      },
+      "vulnerable_commit": "0985a28c38c8b2e7b7a9e80f43e63179fdd08b89"
+    },
+    {
+      "bucket": "A-Q-stage1",
+      "bucket_reason": "fix_commit_and_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/aptos-labs/keyless-zk-proofs/koukyosyumei_unconstrained_base64_decoded_len/zkbugs_config.json",
+        "sha256": "6857248486c870baa8add1417e986c40c073572a9830bab8ff5a38b0927e49cc"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/aptos-labs/keyless-zk-proofs/koukyosyumei_unconstrained_base64_decoded_len",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "fa943244d45cb733626e54108a0ce7e10bcba5c3"
+      ],
+      "id": "aptos-labs/keyless-zk-proofs/koukyosyumei_unconstrained_base64_decoded_len",
+      "leave_one_out": null,
+      "location": {
+        "Function": "Base64DecodedLength",
+        "Line": "237-266",
+        "Path": "circuit/templates/helpers/misc.circom"
+      },
+      "missing_or_unknown": [
+        "original_input_missing_locally"
+      ],
+      "original_entrypoint": "circuit/templates/generated/base64_decoded_length_main.circom",
+      "original_entrypoint_kind": "zkbugs_thin",
+      "original_input": {
+        "exists": false,
+        "path": ".external/zkbugs/dataset/circom/aptos-labs/keyless-zk-proofs/koukyosyumei_unconstrained_base64_decoded_len/input.json",
+        "sha256": null
+      },
+      "project": "aptos-labs/keyless-zk-proofs",
+      "project_match_key": "aptos-labs/keyless-zk-proofs",
+      "setup_observations": [
+        {
+          "repository": "aptos-labs/keyless-zk-proofs",
+          "source": "C-03",
+          "status": "success"
+        }
+      ],
+      "setup_success": true,
+      "title": "Base64DecodedLength output is declared but never constrained",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/aptos-labs/keyless-zk-proofs/koukyosyumei_unconstrained_base64_decoded_len/zkbugs_vars.sh",
+        "sha256": "2444bb9a9e51322e45a4414f59bb49b0f4c992307b2cffdf4cf8c2d7a8a06cb4"
+      },
+      "vulnerable_commit": "fd160220a88a5becf0f91ea1a5425fdd537c7399"
+    },
+    {
+      "bucket": "A-D",
+      "bucket_reason": "development_project_precedence",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/banyancomputer/hot-proofs-blake3-circom/koukyosyumei_checkdepth_comparator_overflow/zkbugs_config.json",
+        "sha256": "60b8779f12001c1fd2ffc0bd6e17667196de3ddb71a72d197d164836e4d91255"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/banyancomputer/hot-proofs-blake3-circom/koukyosyumei_checkdepth_comparator_overflow",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "e37eb56e29b304024055f3d0a1681e6f22132ecc"
+      ],
+      "id": "banyancomputer/hot-proofs-blake3-circom/koukyosyumei_checkdepth_comparator_overflow",
+      "leave_one_out": null,
+      "location": {
+        "Function": "Blake3NovaTreePath_CheckDepth",
+        "Line": "13-39",
+        "Path": "circuits/blake3_nova.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "circuits/main/check_depth_main.circom",
+      "original_entrypoint_kind": "zkbugs_thin",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/banyancomputer/hot-proofs-blake3-circom/koukyosyumei_checkdepth_comparator_overflow/input.json",
+        "sha256": "e6e4ce5f4e61c8c64cecbbe4196d1bdbb6f6ae436ab26246aebf0e13a5cd4117"
+      },
+      "project": "banyancomputer/hot-proofs-blake3-circom",
+      "project_match_key": "banyancomputer/hot-proofs-blake3-circom",
+      "setup_observations": [
+        {
+          "repository": "banyancomputer/hot-proofs-blake3-circom",
+          "source": "C-03",
+          "status": "success"
+        }
+      ],
+      "setup_success": true,
+      "title": "Blake3NovaTreePath_CheckDepth LessThan/GreaterEqThan missing range checks",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/banyancomputer/hot-proofs-blake3-circom/koukyosyumei_checkdepth_comparator_overflow/zkbugs_vars.sh",
+        "sha256": "3309f39ff95b96cbefdc795e4d34817159d1ecf2a44cd1e6a03113b324b92115"
+      },
+      "vulnerable_commit": "76b83107eb00c8f886bde82172eaa3cdd5d57f25"
+    },
+    {
+      "bucket": "A-Q-stage2",
+      "bucket_reason": "fix_commit_but_no_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/darkforest-eth/darkforest-v0.3/daira_hopwood_darkforest_v0_3_missing_bit_length_check/zkbugs_config.json",
+        "sha256": "bc53ef34d5e13f2b0d55b8ebc2d3bc58ab42f1c7c0461631624608c296070abe"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/darkforest-eth/darkforest-v0.3/daira_hopwood_darkforest_v0_3_missing_bit_length_check",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "https://github.com/darkforest-eth/circuits/commit/1b5c8440a487614d4a3e6ed523df0aee71a05b6e#diff-440e6bdf86d42398f40d29b9df0b9e6992c6859194d2a7f3c8c68fb46d0f2040"
+      ],
+      "id": "darkforest-eth/darkforest-v0.3/Daira-Hopwood-Missing-Bit-Length-Check",
+      "leave_one_out": null,
+      "location": {
+        "Function": "RangeProof",
+        "Line": "16-22",
+        "Path": "circuits/range_proof/circuit.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "circuits/init/circuit.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/darkforest-eth/darkforest-v0.3/daira_hopwood_darkforest_v0_3_missing_bit_length_check/input.json",
+        "sha256": "3be2c1ca9fade4b145adade833761d655b89e4d86c7da1b326daa18acca2de33"
+      },
+      "project": "darkforest-eth/darkforest-v0.3",
+      "project_match_key": "darkforest-eth/darkforest-v0.3",
+      "setup_observations": [
+        {
+          "source": "C-03/E-01/E-02",
+          "status": "not_recorded"
+        }
+      ],
+      "setup_success": false,
+      "title": "Dark Forest v0.3: Missing Bit Length Check",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/darkforest-eth/darkforest-v0.3/daira_hopwood_darkforest_v0_3_missing_bit_length_check/zkbugs_vars.sh",
+        "sha256": "5895d0a0a27fa7c06b8dc8d4dbf646569b2bf170783ece5f50a54eb05d1f969f"
+      },
+      "vulnerable_commit": "1c83685e22e0463d5481c83e21616745b3204c9c"
+    },
+    {
+      "bucket": "A-Q-stage1",
+      "bucket_reason": "fix_commit_and_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/iden3/circomlib/kobi_gurkan_mimc_hash_assigned_but_not_constrained/zkbugs_config.json",
+        "sha256": "37b6f4677efcfc1925d12fc7079642b4514d816e6aafe004d2aa4636bdfa7c19"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/iden3/circomlib/kobi_gurkan_mimc_hash_assigned_but_not_constrained",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "109cdf40567fce284dca1d535819ce28922653e0"
+      ],
+      "id": "iden3/circomlib/Kobi-Gurkan-MiMC-Hash-Assigned-but-not-Constrained",
+      "leave_one_out": null,
+      "location": {
+        "Function": "MiMCSponge",
+        "Line": "26",
+        "Path": "circuits/mimcsponge.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "$BUG_DIR/circuit.circom",
+      "original_entrypoint_kind": "original_is_direct",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/iden3/circomlib/kobi_gurkan_mimc_hash_assigned_but_not_constrained/input.json",
+        "sha256": "994cefc0a044a233d576cfc6e8805b1c937de7338b023b23ea36b9faccf941a3"
+      },
+      "project": "iden3/circomlib",
+      "project_match_key": "iden3/circomlib",
+      "setup_observations": [
+        {
+          "repository": "iden3/circomlib",
+          "source": "C-03",
+          "status": "success"
+        }
+      ],
+      "setup_success": true,
+      "title": "MiMC Hash: Assigned but not Constrained",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/iden3/circomlib/kobi_gurkan_mimc_hash_assigned_but_not_constrained/zkbugs_vars.sh",
+        "sha256": "e26356636f45f1cca44f4047af0c58298d1e57bb354e27f8480aad33f9b85f67"
+      },
+      "vulnerable_commit": "324b8bf8cc4a80357354752deb6c2ae5be22e5f5"
+    },
+    {
+      "bucket": "vulnerable_only",
+      "bucket_reason": "fix_commit_not_recorded_RQ-C_excluded",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/iden3/circomlib/veridise_decoder_accepting_bogus_output_signal/zkbugs_config.json",
+        "sha256": "4b9fdafe80039e082edae89ebe29bdc18b216a446bc2ca274b8a0b3821710939"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/iden3/circomlib/veridise_decoder_accepting_bogus_output_signal",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [],
+      "id": "iden3/circomlib/veridise-V-CIRCOMLIB-VUL-001",
+      "leave_one_out": null,
+      "location": {
+        "Function": "Decoder",
+        "Line": "85-86",
+        "Path": "circuits/multiplexer.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "$BUG_DIR/circuit.circom",
+      "original_entrypoint_kind": "original_is_direct",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/iden3/circomlib/veridise_decoder_accepting_bogus_output_signal/input.json",
+        "sha256": "77aa6772680a30d47b013a96783c30f540e8396d7104325c4df4bfa5f1e85708"
+      },
+      "project": "iden3/circomlib",
+      "project_match_key": "iden3/circomlib",
+      "setup_observations": [
+        {
+          "repository": "iden3/circomlib",
+          "source": "C-03",
+          "status": "success"
+        }
+      ],
+      "setup_success": true,
+      "title": "Decoder accepting bogus output signal",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/iden3/circomlib/veridise_decoder_accepting_bogus_output_signal/zkbugs_vars.sh",
+        "sha256": "6c4570cf2b10c9fe025e9e0ef106d9a713e103c3afa5e396f0b3b0ee677d30de"
+      },
+      "vulnerable_commit": "cff5ab6288b55ef23602221694a6a38a0239dcc0"
+    },
+    {
+      "bucket": "vulnerable_only",
+      "bucket_reason": "fix_commit_not_recorded_RQ-C_excluded",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/iden3/circomlib/veridise_underconstrained_outputs_in_bitElementMulAny/zkbugs_config.json",
+        "sha256": "044ae29ee1d068cb8281313ef4499029bd83538eef89eb9688413dd56fb98367"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/iden3/circomlib/veridise_underconstrained_outputs_in_bitElementMulAny",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [],
+      "id": "iden3/circomlib/veridise-V-CIRCOMLIB-VUL-006",
+      "leave_one_out": null,
+      "location": {
+        "Function": "BitElementMulAny",
+        "Line": "41-42",
+        "Path": "circuits/escalarmulany.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "$BUG_DIR/circuit.circom",
+      "original_entrypoint_kind": "original_is_direct",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/iden3/circomlib/veridise_underconstrained_outputs_in_bitElementMulAny/input.json",
+        "sha256": "dec484831295123b18eefaf1567219e16232fb4ea7ac3e8f65cbc8bdaa4a8049"
+      },
+      "project": "iden3/circomlib",
+      "project_match_key": "iden3/circomlib",
+      "setup_observations": [
+        {
+          "repository": "iden3/circomlib",
+          "source": "C-03",
+          "status": "success"
+        }
+      ],
+      "setup_success": true,
+      "title": "Underconstrained outputs in BitElementMulAny",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/iden3/circomlib/veridise_underconstrained_outputs_in_bitElementMulAny/zkbugs_vars.sh",
+        "sha256": "6c4570cf2b10c9fe025e9e0ef106d9a713e103c3afa5e396f0b3b0ee677d30de"
+      },
+      "vulnerable_commit": "cff5ab6288b55ef23602221694a6a38a0239dcc0"
+    },
+    {
+      "bucket": "vulnerable_only",
+      "bucket_reason": "fix_commit_not_recorded_RQ-C_excluded",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/iden3/circomlib/veridise_underconstrained_outputs_in_window4/zkbugs_config.json",
+        "sha256": "67c07db65bee7c9f044f5f8aed18f7e8f7c3df55831fd2e5f27714eaa880d9d7"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/iden3/circomlib/veridise_underconstrained_outputs_in_window4",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [],
+      "id": "iden3/circomlib/veridise-V-CIRCOMLIB-VUL-007",
+      "leave_one_out": null,
+      "location": {
+        "Function": "Window4",
+        "Line": "25-109",
+        "Path": "circuits/pedersen.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "$BUG_DIR/circuit.circom",
+      "original_entrypoint_kind": "original_is_direct",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/iden3/circomlib/veridise_underconstrained_outputs_in_window4/input.json",
+        "sha256": "8a73df9d51748ee1f8912205b0a7630d608ce926351ad7f7d4f8cb9c827e8d76"
+      },
+      "project": "iden3/circomlib",
+      "project_match_key": "iden3/circomlib",
+      "setup_observations": [
+        {
+          "repository": "iden3/circomlib",
+          "source": "C-03",
+          "status": "success"
+        }
+      ],
+      "setup_success": true,
+      "title": "Underconstrained outputs in Window4",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/iden3/circomlib/veridise_underconstrained_outputs_in_window4/zkbugs_vars.sh",
+        "sha256": "6c4570cf2b10c9fe025e9e0ef106d9a713e103c3afa5e396f0b3b0ee677d30de"
+      },
+      "vulnerable_commit": "cff5ab6288b55ef23602221694a6a38a0239dcc0"
+    },
+    {
+      "bucket": "vulnerable_only",
+      "bucket_reason": "fix_commit_not_recorded_RQ-C_excluded",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/iden3/circomlib/veridise_underconstrained_outputs_in_windowmulfix/zkbugs_config.json",
+        "sha256": "a4989e6dd0c2e938219078c06a9927c1afffeb1b783e7e63207d36e8504c579c"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/iden3/circomlib/veridise_underconstrained_outputs_in_windowmulfix",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [],
+      "id": "iden3/circomlib/veridise-V-CIRCOMLIB-VUL-008",
+      "leave_one_out": null,
+      "location": {
+        "Function": "WindowMulFix",
+        "Line": "48-132",
+        "Path": "circuits/escalarmulfix.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "$BUG_DIR/circuit.circom",
+      "original_entrypoint_kind": "original_is_direct",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/iden3/circomlib/veridise_underconstrained_outputs_in_windowmulfix/input.json",
+        "sha256": "7ebeb3abc0319cc59a90abaf3ab9b140816d8a021117312fbe212597ad74ec0a"
+      },
+      "project": "iden3/circomlib",
+      "project_match_key": "iden3/circomlib",
+      "setup_observations": [
+        {
+          "repository": "iden3/circomlib",
+          "source": "C-03",
+          "status": "success"
+        }
+      ],
+      "setup_success": true,
+      "title": "Underconstrained outputs in WindowMulFix",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/iden3/circomlib/veridise_underconstrained_outputs_in_windowmulfix/zkbugs_vars.sh",
+        "sha256": "6c4570cf2b10c9fe025e9e0ef106d9a713e103c3afa5e396f0b3b0ee677d30de"
+      },
+      "vulnerable_commit": "cff5ab6288b55ef23602221694a6a38a0239dcc0"
+    },
+    {
+      "bucket": "vulnerable_only",
+      "bucket_reason": "fix_commit_not_recorded_RQ-C_excluded",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/iden3/circomlib/veridise_underconstrained_points_in_edwards2Montgomery/zkbugs_config.json",
+        "sha256": "f05f724a7ca8a4774059a6e7ba9ac45d36140f924ebb0631d73035ed38c61de1"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/iden3/circomlib/veridise_underconstrained_points_in_edwards2Montgomery",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [],
+      "id": "iden3/circomlib/veridise-V-CIRCOMLIB-VUL-002",
+      "leave_one_out": null,
+      "location": {
+        "Function": "Edwards2Montgomery",
+        "Line": "34-35",
+        "Path": "circuits/montgomery.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "$BUG_DIR/circuit.circom",
+      "original_entrypoint_kind": "original_is_direct",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/iden3/circomlib/veridise_underconstrained_points_in_edwards2Montgomery/input.json",
+        "sha256": "5fadbb575dd3623b425f88fe5830027605a5f5405f78943666e034607b98cd2d"
+      },
+      "project": "iden3/circomlib",
+      "project_match_key": "iden3/circomlib",
+      "setup_observations": [
+        {
+          "repository": "iden3/circomlib",
+          "source": "C-03",
+          "status": "success"
+        }
+      ],
+      "setup_success": true,
+      "title": "Underconstrained points in Edwards2Montgomery",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/iden3/circomlib/veridise_underconstrained_points_in_edwards2Montgomery/zkbugs_vars.sh",
+        "sha256": "6c4570cf2b10c9fe025e9e0ef106d9a713e103c3afa5e396f0b3b0ee677d30de"
+      },
+      "vulnerable_commit": "cff5ab6288b55ef23602221694a6a38a0239dcc0"
+    },
+    {
+      "bucket": "vulnerable_only",
+      "bucket_reason": "fix_commit_not_recorded_RQ-C_excluded",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/iden3/circomlib/veridise_underconstrained_points_in_montgomery2Edwards/zkbugs_config.json",
+        "sha256": "3b2e109665af4acd7706a07b4b8a3c2e413951074d4f7d3273e198d9723705c8"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/iden3/circomlib/veridise_underconstrained_points_in_montgomery2Edwards",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [],
+      "id": "iden3/circomlib/veridise-V-CIRCOMLIB-VUL-003",
+      "leave_one_out": null,
+      "location": {
+        "Function": "Montgomery2Edwards",
+        "Line": "53-54",
+        "Path": "circuits/montgomery.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "$BUG_DIR/circuit.circom",
+      "original_entrypoint_kind": "original_is_direct",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/iden3/circomlib/veridise_underconstrained_points_in_montgomery2Edwards/input.json",
+        "sha256": "766940af84ce565cc89c89956e0075ff24657d1b828f0593bf83e0b692cb23a8"
+      },
+      "project": "iden3/circomlib",
+      "project_match_key": "iden3/circomlib",
+      "setup_observations": [
+        {
+          "repository": "iden3/circomlib",
+          "source": "C-03",
+          "status": "success"
+        }
+      ],
+      "setup_success": true,
+      "title": "Underconstrained points in Montgomery2Edwards",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/iden3/circomlib/veridise_underconstrained_points_in_montgomery2Edwards/zkbugs_vars.sh",
+        "sha256": "6c4570cf2b10c9fe025e9e0ef106d9a713e103c3afa5e396f0b3b0ee677d30de"
+      },
+      "vulnerable_commit": "cff5ab6288b55ef23602221694a6a38a0239dcc0"
+    },
+    {
+      "bucket": "vulnerable_only",
+      "bucket_reason": "fix_commit_not_recorded_RQ-C_excluded",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/iden3/circomlib/veridise_underconstrained_points_in_montgomeryAdd/zkbugs_config.json",
+        "sha256": "74932069d87bf131a8dccb6ef4f2aabffba21ce92200baf1f32432ffee3ad640"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/iden3/circomlib/veridise_underconstrained_points_in_montgomeryAdd",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [],
+      "id": "iden3/circomlib/veridise-V-CIRCOMLIB-VUL-004",
+      "leave_one_out": null,
+      "location": {
+        "Function": "MontgomeryAdd",
+        "Line": "102-103",
+        "Path": "circuits/montgomery.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "$BUG_DIR/circuit.circom",
+      "original_entrypoint_kind": "original_is_direct",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/iden3/circomlib/veridise_underconstrained_points_in_montgomeryAdd/input.json",
+        "sha256": "bc57059f0dacb7fbeb7820aa2c40c4a5d4b0acc5adcfee243d1a380a21dbf02c"
+      },
+      "project": "iden3/circomlib",
+      "project_match_key": "iden3/circomlib",
+      "setup_observations": [
+        {
+          "repository": "iden3/circomlib",
+          "source": "C-03",
+          "status": "success"
+        }
+      ],
+      "setup_success": true,
+      "title": "Underconstrained points in MontgomeryAdd",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/iden3/circomlib/veridise_underconstrained_points_in_montgomeryAdd/zkbugs_vars.sh",
+        "sha256": "6c4570cf2b10c9fe025e9e0ef106d9a713e103c3afa5e396f0b3b0ee677d30de"
+      },
+      "vulnerable_commit": "cff5ab6288b55ef23602221694a6a38a0239dcc0"
+    },
+    {
+      "bucket": "vulnerable_only",
+      "bucket_reason": "fix_commit_not_recorded_RQ-C_excluded",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/iden3/circomlib/veridise_underconstrained_points_in_montgomeryDouble/zkbugs_config.json",
+        "sha256": "c0412a8f18b1d22bb554f47e0e79891dd8a24536830950dbccff7de2427352a1"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/iden3/circomlib/veridise_underconstrained_points_in_montgomeryDouble",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [],
+      "id": "iden3/circomlib/veridise-V-CIRCOMLIB-VUL-005",
+      "leave_one_out": null,
+      "location": {
+        "Function": "MontgomeryDouble",
+        "Line": "137-138",
+        "Path": "circuits/montgomery.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "$BUG_DIR/circuit.circom",
+      "original_entrypoint_kind": "original_is_direct",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/iden3/circomlib/veridise_underconstrained_points_in_montgomeryDouble/input.json",
+        "sha256": "2734a714d09394fbcba34d1acdb5db2652820b4b7b5ddb3ae9778c042ce3c800"
+      },
+      "project": "iden3/circomlib",
+      "project_match_key": "iden3/circomlib",
+      "setup_observations": [
+        {
+          "repository": "iden3/circomlib",
+          "source": "C-03",
+          "status": "success"
+        }
+      ],
+      "setup_success": true,
+      "title": "Underconstrained points in MontgomeryDouble",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/iden3/circomlib/veridise_underconstrained_points_in_montgomeryDouble/zkbugs_vars.sh",
+        "sha256": "6c4570cf2b10c9fe025e9e0ef106d9a713e103c3afa5e396f0b3b0ee677d30de"
+      },
+      "vulnerable_commit": "cff5ab6288b55ef23602221694a6a38a0239dcc0"
+    },
+    {
+      "bucket": "vulnerable_only",
+      "bucket_reason": "fix_commit_not_recorded_RQ-C_excluded",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/iden3/circuits/trailofbits_unsafe_use_of_num2bits_in_multiple_circuits/zkbugs_config.json",
+        "sha256": "7705a9cc2c153cb248d1501b21235c34101dfbd5f23282adc6c6e5f007291904"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/iden3/circuits/trailofbits_unsafe_use_of_num2bits_in_multiple_circuits",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [],
+      "id": "iden3/circuits/trailofbits_unsafe_use_of_num2bits_in_multiple_circuits",
+      "leave_one_out": null,
+      "location": {
+        "Function": "getClaimRevNonce",
+        "Line": "123",
+        "Path": "circuits/lib/utils/claimUtils.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "$BUG_DIR/circuit.circom",
+      "original_entrypoint_kind": "original_is_direct",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/iden3/circuits/trailofbits_unsafe_use_of_num2bits_in_multiple_circuits/input.json",
+        "sha256": "8eb95bcbc154530931e15fc418c8b1fe991095671409552099ea1aa596999ede"
+      },
+      "project": "iden3/circuits",
+      "project_match_key": "iden3/circuits",
+      "setup_observations": [
+        {
+          "repository": "iden3/circuits",
+          "source": "C-03",
+          "status": "success"
+        }
+      ],
+      "setup_success": true,
+      "title": "Unsafe use of Num2Bits in multiple circuits",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/iden3/circuits/trailofbits_unsafe_use_of_num2bits_in_multiple_circuits/zkbugs_vars.sh",
+        "sha256": "d951c8249b0a15254ad387632b010417bc3625b4304ff9e7067214c5e172a29b"
+      },
+      "vulnerable_commit": "7a1e04de3e5f3a9f0cfb27a43c9f41c986c1b9ed"
+    },
+    {
+      "bucket": "A-D",
+      "bucket_reason": "development_project_precedence",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/inference-labs-inc/subnet-2-circom/koukyosyumei_clamp_comparator_overflow/zkbugs_config.json",
+        "sha256": "5c09c5ac528a4875a0caaeac252db7095944df0a8347e7fa26c7baec7492122a"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/inference-labs-inc/subnet-2-circom/koukyosyumei_clamp_comparator_overflow",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "b8f92bdec1694138df0e069921f1aa0bdc94053e"
+      ],
+      "id": "inference-labs-inc/subnet-2-circom/koukyosyumei_clamp_comparator_overflow",
+      "leave_one_out": {
+        "base_fix_commits": [
+          "b8f92bdec1694138df0e069921f1aa0bdc94053e"
+        ],
+        "diff_path": null,
+        "diff_sha256": null,
+        "method": "apply full fix revision, then restore only this item's vulnerable location",
+        "planned_diff_scope": {
+          "function": "Clamp",
+          "line": "38-67",
+          "path": "src/clampTensor.circom"
+        },
+        "required": true,
+        "restore_from_vulnerable_commit": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+        "shared_fix_item_count": 2,
+        "shared_fix_item_ids": [
+          "inference-labs-inc/subnet-2-circom/koukyosyumei_clamp_comparator_overflow",
+          "inference-labs-inc/subnet-2-circom/koukyosyumei_subtract_unconstrained_multiplier"
+        ]
+      },
+      "location": {
+        "Function": "Clamp",
+        "Line": "38-67",
+        "Path": "src/clampTensor.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "src/generated/clamp_main.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/inference-labs-inc/subnet-2-circom/koukyosyumei_clamp_comparator_overflow/input.json",
+        "sha256": "2a2786562640d559874f6221bfc06c682d558b2ac8f653a534876b6e58ee451c"
+      },
+      "project": "inference-labs-inc/subnet-2-circom",
+      "project_match_key": "inference-labs-inc/subnet-2-circom",
+      "setup_observations": [
+        {
+          "source": "C-03/E-01/E-02",
+          "status": "not_recorded"
+        }
+      ],
+      "setup_success": false,
+      "title": "Clamp LessThan inputs are not range-checked",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/inference-labs-inc/subnet-2-circom/koukyosyumei_clamp_comparator_overflow/zkbugs_vars.sh",
+        "sha256": "9d7c0bf692144395bc791100e9b2974e4e071023d3cc298091c4c6f3bff6cd8a"
+      },
+      "vulnerable_commit": "d310309c141d36504b3486cebd96ed70ef3a4fdf"
+    },
+    {
+      "bucket": "A-D",
+      "bucket_reason": "development_project_precedence",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/inference-labs-inc/subnet-2-circom/koukyosyumei_subtract_unconstrained_multiplier/zkbugs_config.json",
+        "sha256": "891a26062ed8b6f91d60ab951489eb0548d4b9850d1551aa62b9894b6e621f5e"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/inference-labs-inc/subnet-2-circom/koukyosyumei_subtract_unconstrained_multiplier",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "b8f92bdec1694138df0e069921f1aa0bdc94053e"
+      ],
+      "id": "inference-labs-inc/subnet-2-circom/koukyosyumei_subtract_unconstrained_multiplier",
+      "leave_one_out": {
+        "base_fix_commits": [
+          "b8f92bdec1694138df0e069921f1aa0bdc94053e"
+        ],
+        "diff_path": null,
+        "diff_sha256": null,
+        "method": "apply full fix revision, then restore only this item's vulnerable location",
+        "planned_diff_scope": {
+          "function": "Subtract",
+          "line": "3-10",
+          "path": "src/subtractTensor.circom"
+        },
+        "required": true,
+        "restore_from_vulnerable_commit": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+        "shared_fix_item_count": 2,
+        "shared_fix_item_ids": [
+          "inference-labs-inc/subnet-2-circom/koukyosyumei_clamp_comparator_overflow",
+          "inference-labs-inc/subnet-2-circom/koukyosyumei_subtract_unconstrained_multiplier"
+        ]
+      },
+      "location": {
+        "Function": "Subtract",
+        "Line": "3-10",
+        "Path": "src/subtractTensor.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "src/generated/subtract_main.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/inference-labs-inc/subnet-2-circom/koukyosyumei_subtract_unconstrained_multiplier/input.json",
+        "sha256": "6a70a9489ffd9a780486104dd6e1265f3beb5c32f194e99be296a8daec47ab07"
+      },
+      "project": "inference-labs-inc/subnet-2-circom",
+      "project_match_key": "inference-labs-inc/subnet-2-circom",
+      "setup_observations": [
+        {
+          "source": "C-03/E-01/E-02",
+          "status": "not_recorded"
+        }
+      ],
+      "setup_success": false,
+      "title": "Subtract uses an unconstrained multiplier d",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/inference-labs-inc/subnet-2-circom/koukyosyumei_subtract_unconstrained_multiplier/zkbugs_vars.sh",
+        "sha256": "e8f4e3e7671bf6077899b2a7576b09b59b6587950af11a506898bb48c17ddacf"
+      },
+      "vulnerable_commit": "d310309c141d36504b3486cebd96ed70ef3a4fdf"
+    },
+    {
+      "bucket": "A-Q-stage1",
+      "bucket_reason": "fix_commit_and_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_babyjubjub_suborder_constraints_not_applied_correctly/zkbugs_config.json",
+        "sha256": "58167f8b83d0196bf7c662a644f06d85290e2c334b38a498914899d97b5f80cd"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_babyjubjub_suborder_constraints_not_applied_correctly",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "8fdab18"
+      ],
+      "id": "pantherfoundation/panther-core/veridise_babyjubjub_suborder_constraints_not_applied_correctly",
+      "leave_one_out": null,
+      "location": {
+        "Function": "BabyJubJubSubOrderTag",
+        "Line": "964-975",
+        "Path": "circuits/circuits/templates/utils.circom"
+      },
+      "missing_or_unknown": [
+        "original_input_missing_locally"
+      ],
+      "original_entrypoint": "circuits/circuits/mainZTransactionV1.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": false,
+        "path": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_babyjubjub_suborder_constraints_not_applied_correctly/input.json",
+        "sha256": null
+      },
+      "project": "pantherfoundation/panther-core",
+      "project_match_key": "pantherfoundation/panther-core",
+      "setup_observations": [
+        {
+          "repository": "pantherfoundation/panther-core",
+          "source": "C-03",
+          "status": "success"
+        }
+      ],
+      "setup_success": true,
+      "title": "Babyjubjub Suborder Constraints Not Applied Correctly",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_babyjubjub_suborder_constraints_not_applied_correctly/zkbugs_vars.sh",
+        "sha256": "fc8b37707c34cc6c3024d685319bfe65888046a34488521633cbf32a2cdd7909"
+      },
+      "vulnerable_commit": "b464348b33155a5877f67c085c7206dc29ad7cb7"
+    },
+    {
+      "bucket": "A-Q-stage1",
+      "bucket_reason": "fix_commit_and_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_blacklist_states_not_representable_in_field/zkbugs_config.json",
+        "sha256": "ef49f100853c609bb42e8b769750484fe150edf28785f0fcc040109e53e0d346"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_blacklist_states_not_representable_in_field",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "1763ca4"
+      ],
+      "id": "pantherfoundation/panther-core/veridise_blacklist_states_not_representable_in_field",
+      "leave_one_out": null,
+      "location": {
+        "Function": "ZAccountBlackListLeafInclusionProver",
+        "Line": "54-67",
+        "Path": "circuits/circuits/templates/zAccountBlackListLeafInclusionProver.circom"
+      },
+      "missing_or_unknown": [
+        "original_input_missing_locally"
+      ],
+      "original_entrypoint": "circuits/circuits/mainZTransactionV1.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": false,
+        "path": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_blacklist_states_not_representable_in_field/input.json",
+        "sha256": null
+      },
+      "project": "pantherfoundation/panther-core",
+      "project_match_key": "pantherfoundation/panther-core",
+      "setup_observations": [
+        {
+          "repository": "pantherfoundation/panther-core",
+          "source": "C-03",
+          "status": "success"
+        }
+      ],
+      "setup_success": true,
+      "title": "Blacklist States Cannot Be Represented Within the Circom Field",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_blacklist_states_not_representable_in_field/zkbugs_vars.sh",
+        "sha256": "3149c5c6304e1bd5ba6388d3f775a3164ed1cd0b868510bde6bd4c5f988373b9"
+      },
+      "vulnerable_commit": "b464348b33155a5877f67c085c7206dc29ad7cb7"
+    },
+    {
+      "bucket": "A-Q-stage1",
+      "bucket_reason": "fix_commit_and_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_bypassing_internal_transfer_limits_via_swaps/zkbugs_config.json",
+        "sha256": "74d2b3cc24a15e9cc2eab5e29c0106a4e2c6cfb2c6b34320332d03da00a4cce1"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_bypassing_internal_transfer_limits_via_swaps",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "39b770de49db47fcea361cf515b61e43dff36b65"
+      ],
+      "id": "pantherfoundation/panther-core/veridise_bypassing_internal_transfer_limits_via_swaps",
+      "leave_one_out": null,
+      "location": {
+        "Function": "ZSwapV1",
+        "Line": "620-631",
+        "Path": "circuits/circuits/zSwapV1.circom"
+      },
+      "missing_or_unknown": [
+        "original_input_missing_locally"
+      ],
+      "original_entrypoint": "circuits/circuits/mainZSwapV1.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": false,
+        "path": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_bypassing_internal_transfer_limits_via_swaps/input.json",
+        "sha256": null
+      },
+      "project": "pantherfoundation/panther-core",
+      "project_match_key": "pantherfoundation/panther-core",
+      "setup_observations": [
+        {
+          "repository": "pantherfoundation/panther-core",
+          "source": "C-03",
+          "status": "success"
+        }
+      ],
+      "setup_success": true,
+      "title": "Bypassing internal transfer limits via swaps",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_bypassing_internal_transfer_limits_via_swaps/zkbugs_vars.sh",
+        "sha256": "a8c00c5ab86cce1a0a4f151516b5bfb56aacb5f9b2c73e3d9ef2fc9039bbcdbd"
+      },
+      "vulnerable_commit": "06a818632053719b56ace37ef12c9b31904af1e2"
+    },
+    {
+      "bucket": "A-Q-stage1",
+      "bucket_reason": "fix_commit_and_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_data_escrow_encrypted_message_wrong_input/zkbugs_config.json",
+        "sha256": "666ed833f754808d515c69d8062f77f9722fe7f49de871fffc1f2aeccdf37f0b"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_data_escrow_encrypted_message_wrong_input",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "7ff5ba7"
+      ],
+      "id": "pantherfoundation/panther-core/veridise_data_escrow_encrypted_message_wrong_input",
+      "leave_one_out": null,
+      "location": {
+        "Function": "DataEscrowElGamalEncryption",
+        "Line": "148-150",
+        "Path": "circuits/circuits/templates/dataEscrowElGamalEncryption.circom"
+      },
+      "missing_or_unknown": [
+        "original_input_missing_locally"
+      ],
+      "original_entrypoint": "circuits/circuits/mainZTransactionV1.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": false,
+        "path": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_data_escrow_encrypted_message_wrong_input/input.json",
+        "sha256": null
+      },
+      "project": "pantherfoundation/panther-core",
+      "project_match_key": "pantherfoundation/panther-core",
+      "setup_observations": [
+        {
+          "repository": "pantherfoundation/panther-core",
+          "source": "C-03",
+          "status": "success"
+        }
+      ],
+      "setup_success": true,
+      "title": "Data Escrow Encrypted Message Constructed From Incorrect Input",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_data_escrow_encrypted_message_wrong_input/zkbugs_vars.sh",
+        "sha256": "fd0fdd72e722088ba63af1c35053fc976db3c42bd3b6a66382a22bdc476533e4"
+      },
+      "vulnerable_commit": "b464348b33155a5877f67c085c7206dc29ad7cb7"
+    },
+    {
+      "bucket": "A-Q-stage1",
+      "bucket_reason": "fix_commit_and_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_fortxreward_abstracted_away_in_reward_calc/zkbugs_config.json",
+        "sha256": "99ed7a0314e4a77d7d8472d31599c9ce1ab4ae12afaf890b974fe5bd37d6956c"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_fortxreward_abstracted_away_in_reward_calc",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "1055906"
+      ],
+      "id": "pantherfoundation/panther-core/veridise_fortxreward_abstracted_away_in_reward_calc",
+      "leave_one_out": null,
+      "location": {
+        "Function": "RewardsExtended",
+        "Line": "42-76",
+        "Path": "circuits/circuits/templates/rewardsExtended.circom"
+      },
+      "missing_or_unknown": [
+        "original_input_missing_locally"
+      ],
+      "original_entrypoint": "circuits/circuits/mainZTransactionV1.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": false,
+        "path": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_fortxreward_abstracted_away_in_reward_calc/input.json",
+        "sha256": null
+      },
+      "project": "pantherfoundation/panther-core",
+      "project_match_key": "pantherfoundation/panther-core",
+      "setup_observations": [
+        {
+          "repository": "pantherfoundation/panther-core",
+          "source": "C-03",
+          "status": "success"
+        }
+      ],
+      "setup_success": true,
+      "title": "forTxReward Gets Abstracted Away in the Reward Calculation",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_fortxreward_abstracted_away_in_reward_calc/zkbugs_vars.sh",
+        "sha256": "fc8b37707c34cc6c3024d685319bfe65888046a34488521633cbf32a2cdd7909"
+      },
+      "vulnerable_commit": "b464348b33155a5877f67c085c7206dc29ad7cb7"
+    },
+    {
+      "bucket": "A-Q-stage1",
+      "bucket_reason": "fix_commit_and_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_kyt_signature_verification_fails_nonzero_hash/zkbugs_config.json",
+        "sha256": "5992d9884d1ef1321ef157b791c64059b4148e0971aeb31f8795e05fcb80f4c8"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_kyt_signature_verification_fails_nonzero_hash",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "ccb2a8b"
+      ],
+      "id": "pantherfoundation/panther-core/veridise_kyt_signature_verification_fails_nonzero_hash",
+      "leave_one_out": null,
+      "location": {
+        "Function": "TrustProvidersKyt",
+        "Line": "272-344",
+        "Path": "circuits/circuits/templates/trustProvidersKyt.circom"
+      },
+      "missing_or_unknown": [
+        "original_input_missing_locally"
+      ],
+      "original_entrypoint": "circuits/circuits/mainZSwapV1.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": false,
+        "path": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_kyt_signature_verification_fails_nonzero_hash/input.json",
+        "sha256": null
+      },
+      "project": "pantherfoundation/panther-core",
+      "project_match_key": "pantherfoundation/panther-core",
+      "setup_observations": [
+        {
+          "repository": "pantherfoundation/panther-core",
+          "source": "C-03",
+          "status": "success"
+        }
+      ],
+      "setup_success": true,
+      "title": "KYT Signature Verification Process Fails for Any Non-Zero Signed Message Hash",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_kyt_signature_verification_fails_nonzero_hash/zkbugs_vars.sh",
+        "sha256": "c0bd9a2c1dcc676a1957cd6a51754e651b951dca1e820af05e2a062623484380"
+      },
+      "vulnerable_commit": "b464348b33155a5877f67c085c7206dc29ad7cb7"
+    },
+    {
+      "bucket": "A-Q-stage1",
+      "bucket_reason": "fix_commit_and_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_nullifier_verification_can_be_disabled/zkbugs_config.json",
+        "sha256": "df4f45e5e20eb9f810c8e5011c38e50b64d6bcc68bcf222ab1e8816e0c52b31e"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_nullifier_verification_can_be_disabled",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "69db60e"
+      ],
+      "id": "pantherfoundation/panther-core/veridise_nullifier_verification_can_be_disabled",
+      "leave_one_out": null,
+      "location": {
+        "Function": "ZSwapV1",
+        "Line": "683-686",
+        "Path": "circuits/circuits/zSwapV1.circom"
+      },
+      "missing_or_unknown": [
+        "original_input_missing_locally"
+      ],
+      "original_entrypoint": "circuits/circuits/mainZSwapV1.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": false,
+        "path": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_nullifier_verification_can_be_disabled/input.json",
+        "sha256": null
+      },
+      "project": "pantherfoundation/panther-core",
+      "project_match_key": "pantherfoundation/panther-core",
+      "setup_observations": [
+        {
+          "repository": "pantherfoundation/panther-core",
+          "source": "C-03",
+          "status": "success"
+        }
+      ],
+      "setup_success": true,
+      "title": "Nullifier Verification Can Be Disabled in ZSwapV1",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_nullifier_verification_can_be_disabled/zkbugs_vars.sh",
+        "sha256": "c0bd9a2c1dcc676a1957cd6a51754e651b951dca1e820af05e2a062623484380"
+      },
+      "vulnerable_commit": "b464348b33155a5877f67c085c7206dc29ad7cb7"
+    },
+    {
+      "bucket": "A-Q-stage1",
+      "bucket_reason": "fix_commit_and_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_unsafe_num2bits_254_blacklist_leaf/zkbugs_config.json",
+        "sha256": "9672d6402051703ceea5a465f88e89f54473028b71f50a2b5e7b51fa5bc040b9"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_unsafe_num2bits_254_blacklist_leaf",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "6dfcc56"
+      ],
+      "id": "pantherfoundation/panther-core/veridise_unsafe_num2bits_254_blacklist_leaf",
+      "leave_one_out": null,
+      "location": {
+        "Function": "ZAccountBlackListLeafInclusionProver",
+        "Line": "54-67",
+        "Path": "circuits/circuits/templates/zAccountBlackListLeafInclusionProver.circom"
+      },
+      "missing_or_unknown": [
+        "original_input_missing_locally"
+      ],
+      "original_entrypoint": "circuits/circuits/mainZTransactionV1.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": false,
+        "path": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_unsafe_num2bits_254_blacklist_leaf/input.json",
+        "sha256": null
+      },
+      "project": "pantherfoundation/panther-core",
+      "project_match_key": "pantherfoundation/panther-core",
+      "setup_observations": [
+        {
+          "repository": "pantherfoundation/panther-core",
+          "source": "C-03",
+          "status": "success"
+        }
+      ],
+      "setup_success": true,
+      "title": "Unsafe Use of Num2Bits(254) on Blacklist Leaf",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_unsafe_num2bits_254_blacklist_leaf/zkbugs_vars.sh",
+        "sha256": "3149c5c6304e1bd5ba6388d3f775a3164ed1cd0b868510bde6bd4c5f988373b9"
+      },
+      "vulnerable_commit": "b464348b33155a5877f67c085c7206dc29ad7cb7"
+    },
+    {
+      "bucket": "A-Q-stage1",
+      "bucket_reason": "fix_commit_and_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_zaccount_renewal_kyc_expiry_not_validated/zkbugs_config.json",
+        "sha256": "452cd73ca455ad87d77d8a5ad2abce042661f3d3b9140396967c5fcc95265f3e"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_zaccount_renewal_kyc_expiry_not_validated",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "3375335"
+      ],
+      "id": "pantherfoundation/panther-core/veridise_zaccount_renewal_kyc_expiry_not_validated",
+      "leave_one_out": null,
+      "location": {
+        "Function": "ZAccountRenewalV1",
+        "Line": "130-140",
+        "Path": "circuits/circuits/zAccountRenewalV1.circom"
+      },
+      "missing_or_unknown": [
+        "original_input_missing_locally"
+      ],
+      "original_entrypoint": "circuits/circuits/mainZAccountRenewalV1.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": false,
+        "path": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_zaccount_renewal_kyc_expiry_not_validated/input.json",
+        "sha256": null
+      },
+      "project": "pantherfoundation/panther-core",
+      "project_match_key": "pantherfoundation/panther-core",
+      "setup_observations": [
+        {
+          "repository": "pantherfoundation/panther-core",
+          "source": "C-03",
+          "status": "success"
+        }
+      ],
+      "setup_success": true,
+      "title": "zAccountRenewalV1 Circuit Does Not Validate KYC Certificates for Expiry",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_zaccount_renewal_kyc_expiry_not_validated/zkbugs_vars.sh",
+        "sha256": "b9ff2fd8fc39bbdd213fb25e1cac6bf4bd1eae1bf4b6669ca2a7185618621246"
+      },
+      "vulnerable_commit": "b464348b33155a5877f67c085c7206dc29ad7cb7"
+    },
+    {
+      "bucket": "A-Q-stage1",
+      "bucket_reason": "fix_commit_and_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_zaccount_renewal_multiple_nullifiers_same_utxo/zkbugs_config.json",
+        "sha256": "c588494bf5755828a3c93676782bbabc02c5a90a02abbf0f777123375140d49c"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_zaccount_renewal_multiple_nullifiers_same_utxo",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "903edd3"
+      ],
+      "id": "pantherfoundation/panther-core/veridise_zaccount_renewal_multiple_nullifiers_same_utxo",
+      "leave_one_out": null,
+      "location": {
+        "Function": "ZAccountRenewalV1",
+        "Line": "314-321",
+        "Path": "circuits/circuits/zAccountRenewalV1.circom"
+      },
+      "missing_or_unknown": [
+        "original_input_missing_locally"
+      ],
+      "original_entrypoint": "circuits/circuits/mainZAccountRenewalV1.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": false,
+        "path": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_zaccount_renewal_multiple_nullifiers_same_utxo/input.json",
+        "sha256": null
+      },
+      "project": "pantherfoundation/panther-core",
+      "project_match_key": "pantherfoundation/panther-core",
+      "setup_observations": [
+        {
+          "repository": "pantherfoundation/panther-core",
+          "source": "C-03",
+          "status": "success"
+        }
+      ],
+      "setup_success": true,
+      "title": "zAccountRenewalV1 Can Validate Multiple Nullifiers for the Same UTXO Commitment",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_zaccount_renewal_multiple_nullifiers_same_utxo/zkbugs_vars.sh",
+        "sha256": "b9ff2fd8fc39bbdd213fb25e1cac6bf4bd1eae1bf4b6669ca2a7185618621246"
+      },
+      "vulnerable_commit": "b464348b33155a5877f67c085c7206dc29ad7cb7"
+    },
+    {
+      "bucket": "A-Q-stage1",
+      "bucket_reason": "fix_commit_and_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_zone_id_inclusion_prover_bypass/zkbugs_config.json",
+        "sha256": "dd9ec30daeb5612064f2b2ede5e4d84a09e9dc80bdd950532979763ce91c96a1"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_zone_id_inclusion_prover_bypass",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "0621e84"
+      ],
+      "id": "pantherfoundation/panther-core/veridise_zone_id_inclusion_prover_bypass",
+      "leave_one_out": null,
+      "location": {
+        "Function": "ZoneIdInclusionProver",
+        "Line": "14-41",
+        "Path": "circuits/circuits/templates/zoneIdInclusionProver.circom"
+      },
+      "missing_or_unknown": [
+        "original_input_missing_locally"
+      ],
+      "original_entrypoint": "circuits/circuits/mainZTransactionV1.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": false,
+        "path": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_zone_id_inclusion_prover_bypass/input.json",
+        "sha256": null
+      },
+      "project": "pantherfoundation/panther-core",
+      "project_match_key": "pantherfoundation/panther-core",
+      "setup_observations": [
+        {
+          "repository": "pantherfoundation/panther-core",
+          "source": "C-03",
+          "status": "success"
+        }
+      ],
+      "setup_success": true,
+      "title": "ZoneIdInclusionProver Check Can Be Bypassed",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_zone_id_inclusion_prover_bypass/zkbugs_vars.sh",
+        "sha256": "fc8b37707c34cc6c3024d685319bfe65888046a34488521633cbf32a2cdd7909"
+      },
+      "vulnerable_commit": "b464348b33155a5877f67c085c7206dc29ad7cb7"
+    },
+    {
+      "bucket": "A-Q-stage1",
+      "bucket_reason": "fix_commit_and_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_zone_limits_bypass_zswapv1/zkbugs_config.json",
+        "sha256": "21afdf3539be2fbaad95c2da98ecb1ead3506549904b329acb36d80efa84db42"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_zone_limits_bypass_zswapv1",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "54d4d0a"
+      ],
+      "id": "pantherfoundation/panther-core/veridise_zone_limits_bypass_zswapv1",
+      "leave_one_out": null,
+      "location": {
+        "Function": "ZSwapV1",
+        "Line": "628-637",
+        "Path": "circuits/circuits/zSwapV1.circom"
+      },
+      "missing_or_unknown": [
+        "original_input_missing_locally"
+      ],
+      "original_entrypoint": "circuits/circuits/mainZSwapV1.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": false,
+        "path": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_zone_limits_bypass_zswapv1/input.json",
+        "sha256": null
+      },
+      "project": "pantherfoundation/panther-core",
+      "project_match_key": "pantherfoundation/panther-core",
+      "setup_observations": [
+        {
+          "repository": "pantherfoundation/panther-core",
+          "source": "C-03",
+          "status": "success"
+        }
+      ],
+      "setup_success": true,
+      "title": "Zone Related Limits Can Be Bypassed in ZSwapV1",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/pantherfoundation/panther-core/veridise_zone_limits_bypass_zswapv1/zkbugs_vars.sh",
+        "sha256": "5c8718f7cef2fdd56bc0633755c92558095c8eb763fb0e92482ec5321411791a"
+      },
+      "vulnerable_commit": "b464348b33155a5877f67c085c7206dc29ad7cb7"
+    },
+    {
+      "bucket": "vulnerable_only",
+      "bucket_reason": "fix_commit_not_recorded_RQ-C_excluded",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/personaelabs/spartan-ecdsa/yacademy_Knowledge_of_any_member_signature_allow_to_generate_proof_of_membership/zkbugs_config.json",
+        "sha256": "7aeb58797224c88e202db628237f3bf4425d5f5e5c3bdd776dbc3f118fa33188"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/personaelabs/spartan-ecdsa/yacademy_Knowledge_of_any_member_signature_allow_to_generate_proof_of_membership",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [],
+      "id": "personaelabs/spartan-ecdsa/yacademy_Knowledge_of_any_member_signature_allow_to_generate_proof_of_membership",
+      "leave_one_out": null,
+      "location": {
+        "Function": "PubKeyMembership",
+        "Line": "17-46",
+        "Path": "packages/circuits/eff_ecdsa_membership/pubkey_membership.circom"
+      },
+      "missing_or_unknown": [
+        "original_input_missing_locally"
+      ],
+      "original_entrypoint": "packages/circuits/instances/pubkey_membership.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": false,
+        "path": ".external/zkbugs/dataset/circom/personaelabs/spartan-ecdsa/yacademy_Knowledge_of_any_member_signature_allow_to_generate_proof_of_membership/input.json",
+        "sha256": null
+      },
+      "project": "personaelabs/spartan-ecdsa",
+      "project_match_key": "personaelabs/spartan-ecdsa",
+      "setup_observations": [
+        {
+          "source": "C-03/E-01/E-02",
+          "status": "not_recorded"
+        }
+      ],
+      "setup_success": false,
+      "title": "Knowledge of any member signature allow to generate proof of membership",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/personaelabs/spartan-ecdsa/yacademy_Knowledge_of_any_member_signature_allow_to_generate_proof_of_membership/zkbugs_vars.sh",
+        "sha256": "15e8b0eb66bc1c6327c06f081feb874b23672f03a1271802093e8239a4585049"
+      },
+      "vulnerable_commit": "3386b30d9b5b62d8a60735cbeab42bfe42e80429"
+    },
+    {
+      "bucket": "vulnerable_only",
+      "bucket_reason": "fix_commit_not_recorded_RQ-C_excluded",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/personaelabs/spartan-ecdsa/yacademy_input_signal_s_is_not_constrained_in_eff_ecdsa_circom/zkbugs_config.json",
+        "sha256": "120e98bf3777594eafa91bf8b6284b4df2f3ff215858221c2c882213be5d51d7"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/personaelabs/spartan-ecdsa/yacademy_input_signal_s_is_not_constrained_in_eff_ecdsa_circom",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [],
+      "id": "personaelabs/spartan-ecdsa/yacademy-high-01",
+      "leave_one_out": null,
+      "location": {
+        "Function": "EfficientECDSA",
+        "Line": "25-28",
+        "Path": "packages/circuits/eff_ecdsa_membership/eff_ecdsa.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "packages/circuits/instances/pubkey_membership.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/personaelabs/spartan-ecdsa/yacademy_input_signal_s_is_not_constrained_in_eff_ecdsa_circom/input.json",
+        "sha256": "21110f7302877fd05b98286dfb9d512448df623f2e048842b2603a47603e6847"
+      },
+      "project": "personaelabs/spartan-ecdsa",
+      "project_match_key": "personaelabs/spartan-ecdsa",
+      "setup_observations": [
+        {
+          "source": "C-03/E-01/E-02",
+          "status": "not_recorded"
+        }
+      ],
+      "setup_success": false,
+      "title": "Input signal s is not constrained in eff_ecdsa.circom",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/personaelabs/spartan-ecdsa/yacademy_input_signal_s_is_not_constrained_in_eff_ecdsa_circom/zkbugs_vars.sh",
+        "sha256": "0883e56423936228c8b98c4fc75b4685f08a71ea0f020677edc8e34111120076"
+      },
+      "vulnerable_commit": "3386b30d9b5b62d8a60735cbeab42bfe42e80429"
+    },
+    {
+      "bucket": "vulnerable_only",
+      "bucket_reason": "fix_commit_not_recorded_RQ-C_excluded",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/personaelabs/spartan-ecdsa/yacademy_under_constrained_circuits_compromising_the_soundness_of_the_system/zkbugs_config.json",
+        "sha256": "04b3e4ef91cced05efda50efa57ba1d94e6c4acb78a29d32fb2d241057bd9727"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/personaelabs/spartan-ecdsa/yacademy_under_constrained_circuits_compromising_the_soundness_of_the_system",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [],
+      "id": "personaelabs/spartan-ecdsa/yacademy-high-03",
+      "leave_one_out": null,
+      "location": {
+        "Function": "K",
+        "Line": "123-124",
+        "Path": "packages/circuits/eff_ecdsa_membership/secp256k1/mul.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "packages/circuits/instances/pubkey_membership.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/personaelabs/spartan-ecdsa/yacademy_under_constrained_circuits_compromising_the_soundness_of_the_system/input.json",
+        "sha256": "98762fdc0f13fe89f1d7013791c553b8d58a272c8b762a1143fa7d4e3a994b07"
+      },
+      "project": "personaelabs/spartan-ecdsa",
+      "project_match_key": "personaelabs/spartan-ecdsa",
+      "setup_observations": [
+        {
+          "source": "C-03/E-01/E-02",
+          "status": "not_recorded"
+        }
+      ],
+      "setup_success": false,
+      "title": "Under constrained circuits compromising the soundness of the system",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/personaelabs/spartan-ecdsa/yacademy_under_constrained_circuits_compromising_the_soundness_of_the_system/zkbugs_vars.sh",
+        "sha256": "15e8b0eb66bc1c6327c06f081feb874b23672f03a1271802093e8239a4585049"
+      },
+      "vulnerable_commit": "3386b30d9b5b62d8a60735cbeab42bfe42e80429"
+    },
+    {
+      "bucket": "A-Q-stage2",
+      "bucket_reason": "fix_commit_but_no_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/privacy-scaling-explorations/maci/hashcloak_data_are_not_fully_verified_during_state_update/zkbugs_config.json",
+        "sha256": "15e117f0dfb939eb4a9c04cc3f83d2242bc452c61a6d8108822254654fefc451"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/privacy-scaling-explorations/maci/hashcloak_data_are_not_fully_verified_during_state_update",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "6df6a4054da926b07f35c5befab4f1f8af33dcc6"
+      ],
+      "id": "privacy-scaling-explorations/maci/hashcloak_Data_are_not_fully_verified_during_state_update",
+      "leave_one_out": null,
+      "location": {
+        "Function": "ResultCommitmentVerifier",
+        "Line": "258-273",
+        "Path": "circuits/circom/tallyVotes.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "$BUG_DIR/circuit.circom",
+      "original_entrypoint_kind": "original_is_direct",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/privacy-scaling-explorations/maci/hashcloak_data_are_not_fully_verified_during_state_update/input.json",
+        "sha256": "ab30f48e240de14f35719c29677948cac91bac7bccd82b5cbc0056a12c65ac90"
+      },
+      "project": "privacy-scaling-explorations/maci",
+      "project_match_key": "privacy-scaling-explorations/maci",
+      "setup_observations": [
+        {
+          "source": "C-03/E-01/E-02",
+          "status": "not_recorded"
+        }
+      ],
+      "setup_success": false,
+      "title": "Data are not fully verified during state update",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/privacy-scaling-explorations/maci/hashcloak_data_are_not_fully_verified_during_state_update/zkbugs_vars.sh",
+        "sha256": "af0b27b8f830b1f640ba1837b115dddd7dd364297f16a8596f052fcd87d543e0"
+      },
+      "vulnerable_commit": "2db5f625b67a6b810bd851950d7a42c26189088b"
+    },
+    {
+      "bucket": "A-Q-stage1",
+      "bucket_reason": "fix_commit_and_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/rarimo/passport-zk-circuits/koukyosyumei_under_constrained_date_encoder/zkbugs_config.json",
+        "sha256": "aa4c5393b42bbc62ef8e5abe198c8bb164c34cf41a9ebf8cffb7748e3d4f32af"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/rarimo/passport-zk-circuits/koukyosyumei_under_constrained_date_encoder",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "bbbe14c71c08be20a55f29bb2159261f0b32be0f"
+      ],
+      "id": "rarimo/passport-zk-circuits/koukyosyumei_under_constrained_date_encoder",
+      "leave_one_out": null,
+      "location": {
+        "Function": "DateEncoder",
+        "Line": "10-23",
+        "Path": "circuits/dateUtilities/dateEncoder.circom"
+      },
+      "missing_or_unknown": [
+        "original_input_missing_locally"
+      ],
+      "original_entrypoint": "circuits/identityManagement/queryIdentity.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": false,
+        "path": ".external/zkbugs/dataset/circom/rarimo/passport-zk-circuits/koukyosyumei_under_constrained_date_encoder/input.json",
+        "sha256": null
+      },
+      "project": "rarimo/passport-zk-circuits",
+      "project_match_key": "rarimo/passport-zk-circuits",
+      "setup_observations": [
+        {
+          "repository": "rarimo/passport-zk-circuits",
+          "source": "C-03",
+          "status": "success"
+        }
+      ],
+      "setup_success": true,
+      "title": "Under-constrained DateEncoder remainder signals",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/rarimo/passport-zk-circuits/koukyosyumei_under_constrained_date_encoder/zkbugs_vars.sh",
+        "sha256": "cf899ddff7e4f1e2e3b2d915328c19190602302c96aa6b2c5c1ebe0d84a6964b"
+      },
+      "vulnerable_commit": "9143bc77eb2bdbd174eaa61b25b11adb5ee99f61"
+    },
+    {
+      "bucket": "A-Q-stage2",
+      "bucket_reason": "fix_commit_but_no_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/reclaimprotocol/circom-chacha20/zksecurity_Unsound_Addition_Gadget/zkbugs_config.json",
+        "sha256": "6f18047f5293c7ab94602568c6c2b215d6a840c5a9225c1397a4034b1a75c9f0"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/reclaimprotocol/circom-chacha20/zksecurity_Unsound_Addition_Gadget",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "4551ca64c9fe536b7b9b7498a1feb1ecdc847474"
+      ],
+      "id": "reclaimprotocol/circom-chacha20/zksecurity_Unsound_Addition_Gadget",
+      "leave_one_out": null,
+      "location": {
+        "Function": "Add32Bits",
+        "Line": "12-16",
+        "Path": "circuits/generics.circom"
+      },
+      "missing_or_unknown": [
+        "original_input_missing_locally"
+      ],
+      "original_entrypoint": "$BUG_DIR/circuit.circom",
+      "original_entrypoint_kind": "original_is_direct",
+      "original_input": {
+        "exists": false,
+        "path": ".external/zkbugs/dataset/circom/reclaimprotocol/circom-chacha20/zksecurity_Unsound_Addition_Gadget/input.json",
+        "sha256": null
+      },
+      "project": "reclaimprotocol/circom-chacha20",
+      "project_match_key": "reclaimprotocol/circom-chacha20",
+      "setup_observations": [
+        {
+          "source": "C-03/E-01/E-02",
+          "status": "not_recorded"
+        }
+      ],
+      "setup_success": false,
+      "title": "Unsound Addition Gadget",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/reclaimprotocol/circom-chacha20/zksecurity_Unsound_Addition_Gadget/zkbugs_vars.sh",
+        "sha256": "66566464221edb946428146175c5980bdd601df9a0c0988afb91452798a52ef0"
+      },
+      "vulnerable_commit": "ef9f5a5ad899d852740a26b30eabe5765673c71f"
+    },
+    {
+      "bucket": "A-Q-stage2",
+      "bucket_reason": "fix_commit_but_no_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/reclaimprotocol/circom-chacha20/zksecurity_Unsound_XOR_gadget/zkbugs_config.json",
+        "sha256": "896a4883e45b8d553f50f1bf837b0c92adb09b7f485c6c119ca87927337bf69c"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/reclaimprotocol/circom-chacha20/zksecurity_Unsound_XOR_gadget",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "ef9f5a5ad899d852740a26b30eabe5765673c71f"
+      ],
+      "id": "reclaimprotocol/circom-chacha20/zksecurity_Unsound_XOR_gadget",
+      "leave_one_out": null,
+      "location": {
+        "Function": "XorBits",
+        "Line": "19-28",
+        "Path": "circuits/generics.circom"
+      },
+      "missing_or_unknown": [
+        "original_input_missing_locally"
+      ],
+      "original_entrypoint": "$BUG_DIR/circuit.circom",
+      "original_entrypoint_kind": "original_is_direct",
+      "original_input": {
+        "exists": false,
+        "path": ".external/zkbugs/dataset/circom/reclaimprotocol/circom-chacha20/zksecurity_Unsound_XOR_gadget/input.json",
+        "sha256": null
+      },
+      "project": "reclaimprotocol/circom-chacha20",
+      "project_match_key": "reclaimprotocol/circom-chacha20",
+      "setup_observations": [
+        {
+          "source": "C-03/E-01/E-02",
+          "status": "not_recorded"
+        }
+      ],
+      "setup_success": false,
+      "title": "Unsound XOR gadget",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/reclaimprotocol/circom-chacha20/zksecurity_Unsound_XOR_gadget/zkbugs_vars.sh",
+        "sha256": "66566464221edb946428146175c5980bdd601df9a0c0988afb91452798a52ef0"
+      },
+      "vulnerable_commit": "ef9f5a5ad899d852740a26b30eabe5765673c71f"
+    },
+    {
+      "bucket": "A-Q-stage2",
+      "bucket_reason": "fix_commit_but_no_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/reclaimprotocol/circom-chacha20/zksecurity_unsound_left_rotation/zkbugs_config.json",
+        "sha256": "a45ea385b69b216e66bab0fb1f44c5e52478187fdae3de4a24018c99c37d68b6"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/reclaimprotocol/circom-chacha20/zksecurity_unsound_left_rotation",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "e5e756375fc1fc8dc48667b00cdf38c79a0fdf50"
+      ],
+      "id": "reclaimprotocol/circom-chacha20/zksecurity-1",
+      "leave_one_out": null,
+      "location": {
+        "Function": "RotateLeft32Bits",
+        "Line": "39-45",
+        "Path": "circuits/generics.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "$BUG_DIR/circuit.circom",
+      "original_entrypoint_kind": "original_is_direct",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/reclaimprotocol/circom-chacha20/zksecurity_unsound_left_rotation/input.json",
+        "sha256": "3b80c900ae7b9aab10e343d01445cd97ab61cb153c8bee46f5a5ca52545c1de4"
+      },
+      "project": "reclaimprotocol/circom-chacha20",
+      "project_match_key": "reclaimprotocol/circom-chacha20",
+      "setup_observations": [
+        {
+          "source": "C-03/E-01/E-02",
+          "status": "not_recorded"
+        }
+      ],
+      "setup_success": false,
+      "title": "Unsound Left Rotation",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/reclaimprotocol/circom-chacha20/zksecurity_unsound_left_rotation/zkbugs_vars.sh",
+        "sha256": "66566464221edb946428146175c5980bdd601df9a0c0988afb91452798a52ef0"
+      },
+      "vulnerable_commit": "ef9f5a5ad899d852740a26b30eabe5765673c71f"
+    },
+    {
+      "bucket": "A-Q-stage2",
+      "bucket_reason": "fix_commit_but_no_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/selfxyz/self/zksecurity_an_attacker_can_craft_a_fake_non_inclusion_proof_for_a_given_key_due_to_an_aliasing_bug_in_the_smt_verifier/zkbugs_config.json",
+        "sha256": "7614422bdd5bc8504e0f937473c0085f9c07042cce548b1582d14d63004d0dca"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/selfxyz/self/zksecurity_an_attacker_can_craft_a_fake_non_inclusion_proof_for_a_given_key_due_to_an_aliasing_bug_in_the_smt_verifier",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "99e8eece5e0867017ca076731fba63ed96ae4711"
+      ],
+      "id": "selfxyz/self/zksecurity_an_attacker_can_craft_a_fake_non_inclusion_proof_for_a_given_key_due_to_an_aliasing_bug_in_the_smt_verifier",
+      "leave_one_out": null,
+      "location": {
+        "Function": "SMTVerify",
+        "Line": "27-35",
+        "Path": "circuits/circuits/utils/crypto/merkle-trees/smt.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "circuits/circuits/register_id/instances/register_id_sha256_sha256_sha256_rsa_65537_4096.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/selfxyz/self/zksecurity_an_attacker_can_craft_a_fake_non_inclusion_proof_for_a_given_key_due_to_an_aliasing_bug_in_the_smt_verifier/input.json",
+        "sha256": "f8a5a26e3056eb6fb06deeb3dbccfd88ae74900200c98c70b5966bbb7ec9d4de"
+      },
+      "project": "selfxyz/self",
+      "project_match_key": "selfxyz/self",
+      "setup_observations": [
+        {
+          "repository": "selfxyz/self",
+          "source": "C-03",
+          "status": "setup_failure"
+        },
+        {
+          "repository": "selfxyz/self",
+          "source": "E-01",
+          "status": "setup_failure"
+        },
+        {
+          "repository": "selfxyz/self",
+          "source": "E-02",
+          "status": "unknown"
+        }
+      ],
+      "setup_success": false,
+      "title": "An attacker can craft a fake non-inclusion proof for a given key due to an aliasing bug in the SMT verifier",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/selfxyz/self/zksecurity_an_attacker_can_craft_a_fake_non_inclusion_proof_for_a_given_key_due_to_an_aliasing_bug_in_the_smt_verifier/zkbugs_vars.sh",
+        "sha256": "fe975e0e5ce5f35dca6850f1f5b78bf91a990da4e9ddb3033d988a20d0249732"
+      },
+      "vulnerable_commit": "4f18c75041bb47c1862169eef82c22067642a83a"
+    },
+    {
+      "bucket": "vulnerable_only",
+      "bucket_reason": "fix_commit_not_recorded_RQ-C_excluded",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/selfxyz/self/zksecurity_big_integer_zero_check_is_not_sound/zkbugs_config.json",
+        "sha256": "0474d15c4a632ccd877f5658a0ba47fb24d0d097dc113ca3ce4749ac927a674d"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/selfxyz/self/zksecurity_big_integer_zero_check_is_not_sound",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [],
+      "id": "selfxyz/self/zksecurity_big_integer_zero_check_is_not_sound",
+      "leave_one_out": null,
+      "location": {
+        "Function": "BigIntIsZero",
+        "Line": "18-42",
+        "Path": "circuits/circuits/utils/crypto/bigInt/bigIntComparators.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "circuits/circuits/register_id/instances/register_id_sha256_sha256_sha256_rsa_65537_4096.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/selfxyz/self/zksecurity_big_integer_zero_check_is_not_sound/input.json",
+        "sha256": "f8a5a26e3056eb6fb06deeb3dbccfd88ae74900200c98c70b5966bbb7ec9d4de"
+      },
+      "project": "selfxyz/self",
+      "project_match_key": "selfxyz/self",
+      "setup_observations": [
+        {
+          "repository": "selfxyz/self",
+          "source": "C-03",
+          "status": "setup_failure"
+        },
+        {
+          "repository": "selfxyz/self",
+          "source": "E-01",
+          "status": "setup_failure"
+        },
+        {
+          "repository": "selfxyz/self",
+          "source": "E-02",
+          "status": "unknown"
+        }
+      ],
+      "setup_success": false,
+      "title": "Big Integer Zero-Check Is Not Sound",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/selfxyz/self/zksecurity_big_integer_zero_check_is_not_sound/zkbugs_vars.sh",
+        "sha256": "8fd822d65e09ea93e7d4450833455bb5941cb40e1bc194c439c548bedf5bbc59"
+      },
+      "vulnerable_commit": "4f18c75041bb47c1862169eef82c22067642a83a"
+    },
+    {
+      "bucket": "vulnerable_only",
+      "bucket_reason": "fix_commit_not_recorded_RQ-C_excluded",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/selfxyz/self/zksecurity_exclusion_check_of_forbidden_countries_is_unsound_and_incomplete_due_to_incorrect_indexing/zkbugs_config.json",
+        "sha256": "904d271d590d7487eeb4e4e769e8beb455bd5b57c22e2cbe6fe993e7e9365deb"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/selfxyz/self/zksecurity_exclusion_check_of_forbidden_countries_is_unsound_and_incomplete_due_to_incorrect_indexing",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [],
+      "id": "selfxyz/self/zksecurity_exclusion_check_of_forbidden_countries_is_unsound_and_incomplete_due_to_incorrect_indexing",
+      "leave_one_out": null,
+      "location": {
+        "Function": "ProveCountryIsNotInList",
+        "Line": "12-18",
+        "Path": "circuits/circuits/utils/passport/disclose/proveCountryIsNotInList.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "circuits/circuits/disclose/vc_and_disclose.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/selfxyz/self/zksecurity_exclusion_check_of_forbidden_countries_is_unsound_and_incomplete_due_to_incorrect_indexing/input.json",
+        "sha256": "f8a5a26e3056eb6fb06deeb3dbccfd88ae74900200c98c70b5966bbb7ec9d4de"
+      },
+      "project": "selfxyz/self",
+      "project_match_key": "selfxyz/self",
+      "setup_observations": [
+        {
+          "repository": "selfxyz/self",
+          "source": "C-03",
+          "status": "setup_failure"
+        },
+        {
+          "repository": "selfxyz/self",
+          "source": "E-01",
+          "status": "setup_failure"
+        },
+        {
+          "repository": "selfxyz/self",
+          "source": "E-02",
+          "status": "unknown"
+        }
+      ],
+      "setup_success": false,
+      "title": "Exclusion Check Of Forbidden Countries Is Unsound And Incomplete Due To Incorrect Indexing",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/selfxyz/self/zksecurity_exclusion_check_of_forbidden_countries_is_unsound_and_incomplete_due_to_incorrect_indexing/zkbugs_vars.sh",
+        "sha256": "3b65a192e752b8dd1054036d6dbb4c0559ac1cfac2239e4bd10b43026b088f9b"
+      },
+      "vulnerable_commit": "59c16d6e924c946970665504d883ced46981e5c1"
+    },
+    {
+      "bucket": "A-Q-stage2",
+      "bucket_reason": "fix_commit_but_no_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/selfxyz/self/zksecurity_forbidden_country_check_bypass_via_packed_byte_overflow/zkbugs_config.json",
+        "sha256": "936361e02df1471046e535aae470adc2716db4239a51154e33d6783a3d23f65e"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/selfxyz/self/zksecurity_forbidden_country_check_bypass_via_packed_byte_overflow",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "60501d17ee9b339e36c3a2a0d63f24bda65110a8",
+        "4914074d11d1d6e4579c7fa4d20c0eae4fc1e02f"
+      ],
+      "id": "selfxyz/self/zksecurity_forbidden_country_check_bypass_via_packed_byte_overflow",
+      "leave_one_out": null,
+      "location": {
+        "Function": "CountryNotInList",
+        "Line": "12-29",
+        "Path": "circuits/circuits/utils/aadhaar/disclose/country_not_in_list.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "circuits/circuits/disclose/generated/vc_and_disclose_aadhaar_main.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/selfxyz/self/zksecurity_forbidden_country_check_bypass_via_packed_byte_overflow/input.json",
+        "sha256": "6deb4fd36ace5f8fe9b79b234ca3f5a33d91c4aad8dd8d11fbc4d6c90f36075d"
+      },
+      "project": "selfxyz/self",
+      "project_match_key": "selfxyz/self",
+      "setup_observations": [
+        {
+          "repository": "selfxyz/self",
+          "source": "C-03",
+          "status": "setup_failure"
+        },
+        {
+          "repository": "selfxyz/self",
+          "source": "E-01",
+          "status": "setup_failure"
+        },
+        {
+          "repository": "selfxyz/self",
+          "source": "E-02",
+          "status": "unknown"
+        }
+      ],
+      "setup_success": false,
+      "title": "Forbidden Country Check Bypass via Packed Byte Overflow",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/selfxyz/self/zksecurity_forbidden_country_check_bypass_via_packed_byte_overflow/zkbugs_vars.sh",
+        "sha256": "3f5ee125acb68e894eae90b36d23ec0213740b6d82f41ad8992d50d473a1b34b"
+      },
+      "vulnerable_commit": "3905a30aeb19016d22c5493b8b34ade2d118da4e"
+    },
+    {
+      "bucket": "A-Q-stage2",
+      "bucket_reason": "fix_commit_but_no_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/selfxyz/self/zksecurity_missing_boolean_constraints_in_the_merkle_tree_path_leads_to_an_attacker_being_able_to_craft_a_fake_merkle_proof_for_an_arbitrary_leaf/zkbugs_config.json",
+        "sha256": "1647f838e5a3d4524bd28415a427ef9aa565849b45ef9f3e5993a962d750cb6a"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/selfxyz/self/zksecurity_missing_boolean_constraints_in_the_merkle_tree_path_leads_to_an_attacker_being_able_to_craft_a_fake_merkle_proof_for_an_arbitrary_leaf",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "8801c6c1d793896a778c4b597531bc710995d30c"
+      ],
+      "id": "selfxyz/self/zksecurity_missing_boolean_constraints_in_the_merkle_tree_path_leads_to_an_attacker_being_able_to_craft_a_fake_merkle_proof_for_an_arbitrary_leaf",
+      "leave_one_out": null,
+      "location": {
+        "Function": "BinaryMerkleRoot",
+        "Line": "29-40",
+        "Path": "circuits/node_modules/@zk-kit/binary-merkle-root.circom/src/binary-merkle-root.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "circuits/circuits/register_id/instances/register_id_sha256_sha256_sha256_rsa_65537_4096.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/selfxyz/self/zksecurity_missing_boolean_constraints_in_the_merkle_tree_path_leads_to_an_attacker_being_able_to_craft_a_fake_merkle_proof_for_an_arbitrary_leaf/input.json",
+        "sha256": "f8a5a26e3056eb6fb06deeb3dbccfd88ae74900200c98c70b5966bbb7ec9d4de"
+      },
+      "project": "selfxyz/self",
+      "project_match_key": "selfxyz/self",
+      "setup_observations": [
+        {
+          "repository": "selfxyz/self",
+          "source": "C-03",
+          "status": "setup_failure"
+        },
+        {
+          "repository": "selfxyz/self",
+          "source": "E-01",
+          "status": "setup_failure"
+        },
+        {
+          "repository": "selfxyz/self",
+          "source": "E-02",
+          "status": "unknown"
+        }
+      ],
+      "setup_success": false,
+      "title": "Missing boolean constraints in the Merkle tree path leads to an attacker being able to craft a fake Merkle proof for an arbitrary leaf",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/selfxyz/self/zksecurity_missing_boolean_constraints_in_the_merkle_tree_path_leads_to_an_attacker_being_able_to_craft_a_fake_merkle_proof_for_an_arbitrary_leaf/zkbugs_vars.sh",
+        "sha256": "8fd822d65e09ea93e7d4450833455bb5941cb40e1bc194c439c548bedf5bbc59"
+      },
+      "vulnerable_commit": "4f18c75041bb47c1862169eef82c22067642a83a"
+    },
+    {
+      "bucket": "A-Q-stage2",
+      "bucket_reason": "fix_commit_but_no_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/selfxyz/self/zksecurity_missing_byte_range_checks_allows_packed_data_pollution/zkbugs_config.json",
+        "sha256": "58fc270d839dea5e5c81fecb93923638e5e8e108ead7714c55390ac14627e97a"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/selfxyz/self/zksecurity_missing_byte_range_checks_allows_packed_data_pollution",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "285f0a9776514c1f03f546d1a03a4da588ba098d"
+      ],
+      "id": "selfxyz/self/zksecurity_missing_byte_range_checks_allows_packed_data_pollution",
+      "leave_one_out": null,
+      "location": {
+        "Function": "VC_AND_DISCLOSE_Aadhaar",
+        "Line": "133-184",
+        "Path": "circuits/circuits/disclose/vc_and_disclose_aadhaar.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "circuits/circuits/disclose/generated/vc_and_disclose_aadhaar_main.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/selfxyz/self/zksecurity_missing_byte_range_checks_allows_packed_data_pollution/input.json",
+        "sha256": "f8a5a26e3056eb6fb06deeb3dbccfd88ae74900200c98c70b5966bbb7ec9d4de"
+      },
+      "project": "selfxyz/self",
+      "project_match_key": "selfxyz/self",
+      "setup_observations": [
+        {
+          "repository": "selfxyz/self",
+          "source": "C-03",
+          "status": "setup_failure"
+        },
+        {
+          "repository": "selfxyz/self",
+          "source": "E-01",
+          "status": "setup_failure"
+        },
+        {
+          "repository": "selfxyz/self",
+          "source": "E-02",
+          "status": "unknown"
+        }
+      ],
+      "setup_success": false,
+      "title": "Missing Byte Range Checks Allows Packed Data Pollution",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/selfxyz/self/zksecurity_missing_byte_range_checks_allows_packed_data_pollution/zkbugs_vars.sh",
+        "sha256": "b7a099872c9a0aa5a3e12fad0ac46db52aba305a0c43f599ce9db374cbf86370"
+      },
+      "vulnerable_commit": "3905a30aeb19016d22c5493b8b34ade2d118da4e"
+    },
+    {
+      "bucket": "vulnerable_only",
+      "bucket_reason": "fix_commit_not_recorded_RQ-C_excluded",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/selfxyz/self/zksecurity_second_pre_image_attacks_on_packbytesandposeidon_may_be_used_to_register_arbitrary_passports_and_dsc_certificates/zkbugs_config.json",
+        "sha256": "6c7a6f3e8b7edbac77ca369d69f3517bc47e7f17bc0707e7bb7f2c6083f8cfc8"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/selfxyz/self/zksecurity_second_pre_image_attacks_on_packbytesandposeidon_may_be_used_to_register_arbitrary_passports_and_dsc_certificates",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [],
+      "id": "selfxyz/self/zksecurity_second_pre_image_attacks_on_packbytesandposeidon_may_be_used_to_register_arbitrary_passports_and_dsc_certificates",
+      "leave_one_out": null,
+      "location": {
+        "Function": "PackBytesAndPoseidon",
+        "Line": "57-58",
+        "Path": "circuits/circuits/utils/passport/customHashers.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "circuits/circuits/disclose/vc_and_disclose.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/selfxyz/self/zksecurity_second_pre_image_attacks_on_packbytesandposeidon_may_be_used_to_register_arbitrary_passports_and_dsc_certificates/input.json",
+        "sha256": "f8a5a26e3056eb6fb06deeb3dbccfd88ae74900200c98c70b5966bbb7ec9d4de"
+      },
+      "project": "selfxyz/self",
+      "project_match_key": "selfxyz/self",
+      "setup_observations": [
+        {
+          "repository": "selfxyz/self",
+          "source": "C-03",
+          "status": "setup_failure"
+        },
+        {
+          "repository": "selfxyz/self",
+          "source": "E-01",
+          "status": "setup_failure"
+        },
+        {
+          "repository": "selfxyz/self",
+          "source": "E-02",
+          "status": "unknown"
+        }
+      ],
+      "setup_success": false,
+      "title": "Second Pre-Image Attacks On PackBytesAndPoseidon May Be Used To Register Arbitrary Passports And DSC Certificates",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/selfxyz/self/zksecurity_second_pre_image_attacks_on_packbytesandposeidon_may_be_used_to_register_arbitrary_passports_and_dsc_certificates/zkbugs_vars.sh",
+        "sha256": "fb7010edeb1c0fd354d27f154268402dbbb81bd6196e79cf17f11742a308e4a1"
+      },
+      "vulnerable_commit": "629dfdad1a867eb82ccba6857a545f3ef838e123"
+    },
+    {
+      "bucket": "A-Q-stage2",
+      "bucket_reason": "fix_commit_but_no_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/selfxyz/self/zksecurity_the_registration_and_disclosure_circuits_lack_range_checks_for_the_input_indices/zkbugs_config.json",
+        "sha256": "172457cadbaad2c22f51921bee64bb1ba74acb96929d8a1f271c092997c9a841"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/selfxyz/self/zksecurity_the_registration_and_disclosure_circuits_lack_range_checks_for_the_input_indices",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "49de54966e40709ac59d4070fd4bd0279b2a10c0"
+      ],
+      "id": "selfxyz/self/zksecurity_the_registration_and_disclosure_circuits_lack_range_checks_for_the_input_indices",
+      "leave_one_out": null,
+      "location": {
+        "Function": "REGISTER_ID",
+        "Line": "101-105",
+        "Path": "circuits/circuits/register_id/register_id.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "circuits/circuits/register_id/instances/register_id_sha256_sha256_sha256_rsa_65537_4096.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/selfxyz/self/zksecurity_the_registration_and_disclosure_circuits_lack_range_checks_for_the_input_indices/input.json",
+        "sha256": "f8a5a26e3056eb6fb06deeb3dbccfd88ae74900200c98c70b5966bbb7ec9d4de"
+      },
+      "project": "selfxyz/self",
+      "project_match_key": "selfxyz/self",
+      "setup_observations": [
+        {
+          "repository": "selfxyz/self",
+          "source": "C-03",
+          "status": "setup_failure"
+        },
+        {
+          "repository": "selfxyz/self",
+          "source": "E-01",
+          "status": "setup_failure"
+        },
+        {
+          "repository": "selfxyz/self",
+          "source": "E-02",
+          "status": "unknown"
+        }
+      ],
+      "setup_success": false,
+      "title": "The registration and disclosure circuits lack range checks for the input indices",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/selfxyz/self/zksecurity_the_registration_and_disclosure_circuits_lack_range_checks_for_the_input_indices/zkbugs_vars.sh",
+        "sha256": "8fd822d65e09ea93e7d4450833455bb5941cb40e1bc194c439c548bedf5bbc59"
+      },
+      "vulnerable_commit": "4f18c75041bb47c1862169eef82c22067642a83a"
+    },
+    {
+      "bucket": "vulnerable_only",
+      "bucket_reason": "fix_commit_not_recorded_RQ-C_excluded",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/semaphore-protocol/semaphore/veridise_no_zero_value_validation/zkbugs_config.json",
+        "sha256": "7413582ab7364209f9841aee567c91376b692b7189499a3e788e452541a58819"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/semaphore-protocol/semaphore/veridise_no_zero_value_validation",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [],
+      "id": "semaphore-protocol/semaphore/veridise-V-SEM-VUL-001",
+      "leave_one_out": null,
+      "location": {
+        "Function": "Semaphore",
+        "Line": "73-81",
+        "Path": "packages/circuits/semaphore.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "packages/circuits/generated/semaphore_main.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/semaphore-protocol/semaphore/veridise_no_zero_value_validation/input.json",
+        "sha256": "e86bd5412cc669c20dbfddb84a90a449c947ea41af395a848fea68753c4f4cd3"
+      },
+      "project": "semaphore-protocol/semaphore",
+      "project_match_key": "semaphore-protocol/semaphore",
+      "setup_observations": [
+        {
+          "repository": "semaphore-protocol/semaphore",
+          "source": "C-03",
+          "status": "setup_failure"
+        },
+        {
+          "repository": "semaphore-protocol/semaphore",
+          "source": "E-01",
+          "status": "success"
+        },
+        {
+          "repository": "semaphore-protocol/semaphore",
+          "source": "E-02",
+          "status": "success"
+        }
+      ],
+      "setup_success": true,
+      "title": "No Zero Value Validation",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/semaphore-protocol/semaphore/veridise_no_zero_value_validation/zkbugs_vars.sh",
+        "sha256": "66bd6ef8fc1a4b6dc345ff52790f745857824fd97036a1cf4b0cb4b2cfc273a9"
+      },
+      "vulnerable_commit": "27320f17233b18de477a74919084fba76513470f"
+    },
+    {
+      "bucket": "vulnerable_only",
+      "bucket_reason": "fix_commit_not_recorded_RQ-C_excluded",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/sismo-core/hydra-s2-zkps/veridise_private_information_leakage/zkbugs_config.json",
+        "sha256": "1f33320c1004b7789b74babf5a77f62970e3b331567d969d98e89939ca9bf65e"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/sismo-core/hydra-s2-zkps/veridise_private_information_leakage",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [],
+      "id": "sismo-core/hydra-s2-zkps/veridise_private_information_leakage",
+      "leave_one_out": null,
+      "location": {
+        "Function": "hydraS2",
+        "Line": "125-131",
+        "Path": "circuits/hydra-s2.circom"
+      },
+      "missing_or_unknown": [
+        "original_input_missing_locally"
+      ],
+      "original_entrypoint": "circuits/generated/hydra-s2_main.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": false,
+        "path": ".external/zkbugs/dataset/circom/sismo-core/hydra-s2-zkps/veridise_private_information_leakage/input.json",
+        "sha256": null
+      },
+      "project": "sismo-core/hydra-s2-zkps",
+      "project_match_key": "sismo-core/hydra-s2-zkps",
+      "setup_observations": [
+        {
+          "source": "C-03/E-01/E-02",
+          "status": "not_recorded"
+        }
+      ],
+      "setup_success": false,
+      "title": "Private Information Leakage",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/sismo-core/hydra-s2-zkps/veridise_private_information_leakage/zkbugs_vars.sh",
+        "sha256": "a01ddd6a24d2e0932ee1b4f17036338cb7dcfea7e2606feaea5ac17d2627f0a7"
+      },
+      "vulnerable_commit": "2b79ab31ebf5547cf73d0441a236446e8ddf501c"
+    },
+    {
+      "bucket": "A-Q-stage1",
+      "bucket_reason": "fix_commit_and_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/siv-org/verifiable-private-overrides/koukyosyumei_emitifinrange_lessthan_overflow/zkbugs_config.json",
+        "sha256": "efef53f5dbfc24a894a5b3f9779e684e916d0271f9fbe99fb971cf9d2345f143"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/siv-org/verifiable-private-overrides/koukyosyumei_emitifinrange_lessthan_overflow",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "7c3402dda19010e7ff6c3987b6fa72b076e9b159"
+      ],
+      "id": "siv-org/verifiable-private-overrides/koukyosyumei_emitifinrange_lessthan_overflow",
+      "leave_one_out": {
+        "base_fix_commits": [
+          "7c3402dda19010e7ff6c3987b6fa72b076e9b159"
+        ],
+        "diff_path": null,
+        "diff_sha256": null,
+        "method": "apply full fix revision, then restore only this item's vulnerable location",
+        "planned_diff_scope": {
+          "function": "EmitIfInRange",
+          "line": "31-39",
+          "path": "circuits/ExtractStringFromPoint.circom"
+        },
+        "required": true,
+        "restore_from_vulnerable_commit": "7bda2311d7a33dcab611cfea0c67707b0b65c24c",
+        "shared_fix_item_count": 2,
+        "shared_fix_item_ids": [
+          "siv-org/verifiable-private-overrides/koukyosyumei_emitifinrange_lessthan_overflow",
+          "siv-org/verifiable-private-overrides/koukyosyumei_extractstringfrompoint_shiftedfirstbyte_unconstrained"
+        ]
+      },
+      "location": {
+        "Function": "EmitIfInRange",
+        "Line": "31-39",
+        "Path": "circuits/ExtractStringFromPoint.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "circuits/generated/emit_if_in_range_main.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/siv-org/verifiable-private-overrides/koukyosyumei_emitifinrange_lessthan_overflow/input.json",
+        "sha256": "0ec03fda5a7150693637585e0909ad0f8233931a0c0e42d61fcda8452e39ad6d"
+      },
+      "project": "siv-org/verifiable-private-overrides",
+      "project_match_key": "siv-org/verifiable-private-overrides",
+      "setup_observations": [
+        {
+          "repository": "siv-org/verifiable-private-overrides",
+          "source": "C-03",
+          "status": "success"
+        }
+      ],
+      "setup_success": true,
+      "title": "EmitIfInRange LessThan missing range check on index",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/siv-org/verifiable-private-overrides/koukyosyumei_emitifinrange_lessthan_overflow/zkbugs_vars.sh",
+        "sha256": "a7e750cd75bf8977149ce15dd040e34b083538e8d74acb118c9ffa5d1fa3b35f"
+      },
+      "vulnerable_commit": "7bda2311d7a33dcab611cfea0c67707b0b65c24c"
+    },
+    {
+      "bucket": "A-Q-stage1",
+      "bucket_reason": "fix_commit_and_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/siv-org/verifiable-private-overrides/koukyosyumei_extractstringfrompoint_shiftedfirstbyte_unconstrained/zkbugs_config.json",
+        "sha256": "3632ef9cada0deec06c8a614df15faff5658f9241730cc32587c45ab7930e1d5"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/siv-org/verifiable-private-overrides/koukyosyumei_extractstringfrompoint_shiftedfirstbyte_unconstrained",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "7c3402dda19010e7ff6c3987b6fa72b076e9b159"
+      ],
+      "id": "siv-org/verifiable-private-overrides/koukyosyumei_extractstringfrompoint_shiftedfirstbyte_unconstrained",
+      "leave_one_out": {
+        "base_fix_commits": [
+          "7c3402dda19010e7ff6c3987b6fa72b076e9b159"
+        ],
+        "diff_path": null,
+        "diff_sha256": null,
+        "method": "apply full fix revision, then restore only this item's vulnerable location",
+        "planned_diff_scope": {
+          "function": "ExtractStringFromPoint",
+          "line": "19",
+          "path": "circuits/ExtractStringFromPoint.circom"
+        },
+        "required": true,
+        "restore_from_vulnerable_commit": "7bda2311d7a33dcab611cfea0c67707b0b65c24c",
+        "shared_fix_item_count": 2,
+        "shared_fix_item_ids": [
+          "siv-org/verifiable-private-overrides/koukyosyumei_emitifinrange_lessthan_overflow",
+          "siv-org/verifiable-private-overrides/koukyosyumei_extractstringfrompoint_shiftedfirstbyte_unconstrained"
+        ]
+      },
+      "location": {
+        "Function": "ExtractStringFromPoint",
+        "Line": "19",
+        "Path": "circuits/ExtractStringFromPoint.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "circuits/generated/extract_string_from_point_main.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/siv-org/verifiable-private-overrides/koukyosyumei_extractstringfrompoint_shiftedfirstbyte_unconstrained/input.json",
+        "sha256": "49766611e95790d6d4b1d9a598765f78348ae1f2b7aa47241ce48f522b241d2e"
+      },
+      "project": "siv-org/verifiable-private-overrides",
+      "project_match_key": "siv-org/verifiable-private-overrides",
+      "setup_observations": [
+        {
+          "repository": "siv-org/verifiable-private-overrides",
+          "source": "C-03",
+          "status": "success"
+        }
+      ],
+      "setup_success": true,
+      "title": "ExtractStringFromPoint shiftedFirstByte is assigned but not constrained",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/siv-org/verifiable-private-overrides/koukyosyumei_extractstringfrompoint_shiftedfirstbyte_unconstrained/zkbugs_vars.sh",
+        "sha256": "942402896fb72eaac1f636d742278108a579a5a1bf4d5f756bc1bb0c041f37d4"
+      },
+      "vulnerable_commit": "7bda2311d7a33dcab611cfea0c67707b0b65c24c"
+    },
+    {
+      "bucket": "vulnerable_only",
+      "bucket_reason": "fix_commit_not_recorded_RQ-C_excluded",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/succinctlabs/telepathy-circuits/trailofbits_incorrect_handling_of_point_doubling_can_allow_signature_forgery/zkbugs_config.json",
+        "sha256": "2b5ceca8525e1c90a9c85919e871ce1068a7b104028e274e8793980d0649e75f"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/succinctlabs/telepathy-circuits/trailofbits_incorrect_handling_of_point_doubling_can_allow_signature_forgery",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [],
+      "id": "succinctlabs/telepathy-contracts",
+      "leave_one_out": null,
+      "location": {
+        "Function": "EllipticCurveAddUnequal",
+        "Line": "155-227",
+        "Path": "circuits/pairing/curve.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "circuits/step.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/succinctlabs/telepathy-circuits/trailofbits_incorrect_handling_of_point_doubling_can_allow_signature_forgery/input.json",
+        "sha256": "d808999ed5e5d0c88bcdc2a71d30dd78b455b705a3dd7c955a92c3783ebc59fd"
+      },
+      "project": "succinctlabs/telepathy-circuits",
+      "project_match_key": "succinctlabs/telepathy-circuits",
+      "setup_observations": [
+        {
+          "source": "C-03/E-01/E-02",
+          "status": "not_recorded"
+        }
+      ],
+      "setup_success": false,
+      "title": "Incorrect handling of point doubling can allow signature forgery",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/succinctlabs/telepathy-circuits/trailofbits_incorrect_handling_of_point_doubling_can_allow_signature_forgery/zkbugs_vars.sh",
+        "sha256": "e680ffa9ef55ffaee2cf8e9e7ea0efc77f2105859daad288ea0e9fa6e6d329e1"
+      },
+      "vulnerable_commit": "b0c839cef30c3c25ef41d1ad3000081784766934"
+    },
+    {
+      "bucket": "A-Q-stage2",
+      "bucket_reason": "fix_commit_but_no_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/succinctlabs/telepathy-circuits/trailofbits_prover_can_lock_user_funds_by_including_ill-formed_bigints_in_public_key_commitment/zkbugs_config.json",
+        "sha256": "357af497ee518ac75dce3301fe0bfc5dfbe3c72d806d05113f761cfb578969ac"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/succinctlabs/telepathy-circuits/trailofbits_prover_can_lock_user_funds_by_including_ill-formed_bigints_in_public_key_commitment",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "1a88e657932edc59b51e35095618f1e1a46ceef6"
+      ],
+      "id": "succinctlabs/telepathy-circuits/trailofbits-succinct-1",
+      "leave_one_out": {
+        "base_fix_commits": [
+          "1a88e657932edc59b51e35095618f1e1a46ceef6"
+        ],
+        "diff_path": null,
+        "diff_sha256": null,
+        "method": "apply full fix revision, then restore only this item's vulnerable location",
+        "planned_diff_scope": {
+          "function": "Rotate",
+          "line": "104-108",
+          "path": "circuits/rotate.circom"
+        },
+        "required": true,
+        "restore_from_vulnerable_commit": "b0c839cef30c3c25ef41d1ad3000081784766934",
+        "shared_fix_item_count": 2,
+        "shared_fix_item_ids": [
+          "succinctlabs/telepathy-circuits/trailofbits-succinct-1",
+          "succinctlabs/telepathy-circuits/trailofbits-succinct-2"
+        ]
+      },
+      "location": {
+        "Function": "Rotate",
+        "Line": "104-108",
+        "Path": "circuits/rotate.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "circuits/step.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/succinctlabs/telepathy-circuits/trailofbits_prover_can_lock_user_funds_by_including_ill-formed_bigints_in_public_key_commitment/input.json",
+        "sha256": "73de5e58ace2e8188d76395631971d6e27217153b2668752445b0df6d8a590b8"
+      },
+      "project": "succinctlabs/telepathy-circuits",
+      "project_match_key": "succinctlabs/telepathy-circuits",
+      "setup_observations": [
+        {
+          "source": "C-03/E-01/E-02",
+          "status": "not_recorded"
+        }
+      ],
+      "setup_success": false,
+      "title": "Prover can lock user funds by including ill-formed BigInts in public key commitment",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/succinctlabs/telepathy-circuits/trailofbits_prover_can_lock_user_funds_by_including_ill-formed_bigints_in_public_key_commitment/zkbugs_vars.sh",
+        "sha256": "ce6165d8d7f9377cace282c01af702f2fbff769086be1c18f51c07705d1872de"
+      },
+      "vulnerable_commit": "b0c839cef30c3c25ef41d1ad3000081784766934"
+    },
+    {
+      "bucket": "A-Q-stage2",
+      "bucket_reason": "fix_commit_but_no_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/succinctlabs/telepathy-circuits/trailofbits_prover_can_lock_user_funds_by_supplying_non-reduced_Y_values_to_G1BigIntToSignFlag/zkbugs_config.json",
+        "sha256": "b712af2f240d5fd13f0d29266d162d02a84b7e7c5c30c7d4140786f10ccc944a"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/succinctlabs/telepathy-circuits/trailofbits_prover_can_lock_user_funds_by_supplying_non-reduced_Y_values_to_G1BigIntToSignFlag",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "1a88e657932edc59b51e35095618f1e1a46ceef6"
+      ],
+      "id": "succinctlabs/telepathy-circuits/trailofbits-succinct-2",
+      "leave_one_out": {
+        "base_fix_commits": [
+          "1a88e657932edc59b51e35095618f1e1a46ceef6"
+        ],
+        "diff_path": null,
+        "diff_sha256": null,
+        "method": "apply full fix revision, then restore only this item's vulnerable location",
+        "planned_diff_scope": {
+          "function": "G1BigIntToSignFlag",
+          "line": "197-226",
+          "path": "circuits/bls.circom"
+        },
+        "required": true,
+        "restore_from_vulnerable_commit": "b0c839cef30c3c25ef41d1ad3000081784766934",
+        "shared_fix_item_count": 2,
+        "shared_fix_item_ids": [
+          "succinctlabs/telepathy-circuits/trailofbits-succinct-1",
+          "succinctlabs/telepathy-circuits/trailofbits-succinct-2"
+        ]
+      },
+      "location": {
+        "Function": "G1BigIntToSignFlag",
+        "Line": "197-226",
+        "Path": "circuits/bls.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "circuits/step.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/succinctlabs/telepathy-circuits/trailofbits_prover_can_lock_user_funds_by_supplying_non-reduced_Y_values_to_G1BigIntToSignFlag/input.json",
+        "sha256": "a289c4d7fd771e1cca163614b8543773aeae52d62d153d4cee8e27717ca4c196"
+      },
+      "project": "succinctlabs/telepathy-circuits",
+      "project_match_key": "succinctlabs/telepathy-circuits",
+      "setup_observations": [
+        {
+          "source": "C-03/E-01/E-02",
+          "status": "not_recorded"
+        }
+      ],
+      "setup_success": false,
+      "title": "Prover can lock user funds by supplying non-reduced Y values to G1BigIntToSignFlag",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/succinctlabs/telepathy-circuits/trailofbits_prover_can_lock_user_funds_by_supplying_non-reduced_Y_values_to_G1BigIntToSignFlag/zkbugs_vars.sh",
+        "sha256": "ce6165d8d7f9377cace282c01af702f2fbff769086be1c18f51c07705d1872de"
+      },
+      "vulnerable_commit": "b0c839cef30c3c25ef41d1ad3000081784766934"
+    },
+    {
+      "bucket": "A-Q-stage2",
+      "bucket_reason": "fix_commit_but_no_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/succinctlabs/telepathy-circuits/veridise_arrayxor_is_under_constrained/zkbugs_config.json",
+        "sha256": "4fc099568145881a1a8d5c42a0deb4c82600d7f8ae1eeda333c224c1e5a256a5"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/succinctlabs/telepathy-circuits/veridise_arrayxor_is_under_constrained",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "b0c839cef30c3c25ef41d1ad3000081784766934"
+      ],
+      "id": "succinctlabs/telepathy-circuits/veridise-V-SUC-VUL-001",
+      "leave_one_out": {
+        "base_fix_commits": [
+          "b0c839cef30c3c25ef41d1ad3000081784766934"
+        ],
+        "diff_path": null,
+        "diff_sha256": null,
+        "method": "apply full fix revision, then restore only this item's vulnerable location",
+        "planned_diff_scope": {
+          "function": "ArrayXOR",
+          "line": "232",
+          "path": "circuits/hash_to_field.circom"
+        },
+        "required": true,
+        "restore_from_vulnerable_commit": "9c84fb0f38531718296d9b611f8bd6107f61a9b8",
+        "shared_fix_item_count": 3,
+        "shared_fix_item_ids": [
+          "succinctlabs/telepathy-circuits/veridise-V-SUC-VUL-001",
+          "succinctlabs/telepathy-circuits/veridise-V-SUC-VUL-002-simplified",
+          "succinctlabs/telepathy-circuits/veridise-V-SUC-VUL-003"
+        ]
+      },
+      "location": {
+        "Function": "ArrayXOR",
+        "Line": "232",
+        "Path": "circuits/hash_to_field.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "circuits/step.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/succinctlabs/telepathy-circuits/veridise_arrayxor_is_under_constrained/input.json",
+        "sha256": "1d3c5153ad18e4f601b7f236e64bc6b1d3c8078cadc1eb2dc12f276f0f3de4f1"
+      },
+      "project": "succinctlabs/telepathy-circuits",
+      "project_match_key": "succinctlabs/telepathy-circuits",
+      "setup_observations": [
+        {
+          "source": "C-03/E-01/E-02",
+          "status": "not_recorded"
+        }
+      ],
+      "setup_success": false,
+      "title": "ArrayXOR is under constrained",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/succinctlabs/telepathy-circuits/veridise_arrayxor_is_under_constrained/zkbugs_vars.sh",
+        "sha256": "61865b547bd46497a466ab3a19a39897fbf966b7037deea08753f7dcededed35"
+      },
+      "vulnerable_commit": "9c84fb0f38531718296d9b611f8bd6107f61a9b8"
+    },
+    {
+      "bucket": "A-Q-stage2",
+      "bucket_reason": "fix_commit_but_no_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/succinctlabs/telepathy-circuits/veridise_template_CoreVerifyPubkeyG1_does_not_perform_input_validation_simplified/zkbugs_config.json",
+        "sha256": "9a90f41e611822d874e6562959cb9db86008a1e8678e16a5ec95c7e7a028dc44"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/succinctlabs/telepathy-circuits/veridise_template_CoreVerifyPubkeyG1_does_not_perform_input_validation_simplified",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "b0c839cef30c3c25ef41d1ad3000081784766934"
+      ],
+      "id": "succinctlabs/telepathy-circuits/veridise-V-SUC-VUL-002-simplified",
+      "leave_one_out": {
+        "base_fix_commits": [
+          "b0c839cef30c3c25ef41d1ad3000081784766934"
+        ],
+        "diff_path": null,
+        "diff_sha256": null,
+        "method": "apply full fix revision, then restore only this item's vulnerable location",
+        "planned_diff_scope": {
+          "function": "CoreVerifyPubkeyG1",
+          "line": "76-94",
+          "path": "circuits/pairing/bls_signature.circom"
+        },
+        "required": true,
+        "restore_from_vulnerable_commit": "9c84fb0f38531718296d9b611f8bd6107f61a9b8",
+        "shared_fix_item_count": 3,
+        "shared_fix_item_ids": [
+          "succinctlabs/telepathy-circuits/veridise-V-SUC-VUL-001",
+          "succinctlabs/telepathy-circuits/veridise-V-SUC-VUL-002-simplified",
+          "succinctlabs/telepathy-circuits/veridise-V-SUC-VUL-003"
+        ]
+      },
+      "location": {
+        "Function": "CoreVerifyPubkeyG1",
+        "Line": "76-94",
+        "Path": "circuits/pairing/bls_signature.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "circuits/step.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/succinctlabs/telepathy-circuits/veridise_template_CoreVerifyPubkeyG1_does_not_perform_input_validation_simplified/input.json",
+        "sha256": "c6cd6246cbd5f6d008d3de4c312240a4cc3668ce3180b399f8cb89f22ef1b651"
+      },
+      "project": "succinctlabs/telepathy-circuits",
+      "project_match_key": "succinctlabs/telepathy-circuits",
+      "setup_observations": [
+        {
+          "source": "C-03/E-01/E-02",
+          "status": "not_recorded"
+        }
+      ],
+      "setup_success": false,
+      "title": "Template CoreVerifyPubkeyG1 does not perform input validation (Simplified)",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/succinctlabs/telepathy-circuits/veridise_template_CoreVerifyPubkeyG1_does_not_perform_input_validation_simplified/zkbugs_vars.sh",
+        "sha256": "7cdcbf797f8106a5e504920b7eae4380e18778495c39a4bfcd31ac5c7a480b92"
+      },
+      "vulnerable_commit": "9c84fb0f38531718296d9b611f8bd6107f61a9b8"
+    },
+    {
+      "bucket": "A-Q-stage2",
+      "bucket_reason": "fix_commit_but_no_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/succinctlabs/telepathy-circuits/veridise_zero_padding_for_sha256_in_ExpandMessageXMD_is_vulnerable_to_an_overflow/zkbugs_config.json",
+        "sha256": "94e1110de18c9626d7bd03bf64428a03ffdf8601e75dae08f6659ec5bd4d4355"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/succinctlabs/telepathy-circuits/veridise_zero_padding_for_sha256_in_ExpandMessageXMD_is_vulnerable_to_an_overflow",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "b0c839cef30c3c25ef41d1ad3000081784766934"
+      ],
+      "id": "succinctlabs/telepathy-circuits/veridise-V-SUC-VUL-003",
+      "leave_one_out": {
+        "base_fix_commits": [
+          "b0c839cef30c3c25ef41d1ad3000081784766934"
+        ],
+        "diff_path": null,
+        "diff_sha256": null,
+        "method": "apply full fix revision, then restore only this item's vulnerable location",
+        "planned_diff_scope": {
+          "function": "I2OSP",
+          "line": "237-257",
+          "path": "circuits/hash_to_field.circom"
+        },
+        "required": true,
+        "restore_from_vulnerable_commit": "9c84fb0f38531718296d9b611f8bd6107f61a9b8",
+        "shared_fix_item_count": 3,
+        "shared_fix_item_ids": [
+          "succinctlabs/telepathy-circuits/veridise-V-SUC-VUL-001",
+          "succinctlabs/telepathy-circuits/veridise-V-SUC-VUL-002-simplified",
+          "succinctlabs/telepathy-circuits/veridise-V-SUC-VUL-003"
+        ]
+      },
+      "location": {
+        "Function": "I2OSP",
+        "Line": "237-257",
+        "Path": "circuits/hash_to_field.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "circuits/step.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/succinctlabs/telepathy-circuits/veridise_zero_padding_for_sha256_in_ExpandMessageXMD_is_vulnerable_to_an_overflow/input.json",
+        "sha256": "dc7976efd48efd91b7348ebe2fd0998a3062d87fd7e70903de4c10843dcf1e2b"
+      },
+      "project": "succinctlabs/telepathy-circuits",
+      "project_match_key": "succinctlabs/telepathy-circuits",
+      "setup_observations": [
+        {
+          "source": "C-03/E-01/E-02",
+          "status": "not_recorded"
+        }
+      ],
+      "setup_success": false,
+      "title": "Zero Padding for Sha256 in ExpandMessageXMD is vulnerable to an overflow",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/succinctlabs/telepathy-circuits/veridise_zero_padding_for_sha256_in_ExpandMessageXMD_is_vulnerable_to_an_overflow/zkbugs_vars.sh",
+        "sha256": "61865b547bd46497a466ab3a19a39897fbf966b7037deea08753f7dcededed35"
+      },
+      "vulnerable_commit": "9c84fb0f38531718296d9b611f8bd6107f61a9b8"
+    },
+    {
+      "bucket": "A-Q-stage1",
+      "bucket_reason": "fix_commit_and_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/tangle-network/protocol-solidity/veridise_incorrect_initialization_in_membership_circuits/zkbugs_config.json",
+        "sha256": "5e99ab3a17707a829555802d2a872887eeccadd5b93b305b6fc1431dcd679286"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/tangle-network/protocol-solidity/veridise_incorrect_initialization_in_membership_circuits",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "eeb4fc7a4883d513e3fe3adbe2c447133ccd39f2"
+      ],
+      "id": "tangle-network/protocol-solidity/veridise_incorrect_initialization_in_membership_circuits",
+      "leave_one_out": null,
+      "location": {
+        "Function": "SetMembership",
+        "Line": "20",
+        "Path": "circuits/set/membership.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "circuits/test/poseidon_vanchor_2_2.circom",
+      "original_entrypoint_kind": "project_test",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/tangle-network/protocol-solidity/veridise_incorrect_initialization_in_membership_circuits/input.json",
+        "sha256": "8eb95bcbc154530931e15fc418c8b1fe991095671409552099ea1aa596999ede"
+      },
+      "project": "tangle-network/protocol-solidity",
+      "project_match_key": "tangle-network/protocol-solidity",
+      "setup_observations": [
+        {
+          "repository": "tangle-network/protocol-solidity",
+          "source": "C-03",
+          "status": "success"
+        }
+      ],
+      "setup_success": true,
+      "title": "Incorrect Initialization in Membership Circuits",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/tangle-network/protocol-solidity/veridise_incorrect_initialization_in_membership_circuits/zkbugs_vars.sh",
+        "sha256": "3a372a8a5e969dc1ababcb4923600945a6d4f3d79b910f2dbdc4cea33be5b158"
+      },
+      "vulnerable_commit": "848d073bb17f0aaffc6d39f594cc59efedeaec89"
+    },
+    {
+      "bucket": "A-Q-stage1",
+      "bucket_reason": "fix_commit_and_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/worm-privacy/proof-of-burn/koukyosyumei_spend_missing_range_check/zkbugs_config.json",
+        "sha256": "0474e56cb887309c0e4b681636a9cfa1fb93ee25f40f06c3edd466b54af30273"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/worm-privacy/proof-of-burn/koukyosyumei_spend_missing_range_check",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "90772b1c9fe73d1452e047fe49ca4fdc346472a0"
+      ],
+      "id": "worm-privacy/proof-of-burn/koukyosyumei_spend_missing_range_check",
+      "leave_one_out": null,
+      "location": {
+        "Function": "Spend",
+        "Line": "41-44",
+        "Path": "circuits/spend.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "circuits/spend.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/worm-privacy/proof-of-burn/koukyosyumei_spend_missing_range_check/input.json",
+        "sha256": "99a232bd7b23fc939b45c9382b5bd48769cbba560f081fb1aa51eaf58c0dd606"
+      },
+      "project": "worm-privacy/proof-of-burn",
+      "project_match_key": "worm-privacy/proof-of-burn",
+      "setup_observations": [
+        {
+          "repository": "worm-privacy/proof-of-burn",
+          "source": "C-03",
+          "status": "success"
+        }
+      ],
+      "setup_success": true,
+      "title": "Spend missing range checks on GreaterEqThan inputs",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/worm-privacy/proof-of-burn/koukyosyumei_spend_missing_range_check/zkbugs_vars.sh",
+        "sha256": "0a10894c9f76bc5f3a4e1e6d8962bf6a3402e1b4da314ec3ba437f0faab261e8"
+      },
+      "vulnerable_commit": "0802485d24fed18fe063e51bcbb0bc830585855f"
+    },
+    {
+      "bucket": "A-Q-stage2",
+      "bucket_reason": "fix_commit_but_no_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/zkemail/ether-email-auth/matterlabs_emailauth_fails_with_overlapping_invitation_code_regex/zkbugs_config.json",
+        "sha256": "dd90e2816c0000b3cee935a0dee7884a7a676fd79ff31c87767faae92d7d242b"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/zkemail/ether-email-auth/matterlabs_emailauth_fails_with_overlapping_invitation_code_regex",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "984b5919a9be715b743b08863ab6471c2b5356a6"
+      ],
+      "id": "zkemail/ether-email-auth/matterlabs_emailauth_fails_with_overlapping_invitation_code_regex",
+      "leave_one_out": null,
+      "location": {
+        "Function": "EmailAuth",
+        "Line": "119-141",
+        "Path": "packages/circuits/src/email_auth_template.circom"
+      },
+      "missing_or_unknown": [
+        "original_input_missing_locally"
+      ],
+      "original_entrypoint": "packages/circuits/src/email_auth.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": false,
+        "path": ".external/zkbugs/dataset/circom/zkemail/ether-email-auth/matterlabs_emailauth_fails_with_overlapping_invitation_code_regex/input.json",
+        "sha256": null
+      },
+      "project": "zkemail/ether-email-auth",
+      "project_match_key": "zkemail/ether-email-auth",
+      "setup_observations": [
+        {
+          "source": "C-03/E-01/E-02",
+          "status": "not_recorded"
+        }
+      ],
+      "setup_success": false,
+      "title": "EmailAuth circuit doesn't work with specific email addresses and domain names",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/zkemail/ether-email-auth/matterlabs_emailauth_fails_with_overlapping_invitation_code_regex/zkbugs_vars.sh",
+        "sha256": "6e86503d5c1b58216d0a1b225f8cbcf9b56cca2c93e75dbb300098f2ce0dccb4"
+      },
+      "vulnerable_commit": "8a62db1e676aedbb20a403be95fffebef12b97e4"
+    },
+    {
+      "bucket": "A-D",
+      "bucket_reason": "development_project_precedence",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/zkemail/zk-email-verify/matterlabs_underconstrained_fpmul_circuit/zkbugs_config.json",
+        "sha256": "c649b7c35beb707be0267142cc3d77337feda9ca996471c7d6542161b47bd312"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/zkemail/zk-email-verify/matterlabs_underconstrained_fpmul_circuit",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "9ed3769dc3d96fb0d7c45f1f014dcd9bfb63675b"
+      ],
+      "id": "zkemail/zk-email-verify/matterlabs_underconstrained_fpmul_circuit",
+      "leave_one_out": null,
+      "location": {
+        "Function": "FpMul",
+        "Line": "40-52",
+        "Path": "packages/circuits/lib/fp.circom"
+      },
+      "missing_or_unknown": [
+        "original_input_missing_locally"
+      ],
+      "original_entrypoint": "packages/circuits/tests/test-circuits/rsa-test.circom",
+      "original_entrypoint_kind": "project_test",
+      "original_input": {
+        "exists": false,
+        "path": ".external/zkbugs/dataset/circom/zkemail/zk-email-verify/matterlabs_underconstrained_fpmul_circuit/input.json",
+        "sha256": null
+      },
+      "project": "zkemail/zk-email-verify",
+      "project_match_key": "zkemail/zk-email-verify",
+      "setup_observations": [
+        {
+          "repository": "zkemail/zk-email-verify",
+          "source": "C-03",
+          "status": "setup_failure"
+        },
+        {
+          "repository": "zkemail/zk-email-verify",
+          "source": "E-01",
+          "status": "success"
+        },
+        {
+          "repository": "zkemail/zk-email-verify",
+          "source": "E-02",
+          "status": "unknown"
+        }
+      ],
+      "setup_success": true,
+      "title": "Underconstrained FpMul circuit",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/zkemail/zk-email-verify/matterlabs_underconstrained_fpmul_circuit/zkbugs_vars.sh",
+        "sha256": "68e84f7a9db001aac5cbb84059c2c3eed16a404592383f80b9c1bd3d6f8fa314"
+      },
+      "vulnerable_commit": "fc9949763858ca363a73a2764d9c1d26ef227478"
+    },
+    {
+      "bucket": "A-D",
+      "bucket_reason": "development_project_precedence",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/zkemail/zk-email-verify/zksecurity_sha256_templates_return_zero_on_arbitrary_inputs/zkbugs_config.json",
+        "sha256": "d24a66ce721e8430656e34157687d452bf6a7bae6a347ce2d21f2a6da72d03dd"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/zkemail/zk-email-verify/zksecurity_sha256_templates_return_zero_on_arbitrary_inputs",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "ad0ad6"
+      ],
+      "id": "zkemail/zk-email-verify/zksecurity_sha256_templates_return_zero_on_arbitrary_inputs",
+      "leave_one_out": null,
+      "location": {
+        "Function": "Sha256General",
+        "Line": "110-195",
+        "Path": "packages/circuits/lib/sha.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "packages/circuits/tests/test-circuits/sha-test.circom",
+      "original_entrypoint_kind": "project_test",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/zkemail/zk-email-verify/zksecurity_sha256_templates_return_zero_on_arbitrary_inputs/input.json",
+        "sha256": "2e2792fc068749f41ef633a9ca146488fbb287a9a270ef1bfd9c46d1004efe6e"
+      },
+      "project": "zkemail/zk-email-verify",
+      "project_match_key": "zkemail/zk-email-verify",
+      "setup_observations": [
+        {
+          "repository": "zkemail/zk-email-verify",
+          "source": "C-03",
+          "status": "setup_failure"
+        },
+        {
+          "repository": "zkemail/zk-email-verify",
+          "source": "E-01",
+          "status": "success"
+        },
+        {
+          "repository": "zkemail/zk-email-verify",
+          "source": "E-02",
+          "status": "unknown"
+        }
+      ],
+      "setup_success": true,
+      "title": "SHA256 templates can be made return 0 on arbitrary inputs",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/zkemail/zk-email-verify/zksecurity_sha256_templates_return_zero_on_arbitrary_inputs/zkbugs_vars.sh",
+        "sha256": "366571afdb92a7738175d13bbfce8cce493af253ee8d8889074a50a7e67eca62"
+      },
+      "vulnerable_commit": "f2fb77c6ab49f4e85c424c3334ce69c018648fa7"
+    },
+    {
+      "bucket": "A-Q-stage1",
+      "bucket_reason": "fix_commit_and_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/zkemail/zk-regex/matterlabs_email_spoofing_via_manipulated_from_header/zkbugs_config.json",
+        "sha256": "1daf55536cf83290d0b4787970ff68f7ec7eb34d4f20c469bd5e543d3bafe729"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/zkemail/zk-regex/matterlabs_email_spoofing_via_manipulated_from_header",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "7002a2179e076449b84e3e7e8ba94e88d0a2dc2f"
+      ],
+      "id": "zkemail/zk-regex/matterlabs_email_spoofing_via_manipulated_from_header",
+      "leave_one_out": {
+        "base_fix_commits": [
+          "7002a2179e076449b84e3e7e8ba94e88d0a2dc2f"
+        ],
+        "diff_path": null,
+        "diff_sha256": null,
+        "method": "apply full fix revision, then restore only this item's vulnerable location",
+        "planned_diff_scope": {
+          "function": "EmailAddrWithNameRegex",
+          "line": "6-190",
+          "path": "packages/circom/circuits/common/email_addr_with_name_regex.circom"
+        },
+        "required": true,
+        "restore_from_vulnerable_commit": "531575345558ba938675d725bd54df45c866ef74",
+        "shared_fix_item_count": 2,
+        "shared_fix_item_ids": [
+          "zkemail/zk-regex/matterlabs_email_spoofing_via_manipulated_from_header",
+          "zkemail/zk-regex/matterlabs_fromaddrregex_allows_email_address_spoofing"
+        ]
+      },
+      "location": {
+        "Function": "EmailAddrWithNameRegex",
+        "Line": "6-190",
+        "Path": "packages/circom/circuits/common/email_addr_with_name_regex.circom"
+      },
+      "missing_or_unknown": [
+        "original_input_missing_locally"
+      ],
+      "original_entrypoint": "packages/circom/tests/circuits/test_from_addr_regex.circom",
+      "original_entrypoint_kind": "project_test",
+      "original_input": {
+        "exists": false,
+        "path": ".external/zkbugs/dataset/circom/zkemail/zk-regex/matterlabs_email_spoofing_via_manipulated_from_header/input.json",
+        "sha256": null
+      },
+      "project": "zkemail/zk-regex",
+      "project_match_key": "zkemail/zk-regex",
+      "setup_observations": [
+        {
+          "repository": "zkemail/zk-regex",
+          "source": "C-03",
+          "status": "success"
+        }
+      ],
+      "setup_success": true,
+      "title": "Email spoofing via manipulated From header",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/zkemail/zk-regex/matterlabs_email_spoofing_via_manipulated_from_header/zkbugs_vars.sh",
+        "sha256": "ba95c7ccd94b56e481ea31b25892d1dfb065b71127ce1c607ee6c6477874b1e8"
+      },
+      "vulnerable_commit": "531575345558ba938675d725bd54df45c866ef74"
+    },
+    {
+      "bucket": "A-Q-stage1",
+      "bucket_reason": "fix_commit_and_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/zkemail/zk-regex/matterlabs_fromaddrregex_allows_email_address_spoofing/zkbugs_config.json",
+        "sha256": "2dec0793721568a3eb2e58c54ba26edd5a1535609a4e53d106781d96e200fc9c"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/zkemail/zk-regex/matterlabs_fromaddrregex_allows_email_address_spoofing",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "7002a2179e076449b84e3e7e8ba94e88d0a2dc2f"
+      ],
+      "id": "zkemail/zk-regex/matterlabs_fromaddrregex_allows_email_address_spoofing",
+      "leave_one_out": {
+        "base_fix_commits": [
+          "7002a2179e076449b84e3e7e8ba94e88d0a2dc2f"
+        ],
+        "diff_path": null,
+        "diff_sha256": null,
+        "method": "apply full fix revision, then restore only this item's vulnerable location",
+        "planned_diff_scope": {
+          "function": "FromAllRegex",
+          "line": "6-110",
+          "path": "packages/circom/circuits/common/from_all_regex.circom"
+        },
+        "required": true,
+        "restore_from_vulnerable_commit": "531575345558ba938675d725bd54df45c866ef74",
+        "shared_fix_item_count": 2,
+        "shared_fix_item_ids": [
+          "zkemail/zk-regex/matterlabs_email_spoofing_via_manipulated_from_header",
+          "zkemail/zk-regex/matterlabs_fromaddrregex_allows_email_address_spoofing"
+        ]
+      },
+      "location": {
+        "Function": "FromAllRegex",
+        "Line": "6-110",
+        "Path": "packages/circom/circuits/common/from_all_regex.circom"
+      },
+      "missing_or_unknown": [
+        "original_input_missing_locally"
+      ],
+      "original_entrypoint": "packages/circom/tests/circuits/test_from_addr_regex.circom",
+      "original_entrypoint_kind": "project_test",
+      "original_input": {
+        "exists": false,
+        "path": ".external/zkbugs/dataset/circom/zkemail/zk-regex/matterlabs_fromaddrregex_allows_email_address_spoofing/input.json",
+        "sha256": null
+      },
+      "project": "zkemail/zk-regex",
+      "project_match_key": "zkemail/zk-regex",
+      "setup_observations": [
+        {
+          "repository": "zkemail/zk-regex",
+          "source": "C-03",
+          "status": "success"
+        }
+      ],
+      "setup_success": true,
+      "title": "FromAddrRegex circuit allows for email address spoofing",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/zkemail/zk-regex/matterlabs_fromaddrregex_allows_email_address_spoofing/zkbugs_vars.sh",
+        "sha256": "8fd3bc8a435affd30b3c5063030c5e649be784543d930fcaf59a6de563cd923e"
+      },
+      "vulnerable_commit": "531575345558ba938675d725bd54df45c866ef74"
+    },
+    {
+      "bucket": "A-Q-stage2",
+      "bucket_reason": "fix_commit_but_no_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/zkopru-network/zkopru/leastauthority_Circuit_Does_Not_Check_the_ERC_20_Sum_Correctly_/zkbugs_config.json",
+        "sha256": "dd6898cdf4351dbbb5da2e121f94520e2e1c2b8d7bba5821207685506e38af79"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/zkopru-network/zkopru/leastauthority_Circuit_Does_Not_Check_the_ERC_20_Sum_Correctly_",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "30a19913ce1a018ce26a34d3d6621fcd38579171"
+      ],
+      "id": "zkopru-network/zkopru/leastauthority_Circuit_Does_Not_Check_the_ERC-20_Sum_Correctly_",
+      "leave_one_out": null,
+      "location": {
+        "Function": "ZkTransaction",
+        "Line": "257-274",
+        "Path": "packages/circuits/lib/zk_transaction.circom"
+      },
+      "missing_or_unknown": [
+        "original_input_missing_locally"
+      ],
+      "original_entrypoint": "packages/circuits/impls/zk_transaction_1_1.circom",
+      "original_entrypoint_kind": "project_main",
+      "original_input": {
+        "exists": false,
+        "path": ".external/zkbugs/dataset/circom/zkopru-network/zkopru/leastauthority_Circuit_Does_Not_Check_the_ERC_20_Sum_Correctly_/input.json",
+        "sha256": null
+      },
+      "project": "zkopru-network/zkopru",
+      "project_match_key": "zkopru-network/zkopru",
+      "setup_observations": [
+        {
+          "source": "C-03/E-01/E-02",
+          "status": "not_recorded"
+        }
+      ],
+      "setup_success": false,
+      "title": "Circuit Does Not Check the ERC-20 Sum Correctly ",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/zkopru-network/zkopru/leastauthority_Circuit_Does_Not_Check_the_ERC_20_Sum_Correctly_/zkbugs_vars.sh",
+        "sha256": "66c89d60d5045ae84246e19fc9c5e77888b3961b7631d84a01050480d50e7c37"
+      },
+      "vulnerable_commit": "4236fc8a5cbf73b7f3860d87a1a447eea8d7abd4"
+    },
+    {
+      "bucket": "A-Q-stage2",
+      "bucket_reason": "fix_commit_but_no_setup_success_record",
+      "config": {
+        "path": ".external/zkbugs/dataset/circom/zkopru-network/zkopru/leastauthority_previously_correct_ownership_proof_disabled_via_code_changes/zkbugs_config.json",
+        "sha256": "3d55812e54a369ec9064795b0bcce3b13e83ecbf65c120a27739ad617b64c0fc"
+      },
+      "dataset_case": ".external/zkbugs/dataset/circom/zkopru-network/zkopru/leastauthority_previously_correct_ownership_proof_disabled_via_code_changes",
+      "direct_entrypoint_reference_only": "circuit.circom",
+      "fix_commits": [
+        "6458fe4ef384d2f2198aae00e719a7f94c30f090"
+      ],
+      "id": "zkopru-network/zkopru/leastauthority-previously-correct-ownership-proof-disabled-via-code-changes",
+      "leave_one_out": null,
+      "location": {
+        "Function": "OwnershipProof",
+        "Line": "12",
+        "Path": "packages/circuits/lib/ownership_proof.circom"
+      },
+      "missing_or_unknown": [],
+      "original_entrypoint": "packages/circuits/tester/ownership_proof.test.circom",
+      "original_entrypoint_kind": "project_test",
+      "original_input": {
+        "exists": true,
+        "path": ".external/zkbugs/dataset/circom/zkopru-network/zkopru/leastauthority_previously_correct_ownership_proof_disabled_via_code_changes/input.json",
+        "sha256": "cb9a1a4b32ba106996dcc8d7d860e6083b9880f114bf05457d1c0b38fb5da3e0"
+      },
+      "project": "zkopru-network/zkopru",
+      "project_match_key": "zkopru-network/zkopru",
+      "setup_observations": [
+        {
+          "source": "C-03/E-01/E-02",
+          "status": "not_recorded"
+        }
+      ],
+      "setup_success": false,
+      "title": "Previously Correct Ownership Proof Disabled via Code Changes",
+      "vars": {
+        "path": ".external/zkbugs/dataset/circom/zkopru-network/zkopru/leastauthority_previously_correct_ownership_proof_disabled_via_code_changes/zkbugs_vars.sh",
+        "sha256": "dad3ab027ba30178c160b2c97f6c56be2f7686f832805f769c99113734ca6ffe"
+      },
+      "vulnerable_commit": "4236fc8a5cbf73b7f3860d87a1a447eea8d7abd4"
+    }
+  ],
+  "protocol": "docs/n5_evaluation_protocol_v1_2026-10-06.md",
+  "rules": {
+    "development_precedence": [
+      "banyancomputer/hot-proofs-blake3-circom",
+      "inference-labs-inc/subnet-2-circom",
+      "zkemail/zk-email-verify"
+    ],
+    "entrypoint": "CIRCOM_CIRCUIT_ORIGINAL plus input.json; Direct is reference only",
+    "missing_fields": "retain in denominator with reason",
+    "project_match": "case-insensitive exact GitHub owner/name; forks remain distinct",
+    "setup_success": "success in any of C-03, E-01, E-02"
+  },
+  "schema_version": 1,
+  "selection_before_preparation": true,
+  "source_records": [
+    {
+      "path": "docs/c03_corpus_results_2026-10-02.json",
+      "sha256": "87dc605423f1b5621a7d330491a0951506e065a735ed614e2e0cd3355b2f5bc5"
+    },
+    {
+      "path": "docs/e01_setup_results_2026-10-03.json",
+      "sha256": "317a2a1b2dadc83a1126e244e0fb6407d6a912ad8733ca0c0bf3aa25ae591143"
+    },
+    {
+      "path": "docs/e02_production_mains_results_2026-10-05.json",
+      "sha256": "bef09d4d5172a9e77a087a9e8fc1a0c7e08ec293f5ddd8890e154a4ed2d18748"
+    }
+  ],
+  "task": "N6-A known-answer target inventory",
+  "zkfuzz_invocations": 0
+}

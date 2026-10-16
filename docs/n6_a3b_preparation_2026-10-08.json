@@ -1,0 +1,2427 @@
+{
+  "absolute_include_inventory": {
+    "circom_files_scanned": 304,
+    "evidence": {
+      "path": "runs/n6-a3-2026-10-08.noindex/pragma-b/absolute-include-inventory.json",
+      "sha256": "32d08dbce4eeb898faa73ea559782173262522afd69606cfaee616050b75c0d3"
+    },
+    "original_absolute_include_count": 9,
+    "remaining_versioned_absolute_include_count": 0
+  },
+  "campaign_executed": false,
+  "candidate_contents_opened": false,
+  "date": "2026-10-08",
+  "file_hash_manifest_path": "runs/n6-a3-2026-10-08.noindex/file-sha256-manifest-a3b.jsonl",
+  "final_terminal_command_in": "docs/n6_a3_preparation_2026-10-08.md#n6-a3b-s-wrapper-절대경로-보정과-재검증-2026-10-08",
+  "instruction": {
+    "path": "runs/handoff/n6_a3b_instruction_2026-10-08.md",
+    "sha256": "784429154672bad16cfb86c1ceb27105747958402e3670e70ac1e2c12f44b63a"
+  },
+  "j_or_manual_review_performed": false,
+  "output_paths": {
+    "mem20": "runs/n6-a3-2026-10-08.noindex/mem20-execute.noindex",
+    "mem20_terminal_log": "runs/n6-a3-2026-10-08.noindex/terminal-a3b-mem20.log",
+    "pragma": "runs/n6-a3-2026-10-08.noindex/pragma-b-execute.noindex",
+    "pragma_terminal_log": "runs/n6-a3-2026-10-08.noindex/terminal-a3b-pragma.log"
+  },
+  "parser": {
+    "P_error_count": 0,
+    "checks": [
+      {
+        "elapsed_seconds": 13.611949124955572,
+        "entrypoint_sha256": "093301c0e21bd45c3bf5ee1d09fa2ef370f1783450ec25a5d0ea0c4b999c26e3",
+        "error_P_present": false,
+        "exit_code": -9,
+        "max_seconds": 14.0,
+        "method": "W",
+        "process_group_absent": true,
+        "source_snapshot_tree_sha256": "d7f47f5e69162ae0dbe9d73c713c914035623ecefa6a49747757402eb6754922",
+        "spec_path": "runs/n6-a3-2026-10-08.noindex/pragma/specs/aq-035-8f826c822cb8-seed-2026100601-W-a3-pragma.json",
+        "spec_sha256": "10c854911d375004ad52b41ab6961751f1ebbfbe5e16c0c1c5f87699913f13a7",
+        "target_id": "aq-035-8f826c822cb8:whole",
+        "target_index": 0,
+        "temporary_workspace_deleted": true,
+        "termination": "process_group_killed_at_limit",
+        "zkfuzz_sha256": "ac2d9d16fd97ff803b121b7994aef804b4e191636f3f78660ff6ecd6c9ae4edd"
+      },
+      {
+        "elapsed_seconds": 13.617548540933058,
+        "entrypoint_sha256": "000fa2a871697b16d1a24e770a0006c02919ff9d470be18b5fc05432d175c9c1",
+        "error_P_present": false,
+        "exit_code": -9,
+        "max_seconds": 14.0,
+        "method": "S",
+        "process_group_absent": true,
+        "source_snapshot_tree_sha256": "55e6b27aeec2db7044e1cb6ec5394b09a01daa09ba6a0b359c14e1cd40ef352d",
+        "spec_path": "runs/n6-a3-2026-10-08.noindex/pragma-b/specs/aq-035-8f826c822cb8-seed-2026100601-S-a3b-pragma.json",
+        "spec_sha256": "fec6d9f4ffdaeffe0eafdf59a59cf254e1104f25d4f3d7a86a964fc85fb0ebb9",
+        "target_id": "sha256:90d3c3ffd8f9ab4a14d261313a8f8f65096b0891395865743b8de5ca370129d6",
+        "target_index": 0,
+        "temporary_workspace_deleted": true,
+        "termination": "process_group_killed_at_limit",
+        "zkfuzz_sha256": "ac2d9d16fd97ff803b121b7994aef804b4e191636f3f78660ff6ecd6c9ae4edd"
+      },
+      {
+        "elapsed_seconds": 13.624086583964527,
+        "entrypoint_sha256": "64ac6a06f57b4237b55242af13053929848849bf3c1dd1085522dae61221f04f",
+        "error_P_present": false,
+        "exit_code": -9,
+        "max_seconds": 14.0,
+        "method": "S",
+        "process_group_absent": true,
+        "source_snapshot_tree_sha256": "9a11618879633c98deb4be901a3d864184bbbcbb2f7d29c4db33cc74e85e60bb",
+        "spec_path": "runs/n6-a3-2026-10-08.noindex/pragma-b/specs/aq-035-8f826c822cb8-seed-2026100601-S-a3b-pragma.json",
+        "spec_sha256": "fec6d9f4ffdaeffe0eafdf59a59cf254e1104f25d4f3d7a86a964fc85fb0ebb9",
+        "target_id": "sha256:51f162f81abea0618d7ca822d44a08967d6e2d93f44cd21a4c9b5a1430ffa46b",
+        "target_index": 1,
+        "temporary_workspace_deleted": true,
+        "termination": "process_group_killed_at_limit",
+        "zkfuzz_sha256": "ac2d9d16fd97ff803b121b7994aef804b4e191636f3f78660ff6ecd6c9ae4edd"
+      },
+      {
+        "elapsed_seconds": 13.624886207981035,
+        "entrypoint_sha256": "61e93af0ccfb67274361a7c3a3c77342d90473b45e47c1e52431989301622773",
+        "error_P_present": false,
+        "exit_code": -9,
+        "max_seconds": 14.0,
+        "method": "S",
+        "process_group_absent": true,
+        "source_snapshot_tree_sha256": "55801a01543b46853f58636621e9a7841902c48d42d421d42912c02f6be40b43",
+        "spec_path": "runs/n6-a3-2026-10-08.noindex/pragma-b/specs/aq-035-8f826c822cb8-seed-2026100601-S-a3b-pragma.json",
+        "spec_sha256": "fec6d9f4ffdaeffe0eafdf59a59cf254e1104f25d4f3d7a86a964fc85fb0ebb9",
+        "target_id": "sha256:2814a1de38b1e0df747b0f53ffab422b7a9eac9b92821dcbbcc10b7103383008",
+        "target_index": 2,
+        "temporary_workspace_deleted": true,
+        "termination": "process_group_killed_at_limit",
+        "zkfuzz_sha256": "ac2d9d16fd97ff803b121b7994aef804b4e191636f3f78660ff6ecd6c9ae4edd"
+      },
+      {
+        "elapsed_seconds": 13.615916166920215,
+        "entrypoint_sha256": "3731c28d120852dfc47ded273e23d313a6239030e3b3dbc079baaa1cc7542d66",
+        "error_P_present": false,
+        "exit_code": -9,
+        "max_seconds": 14.0,
+        "method": "S",
+        "process_group_absent": true,
+        "source_snapshot_tree_sha256": "da5b5448713bf7e85bbdf4cae59eb3e113f6a9bb55cfb06c20a46d9c58f4d378",
+        "spec_path": "runs/n6-a3-2026-10-08.noindex/pragma-b/specs/aq-035-8f826c822cb8-seed-2026100601-S-a3b-pragma.json",
+        "spec_sha256": "fec6d9f4ffdaeffe0eafdf59a59cf254e1104f25d4f3d7a86a964fc85fb0ebb9",
+        "target_id": "sha256:29084c8a24366b6b432537dbed7935820c91bb13586bfbc666d0732e64ce1cdb",
+        "target_index": 3,
+        "temporary_workspace_deleted": true,
+        "termination": "process_group_killed_at_limit",
+        "zkfuzz_sha256": "ac2d9d16fd97ff803b121b7994aef804b4e191636f3f78660ff6ecd6c9ae4edd"
+      },
+      {
+        "elapsed_seconds": 0.03121458296664059,
+        "entrypoint_sha256": "efb5f8cbcbc7db550af269fccfa1b7f1274048fed16d9d226892ef17c262115f",
+        "error_P_present": false,
+        "exit_code": 0,
+        "max_seconds": 14.0,
+        "method": "S",
+        "process_group_absent": true,
+        "source_snapshot_tree_sha256": "48e89ef67d1e2622595d72059005fe65a31b2a007af50418c83252533b9194e3",
+        "spec_path": "runs/n6-a3-2026-10-08.noindex/pragma-b/specs/aq-035-8f826c822cb8-seed-2026100601-S-a3b-pragma.json",
+        "spec_sha256": "fec6d9f4ffdaeffe0eafdf59a59cf254e1104f25d4f3d7a86a964fc85fb0ebb9",
+        "target_id": "sha256:903cb6e746de4c5d70be3874502db4e432c1c43bd166e946ad2ca061e2c2f674",
+        "target_index": 4,
+        "temporary_workspace_deleted": true,
+        "termination": "exited_before_limit",
+        "zkfuzz_sha256": "ac2d9d16fd97ff803b121b7994aef804b4e191636f3f78660ff6ecd6c9ae4edd"
+      },
+      {
+        "elapsed_seconds": 13.619038417004049,
+        "entrypoint_sha256": "86a7d23ec53bd34479780a6d4500f39f27c589037fae761416302038837cdc69",
+        "error_P_present": false,
+        "exit_code": -9,
+        "max_seconds": 14.0,
+        "method": "S",
+        "process_group_absent": true,
+        "source_snapshot_tree_sha256": "37a3451ff942cea7495d7e56afd7117b5e6196ccdd42aedd03b69084517e15dc",
+        "spec_path": "runs/n6-a3-2026-10-08.noindex/pragma-b/specs/aq-035-8f826c822cb8-seed-2026100601-S-a3b-pragma.json",
+        "spec_sha256": "fec6d9f4ffdaeffe0eafdf59a59cf254e1104f25d4f3d7a86a964fc85fb0ebb9",
+        "target_id": "sha256:e5a05f0b6c891a7c8a3ae28caf41b43b9a35d73346f705f3e52e35526f2a73dd",
+        "target_index": 5,
+        "temporary_workspace_deleted": true,
+        "termination": "process_group_killed_at_limit",
+        "zkfuzz_sha256": "ac2d9d16fd97ff803b121b7994aef804b4e191636f3f78660ff6ecd6c9ae4edd"
+      },
+      {
+        "elapsed_seconds": 0.11499700008425862,
+        "entrypoint_sha256": "660d8d98998672ea3feab04adcde79d721de4a9e76dc5050b3e7856ea180b94d",
+        "error_P_present": false,
+        "exit_code": 0,
+        "max_seconds": 14.0,
+        "method": "W",
+        "process_group_absent": true,
+        "source_snapshot_tree_sha256": "0d67a58bb5528c22098097ffc9d3dc7fc205a241d4160c5b6f88c16f5251959c",
+        "spec_path": "runs/n6-a3-2026-10-08.noindex/pragma/specs/aq-036-6d7df64759b6-seed-2026100601-W-a3-pragma.json",
+        "spec_sha256": "1e4284d0eaf5afcbad874623f31167e5d2fcd6088a1af1ee5026105a0a7df1af",
+        "target_id": "aq-036-6d7df64759b6:whole",
+        "target_index": 0,
+        "temporary_workspace_deleted": true,
+        "termination": "exited_before_limit",
+        "zkfuzz_sha256": "ac2d9d16fd97ff803b121b7994aef804b4e191636f3f78660ff6ecd6c9ae4edd"
+      },
+      {
+        "elapsed_seconds": 13.628051874926314,
+        "entrypoint_sha256": "62dd2d9a2c34e415d82da05ac4ef1878858b5d840479790d8d4e114c03668806",
+        "error_P_present": false,
+        "exit_code": -9,
+        "max_seconds": 14.0,
+        "method": "S",
+        "process_group_absent": true,
+        "source_snapshot_tree_sha256": "94db7f93d56e6dd72ead11b597ae9a213ccfe64e785dc739481db802c1432dad",
+        "spec_path": "runs/n6-a3-2026-10-08.noindex/pragma-b/specs/aq-036-6d7df64759b6-seed-2026100601-S-a3b-pragma.json",
+        "spec_sha256": "6cdb229756a9306f72412252cc255b115440abeccd3f2b79a0c1ae9331d5ee15",
+        "target_id": "sha256:598697019fae8b8c6d21040fa8c87b655f998639d9bbc150004ca1551a077558",
+        "target_index": 0,
+        "temporary_workspace_deleted": true,
+        "termination": "process_group_killed_at_limit",
+        "zkfuzz_sha256": "ac2d9d16fd97ff803b121b7994aef804b4e191636f3f78660ff6ecd6c9ae4edd"
+      },
+      {
+        "elapsed_seconds": 13.61096458393149,
+        "entrypoint_sha256": "a58e3eae4e6455172cdf6bd39a00ae6f6426bae91d1c701be867caa0ab4295fb",
+        "error_P_present": false,
+        "exit_code": -9,
+        "max_seconds": 14.0,
+        "method": "S",
+        "process_group_absent": true,
+        "source_snapshot_tree_sha256": "3f7f680014a46c2d15813d8dab849caaaaf241569fa561df62f9bdeff846a575",
+        "spec_path": "runs/n6-a3-2026-10-08.noindex/pragma-b/specs/aq-036-6d7df64759b6-seed-2026100601-S-a3b-pragma.json",
+        "spec_sha256": "6cdb229756a9306f72412252cc255b115440abeccd3f2b79a0c1ae9331d5ee15",
+        "target_id": "sha256:86e2e2e7dd8a94be029b464db6a67c834a7e4923fbcc9dc6d295acc1f094d1a7",
+        "target_index": 1,
+        "temporary_workspace_deleted": true,
+        "termination": "process_group_killed_at_limit",
+        "zkfuzz_sha256": "ac2d9d16fd97ff803b121b7994aef804b4e191636f3f78660ff6ecd6c9ae4edd"
+      },
+      {
+        "elapsed_seconds": 0.03115141694433987,
+        "entrypoint_sha256": "38fd892ee309567c90688703cffd4cfea63628d587e187850af671abff474a4a",
+        "error_P_present": false,
+        "exit_code": 0,
+        "max_seconds": 14.0,
+        "method": "S",
+        "process_group_absent": true,
+        "source_snapshot_tree_sha256": "5557664ba5ef5d55e3693304f837df07c6fcb05c7e803d276d440d28c2886fe6",
+        "spec_path": "runs/n6-a3-2026-10-08.noindex/pragma-b/specs/aq-036-6d7df64759b6-seed-2026100601-S-a3b-pragma.json",
+        "spec_sha256": "6cdb229756a9306f72412252cc255b115440abeccd3f2b79a0c1ae9331d5ee15",
+        "target_id": "sha256:6cc3171344e03726f319f98877da85de6da9eeff59d57db69783979dc89a2a5e",
+        "target_index": 2,
+        "temporary_workspace_deleted": true,
+        "termination": "exited_before_limit",
+        "zkfuzz_sha256": "ac2d9d16fd97ff803b121b7994aef804b4e191636f3f78660ff6ecd6c9ae4edd"
+      }
+    ],
+    "evidence": {
+      "path": "runs/n6-a3-2026-10-08.noindex/pragma-b/parser-check-v3.json",
+      "sha256": "eeb953ca6ed6dcb5241e366d2322336e6a4f9cd2b9f5abae2f4721631454c8c4"
+    },
+    "max_elapsed_seconds": 13.628051874926314,
+    "recorded_target_count": 11,
+    "required_target_count": 11,
+    "status": "passed",
+    "temporary_workspaces_deleted": true
+  },
+  "preflight": {
+    "new_S_spec_count": 6,
+    "proof": {
+      "path": "runs/n6-a3-2026-10-08.noindex/pragma-b/preflight-proof-v2.json",
+      "sha256": "c1ae327dd3203a919788baf6777967f7d12a3dea21334e918da0a3b1fae0e992"
+    },
+    "retained_A3_W_spec_count": 6,
+    "rows": {
+      "aq-035-8f826c822cb8-seed-2026100601:S": {
+        "compile_status_counts": {
+          "succeeded": 6
+        },
+        "compile_targets": 6,
+        "destination_preflight": "runs/n6-a3-2026-10-08.noindex/pragma-b/preflight-unsandboxed/aq-035-8f826c822cb8-seed-2026100601-S/S/preflight.json",
+        "destination_preflight_sha256": "8ae81b053bc5e98931bc3d5f5e22dcf6d87a6d217d9e109ec6d6a867cb076830",
+        "destination_spec": "runs/n6-a3-2026-10-08.noindex/pragma-b/specs/aq-035-8f826c822cb8-seed-2026100601-S-a3b-pragma.json",
+        "destination_spec_sha256": "fec6d9f4ffdaeffe0eafdf59a59cf254e1104f25d4f3d7a86a964fc85fb0ebb9",
+        "kind": "fresh_v4_preflight",
+        "plan_validation": {
+          "fingerprints": 38,
+          "snapshot_model": "one source snapshot per target",
+          "status": "verified",
+          "target_count": 6
+        },
+        "source_preflight": "runs/n6-a3-2026-10-08.noindex/pragma-b/preflight-unsandboxed/aq-035-8f826c822cb8-seed-2026100601-S/S/preflight.json",
+        "source_preflight_sha256": "8ae81b053bc5e98931bc3d5f5e22dcf6d87a6d217d9e109ec6d6a867cb076830",
+        "status": "passed"
+      },
+      "aq-035-8f826c822cb8-seed-2026100601:W": {
+        "compile_status_counts": {
+          "succeeded": 1
+        },
+        "compile_targets": 1,
+        "destination_preflight": "runs/n6-a3-2026-10-08.noindex/pragma/preflight/aq-035-8f826c822cb8-seed-2026100601/W/preflight.json",
+        "destination_preflight_sha256": "aa663dc326f8a31bea9500a3405c1a4178b6b9e437b8cf77c78c5b20eed43ef3",
+        "destination_spec": "runs/n6-a3-2026-10-08.noindex/pragma/specs/aq-035-8f826c822cb8-seed-2026100601-W-a3-pragma.json",
+        "destination_spec_sha256": "10c854911d375004ad52b41ab6961751f1ebbfbe5e16c0c1c5f87699913f13a7",
+        "kind": "fresh_v4_preflight",
+        "source_preflight": "runs/n6-a3-2026-10-08.noindex/pragma/preflight/aq-035-8f826c822cb8-seed-2026100601/W/preflight.json",
+        "source_preflight_sha256": "aa663dc326f8a31bea9500a3405c1a4178b6b9e437b8cf77c78c5b20eed43ef3",
+        "status": "passed"
+      },
+      "aq-035-8f826c822cb8-seed-2026100602:S": {
+        "compile_status_counts": {
+          "succeeded": 6
+        },
+        "compile_targets": 6,
+        "destination_preflight": "runs/n6-a3-2026-10-08.noindex/pragma-b/preflight-unsandboxed/aq-035-8f826c822cb8-seed-2026100602-S/S/preflight.json",
+        "destination_preflight_sha256": "93abde7e161f93ae9de1e0deaa13a2659b61d8478a8d7661676be4015dbd132e",
+        "destination_spec": "runs/n6-a3-2026-10-08.noindex/pragma-b/specs/aq-035-8f826c822cb8-seed-2026100602-S-a3b-pragma.json",
+        "destination_spec_sha256": "ff5727a3185ecae06b9a5e708715b39180d9b2093d3073e7459c984e001bdfac",
+        "kind": "fresh_v4_preflight",
+        "plan_validation": {
+          "fingerprints": 38,
+          "snapshot_model": "one source snapshot per target",
+          "status": "verified",
+          "target_count": 6
+        },
+        "source_preflight": "runs/n6-a3-2026-10-08.noindex/pragma-b/preflight-unsandboxed/aq-035-8f826c822cb8-seed-2026100602-S/S/preflight.json",
+        "source_preflight_sha256": "93abde7e161f93ae9de1e0deaa13a2659b61d8478a8d7661676be4015dbd132e",
+        "status": "passed"
+      },
+      "aq-035-8f826c822cb8-seed-2026100602:W": {
+        "compile_status_counts": {
+          "succeeded": 1
+        },
+        "compile_targets": 1,
+        "destination_preflight": "runs/n6-a3-2026-10-08.noindex/pragma/preflight/aq-035-8f826c822cb8-seed-2026100602/W/preflight.json",
+        "destination_preflight_sha256": "ab6c6f9ee4f5fc89f5b0ef76e5a93269f490449063675f1440b39a8f47e5b830",
+        "destination_spec": "runs/n6-a3-2026-10-08.noindex/pragma/specs/aq-035-8f826c822cb8-seed-2026100602-W-a3-pragma.json",
+        "destination_spec_sha256": "d915d0b1202798ce916bb3dc9df8181f5a4e0b4419c6fe661c254ddfaf5ac430",
+        "kind": "fresh_v4_preflight",
+        "source_preflight": "runs/n6-a3-2026-10-08.noindex/pragma/preflight/aq-035-8f826c822cb8-seed-2026100602/W/preflight.json",
+        "source_preflight_sha256": "ab6c6f9ee4f5fc89f5b0ef76e5a93269f490449063675f1440b39a8f47e5b830",
+        "status": "passed"
+      },
+      "aq-035-8f826c822cb8-seed-2026100603:S": {
+        "compile_status_counts": {
+          "succeeded": 6
+        },
+        "compile_targets": 6,
+        "destination_preflight": "runs/n6-a3-2026-10-08.noindex/pragma-b/preflight-unsandboxed/aq-035-8f826c822cb8-seed-2026100603-S/S/preflight.json",
+        "destination_preflight_sha256": "42e8b5d57311a5257b758d6c41a6f9575dbd8f967b56746a754fd1594470c51a",
+        "destination_spec": "runs/n6-a3-2026-10-08.noindex/pragma-b/specs/aq-035-8f826c822cb8-seed-2026100603-S-a3b-pragma.json",
+        "destination_spec_sha256": "fc86f32936517d4c70739cb0c9a45654f3dc2ca38a48ab0d0158d0d6591c8078",
+        "kind": "fresh_v4_preflight",
+        "plan_validation": {
+          "fingerprints": 38,
+          "snapshot_model": "one source snapshot per target",
+          "status": "verified",
+          "target_count": 6
+        },
+        "source_preflight": "runs/n6-a3-2026-10-08.noindex/pragma-b/preflight-unsandboxed/aq-035-8f826c822cb8-seed-2026100603-S/S/preflight.json",
+        "source_preflight_sha256": "42e8b5d57311a5257b758d6c41a6f9575dbd8f967b56746a754fd1594470c51a",
+        "status": "passed"
+      },
+      "aq-035-8f826c822cb8-seed-2026100603:W": {
+        "compile_status_counts": {
+          "succeeded": 1
+        },
+        "compile_targets": 1,
+        "destination_preflight": "runs/n6-a3-2026-10-08.noindex/pragma/preflight/aq-035-8f826c822cb8-seed-2026100603/W/preflight.json",
+        "destination_preflight_sha256": "f0f47c4fecb31abd46ece79d9f56573534ed1cc2f8c7aebd6761b5fd96828cf8",
+        "destination_spec": "runs/n6-a3-2026-10-08.noindex/pragma/specs/aq-035-8f826c822cb8-seed-2026100603-W-a3-pragma.json",
+        "destination_spec_sha256": "ba71a022af6d8f3abfcd0fb76361f92d6d633a96423e328438a241eadd2d6f01",
+        "kind": "fresh_v4_preflight",
+        "source_preflight": "runs/n6-a3-2026-10-08.noindex/pragma/preflight/aq-035-8f826c822cb8-seed-2026100603/W/preflight.json",
+        "source_preflight_sha256": "f0f47c4fecb31abd46ece79d9f56573534ed1cc2f8c7aebd6761b5fd96828cf8",
+        "status": "passed"
+      },
+      "aq-036-6d7df64759b6-seed-2026100601:S": {
+        "compile_status_counts": {
+          "succeeded": 3
+        },
+        "compile_targets": 3,
+        "destination_preflight": "runs/n6-a3-2026-10-08.noindex/pragma-b/preflight-unsandboxed/aq-036-6d7df64759b6-seed-2026100601-S/S/preflight.json",
+        "destination_preflight_sha256": "455de51930567ece6a004b7556c311d99e877fea9c5062ddedb608058f7f5e9a",
+        "destination_spec": "runs/n6-a3-2026-10-08.noindex/pragma-b/specs/aq-036-6d7df64759b6-seed-2026100601-S-a3b-pragma.json",
+        "destination_spec_sha256": "6cdb229756a9306f72412252cc255b115440abeccd3f2b79a0c1ae9331d5ee15",
+        "kind": "fresh_v4_preflight",
+        "plan_validation": {
+          "fingerprints": 18,
+          "snapshot_model": "one source snapshot per target",
+          "status": "verified",
+          "target_count": 3
+        },
+        "source_preflight": "runs/n6-a3-2026-10-08.noindex/pragma-b/preflight-unsandboxed/aq-036-6d7df64759b6-seed-2026100601-S/S/preflight.json",
+        "source_preflight_sha256": "455de51930567ece6a004b7556c311d99e877fea9c5062ddedb608058f7f5e9a",
+        "status": "passed"
+      },
+      "aq-036-6d7df64759b6-seed-2026100601:W": {
+        "compile_status_counts": {
+          "succeeded": 1
+        },
+        "compile_targets": 1,
+        "destination_preflight": "runs/n6-a3-2026-10-08.noindex/pragma/preflight/aq-036-6d7df64759b6-seed-2026100601/W/preflight.json",
+        "destination_preflight_sha256": "c8794009d95ede91d0bdbef0c8ac4b021b0857d18b7234d3ba662a4404a30dac",
+        "destination_spec": "runs/n6-a3-2026-10-08.noindex/pragma/specs/aq-036-6d7df64759b6-seed-2026100601-W-a3-pragma.json",
+        "destination_spec_sha256": "1e4284d0eaf5afcbad874623f31167e5d2fcd6088a1af1ee5026105a0a7df1af",
+        "kind": "fresh_v4_preflight",
+        "source_preflight": "runs/n6-a3-2026-10-08.noindex/pragma/preflight/aq-036-6d7df64759b6-seed-2026100601/W/preflight.json",
+        "source_preflight_sha256": "c8794009d95ede91d0bdbef0c8ac4b021b0857d18b7234d3ba662a4404a30dac",
+        "status": "passed"
+      },
+      "aq-036-6d7df64759b6-seed-2026100602:S": {
+        "compile_status_counts": {
+          "succeeded": 3
+        },
+        "compile_targets": 3,
+        "destination_preflight": "runs/n6-a3-2026-10-08.noindex/pragma-b/preflight-unsandboxed/aq-036-6d7df64759b6-seed-2026100602-S/S/preflight.json",
+        "destination_preflight_sha256": "1cf8e2581839a67aa628ea1f37e6ad32704a30a960c259d7eeefe64d41a324d6",
+        "destination_spec": "runs/n6-a3-2026-10-08.noindex/pragma-b/specs/aq-036-6d7df64759b6-seed-2026100602-S-a3b-pragma.json",
+        "destination_spec_sha256": "84bf806dce433832f56492959fd3af3382761ed513e5dbd572526bbf65087422",
+        "kind": "fresh_v4_preflight",
+        "plan_validation": {
+          "fingerprints": 18,
+          "snapshot_model": "one source snapshot per target",
+          "status": "verified",
+          "target_count": 3
+        },
+        "source_preflight": "runs/n6-a3-2026-10-08.noindex/pragma-b/preflight-unsandboxed/aq-036-6d7df64759b6-seed-2026100602-S/S/preflight.json",
+        "source_preflight_sha256": "1cf8e2581839a67aa628ea1f37e6ad32704a30a960c259d7eeefe64d41a324d6",
+        "status": "passed"
+      },
+      "aq-036-6d7df64759b6-seed-2026100602:W": {
+        "compile_status_counts": {
+          "succeeded": 1
+        },
+        "compile_targets": 1,
+        "destination_preflight": "runs/n6-a3-2026-10-08.noindex/pragma/preflight/aq-036-6d7df64759b6-seed-2026100602/W/preflight.json",
+        "destination_preflight_sha256": "d96e0ccce11b78b7aff4e5bbbb63128582d0b60cd3ce4f47a881b824ea9730d8",
+        "destination_spec": "runs/n6-a3-2026-10-08.noindex/pragma/specs/aq-036-6d7df64759b6-seed-2026100602-W-a3-pragma.json",
+        "destination_spec_sha256": "bfc60afbb5b8eceff29b8fddfda9e59b859cdf7aaa8855a6c75aff6ed934c345",
+        "kind": "fresh_v4_preflight",
+        "source_preflight": "runs/n6-a3-2026-10-08.noindex/pragma/preflight/aq-036-6d7df64759b6-seed-2026100602/W/preflight.json",
+        "source_preflight_sha256": "d96e0ccce11b78b7aff4e5bbbb63128582d0b60cd3ce4f47a881b824ea9730d8",
+        "status": "passed"
+      },
+      "aq-036-6d7df64759b6-seed-2026100603:S": {
+        "compile_status_counts": {
+          "succeeded": 3
+        },
+        "compile_targets": 3,
+        "destination_preflight": "runs/n6-a3-2026-10-08.noindex/pragma-b/preflight-unsandboxed/aq-036-6d7df64759b6-seed-2026100603-S/S/preflight.json",
+        "destination_preflight_sha256": "dc530f4539edd6b551ea163b0dac863b669b90f1bd3aa9f8f3b3cce16ba47618",
+        "destination_spec": "runs/n6-a3-2026-10-08.noindex/pragma-b/specs/aq-036-6d7df64759b6-seed-2026100603-S-a3b-pragma.json",
+        "destination_spec_sha256": "8dda2d749c51debeb5289a8bf08abfee7a48cecd7de576ff4bcbb281574d6768",
+        "kind": "fresh_v4_preflight",
+        "plan_validation": {
+          "fingerprints": 18,
+          "snapshot_model": "one source snapshot per target",
+          "status": "verified",
+          "target_count": 3
+        },
+        "source_preflight": "runs/n6-a3-2026-10-08.noindex/pragma-b/preflight-unsandboxed/aq-036-6d7df64759b6-seed-2026100603-S/S/preflight.json",
+        "source_preflight_sha256": "dc530f4539edd6b551ea163b0dac863b669b90f1bd3aa9f8f3b3cce16ba47618",
+        "status": "passed"
+      },
+      "aq-036-6d7df64759b6-seed-2026100603:W": {
+        "compile_status_counts": {
+          "succeeded": 1
+        },
+        "compile_targets": 1,
+        "destination_preflight": "runs/n6-a3-2026-10-08.noindex/pragma/preflight/aq-036-6d7df64759b6-seed-2026100603/W/preflight.json",
+        "destination_preflight_sha256": "2e738bf22ea65d822549ee62197ffbc85a6c034ff09be77d66e24579d45a9c0f",
+        "destination_spec": "runs/n6-a3-2026-10-08.noindex/pragma/specs/aq-036-6d7df64759b6-seed-2026100603-W-a3-pragma.json",
+        "destination_spec_sha256": "6fb566075d834b0eda82d689669da0439355986db982496b386327b1c64e779a",
+        "kind": "fresh_v4_preflight",
+        "source_preflight": "runs/n6-a3-2026-10-08.noindex/pragma/preflight/aq-036-6d7df64759b6-seed-2026100603/W/preflight.json",
+        "source_preflight_sha256": "2e738bf22ea65d822549ee62197ffbc85a6c034ff09be77d66e24579d45a9c0f",
+        "status": "passed"
+      }
+    },
+    "sandbox_monitor_diagnostic": {
+      "path": "runs/n6-a3-2026-10-08.noindex/pragma-b/sandbox-preflight-monitor-diagnostic.json",
+      "sha256": "25006d1243f97de3cfa57d918d022e8700682362ea5b5f3202db4ffd36b1cf7f"
+    },
+    "total_compile_target_count": 33,
+    "total_spec_count": 12
+  },
+  "queues": {
+    "mem20": {
+      "concurrency": 1,
+      "path": "runs/n6-a3-2026-10-08.noindex/queue-a3-mem20.json",
+      "sha256": "4096d515672347b51aa6cfe45a54efe1449c2edf1817ef8073c1582d5a564125",
+      "spec_count": 24,
+      "unchanged_from_A3": true,
+      "unit_count": 12,
+      "validate_only": "passed"
+    },
+    "pragma": {
+      "concurrency": 3,
+      "output_directory": "runs/n6-a3-2026-10-08.noindex/pragma-b-execute.noindex",
+      "path": "runs/n6-a3-2026-10-08.noindex/queue-a3b-pragma.json",
+      "sha256": "c91e572aaa91582bd46d88b54e9e1bb9a5ce34509af286b65f41aaf22983fc4f",
+      "spec_count": 12,
+      "unit_count": 6,
+      "unit_order": [
+        "aq-035-8f826c822cb8-seed-2026100601",
+        "aq-036-6d7df64759b6-seed-2026100601",
+        "aq-035-8f826c822cb8-seed-2026100602",
+        "aq-036-6d7df64759b6-seed-2026100602",
+        "aq-035-8f826c822cb8-seed-2026100603",
+        "aq-036-6d7df64759b6-seed-2026100603"
+      ],
+      "validate_only": "passed"
+    }
+  },
+  "r1cs_equivalence": {
+    "circom_sha256": "8991887889c2a74d6fc704d5689ada4cc76fba004e866c987de6cbf3b3db6227",
+    "evidence": {
+      "path": "runs/n6-a3-2026-10-08.noindex/pragma-b/r1cs-equivalence.json",
+      "sha256": "455196239eefd29e6427287f671b1c52ff1a97ee4895fb72ecfc9785d311e650"
+    },
+    "rows": [
+      {
+        "aq": "aq-035-8f826c822cb8",
+        "corrected": {
+          "command": [
+            "/Users/miiz/.cargo/bin/circom",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0000/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0001-AssertBits/target.circom",
+            "--r1cs",
+            "--prime",
+            "bn128",
+            "--output",
+            "/var/folders/s_/2r_y58tx305fc8x_qvghtvm80000gn/T/n6-a3b-r1cs-qhau7clo/corrected",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0000",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies/circomlib",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/project/circuits",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies/circomlib",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/project/circuits"
+          ],
+          "entrypoint": "runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0000/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0001-AssertBits/target.circom",
+          "exit_code": 0,
+          "r1cs_bytes": 32976,
+          "r1cs_sha256": "eb06c189242c6a37841502bb97fbfa09cc3072ffa9c801e74a1b3f87b0df0902",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "76030881daa953a2c52b1695851fa038a67652bb24176707d330cd88913a727d"
+        },
+        "corrected_snapshot_tree_sha256": "55e6b27aeec2db7044e1cb6ec5394b09a01daa09ba6a0b359c14e1cd40ef352d",
+        "equal": true,
+        "new_target_id": "sha256:90d3c3ffd8f9ab4a14d261313a8f8f65096b0891395865743b8de5ca370129d6",
+        "old_target_id": "sha256:aa0e65d083eee7e9624f94976218f2b12260820098f17a8cd3caaaaf0450cf87",
+        "original": {
+          "command": [
+            "/Users/miiz/.cargo/bin/circom",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0001-AssertBits/target.circom",
+            "--r1cs",
+            "--prime",
+            "bn128",
+            "--output",
+            "/var/folders/s_/2r_y58tx305fc8x_qvghtvm80000gn/T/n6-a3b-r1cs-qhau7clo/original",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies/circomlib",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/project/circuits",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies/circomlib",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/project/circuits"
+          ],
+          "entrypoint": "runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0001-AssertBits/target.circom",
+          "exit_code": 0,
+          "r1cs_bytes": 32976,
+          "r1cs_sha256": "eb06c189242c6a37841502bb97fbfa09cc3072ffa9c801e74a1b3f87b0df0902",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "55aff675d56259ec214cc9d910e804a26c206de265ab34bd7afac60ee731fddc"
+        }
+      },
+      {
+        "aq": "aq-035-8f826c822cb8",
+        "corrected": {
+          "command": [
+            "/Users/miiz/.cargo/bin/circom",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0001/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0002-Num2Bits/target.circom",
+            "--r1cs",
+            "--prime",
+            "bn128",
+            "--output",
+            "/var/folders/s_/2r_y58tx305fc8x_qvghtvm80000gn/T/n6-a3b-r1cs-djhg5_va/corrected",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0001",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies/circomlib",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/project/circuits",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies/circomlib",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/project/circuits"
+          ],
+          "entrypoint": "runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0001/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0002-Num2Bits/target.circom",
+          "exit_code": 0,
+          "r1cs_bytes": 32976,
+          "r1cs_sha256": "32ff0b7dd08d5f6691f1f1353c09917f76572a6998cccf0df1dc7d12154cd311",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "53f8bf0de9f82e5bd4f65b41daa8e5340b00b7b66e4e4cf8837d7ada227a5508"
+        },
+        "corrected_snapshot_tree_sha256": "9a11618879633c98deb4be901a3d864184bbbcbb2f7d29c4db33cc74e85e60bb",
+        "equal": true,
+        "new_target_id": "sha256:51f162f81abea0618d7ca822d44a08967d6e2d93f44cd21a4c9b5a1430ffa46b",
+        "old_target_id": "sha256:df37ee758c7e668624fcbd1e681b20547612d39598f0aa87520c4ff6f2aaa64f",
+        "original": {
+          "command": [
+            "/Users/miiz/.cargo/bin/circom",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0002-Num2Bits/target.circom",
+            "--r1cs",
+            "--prime",
+            "bn128",
+            "--output",
+            "/var/folders/s_/2r_y58tx305fc8x_qvghtvm80000gn/T/n6-a3b-r1cs-djhg5_va/original",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies/circomlib",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/project/circuits",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies/circomlib",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/project/circuits"
+          ],
+          "entrypoint": "runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0002-Num2Bits/target.circom",
+          "exit_code": 0,
+          "r1cs_bytes": 32976,
+          "r1cs_sha256": "32ff0b7dd08d5f6691f1f1353c09917f76572a6998cccf0df1dc7d12154cd311",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "6ffd9a4baaafc4c938c7190f64c124d73e2e2f6b2bd9ce132020e63e8ebd1677"
+        }
+      },
+      {
+        "aq": "aq-035-8f826c822cb8",
+        "corrected": {
+          "command": [
+            "/Users/miiz/.cargo/bin/circom",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0002/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0005-Num2Bits/target.circom",
+            "--r1cs",
+            "--prime",
+            "bn128",
+            "--output",
+            "/var/folders/s_/2r_y58tx305fc8x_qvghtvm80000gn/T/n6-a3b-r1cs-w8kv0eo1/corrected",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0002",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies/circomlib",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/project/circuits",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies/circomlib",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/project/circuits"
+          ],
+          "entrypoint": "runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0002/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0005-Num2Bits/target.circom",
+          "exit_code": 0,
+          "r1cs_bytes": 33140,
+          "r1cs_sha256": "f4cbb9d54d7a5649ce60ff8346d0c03e630aa47cf6fce930cc6c1dc4c47009db",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "ca95a68157ea981a234a013a2881550ead64de433bd73876455d3ae4840cfed9"
+        },
+        "corrected_snapshot_tree_sha256": "55801a01543b46853f58636621e9a7841902c48d42d421d42912c02f6be40b43",
+        "equal": true,
+        "new_target_id": "sha256:2814a1de38b1e0df747b0f53ffab422b7a9eac9b92821dcbbcc10b7103383008",
+        "old_target_id": "sha256:3103abf3c799b7db5dd32504480bf499e8b906fe51994fd4335851cbaa887126",
+        "original": {
+          "command": [
+            "/Users/miiz/.cargo/bin/circom",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0005-Num2Bits/target.circom",
+            "--r1cs",
+            "--prime",
+            "bn128",
+            "--output",
+            "/var/folders/s_/2r_y58tx305fc8x_qvghtvm80000gn/T/n6-a3b-r1cs-w8kv0eo1/original",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies/circomlib",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/project/circuits",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies/circomlib",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/project/circuits"
+          ],
+          "entrypoint": "runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0005-Num2Bits/target.circom",
+          "exit_code": 0,
+          "r1cs_bytes": 33140,
+          "r1cs_sha256": "f4cbb9d54d7a5649ce60ff8346d0c03e630aa47cf6fce930cc6c1dc4c47009db",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "916419d1063fc61b5645cfa3ecc36756833de5aa4f4c316e1c52ada854acc661"
+        }
+      },
+      {
+        "aq": "aq-035-8f826c822cb8",
+        "corrected": {
+          "command": [
+            "/Users/miiz/.cargo/bin/circom",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0003/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0004-LessThan/target.circom",
+            "--r1cs",
+            "--prime",
+            "bn128",
+            "--output",
+            "/var/folders/s_/2r_y58tx305fc8x_qvghtvm80000gn/T/n6-a3b-r1cs-3_19c9f8/corrected",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0003",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies/circomlib",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/project/circuits",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies/circomlib",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/project/circuits"
+          ],
+          "entrypoint": "runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0003/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0004-LessThan/target.circom",
+          "exit_code": 0,
+          "r1cs_bytes": 33440,
+          "r1cs_sha256": "0e3fb3dc583ff365d9e93bad4dd5f1799de0d78a56098e7d90b3ae0e40dd1514",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "3c66ab7faa791548b8e28e5815a6f9dceab728f76525e1d865323695fb02c8b2"
+        },
+        "corrected_snapshot_tree_sha256": "da5b5448713bf7e85bbdf4cae59eb3e113f6a9bb55cfb06c20a46d9c58f4d378",
+        "equal": true,
+        "new_target_id": "sha256:29084c8a24366b6b432537dbed7935820c91bb13586bfbc666d0732e64ce1cdb",
+        "old_target_id": "sha256:bfac2f63eccf1010ecb9d828dbbb43a6544f0a320338e4ce274d91d9e22d9a13",
+        "original": {
+          "command": [
+            "/Users/miiz/.cargo/bin/circom",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0004-LessThan/target.circom",
+            "--r1cs",
+            "--prime",
+            "bn128",
+            "--output",
+            "/var/folders/s_/2r_y58tx305fc8x_qvghtvm80000gn/T/n6-a3b-r1cs-3_19c9f8/original",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies/circomlib",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/project/circuits",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies/circomlib",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/project/circuits"
+          ],
+          "entrypoint": "runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0004-LessThan/target.circom",
+          "exit_code": 0,
+          "r1cs_bytes": 33440,
+          "r1cs_sha256": "0e3fb3dc583ff365d9e93bad4dd5f1799de0d78a56098e7d90b3ae0e40dd1514",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "6e783fba487bfba7eb8006a779122b26b5a00ee7e7d7ba12a736bfafba978359"
+        }
+      },
+      {
+        "aq": "aq-035-8f826c822cb8",
+        "corrected": {
+          "command": [
+            "/Users/miiz/.cargo/bin/circom",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0004/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0003-GreaterEqThan/target.circom",
+            "--r1cs",
+            "--prime",
+            "bn128",
+            "--output",
+            "/var/folders/s_/2r_y58tx305fc8x_qvghtvm80000gn/T/n6-a3b-r1cs-9rz92on7/corrected",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0004",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies/circomlib",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/project/circuits",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies/circomlib",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/project/circuits"
+          ],
+          "entrypoint": "runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0004/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0003-GreaterEqThan/target.circom",
+          "exit_code": 0,
+          "r1cs_bytes": 33568,
+          "r1cs_sha256": "ad6c349800c336af15a9c3e9242a1154454a3e9a35e8bdda4f57e55328488d1c",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "da284e06f2f6fd3715acd9e65d5af774cbbb730f83f3ca999e871c4e4ddbaa59"
+        },
+        "corrected_snapshot_tree_sha256": "48e89ef67d1e2622595d72059005fe65a31b2a007af50418c83252533b9194e3",
+        "equal": true,
+        "new_target_id": "sha256:903cb6e746de4c5d70be3874502db4e432c1c43bd166e946ad2ca061e2c2f674",
+        "old_target_id": "sha256:281df653795b74bdcb838c06f0bb05ca588c9a417f85a14c5b93e3cd032bf083",
+        "original": {
+          "command": [
+            "/Users/miiz/.cargo/bin/circom",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0003-GreaterEqThan/target.circom",
+            "--r1cs",
+            "--prime",
+            "bn128",
+            "--output",
+            "/var/folders/s_/2r_y58tx305fc8x_qvghtvm80000gn/T/n6-a3b-r1cs-9rz92on7/original",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies/circomlib",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/project/circuits",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies/circomlib",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/project/circuits"
+          ],
+          "entrypoint": "runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0003-GreaterEqThan/target.circom",
+          "exit_code": 0,
+          "r1cs_bytes": 33568,
+          "r1cs_sha256": "ad6c349800c336af15a9c3e9242a1154454a3e9a35e8bdda4f57e55328488d1c",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "ab03b3159ece360688af7511b07703901917b960b400068ba0b1ff7a020971a8"
+        }
+      },
+      {
+        "aq": "aq-035-8f826c822cb8",
+        "corrected": {
+          "command": [
+            "/Users/miiz/.cargo/bin/circom",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0005/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0000-AssertGreaterEqThan/target.circom",
+            "--r1cs",
+            "--prime",
+            "bn128",
+            "--output",
+            "/var/folders/s_/2r_y58tx305fc8x_qvghtvm80000gn/T/n6-a3b-r1cs-zqwhs77c/corrected",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0005",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies/circomlib",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/project/circuits",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies/circomlib",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/project/circuits"
+          ],
+          "entrypoint": "runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0005/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0000-AssertGreaterEqThan/target.circom",
+          "exit_code": 0,
+          "r1cs_bytes": 99184,
+          "r1cs_sha256": "59153f4e4adef474aacd2076a6b7abbe3da71fcd44db4e3c96338a6f20de5d11",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "622353dd54fbd6a2e1cf46f6ad5753cc4c2d02fcf795ba189d52835de48109e4"
+        },
+        "corrected_snapshot_tree_sha256": "37a3451ff942cea7495d7e56afd7117b5e6196ccdd42aedd03b69084517e15dc",
+        "equal": true,
+        "new_target_id": "sha256:e5a05f0b6c891a7c8a3ae28caf41b43b9a35d73346f705f3e52e35526f2a73dd",
+        "old_target_id": "sha256:8e2b67af49d6ece42204364f6ae0ebe746d37f3c88c16fb6a49052832417045d",
+        "original": {
+          "command": [
+            "/Users/miiz/.cargo/bin/circom",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0000-AssertGreaterEqThan/target.circom",
+            "--r1cs",
+            "--prime",
+            "bn128",
+            "--output",
+            "/var/folders/s_/2r_y58tx305fc8x_qvghtvm80000gn/T/n6-a3b-r1cs-zqwhs77c/original",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies/circomlib",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/project/circuits",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies/circomlib",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/project/circuits"
+          ],
+          "entrypoint": "runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0000-AssertGreaterEqThan/target.circom",
+          "exit_code": 0,
+          "r1cs_bytes": 99184,
+          "r1cs_sha256": "59153f4e4adef474aacd2076a6b7abbe3da71fcd44db4e3c96338a6f20de5d11",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "7c7f17b51157fd4694c6f3bc0fe64de978a6e67f9e3632419fe9a1f6f0c67e29"
+        }
+      },
+      {
+        "aq": "aq-036-6d7df64759b6",
+        "corrected": {
+          "command": [
+            "/Users/miiz/.cargo/bin/circom",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0000/preparation/discovery/1246869a-22ad-4ed9-a4f5-bf62149569a1/wrappers/0005-Num2Bits/target.circom",
+            "--r1cs",
+            "--prime",
+            "bn128",
+            "--output",
+            "/var/folders/s_/2r_y58tx305fc8x_qvghtvm80000gn/T/n6-a3b-r1cs-zy05xkrm/corrected",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0000",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-036-6d7df64759b6/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies/circomlib",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-036-6d7df64759b6/project/circuits",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-036-6d7df64759b6/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies/circomlib",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-036-6d7df64759b6/project/circuits"
+          ],
+          "entrypoint": "runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0000/preparation/discovery/1246869a-22ad-4ed9-a4f5-bf62149569a1/wrappers/0005-Num2Bits/target.circom",
+          "exit_code": 0,
+          "r1cs_bytes": 41668,
+          "r1cs_sha256": "a44e8894ffe1959542a521addc676fad93610d7627d6ae6e9e79c69e9fdf71b3",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "58718ef176229338cf454ead67ffe73b766822dbd1dea0076f80f87865db8dea"
+        },
+        "corrected_snapshot_tree_sha256": "94db7f93d56e6dd72ead11b597ae9a213ccfe64e785dc739481db802c1432dad",
+        "equal": true,
+        "new_target_id": "sha256:598697019fae8b8c6d21040fa8c87b655f998639d9bbc150004ca1551a077558",
+        "old_target_id": "sha256:9d1e627d8ee558bbc501b88c792f90800ffcfbe554bf8b475639b15f309145e4",
+        "original": {
+          "command": [
+            "/Users/miiz/.cargo/bin/circom",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/preparation/discovery/1246869a-22ad-4ed9-a4f5-bf62149569a1/wrappers/0005-Num2Bits/target.circom",
+            "--r1cs",
+            "--prime",
+            "bn128",
+            "--output",
+            "/var/folders/s_/2r_y58tx305fc8x_qvghtvm80000gn/T/n6-a3b-r1cs-zy05xkrm/original",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies/circomlib",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/project/circuits",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies/circomlib",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/project/circuits"
+          ],
+          "entrypoint": "runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/preparation/discovery/1246869a-22ad-4ed9-a4f5-bf62149569a1/wrappers/0005-Num2Bits/target.circom",
+          "exit_code": 0,
+          "r1cs_bytes": 41668,
+          "r1cs_sha256": "a44e8894ffe1959542a521addc676fad93610d7627d6ae6e9e79c69e9fdf71b3",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "2912e75670879e332deccab02642a36a67e9f4f0a067c5ad847781a8fc4ea888"
+        }
+      },
+      {
+        "aq": "aq-036-6d7df64759b6",
+        "corrected": {
+          "command": [
+            "/Users/miiz/.cargo/bin/circom",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0001/preparation/discovery/1246869a-22ad-4ed9-a4f5-bf62149569a1/wrappers/0004-LessThan/target.circom",
+            "--r1cs",
+            "--prime",
+            "bn128",
+            "--output",
+            "/var/folders/s_/2r_y58tx305fc8x_qvghtvm80000gn/T/n6-a3b-r1cs-4zts75od/corrected",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0001",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-036-6d7df64759b6/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies/circomlib",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-036-6d7df64759b6/project/circuits",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-036-6d7df64759b6/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies/circomlib",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-036-6d7df64759b6/project/circuits"
+          ],
+          "entrypoint": "runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0001/preparation/discovery/1246869a-22ad-4ed9-a4f5-bf62149569a1/wrappers/0004-LessThan/target.circom",
+          "exit_code": 0,
+          "r1cs_bytes": 41968,
+          "r1cs_sha256": "3f2dd74af052678e2bfe5399ddedf5ddfd9220b4b387fb6c77dd6f6d6048a850",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "cb3fe371a172c0213ed8272a6148575ccb6df23de231b19716555f5429b0eb51"
+        },
+        "corrected_snapshot_tree_sha256": "3f7f680014a46c2d15813d8dab849caaaaf241569fa561df62f9bdeff846a575",
+        "equal": true,
+        "new_target_id": "sha256:86e2e2e7dd8a94be029b464db6a67c834a7e4923fbcc9dc6d295acc1f094d1a7",
+        "old_target_id": "sha256:941925c9f88ed9393485e7c5100f21607eedd60c6d5062690fef6cc912224d92",
+        "original": {
+          "command": [
+            "/Users/miiz/.cargo/bin/circom",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/preparation/discovery/1246869a-22ad-4ed9-a4f5-bf62149569a1/wrappers/0004-LessThan/target.circom",
+            "--r1cs",
+            "--prime",
+            "bn128",
+            "--output",
+            "/var/folders/s_/2r_y58tx305fc8x_qvghtvm80000gn/T/n6-a3b-r1cs-4zts75od/original",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies/circomlib",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/project/circuits",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies/circomlib",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/project/circuits"
+          ],
+          "entrypoint": "runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/preparation/discovery/1246869a-22ad-4ed9-a4f5-bf62149569a1/wrappers/0004-LessThan/target.circom",
+          "exit_code": 0,
+          "r1cs_bytes": 41968,
+          "r1cs_sha256": "3f2dd74af052678e2bfe5399ddedf5ddfd9220b4b387fb6c77dd6f6d6048a850",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "aa41617bf33c791d886ce6a57e0cfcc452e49ef6a5011eb5963884a31167eeb0"
+        }
+      },
+      {
+        "aq": "aq-036-6d7df64759b6",
+        "corrected": {
+          "command": [
+            "/Users/miiz/.cargo/bin/circom",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0002/preparation/discovery/1246869a-22ad-4ed9-a4f5-bf62149569a1/wrappers/0003-GreaterEqThan/target.circom",
+            "--r1cs",
+            "--prime",
+            "bn128",
+            "--output",
+            "/var/folders/s_/2r_y58tx305fc8x_qvghtvm80000gn/T/n6-a3b-r1cs-0h9rmt5g/corrected",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0002",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-036-6d7df64759b6/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies/circomlib",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-036-6d7df64759b6/project/circuits",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-036-6d7df64759b6/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies/circomlib",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-036-6d7df64759b6/project/circuits"
+          ],
+          "entrypoint": "runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0002/preparation/discovery/1246869a-22ad-4ed9-a4f5-bf62149569a1/wrappers/0003-GreaterEqThan/target.circom",
+          "exit_code": 0,
+          "r1cs_bytes": 42096,
+          "r1cs_sha256": "122e6c735e636f11f9868b1e5c4fc4a875d82a789ddcd6b3ba76e5a22e11fdc9",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "5fd206505f98a0fe6fc6da440ecdc13841bb360e29fc271e8a7d7cc023e1d77a"
+        },
+        "corrected_snapshot_tree_sha256": "5557664ba5ef5d55e3693304f837df07c6fcb05c7e803d276d440d28c2886fe6",
+        "equal": true,
+        "new_target_id": "sha256:6cc3171344e03726f319f98877da85de6da9eeff59d57db69783979dc89a2a5e",
+        "old_target_id": "sha256:1dfcb1e4022936bf053c69748c5cea142f1db8a7f86e5e72e4773cbbdd903488",
+        "original": {
+          "command": [
+            "/Users/miiz/.cargo/bin/circom",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/preparation/discovery/1246869a-22ad-4ed9-a4f5-bf62149569a1/wrappers/0003-GreaterEqThan/target.circom",
+            "--r1cs",
+            "--prime",
+            "bn128",
+            "--output",
+            "/var/folders/s_/2r_y58tx305fc8x_qvghtvm80000gn/T/n6-a3b-r1cs-0h9rmt5g/original",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies/circomlib",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/project/circuits",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/project",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkbugs/dataset/circom/dependencies/circomlib",
+            "-l",
+            "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/project/circuits"
+          ],
+          "entrypoint": "runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/preparation/discovery/1246869a-22ad-4ed9-a4f5-bf62149569a1/wrappers/0003-GreaterEqThan/target.circom",
+          "exit_code": 0,
+          "r1cs_bytes": 42096,
+          "r1cs_sha256": "122e6c735e636f11f9868b1e5c4fc4a875d82a789ddcd6b3ba76e5a22e11fdc9",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "90f2a59288d6964d8453ed7adff1a7332cf3bc7be6e15ec06efa0a7800c962ed"
+        }
+      }
+    ],
+    "status": "passed"
+  },
+  "runner": {
+    "queue_v4_2": {
+      "path": "scripts/run_n6_v4_2_queue.py",
+      "sha256": "2d3a16ab6581dffb709dfa1c60dcab67801644b618d3c8dd2616fe701693a0ad"
+    },
+    "v4": {
+      "path": "scripts/run_policy_a_engine_v4.py",
+      "sha256": "ff36c6db0a7475064c388a9bd0b0a1845863329f1fe2e2b40f06dec641fa9451"
+    }
+  },
+  "schema_version": 1,
+  "specs": {
+    "differences": {
+      "path": "runs/n6-a3-2026-10-08.noindex/pragma-b/spec-differences.json",
+      "sha256": "5bf3ec08dbfc94c5e0d34298da03c0991b472855e71ed37c88fcf7732a1cfedc"
+    },
+    "new_S_spec_count": 6,
+    "new_plan_count": 2,
+    "rows": [
+      {
+        "differences": [
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0005/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0000-AssertGreaterEqThan/target.circom",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0000-AssertGreaterEqThan/target.circom",
+            "path": "external_include_files[0].path"
+          },
+          {
+            "after": "86a7d23ec53bd34479780a6d4500f39f27c589037fae761416302038837cdc69",
+            "before": "ee86ad3ab1778d5c6fd8f15f9faadbcfec5e90430bf8955e744027937473789f",
+            "path": "external_include_files[0].sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0000/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0001-AssertBits/target.circom",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0001-AssertBits/target.circom",
+            "path": "external_include_files[1].path"
+          },
+          {
+            "after": "000fa2a871697b16d1a24e770a0006c02919ff9d470be18b5fc05432d175c9c1",
+            "before": "b7592a24d0c666b7357011da77c11d50a5d1b364fbb7624326ea468d84df05d7",
+            "path": "external_include_files[1].sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0001/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0002-Num2Bits/target.circom",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0002-Num2Bits/target.circom",
+            "path": "external_include_files[2].path"
+          },
+          {
+            "after": "64ac6a06f57b4237b55242af13053929848849bf3c1dd1085522dae61221f04f",
+            "before": "4422969faa949f7a2d26749d8f853d5ce63b64f531e07a3dd6a5634ac780a3cb",
+            "path": "external_include_files[2].sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0004/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0003-GreaterEqThan/target.circom",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0003-GreaterEqThan/target.circom",
+            "path": "external_include_files[3].path"
+          },
+          {
+            "after": "efb5f8cbcbc7db550af269fccfa1b7f1274048fed16d9d226892ef17c262115f",
+            "before": "29dee73d728725499c2effbfb76d4dfb555f4886a476b161fae7b7a12deeb53b",
+            "path": "external_include_files[3].sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0003/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0004-LessThan/target.circom",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0004-LessThan/target.circom",
+            "path": "external_include_files[4].path"
+          },
+          {
+            "after": "3731c28d120852dfc47ded273e23d313a6239030e3b3dbc079baaa1cc7542d66",
+            "before": "cc2108e4726dc5417e961d4f8aac452b70d754aff434f589f9bcd70ebedd88b3",
+            "path": "external_include_files[4].sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0002/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0005-Num2Bits/target.circom",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0005-Num2Bits/target.circom",
+            "path": "external_include_files[5].path"
+          },
+          {
+            "after": "61e93af0ccfb67274361a7c3a3c77342d90473b45e47c1e52431989301622773",
+            "before": "cb60334eb4bd52a372e8bff23275384182f804d89b34d74ebf6bfe899c8266e1",
+            "path": "external_include_files[5].sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/plan-pragma-b-v1.json",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/plan-pragma-v1.json",
+            "path": "pinned_files[0].path"
+          },
+          {
+            "after": "7f642179a58b10139b41003f59ea0beefcdca7895cfed5bd289e2bf505543dae",
+            "before": "791f337dd41ab2e7203d47ec7b6d6822ace15e5a4de210238e5adc227a15f97c",
+            "path": "pinned_files[0].sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0000",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0000",
+            "path": "source_snapshots[0].path"
+          },
+          {
+            "after": "55e6b27aeec2db7044e1cb6ec5394b09a01daa09ba6a0b359c14e1cd40ef352d",
+            "before": "2671de513c79ea1909c757b7d9dca7c1741deebef3e29e5bf49d813d6ee606fb",
+            "path": "source_snapshots[0].tree_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0001",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0001",
+            "path": "source_snapshots[1].path"
+          },
+          {
+            "after": "9a11618879633c98deb4be901a3d864184bbbcbb2f7d29c4db33cc74e85e60bb",
+            "before": "ad8c519b9d792a79b38fb323f5b7a1a0e9c6ccffb94786c54677cc38da443de1",
+            "path": "source_snapshots[1].tree_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0002",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0002",
+            "path": "source_snapshots[2].path"
+          },
+          {
+            "after": "55801a01543b46853f58636621e9a7841902c48d42d421d42912c02f6be40b43",
+            "before": "88dbf4a72d14aaf67138e7a047c6a877f3bfc67aba96857d40f84fb29c143c6d",
+            "path": "source_snapshots[2].tree_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0003",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0003",
+            "path": "source_snapshots[3].path"
+          },
+          {
+            "after": "da5b5448713bf7e85bbdf4cae59eb3e113f6a9bb55cfb06c20a46d9c58f4d378",
+            "before": "cac30e8a8659bdfdf05852906be75ca8a7ebb0b70b93408b0de8502c21d72e96",
+            "path": "source_snapshots[3].tree_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0004",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0004",
+            "path": "source_snapshots[4].path"
+          },
+          {
+            "after": "48e89ef67d1e2622595d72059005fe65a31b2a007af50418c83252533b9194e3",
+            "before": "d97221a40de33842295d10629e7c1e41c97dde30fd9bdf8311da11061ba3ae32",
+            "path": "source_snapshots[4].tree_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0005",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0005",
+            "path": "source_snapshots[5].path"
+          },
+          {
+            "after": "37a3451ff942cea7495d7e56afd7117b5e6196ccdd42aedd03b69084517e15dc",
+            "before": "b49eb1c942034e75fa842aaa984e4cf0257e8ed5faa3b1155fbf987956ab3fb8",
+            "path": "source_snapshots[5].tree_sha256"
+          },
+          {
+            "after": "000fa2a871697b16d1a24e770a0006c02919ff9d470be18b5fc05432d175c9c1",
+            "before": "b7592a24d0c666b7357011da77c11d50a5d1b364fbb7624326ea468d84df05d7",
+            "path": "targets[0].entrypoint_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0000",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0000",
+            "path": "targets[0].source_snapshot_path"
+          },
+          {
+            "after": "sha256:90d3c3ffd8f9ab4a14d261313a8f8f65096b0891395865743b8de5ca370129d6",
+            "before": "sha256:aa0e65d083eee7e9624f94976218f2b12260820098f17a8cd3caaaaf0450cf87",
+            "path": "targets[0].target_id"
+          },
+          {
+            "after": "64ac6a06f57b4237b55242af13053929848849bf3c1dd1085522dae61221f04f",
+            "before": "4422969faa949f7a2d26749d8f853d5ce63b64f531e07a3dd6a5634ac780a3cb",
+            "path": "targets[1].entrypoint_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0001",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0001",
+            "path": "targets[1].source_snapshot_path"
+          },
+          {
+            "after": "sha256:51f162f81abea0618d7ca822d44a08967d6e2d93f44cd21a4c9b5a1430ffa46b",
+            "before": "sha256:df37ee758c7e668624fcbd1e681b20547612d39598f0aa87520c4ff6f2aaa64f",
+            "path": "targets[1].target_id"
+          },
+          {
+            "after": "61e93af0ccfb67274361a7c3a3c77342d90473b45e47c1e52431989301622773",
+            "before": "cb60334eb4bd52a372e8bff23275384182f804d89b34d74ebf6bfe899c8266e1",
+            "path": "targets[2].entrypoint_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0002",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0002",
+            "path": "targets[2].source_snapshot_path"
+          },
+          {
+            "after": "sha256:2814a1de38b1e0df747b0f53ffab422b7a9eac9b92821dcbbcc10b7103383008",
+            "before": "sha256:3103abf3c799b7db5dd32504480bf499e8b906fe51994fd4335851cbaa887126",
+            "path": "targets[2].target_id"
+          },
+          {
+            "after": "3731c28d120852dfc47ded273e23d313a6239030e3b3dbc079baaa1cc7542d66",
+            "before": "cc2108e4726dc5417e961d4f8aac452b70d754aff434f589f9bcd70ebedd88b3",
+            "path": "targets[3].entrypoint_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0003",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0003",
+            "path": "targets[3].source_snapshot_path"
+          },
+          {
+            "after": "sha256:29084c8a24366b6b432537dbed7935820c91bb13586bfbc666d0732e64ce1cdb",
+            "before": "sha256:bfac2f63eccf1010ecb9d828dbbb43a6544f0a320338e4ce274d91d9e22d9a13",
+            "path": "targets[3].target_id"
+          },
+          {
+            "after": "efb5f8cbcbc7db550af269fccfa1b7f1274048fed16d9d226892ef17c262115f",
+            "before": "29dee73d728725499c2effbfb76d4dfb555f4886a476b161fae7b7a12deeb53b",
+            "path": "targets[4].entrypoint_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0004",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0004",
+            "path": "targets[4].source_snapshot_path"
+          },
+          {
+            "after": "sha256:903cb6e746de4c5d70be3874502db4e432c1c43bd166e946ad2ca061e2c2f674",
+            "before": "sha256:281df653795b74bdcb838c06f0bb05ca588c9a417f85a14c5b93e3cd032bf083",
+            "path": "targets[4].target_id"
+          },
+          {
+            "after": "86a7d23ec53bd34479780a6d4500f39f27c589037fae761416302038837cdc69",
+            "before": "ee86ad3ab1778d5c6fd8f15f9faadbcfec5e90430bf8955e744027937473789f",
+            "path": "targets[5].entrypoint_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0005",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0005",
+            "path": "targets[5].source_snapshot_path"
+          },
+          {
+            "after": "sha256:e5a05f0b6c891a7c8a3ae28caf41b43b9a35d73346f705f3e52e35526f2a73dd",
+            "before": "sha256:8e2b67af49d6ece42204364f6ae0ebe746d37f3c88c16fb6a49052832417045d",
+            "path": "targets[5].target_id"
+          }
+        ],
+        "identifier": "aq-035-8f826c822cb8",
+        "seed": 2026100601,
+        "source_spec": "runs/n6-a3-2026-10-08.noindex/pragma/specs/aq-035-8f826c822cb8-seed-2026100601-S-a3-pragma.json",
+        "source_spec_sha256": "2f8de83bd9769f77c3b4264f3c633a8715d03d3fdebbffab9ea4b738d710161c",
+        "versioned_spec": "runs/n6-a3-2026-10-08.noindex/pragma-b/specs/aq-035-8f826c822cb8-seed-2026100601-S-a3b-pragma.json",
+        "versioned_spec_sha256": "fec6d9f4ffdaeffe0eafdf59a59cf254e1104f25d4f3d7a86a964fc85fb0ebb9"
+      },
+      {
+        "differences": [
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0005/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0000-AssertGreaterEqThan/target.circom",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0000-AssertGreaterEqThan/target.circom",
+            "path": "external_include_files[0].path"
+          },
+          {
+            "after": "86a7d23ec53bd34479780a6d4500f39f27c589037fae761416302038837cdc69",
+            "before": "ee86ad3ab1778d5c6fd8f15f9faadbcfec5e90430bf8955e744027937473789f",
+            "path": "external_include_files[0].sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0000/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0001-AssertBits/target.circom",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0001-AssertBits/target.circom",
+            "path": "external_include_files[1].path"
+          },
+          {
+            "after": "000fa2a871697b16d1a24e770a0006c02919ff9d470be18b5fc05432d175c9c1",
+            "before": "b7592a24d0c666b7357011da77c11d50a5d1b364fbb7624326ea468d84df05d7",
+            "path": "external_include_files[1].sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0001/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0002-Num2Bits/target.circom",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0002-Num2Bits/target.circom",
+            "path": "external_include_files[2].path"
+          },
+          {
+            "after": "64ac6a06f57b4237b55242af13053929848849bf3c1dd1085522dae61221f04f",
+            "before": "4422969faa949f7a2d26749d8f853d5ce63b64f531e07a3dd6a5634ac780a3cb",
+            "path": "external_include_files[2].sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0004/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0003-GreaterEqThan/target.circom",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0003-GreaterEqThan/target.circom",
+            "path": "external_include_files[3].path"
+          },
+          {
+            "after": "efb5f8cbcbc7db550af269fccfa1b7f1274048fed16d9d226892ef17c262115f",
+            "before": "29dee73d728725499c2effbfb76d4dfb555f4886a476b161fae7b7a12deeb53b",
+            "path": "external_include_files[3].sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0003/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0004-LessThan/target.circom",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0004-LessThan/target.circom",
+            "path": "external_include_files[4].path"
+          },
+          {
+            "after": "3731c28d120852dfc47ded273e23d313a6239030e3b3dbc079baaa1cc7542d66",
+            "before": "cc2108e4726dc5417e961d4f8aac452b70d754aff434f589f9bcd70ebedd88b3",
+            "path": "external_include_files[4].sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0002/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0005-Num2Bits/target.circom",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0005-Num2Bits/target.circom",
+            "path": "external_include_files[5].path"
+          },
+          {
+            "after": "61e93af0ccfb67274361a7c3a3c77342d90473b45e47c1e52431989301622773",
+            "before": "cb60334eb4bd52a372e8bff23275384182f804d89b34d74ebf6bfe899c8266e1",
+            "path": "external_include_files[5].sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/plan-pragma-b-v1.json",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/plan-pragma-v1.json",
+            "path": "pinned_files[0].path"
+          },
+          {
+            "after": "7f642179a58b10139b41003f59ea0beefcdca7895cfed5bd289e2bf505543dae",
+            "before": "791f337dd41ab2e7203d47ec7b6d6822ace15e5a4de210238e5adc227a15f97c",
+            "path": "pinned_files[0].sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0000",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0000",
+            "path": "source_snapshots[0].path"
+          },
+          {
+            "after": "55e6b27aeec2db7044e1cb6ec5394b09a01daa09ba6a0b359c14e1cd40ef352d",
+            "before": "2671de513c79ea1909c757b7d9dca7c1741deebef3e29e5bf49d813d6ee606fb",
+            "path": "source_snapshots[0].tree_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0001",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0001",
+            "path": "source_snapshots[1].path"
+          },
+          {
+            "after": "9a11618879633c98deb4be901a3d864184bbbcbb2f7d29c4db33cc74e85e60bb",
+            "before": "ad8c519b9d792a79b38fb323f5b7a1a0e9c6ccffb94786c54677cc38da443de1",
+            "path": "source_snapshots[1].tree_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0002",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0002",
+            "path": "source_snapshots[2].path"
+          },
+          {
+            "after": "55801a01543b46853f58636621e9a7841902c48d42d421d42912c02f6be40b43",
+            "before": "88dbf4a72d14aaf67138e7a047c6a877f3bfc67aba96857d40f84fb29c143c6d",
+            "path": "source_snapshots[2].tree_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0003",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0003",
+            "path": "source_snapshots[3].path"
+          },
+          {
+            "after": "da5b5448713bf7e85bbdf4cae59eb3e113f6a9bb55cfb06c20a46d9c58f4d378",
+            "before": "cac30e8a8659bdfdf05852906be75ca8a7ebb0b70b93408b0de8502c21d72e96",
+            "path": "source_snapshots[3].tree_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0004",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0004",
+            "path": "source_snapshots[4].path"
+          },
+          {
+            "after": "48e89ef67d1e2622595d72059005fe65a31b2a007af50418c83252533b9194e3",
+            "before": "d97221a40de33842295d10629e7c1e41c97dde30fd9bdf8311da11061ba3ae32",
+            "path": "source_snapshots[4].tree_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0005",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0005",
+            "path": "source_snapshots[5].path"
+          },
+          {
+            "after": "37a3451ff942cea7495d7e56afd7117b5e6196ccdd42aedd03b69084517e15dc",
+            "before": "b49eb1c942034e75fa842aaa984e4cf0257e8ed5faa3b1155fbf987956ab3fb8",
+            "path": "source_snapshots[5].tree_sha256"
+          },
+          {
+            "after": "000fa2a871697b16d1a24e770a0006c02919ff9d470be18b5fc05432d175c9c1",
+            "before": "b7592a24d0c666b7357011da77c11d50a5d1b364fbb7624326ea468d84df05d7",
+            "path": "targets[0].entrypoint_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0000",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0000",
+            "path": "targets[0].source_snapshot_path"
+          },
+          {
+            "after": "sha256:90d3c3ffd8f9ab4a14d261313a8f8f65096b0891395865743b8de5ca370129d6",
+            "before": "sha256:aa0e65d083eee7e9624f94976218f2b12260820098f17a8cd3caaaaf0450cf87",
+            "path": "targets[0].target_id"
+          },
+          {
+            "after": "64ac6a06f57b4237b55242af13053929848849bf3c1dd1085522dae61221f04f",
+            "before": "4422969faa949f7a2d26749d8f853d5ce63b64f531e07a3dd6a5634ac780a3cb",
+            "path": "targets[1].entrypoint_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0001",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0001",
+            "path": "targets[1].source_snapshot_path"
+          },
+          {
+            "after": "sha256:51f162f81abea0618d7ca822d44a08967d6e2d93f44cd21a4c9b5a1430ffa46b",
+            "before": "sha256:df37ee758c7e668624fcbd1e681b20547612d39598f0aa87520c4ff6f2aaa64f",
+            "path": "targets[1].target_id"
+          },
+          {
+            "after": "61e93af0ccfb67274361a7c3a3c77342d90473b45e47c1e52431989301622773",
+            "before": "cb60334eb4bd52a372e8bff23275384182f804d89b34d74ebf6bfe899c8266e1",
+            "path": "targets[2].entrypoint_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0002",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0002",
+            "path": "targets[2].source_snapshot_path"
+          },
+          {
+            "after": "sha256:2814a1de38b1e0df747b0f53ffab422b7a9eac9b92821dcbbcc10b7103383008",
+            "before": "sha256:3103abf3c799b7db5dd32504480bf499e8b906fe51994fd4335851cbaa887126",
+            "path": "targets[2].target_id"
+          },
+          {
+            "after": "3731c28d120852dfc47ded273e23d313a6239030e3b3dbc079baaa1cc7542d66",
+            "before": "cc2108e4726dc5417e961d4f8aac452b70d754aff434f589f9bcd70ebedd88b3",
+            "path": "targets[3].entrypoint_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0003",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0003",
+            "path": "targets[3].source_snapshot_path"
+          },
+          {
+            "after": "sha256:29084c8a24366b6b432537dbed7935820c91bb13586bfbc666d0732e64ce1cdb",
+            "before": "sha256:bfac2f63eccf1010ecb9d828dbbb43a6544f0a320338e4ce274d91d9e22d9a13",
+            "path": "targets[3].target_id"
+          },
+          {
+            "after": "efb5f8cbcbc7db550af269fccfa1b7f1274048fed16d9d226892ef17c262115f",
+            "before": "29dee73d728725499c2effbfb76d4dfb555f4886a476b161fae7b7a12deeb53b",
+            "path": "targets[4].entrypoint_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0004",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0004",
+            "path": "targets[4].source_snapshot_path"
+          },
+          {
+            "after": "sha256:903cb6e746de4c5d70be3874502db4e432c1c43bd166e946ad2ca061e2c2f674",
+            "before": "sha256:281df653795b74bdcb838c06f0bb05ca588c9a417f85a14c5b93e3cd032bf083",
+            "path": "targets[4].target_id"
+          },
+          {
+            "after": "86a7d23ec53bd34479780a6d4500f39f27c589037fae761416302038837cdc69",
+            "before": "ee86ad3ab1778d5c6fd8f15f9faadbcfec5e90430bf8955e744027937473789f",
+            "path": "targets[5].entrypoint_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0005",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0005",
+            "path": "targets[5].source_snapshot_path"
+          },
+          {
+            "after": "sha256:e5a05f0b6c891a7c8a3ae28caf41b43b9a35d73346f705f3e52e35526f2a73dd",
+            "before": "sha256:8e2b67af49d6ece42204364f6ae0ebe746d37f3c88c16fb6a49052832417045d",
+            "path": "targets[5].target_id"
+          }
+        ],
+        "identifier": "aq-035-8f826c822cb8",
+        "seed": 2026100602,
+        "source_spec": "runs/n6-a3-2026-10-08.noindex/pragma/specs/aq-035-8f826c822cb8-seed-2026100602-S-a3-pragma.json",
+        "source_spec_sha256": "1cd79b122ebdc56cff11ababcc082565e28ce022d81efdb970332e76ac135912",
+        "versioned_spec": "runs/n6-a3-2026-10-08.noindex/pragma-b/specs/aq-035-8f826c822cb8-seed-2026100602-S-a3b-pragma.json",
+        "versioned_spec_sha256": "ff5727a3185ecae06b9a5e708715b39180d9b2093d3073e7459c984e001bdfac"
+      },
+      {
+        "differences": [
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0005/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0000-AssertGreaterEqThan/target.circom",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0000-AssertGreaterEqThan/target.circom",
+            "path": "external_include_files[0].path"
+          },
+          {
+            "after": "86a7d23ec53bd34479780a6d4500f39f27c589037fae761416302038837cdc69",
+            "before": "ee86ad3ab1778d5c6fd8f15f9faadbcfec5e90430bf8955e744027937473789f",
+            "path": "external_include_files[0].sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0000/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0001-AssertBits/target.circom",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0001-AssertBits/target.circom",
+            "path": "external_include_files[1].path"
+          },
+          {
+            "after": "000fa2a871697b16d1a24e770a0006c02919ff9d470be18b5fc05432d175c9c1",
+            "before": "b7592a24d0c666b7357011da77c11d50a5d1b364fbb7624326ea468d84df05d7",
+            "path": "external_include_files[1].sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0001/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0002-Num2Bits/target.circom",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0002-Num2Bits/target.circom",
+            "path": "external_include_files[2].path"
+          },
+          {
+            "after": "64ac6a06f57b4237b55242af13053929848849bf3c1dd1085522dae61221f04f",
+            "before": "4422969faa949f7a2d26749d8f853d5ce63b64f531e07a3dd6a5634ac780a3cb",
+            "path": "external_include_files[2].sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0004/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0003-GreaterEqThan/target.circom",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0003-GreaterEqThan/target.circom",
+            "path": "external_include_files[3].path"
+          },
+          {
+            "after": "efb5f8cbcbc7db550af269fccfa1b7f1274048fed16d9d226892ef17c262115f",
+            "before": "29dee73d728725499c2effbfb76d4dfb555f4886a476b161fae7b7a12deeb53b",
+            "path": "external_include_files[3].sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0003/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0004-LessThan/target.circom",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0004-LessThan/target.circom",
+            "path": "external_include_files[4].path"
+          },
+          {
+            "after": "3731c28d120852dfc47ded273e23d313a6239030e3b3dbc079baaa1cc7542d66",
+            "before": "cc2108e4726dc5417e961d4f8aac452b70d754aff434f589f9bcd70ebedd88b3",
+            "path": "external_include_files[4].sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0002/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0005-Num2Bits/target.circom",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0005-Num2Bits/target.circom",
+            "path": "external_include_files[5].path"
+          },
+          {
+            "after": "61e93af0ccfb67274361a7c3a3c77342d90473b45e47c1e52431989301622773",
+            "before": "cb60334eb4bd52a372e8bff23275384182f804d89b34d74ebf6bfe899c8266e1",
+            "path": "external_include_files[5].sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/plan-pragma-b-v1.json",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/plan-pragma-v1.json",
+            "path": "pinned_files[0].path"
+          },
+          {
+            "after": "7f642179a58b10139b41003f59ea0beefcdca7895cfed5bd289e2bf505543dae",
+            "before": "791f337dd41ab2e7203d47ec7b6d6822ace15e5a4de210238e5adc227a15f97c",
+            "path": "pinned_files[0].sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0000",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0000",
+            "path": "source_snapshots[0].path"
+          },
+          {
+            "after": "55e6b27aeec2db7044e1cb6ec5394b09a01daa09ba6a0b359c14e1cd40ef352d",
+            "before": "2671de513c79ea1909c757b7d9dca7c1741deebef3e29e5bf49d813d6ee606fb",
+            "path": "source_snapshots[0].tree_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0001",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0001",
+            "path": "source_snapshots[1].path"
+          },
+          {
+            "after": "9a11618879633c98deb4be901a3d864184bbbcbb2f7d29c4db33cc74e85e60bb",
+            "before": "ad8c519b9d792a79b38fb323f5b7a1a0e9c6ccffb94786c54677cc38da443de1",
+            "path": "source_snapshots[1].tree_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0002",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0002",
+            "path": "source_snapshots[2].path"
+          },
+          {
+            "after": "55801a01543b46853f58636621e9a7841902c48d42d421d42912c02f6be40b43",
+            "before": "88dbf4a72d14aaf67138e7a047c6a877f3bfc67aba96857d40f84fb29c143c6d",
+            "path": "source_snapshots[2].tree_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0003",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0003",
+            "path": "source_snapshots[3].path"
+          },
+          {
+            "after": "da5b5448713bf7e85bbdf4cae59eb3e113f6a9bb55cfb06c20a46d9c58f4d378",
+            "before": "cac30e8a8659bdfdf05852906be75ca8a7ebb0b70b93408b0de8502c21d72e96",
+            "path": "source_snapshots[3].tree_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0004",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0004",
+            "path": "source_snapshots[4].path"
+          },
+          {
+            "after": "48e89ef67d1e2622595d72059005fe65a31b2a007af50418c83252533b9194e3",
+            "before": "d97221a40de33842295d10629e7c1e41c97dde30fd9bdf8311da11061ba3ae32",
+            "path": "source_snapshots[4].tree_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0005",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0005",
+            "path": "source_snapshots[5].path"
+          },
+          {
+            "after": "37a3451ff942cea7495d7e56afd7117b5e6196ccdd42aedd03b69084517e15dc",
+            "before": "b49eb1c942034e75fa842aaa984e4cf0257e8ed5faa3b1155fbf987956ab3fb8",
+            "path": "source_snapshots[5].tree_sha256"
+          },
+          {
+            "after": "000fa2a871697b16d1a24e770a0006c02919ff9d470be18b5fc05432d175c9c1",
+            "before": "b7592a24d0c666b7357011da77c11d50a5d1b364fbb7624326ea468d84df05d7",
+            "path": "targets[0].entrypoint_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0000",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0000",
+            "path": "targets[0].source_snapshot_path"
+          },
+          {
+            "after": "sha256:90d3c3ffd8f9ab4a14d261313a8f8f65096b0891395865743b8de5ca370129d6",
+            "before": "sha256:aa0e65d083eee7e9624f94976218f2b12260820098f17a8cd3caaaaf0450cf87",
+            "path": "targets[0].target_id"
+          },
+          {
+            "after": "64ac6a06f57b4237b55242af13053929848849bf3c1dd1085522dae61221f04f",
+            "before": "4422969faa949f7a2d26749d8f853d5ce63b64f531e07a3dd6a5634ac780a3cb",
+            "path": "targets[1].entrypoint_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0001",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0001",
+            "path": "targets[1].source_snapshot_path"
+          },
+          {
+            "after": "sha256:51f162f81abea0618d7ca822d44a08967d6e2d93f44cd21a4c9b5a1430ffa46b",
+            "before": "sha256:df37ee758c7e668624fcbd1e681b20547612d39598f0aa87520c4ff6f2aaa64f",
+            "path": "targets[1].target_id"
+          },
+          {
+            "after": "61e93af0ccfb67274361a7c3a3c77342d90473b45e47c1e52431989301622773",
+            "before": "cb60334eb4bd52a372e8bff23275384182f804d89b34d74ebf6bfe899c8266e1",
+            "path": "targets[2].entrypoint_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0002",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0002",
+            "path": "targets[2].source_snapshot_path"
+          },
+          {
+            "after": "sha256:2814a1de38b1e0df747b0f53ffab422b7a9eac9b92821dcbbcc10b7103383008",
+            "before": "sha256:3103abf3c799b7db5dd32504480bf499e8b906fe51994fd4335851cbaa887126",
+            "path": "targets[2].target_id"
+          },
+          {
+            "after": "3731c28d120852dfc47ded273e23d313a6239030e3b3dbc079baaa1cc7542d66",
+            "before": "cc2108e4726dc5417e961d4f8aac452b70d754aff434f589f9bcd70ebedd88b3",
+            "path": "targets[3].entrypoint_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0003",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0003",
+            "path": "targets[3].source_snapshot_path"
+          },
+          {
+            "after": "sha256:29084c8a24366b6b432537dbed7935820c91bb13586bfbc666d0732e64ce1cdb",
+            "before": "sha256:bfac2f63eccf1010ecb9d828dbbb43a6544f0a320338e4ce274d91d9e22d9a13",
+            "path": "targets[3].target_id"
+          },
+          {
+            "after": "efb5f8cbcbc7db550af269fccfa1b7f1274048fed16d9d226892ef17c262115f",
+            "before": "29dee73d728725499c2effbfb76d4dfb555f4886a476b161fae7b7a12deeb53b",
+            "path": "targets[4].entrypoint_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0004",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0004",
+            "path": "targets[4].source_snapshot_path"
+          },
+          {
+            "after": "sha256:903cb6e746de4c5d70be3874502db4e432c1c43bd166e946ad2ca061e2c2f674",
+            "before": "sha256:281df653795b74bdcb838c06f0bb05ca588c9a417f85a14c5b93e3cd032bf083",
+            "path": "targets[4].target_id"
+          },
+          {
+            "after": "86a7d23ec53bd34479780a6d4500f39f27c589037fae761416302038837cdc69",
+            "before": "ee86ad3ab1778d5c6fd8f15f9faadbcfec5e90430bf8955e744027937473789f",
+            "path": "targets[5].entrypoint_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0005",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0005",
+            "path": "targets[5].source_snapshot_path"
+          },
+          {
+            "after": "sha256:e5a05f0b6c891a7c8a3ae28caf41b43b9a35d73346f705f3e52e35526f2a73dd",
+            "before": "sha256:8e2b67af49d6ece42204364f6ae0ebe746d37f3c88c16fb6a49052832417045d",
+            "path": "targets[5].target_id"
+          }
+        ],
+        "identifier": "aq-035-8f826c822cb8",
+        "seed": 2026100603,
+        "source_spec": "runs/n6-a3-2026-10-08.noindex/pragma/specs/aq-035-8f826c822cb8-seed-2026100603-S-a3-pragma.json",
+        "source_spec_sha256": "aab156efbf44265ce9cbff41953553697e71dd605f5227a634f1997bfddfcc9c",
+        "versioned_spec": "runs/n6-a3-2026-10-08.noindex/pragma-b/specs/aq-035-8f826c822cb8-seed-2026100603-S-a3b-pragma.json",
+        "versioned_spec_sha256": "fc86f32936517d4c70739cb0c9a45654f3dc2ca38a48ab0d0158d0d6591c8078"
+      },
+      {
+        "differences": [
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0002/preparation/discovery/1246869a-22ad-4ed9-a4f5-bf62149569a1/wrappers/0003-GreaterEqThan/target.circom",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/preparation/discovery/1246869a-22ad-4ed9-a4f5-bf62149569a1/wrappers/0003-GreaterEqThan/target.circom",
+            "path": "external_include_files[0].path"
+          },
+          {
+            "after": "38fd892ee309567c90688703cffd4cfea63628d587e187850af671abff474a4a",
+            "before": "d05dab68d47ed9c084596f11901932575497fad4412c8e6201ec2c04e8711479",
+            "path": "external_include_files[0].sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0001/preparation/discovery/1246869a-22ad-4ed9-a4f5-bf62149569a1/wrappers/0004-LessThan/target.circom",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/preparation/discovery/1246869a-22ad-4ed9-a4f5-bf62149569a1/wrappers/0004-LessThan/target.circom",
+            "path": "external_include_files[1].path"
+          },
+          {
+            "after": "a58e3eae4e6455172cdf6bd39a00ae6f6426bae91d1c701be867caa0ab4295fb",
+            "before": "99cf1416d1ce6e6abe09706d19f38f60b4f4c4533f9da8b6b753192f01d8d501",
+            "path": "external_include_files[1].sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0000/preparation/discovery/1246869a-22ad-4ed9-a4f5-bf62149569a1/wrappers/0005-Num2Bits/target.circom",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/preparation/discovery/1246869a-22ad-4ed9-a4f5-bf62149569a1/wrappers/0005-Num2Bits/target.circom",
+            "path": "external_include_files[2].path"
+          },
+          {
+            "after": "62dd2d9a2c34e415d82da05ac4ef1878858b5d840479790d8d4e114c03668806",
+            "before": "20500c1dc1d435d857ffb8b822e4cbbfdf13c35a600e3b80459a3ce5c88476de",
+            "path": "external_include_files[2].sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/plan-pragma-b-v1.json",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/preparation/plan.json",
+            "path": "pinned_files[0].path"
+          },
+          {
+            "after": "8fd0b3a9dc2776a78b8d4acfde0eec17babc9582e928c311481087f67ae7d261",
+            "before": "460a72e4bcf7499b58c01a52434658a68b4c2f222f2d2f712e84df2ab897b294",
+            "path": "pinned_files[0].sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0000",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-036-6d7df64759b6/snapshots/split-0000",
+            "path": "source_snapshots[0].path"
+          },
+          {
+            "after": "94db7f93d56e6dd72ead11b597ae9a213ccfe64e785dc739481db802c1432dad",
+            "before": "ef05b28002d2a37bca6f890fb663c691d9c0888aa3a158392185d31536de28b3",
+            "path": "source_snapshots[0].tree_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0001",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-036-6d7df64759b6/snapshots/split-0001",
+            "path": "source_snapshots[1].path"
+          },
+          {
+            "after": "3f7f680014a46c2d15813d8dab849caaaaf241569fa561df62f9bdeff846a575",
+            "before": "e4dd10618101001d1d443c07e0b15a3032930dfd04331258a1e1d31d841b010a",
+            "path": "source_snapshots[1].tree_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0002",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-036-6d7df64759b6/snapshots/split-0002",
+            "path": "source_snapshots[2].path"
+          },
+          {
+            "after": "5557664ba5ef5d55e3693304f837df07c6fcb05c7e803d276d440d28c2886fe6",
+            "before": "671ec546df0b6b6b5d96dff5886c87373cb1ca359347f190b128edd9e1ce7897",
+            "path": "source_snapshots[2].tree_sha256"
+          },
+          {
+            "after": "62dd2d9a2c34e415d82da05ac4ef1878858b5d840479790d8d4e114c03668806",
+            "before": "20500c1dc1d435d857ffb8b822e4cbbfdf13c35a600e3b80459a3ce5c88476de",
+            "path": "targets[0].entrypoint_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0000",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/preparation/prepared-small-first/prepare-cd66e0d4-6486-4d24-88ed-e190854ec66a/targets/0006/sources",
+            "path": "targets[0].source_snapshot_path"
+          },
+          {
+            "after": "sha256:598697019fae8b8c6d21040fa8c87b655f998639d9bbc150004ca1551a077558",
+            "before": "sha256:9d1e627d8ee558bbc501b88c792f90800ffcfbe554bf8b475639b15f309145e4",
+            "path": "targets[0].target_id"
+          },
+          {
+            "after": "a58e3eae4e6455172cdf6bd39a00ae6f6426bae91d1c701be867caa0ab4295fb",
+            "before": "99cf1416d1ce6e6abe09706d19f38f60b4f4c4533f9da8b6b753192f01d8d501",
+            "path": "targets[1].entrypoint_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0001",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/preparation/prepared-small-first/prepare-cd66e0d4-6486-4d24-88ed-e190854ec66a/targets/0005/sources",
+            "path": "targets[1].source_snapshot_path"
+          },
+          {
+            "after": "sha256:86e2e2e7dd8a94be029b464db6a67c834a7e4923fbcc9dc6d295acc1f094d1a7",
+            "before": "sha256:941925c9f88ed9393485e7c5100f21607eedd60c6d5062690fef6cc912224d92",
+            "path": "targets[1].target_id"
+          },
+          {
+            "after": "38fd892ee309567c90688703cffd4cfea63628d587e187850af671abff474a4a",
+            "before": "d05dab68d47ed9c084596f11901932575497fad4412c8e6201ec2c04e8711479",
+            "path": "targets[2].entrypoint_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0002",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/preparation/prepared-small-first/prepare-cd66e0d4-6486-4d24-88ed-e190854ec66a/targets/0004/sources",
+            "path": "targets[2].source_snapshot_path"
+          },
+          {
+            "after": "sha256:6cc3171344e03726f319f98877da85de6da9eeff59d57db69783979dc89a2a5e",
+            "before": "sha256:1dfcb1e4022936bf053c69748c5cea142f1db8a7f86e5e72e4773cbbdd903488",
+            "path": "targets[2].target_id"
+          }
+        ],
+        "identifier": "aq-036-6d7df64759b6",
+        "seed": 2026100601,
+        "source_spec": "runs/n6-a3-2026-10-08.noindex/pragma/specs/aq-036-6d7df64759b6-seed-2026100601-S-a3-pragma.json",
+        "source_spec_sha256": "ce8330e57159c86d69e3acf11c036e55af196f39e592e0da92e9361cac3b5c60",
+        "versioned_spec": "runs/n6-a3-2026-10-08.noindex/pragma-b/specs/aq-036-6d7df64759b6-seed-2026100601-S-a3b-pragma.json",
+        "versioned_spec_sha256": "6cdb229756a9306f72412252cc255b115440abeccd3f2b79a0c1ae9331d5ee15"
+      },
+      {
+        "differences": [
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0002/preparation/discovery/1246869a-22ad-4ed9-a4f5-bf62149569a1/wrappers/0003-GreaterEqThan/target.circom",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/preparation/discovery/1246869a-22ad-4ed9-a4f5-bf62149569a1/wrappers/0003-GreaterEqThan/target.circom",
+            "path": "external_include_files[0].path"
+          },
+          {
+            "after": "38fd892ee309567c90688703cffd4cfea63628d587e187850af671abff474a4a",
+            "before": "d05dab68d47ed9c084596f11901932575497fad4412c8e6201ec2c04e8711479",
+            "path": "external_include_files[0].sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0001/preparation/discovery/1246869a-22ad-4ed9-a4f5-bf62149569a1/wrappers/0004-LessThan/target.circom",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/preparation/discovery/1246869a-22ad-4ed9-a4f5-bf62149569a1/wrappers/0004-LessThan/target.circom",
+            "path": "external_include_files[1].path"
+          },
+          {
+            "after": "a58e3eae4e6455172cdf6bd39a00ae6f6426bae91d1c701be867caa0ab4295fb",
+            "before": "99cf1416d1ce6e6abe09706d19f38f60b4f4c4533f9da8b6b753192f01d8d501",
+            "path": "external_include_files[1].sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0000/preparation/discovery/1246869a-22ad-4ed9-a4f5-bf62149569a1/wrappers/0005-Num2Bits/target.circom",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/preparation/discovery/1246869a-22ad-4ed9-a4f5-bf62149569a1/wrappers/0005-Num2Bits/target.circom",
+            "path": "external_include_files[2].path"
+          },
+          {
+            "after": "62dd2d9a2c34e415d82da05ac4ef1878858b5d840479790d8d4e114c03668806",
+            "before": "20500c1dc1d435d857ffb8b822e4cbbfdf13c35a600e3b80459a3ce5c88476de",
+            "path": "external_include_files[2].sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/plan-pragma-b-v1.json",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/preparation/plan.json",
+            "path": "pinned_files[0].path"
+          },
+          {
+            "after": "8fd0b3a9dc2776a78b8d4acfde0eec17babc9582e928c311481087f67ae7d261",
+            "before": "460a72e4bcf7499b58c01a52434658a68b4c2f222f2d2f712e84df2ab897b294",
+            "path": "pinned_files[0].sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0000",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-036-6d7df64759b6/snapshots/split-0000",
+            "path": "source_snapshots[0].path"
+          },
+          {
+            "after": "94db7f93d56e6dd72ead11b597ae9a213ccfe64e785dc739481db802c1432dad",
+            "before": "ef05b28002d2a37bca6f890fb663c691d9c0888aa3a158392185d31536de28b3",
+            "path": "source_snapshots[0].tree_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0001",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-036-6d7df64759b6/snapshots/split-0001",
+            "path": "source_snapshots[1].path"
+          },
+          {
+            "after": "3f7f680014a46c2d15813d8dab849caaaaf241569fa561df62f9bdeff846a575",
+            "before": "e4dd10618101001d1d443c07e0b15a3032930dfd04331258a1e1d31d841b010a",
+            "path": "source_snapshots[1].tree_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0002",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-036-6d7df64759b6/snapshots/split-0002",
+            "path": "source_snapshots[2].path"
+          },
+          {
+            "after": "5557664ba5ef5d55e3693304f837df07c6fcb05c7e803d276d440d28c2886fe6",
+            "before": "671ec546df0b6b6b5d96dff5886c87373cb1ca359347f190b128edd9e1ce7897",
+            "path": "source_snapshots[2].tree_sha256"
+          },
+          {
+            "after": "62dd2d9a2c34e415d82da05ac4ef1878858b5d840479790d8d4e114c03668806",
+            "before": "20500c1dc1d435d857ffb8b822e4cbbfdf13c35a600e3b80459a3ce5c88476de",
+            "path": "targets[0].entrypoint_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0000",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/preparation/prepared-small-first/prepare-cd66e0d4-6486-4d24-88ed-e190854ec66a/targets/0006/sources",
+            "path": "targets[0].source_snapshot_path"
+          },
+          {
+            "after": "sha256:598697019fae8b8c6d21040fa8c87b655f998639d9bbc150004ca1551a077558",
+            "before": "sha256:9d1e627d8ee558bbc501b88c792f90800ffcfbe554bf8b475639b15f309145e4",
+            "path": "targets[0].target_id"
+          },
+          {
+            "after": "a58e3eae4e6455172cdf6bd39a00ae6f6426bae91d1c701be867caa0ab4295fb",
+            "before": "99cf1416d1ce6e6abe09706d19f38f60b4f4c4533f9da8b6b753192f01d8d501",
+            "path": "targets[1].entrypoint_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0001",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/preparation/prepared-small-first/prepare-cd66e0d4-6486-4d24-88ed-e190854ec66a/targets/0005/sources",
+            "path": "targets[1].source_snapshot_path"
+          },
+          {
+            "after": "sha256:86e2e2e7dd8a94be029b464db6a67c834a7e4923fbcc9dc6d295acc1f094d1a7",
+            "before": "sha256:941925c9f88ed9393485e7c5100f21607eedd60c6d5062690fef6cc912224d92",
+            "path": "targets[1].target_id"
+          },
+          {
+            "after": "38fd892ee309567c90688703cffd4cfea63628d587e187850af671abff474a4a",
+            "before": "d05dab68d47ed9c084596f11901932575497fad4412c8e6201ec2c04e8711479",
+            "path": "targets[2].entrypoint_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0002",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/preparation/prepared-small-first/prepare-cd66e0d4-6486-4d24-88ed-e190854ec66a/targets/0004/sources",
+            "path": "targets[2].source_snapshot_path"
+          },
+          {
+            "after": "sha256:6cc3171344e03726f319f98877da85de6da9eeff59d57db69783979dc89a2a5e",
+            "before": "sha256:1dfcb1e4022936bf053c69748c5cea142f1db8a7f86e5e72e4773cbbdd903488",
+            "path": "targets[2].target_id"
+          }
+        ],
+        "identifier": "aq-036-6d7df64759b6",
+        "seed": 2026100602,
+        "source_spec": "runs/n6-a3-2026-10-08.noindex/pragma/specs/aq-036-6d7df64759b6-seed-2026100602-S-a3-pragma.json",
+        "source_spec_sha256": "51f06a329078031134d19a38a179745770ec9e57ae831b7e0fd2035b3a6f74d4",
+        "versioned_spec": "runs/n6-a3-2026-10-08.noindex/pragma-b/specs/aq-036-6d7df64759b6-seed-2026100602-S-a3b-pragma.json",
+        "versioned_spec_sha256": "84bf806dce433832f56492959fd3af3382761ed513e5dbd572526bbf65087422"
+      },
+      {
+        "differences": [
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0002/preparation/discovery/1246869a-22ad-4ed9-a4f5-bf62149569a1/wrappers/0003-GreaterEqThan/target.circom",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/preparation/discovery/1246869a-22ad-4ed9-a4f5-bf62149569a1/wrappers/0003-GreaterEqThan/target.circom",
+            "path": "external_include_files[0].path"
+          },
+          {
+            "after": "38fd892ee309567c90688703cffd4cfea63628d587e187850af671abff474a4a",
+            "before": "d05dab68d47ed9c084596f11901932575497fad4412c8e6201ec2c04e8711479",
+            "path": "external_include_files[0].sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0001/preparation/discovery/1246869a-22ad-4ed9-a4f5-bf62149569a1/wrappers/0004-LessThan/target.circom",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/preparation/discovery/1246869a-22ad-4ed9-a4f5-bf62149569a1/wrappers/0004-LessThan/target.circom",
+            "path": "external_include_files[1].path"
+          },
+          {
+            "after": "a58e3eae4e6455172cdf6bd39a00ae6f6426bae91d1c701be867caa0ab4295fb",
+            "before": "99cf1416d1ce6e6abe09706d19f38f60b4f4c4533f9da8b6b753192f01d8d501",
+            "path": "external_include_files[1].sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0000/preparation/discovery/1246869a-22ad-4ed9-a4f5-bf62149569a1/wrappers/0005-Num2Bits/target.circom",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/preparation/discovery/1246869a-22ad-4ed9-a4f5-bf62149569a1/wrappers/0005-Num2Bits/target.circom",
+            "path": "external_include_files[2].path"
+          },
+          {
+            "after": "62dd2d9a2c34e415d82da05ac4ef1878858b5d840479790d8d4e114c03668806",
+            "before": "20500c1dc1d435d857ffb8b822e4cbbfdf13c35a600e3b80459a3ce5c88476de",
+            "path": "external_include_files[2].sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/plan-pragma-b-v1.json",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/preparation/plan.json",
+            "path": "pinned_files[0].path"
+          },
+          {
+            "after": "8fd0b3a9dc2776a78b8d4acfde0eec17babc9582e928c311481087f67ae7d261",
+            "before": "460a72e4bcf7499b58c01a52434658a68b4c2f222f2d2f712e84df2ab897b294",
+            "path": "pinned_files[0].sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0000",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-036-6d7df64759b6/snapshots/split-0000",
+            "path": "source_snapshots[0].path"
+          },
+          {
+            "after": "94db7f93d56e6dd72ead11b597ae9a213ccfe64e785dc739481db802c1432dad",
+            "before": "ef05b28002d2a37bca6f890fb663c691d9c0888aa3a158392185d31536de28b3",
+            "path": "source_snapshots[0].tree_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0001",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-036-6d7df64759b6/snapshots/split-0001",
+            "path": "source_snapshots[1].path"
+          },
+          {
+            "after": "3f7f680014a46c2d15813d8dab849caaaaf241569fa561df62f9bdeff846a575",
+            "before": "e4dd10618101001d1d443c07e0b15a3032930dfd04331258a1e1d31d841b010a",
+            "path": "source_snapshots[1].tree_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0002",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-036-6d7df64759b6/snapshots/split-0002",
+            "path": "source_snapshots[2].path"
+          },
+          {
+            "after": "5557664ba5ef5d55e3693304f837df07c6fcb05c7e803d276d440d28c2886fe6",
+            "before": "671ec546df0b6b6b5d96dff5886c87373cb1ca359347f190b128edd9e1ce7897",
+            "path": "source_snapshots[2].tree_sha256"
+          },
+          {
+            "after": "62dd2d9a2c34e415d82da05ac4ef1878858b5d840479790d8d4e114c03668806",
+            "before": "20500c1dc1d435d857ffb8b822e4cbbfdf13c35a600e3b80459a3ce5c88476de",
+            "path": "targets[0].entrypoint_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0000",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/preparation/prepared-small-first/prepare-cd66e0d4-6486-4d24-88ed-e190854ec66a/targets/0006/sources",
+            "path": "targets[0].source_snapshot_path"
+          },
+          {
+            "after": "sha256:598697019fae8b8c6d21040fa8c87b655f998639d9bbc150004ca1551a077558",
+            "before": "sha256:9d1e627d8ee558bbc501b88c792f90800ffcfbe554bf8b475639b15f309145e4",
+            "path": "targets[0].target_id"
+          },
+          {
+            "after": "a58e3eae4e6455172cdf6bd39a00ae6f6426bae91d1c701be867caa0ab4295fb",
+            "before": "99cf1416d1ce6e6abe09706d19f38f60b4f4c4533f9da8b6b753192f01d8d501",
+            "path": "targets[1].entrypoint_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0001",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/preparation/prepared-small-first/prepare-cd66e0d4-6486-4d24-88ed-e190854ec66a/targets/0005/sources",
+            "path": "targets[1].source_snapshot_path"
+          },
+          {
+            "after": "sha256:86e2e2e7dd8a94be029b464db6a67c834a7e4923fbcc9dc6d295acc1f094d1a7",
+            "before": "sha256:941925c9f88ed9393485e7c5100f21607eedd60c6d5062690fef6cc912224d92",
+            "path": "targets[1].target_id"
+          },
+          {
+            "after": "38fd892ee309567c90688703cffd4cfea63628d587e187850af671abff474a4a",
+            "before": "d05dab68d47ed9c084596f11901932575497fad4412c8e6201ec2c04e8711479",
+            "path": "targets[2].entrypoint_sha256"
+          },
+          {
+            "after": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0002",
+            "before": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/preparation/prepared-small-first/prepare-cd66e0d4-6486-4d24-88ed-e190854ec66a/targets/0004/sources",
+            "path": "targets[2].source_snapshot_path"
+          },
+          {
+            "after": "sha256:6cc3171344e03726f319f98877da85de6da9eeff59d57db69783979dc89a2a5e",
+            "before": "sha256:1dfcb1e4022936bf053c69748c5cea142f1db8a7f86e5e72e4773cbbdd903488",
+            "path": "targets[2].target_id"
+          }
+        ],
+        "identifier": "aq-036-6d7df64759b6",
+        "seed": 2026100603,
+        "source_spec": "runs/n6-a3-2026-10-08.noindex/pragma/specs/aq-036-6d7df64759b6-seed-2026100603-S-a3-pragma.json",
+        "source_spec_sha256": "89c6ed6b113ae3113023dafb728fc2d3a8781ecf9b6cb5ae8a42f237aba4132a",
+        "versioned_spec": "runs/n6-a3-2026-10-08.noindex/pragma-b/specs/aq-036-6d7df64759b6-seed-2026100603-S-a3b-pragma.json",
+        "versioned_spec_sha256": "8dda2d749c51debeb5289a8bf08abfee7a48cecd7de576ff4bcbb281574d6768"
+      }
+    ]
+  },
+  "status": "prepared_verified_not_executed",
+  "target_id_mapping": {
+    "evidence": {
+      "path": "runs/n6-a3-2026-10-08.noindex/pragma-b/target-id-map.json",
+      "sha256": "d5cbb0cbef9887fedd86d929a998608772e83ae6c4789f689b9ca1a33c271232"
+    },
+    "mapping": [
+      {
+        "aq": "aq-035-8f826c822cb8",
+        "new_target_id": "sha256:90d3c3ffd8f9ab4a14d261313a8f8f65096b0891395865743b8de5ca370129d6",
+        "old_target_id": "sha256:aa0e65d083eee7e9624f94976218f2b12260820098f17a8cd3caaaaf0450cf87"
+      },
+      {
+        "aq": "aq-035-8f826c822cb8",
+        "new_target_id": "sha256:51f162f81abea0618d7ca822d44a08967d6e2d93f44cd21a4c9b5a1430ffa46b",
+        "old_target_id": "sha256:df37ee758c7e668624fcbd1e681b20547612d39598f0aa87520c4ff6f2aaa64f"
+      },
+      {
+        "aq": "aq-035-8f826c822cb8",
+        "new_target_id": "sha256:2814a1de38b1e0df747b0f53ffab422b7a9eac9b92821dcbbcc10b7103383008",
+        "old_target_id": "sha256:3103abf3c799b7db5dd32504480bf499e8b906fe51994fd4335851cbaa887126"
+      },
+      {
+        "aq": "aq-035-8f826c822cb8",
+        "new_target_id": "sha256:29084c8a24366b6b432537dbed7935820c91bb13586bfbc666d0732e64ce1cdb",
+        "old_target_id": "sha256:bfac2f63eccf1010ecb9d828dbbb43a6544f0a320338e4ce274d91d9e22d9a13"
+      },
+      {
+        "aq": "aq-035-8f826c822cb8",
+        "new_target_id": "sha256:903cb6e746de4c5d70be3874502db4e432c1c43bd166e946ad2ca061e2c2f674",
+        "old_target_id": "sha256:281df653795b74bdcb838c06f0bb05ca588c9a417f85a14c5b93e3cd032bf083"
+      },
+      {
+        "aq": "aq-035-8f826c822cb8",
+        "new_target_id": "sha256:e5a05f0b6c891a7c8a3ae28caf41b43b9a35d73346f705f3e52e35526f2a73dd",
+        "old_target_id": "sha256:8e2b67af49d6ece42204364f6ae0ebe746d37f3c88c16fb6a49052832417045d"
+      },
+      {
+        "aq": "aq-036-6d7df64759b6",
+        "new_target_id": "sha256:598697019fae8b8c6d21040fa8c87b655f998639d9bbc150004ca1551a077558",
+        "old_target_id": "sha256:9d1e627d8ee558bbc501b88c792f90800ffcfbe554bf8b475639b15f309145e4"
+      },
+      {
+        "aq": "aq-036-6d7df64759b6",
+        "new_target_id": "sha256:86e2e2e7dd8a94be029b464db6a67c834a7e4923fbcc9dc6d295acc1f094d1a7",
+        "old_target_id": "sha256:941925c9f88ed9393485e7c5100f21607eedd60c6d5062690fef6cc912224d92"
+      },
+      {
+        "aq": "aq-036-6d7df64759b6",
+        "new_target_id": "sha256:6cc3171344e03726f319f98877da85de6da9eeff59d57db69783979dc89a2a5e",
+        "old_target_id": "sha256:1dfcb1e4022936bf053c69748c5cea142f1db8a7f86e5e72e4773cbbdd903488"
+      }
+    ],
+    "verification": {
+      "path": "runs/n6-a3-2026-10-08.noindex/pragma-b/target-id-verification.json",
+      "sha256": "016b83fbce477a8c72afdb0a70f4bd7f55f4bfe9a2322fe15f18ce13d1ef6212"
+    }
+  },
+  "task": "N6-A3b",
+  "tests": {
+    "cargo_clippy_all_targets_all_features_D_warnings": "passed",
+    "cargo_fmt": "passed",
+    "cargo_test": "passed",
+    "git_diff_check": "passed",
+    "python_status": "passed",
+    "python_v4_1_and_v4_2_queue_test_count": 22
+  },
+  "wrapper_correction": {
+    "changed_wrapper_count": 9,
+    "diff": {
+      "path": "runs/n6-a3-2026-10-08.noindex/pragma-b/source-diff.patch",
+      "sha256": "ce1c306bae7b80015393009ddd2731fe7e373b4b8c413135f030fbd6f5c27cad"
+    },
+    "each_changed_line_count": 1,
+    "evidence": {
+      "path": "runs/n6-a3-2026-10-08.noindex/pragma-b/wrapper-corrections.json",
+      "sha256": "b770d841aafeb4d83ffe34aec94f57bae15721afeafa58669160fcccff0bcea1"
+    },
+    "rows": [
+      {
+        "aq": "aq-035-8f826c822cb8",
+        "include_line": 3,
+        "new_include": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/project/circuits/utils/assert.circom",
+        "new_include_sha256": "19b4c6bbddcb8fd485e48fb2bfe41db9857188f4d228e97c22d1125502b7789a",
+        "new_snapshot": "runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0000",
+        "new_snapshot_tree_sha256": "55e6b27aeec2db7044e1cb6ec5394b09a01daa09ba6a0b359c14e1cd40ef352d",
+        "new_target_id": "sha256:90d3c3ffd8f9ab4a14d261313a8f8f65096b0891395865743b8de5ca370129d6",
+        "new_wrapper": "runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0000/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0001-AssertBits/target.circom",
+        "new_wrapper_sha256": "000fa2a871697b16d1a24e770a0006c02919ff9d470be18b5fc05432d175c9c1",
+        "old_include": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/project/circuits/utils/assert.circom",
+        "old_include_sha256": "deac2dd97b5d242da09fda071d72acbf5e19163840cd066902a15334a40f7de8",
+        "old_snapshot": "runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0000",
+        "old_target_id": "sha256:aa0e65d083eee7e9624f94976218f2b12260820098f17a8cd3caaaaf0450cf87",
+        "old_wrapper": "runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0000/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0001-AssertBits/target.circom",
+        "old_wrapper_sha256": "b7592a24d0c666b7357011da77c11d50a5d1b364fbb7624326ea468d84df05d7"
+      },
+      {
+        "aq": "aq-035-8f826c822cb8",
+        "include_line": 3,
+        "new_include": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/project/circuits/circomlib/circuits/bitify.circom",
+        "new_include_sha256": "688f121303a2dd0154ceeda8d2f53a9d2d26789d10a69a46acd534642725683e",
+        "new_snapshot": "runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0001",
+        "new_snapshot_tree_sha256": "9a11618879633c98deb4be901a3d864184bbbcbb2f7d29c4db33cc74e85e60bb",
+        "new_target_id": "sha256:51f162f81abea0618d7ca822d44a08967d6e2d93f44cd21a4c9b5a1430ffa46b",
+        "new_wrapper": "runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0001/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0002-Num2Bits/target.circom",
+        "new_wrapper_sha256": "64ac6a06f57b4237b55242af13053929848849bf3c1dd1085522dae61221f04f",
+        "old_include": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/project/circuits/circomlib/circuits/bitify.circom",
+        "old_include_sha256": "688f121303a2dd0154ceeda8d2f53a9d2d26789d10a69a46acd534642725683e",
+        "old_snapshot": "runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0001",
+        "old_target_id": "sha256:df37ee758c7e668624fcbd1e681b20547612d39598f0aa87520c4ff6f2aaa64f",
+        "old_wrapper": "runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0001/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0002-Num2Bits/target.circom",
+        "old_wrapper_sha256": "4422969faa949f7a2d26749d8f853d5ce63b64f531e07a3dd6a5634ac780a3cb"
+      },
+      {
+        "aq": "aq-035-8f826c822cb8",
+        "include_line": 3,
+        "new_include": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/project/circuits/circomlib/circuits/bitify.circom",
+        "new_include_sha256": "688f121303a2dd0154ceeda8d2f53a9d2d26789d10a69a46acd534642725683e",
+        "new_snapshot": "runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0002",
+        "new_snapshot_tree_sha256": "55801a01543b46853f58636621e9a7841902c48d42d421d42912c02f6be40b43",
+        "new_target_id": "sha256:2814a1de38b1e0df747b0f53ffab422b7a9eac9b92821dcbbcc10b7103383008",
+        "new_wrapper": "runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0002/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0005-Num2Bits/target.circom",
+        "new_wrapper_sha256": "61e93af0ccfb67274361a7c3a3c77342d90473b45e47c1e52431989301622773",
+        "old_include": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/project/circuits/circomlib/circuits/bitify.circom",
+        "old_include_sha256": "688f121303a2dd0154ceeda8d2f53a9d2d26789d10a69a46acd534642725683e",
+        "old_snapshot": "runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0002",
+        "old_target_id": "sha256:3103abf3c799b7db5dd32504480bf499e8b906fe51994fd4335851cbaa887126",
+        "old_wrapper": "runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0002/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0005-Num2Bits/target.circom",
+        "old_wrapper_sha256": "cb60334eb4bd52a372e8bff23275384182f804d89b34d74ebf6bfe899c8266e1"
+      },
+      {
+        "aq": "aq-035-8f826c822cb8",
+        "include_line": 3,
+        "new_include": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/project/circuits/circomlib/circuits/comparators.circom",
+        "new_include_sha256": "fd0c7723ee56e1467df1861131157cbb108e156fe2d9ec64895c8e68de14db20",
+        "new_snapshot": "runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0003",
+        "new_snapshot_tree_sha256": "da5b5448713bf7e85bbdf4cae59eb3e113f6a9bb55cfb06c20a46d9c58f4d378",
+        "new_target_id": "sha256:29084c8a24366b6b432537dbed7935820c91bb13586bfbc666d0732e64ce1cdb",
+        "new_wrapper": "runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0003/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0004-LessThan/target.circom",
+        "new_wrapper_sha256": "3731c28d120852dfc47ded273e23d313a6239030e3b3dbc079baaa1cc7542d66",
+        "old_include": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/project/circuits/circomlib/circuits/comparators.circom",
+        "old_include_sha256": "fd0c7723ee56e1467df1861131157cbb108e156fe2d9ec64895c8e68de14db20",
+        "old_snapshot": "runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0003",
+        "old_target_id": "sha256:bfac2f63eccf1010ecb9d828dbbb43a6544f0a320338e4ce274d91d9e22d9a13",
+        "old_wrapper": "runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0003/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0004-LessThan/target.circom",
+        "old_wrapper_sha256": "cc2108e4726dc5417e961d4f8aac452b70d754aff434f589f9bcd70ebedd88b3"
+      },
+      {
+        "aq": "aq-035-8f826c822cb8",
+        "include_line": 3,
+        "new_include": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/project/circuits/circomlib/circuits/comparators.circom",
+        "new_include_sha256": "fd0c7723ee56e1467df1861131157cbb108e156fe2d9ec64895c8e68de14db20",
+        "new_snapshot": "runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0004",
+        "new_snapshot_tree_sha256": "48e89ef67d1e2622595d72059005fe65a31b2a007af50418c83252533b9194e3",
+        "new_target_id": "sha256:903cb6e746de4c5d70be3874502db4e432c1c43bd166e946ad2ca061e2c2f674",
+        "new_wrapper": "runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0004/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0003-GreaterEqThan/target.circom",
+        "new_wrapper_sha256": "efb5f8cbcbc7db550af269fccfa1b7f1274048fed16d9d226892ef17c262115f",
+        "old_include": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/project/circuits/circomlib/circuits/comparators.circom",
+        "old_include_sha256": "fd0c7723ee56e1467df1861131157cbb108e156fe2d9ec64895c8e68de14db20",
+        "old_snapshot": "runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0004",
+        "old_target_id": "sha256:281df653795b74bdcb838c06f0bb05ca588c9a417f85a14c5b93e3cd032bf083",
+        "old_wrapper": "runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0004/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0003-GreaterEqThan/target.circom",
+        "old_wrapper_sha256": "29dee73d728725499c2effbfb76d4dfb555f4886a476b161fae7b7a12deeb53b"
+      },
+      {
+        "aq": "aq-035-8f826c822cb8",
+        "include_line": 3,
+        "new_include": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/project/circuits/utils/assert.circom",
+        "new_include_sha256": "19b4c6bbddcb8fd485e48fb2bfe41db9857188f4d228e97c22d1125502b7789a",
+        "new_snapshot": "runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0005",
+        "new_snapshot_tree_sha256": "37a3451ff942cea7495d7e56afd7117b5e6196ccdd42aedd03b69084517e15dc",
+        "new_target_id": "sha256:e5a05f0b6c891a7c8a3ae28caf41b43b9a35d73346f705f3e52e35526f2a73dd",
+        "new_wrapper": "runs/n6-a3-2026-10-08.noindex/pragma-b/aq-035-8f826c822cb8/snapshots/split-0005/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0000-AssertGreaterEqThan/target.circom",
+        "new_wrapper_sha256": "86a7d23ec53bd34479780a6d4500f39f27c589037fae761416302038837cdc69",
+        "old_include": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-035-8f826c822cb8/project/circuits/utils/assert.circom",
+        "old_include_sha256": "deac2dd97b5d242da09fda071d72acbf5e19163840cd066902a15334a40f7de8",
+        "old_snapshot": "runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0005",
+        "old_target_id": "sha256:8e2b67af49d6ece42204364f6ae0ebe746d37f3c88c16fb6a49052832417045d",
+        "old_wrapper": "runs/n6-a3-2026-10-08.noindex/pragma/aq-035-8f826c822cb8/snapshots/split-0005/preparation/discovery/d5d6f276-7fde-4c62-ad34-89a5c8e9655c/wrappers/0000-AssertGreaterEqThan/target.circom",
+        "old_wrapper_sha256": "ee86ad3ab1778d5c6fd8f15f9faadbcfec5e90430bf8955e744027937473789f"
+      },
+      {
+        "aq": "aq-036-6d7df64759b6",
+        "include_line": 3,
+        "new_include": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-036-6d7df64759b6/project/circuits/circomlib/circuits/bitify.circom",
+        "new_include_sha256": "688f121303a2dd0154ceeda8d2f53a9d2d26789d10a69a46acd534642725683e",
+        "new_snapshot": "runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0000",
+        "new_snapshot_tree_sha256": "94db7f93d56e6dd72ead11b597ae9a213ccfe64e785dc739481db802c1432dad",
+        "new_target_id": "sha256:598697019fae8b8c6d21040fa8c87b655f998639d9bbc150004ca1551a077558",
+        "new_wrapper": "runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0000/preparation/discovery/1246869a-22ad-4ed9-a4f5-bf62149569a1/wrappers/0005-Num2Bits/target.circom",
+        "new_wrapper_sha256": "62dd2d9a2c34e415d82da05ac4ef1878858b5d840479790d8d4e114c03668806",
+        "old_include": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/project/circuits/circomlib/circuits/bitify.circom",
+        "old_include_sha256": "688f121303a2dd0154ceeda8d2f53a9d2d26789d10a69a46acd534642725683e",
+        "old_snapshot": "runs/n6-a3-2026-10-08.noindex/pragma/aq-036-6d7df64759b6/snapshots/split-0000",
+        "old_target_id": "sha256:9d1e627d8ee558bbc501b88c792f90800ffcfbe554bf8b475639b15f309145e4",
+        "old_wrapper": "runs/n6-a3-2026-10-08.noindex/pragma/aq-036-6d7df64759b6/snapshots/split-0000/preparation/discovery/1246869a-22ad-4ed9-a4f5-bf62149569a1/wrappers/0005-Num2Bits/target.circom",
+        "old_wrapper_sha256": "20500c1dc1d435d857ffb8b822e4cbbfdf13c35a600e3b80459a3ce5c88476de"
+      },
+      {
+        "aq": "aq-036-6d7df64759b6",
+        "include_line": 3,
+        "new_include": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-036-6d7df64759b6/project/circuits/circomlib/circuits/comparators.circom",
+        "new_include_sha256": "fd0c7723ee56e1467df1861131157cbb108e156fe2d9ec64895c8e68de14db20",
+        "new_snapshot": "runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0001",
+        "new_snapshot_tree_sha256": "3f7f680014a46c2d15813d8dab849caaaaf241569fa561df62f9bdeff846a575",
+        "new_target_id": "sha256:86e2e2e7dd8a94be029b464db6a67c834a7e4923fbcc9dc6d295acc1f094d1a7",
+        "new_wrapper": "runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0001/preparation/discovery/1246869a-22ad-4ed9-a4f5-bf62149569a1/wrappers/0004-LessThan/target.circom",
+        "new_wrapper_sha256": "a58e3eae4e6455172cdf6bd39a00ae6f6426bae91d1c701be867caa0ab4295fb",
+        "old_include": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/project/circuits/circomlib/circuits/comparators.circom",
+        "old_include_sha256": "fd0c7723ee56e1467df1861131157cbb108e156fe2d9ec64895c8e68de14db20",
+        "old_snapshot": "runs/n6-a3-2026-10-08.noindex/pragma/aq-036-6d7df64759b6/snapshots/split-0001",
+        "old_target_id": "sha256:941925c9f88ed9393485e7c5100f21607eedd60c6d5062690fef6cc912224d92",
+        "old_wrapper": "runs/n6-a3-2026-10-08.noindex/pragma/aq-036-6d7df64759b6/snapshots/split-0001/preparation/discovery/1246869a-22ad-4ed9-a4f5-bf62149569a1/wrappers/0004-LessThan/target.circom",
+        "old_wrapper_sha256": "99cf1416d1ce6e6abe09706d19f38f60b4f4c4533f9da8b6b753192f01d8d501"
+      },
+      {
+        "aq": "aq-036-6d7df64759b6",
+        "include_line": 3,
+        "new_include": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a3-2026-10-08.noindex/pragma/aq-036-6d7df64759b6/project/circuits/circomlib/circuits/comparators.circom",
+        "new_include_sha256": "fd0c7723ee56e1467df1861131157cbb108e156fe2d9ec64895c8e68de14db20",
+        "new_snapshot": "runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0002",
+        "new_snapshot_tree_sha256": "5557664ba5ef5d55e3693304f837df07c6fcb05c7e803d276d440d28c2886fe6",
+        "new_target_id": "sha256:6cc3171344e03726f319f98877da85de6da9eeff59d57db69783979dc89a2a5e",
+        "new_wrapper": "runs/n6-a3-2026-10-08.noindex/pragma-b/aq-036-6d7df64759b6/snapshots/split-0002/preparation/discovery/1246869a-22ad-4ed9-a4f5-bf62149569a1/wrappers/0003-GreaterEqThan/target.circom",
+        "new_wrapper_sha256": "38fd892ee309567c90688703cffd4cfea63628d587e187850af671abff474a4a",
+        "old_include": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/n6-a1b-2026-10-08/units/aq-036-6d7df64759b6/project/circuits/circomlib/circuits/comparators.circom",
+        "old_include_sha256": "fd0c7723ee56e1467df1861131157cbb108e156fe2d9ec64895c8e68de14db20",
+        "old_snapshot": "runs/n6-a3-2026-10-08.noindex/pragma/aq-036-6d7df64759b6/snapshots/split-0002",
+        "old_target_id": "sha256:1dfcb1e4022936bf053c69748c5cea142f1db8a7f86e5e72e4773cbbdd903488",
+        "old_wrapper": "runs/n6-a3-2026-10-08.noindex/pragma/aq-036-6d7df64759b6/snapshots/split-0002/preparation/discovery/1246869a-22ad-4ed9-a4f5-bf62149569a1/wrappers/0003-GreaterEqThan/target.circom",
+        "old_wrapper_sha256": "d05dab68d47ed9c084596f11901932575497fad4412c8e6201ec2c04e8711479"
+      }
+    ]
+  }
+}

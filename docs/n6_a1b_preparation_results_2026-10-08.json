@@ -1,0 +1,1504 @@
+{
+  "counts": {
+    "aq_rq1_execute_ready_items": 18,
+    "aq_rq1_items": 24,
+    "aq_rq_c_complete_ready_pairs": 6,
+    "aq_rq_c_items_after_unretrievable_exclusion": 13,
+    "execute_ready_units": 27,
+    "known_defect_side_execute_ready": 18,
+    "known_defect_side_units": 27,
+    "materialization": {
+      "failed": 1,
+      "not_started": 12,
+      "ready_for_discovery": 40
+    },
+    "preparation": {
+      "failed": 12,
+      "not_started": 13,
+      "success": 28
+    },
+    "preparation_units": 53,
+    "rq_c_comparison_side_execute_ready": 12,
+    "rq_c_comparison_side_units": 32,
+    "setup": {
+      "not_started": 13,
+      "success": 40
+    },
+    "split_only_ready_units": 1
+  },
+  "created_at": "2026-10-07T03:47:43.830644+00:00",
+  "disk": {
+    "artifact_cleanup_deleted_bytes": 15618115887,
+    "current_free_bytes": 183257251840,
+    "preflight_free_after_bytes": 183306395648,
+    "preflight_free_before_bytes": 184350367744
+  },
+  "estimated_campaign_maximum": {
+    "A-D": {
+      "ideal_three_parallel_hours": 4.0,
+      "sequential_hours": 12.0,
+      "split_ready_units": 12,
+      "units": 12,
+      "whole_ready_units": 12
+    },
+    "A-Q-stage1": {
+      "ideal_three_parallel_hours": 5.166666666666667,
+      "sequential_hours": 15.5,
+      "split_ready_units": 16,
+      "units": 15,
+      "whole_ready_units": 15
+    },
+    "basis": "each method-ready revision unit x 3 seeds x 600 seconds"
+  },
+  "measurement": {
+    "observed_load_average_component_max": 12.2353515625,
+    "observed_load_average_component_min": 5.0498046875,
+    "preparation_finished_at": "2026-10-07T02:01:58.063931+00:00",
+    "preparation_started_at": "2026-10-07T01:15:50.733417+00:00"
+  },
+  "official_action_counts": {
+    "dependency_directory_reused:existing_real_directory": 10,
+    "official_compatibility_edit:success": 6,
+    "official_exact_dependency_reuse:success": 3,
+    "official_generated_entrypoint:success": 9,
+    "official_patch:success": 1,
+    "official_relative_symlink:success": 9
+  },
+  "preflight": {
+    "failed": 3,
+    "passed": 165,
+    "path": "runs/n6-a1b-2026-10-08/preflight-v3/preflight-all.json",
+    "sha256": "8d38a9762a0f986c3fedc73092113d0e7a5053b122edcb834d50fbbf3f92931e",
+    "status": "completed",
+    "wall_seconds_sum": 2479.486097794
+  },
+  "preflight_failures": [
+    {
+      "evidence": [
+        {
+          "lines": [
+            "error[P1012]: UnrecognizedToken { token: (588, Token(74, \"var\"), 591), expected: [\"\\\"bus\\\"\", \"\\\"component\\\"\", \"\\\"function\\\"\", \"\\\"template\\\"\"] }",
+            "┌─ \"<repo>/runs/n6-a1b-2026-10-08/preflight-v3/preflight/aq-038-4e5dcd2256b8-seed-2026100601/W/compile/0000/workspace/packages/circom/circuits/common/email_addr_with_name_regex.circom\":21:2"
+          ],
+          "path": "runs/n6-a1b-2026-10-08/preflight-v3/preflight/aq-038-4e5dcd2256b8-seed-2026100601/W/compile/0000/stderr.log",
+          "sha256": "299df70396492a961e735a3e918f29479d521c5fa9ad0bd74f55abca471b98b7"
+        }
+      ],
+      "failure_type": "preflight_status_failed",
+      "key": "aq-038-4e5dcd2256b8-seed-2026100601:W"
+    },
+    {
+      "evidence": [
+        {
+          "lines": [
+            "error[P1012]: UnrecognizedToken { token: (588, Token(74, \"var\"), 591), expected: [\"\\\"bus\\\"\", \"\\\"component\\\"\", \"\\\"function\\\"\", \"\\\"template\\\"\"] }",
+            "┌─ \"<repo>/runs/n6-a1b-2026-10-08/preflight-v3/preflight/aq-038-4e5dcd2256b8-seed-2026100601/W/compile/0000/workspace/packages/circom/circuits/common/email_addr_with_name_regex.circom\":21:2"
+          ],
+          "path": "runs/n6-a1b-2026-10-08/preflight-v3/preflight/aq-038-4e5dcd2256b8-seed-2026100602/W/../../aq-038-4e5dcd2256b8-seed-2026100601/W/compile/0000/stderr.log",
+          "sha256": "299df70396492a961e735a3e918f29479d521c5fa9ad0bd74f55abca471b98b7"
+        }
+      ],
+      "failure_type": "reused_preflight_status_failed",
+      "key": "aq-038-4e5dcd2256b8-seed-2026100602:W"
+    },
+    {
+      "evidence": [
+        {
+          "lines": [
+            "error[P1012]: UnrecognizedToken { token: (588, Token(74, \"var\"), 591), expected: [\"\\\"bus\\\"\", \"\\\"component\\\"\", \"\\\"function\\\"\", \"\\\"template\\\"\"] }",
+            "┌─ \"<repo>/runs/n6-a1b-2026-10-08/preflight-v3/preflight/aq-038-4e5dcd2256b8-seed-2026100601/W/compile/0000/workspace/packages/circom/circuits/common/email_addr_with_name_regex.circom\":21:2"
+          ],
+          "path": "runs/n6-a1b-2026-10-08/preflight-v3/preflight/aq-038-4e5dcd2256b8-seed-2026100603/W/../../aq-038-4e5dcd2256b8-seed-2026100601/W/compile/0000/stderr.log",
+          "sha256": "299df70396492a961e735a3e918f29479d521c5fa9ad0bd74f55abca471b98b7"
+        }
+      ],
+      "failure_type": "reused_preflight_status_failed",
+      "key": "aq-038-4e5dcd2256b8-seed-2026100603:W"
+    }
+  ],
+  "preparation_failures": [
+    {
+      "core_errors": [],
+      "failure_type": "manifest_concrete_instance_unavailable",
+      "reason": "concrete root instance key unavailable",
+      "status": "failed",
+      "unit_id": "aq-000-a6b97aeaa1ae"
+    },
+    {
+      "core_errors": [
+        {
+          "lines": [
+            "Error: prepared corpus has no targets eligible for small-first"
+          ],
+          "path": "runs/n6-a1b-2026-10-08/units/aq-001-b32aa7daaea0/preparation/plan-call/stderr.log",
+          "sha256": "692fcba67444620ca847f2da2e8eeb09b5e2dd4c8ade1e899d309c9ac0f9e53c",
+          "stage": "plan"
+        }
+      ],
+      "failure_type": "compiler_or_tool_error",
+      "reason": null,
+      "status": "failed",
+      "unit_id": "aq-001-b32aa7daaea0"
+    },
+    {
+      "core_errors": [],
+      "failure_type": "manifest_concrete_instance_unavailable",
+      "reason": "concrete root instance key unavailable",
+      "status": "failed",
+      "unit_id": "aq-002-923e08e670de"
+    },
+    {
+      "core_errors": [
+        {
+          "lines": [
+            "Error: prepared corpus has no targets eligible for small-first"
+          ],
+          "path": "runs/n6-a1b-2026-10-08/units/aq-003-626254249e88/preparation/plan-call/stderr.log",
+          "sha256": "692fcba67444620ca847f2da2e8eeb09b5e2dd4c8ade1e899d309c9ac0f9e53c",
+          "stage": "plan"
+        }
+      ],
+      "failure_type": "compiler_or_tool_error",
+      "reason": null,
+      "status": "failed",
+      "unit_id": "aq-003-626254249e88"
+    },
+    {
+      "core_errors": [
+        {
+          "lines": [
+            "Error: prepared corpus has no targets eligible for small-first"
+          ],
+          "path": "runs/n6-a1b-2026-10-08/units/aq-004-803378d79dea/preparation/plan-call/stderr.log",
+          "sha256": "692fcba67444620ca847f2da2e8eeb09b5e2dd4c8ade1e899d309c9ac0f9e53c",
+          "stage": "plan"
+        }
+      ],
+      "failure_type": "compiler_or_tool_error",
+      "reason": null,
+      "status": "failed",
+      "unit_id": "aq-004-803378d79dea"
+    },
+    {
+      "core_errors": [
+        {
+          "lines": [
+            "Error: prepared corpus has no targets eligible for small-first"
+          ],
+          "path": "runs/n6-a1b-2026-10-08/units/aq-005-b689893c025f/preparation/plan-call/stderr.log",
+          "sha256": "692fcba67444620ca847f2da2e8eeb09b5e2dd4c8ade1e899d309c9ac0f9e53c",
+          "stage": "plan"
+        }
+      ],
+      "failure_type": "compiler_or_tool_error",
+      "reason": null,
+      "status": "failed",
+      "unit_id": "aq-005-b689893c025f"
+    },
+    {
+      "core_errors": [],
+      "failure_type": "setup_not_success",
+      "reason": null,
+      "status": "not_started",
+      "unit_id": "aq-009-aefcab68a248"
+    },
+    {
+      "core_errors": [],
+      "failure_type": "setup_not_success",
+      "reason": null,
+      "status": "not_started",
+      "unit_id": "aq-010-f35ff2e9e262"
+    },
+    {
+      "core_errors": [],
+      "failure_type": "setup_not_success",
+      "reason": null,
+      "status": "not_started",
+      "unit_id": "aq-013-dd5954ac38b1"
+    },
+    {
+      "core_errors": [],
+      "failure_type": "setup_not_success",
+      "reason": null,
+      "status": "not_started",
+      "unit_id": "aq-014-5427d7292faa"
+    },
+    {
+      "core_errors": [],
+      "failure_type": "setup_not_success",
+      "reason": null,
+      "status": "not_started",
+      "unit_id": "aq-015-7bec6b38ea36"
+    },
+    {
+      "core_errors": [],
+      "failure_type": "setup_not_success",
+      "reason": null,
+      "status": "not_started",
+      "unit_id": "aq-018-e39e4e77138c"
+    },
+    {
+      "core_errors": [],
+      "failure_type": "setup_not_success",
+      "reason": null,
+      "status": "not_started",
+      "unit_id": "aq-019-90637f07f72b"
+    },
+    {
+      "core_errors": [],
+      "failure_type": "setup_not_success",
+      "reason": null,
+      "status": "not_started",
+      "unit_id": "aq-020-f217a8d648bc"
+    },
+    {
+      "core_errors": [],
+      "failure_type": "setup_not_success",
+      "reason": null,
+      "status": "not_started",
+      "unit_id": "aq-021-12898764f632"
+    },
+    {
+      "core_errors": [],
+      "failure_type": "setup_not_success",
+      "reason": null,
+      "status": "not_started",
+      "unit_id": "aq-022-1f2e2842f6ed"
+    },
+    {
+      "core_errors": [],
+      "failure_type": "setup_not_success",
+      "reason": null,
+      "status": "not_started",
+      "unit_id": "aq-023-e609ecb8edce"
+    },
+    {
+      "core_errors": [
+        {
+          "lines": [
+            "Error: prepared corpus has no targets eligible for small-first"
+          ],
+          "path": "runs/n6-a1b-2026-10-08/units/aq-027-a847471783dc/preparation/plan-call/stderr.log",
+          "sha256": "692fcba67444620ca847f2da2e8eeb09b5e2dd4c8ade1e899d309c9ac0f9e53c",
+          "stage": "plan"
+        }
+      ],
+      "failure_type": "compiler_or_tool_error",
+      "reason": null,
+      "status": "failed",
+      "unit_id": "aq-027-a847471783dc"
+    },
+    {
+      "core_errors": [],
+      "failure_type": "setup_not_success",
+      "reason": null,
+      "status": "not_started",
+      "unit_id": "aq-028-b9b2613fdfa4"
+    },
+    {
+      "core_errors": [
+        {
+          "lines": [
+            "Error: prepared corpus has no targets eligible for small-first"
+          ],
+          "path": "runs/n6-a1b-2026-10-08/units/aq-029-886c1c02fb66/preparation/plan-call/stderr.log",
+          "sha256": "692fcba67444620ca847f2da2e8eeb09b5e2dd4c8ade1e899d309c9ac0f9e53c",
+          "stage": "plan"
+        }
+      ],
+      "failure_type": "compiler_or_tool_error",
+      "reason": null,
+      "status": "failed",
+      "unit_id": "aq-029-886c1c02fb66"
+    },
+    {
+      "core_errors": [
+        {
+          "lines": [
+            "Error: prepared corpus has no targets eligible for small-first"
+          ],
+          "path": "runs/n6-a1b-2026-10-08/units/aq-030-f6334f2145b4/preparation/plan-call/stderr.log",
+          "sha256": "692fcba67444620ca847f2da2e8eeb09b5e2dd4c8ade1e899d309c9ac0f9e53c",
+          "stage": "plan"
+        }
+      ],
+      "failure_type": "compiler_or_tool_error",
+      "reason": null,
+      "status": "failed",
+      "unit_id": "aq-030-f6334f2145b4"
+    },
+    {
+      "core_errors": [
+        {
+          "lines": [
+            "Error: prepared corpus has no targets eligible for small-first"
+          ],
+          "path": "runs/n6-a1b-2026-10-08/units/aq-031-2191c2696b01/preparation/plan-call/stderr.log",
+          "sha256": "692fcba67444620ca847f2da2e8eeb09b5e2dd4c8ade1e899d309c9ac0f9e53c",
+          "stage": "plan"
+        }
+      ],
+      "failure_type": "compiler_or_tool_error",
+      "reason": null,
+      "status": "failed",
+      "unit_id": "aq-031-2191c2696b01"
+    },
+    {
+      "core_errors": [
+        {
+          "lines": [
+            "Error: prepared corpus has no targets eligible for small-first"
+          ],
+          "path": "runs/n6-a1b-2026-10-08/units/aq-032-01439be37566/preparation/plan-call/stderr.log",
+          "sha256": "692fcba67444620ca847f2da2e8eeb09b5e2dd4c8ade1e899d309c9ac0f9e53c",
+          "stage": "plan"
+        }
+      ],
+      "failure_type": "compiler_or_tool_error",
+      "reason": null,
+      "status": "failed",
+      "unit_id": "aq-032-01439be37566"
+    },
+    {
+      "core_errors": [],
+      "failure_type": "setup_not_success",
+      "reason": null,
+      "status": "not_started",
+      "unit_id": "aq-033-f4e0cd04d538"
+    },
+    {
+      "core_errors": [],
+      "failure_type": "manifest_concrete_instance_unavailable",
+      "reason": "concrete root instance key unavailable",
+      "status": "failed",
+      "unit_id": "aq-034-8d1c03d49b12"
+    }
+  ],
+  "prior_failure_diagnosis": {
+    "path": "runs/n6-a1b-2026-10-08/a1-failure-diagnosis-v2.json",
+    "sha256": "770d673affcbbf15e2d28707d8c3a5db015ba3d63fb3a9076aba380284515ec9"
+  },
+  "queue": {
+    "path": "runs/n6-a1b-2026-10-08/queue-v3.json",
+    "sha256": "f84ae9d85bd7eb5289e14e5cafd9cb0234b93fe1ce0dfc5d7805e5305f8b6201",
+    "specs": 168,
+    "units": 84
+  },
+  "schema_version": 1,
+  "target_list": {
+    "path": "docs/n6_targets_a_2026-10-07.json",
+    "sha256": "6410b49e50b4da6a565955f6b9a6fa3ed1cd996b7923d96710e28ddfa2cf6758"
+  },
+  "task": "N6-A1b supplemented preparation result",
+  "units": [
+    {
+      "S": "pass 3/3; fail 0; missing 0",
+      "W": "pass 3/3; fail 0; missing 0",
+      "branch": "A-D",
+      "eligible_targets": 22,
+      "materialization": "ready_for_setup_or_discovery -> ready_for_discovery",
+      "preparation": "success -> success",
+      "procedure": "development_frozen_revision",
+      "project": "inference-labs-inc/subnet-2-circom",
+      "ready_for_execute": true,
+      "revision_evidence": {
+        "expected": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+        "observed": "d310309c141d36504b3486cebd96ed70ef3a4fdf",
+        "status": "matched"
+      },
+      "revision_kind": "development",
+      "setup": "success -> success",
+      "split_preflight_ready": true,
+      "unit_id": "inference-original",
+      "whole_preflight_ready": true
+    },
+    {
+      "S": "pass 3/3; fail 0; missing 0",
+      "W": "pass 3/3; fail 0; missing 0",
+      "branch": "A-D",
+      "eligible_targets": 25,
+      "materialization": "ready_for_setup_or_discovery -> ready_for_discovery",
+      "preparation": "success -> success",
+      "procedure": "development_frozen_revision",
+      "project": "inference-labs-inc/subnet-2-circom",
+      "ready_for_execute": true,
+      "revision_evidence": {
+        "manifest": "runs/l06-2026-10-03/trees/manifest.json",
+        "manifest_sha256": "8b926fe2a2a8245f4fab6a49ca14033d866fb156553468f478ca9353802ef589",
+        "status": "matched_frozen_tree",
+        "tree": "r_intdiv"
+      },
+      "revision_kind": "development",
+      "setup": "success -> success",
+      "split_preflight_ready": true,
+      "unit_id": "inference-r-intdiv",
+      "whole_preflight_ready": true
+    },
+    {
+      "S": "pass 3/3; fail 0; missing 0",
+      "W": "pass 3/3; fail 0; missing 0",
+      "branch": "A-D",
+      "eligible_targets": 25,
+      "materialization": "ready_for_setup_or_discovery -> ready_for_discovery",
+      "preparation": "success -> success",
+      "procedure": "development_frozen_revision",
+      "project": "inference-labs-inc/subnet-2-circom",
+      "ready_for_execute": true,
+      "revision_evidence": {
+        "manifest": "runs/l06-2026-10-03/trees/manifest.json",
+        "manifest_sha256": "8b926fe2a2a8245f4fab6a49ca14033d866fb156553468f478ca9353802ef589",
+        "status": "matched_frozen_tree",
+        "tree": "c9221e8d"
+      },
+      "revision_kind": "development",
+      "setup": "success -> success",
+      "split_preflight_ready": true,
+      "unit_id": "inference-c9221e8d",
+      "whole_preflight_ready": true
+    },
+    {
+      "S": "pass 3/3; fail 0; missing 0",
+      "W": "pass 3/3; fail 0; missing 0",
+      "branch": "A-D",
+      "eligible_targets": 25,
+      "materialization": "ready_for_setup_or_discovery -> ready_for_discovery",
+      "preparation": "success -> success",
+      "procedure": "development_frozen_revision",
+      "project": "inference-labs-inc/subnet-2-circom",
+      "ready_for_execute": true,
+      "revision_evidence": {
+        "manifest": "runs/l06-2026-10-03/trees/manifest.json",
+        "manifest_sha256": "8b926fe2a2a8245f4fab6a49ca14033d866fb156553468f478ca9353802ef589",
+        "status": "matched_frozen_tree",
+        "tree": "c79f42ee"
+      },
+      "revision_kind": "development",
+      "setup": "success -> success",
+      "split_preflight_ready": true,
+      "unit_id": "inference-c79f42ee",
+      "whole_preflight_ready": true
+    },
+    {
+      "S": "pass 3/3; fail 0; missing 0",
+      "W": "pass 3/3; fail 0; missing 0",
+      "branch": "A-D",
+      "eligible_targets": 25,
+      "materialization": "ready_for_setup_or_discovery -> ready_for_discovery",
+      "preparation": "success -> success",
+      "procedure": "development_frozen_revision",
+      "project": "inference-labs-inc/subnet-2-circom",
+      "ready_for_execute": true,
+      "revision_evidence": {
+        "manifest": "runs/l06-2026-10-03/trees/manifest.json",
+        "manifest_sha256": "8b926fe2a2a8245f4fab6a49ca14033d866fb156553468f478ca9353802ef589",
+        "status": "matched_frozen_tree",
+        "tree": "c771c61c_p"
+      },
+      "revision_kind": "development",
+      "setup": "success -> success",
+      "split_preflight_ready": true,
+      "unit_id": "inference-c771c61c-p",
+      "whole_preflight_ready": true
+    },
+    {
+      "S": "pass 3/3; fail 0; missing 0",
+      "W": "pass 3/3; fail 0; missing 0",
+      "branch": "A-D",
+      "eligible_targets": 25,
+      "materialization": "ready(recovered) -> ready_for_discovery",
+      "preparation": "success -> success",
+      "procedure": "development_frozen_revision",
+      "project": "inference-labs-inc/subnet-2-circom",
+      "ready_for_execute": true,
+      "revision_evidence": {
+        "manifest": "runs/l06-2026-10-03/trees/manifest.json",
+        "manifest_sha256": "8b926fe2a2a8245f4fab6a49ca14033d866fb156553468f478ca9353802ef589",
+        "status": "matched_frozen_tree",
+        "tree": "loo_clamp"
+      },
+      "revision_kind": "leave_one_out",
+      "setup": "success -> success",
+      "split_preflight_ready": true,
+      "unit_id": "inference-loo-clamp",
+      "whole_preflight_ready": true
+    },
+    {
+      "S": "pass 3/3; fail 0; missing 0",
+      "W": "pass 3/3; fail 0; missing 0",
+      "branch": "A-D",
+      "eligible_targets": 25,
+      "materialization": "ready(recovered) -> ready_for_discovery",
+      "preparation": "success -> success",
+      "procedure": "development_frozen_revision",
+      "project": "inference-labs-inc/subnet-2-circom",
+      "ready_for_execute": true,
+      "revision_evidence": {
+        "manifest": "runs/l06-2026-10-03/trees/manifest.json",
+        "manifest_sha256": "8b926fe2a2a8245f4fab6a49ca14033d866fb156553468f478ca9353802ef589",
+        "status": "matched_frozen_tree",
+        "tree": "loo_dfs"
+      },
+      "revision_kind": "leave_one_out",
+      "setup": "success -> success",
+      "split_preflight_ready": true,
+      "unit_id": "inference-loo-dfs",
+      "whole_preflight_ready": true
+    },
+    {
+      "S": "pass 3/3; fail 0; missing 0",
+      "W": "pass 3/3; fail 0; missing 0",
+      "branch": "A-D",
+      "eligible_targets": 25,
+      "materialization": "ready(recovered) -> ready_for_discovery",
+      "preparation": "success -> success",
+      "procedure": "development_frozen_revision",
+      "project": "inference-labs-inc/subnet-2-circom",
+      "ready_for_execute": true,
+      "revision_evidence": {
+        "manifest": "runs/l06-2026-10-03/trees/manifest.json",
+        "manifest_sha256": "8b926fe2a2a8245f4fab6a49ca14033d866fb156553468f478ca9353802ef589",
+        "status": "matched_frozen_tree",
+        "tree": "all_fixed"
+      },
+      "revision_kind": "fixed",
+      "setup": "success -> success",
+      "split_preflight_ready": true,
+      "unit_id": "inference-all-fixed",
+      "whole_preflight_ready": true
+    },
+    {
+      "S": "pass 3/3; fail 0; missing 0",
+      "W": "pass 3/3; fail 0; missing 0",
+      "branch": "A-D",
+      "eligible_targets": 6,
+      "materialization": "ready_for_setup_or_discovery -> ready_for_discovery",
+      "preparation": "success -> success",
+      "procedure": "development_frozen_revision",
+      "project": "banyancomputer/hot-proofs-blake3-circom",
+      "ready_for_execute": true,
+      "revision_evidence": {
+        "entrypoint": "runs/n6-a1b-2026-10-08/units/banyan-vulnerable/project/circuit.circom",
+        "entrypoint_sha256": "7c711b21c84868cd2182abb0a75b0272d5da98c3a83e792e4ea738c6596c300f",
+        "status": "matched_frozen_snapshot"
+      },
+      "revision_kind": "development",
+      "setup": "success -> success",
+      "split_preflight_ready": true,
+      "unit_id": "banyan-vulnerable",
+      "whole_preflight_ready": true
+    },
+    {
+      "S": "pass 3/3; fail 0; missing 0",
+      "W": "pass 3/3; fail 0; missing 0",
+      "branch": "A-D",
+      "eligible_targets": 7,
+      "materialization": "ready_for_setup_or_discovery -> ready_for_discovery",
+      "preparation": "success -> success",
+      "procedure": "development_frozen_revision",
+      "project": "banyancomputer/hot-proofs-blake3-circom",
+      "ready_for_execute": true,
+      "revision_evidence": {
+        "entrypoint": "runs/n6-a1b-2026-10-08/units/banyan-fixed/project/circuit.circom",
+        "entrypoint_sha256": "7c711b21c84868cd2182abb0a75b0272d5da98c3a83e792e4ea738c6596c300f",
+        "status": "matched_frozen_snapshot"
+      },
+      "revision_kind": "fixed",
+      "setup": "success -> success",
+      "split_preflight_ready": true,
+      "unit_id": "banyan-fixed",
+      "whole_preflight_ready": true
+    },
+    {
+      "S": "pass 3/3; fail 0; missing 0",
+      "W": "pass 3/3; fail 0; missing 0",
+      "branch": "A-D",
+      "eligible_targets": 11,
+      "materialization": "ready_for_setup_or_discovery -> ready_for_discovery",
+      "preparation": "success -> success",
+      "procedure": "development_frozen_revision",
+      "project": "zkemail/zk-email-verify",
+      "ready_for_execute": true,
+      "revision_evidence": {
+        "expected": "fc9949763858ca363a73a2764d9c1d26ef227478",
+        "observed": "fc9949763858ca363a73a2764d9c1d26ef227478",
+        "status": "matched"
+      },
+      "revision_kind": "development",
+      "setup": "success -> success",
+      "split_preflight_ready": true,
+      "unit_id": "zkemail-fpmul-vulnerable",
+      "whole_preflight_ready": true
+    },
+    {
+      "S": "pass 3/3; fail 0; missing 0",
+      "W": "pass 3/3; fail 0; missing 0",
+      "branch": "A-D",
+      "eligible_targets": 11,
+      "materialization": "ready(recovered) -> ready_for_discovery",
+      "preparation": "success -> success",
+      "procedure": "development_frozen_revision",
+      "project": "zkemail/zk-email-verify",
+      "ready_for_execute": true,
+      "revision_evidence": {
+        "expected": "9ed3769dc3d96fb0d7c45f1f014dcd9bfb63675b",
+        "observed": "9ed3769dc3d96fb0d7c45f1f014dcd9bfb63675b",
+        "status": "matched"
+      },
+      "revision_kind": "fixed",
+      "setup": "success -> success",
+      "split_preflight_ready": true,
+      "unit_id": "zkemail-fpmul-fixed",
+      "whole_preflight_ready": true
+    },
+    {
+      "S": "not_generated",
+      "W": "not_generated",
+      "branch": "A-Q-stage1",
+      "eligible_targets": null,
+      "materialization": "ready(recovered) -> ready_for_discovery",
+      "preparation": "failed:manifest_concrete_instance_unavailable -> failed:manifest_concrete_instance_unavailable",
+      "procedure": "zkbugs_official",
+      "project": "aptos-labs/keyless-zk-proofs",
+      "ready_for_execute": false,
+      "revision_evidence": {
+        "expected": "fa943244d45cb733626e54108a0ce7e10bcba5c3",
+        "observed": "fa943244d45cb733626e54108a0ce7e10bcba5c3",
+        "status": "matched"
+      },
+      "revision_kind": "fixed",
+      "setup": "success -> success",
+      "split_preflight_ready": false,
+      "unit_id": "aq-000-a6b97aeaa1ae",
+      "whole_preflight_ready": false
+    },
+    {
+      "S": "not_generated",
+      "W": "not_generated",
+      "branch": "A-Q-stage1",
+      "eligible_targets": 0,
+      "materialization": "ready(recovered) -> ready_for_discovery",
+      "preparation": "failed:compiler_or_tool_error -> failed:compiler_or_tool_error",
+      "procedure": "zkbugs_official",
+      "project": "aptos-labs/keyless-zk-proofs",
+      "ready_for_execute": false,
+      "revision_evidence": {
+        "expected": "fd160220a88a5becf0f91ea1a5425fdd537c7399",
+        "observed": "fd160220a88a5becf0f91ea1a5425fdd537c7399",
+        "status": "matched"
+      },
+      "revision_kind": "vulnerable",
+      "setup": "success -> success",
+      "split_preflight_ready": false,
+      "unit_id": "aq-001-b32aa7daaea0",
+      "whole_preflight_ready": false
+    },
+    {
+      "S": "not_generated",
+      "W": "not_generated",
+      "branch": "A-Q-stage1",
+      "eligible_targets": null,
+      "materialization": "ready(recovered) -> ready_for_discovery",
+      "preparation": "not_started:setup_not_success -> failed:manifest_concrete_instance_unavailable",
+      "procedure": "zkbugs_official",
+      "project": "Arianee/arianee-sdk",
+      "ready_for_execute": false,
+      "revision_evidence": {
+        "expected": "095a366101c50ba46601402805c0935650558aab",
+        "observed": "095a366101c50ba46601402805c0935650558aab",
+        "status": "matched"
+      },
+      "revision_kind": "fixed",
+      "setup": "setup_failure -> success",
+      "split_preflight_ready": false,
+      "unit_id": "aq-002-923e08e670de",
+      "whole_preflight_ready": false
+    },
+    {
+      "S": "not_generated",
+      "W": "not_generated",
+      "branch": "A-Q-stage1",
+      "eligible_targets": 0,
+      "materialization": "ready(recovered) -> ready_for_discovery",
+      "preparation": "not_started:setup_not_success -> failed:compiler_or_tool_error",
+      "procedure": "zkbugs_official",
+      "project": "Arianee/arianee-sdk",
+      "ready_for_execute": false,
+      "revision_evidence": {
+        "expected": "b7da01e0c81b9cccdc257040997c3500eb59db4f",
+        "observed": "b7da01e0c81b9cccdc257040997c3500eb59db4f",
+        "status": "matched"
+      },
+      "revision_kind": "vulnerable",
+      "setup": "setup_failure -> success",
+      "split_preflight_ready": false,
+      "unit_id": "aq-003-626254249e88",
+      "whole_preflight_ready": false
+    },
+    {
+      "S": "not_generated",
+      "W": "not_generated",
+      "branch": "A-Q-stage1",
+      "eligible_targets": 0,
+      "materialization": "ready_for_setup_or_discovery -> ready_for_discovery",
+      "preparation": "not_started:setup_not_success -> failed:compiler_or_tool_error",
+      "procedure": "zkbugs_official",
+      "project": "iden3/circomlib",
+      "ready_for_execute": false,
+      "revision_evidence": {
+        "expected": "109cdf40567fce284dca1d535819ce28922653e0",
+        "observed": "109cdf40567fce284dca1d535819ce28922653e0",
+        "status": "matched"
+      },
+      "revision_kind": "fixed",
+      "setup": "setup_failure -> success",
+      "split_preflight_ready": false,
+      "unit_id": "aq-004-803378d79dea",
+      "whole_preflight_ready": false
+    },
+    {
+      "S": "not_generated",
+      "W": "not_generated",
+      "branch": "A-Q-stage1",
+      "eligible_targets": 0,
+      "materialization": "ready_for_setup_or_discovery -> ready_for_discovery",
+      "preparation": "not_started:setup_not_success -> failed:compiler_or_tool_error",
+      "procedure": "zkbugs_official",
+      "project": "iden3/circomlib",
+      "ready_for_execute": false,
+      "revision_evidence": {
+        "expected": "324b8bf8cc4a80357354752deb6c2ae5be22e5f5",
+        "observed": "324b8bf8cc4a80357354752deb6c2ae5be22e5f5",
+        "status": "matched"
+      },
+      "revision_kind": "vulnerable",
+      "setup": "setup_failure -> success",
+      "split_preflight_ready": false,
+      "unit_id": "aq-005-b689893c025f",
+      "whole_preflight_ready": false
+    },
+    {
+      "S": "pass 3/3; fail 0; missing 0",
+      "W": "pass 3/3; fail 0; missing 0",
+      "branch": "A-Q-stage1",
+      "eligible_targets": 78,
+      "materialization": "ready_for_setup_or_discovery -> ready_for_discovery",
+      "preparation": "not_started:setup_not_success -> success",
+      "procedure": "zkbugs_official",
+      "project": "Moonsong-Labs/zksync-social-login-circuit",
+      "ready_for_execute": true,
+      "revision_evidence": {
+        "expected": "0548942278a414d85e2f3d406e171eeac325349e",
+        "observed": "0548942278a414d85e2f3d406e171eeac325349e",
+        "status": "matched"
+      },
+      "revision_kind": "fixed",
+      "setup": "setup_failure -> success",
+      "split_preflight_ready": true,
+      "unit_id": "aq-006-1680f955c185",
+      "whole_preflight_ready": true
+    },
+    {
+      "S": "pass 3/3; fail 0; missing 0",
+      "W": "pass 3/3; fail 0; missing 0",
+      "branch": "A-Q-stage1",
+      "eligible_targets": 81,
+      "materialization": "ready_for_setup_or_discovery -> ready_for_discovery",
+      "preparation": "not_started:setup_not_success -> success",
+      "procedure": "zkbugs_official",
+      "project": "Moonsong-Labs/zksync-social-login-circuit",
+      "ready_for_execute": true,
+      "revision_evidence": {
+        "expected": "5d02de9e550b6e671b732a432c590c02cb8bab3d",
+        "observed": "5d02de9e550b6e671b732a432c590c02cb8bab3d",
+        "status": "matched"
+      },
+      "revision_kind": "fixed",
+      "setup": "setup_failure -> success",
+      "split_preflight_ready": true,
+      "unit_id": "aq-007-0bb83f9eab0f",
+      "whole_preflight_ready": true
+    },
+    {
+      "S": "pass 3/3; fail 0; missing 0",
+      "W": "pass 3/3; fail 0; missing 0",
+      "branch": "A-Q-stage1",
+      "eligible_targets": 80,
+      "materialization": "ready_for_setup_or_discovery -> ready_for_discovery",
+      "preparation": "not_started:setup_not_success -> success",
+      "procedure": "zkbugs_official",
+      "project": "Moonsong-Labs/zksync-social-login-circuit",
+      "ready_for_execute": true,
+      "revision_evidence": {
+        "expected": "27cda6e74492fbad4aa3ca37ff5084ed391b534b",
+        "observed": "27cda6e74492fbad4aa3ca37ff5084ed391b534b",
+        "status": "matched"
+      },
+      "revision_kind": "vulnerable",
+      "setup": "setup_failure -> success",
+      "split_preflight_ready": true,
+      "unit_id": "aq-008-9c9e702d061d",
+      "whole_preflight_ready": true
+    },
+    {
+      "S": "not_generated",
+      "W": "not_generated",
+      "branch": "A-Q-stage1",
+      "eligible_targets": null,
+      "materialization": "not_started:source_commit_unavailable -> not_started:fix_commit_unretrievable",
+      "preparation": "not_started:setup_not_success -> not_started:setup_not_success",
+      "procedure": "zkbugs_official",
+      "project": "pantherfoundation/panther-core",
+      "ready_for_execute": false,
+      "revision_evidence": {
+        "reason": "fix_commit_unretrievable",
+        "status": "unavailable"
+      },
+      "revision_kind": "fixed",
+      "setup": "not_started -> not_started",
+      "split_preflight_ready": false,
+      "unit_id": "aq-009-aefcab68a248",
+      "whole_preflight_ready": false
+    },
+    {
+      "S": "not_generated",
+      "W": "not_generated",
+      "branch": "A-Q-stage1",
+      "eligible_targets": null,
+      "materialization": "not_started:source_commit_unavailable -> not_started:fix_commit_unretrievable",
+      "preparation": "not_started:setup_not_success -> not_started:setup_not_success",
+      "procedure": "zkbugs_official",
+      "project": "pantherfoundation/panther-core",
+      "ready_for_execute": false,
+      "revision_evidence": {
+        "reason": "fix_commit_unretrievable",
+        "status": "unavailable"
+      },
+      "revision_kind": "fixed",
+      "setup": "not_started -> not_started",
+      "split_preflight_ready": false,
+      "unit_id": "aq-010-f35ff2e9e262",
+      "whole_preflight_ready": false
+    },
+    {
+      "S": "pass 3/3; fail 0; missing 0",
+      "W": "pass 3/3; fail 0; missing 0",
+      "branch": "A-Q-stage1",
+      "eligible_targets": 116,
+      "materialization": "not_started:source_commit_unavailable -> ready_for_discovery",
+      "preparation": "not_started:setup_not_success -> success",
+      "procedure": "zkbugs_official",
+      "project": "pantherfoundation/panther-core",
+      "ready_for_execute": true,
+      "revision_evidence": {
+        "expected": "b464348b33155a5877f67c085c7206dc29ad7cb7",
+        "observed": "b464348b33155a5877f67c085c7206dc29ad7cb7",
+        "status": "matched"
+      },
+      "revision_kind": "vulnerable",
+      "setup": "not_started -> success",
+      "split_preflight_ready": true,
+      "unit_id": "aq-011-93343c3cd34c",
+      "whole_preflight_ready": true
+    },
+    {
+      "S": "pass 3/3; fail 0; missing 0",
+      "W": "pass 3/3; fail 0; missing 0",
+      "branch": "A-Q-stage1",
+      "eligible_targets": 181,
+      "materialization": "not_started:source_commit_unavailable -> ready_for_discovery",
+      "preparation": "not_started:setup_not_success -> success",
+      "procedure": "zkbugs_official",
+      "project": "pantherfoundation/panther-core",
+      "ready_for_execute": true,
+      "revision_evidence": {
+        "expected": "39b770de49db47fcea361cf515b61e43dff36b65",
+        "observed": "39b770de49db47fcea361cf515b61e43dff36b65",
+        "status": "matched"
+      },
+      "revision_kind": "fixed",
+      "setup": "not_started -> success",
+      "split_preflight_ready": true,
+      "unit_id": "aq-012-44d0df2ab46e",
+      "whole_preflight_ready": true
+    },
+    {
+      "S": "not_generated",
+      "W": "not_generated",
+      "branch": "A-Q-stage1",
+      "eligible_targets": null,
+      "materialization": "not_started:source_commit_unavailable -> not_started:fix_commit_unretrievable",
+      "preparation": "not_started:setup_not_success -> not_started:setup_not_success",
+      "procedure": "zkbugs_official",
+      "project": "pantherfoundation/panther-core",
+      "ready_for_execute": false,
+      "revision_evidence": {
+        "reason": "fix_commit_unretrievable",
+        "status": "unavailable"
+      },
+      "revision_kind": "fixed",
+      "setup": "not_started -> not_started",
+      "split_preflight_ready": false,
+      "unit_id": "aq-013-dd5954ac38b1",
+      "whole_preflight_ready": false
+    },
+    {
+      "S": "not_generated",
+      "W": "not_generated",
+      "branch": "A-Q-stage1",
+      "eligible_targets": null,
+      "materialization": "not_started:source_commit_unavailable -> not_started:fix_commit_unretrievable",
+      "preparation": "not_started:setup_not_success -> not_started:setup_not_success",
+      "procedure": "zkbugs_official",
+      "project": "pantherfoundation/panther-core",
+      "ready_for_execute": false,
+      "revision_evidence": {
+        "reason": "fix_commit_unretrievable",
+        "status": "unavailable"
+      },
+      "revision_kind": "fixed",
+      "setup": "not_started -> not_started",
+      "split_preflight_ready": false,
+      "unit_id": "aq-014-5427d7292faa",
+      "whole_preflight_ready": false
+    },
+    {
+      "S": "not_generated",
+      "W": "not_generated",
+      "branch": "A-Q-stage1",
+      "eligible_targets": null,
+      "materialization": "not_started:source_commit_unavailable -> not_started:fix_commit_unretrievable",
+      "preparation": "not_started:setup_not_success -> not_started:setup_not_success",
+      "procedure": "zkbugs_official",
+      "project": "pantherfoundation/panther-core",
+      "ready_for_execute": false,
+      "revision_evidence": {
+        "reason": "fix_commit_unretrievable",
+        "status": "unavailable"
+      },
+      "revision_kind": "fixed",
+      "setup": "not_started -> not_started",
+      "split_preflight_ready": false,
+      "unit_id": "aq-015-7bec6b38ea36",
+      "whole_preflight_ready": false
+    },
+    {
+      "S": "pass 3/3; fail 0; missing 0",
+      "W": "pass 3/3; fail 0; missing 0",
+      "branch": "A-Q-stage1",
+      "eligible_targets": 181,
+      "materialization": "not_started:source_commit_unavailable -> ready_for_discovery",
+      "preparation": "not_started:setup_not_success -> success",
+      "procedure": "zkbugs_official",
+      "project": "pantherfoundation/panther-core",
+      "ready_for_execute": true,
+      "revision_evidence": {
+        "expected": "06a818632053719b56ace37ef12c9b31904af1e2",
+        "observed": "06a818632053719b56ace37ef12c9b31904af1e2",
+        "status": "matched"
+      },
+      "revision_kind": "vulnerable",
+      "setup": "not_started -> success",
+      "split_preflight_ready": true,
+      "unit_id": "aq-016-0a7d49b1c135",
+      "whole_preflight_ready": true
+    },
+    {
+      "S": "pass 3/3; fail 0; missing 0",
+      "W": "pass 3/3; fail 0; missing 0",
+      "branch": "A-Q-stage1",
+      "eligible_targets": 183,
+      "materialization": "not_started:source_commit_unavailable -> ready_for_discovery",
+      "preparation": "not_started:setup_not_success -> success",
+      "procedure": "zkbugs_official",
+      "project": "pantherfoundation/panther-core",
+      "ready_for_execute": true,
+      "revision_evidence": {
+        "expected": "b464348b33155a5877f67c085c7206dc29ad7cb7",
+        "observed": "b464348b33155a5877f67c085c7206dc29ad7cb7",
+        "status": "matched"
+      },
+      "revision_kind": "vulnerable",
+      "setup": "not_started -> success",
+      "split_preflight_ready": true,
+      "unit_id": "aq-017-9703bbce0c43",
+      "whole_preflight_ready": true
+    },
+    {
+      "S": "not_generated",
+      "W": "not_generated",
+      "branch": "A-Q-stage1",
+      "eligible_targets": null,
+      "materialization": "not_started:source_commit_unavailable -> not_started:fix_commit_unretrievable",
+      "preparation": "not_started:setup_not_success -> not_started:setup_not_success",
+      "procedure": "zkbugs_official",
+      "project": "pantherfoundation/panther-core",
+      "ready_for_execute": false,
+      "revision_evidence": {
+        "reason": "fix_commit_unretrievable",
+        "status": "unavailable"
+      },
+      "revision_kind": "fixed",
+      "setup": "not_started -> not_started",
+      "split_preflight_ready": false,
+      "unit_id": "aq-018-e39e4e77138c",
+      "whole_preflight_ready": false
+    },
+    {
+      "S": "not_generated",
+      "W": "not_generated",
+      "branch": "A-Q-stage1",
+      "eligible_targets": null,
+      "materialization": "not_started:source_commit_unavailable -> not_started:fix_commit_unretrievable",
+      "preparation": "not_started:setup_not_success -> not_started:setup_not_success",
+      "procedure": "zkbugs_official",
+      "project": "pantherfoundation/panther-core",
+      "ready_for_execute": false,
+      "revision_evidence": {
+        "reason": "fix_commit_unretrievable",
+        "status": "unavailable"
+      },
+      "revision_kind": "fixed",
+      "setup": "not_started -> not_started",
+      "split_preflight_ready": false,
+      "unit_id": "aq-019-90637f07f72b",
+      "whole_preflight_ready": false
+    },
+    {
+      "S": "not_generated",
+      "W": "not_generated",
+      "branch": "A-Q-stage1",
+      "eligible_targets": null,
+      "materialization": "not_started:source_commit_unavailable -> not_started:fix_commit_unretrievable",
+      "preparation": "not_started:setup_not_success -> not_started:setup_not_success",
+      "procedure": "zkbugs_official",
+      "project": "pantherfoundation/panther-core",
+      "ready_for_execute": false,
+      "revision_evidence": {
+        "reason": "fix_commit_unretrievable",
+        "status": "unavailable"
+      },
+      "revision_kind": "fixed",
+      "setup": "not_started -> not_started",
+      "split_preflight_ready": false,
+      "unit_id": "aq-020-f217a8d648bc",
+      "whole_preflight_ready": false
+    },
+    {
+      "S": "not_generated",
+      "W": "not_generated",
+      "branch": "A-Q-stage1",
+      "eligible_targets": null,
+      "materialization": "not_started:source_commit_unavailable -> not_started:fix_commit_unretrievable",
+      "preparation": "not_started:setup_not_success -> not_started:setup_not_success",
+      "procedure": "zkbugs_official",
+      "project": "pantherfoundation/panther-core",
+      "ready_for_execute": false,
+      "revision_evidence": {
+        "reason": "fix_commit_unretrievable",
+        "status": "unavailable"
+      },
+      "revision_kind": "fixed",
+      "setup": "not_started -> not_started",
+      "split_preflight_ready": false,
+      "unit_id": "aq-021-12898764f632",
+      "whole_preflight_ready": false
+    },
+    {
+      "S": "not_generated",
+      "W": "not_generated",
+      "branch": "A-Q-stage1",
+      "eligible_targets": null,
+      "materialization": "not_started:source_commit_unavailable -> not_started:fix_commit_unretrievable",
+      "preparation": "not_started:setup_not_success -> not_started:setup_not_success",
+      "procedure": "zkbugs_official",
+      "project": "pantherfoundation/panther-core",
+      "ready_for_execute": false,
+      "revision_evidence": {
+        "reason": "fix_commit_unretrievable",
+        "status": "unavailable"
+      },
+      "revision_kind": "fixed",
+      "setup": "not_started -> not_started",
+      "split_preflight_ready": false,
+      "unit_id": "aq-022-1f2e2842f6ed",
+      "whole_preflight_ready": false
+    },
+    {
+      "S": "not_generated",
+      "W": "not_generated",
+      "branch": "A-Q-stage1",
+      "eligible_targets": null,
+      "materialization": "not_started:source_commit_unavailable -> not_started:fix_commit_unretrievable",
+      "preparation": "not_started:setup_not_success -> not_started:setup_not_success",
+      "procedure": "zkbugs_official",
+      "project": "pantherfoundation/panther-core",
+      "ready_for_execute": false,
+      "revision_evidence": {
+        "reason": "fix_commit_unretrievable",
+        "status": "unavailable"
+      },
+      "revision_kind": "fixed",
+      "setup": "not_started -> not_started",
+      "split_preflight_ready": false,
+      "unit_id": "aq-023-e609ecb8edce",
+      "whole_preflight_ready": false
+    },
+    {
+      "S": "pass 3/3; fail 0; missing 0",
+      "W": "pass 3/3; fail 0; missing 0",
+      "branch": "A-Q-stage1",
+      "eligible_targets": 179,
+      "materialization": "not_started:source_commit_unavailable -> ready_for_discovery",
+      "preparation": "not_started:setup_not_success -> success",
+      "procedure": "zkbugs_official",
+      "project": "pantherfoundation/panther-core",
+      "ready_for_execute": true,
+      "revision_evidence": {
+        "expected": "b464348b33155a5877f67c085c7206dc29ad7cb7",
+        "observed": "b464348b33155a5877f67c085c7206dc29ad7cb7",
+        "status": "matched"
+      },
+      "revision_kind": "vulnerable",
+      "setup": "not_started -> success",
+      "split_preflight_ready": true,
+      "unit_id": "aq-024-6f6781246415",
+      "whole_preflight_ready": true
+    },
+    {
+      "S": "pass 3/3; fail 0; missing 0",
+      "W": "pass 3/3; fail 0; missing 0",
+      "branch": "A-Q-stage1",
+      "eligible_targets": 44,
+      "materialization": "ready_for_setup_or_discovery -> ready_for_discovery",
+      "preparation": "success -> success",
+      "procedure": "zkbugs_official",
+      "project": "rarimo/passport-zk-circuits",
+      "ready_for_execute": true,
+      "revision_evidence": {
+        "expected": "bbbe14c71c08be20a55f29bb2159261f0b32be0f",
+        "observed": "bbbe14c71c08be20a55f29bb2159261f0b32be0f",
+        "status": "matched"
+      },
+      "revision_kind": "fixed",
+      "setup": "success -> success",
+      "split_preflight_ready": true,
+      "unit_id": "aq-025-70328d3fd35e",
+      "whole_preflight_ready": true
+    },
+    {
+      "S": "pass 3/3; fail 0; missing 0",
+      "W": "pass 3/3; fail 0; missing 0",
+      "branch": "A-Q-stage1",
+      "eligible_targets": 42,
+      "materialization": "ready_for_setup_or_discovery -> ready_for_discovery",
+      "preparation": "success -> success",
+      "procedure": "zkbugs_official",
+      "project": "rarimo/passport-zk-circuits",
+      "ready_for_execute": true,
+      "revision_evidence": {
+        "expected": "9143bc77eb2bdbd174eaa61b25b11adb5ee99f61",
+        "observed": "9143bc77eb2bdbd174eaa61b25b11adb5ee99f61",
+        "status": "matched"
+      },
+      "revision_kind": "vulnerable",
+      "setup": "success -> success",
+      "split_preflight_ready": true,
+      "unit_id": "aq-026-2bcd7ed6110f",
+      "whole_preflight_ready": true
+    },
+    {
+      "S": "not_generated",
+      "W": "not_generated",
+      "branch": "A-Q-stage1",
+      "eligible_targets": 0,
+      "materialization": "ready(recovered) -> ready_for_discovery",
+      "preparation": "failed:compiler_or_tool_error -> failed:compiler_or_tool_error",
+      "procedure": "zkbugs_official",
+      "project": "siv-org/verifiable-private-overrides",
+      "ready_for_execute": false,
+      "revision_evidence": {
+        "expected": "7c3402dda19010e7ff6c3987b6fa72b076e9b159",
+        "observed": "7c3402dda19010e7ff6c3987b6fa72b076e9b159",
+        "status": "matched"
+      },
+      "revision_kind": "fixed",
+      "setup": "success -> success",
+      "split_preflight_ready": false,
+      "unit_id": "aq-027-a847471783dc",
+      "whole_preflight_ready": false
+    },
+    {
+      "S": "not_generated",
+      "W": "not_generated",
+      "branch": "A-Q-stage1",
+      "eligible_targets": null,
+      "materialization": "failed:leave_one_out_patch_unavailable -> not_started:leave_one_out_patch_unavailable",
+      "preparation": "not_started:setup_not_success -> not_started:setup_not_success",
+      "procedure": "zkbugs_official",
+      "project": "siv-org/verifiable-private-overrides",
+      "ready_for_execute": false,
+      "revision_evidence": {
+        "reason": "leave_one_out_patch_unavailable",
+        "status": "unavailable"
+      },
+      "revision_kind": "leave_one_out",
+      "setup": "not_started -> not_started",
+      "split_preflight_ready": false,
+      "unit_id": "aq-028-b9b2613fdfa4",
+      "whole_preflight_ready": false
+    },
+    {
+      "S": "not_generated",
+      "W": "not_generated",
+      "branch": "A-Q-stage1",
+      "eligible_targets": 0,
+      "materialization": "ready(recovered) -> ready_for_discovery",
+      "preparation": "failed:compiler_or_tool_error -> failed:compiler_or_tool_error",
+      "procedure": "zkbugs_official",
+      "project": "siv-org/verifiable-private-overrides",
+      "ready_for_execute": false,
+      "revision_evidence": {
+        "expected": "7bda2311d7a33dcab611cfea0c67707b0b65c24c",
+        "observed": "7bda2311d7a33dcab611cfea0c67707b0b65c24c",
+        "status": "matched"
+      },
+      "revision_kind": "vulnerable",
+      "setup": "success -> success",
+      "split_preflight_ready": false,
+      "unit_id": "aq-029-886c1c02fb66",
+      "whole_preflight_ready": false
+    },
+    {
+      "S": "not_generated",
+      "W": "not_generated",
+      "branch": "A-Q-stage1",
+      "eligible_targets": 0,
+      "materialization": "ready(recovered) -> ready_for_discovery",
+      "preparation": "failed:compiler_or_tool_error -> failed:compiler_or_tool_error",
+      "procedure": "zkbugs_official",
+      "project": "siv-org/verifiable-private-overrides",
+      "ready_for_execute": false,
+      "revision_evidence": {
+        "expected": "7c3402dda19010e7ff6c3987b6fa72b076e9b159",
+        "observed": "7c3402dda19010e7ff6c3987b6fa72b076e9b159",
+        "status": "matched"
+      },
+      "revision_kind": "fixed",
+      "setup": "success -> success",
+      "split_preflight_ready": false,
+      "unit_id": "aq-030-f6334f2145b4",
+      "whole_preflight_ready": false
+    },
+    {
+      "S": "not_generated",
+      "W": "not_generated",
+      "branch": "A-Q-stage1",
+      "eligible_targets": 0,
+      "materialization": "ready(recovered) -> ready_for_discovery",
+      "preparation": "failed:compiler_or_tool_error -> failed:compiler_or_tool_error",
+      "procedure": "zkbugs_official",
+      "project": "siv-org/verifiable-private-overrides",
+      "ready_for_execute": false,
+      "revision_evidence": {
+        "expected": "7c3402dda19010e7ff6c3987b6fa72b076e9b159",
+        "observed": "7c3402dda19010e7ff6c3987b6fa72b076e9b159",
+        "status": "matched"
+      },
+      "revision_kind": "leave_one_out",
+      "setup": "success -> success",
+      "split_preflight_ready": false,
+      "unit_id": "aq-031-2191c2696b01",
+      "whole_preflight_ready": false
+    },
+    {
+      "S": "not_generated",
+      "W": "not_generated",
+      "branch": "A-Q-stage1",
+      "eligible_targets": 0,
+      "materialization": "ready(recovered) -> ready_for_discovery",
+      "preparation": "failed:compiler_or_tool_error -> failed:compiler_or_tool_error",
+      "procedure": "zkbugs_official",
+      "project": "siv-org/verifiable-private-overrides",
+      "ready_for_execute": false,
+      "revision_evidence": {
+        "expected": "7bda2311d7a33dcab611cfea0c67707b0b65c24c",
+        "observed": "7bda2311d7a33dcab611cfea0c67707b0b65c24c",
+        "status": "matched"
+      },
+      "revision_kind": "vulnerable",
+      "setup": "success -> success",
+      "split_preflight_ready": false,
+      "unit_id": "aq-032-01439be37566",
+      "whole_preflight_ready": false
+    },
+    {
+      "S": "not_generated",
+      "W": "not_generated",
+      "branch": "A-Q-stage1",
+      "eligible_targets": null,
+      "materialization": "failed:original_entrypoint_missing -> failed:original_entrypoint_missing",
+      "preparation": "not_started:setup_not_success -> not_started:setup_not_success",
+      "procedure": "zkbugs_official",
+      "project": "tangle-network/protocol-solidity",
+      "ready_for_execute": false,
+      "revision_evidence": {
+        "expected": "eeb4fc7a4883d513e3fe3adbe2c447133ccd39f2",
+        "observed": "eeb4fc7a4883d513e3fe3adbe2c447133ccd39f2",
+        "status": "matched"
+      },
+      "revision_kind": "fixed",
+      "setup": "not_started -> not_started",
+      "split_preflight_ready": false,
+      "unit_id": "aq-033-f4e0cd04d538",
+      "whole_preflight_ready": false
+    },
+    {
+      "S": "not_generated",
+      "W": "not_generated",
+      "branch": "A-Q-stage1",
+      "eligible_targets": null,
+      "materialization": "ready_for_setup_or_discovery -> ready_for_discovery",
+      "preparation": "not_started:setup_not_success -> failed:manifest_concrete_instance_unavailable",
+      "procedure": "zkbugs_official",
+      "project": "tangle-network/protocol-solidity",
+      "ready_for_execute": false,
+      "revision_evidence": {
+        "expected": "848d073bb17f0aaffc6d39f594cc59efedeaec89",
+        "observed": "848d073bb17f0aaffc6d39f594cc59efedeaec89",
+        "status": "matched"
+      },
+      "revision_kind": "vulnerable",
+      "setup": "setup_failure -> success",
+      "split_preflight_ready": false,
+      "unit_id": "aq-034-8d1c03d49b12",
+      "whole_preflight_ready": false
+    },
+    {
+      "S": "pass 3/3; fail 0; missing 0",
+      "W": "pass 3/3; fail 0; missing 0",
+      "branch": "A-Q-stage1",
+      "eligible_targets": 6,
+      "materialization": "ready_for_setup_or_discovery -> ready_for_discovery",
+      "preparation": "success -> success",
+      "procedure": "zkbugs_official",
+      "project": "worm-privacy/proof-of-burn",
+      "ready_for_execute": true,
+      "revision_evidence": {
+        "expected": "90772b1c9fe73d1452e047fe49ca4fdc346472a0",
+        "observed": "90772b1c9fe73d1452e047fe49ca4fdc346472a0",
+        "status": "matched"
+      },
+      "revision_kind": "fixed",
+      "setup": "success -> success",
+      "split_preflight_ready": true,
+      "unit_id": "aq-035-8f826c822cb8",
+      "whole_preflight_ready": true
+    },
+    {
+      "S": "pass 3/3; fail 0; missing 0",
+      "W": "pass 3/3; fail 0; missing 0",
+      "branch": "A-Q-stage1",
+      "eligible_targets": 3,
+      "materialization": "ready_for_setup_or_discovery -> ready_for_discovery",
+      "preparation": "success -> success",
+      "procedure": "zkbugs_official",
+      "project": "worm-privacy/proof-of-burn",
+      "ready_for_execute": true,
+      "revision_evidence": {
+        "expected": "0802485d24fed18fe063e51bcbb0bc830585855f",
+        "observed": "0802485d24fed18fe063e51bcbb0bc830585855f",
+        "status": "matched"
+      },
+      "revision_kind": "vulnerable",
+      "setup": "success -> success",
+      "split_preflight_ready": true,
+      "unit_id": "aq-036-6d7df64759b6",
+      "whole_preflight_ready": true
+    },
+    {
+      "S": "pass 3/3; fail 0; missing 0",
+      "W": "pass 3/3; fail 0; missing 0",
+      "branch": "A-Q-stage1",
+      "eligible_targets": 27,
+      "materialization": "ready_for_setup_or_discovery -> ready_for_discovery",
+      "preparation": "success -> success",
+      "procedure": "zkbugs_official",
+      "project": "zkemail/zk-regex",
+      "ready_for_execute": true,
+      "revision_evidence": {
+        "expected": "7002a2179e076449b84e3e7e8ba94e88d0a2dc2f",
+        "observed": "7002a2179e076449b84e3e7e8ba94e88d0a2dc2f",
+        "status": "matched"
+      },
+      "revision_kind": "fixed",
+      "setup": "success -> success",
+      "split_preflight_ready": true,
+      "unit_id": "aq-037-94fe3080fc18",
+      "whole_preflight_ready": true
+    },
+    {
+      "S": "pass 3/3; fail 0; missing 0",
+      "W": "pass 0/3; fail 3; missing 0",
+      "branch": "A-Q-stage1",
+      "eligible_targets": 14,
+      "materialization": "ready_for_setup_or_discovery -> ready_for_discovery",
+      "preparation": "success -> success",
+      "procedure": "zkbugs_official",
+      "project": "zkemail/zk-regex",
+      "ready_for_execute": false,
+      "revision_evidence": {
+        "expected": "7002a2179e076449b84e3e7e8ba94e88d0a2dc2f",
+        "observed": "7002a2179e076449b84e3e7e8ba94e88d0a2dc2f",
+        "status": "matched"
+      },
+      "revision_kind": "leave_one_out",
+      "setup": "success -> success",
+      "split_preflight_ready": true,
+      "unit_id": "aq-038-4e5dcd2256b8",
+      "whole_preflight_ready": false
+    },
+    {
+      "S": "pass 3/3; fail 0; missing 0",
+      "W": "pass 3/3; fail 0; missing 0",
+      "branch": "A-Q-stage1",
+      "eligible_targets": 27,
+      "materialization": "ready(recovered) -> ready_for_discovery",
+      "preparation": "success -> success",
+      "procedure": "zkbugs_official",
+      "project": "zkemail/zk-regex",
+      "ready_for_execute": true,
+      "revision_evidence": {
+        "expected": "7002a2179e076449b84e3e7e8ba94e88d0a2dc2f",
+        "observed": "7002a2179e076449b84e3e7e8ba94e88d0a2dc2f",
+        "status": "matched"
+      },
+      "revision_kind": "leave_one_out",
+      "setup": "success -> success",
+      "split_preflight_ready": true,
+      "unit_id": "aq-039-0ad3923f2f5b",
+      "whole_preflight_ready": true
+    },
+    {
+      "S": "pass 3/3; fail 0; missing 0",
+      "W": "pass 3/3; fail 0; missing 0",
+      "branch": "A-Q-stage1",
+      "eligible_targets": 28,
+      "materialization": "ready_for_setup_or_discovery -> ready_for_discovery",
+      "preparation": "failed:compiler_or_tool_error -> success",
+      "procedure": "zkbugs_official",
+      "project": "zkemail/zk-regex",
+      "ready_for_execute": true,
+      "revision_evidence": {
+        "expected": "531575345558ba938675d725bd54df45c866ef74",
+        "observed": "531575345558ba938675d725bd54df45c866ef74",
+        "status": "matched"
+      },
+      "revision_kind": "vulnerable",
+      "setup": "success -> success",
+      "split_preflight_ready": true,
+      "unit_id": "aq-040-da54d3e7bc8a",
+      "whole_preflight_ready": true
+    }
+  ],
+  "zkfuzz_candidate_search_or_execute_invocations": 0
+}
