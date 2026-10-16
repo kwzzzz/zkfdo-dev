@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "document": "docs/n6_j1_preparation_2026-10-09.md",
+  "basis": [
+    "docs/n5_evaluation_protocol_v1_2026-10-06.md",
+    "runs/handoff/n6_j1_instruction_2026-10-09.md"
+  ],
+  "status": "preparation_complete_pilot_stopped",
+  "full_j_executed": false,
+  "b_campaign_executed": false,
+  "report_items": [
+    {
+      "number": 1,
+      "name": "후보 수 재계산",
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "runs/n6-j1-2026-10-09.noindex/candidate-inventory.json",
+          "sha256": "0d3b018107640d22f3a18cdb699dd93ee645907d3fcaf90edd96a3cd510e1547"
+        },
+        {
+          "path": "scripts/n6_j1_inventory.py",
+          "sha256": "ed8b127dde751ac778458c8674711e42d6f6c46abd9adb92eed0f05013378c36"
+        }
+      ],
+      "counts": {
+        "main_W": 2276,
+        "main_S": 581,
+        "mem20_W": 0,
+        "mem20_S": 69,
+        "total": 2926,
+        "unique_sha256": 2926,
+        "duplicate_of": 0
+      }
+    },
+    {
+      "number": 2,
+      "name": "리비전별 기준 입력 표",
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "runs/n6-j1-2026-10-09.noindex/revision-manifest-v2.json",
+          "sha256": "f059fe7d6aa21234168b7867537f069ec980c45c2c025184cbc12e169f687441"
+        },
+        {
+          "path": "runs/n6-j1-2026-10-09.noindex/base-inputs-v3/index.json",
+          "sha256": "18ad0bee4278fd77f94b11c354e531a31a4a5d2c0f96c9bd87d7e17c850d1508"
+        }
+      ],
+      "counts": {
+        "revisions": 27,
+        "git_commit_verified": 25,
+        "non_git_controlled_revisions": 2,
+        "passed": 12,
+        "stage_a": 2,
+        "stage_b": 10,
+        "stage_d": 0,
+        "base_input_unavailable": 15
+      },
+      "selection_order": [
+        "zkbugs_input",
+        "l_series_base_input",
+        "committed_json",
+        "project_test_input",
+        "all_zero_input"
+      ]
+    },
+    {
+      "number": 3,
+      "name": "요청 수와 경로 검사 결과",
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "runs/n6-j1-2026-10-09.noindex/request-index.json",
+          "sha256": "35ed44c86545fc3e56d3a671cbe45eae5db69c1d970f5e453c1db60e52225f3c"
+        },
+        {
+          "path": "scripts/n6_j1_requests.py",
+          "sha256": "7e3dd693a5f3bf28503148145485e1961ceab0d157f2dfd2b749ac81610d96ed"
+        }
+      ],
+      "counts": {
+        "inventory_candidates": 2926,
+        "requests_verified": 2926,
+        "ready": 765,
+        "preparation_failure_planned": 2161,
+        "used_specs": 180,
+        "used_source_trees_verified": 145
+      }
+    },
+    {
+      "number": 4,
+      "name": "시범 표",
+      "status": "stopped_preparation_failure",
+      "evidence": [
+        {
+          "path": "runs/n6-j1-2026-10-09.noindex/pilot-v1.noindex/pilot.json",
+          "sha256": "c7c5644f2511d159ed764e3c34d6470cba899e631164b064cf9ab2ada0c7338e"
+        },
+        {
+          "path": "runs/n6-j1-2026-10-09.noindex/pilot-summary-v1.json",
+          "sha256": "4078cc962df63fe07579b2ef60e16d5266fb784d97a6696dececb3bf43f1c613"
+        }
+      ],
+      "counts": {
+        "selected": 7,
+        "attempted": 1,
+        "lift_calls": 0,
+        "completed_verdicts": 0,
+        "first_request_preparation_failure": "base_input_unavailable",
+        "first_request_queue_order": 131
+      }
+    },
+    {
+      "number": 5,
+      "name": "실행기 테스트 결과",
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "scripts/run_n6_j1.py",
+          "sha256": "af23186151e1162f352d1a27f9020e3054e20bc461404791846fbb245077bd7c"
+        },
+        {
+          "path": "scripts/n6_j1_pilot.py",
+          "sha256": "8ba718195b770f65ae0d91a2c67bb0478cace26e357073f5b4360711c29eb173"
+        },
+        {
+          "path": "scripts/n6_j1_summarize.py",
+          "sha256": "6a02f7f6e4c74a3403bd1dc6b2604ff6c15e4f811d86cf4035016ed8910688e8"
+        },
+        {
+          "path": "runs/n6-j1-2026-10-09.noindex/rq-c-instance-map.json",
+          "sha256": "8ad5d43b51d5ceaab0d95dd83a229f45fdc2a2020485a21ccb3b1a43fb4aab85"
+        }
+      ],
+      "counts": {
+        "j_python_tests_passed": 54,
+        "runner_mock_tests_passed": 18,
+        "pilot_mock_tests_passed": 8,
+        "cargo_fmt_passed": true,
+        "cargo_clippy_passed": true,
+        "cargo_test_passed": true
+      }
+    },
+    {
+      "number": 6,
+      "name": "예상 시간·디스크",
+      "status": "not_measured_pilot_stopped",
+      "evidence": [
+        {
+          "path": "docs/lifting_l07_results_2026-10-06.md",
+          "sha256": null
+        }
+      ],
+      "counts": {
+        "estimate_without_cleanup_bytes": null,
+        "estimate_per_revision_cleanup_peak_bytes": null,
+        "estimated_wall_seconds": null,
+        "ready_requests": 765,
+        "historical_linear_wall_hours_not_prediction": 5.62,
+        "historical_linear_cache_gb_not_prediction": 242
+      }
+    },
+    {
+      "number": 7,
+      "name": "터미널 명령",
+      "status": "prepared_not_executed",
+      "evidence": [
+        {
+          "path": "runs/n6-j1-2026-10-09.noindex/j-execution-inputs.sha256",
+          "sha256": "37726457526c0f201adc2d715dd55cd1a462c3d80b4adc02f9618a9e1350fb4e"
+        }
+      ],
+      "counts": {
+        "sha256_inputs_checked": 6,
+        "full_j_executed": false
+      }
+    }
+  ],
+  "n5_priority_difference": "N5 final supplement inserts project test input as step (d) and moves zero input to step (e). B2 first-seed parser probes are bound to all 60 specs by source and command equality under the N5 rule.",
+  "source_pin_scope": "Used target source snapshot trees 145/145 were verified at validate-only startup; unrelated external library-root contents outside these trees are not fully pinned."
+}
