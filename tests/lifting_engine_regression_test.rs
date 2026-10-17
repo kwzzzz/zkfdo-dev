@@ -604,3 +604,57 @@ fn changed_repair_r1cs_and_sym_are_rejected() {
         );
     }
 }
+
+#[test]
+fn simultaneous_range_failures_repair_locally() {
+    let root = Path::new(env!("CARGO_MANIFEST_DIR"));
+    let original = root.join("tests/fixtures/lifting_engine/abort_repair");
+    let base = root.join("runs/n6-j4c-2026-10-17.noindex");
+    fs::create_dir_all(&base).unwrap();
+    let temp = tempfile::tempdir_in(base).unwrap();
+    let fixture = temp.path();
+    fs::create_dir(fixture.join("src")).unwrap();
+    for name in ["component.circom", "standalone.circom", "entrypoint.circom"] {
+        let mut source = fs::read_to_string(original.join("src").join(name)).unwrap();
+        if name == "entrypoint.circom" {
+            source = source.replace("o <== q;", "signal q2 <-- d.y \\ 5;\n    signal r2 <-- d.y % 5;\n    d.y === q2 * 5 + r2;\n    component rq2 = Num2Bits(4);\n    rq2.in <== q2;\n    signal q3 <-- d.y \\ 6;\n    signal r3 <-- d.y % 6;\n    d.y === q3 * 6 + r3;\n    component rq3 = Num2Bits(4);\n    rq3.in <== q3;\n    o <== q;");
+        }
+        fs::write(fixture.join("src").join(name), source).unwrap();
+    }
+    for name in ["request.json", "candidate.json", "base_input.json"] {
+        fs::copy(original.join(name), fixture.join(name)).unwrap();
+    }
+    let output = fixture.join("result");
+    let mut command = match std::env::var_os("N6_J4C_REGRESSION_ENGINE") {
+        Some(engine) => Command::new(engine),
+        None => Command::cargo_bin("zkfDO").unwrap(),
+    };
+    command
+        .args(["experiment", "lift", "--request"])
+        .arg(fixture.join("request.json"))
+        .arg("--output")
+        .arg(&output)
+        .assert()
+        .success();
+    let result: Value =
+        serde_json::from_slice(&fs::read(output.join("result.json")).unwrap()).unwrap();
+    let class = &result["classes"][0];
+    assert_eq!(class["verdict"], "assumption_input_reachable", "{result}");
+    assert_eq!(class["rust_unsatisfied"], 0);
+    assert_eq!(class["snarkjs"], "correct");
+    let repair = &class["synthesis"]["repair"];
+    assert_eq!(repair["localizations"][0]["unsatisfied_constraints"], 3);
+    for solve in repair["solves"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .filter(|s| s["iteration"] == 0)
+    {
+        assert_eq!(solve["carry"], "without");
+        assert_eq!(solve["carried_constraints"], 0);
+        assert_eq!(
+            solve["carried_dropped"], 0,
+            "current iteration must not enter history"
+        );
+    }
+}

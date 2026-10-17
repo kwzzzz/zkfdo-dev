@@ -2978,6 +2978,7 @@ fn synthesize_inputs(
     } else {
         None
     };
+    let small_branch = small.is_some();
     let joint = joint.or_else(|| small.as_ref().and_then(|result| result.cone.clone()));
     let started = Instant::now();
     let mut label = "cone_too_large";
@@ -3011,9 +3012,24 @@ fn synthesize_inputs(
             }
             Ok(result) => match result.outcome {
                 synth::ConeOutcome::Unsat { propagation } => {
-                    record.b_outcome = Some("unsat".to_owned());
+                    record.b_outcome = Some(
+                        if small_branch {
+                            "small_cone_unsat"
+                        } else {
+                            "unsat"
+                        }
+                        .to_owned(),
+                    );
                     let cone = result.cone.expect("solved cone");
-                    return Synthesis::Excluded(exclusion(&cone, propagation, "joint cone"));
+                    return Synthesis::Excluded(exclusion(
+                        &cone,
+                        propagation,
+                        if small_branch {
+                            "small branch cone"
+                        } else {
+                            "joint cone"
+                        },
+                    ));
                 }
                 synth::ConeOutcome::Model(values) => {
                     label = "model_not_reproduced";

@@ -172,6 +172,12 @@ pub struct FailingGroup {
 
 #[derive(Debug, Serialize, Clone, Deserialize)]
 pub struct SolveRecord {
+    #[serde(default)]
+    pub carry: String,
+    #[serde(default)]
+    pub carried_constraints: usize,
+    #[serde(default)]
+    pub carried_dropped: usize,
     pub iteration: usize,
     /// `abort`, `target`, or `predicate`.
     pub cause: String,
@@ -848,8 +854,10 @@ impl Search<'_, '_> {
                         self.locate(&edits, &input_path, &folder, iteration, ledger)?;
                     let groups = localization.failing_instances.clone();
                     self.record.localizations.push(localization);
+                    let progressed = self
+                        .repair_aborts(structure, &vector, &failed, &groups, iteration, &folder)?;
                     self.failed_constraints.extend(failed.iter().copied());
-                    self.repair_aborts(structure, &vector, &failed, &groups, iteration, &folder)?
+                    progressed
                 }
             };
             if !progressed {
@@ -1226,6 +1234,9 @@ impl Search<'_, '_> {
                 .is_some_and(|site| instance == *site || instance.starts_with(&format!("{site}.")))
             {
                 self.record.solves.push(SolveRecord {
+                    carry: "without".to_owned(),
+                    carried_constraints: 0,
+                    carried_dropped: 0,
                     iteration,
                     cause: "abort".to_owned(),
                     region: instance,
@@ -1456,9 +1467,6 @@ impl Search<'_, '_> {
         };
         for with_paths in [false, true] {
             let mut constraints = region.constraints.clone();
-            // Previously broken constraints stay in subsequent search queries. Their
-            // reference boundary values are search-only and never justify exclusion.
-            constraints.extend(self.failed_constraints.iter().copied());
             let mut unknowns = region.wires.clone();
             unknowns.retain(|wire| !assigned.contains_key(wire) || region.wires.contains(wire));
             if with_paths {
@@ -1526,6 +1534,9 @@ impl Search<'_, '_> {
                 }
                 if unknowns.len() == region.wires.len() {
                     self.record.solves.push(SolveRecord {
+                        carry: "without".to_owned(),
+                        carried_constraints: 0,
+                        carried_dropped: 0,
                         iteration,
                         cause: cause.to_owned(),
                         region: label.to_owned(),
@@ -1539,92 +1550,99 @@ impl Search<'_, '_> {
                     return Ok(false);
                 }
             }
-            ensure!(
-                constraints.len() <= REGION_CONSTRAINTS * 2,
-                "repair region has too many constraints"
-            );
-            let mut text = encode(view.r1cs, &constraints, &unknowns, &value, SOLVE_TIMEOUT);
-            for (wire, target) in assigned {
-                if unknowns.contains(wire) {
-                    let _ = writeln!(text, "(assert (= w{wire} {target}))");
-                }
-            }
-            if let Some(predicate) = predicate {
-                text.push_str(&encode_predicate(predicate, &unknowns, &value));
-            }
-            // Block repeated controllable proposals only in search queries. These
-            // clauses must never enter predicate/closed-cone exclusion queries.
-            for previous in &self.attempted_controls {
-                if !previous.is_empty() && previous.keys().all(|wire| unknowns.contains(wire)) {
-                    let terms = previous
-                        .iter()
-                        .map(|(wire, value)| format!("(= w{wire} {value})"))
-                        .collect::<Vec<_>>()
-                        .join(" ");
-                    let _ = writeln!(text, "(assert (not (and {terms})))");
-                }
-            }
-            let (verdict, model) = run_z3(
-                self.z3,
-                text,
-                &unknowns,
-                &scratch.with_file_name(format!(
-                    "{}-{}",
-                    scratch.file_name().unwrap_or_default().to_string_lossy(),
-                    if with_paths { "paths" } else { "alone" }
-                )),
-                SOLVE_TIMEOUT,
-            )?;
-            let mut solve = SolveRecord {
-                iteration,
-                cause: cause.to_owned(),
-                region: label.to_owned(),
-                with_paths,
-                unknowns: unknowns.len(),
-                constraints: constraints.len(),
-                outcome: verdict.clone(),
-                hints_changed: 0,
-                inputs_changed: 0,
+            let (carried, carried_dropped) =
+                carried_constraints(view.r1cs, &self.failed_constraints, &unknowns, &value);
+            // Retry without carry in the same slot and iteration for every non-SAT answer.
+            let variants = if carried.is_empty() {
+                vec![carried]
+            } else {
+                vec![carried, BTreeSet::new()]
             };
-            if verdict == "sat" {
-                let controls = model
-                    .iter()
-                    .filter(|(wire, _)| {
-                        !pinned.contains(wire)
-                            && !protected
-                                .as_ref()
-                                .is_some_and(|site| view.within(**wire, site))
-                            && if view.is_main_input(**wire) {
-                                inputs_free && !view.is_hub(**wire)
-                            } else {
-                                structure.is_hint(view.name(**wire))
-                            }
-                    })
-                    .map(|(wire, value)| (*wire, value.clone()))
-                    .collect::<BTreeMap<_, _>>();
-                if !controls.is_empty() {
-                    self.attempted_controls.push(controls);
+            for carry in variants {
+                ensure!(
+                    constraints.len() <= REGION_CONSTRAINTS * 2,
+                    "repair region has too many constraints"
+                );
+                let query_constraints = constraints.union(&carry).copied().collect();
+                let mut text = encode(
+                    view.r1cs,
+                    &query_constraints,
+                    &unknowns,
+                    &value,
+                    SOLVE_TIMEOUT,
+                );
+                for (wire, target) in assigned {
+                    if unknowns.contains(wire) {
+                        let _ = writeln!(text, "(assert (= w{wire} {target}))");
+                    }
                 }
-                let (hints, inputs, changed) = self.apply(structure, current, &model, inputs_free);
-                solve.hints_changed = hints;
-                solve.inputs_changed = inputs;
-                solve.outcome = if changed {
-                    "sat_applied"
-                } else {
-                    "sat_no_effect"
+                if let Some(predicate) = predicate {
+                    text.push_str(&encode_predicate(predicate, &unknowns, &value));
                 }
-                .to_owned();
-                let alternative = try_paths_after(&solve.outcome);
+                // Block repeated controllable proposals only in search queries. These
+                // clauses must never enter predicate/closed-cone exclusion queries.
+                for previous in &self.attempted_controls {
+                    if !previous.is_empty() && previous.keys().all(|wire| unknowns.contains(wire)) {
+                        let terms = previous
+                            .iter()
+                            .map(|(wire, value)| format!("(= w{wire} {value})"))
+                            .collect::<Vec<_>>()
+                            .join(" ");
+                        let _ = writeln!(text, "(assert (not (and {terms})))");
+                    }
+                }
+                let (verdict, model) = run_z3(
+                    self.z3,
+                    text,
+                    &unknowns,
+                    &scratch.with_file_name(format!(
+                        "{}-{}-{}",
+                        scratch.file_name().unwrap_or_default().to_string_lossy(),
+                        if with_paths { "paths" } else { "alone" },
+                        if carry.is_empty() { "without" } else { "with" }
+                    )),
+                    SOLVE_TIMEOUT,
+                )?;
+                let mut solve = SolveRecord {
+                    carry: if carry.is_empty() { "without" } else { "with" }.to_owned(),
+                    carried_constraints: carry.len(),
+                    carried_dropped,
+                    iteration,
+                    cause: cause.to_owned(),
+                    region: label.to_owned(),
+                    with_paths,
+                    unknowns: unknowns.len(),
+                    constraints: query_constraints.len(),
+                    outcome: verdict.clone(),
+                    hints_changed: 0,
+                    inputs_changed: 0,
+                };
+                if verdict == "sat" {
+                    let (hints, inputs, changed, controls) =
+                        self.apply(structure, current, &model, inputs_free);
+                    if !controls.is_empty() {
+                        self.attempted_controls.push(controls);
+                    }
+                    solve.hints_changed = hints;
+                    solve.inputs_changed = inputs;
+                    solve.outcome = if changed {
+                        "sat_applied"
+                    } else {
+                        "sat_no_effect"
+                    }
+                    .to_owned();
+                    let alternative = try_paths_after(&solve.outcome);
+                    self.record.solves.push(solve);
+                    if changed {
+                        return Ok(true);
+                    }
+                    if !alternative {
+                        return Ok(false);
+                    }
+                    break;
+                }
                 self.record.solves.push(solve);
-                if changed {
-                    return Ok(true);
-                }
-                if !alternative {
-                    return Ok(false);
-                }
-                continue;
             }
-            self.record.solves.push(solve);
         }
         Ok(false)
     }
@@ -1635,7 +1653,7 @@ impl Search<'_, '_> {
         current: &[BigUint],
         model: &BTreeMap<usize, BigUint>,
         inputs_free: bool,
-    ) -> (usize, usize, bool) {
+    ) -> (usize, usize, bool, BTreeMap<usize, BigUint>) {
         ModelApplication {
             view: &self.view,
             start: self.start,
@@ -1663,8 +1681,9 @@ impl ModelApplication<'_, '_> {
         current: &[BigUint],
         model: &BTreeMap<usize, BigUint>,
         inputs_free: bool,
-    ) -> (usize, usize, bool) {
+    ) -> (usize, usize, bool, BTreeMap<usize, BigUint>) {
         let view = &self.view;
+        let mut applied = BTreeMap::new();
         let mut inputs = 0;
         let mut changed = false;
         let mut touched = BTreeSet::new();
@@ -1675,7 +1694,6 @@ impl ModelApplication<'_, '_> {
                     .protected_site
                     .as_ref()
                     .is_some_and(|site| view.within(*wire, site))
-                || (view.is_main_input(*wire) && view.is_hub(*wire))
             {
                 continue;
             }
@@ -1689,6 +1707,7 @@ impl ModelApplication<'_, '_> {
                 {
                     self.changed_inputs
                         .insert(name.trim_start_matches("main.").to_owned());
+                    applied.insert(*wire, value.clone());
                     inputs += 1;
                     changed = true;
                 }
@@ -1720,6 +1739,9 @@ impl ModelApplication<'_, '_> {
                     match model.get(wire) {
                         Some(value) => {
                             hints += usize::from(value != &current[*wire]);
+                            if value != &current[*wire] {
+                                applied.insert(*wire, value.clone());
+                            }
                             if self
                                 .overrides
                                 .rewrite
@@ -1742,7 +1764,7 @@ impl ModelApplication<'_, '_> {
                 }
             }
         }
-        (hints, inputs, changed)
+        (hints, inputs, changed, applied)
     }
 }
 
@@ -1915,9 +1937,80 @@ pub(crate) fn sym_equivalence(original: &str, other: &str) -> Result<usize> {
     Ok(count)
 }
 
+// Carry selection is isolated for regression coverage.
+fn carried_constraints(
+    r1cs: &R1cs,
+    history: &BTreeSet<usize>,
+    unknowns: &BTreeSet<usize>,
+    value: &impl Fn(usize) -> BigUint,
+) -> (BTreeSet<usize>, usize) {
+    let kept: BTreeSet<_> = history
+        .iter()
+        .copied()
+        .filter(|position| {
+            let constraint = &r1cs.constraints[*position];
+            constraint_wires(constraint)
+                .iter()
+                .any(|wire| unknowns.contains(wire))
+                && residual(constraint, &r1cs.prime, value).is_zero()
+        })
+        .collect();
+    let dropped = history.len() - kept.len();
+    (kept, dropped)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn carry_uses_only_repaired_constraints_sharing_query_unknowns() {
+        let lc = |wire| LinearCombination::from([(wire, BigUint::one())]);
+        let constraint = |wire| crate::candidate_review::r1cs::Constraint {
+            a: lc(wire),
+            b: lc(0),
+            c: lc(0),
+        };
+        let r1cs = R1cs {
+            prime: 101u32.into(),
+            shape: crate::candidate_review::schema::R1csShape {
+                wires: 3,
+                labels: 3,
+                public_outputs: 0,
+                public_inputs: 2,
+                private_inputs: 0,
+                constraints: 2,
+            },
+            constraints: vec![constraint(1), constraint(2)],
+            wire_labels: vec![0, 1, 2],
+        };
+        let unknowns = BTreeSet::from([1]);
+        let history = BTreeSet::from([0, 1]);
+        let failed = |wire| if wire == 0 { 1u32.into() } else { 2u32.into() };
+        let (carry, dropped) = carried_constraints(&r1cs, &history, &unknowns, &failed);
+        assert!(
+            carry.is_empty(),
+            "simultaneously failing A/B must not be carried"
+        );
+        assert_eq!(dropped, 2);
+        assert!(
+            !encode(&r1cs, &carry, &unknowns, &failed, SOLVE_TIMEOUT).contains("(assert false)")
+        );
+        let repaired = |_wire| BigUint::one();
+        let (carry, dropped) = carried_constraints(&r1cs, &history, &unknowns, &repaired);
+        assert_eq!(
+            carry,
+            BTreeSet::from([0]),
+            "iteration 1 keeps repaired A only"
+        );
+        assert_eq!(dropped, 1);
+        assert!(
+            carried_constraints(&r1cs, &BTreeSet::new(), &unknowns, &repaired)
+                .0
+                .is_empty(),
+            "iteration 0 has no previous failures"
+        );
+    }
 
     #[test]
     fn cycles_and_iteration_limits_do_not_grant_more_search_slots() {
@@ -1957,7 +2050,8 @@ mod tests {
         let sources = BTreeMap::from([(file, source.to_owned())]);
         let mut structure = Structure::new(&sym, &templates, &sources, Some("Main".to_owned()));
         assert!(structure.is_hint("main.inner.out"));
-        let index = vec![vec![]; 4];
+        let mut index = vec![vec![]; 4];
+        index[2] = vec![0; HUB_DEGREE + 1];
         let view = View {
             r1cs: &r1cs,
             sym: &sym,
@@ -1993,7 +2087,7 @@ mod tests {
         );
         assert_eq!(input, serde_json::json!({"x":"1", "y":"7"}));
         assert!(overrides.rewrite.is_empty());
-        assert_eq!(result, (0, 1, true));
+        assert_eq!(result, (0, 1, true, BTreeMap::from([(2, 7u32.into())])));
         let result = ModelApplication {
             view: &view,
             start: &start,
@@ -2009,7 +2103,7 @@ mod tests {
         );
         assert_eq!(
             result,
-            (0, 0, false),
+            (0, 0, false, BTreeMap::new()),
             "SAT with no permitted concrete effect must try the existing alternative"
         );
         assert!(try_paths_after("sat_no_effect"));

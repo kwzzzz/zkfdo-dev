@@ -1089,6 +1089,9 @@ mod reaudit_tests {
         };
         assert!(cacheable_attempt(&record));
         record.solves.push(repair::SolveRecord {
+            carry: "without".to_owned(),
+            carried_constraints: 0,
+            carried_dropped: 0,
             iteration: 0,
             cause: "predicate".to_owned(),
             region: "main.c".to_owned(),
