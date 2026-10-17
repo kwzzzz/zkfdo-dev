@@ -25,18 +25,16 @@ use std::{
     fmt::Write as _,
     fs,
     path::{Path, PathBuf},
-    process::Command,
     time::{Duration, Instant},
 };
 
 use anyhow::{bail, ensure, Context, Result};
 use num_bigint::BigUint;
 use num_traits::{One, Zero};
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 use serde_json::Value;
 
 use super::super::r1cs::{LinearCombination, R1cs, SymbolTable};
-use super::super::subprocess::run_bounded_logged;
 use super::condition::{lessthan_holds, natural_key, TemplateNames};
 use super::source::{check_statement_at_line, hint_statements, TemplateDef};
 use super::synth::{constraint_wires, parse_values, residual};
@@ -129,7 +127,7 @@ pub(crate) struct Reached {
     pub(crate) instances: usize,
 }
 
-#[derive(Debug, Serialize, Default, Clone)]
+#[derive(Debug, Serialize, Default, Clone, Deserialize)]
 pub struct RepairRecord {
     pub start: String,
     pub iterations: usize,
@@ -143,9 +141,10 @@ pub struct RepairRecord {
     pub rewritten: Vec<RewriteRecord>,
     pub changed_inputs: Vec<String>,
     pub note: Option<String>,
+    pub error_kind: Option<String>,
 }
 
-#[derive(Debug, Serialize, Clone)]
+#[derive(Debug, Serialize, Clone, Deserialize)]
 pub struct Localization {
     pub iteration: usize,
     pub blanked_checks: Vec<BlankedCheck>,
@@ -153,7 +152,7 @@ pub struct Localization {
     pub failing_instances: Vec<FailingGroup>,
 }
 
-#[derive(Debug, Serialize, Clone, PartialEq, Eq)]
+#[derive(Debug, Serialize, Clone, PartialEq, Eq, Deserialize)]
 pub struct BlankedCheck {
     pub template: String,
     pub file: String,
@@ -161,7 +160,7 @@ pub struct BlankedCheck {
     pub kind: String,
 }
 
-#[derive(Debug, Serialize, Clone)]
+#[derive(Debug, Serialize, Clone, Deserialize)]
 pub struct FailingGroup {
     /// Instance path with numeric indices replaced by `*`.
     pub pattern: String,
@@ -171,7 +170,7 @@ pub struct FailingGroup {
     pub constraints: Vec<usize>,
 }
 
-#[derive(Debug, Serialize, Clone)]
+#[derive(Debug, Serialize, Clone, Deserialize)]
 pub struct SolveRecord {
     pub iteration: usize,
     /// `abort`, `target`, or `predicate`.
@@ -258,6 +257,7 @@ impl<'a> Structure<'a> {
 }
 
 /// Everything a search reads from the request.
+#[derive(Clone, Copy)]
 struct View<'c> {
     r1cs: &'c R1cs,
     sym: &'c SymbolTable,
@@ -634,23 +634,57 @@ pub(crate) fn run_z3(
             .join(" ");
         let _ = writeln!(text, "(get-value ({names}))");
     }
-    let query = scratch.with_extension("smt2");
-    fs::write(&query, &text)?;
-    let log = scratch.with_extension("z3.log");
-    let mut command = Command::new(z3);
-    command.arg(&query);
-    let (_, timed_out) = run_bounded_logged(&mut command, timeout + Duration::from_secs(10), &log)?;
-    let output = fs::read_to_string(&log).unwrap_or_default();
+    let output = super::solver::run(z3, text, scratch, timeout)?;
+    let timed_out = output.starts_with("timeout\n");
     let verdict = output.lines().next().unwrap_or("").trim().to_owned();
     if timed_out {
         return Ok(("timeout".to_owned(), BTreeMap::new()));
     }
     let model = if verdict == "sat" && !unknowns.is_empty() {
-        parse_values(&output)?
+        let model = parse_values(&output)?;
+        ensure!(
+            model.keys().copied().collect::<BTreeSet<_>>() == *unknowns,
+            "z3 model does not cover exactly the requested wires"
+        );
+        model
     } else {
         BTreeMap::new()
     };
     Ok((verdict, model))
+}
+
+/// An ineffective regional SAT uses the existing with-paths slot; UNSAT here is
+/// only failure of a search with frozen boundary values.
+fn try_paths_after(outcome: &str) -> bool {
+    matches!(outcome, "sat_no_effect" | "unsat" | "unknown" | "timeout")
+}
+
+/// A replay attempt must spend an existing slot; revisiting the initial state is
+/// already a cycle. This controller cannot produce a witness or an exclusion.
+struct SearchHistory {
+    seen: BTreeSet<String>,
+    allowed: usize,
+    used: usize,
+}
+impl SearchHistory {
+    fn new(initial: String, allowed: usize) -> Self {
+        Self {
+            seen: BTreeSet::from([initial]),
+            allowed: allowed.min(MAX_ITERATIONS),
+            used: 0,
+        }
+    }
+    fn next_iteration(&mut self) -> Option<usize> {
+        if self.used == self.allowed {
+            return None;
+        }
+        let iteration = self.used;
+        self.used += 1;
+        Some(iteration)
+    }
+    fn observe(&mut self, state: String) -> bool {
+        self.seen.insert(state)
+    }
 }
 
 struct Search<'s, 'c> {
@@ -663,6 +697,9 @@ struct Search<'s, 'c> {
     overrides: Overrides,
     input: Value,
     changed_inputs: BTreeSet<String>,
+    iterations_allowed: usize,
+    failed_constraints: BTreeSet<usize>,
+    attempted_controls: Vec<BTreeMap<usize, BigUint>>,
 }
 
 /// Finds an entrypoint input and hint injections whose generator meets `requirement`.
@@ -720,6 +757,9 @@ pub(crate) fn search(
         overrides: start.overrides.clone(),
         input: start.input.clone(),
         changed_inputs: BTreeSet::new(),
+        iterations_allowed: context.repair_remaining.min(MAX_ITERATIONS),
+        failed_constraints: BTreeSet::new(),
+        attempted_controls: Vec::new(),
     };
     let outcome = state.run(&mut structure, directory, ledger);
     let mut record = std::mem::take(&mut state.record);
@@ -728,7 +768,24 @@ pub(crate) fn search(
         Ok(reached) => reached,
         Err(error) => {
             record.outcome = "error".to_owned();
-            record.note = Some(format!("{error:#}"));
+            let detail = format!("{error:#}");
+            record.error_kind = Some(
+                if detail.contains("R1CS") || detail.contains("SYM") {
+                    "evidence_invariant"
+                } else if detail.contains("timed out") {
+                    "tool_timeout"
+                } else if detail.contains("too many constraints") {
+                    "region_limit"
+                } else if detail.contains("diagnostic") {
+                    "diagnostic_failure"
+                } else if error.downcast_ref::<std::io::Error>().is_some() {
+                    "io"
+                } else {
+                    "tool_or_unsupported"
+                }
+                .to_owned(),
+            );
+            record.note = Some(detail);
             None
         }
     };
@@ -737,6 +794,7 @@ pub(crate) fn search(
         record.rewritten_statements = reached.statements;
         record.injected_instances = reached.instances;
     }
+    context.repair_remaining = context.repair_remaining.saturating_sub(record.iterations);
     context.structure = Some(structure);
     (reached, record)
 }
@@ -750,8 +808,14 @@ impl Search<'_, '_> {
     ) -> Result<Option<Reached>> {
         fs::create_dir_all(directory)?;
         let prime = &self.view.r1cs.prime;
-        let mut seen = BTreeSet::new();
-        for iteration in 0..MAX_ITERATIONS {
+        let mut history = SearchHistory::new(
+            sha256_text(&format!(
+                "{:?}{:?}{}",
+                self.overrides.rewrite, self.overrides.keys, self.input
+            )),
+            self.iterations_allowed,
+        );
+        while let Some(iteration) = history.next_iteration() {
             self.record.iterations = iteration + 1;
             let folder = directory.join(format!("iteration-{iteration:02}"));
             if folder.exists() {
@@ -784,6 +848,7 @@ impl Search<'_, '_> {
                         self.locate(&edits, &input_path, &folder, iteration, ledger)?;
                     let groups = localization.failing_instances.clone();
                     self.record.localizations.push(localization);
+                    self.failed_constraints.extend(failed.iter().copied());
                     self.repair_aborts(structure, &vector, &failed, &groups, iteration, &folder)?
                 }
             };
@@ -796,7 +861,7 @@ impl Search<'_, '_> {
                 "{:?}{:?}{}",
                 self.overrides.rewrite, self.overrides.keys, self.input
             );
-            if !seen.insert(sha256_text(&state)) {
+            if !history.observe(sha256_text(&state)) {
                 self.record.outcome = "cycle".to_owned();
                 return Ok(None);
             }
@@ -887,6 +952,11 @@ impl Search<'_, '_> {
             },
         )?;
         if o0 {
+            sym_equivalence(
+                &fs::read_to_string(&context.original_o0.sym)?,
+                &fs::read_to_string(&compiled.sym)?,
+            )
+            .context("the injected O0 generator changes the original SYM")?;
             ensure!(
                 fs::read(&compiled.r1cs)? == fs::read(&context.original_o0.r1cs)?,
                 "the injected O0 generator changes the O0 R1CS"
@@ -1359,7 +1429,6 @@ impl Search<'_, '_> {
         iteration: usize,
         scratch: &Path,
     ) -> Result<bool> {
-        let view = &self.view;
         let protected = self.start.protected_site.clone();
         let pinned = self.start.pinned.clone();
         let value = |wire: usize| {
@@ -1368,6 +1437,8 @@ impl Search<'_, '_> {
                 .cloned()
                 .unwrap_or_else(|| current[wire].clone())
         };
+        let owned_view = self.view;
+        let view = &owned_view;
         let blocked = |wire: usize| {
             region.wires.contains(&wire)
                 || pinned.contains(&wire)
@@ -1385,6 +1456,9 @@ impl Search<'_, '_> {
         };
         for with_paths in [false, true] {
             let mut constraints = region.constraints.clone();
+            // Previously broken constraints stay in subsequent search queries. Their
+            // reference boundary values are search-only and never justify exclusion.
+            constraints.extend(self.failed_constraints.iter().copied());
             let mut unknowns = region.wires.clone();
             unknowns.retain(|wire| !assigned.contains_key(wire) || region.wires.contains(wire));
             if with_paths {
@@ -1465,6 +1539,10 @@ impl Search<'_, '_> {
                     return Ok(false);
                 }
             }
+            ensure!(
+                constraints.len() <= REGION_CONSTRAINTS * 2,
+                "repair region has too many constraints"
+            );
             let mut text = encode(view.r1cs, &constraints, &unknowns, &value, SOLVE_TIMEOUT);
             for (wire, target) in assigned {
                 if unknowns.contains(wire) {
@@ -1473,6 +1551,18 @@ impl Search<'_, '_> {
             }
             if let Some(predicate) = predicate {
                 text.push_str(&encode_predicate(predicate, &unknowns, &value));
+            }
+            // Block repeated controllable proposals only in search queries. These
+            // clauses must never enter predicate/closed-cone exclusion queries.
+            for previous in &self.attempted_controls {
+                if !previous.is_empty() && previous.keys().all(|wire| unknowns.contains(wire)) {
+                    let terms = previous
+                        .iter()
+                        .map(|(wire, value)| format!("(= w{wire} {value})"))
+                        .collect::<Vec<_>>()
+                        .join(" ");
+                    let _ = writeln!(text, "(assert (not (and {terms})))");
+                }
             }
             let (verdict, model) = run_z3(
                 self.z3,
@@ -1497,19 +1587,76 @@ impl Search<'_, '_> {
                 inputs_changed: 0,
             };
             if verdict == "sat" {
+                let controls = model
+                    .iter()
+                    .filter(|(wire, _)| {
+                        !pinned.contains(wire)
+                            && !protected
+                                .as_ref()
+                                .is_some_and(|site| view.within(**wire, site))
+                            && if view.is_main_input(**wire) {
+                                inputs_free && !view.is_hub(**wire)
+                            } else {
+                                structure.is_hint(view.name(**wire))
+                            }
+                    })
+                    .map(|(wire, value)| (*wire, value.clone()))
+                    .collect::<BTreeMap<_, _>>();
+                if !controls.is_empty() {
+                    self.attempted_controls.push(controls);
+                }
                 let (hints, inputs, changed) = self.apply(structure, current, &model, inputs_free);
                 solve.hints_changed = hints;
                 solve.inputs_changed = inputs;
+                solve.outcome = if changed {
+                    "sat_applied"
+                } else {
+                    "sat_no_effect"
+                }
+                .to_owned();
+                let alternative = try_paths_after(&solve.outcome);
                 self.record.solves.push(solve);
-                return Ok(changed);
+                if changed {
+                    return Ok(true);
+                }
+                if !alternative {
+                    return Ok(false);
+                }
+                continue;
             }
             self.record.solves.push(solve);
         }
         Ok(false)
     }
 
-    /// Folds a model into the overrides (changed hint wires, keyed by their instance inputs)
-    /// and the input (changed free entrypoint inputs).
+    fn apply(
+        &mut self,
+        structure: &mut Structure,
+        current: &[BigUint],
+        model: &BTreeMap<usize, BigUint>,
+        inputs_free: bool,
+    ) -> (usize, usize, bool) {
+        ModelApplication {
+            view: &self.view,
+            start: self.start,
+            overrides: &mut self.overrides,
+            input: &mut self.input,
+            changed_inputs: &mut self.changed_inputs,
+        }
+        .apply(structure, current, model, inputs_free)
+    }
+}
+
+/// The concrete effects of a solver proposal, isolated from compilation/checking so
+/// protected-input and ineffective-SAT invariants can be tested directly.
+struct ModelApplication<'s, 'c> {
+    view: &'s View<'c>,
+    start: &'s Start,
+    overrides: &'s mut Overrides,
+    input: &'s mut Value,
+    changed_inputs: &'s mut BTreeSet<String>,
+}
+impl ModelApplication<'_, '_> {
     fn apply(
         &mut self,
         structure: &mut Structure,
@@ -1522,14 +1669,23 @@ impl Search<'_, '_> {
         let mut changed = false;
         let mut touched = BTreeSet::new();
         for (wire, value) in model {
+            if self.start.pinned.contains(wire)
+                || self
+                    .start
+                    .protected_site
+                    .as_ref()
+                    .is_some_and(|site| view.within(*wire, site))
+                || (view.is_main_input(*wire) && view.is_hub(*wire))
+            {
+                continue;
+            }
             if &current[*wire] == value {
                 continue;
             }
             let name = view.name(*wire).to_owned();
             if view.is_main_input(*wire) {
                 if inputs_free
-                    && set_input_leaf(&mut self.input, name.trim_start_matches("main."), value)
-                        .is_ok()
+                    && set_input_leaf(self.input, name.trim_start_matches("main."), value).is_ok()
                 {
                     self.changed_inputs
                         .insert(name.trim_start_matches("main.").to_owned());
@@ -1762,6 +1918,127 @@ pub(crate) fn sym_equivalence(original: &str, other: &str) -> Result<usize> {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn cycles_and_iteration_limits_do_not_grant_more_search_slots() {
+        let mut history = SearchHistory::new("initial".to_owned(), MAX_ITERATIONS);
+        assert_eq!(history.next_iteration(), Some(0));
+        assert!(!history.observe("initial".to_owned()));
+        let mut history = SearchHistory::new("initial".to_owned(), MAX_ITERATIONS);
+        for iteration in 0..MAX_ITERATIONS {
+            assert_eq!(history.next_iteration(), Some(iteration));
+            assert!(history.observe(format!("new-{iteration}")));
+        }
+        assert_eq!(history.next_iteration(), None);
+        let mut empty = SearchHistory::new("initial".to_owned(), 0);
+        assert_eq!(empty.next_iteration(), None);
+    }
+
+    #[test]
+    fn concrete_model_keeps_pinned_inputs_and_protected_hints() {
+        let r1cs = R1cs {
+            prime: BigUint::from(101u32),
+            shape: crate::candidate_review::schema::R1csShape {
+                wires: 4,
+                labels: 4,
+                public_outputs: 0,
+                public_inputs: 2,
+                private_inputs: 0,
+                constraints: 0,
+            },
+            constraints: vec![],
+            wire_labels: vec![0, 1, 2, 3],
+        };
+        let sym = SymbolTable::parse(b"1,1,0,main.x\n2,2,0,main.y\n3,3,1,main.inner.out\n", &r1cs)
+            .unwrap();
+        let source = "template Inner(){ signal output out; out <-- 3; } template Main(){ signal input x; signal input y; component inner = Inner(); }";
+        let file = PathBuf::from("test.circom");
+        let templates = super::super::source::parse_templates(&file, source).unwrap();
+        let sources = BTreeMap::from([(file, source.to_owned())]);
+        let mut structure = Structure::new(&sym, &templates, &sources, Some("Main".to_owned()));
+        assert!(structure.is_hint("main.inner.out"));
+        let index = vec![vec![]; 4];
+        let view = View {
+            r1cs: &r1cs,
+            sym: &sym,
+            index: &index,
+            first_input: 1,
+            inputs: 2,
+        };
+        let start = Start {
+            label: "test",
+            stage: "test",
+            input: serde_json::json!({"x":"1", "y":"2"}),
+            overrides: Overrides::default(),
+            candidate_hints: true,
+            protected_site: Some("main.inner".to_owned()),
+            inputs_free: true,
+            pinned: BTreeSet::from([1]),
+        };
+        let mut overrides = Overrides::default();
+        let mut input = start.input.clone();
+        let mut changes = BTreeSet::new();
+        let result = ModelApplication {
+            view: &view,
+            start: &start,
+            overrides: &mut overrides,
+            input: &mut input,
+            changed_inputs: &mut changes,
+        }
+        .apply(
+            &mut structure,
+            &[1u32, 1, 2, 3].map(BigUint::from),
+            &BTreeMap::from([(1, 9u32.into()), (2, 7u32.into()), (3, 4u32.into())]),
+            true,
+        );
+        assert_eq!(input, serde_json::json!({"x":"1", "y":"7"}));
+        assert!(overrides.rewrite.is_empty());
+        assert_eq!(result, (0, 1, true));
+        let result = ModelApplication {
+            view: &view,
+            start: &start,
+            overrides: &mut overrides,
+            input: &mut input,
+            changed_inputs: &mut changes,
+        }
+        .apply(
+            &mut structure,
+            &[1u32, 1, 7, 3].map(BigUint::from),
+            &BTreeMap::from([(1, 9u32.into()), (3, 4u32.into())]),
+            true,
+        );
+        assert_eq!(
+            result,
+            (0, 0, false),
+            "SAT with no permitted concrete effect must try the existing alternative"
+        );
+        assert!(try_paths_after("sat_no_effect"));
+    }
+
+    #[test]
+    fn incomplete_solver_models_are_tool_errors() {
+        use std::os::unix::fs::PermissionsExt;
+        let dir = tempfile::tempdir().unwrap();
+        let fake = dir.path().join("z3");
+        fs::write(&fake, "#!/bin/sh\nprintf 'sat\n((w1 0))\n'\n").unwrap();
+        fs::set_permissions(&fake, fs::Permissions::from_mode(0o755)).unwrap();
+        assert!(run_z3(
+            &fake,
+            String::new(),
+            &BTreeSet::from([1, 2]),
+            &dir.path().join("model"),
+            Duration::from_secs(1)
+        )
+        .is_err());
+    }
+
+    #[test]
+    fn ineffective_sat_tries_paths_but_search_unsat_never_proves_exclusion() {
+        assert!(try_paths_after("sat_no_effect"));
+        assert!(try_paths_after("unsat"));
+        assert!(!try_paths_after("sat_applied"));
+        assert!(!try_paths_after("tool_error"));
+    }
 
     #[test]
     fn instances_split_on_unbracketed_dots() {

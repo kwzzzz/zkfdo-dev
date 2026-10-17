@@ -14,7 +14,6 @@ use std::{
     collections::{BTreeMap, BTreeSet, VecDeque},
     fmt::Write as _,
     path::Path,
-    process::Command,
     time::Duration,
 };
 
@@ -23,7 +22,6 @@ use num_bigint::BigUint;
 use num_traits::{One, Zero};
 
 use super::super::r1cs::{Constraint, LinearCombination, R1cs};
-use super::super::subprocess::run_bounded_logged;
 use super::refute;
 
 /// Limits for stage (a).
@@ -187,6 +185,7 @@ pub(crate) fn solve_path(
 /// `fixed` (only candidate-determined values: the site's input values and the entrypoint
 /// inputs bound directly to them). Shared high-degree wires are left free and not expanded
 /// (a relaxation), so an unsatisfiable cone holds for every entrypoint input.
+#[derive(Clone)]
 pub(crate) struct Cone {
     pub(crate) constraints: Vec<usize>,
     pub(crate) unknowns: BTreeSet<usize>,
@@ -360,13 +359,8 @@ pub(crate) fn solve_cone(
             .join(" ");
         writeln!(text, "(get-value ({names}))")?;
     }
-    let query = scratch.with_extension("smt2");
-    std::fs::write(&query, &text)?;
-    let log = scratch.with_extension("z3.log");
-    let mut command = Command::new(z3);
-    command.arg(&query);
-    let (_, timed_out) = run_bounded_logged(&mut command, timeout + Duration::from_secs(10), &log)?;
-    let output = std::fs::read_to_string(&log).unwrap_or_default();
+    let output = super::solver::run(z3, text, scratch, timeout)?;
+    let timed_out = output.starts_with("timeout\n");
     let verdict = output.lines().next().unwrap_or("").trim();
     let outcome = if verdict == "unsat" {
         ConeOutcome::Unsat { propagation }
@@ -376,7 +370,12 @@ pub(crate) fn solve_cone(
         ConeOutcome::Timeout
     } else if verdict == "sat" {
         if want_model && !cone.unknowns.is_empty() {
-            ConeOutcome::Model(parse_values(&output)?)
+            let model = parse_values(&output)?;
+            anyhow::ensure!(
+                model.keys().copied().collect::<BTreeSet<_>>() == cone.unknowns,
+                "z3 model does not cover exactly the requested wires"
+            );
+            ConeOutcome::Model(model)
         } else {
             ConeOutcome::Sat
         }
@@ -390,6 +389,53 @@ pub(crate) fn solve_cone(
         outcome,
         cone: Some(cone),
     })
+}
+
+/// A branch model is only a proposal. The caller must replay all target values and
+/// verify the full original witness. No arbitrary reference boundary is fixed here.
+pub(crate) fn small_proposal(
+    graph: &Graph,
+    fixed: &BTreeMap<usize, BigUint>,
+    starts: &[usize],
+    z3: &Path,
+    directory: &Path,
+    budget: Duration,
+) -> Result<Option<ConeResult>> {
+    let started = std::time::Instant::now();
+    let mut visited = BTreeSet::new();
+    for &start in starts {
+        for &position in &graph.index[start] {
+            let remaining = budget.saturating_sub(started.elapsed());
+            if remaining.is_zero() {
+                return Ok(None);
+            }
+            if !visited.insert(position) {
+                continue;
+            }
+            let Some(cone) = largest_cone(graph, fixed, &[start], Some(position)) else {
+                continue;
+            };
+            if cone.constraints.is_empty() {
+                continue;
+            }
+            let result = solve_cone(
+                graph,
+                fixed,
+                cone,
+                true,
+                BRANCH_TIMEOUT.min(remaining),
+                z3,
+                &directory.join(format!("small-{position}")),
+            )?;
+            if matches!(
+                result.outcome,
+                ConeOutcome::Model(_) | ConeOutcome::Unsat { .. }
+            ) {
+                return Ok(Some(result));
+            }
+        }
+    }
+    Ok(None)
 }
 
 /// Result of the exclusion sweep over branch cones.
@@ -591,6 +637,43 @@ mod tests {
             constraints,
             wire_labels: (0..5).collect(),
         }
+    }
+
+    #[test]
+    fn local_sat_is_only_a_proposal_when_the_original_witness_fails() {
+        let r1cs = chain();
+        let index = constraint_index(&r1cs);
+        let graph = Graph {
+            r1cs: &r1cs,
+            index: &index,
+            blocked: &|_| false,
+            internal: &|_| false,
+        };
+        let cone = Cone {
+            constraints: vec![0],
+            unknowns: BTreeSet::from([1, 2, 3]),
+        };
+        let dir = tempfile::tempdir().unwrap();
+        let result = solve_cone(
+            &graph,
+            &BTreeMap::new(),
+            cone,
+            true,
+            Duration::from_secs(1),
+            Path::new("z3"),
+            &dir.path().join("local"),
+        )
+        .unwrap();
+        let ConeOutcome::Model(values) = result.outcome else {
+            panic!("expected proposal");
+        };
+        let mut witness = vec![BigUint::one(); 5];
+        for (wire, value) in values {
+            witness[wire] = value;
+        }
+        // The omitted constraint requires s=t+5. Deliberately fail full replay.
+        witness[4] = witness[3].clone();
+        assert!(!r1cs.failed_constraint_indices(&witness).unwrap().is_empty());
     }
 
     #[test]

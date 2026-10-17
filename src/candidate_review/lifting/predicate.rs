@@ -49,7 +49,7 @@ const EXCLUSION_TIMEOUT: Duration = Duration::from_secs(10);
 const EXCLUSION_CONSTRAINTS: usize = 4_000;
 /// Passes of interval propagation through linear constraints.
 const PROPAGATION_ROUNDS: usize = 8;
-const STORE_SCHEMA: &str = "zkfdo-instance-predicate-v1";
+const STORE_SCHEMA: &str = "zkfdo-instance-predicate-v2";
 
 pub const VIOLATION_REACHABLE: &str = "assumption_violation_reachable";
 pub const EXCLUDED: &str = "assumption_excluded_in_context";
@@ -98,6 +98,8 @@ pub struct ReachInputs {
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct StoredVerdict {
     pub schema: String,
+    pub record_sha256: String,
+    pub evidence_files: BTreeMap<String, String>,
     pub entry_key: String,
     pub instance: String,
     pub verdict: String,
@@ -359,7 +361,7 @@ pub(crate) fn judge(
                     .ok()
                     .and_then(|bytes| serde_json::from_slice::<Value>(&bytes).ok())
                     .map(|input| reach_inputs(context, &input, class_hints));
-                store_write(context, &mut result);
+                store_write(context, &mut result, &directory, Some(witness));
                 class.predicates.push(result);
                 continue;
             }
@@ -408,7 +410,7 @@ pub(crate) fn judge(
                 result.reason = "predicate_cone_unsat".to_owned();
                 result.method = Some("z3_cone_with_range_facts".to_owned());
                 result.evidence = evidence;
-                store_write(context, &mut result);
+                store_write(context, &mut result, &directory, None);
                 class.predicates.push(result);
                 continue;
             }
@@ -421,6 +423,59 @@ pub(crate) fn judge(
         }
 
         // (3) Search for a witness on which the predicate holds.
+        // Search identity includes the actual honest O0 generator. Equal R1CS/SYM
+        // can still have different unconstrained hints and therefore different searches.
+        let generator_hash = context.original_o0.js_dir.as_ref().and_then(|directory| {
+            super::sha256_file(&directory.join(format!("{}.wasm", context.original_o0.stem))).ok()
+        });
+        let job_id = attempt_identity(
+            &context.entry_key,
+            &instance,
+            generator_hash.as_deref().unwrap_or("unavailable"),
+        );
+        let attempt_path = generator_hash
+            .as_ref()
+            .and(context.instance_store)
+            .map(|store| store.join("attempts-v2.1").join(format!("{job_id}.json")));
+        if let Some(cached) = attempt_path
+            .as_ref()
+            .and_then(|path| fs::read(path).ok())
+            .and_then(|bytes| serde_json::from_slice::<StoredAttempt>(&bytes).ok())
+            .filter(|attempt| {
+                attempt.schema == "zkfdo-predicate-attempt-v2.1"
+                    && attempt.job_id == job_id
+                    && attempt.record_sha256
+                        == super::sha256_bytes(
+                            &serde_json::to_vec(&attempt.record).unwrap_or_default(),
+                        )
+                    && cacheable_attempt(&attempt.record)
+            })
+        {
+            result.reason = "predicate_search_cached_unknown".to_owned();
+            result
+                .evidence
+                .insert("independent_job_id".to_owned(), job_id);
+            result
+                .evidence
+                .insert("search_outcome".to_owned(), cached.record.outcome.clone());
+            result
+                .evidence
+                .insert("search_shared_from".to_owned(), cached.request_id);
+            result.search = Some(cached.record);
+            ledger.record(
+                "predicate",
+                "identical failed search hit",
+                0.0,
+                "unknown",
+                true,
+            );
+            class.predicates.push(result);
+            continue;
+        }
+        context.repair_remaining = 6;
+        result
+            .evidence
+            .insert("independent_job_id".to_owned(), job_id.clone());
         let start = repair::Start {
             label: "predicate",
             stage: "predicate",
@@ -445,6 +500,23 @@ pub(crate) fn judge(
         let injected = record.rewritten_statements > 0;
         result.search = Some(record);
         let Some(reached) = reached else {
+            if let (Some(path), Some(record)) = (attempt_path, result.search.as_ref()) {
+                if cacheable_attempt(record) {
+                    let attempt = StoredAttempt {
+                        schema: "zkfdo-predicate-attempt-v2.1".to_owned(),
+                        job_id,
+                        request_id: context.request_id.clone(),
+                        record: record.clone(),
+                        record_sha256: super::sha256_bytes(
+                            &serde_json::to_vec(record).unwrap_or_default(),
+                        ),
+                    };
+                    let _ = fs::create_dir_all(path.parent().unwrap_or(Path::new(".")));
+                    if let Ok(value) = serde_json::to_value(attempt) {
+                        let _ = write_json(&path, &value);
+                    }
+                }
+            }
             result.reason = "predicate_search_not_reached".to_owned();
             class.predicates.push(result);
             continue;
@@ -481,7 +553,7 @@ pub(crate) fn judge(
             );
             result.semantic_deviation_observed = true;
             result.reach_inputs = Some(reach_inputs(context, &reached.input, injected));
-            store_write(context, &mut result);
+            store_write(context, &mut result, &directory, None);
         } else {
             result.reason = "predicate_witness_not_verified".to_owned();
         }
@@ -573,6 +645,33 @@ fn flatten_input(value: &Value, prime: &BigUint) -> BTreeMap<String, BigUint> {
     out
 }
 
+#[derive(Serialize, Deserialize)]
+struct StoredAttempt {
+    schema: String,
+    job_id: String,
+    request_id: String,
+    record: RepairRecord,
+    record_sha256: String,
+}
+
+fn attempt_identity(entry_key: &str, instance: &str, generator_sha256: &str) -> String {
+    super::sha256_bytes(
+        format!("{entry_key}\0{instance}\0{generator_sha256}\0predicate-base-empty-hints-v2.1")
+            .as_bytes(),
+    )
+}
+
+fn cacheable_attempt(record: &RepairRecord) -> bool {
+    matches!(
+        record.outcome.as_str(),
+        "cycle" | "no_progress" | "iteration_limit"
+    ) && record.error_kind.is_none()
+        && !record
+            .solves
+            .iter()
+            .any(|solve| matches!(solve.outcome.as_str(), "unknown" | "timeout" | "tool_error"))
+}
+
 fn store_path(context: &EvalContext, instance: &str) -> Option<std::path::PathBuf> {
     use sha2::{Digest, Sha256};
     let store = context.instance_store?;
@@ -586,12 +685,45 @@ fn store_path(context: &EvalContext, instance: &str) -> Option<std::path::PathBu
 fn store_read(context: &EvalContext, instance: &str) -> Option<StoredVerdict> {
     let stored: StoredVerdict =
         serde_json::from_slice(&fs::read(store_path(context, instance)?).ok()?).ok()?;
-    (stored.entry_key == context.entry_key && stored.instance == instance).then_some(stored)
+    (stored.entry_key == context.entry_key && stored.instance == instance && valid_stored(&stored))
+        .then_some(stored)
+}
+
+fn stored_digest(stored: &StoredVerdict) -> String {
+    let mut unsigned = stored.clone();
+    unsigned.record_sha256.clear();
+    super::sha256_bytes(&serde_json::to_vec(&unsigned).unwrap_or_default())
+}
+
+fn valid_stored(stored: &StoredVerdict) -> bool {
+    stored.schema == STORE_SCHEMA
+        && stored.record_sha256 == stored_digest(stored)
+        && !stored.evidence_files.is_empty()
+        && stored.evidence_files.iter().all(|(path, hash)| {
+            super::sha256_file(Path::new(path)).is_ok_and(|actual| actual == *hash)
+        })
+        && match stored.verdict.as_str() {
+            VIOLATION_REACHABLE => {
+                stored.rust_unsatisfied == Some(0)
+                    && stored.snarkjs.as_deref() == Some("correct")
+                    && stored.o0_o1_agree == Some(true)
+            }
+            EXCLUDED => {
+                stored.method.as_deref() == Some("z3_cone_with_range_facts")
+                    && stored.evidence.contains_key("excluded_by")
+            }
+            _ => false,
+        }
 }
 
 /// Records a proved verdict for the instance. A stored verdict that contradicts it is never
 /// overwritten; the contradiction is noted on the result (it would be an engine error).
-fn store_write(context: &EvalContext, result: &mut PredicateResult) {
+fn store_write(
+    context: &EvalContext,
+    result: &mut PredicateResult,
+    directory: &Path,
+    witness: Option<&ClassWitness>,
+) {
     let Some(path) = store_path(context, &result.instance) else {
         return;
     };
@@ -604,7 +736,18 @@ fn store_write(context: &EvalContext, result: &mut PredicateResult) {
         }
         return;
     }
-    let stored = StoredVerdict {
+    result
+        .evidence
+        .entry("verified_at_unix_ms".to_owned())
+        .or_insert_with(|| {
+            std::time::SystemTime::now()
+                .duration_since(std::time::UNIX_EPOCH)
+                .map(|time| time.as_millis().to_string())
+                .unwrap_or_default()
+        });
+    let mut stored = StoredVerdict {
+        record_sha256: String::new(),
+        evidence_files: BTreeMap::new(),
         schema: STORE_SCHEMA.to_owned(),
         entry_key: context.entry_key.clone(),
         instance: result.instance.clone(),
@@ -618,6 +761,46 @@ fn store_write(context: &EvalContext, result: &mut PredicateResult) {
         reach_inputs: result.reach_inputs.clone(),
         evidence: result.evidence.clone(),
     };
+    let files = if result.verdict == VIOLATION_REACHABLE {
+        if let Some(witness) = witness {
+            vec![
+                witness.input.clone(),
+                witness.o1_witness.clone(),
+                directory.join("class-o0.wtns"),
+            ]
+        } else {
+            vec![
+                directory.join("found-input.json"),
+                directory.join("found.wtns"),
+            ]
+        }
+    } else {
+        [0, 1]
+            .into_iter()
+            .flat_map(|depth| {
+                [
+                    directory.join(format!("exclusion-{depth}.smt2")),
+                    directory.join(format!("exclusion-{depth}.z3.log")),
+                ]
+            })
+            .filter(|path| path.is_file())
+            .collect()
+    };
+    for file in files {
+        let Ok(hash) = super::sha256_file(&file) else {
+            return;
+        };
+        let Ok(file) = file.canonicalize() else {
+            return;
+        };
+        stored
+            .evidence_files
+            .insert(file.to_string_lossy().into_owned(), hash);
+    }
+    stored.record_sha256 = stored_digest(&stored);
+    if !valid_stored(&stored) {
+        return;
+    }
     let _ = fs::create_dir_all(path.parent().unwrap_or(Path::new(".")));
     let temporary = path.with_extension(format!("{}.tmp", std::process::id()));
     if serde_json::to_vec_pretty(&stored)
@@ -893,4 +1076,42 @@ fn decomposition_instance(context: &EvalContext, position: usize) -> String {
         .map(|name| super::split_instance(name).0.to_owned())
         .min_by_key(|instance| instance.len())
         .unwrap_or_default()
+}
+
+#[cfg(test)]
+mod reaudit_tests {
+    use super::*;
+    #[test]
+    fn time_or_unknown_limited_attempt_is_not_memoized() {
+        let mut record = RepairRecord {
+            outcome: "no_progress".to_owned(),
+            ..RepairRecord::default()
+        };
+        assert!(cacheable_attempt(&record));
+        record.solves.push(repair::SolveRecord {
+            iteration: 0,
+            cause: "predicate".to_owned(),
+            region: "main.c".to_owned(),
+            with_paths: true,
+            unknowns: 3,
+            constraints: 2,
+            outcome: "timeout".to_owned(),
+            hints_changed: 0,
+            inputs_changed: 0,
+        });
+        assert!(!cacheable_attempt(&record));
+        record.solves[0].outcome = "unknown".to_owned();
+        assert!(!cacheable_attempt(&record));
+        record.solves[0].outcome = "unsat".to_owned();
+        assert!(cacheable_attempt(&record));
+        record.error_kind = Some("io".to_owned());
+        assert!(!cacheable_attempt(&record));
+    }
+    #[test]
+    fn attempt_key_separates_generator_changes_even_for_same_constraints() {
+        assert_ne!(
+            attempt_identity("same-r1cs-sym-base-engine", "main.c", "wasm-a"),
+            attempt_identity("same-r1cs-sym-base-engine", "main.c", "wasm-b")
+        );
+    }
 }

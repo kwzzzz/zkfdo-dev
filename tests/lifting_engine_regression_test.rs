@@ -364,3 +364,243 @@ fn instance_verdicts_are_shared_across_requests() {
     assert_eq!(joined["conflicts"], 0);
     assert_eq!(joined["changed_by_sharing"], 0);
 }
+
+/// A damaged v2 proof must trigger fresh checking, even when the entry/instance match.
+#[test]
+fn corrupted_instance_proof_is_not_shared() {
+    let fixture =
+        Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/lifting_engine/lessthan_search");
+    let temp = tempfile::tempdir().unwrap();
+    let store = temp.path().join("store");
+    let run = |name: &str| -> Value {
+        let output = temp.path().join(name);
+        Command::cargo_bin("zkfDO")
+            .unwrap()
+            .args(["experiment", "lift", "--request"])
+            .arg(fixture.join("request.json"))
+            .arg("--output")
+            .arg(&output)
+            .arg("--instance-store")
+            .arg(&store)
+            .assert()
+            .success();
+        serde_json::from_slice(&fs::read(output.join("result.json")).unwrap()).unwrap()
+    };
+    let first = run("first");
+    assert_eq!(
+        first["classes"][0]["predicates"][0]["verdict"],
+        "assumption_violation_reachable"
+    );
+    let proof = fs::read_dir(&store)
+        .unwrap()
+        .map(|p| p.unwrap().path())
+        .find(|p| !p.to_string_lossy().contains("attempt-v2"))
+        .unwrap();
+    let mut saved: Value = serde_json::from_slice(&fs::read(&proof).unwrap()).unwrap();
+    saved["rust_unsatisfied"] = 1.into();
+    fs::write(proof, serde_json::to_vec(&saved).unwrap()).unwrap();
+    let second = run("second");
+    assert_ne!(
+        second["classes"][0]["predicates"][0]["reason"],
+        "instance_verdict_shared"
+    );
+    assert_eq!(second["classes"][0]["predicates"][0]["rust_unsatisfied"], 0);
+}
+
+/// Unknown and failed solver calls never certify a predicate exclusion or a reach.
+#[test]
+fn solver_unknown_and_tool_error_remain_unknown() {
+    use std::os::unix::fs::PermissionsExt;
+    let fixture =
+        Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/lifting_engine/lessthan_search");
+    let temp = tempfile::tempdir().unwrap();
+    for (name, answer) in [
+        ("unknown", "unknown\\n(:reason-unknown \"incomplete\")\\n"),
+        ("error", "broken tool\\n"),
+    ] {
+        let fake = temp.path().join(format!("z3-{name}"));
+        fs::write(&fake, format!("#!/bin/sh\nprintf '{answer}'\n")).unwrap();
+        fs::set_permissions(&fake, fs::Permissions::from_mode(0o755)).unwrap();
+        let output = temp.path().join(name);
+        Command::cargo_bin("zkfDO")
+            .unwrap()
+            .args(["experiment", "lift", "--request"])
+            .arg(fixture.join("request.json"))
+            .arg("--output")
+            .arg(&output)
+            .arg("--z3-bin")
+            .arg(fake)
+            .assert()
+            .success();
+        let result: Value =
+            serde_json::from_slice(&fs::read(output.join("result.json")).unwrap()).unwrap();
+        assert_eq!(
+            result["classes"][0]["assumption_predicate_verdict"], "unknown",
+            "{result}"
+        );
+        let calls = result["costs"]["solver_calls"].as_array().unwrap();
+        assert!(!calls.is_empty());
+        assert!(calls.iter().all(|call| call["outcome"]
+            == if name == "unknown" {
+                "unknown"
+            } else {
+                "tool_error"
+            }));
+    }
+}
+
+#[test]
+fn instance_store_separates_different_base_inputs() {
+    let fixture =
+        Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/lifting_engine/lessthan_search");
+    let temp = tempfile::tempdir().unwrap();
+    let store = temp.path().join("store");
+    for (index, base) in ["1", "2"].into_iter().enumerate() {
+        let input = temp.path().join(format!("base-{index}.json"));
+        fs::write(&input, format!("{{\"x\":\"{base}\"}}")).unwrap();
+        let mut request: Value =
+            serde_json::from_slice(&fs::read(fixture.join("request.json")).unwrap()).unwrap();
+        request["source_root"] = fixture.join("src").to_string_lossy().into_owned().into();
+        request["component_wrapper"] = fixture
+            .join("src/standalone.circom")
+            .to_string_lossy()
+            .into_owned()
+            .into();
+        request["entrypoint"] = fixture
+            .join("src/entrypoint.circom")
+            .to_string_lossy()
+            .into_owned()
+            .into();
+        request["base_input"] = input.to_string_lossy().into_owned().into();
+        request["candidate"]["path"] = fixture
+            .join("candidate.json")
+            .to_string_lossy()
+            .into_owned()
+            .into();
+        let request_path = temp.path().join(format!("request-{index}.json"));
+        fs::write(&request_path, serde_json::to_vec(&request).unwrap()).unwrap();
+        let output = temp.path().join(format!("run-{index}"));
+        Command::cargo_bin("zkfDO")
+            .unwrap()
+            .args(["experiment", "lift", "--request"])
+            .arg(request_path)
+            .arg("--output")
+            .arg(&output)
+            .arg("--instance-store")
+            .arg(&store)
+            .assert()
+            .success();
+        let result: Value =
+            serde_json::from_slice(&fs::read(output.join("result.json")).unwrap()).unwrap();
+        assert_ne!(
+            result["classes"][0]["predicates"][0]["reason"],
+            "instance_verdict_shared"
+        );
+    }
+    assert_eq!(fs::read_dir(store).unwrap().count(), 2);
+}
+
+/// Frozen search boundaries can be inconsistent even when no global exclusion is known.
+#[test]
+fn search_only_unsat_does_not_become_predicate_exclusion() {
+    use std::os::unix::fs::PermissionsExt;
+    let fixture =
+        Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/lifting_engine/lessthan_search");
+    let temp = tempfile::tempdir().unwrap();
+    let fake = temp.path().join("z3");
+    fs::write(&fake, "#!/bin/sh\ncase \"$1\" in *exclusion*) printf 'unknown\\n(:reason-unknown \"incomplete\")\\n';; *) printf 'unsat\\n';; esac\n").unwrap();
+    fs::set_permissions(&fake, fs::Permissions::from_mode(0o755)).unwrap();
+    let output = temp.path().join("result");
+    Command::cargo_bin("zkfDO")
+        .unwrap()
+        .args(["experiment", "lift", "--request"])
+        .arg(fixture.join("request.json"))
+        .arg("--output")
+        .arg(&output)
+        .arg("--z3-bin")
+        .arg(fake)
+        .assert()
+        .success();
+    let result: Value =
+        serde_json::from_slice(&fs::read(output.join("result.json")).unwrap()).unwrap();
+    let predicate = &result["classes"][0]["predicates"][0];
+    assert_eq!(predicate["verdict"], "unknown", "{result}");
+    assert_eq!(predicate["search"]["outcome"], "no_progress");
+    assert!(predicate["search"]["solves"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .any(|solve| solve["outcome"] == "unsat"));
+}
+
+fn executable_on_path(name: &str) -> String {
+    let output = std::process::Command::new("which")
+        .arg(name)
+        .output()
+        .unwrap();
+    assert!(output.status.success());
+    String::from_utf8(output.stdout).unwrap().trim().to_owned()
+}
+
+#[test]
+fn checker_disagreement_does_not_produce_a_reach() {
+    use std::os::unix::fs::PermissionsExt;
+    let temp = tempfile::tempdir().unwrap();
+    let fake = temp.path().join("snarkjs");
+    let real = serde_json::to_string(&executable_on_path("snarkjs")).unwrap();
+    fs::write(&fake, format!("#!/usr/bin/env python3\nimport subprocess,sys\nif '/site-' in sys.argv[-1]:\n print('WITNESS IS NOT CORRECT')\n sys.exit(1)\nsys.exit(subprocess.run([{real}, *sys.argv[1:]]).returncode)\n")).unwrap();
+    fs::set_permissions(&fake, fs::Permissions::from_mode(0o755)).unwrap();
+    let fixture = Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join("tests/fixtures/lifting_engine/hint_injection/request.json");
+    let output = temp.path().join("result");
+    Command::cargo_bin("zkfDO")
+        .unwrap()
+        .args(["experiment", "lift", "--request"])
+        .arg(fixture)
+        .arg("--output")
+        .arg(&output)
+        .arg("--snarkjs-bin")
+        .arg(fake)
+        .assert()
+        .success();
+    let result: Value =
+        serde_json::from_slice(&fs::read(output.join("result.json")).unwrap()).unwrap();
+    assert_eq!(result["classes"][0]["rust_unsatisfied"], 0);
+    assert_eq!(result["classes"][0]["snarkjs"], "not_correct");
+    assert_eq!(result["classes"][0]["verdict"], "unknown");
+}
+
+#[test]
+fn changed_repair_r1cs_and_sym_are_rejected() {
+    use std::os::unix::fs::PermissionsExt;
+    let real = serde_json::to_string(&executable_on_path("circom")).unwrap();
+    for extension in ["r1cs", "sym"] {
+        let temp = tempfile::tempdir().unwrap();
+        let fake = temp.path().join("circom");
+        fs::write(&fake, format!("#!/usr/bin/env python3\nimport subprocess,sys,pathlib\np=subprocess.run([{real}, *sys.argv[1:]])\nif p.returncode==0 and any('variant-o0' in a for a in sys.argv):\n d=pathlib.Path(sys.argv[sys.argv.index('-o')+1])\n for f in d.glob('*.{extension}'):\n  b=f.read_bytes()\n  f.write_bytes(b'X'+b[1:])\nsys.exit(p.returncode)\n")).unwrap();
+        fs::set_permissions(&fake, fs::Permissions::from_mode(0o755)).unwrap();
+        let fixture = Path::new(env!("CARGO_MANIFEST_DIR"))
+            .join("tests/fixtures/lifting_engine/abort_repair/request.json");
+        let output = temp.path().join("result");
+        Command::cargo_bin("zkfDO")
+            .unwrap()
+            .args(["experiment", "lift", "--request"])
+            .arg(fixture)
+            .arg("--output")
+            .arg(&output)
+            .arg("--circom-bin")
+            .arg(fake)
+            .assert()
+            .success();
+        let result: Value =
+            serde_json::from_slice(&fs::read(output.join("result.json")).unwrap()).unwrap();
+        assert_eq!(
+            result["classes"][0]["verdict"], "unknown",
+            "{extension}: {result}"
+        );
+        assert_eq!(
+            result["classes"][0]["synthesis"]["repair"]["error_kind"], "evidence_invariant",
+            "{extension}: {result}"
+        );
+    }
+}

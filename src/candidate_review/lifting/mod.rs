@@ -11,6 +11,7 @@ pub mod instances;
 mod predicate;
 mod refute;
 mod repair;
+mod solver;
 mod source;
 mod synth;
 mod wtns;
@@ -162,7 +163,7 @@ pub struct ComponentSummary {
     pub rewritten_statements: Vec<RewriteRecord>,
 }
 
-#[derive(Debug, Serialize, Clone)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct RewriteRecord {
     pub template: String,
     pub file: String,
@@ -229,7 +230,9 @@ pub struct SynthesisRecord {
     pub reference_abort: Option<AbortSite>,
     /// Where the input proposed by the cone model aborted.
     pub model_abort: Option<AbortSite>,
+    pub model_comparison_missing: bool,
     pub sweep_branches: Option<usize>,
+    pub sweep_end: Option<String>,
     /// The bit-decomposition constraint the reference input violates (diagnostic: found with
     /// every main input of the reference input fixed, so it locates the abort but proves
     /// nothing about other inputs).
@@ -270,6 +273,7 @@ pub struct CostSummary {
     pub total_seconds: f64,
     pub wall_seconds: f64,
     pub steps: Vec<Step>,
+    pub solver_calls: Vec<solver::Call>,
 }
 
 #[derive(Debug, Serialize, Clone)]
@@ -354,6 +358,7 @@ struct Compiled {
 }
 
 pub fn lift(options: &LiftOptions) -> Result<LiftResult> {
+    solver::reset();
     ensure!(
         !options.output.exists(),
         "output directory {} already exists",
@@ -460,6 +465,7 @@ pub fn lift(options: &LiftOptions) -> Result<LiftResult> {
         by_stage,
         wall_seconds: started.elapsed().as_secs_f64(),
         steps: ledger.steps,
+        solver_calls: solver::take(),
     };
     let text = serde_json::to_string_pretty(&result)?;
     fs::write(options.output.join("result.json"), format!("{text}\n"))?;
@@ -902,8 +908,36 @@ fn run_lift(
         cache: options.cache.as_deref(),
         instance_store: options.instance_store.as_deref(),
         entry_key: format!(
-            "{}:{}:{}",
-            entry_summary_key.0, entry_summary_key.1, entry_summary_key.2
+            "v2:{}:{}:{}:{}:{}:{}:{}:{}:{}:{}:{}",
+            entry_summary_key.0,
+            entry_summary_key.1,
+            entry_summary_key.2,
+            sha256_file(&original_o0.sym).map_err(prep("io"))?,
+            sha256_bytes(
+                &serde_json::to_vec(&base_input).map_err(|error| prep("io")(error.into()))?
+            ),
+            sha256_file(&tools.circom).map_err(prep("io"))?,
+            sha256_file(&tools.node).map_err(prep("io"))?,
+            sha256_file(&tools.snarkjs).map_err(prep("io"))?,
+            z3.as_ref()
+                .map(|path| sha256_file(path))
+                .transpose()
+                .map_err(prep("io"))?
+                .unwrap_or_else(|| "unavailable".to_owned()),
+            std::env::current_exe()
+                .ok()
+                .and_then(|path| sha256_file(&path).ok())
+                .unwrap_or_else(|| "unavailable".to_owned()),
+            sha256_bytes(
+                concat!(
+                    include_str!("mod.rs"),
+                    include_str!("repair.rs"),
+                    include_str!("synth.rs"),
+                    include_str!("predicate.rs"),
+                    include_str!("solver.rs")
+                )
+                .as_bytes()
+            )
         ),
         request_id: result.request_id.clone(),
         public_inputs: public_input_names(&entry_r1cs, &entry_sym),
@@ -913,6 +947,7 @@ fn run_lift(
             .to_path_buf(),
         entry_main_template: main_template_name(&sources[&entrypoint]),
         sweep_remaining: synth::CANDIDATE_SWEEP_BUDGET,
+        repair_remaining: 6,
         structure: None,
         class_witness: None,
     };
@@ -1773,6 +1808,7 @@ struct EvalContext<'a> {
     entry_main_template: Option<String>,
     /// What is left of the candidate's exclusion-sweep budget.
     sweep_remaining: Duration,
+    repair_remaining: usize,
     /// Signal roles from the sources over the O0 symbols, built when a repair needs them.
     structure: Option<repair::Structure<'a>>,
     /// The witness the current class reached (input-assumption property), for step 2.
@@ -1791,6 +1827,7 @@ fn evaluate_class(
     context: &mut EvalContext,
     ledger: &mut Ledger,
 ) -> ClassResult {
+    context.repair_remaining = 6;
     let site = &class.representative;
     let mut result = ClassResult {
         pattern: class.pattern.clone(),
@@ -1994,7 +2031,7 @@ fn evaluate_class(
         "witness",
         "entrypoint deviated witness",
     );
-    let honest = match honest {
+    let mut honest = match honest {
         Ok(witness) => {
             result.honest_generation =
                 Some(if witness.is_some() { "ok" } else { "aborted" }.to_owned());
@@ -2012,13 +2049,125 @@ fn evaluate_class(
         }
         Ok(None) => {
             result.deviated_generation = Some("aborted".to_owned());
-            return try_refutation(
-                result,
-                context,
-                &input,
-                ledger,
-                "deviated_generation_aborted",
+            let abort = classify_abort(
+                &folder.join("deviated.log"),
+                context.templates,
+                context.sources,
             );
+            result
+                .evidence
+                .insert("deviated_abort_kind".to_owned(), abort.kind.clone());
+            // Reuse the class's remaining repair slots. A generator already carrying
+            // external repairs cannot be restarted from empty overrides.
+            let repaired = if abort.kind == "constraint"
+                && generator_override.is_none()
+                && context.repair_remaining > 0
+            {
+                let pinned = substitutions
+                    .iter()
+                    .filter_map(|(name, _)| {
+                        context
+                            .entry_o0_sym
+                            .by_name
+                            .get(&format!("main.{name}"))
+                            .and_then(|symbol| usize::try_from(symbol.wire).ok())
+                    })
+                    .collect();
+                let start = repair::Start {
+                    label: "deviated_abort",
+                    stage: "repair",
+                    input: input.clone(),
+                    overrides: repair::Overrides::default(),
+                    candidate_hints: true,
+                    protected_site: Some(site.clone()),
+                    inputs_free: true,
+                    pinned,
+                };
+                let requirement = repair::Requirement {
+                    targets: intermediates.clone(),
+                    predicate: None,
+                };
+                let (reached, search) = repair::search(
+                    context,
+                    start,
+                    &requirement,
+                    &folder.join("deviated-abort-repair"),
+                    ledger,
+                );
+                result
+                    .synthesis
+                    .get_or_insert_with(SynthesisRecord::default)
+                    .repair = Some(search);
+                reached
+            } else {
+                None
+            };
+            let Some(repaired) = repaired else {
+                return try_refutation(
+                    result,
+                    context,
+                    &input,
+                    ledger,
+                    "deviated_generation_aborted",
+                );
+            };
+            input = repaired.input;
+            if write_json(&input_path, &input).is_err() {
+                return conclude(result, Verdict::Unknown, "io");
+            }
+            if let Ok(hash) = sha256_file(&input_path) {
+                result.evidence.insert("input_sha256".to_owned(), hash);
+            }
+            override_o0 = Some(repaired.o0);
+            generator_override = Some(repaired.o1);
+            comparator = repaired.comparator;
+            result.input_origin = Some("repaired_hint_injection".to_owned());
+            honest = match generate_witness(
+                tools,
+                comparator.as_ref().unwrap_or(context.original),
+                &input_path,
+                &folder.join("honest.wtns"),
+                prime,
+                ledger,
+                "witness",
+                "repaired comparator witness",
+            ) {
+                Ok(witness) => witness,
+                Err(error) => {
+                    result.exceptions.push(format!("{error:#}"));
+                    return conclude(result, Verdict::Unknown, "honest_generation_error");
+                }
+            };
+            result.honest_generation =
+                Some(if honest.is_some() { "ok" } else { "aborted" }.to_owned());
+            match generate_witness(
+                tools,
+                generator_override.as_ref().expect("repaired generator"),
+                &input_path,
+                &folder.join("deviated.wtns"),
+                prime,
+                ledger,
+                "witness",
+                "repaired deviated witness",
+            ) {
+                Ok(Some(witness)) => {
+                    result.deviated_generation = Some("ok".to_owned());
+                    witness
+                }
+                Ok(None) => {
+                    return try_refutation(
+                        result,
+                        context,
+                        &input,
+                        ledger,
+                        "deviated_generation_aborted",
+                    )
+                }
+                Err(error) => {
+                    result.exceptions.push(format!("{error:#}"));
+                    return conclude(result, Verdict::Unknown, "deviated_generation_error");
+                }
+            }
         }
         Err(error) => {
             result.exceptions.push(format!("{error:#}"));
@@ -2475,8 +2624,16 @@ fn synthesize_inputs(
             stage,
             "synthesis honest O0 witness",
         )
-        .ok()
-        .flatten();
+        .unwrap_or_else(|error| {
+            ledger.record(
+                stage,
+                &format!("honest O0 tool error: {error:#}"),
+                0.0,
+                "tool_error",
+                false,
+            );
+            None
+        });
         if let Some(witness) = honest {
             return Some((witness, false));
         }
@@ -2490,8 +2647,16 @@ fn synthesize_inputs(
             stage,
             "synthesis hinted O0 witness (honest aborted)",
         )
-        .ok()
-        .flatten()
+        .unwrap_or_else(|error| {
+            ledger.record(
+                stage,
+                &format!("hinted O0 tool error: {error:#}"),
+                0.0,
+                "tool_error",
+                false,
+            );
+            None
+        })
         .map(|witness| (witness, true))
     };
     let reached =
@@ -2778,21 +2943,60 @@ fn synthesize_inputs(
         ]));
     }
 
-    let started = Instant::now();
     let joint = synth::largest_cone(&graph, &fixed_values, &starts, None);
+    let mut small = if joint.is_none() {
+        let small_started = Instant::now();
+        let proposal = synth::small_proposal(
+            &graph,
+            &fixed_values,
+            &starts,
+            z3,
+            &directory,
+            context.sweep_remaining,
+        );
+        context.sweep_remaining = context
+            .sweep_remaining
+            .saturating_sub(small_started.elapsed());
+        ledger.record(
+            "synthesis_b",
+            "small closed cone proposal",
+            small_started.elapsed().as_secs_f64(),
+            if context.sweep_remaining.is_zero() {
+                "time_exhausted"
+            } else {
+                "finished"
+            },
+            false,
+        );
+        match proposal {
+            Ok(proposal) => proposal,
+            Err(error) => {
+                record.note = Some(format!("small cone tool error: {error:#}"));
+                None
+            }
+        }
+    } else {
+        None
+    };
+    let joint = joint.or_else(|| small.as_ref().and_then(|result| result.cone.clone()));
+    let started = Instant::now();
     let mut label = "cone_too_large";
     if let Some(cone) = joint {
         record.b_cone_unknowns = Some(cone.unknowns.len());
         record.b_cone_constraints = Some(cone.constraints.len());
-        let result = synth::solve_cone(
-            &graph,
-            &fixed_values,
-            cone,
-            true,
-            synth::SOLVER_TIMEOUT,
-            z3,
-            &directory.join("cone"),
-        );
+        let result = if let Some(proposal) = small.take() {
+            Ok(proposal)
+        } else {
+            synth::solve_cone(
+                &graph,
+                &fixed_values,
+                cone,
+                true,
+                synth::SOLVER_TIMEOUT,
+                z3,
+                &directory.join("cone"),
+            )
+        };
         ledger.record(
             "synthesis_b",
             "z3 joint closed cone",
@@ -2857,7 +3061,14 @@ fn synthesize_inputs(
                                 .as_ref()
                                 .map(|(witness, _)| witness.clone())
                         });
-                        if let Some(comparison) = comparison {
+                        {
+                            record.model_comparison_missing = comparison.is_none();
+                            let overrides = comparison
+                                .as_ref()
+                                .map(|comparison| {
+                                    model_overrides(context, site, &values, comparison)
+                                })
+                                .unwrap_or_default();
                             // The compile and witness steps inside are recorded on their
                             // own; this step keeps only the remainder so nothing counts twice.
                             let recorded = ledger.steps.len();
@@ -2866,7 +3077,7 @@ fn synthesize_inputs(
                                 label: "model",
                                 stage: "synthesis_b",
                                 input: trial.clone(),
-                                overrides: model_overrides(context, site, &values, &comparison),
+                                overrides,
                                 candidate_hints: context.property == Property::Tcct,
                                 protected_site: Some(site.to_owned()),
                                 inputs_free: true,
@@ -2947,9 +3158,23 @@ fn synthesize_inputs(
         false,
     );
     let mut exhausted = remaining.is_zero();
+    if let Err(error) = &sweep {
+        record.sweep_end = Some("tool_error".to_owned());
+        record.note = Some(format!("exclusion sweep: {error:#}"));
+    }
     if let Ok(sweep) = sweep {
         exhausted |= sweep.exhausted;
         record.sweep_branches = Some(sweep.branches_tried);
+        record.sweep_end = Some(
+            if sweep.exhausted {
+                "time_exhausted"
+            } else if sweep.proof.is_some() {
+                "proof_found"
+            } else {
+                "all_branches_finished"
+            }
+            .to_owned(),
+        );
         if let Some((cone, propagation)) = sweep.proof {
             record.b_outcome = Some("sweep_unsat".to_owned());
             return Synthesis::Excluded(exclusion(&cone, propagation, "branch cone"));
