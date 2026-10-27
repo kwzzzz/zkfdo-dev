@@ -14,6 +14,10 @@ use crate::{
     structure::{capture_tool, ToolCapture},
 };
 
+mod compile_time;
+mod compile_time_functions;
+mod inspection_fallback;
+
 const MAX_INSTANTIATION_DEPTH: usize = 64;
 const MAX_COMPILE_TIME_LOOP_ITERATIONS: usize = 100_000;
 const MAX_TOTAL_EXPANSION_STEPS: usize = 100_000;
@@ -424,6 +428,26 @@ pub fn inspect_entrypoint_with_libraries(
     project_root: &Path,
     library_paths: &[PathBuf],
 ) -> Result<EntrypointInspection> {
+    inspect_entrypoint_internal(entrypoint, project_root, library_paths, None)
+}
+
+/// Inspect with an explicit compiler field. Extended source evaluation is currently
+/// restricted to bn128; other fields retain the original conservative inspector.
+pub fn inspect_entrypoint_with_libraries_and_prime(
+    entrypoint: &Path,
+    project_root: &Path,
+    library_paths: &[PathBuf],
+    prime: &str,
+) -> Result<EntrypointInspection> {
+    inspect_entrypoint_internal(entrypoint, project_root, library_paths, Some(prime))
+}
+
+fn inspect_entrypoint_internal(
+    entrypoint: &Path,
+    project_root: &Path,
+    library_paths: &[PathBuf],
+    prime: Option<&str>,
+) -> Result<EntrypointInspection> {
     let entrypoint = fs::canonicalize(entrypoint)
         .with_context(|| format!("resolve selected entrypoint {}", entrypoint.display()))?;
     let project_root = fs::canonicalize(project_root)
@@ -609,7 +633,7 @@ pub fn inspect_entrypoint_with_libraries(
             .then_with(|| a.reason.cmp(&b.reason))
     });
     unsupported.dedup();
-    Ok(EntrypointInspection {
+    let inspection = EntrypointInspection {
         entrypoint,
         project_root,
         root: root_instance,
@@ -618,7 +642,24 @@ pub fn inspect_entrypoint_with_libraries(
         dependency_paths,
         complete: unsupported.is_empty(),
         unsupported,
-    })
+    };
+    // Preserve the original bytes for every inspection that already succeeds.
+    if inspection.complete || prime != Some("bn128") {
+        return Ok(inspection);
+    }
+    match inspection_fallback::inspect(&inspection, &parsed_files, &template_index) {
+        Ok(resolved) => Ok(resolved),
+        Err(reason) => {
+            let mut refused = inspection;
+            refused.unsupported = vec![UnsupportedCase {
+                source_path: refused.entrypoint.clone(),
+                line: None,
+                construct: "bounded compile-time inspection".into(),
+                reason,
+            }];
+            Ok(refused)
+        }
+    }
 }
 
 /// F-01: an inspection of `entrypoint` built from an instance capture instead of the
@@ -840,7 +881,7 @@ pub fn inspect_entrypoint_from_capture(
 
 /// The template and literal argument values of a source file's single `component main` call;
 /// an argument that is not an integer or nested array literal maps to the reason.
-pub(crate) fn main_literal_arguments(
+pub fn main_literal_arguments(
     path: &Path,
     source: &str,
     prime: &num_bigint::BigUint,
@@ -2616,6 +2657,23 @@ fn expand_body(
     }
 }
 
+/// Render a concrete fragment wrapper without compilation or filesystem writes.
+/// Shared by preparation and the offline preservation audit.
+pub fn render_fragment_wrapper(
+    source_path: &Path,
+    template_name: &str,
+    concrete_parameters: &[String],
+) -> String {
+    let include_path = source_path
+        .to_string_lossy()
+        .replace('\\', "/")
+        .replace('"', "\\\"");
+    let parameters = concrete_parameters.join(", ");
+    format!(
+        "pragma circom 2.1.6;\n\ninclude \"{include_path}\";\n\ncomponent main = {template_name}({parameters});\n"
+    )
+}
+
 /// One wrapper and at most one compiler run per compile unit. Call-site entries stay separate:
 /// each keeps its identity, origin and instance keys, so caller context is never merged.
 fn generate_and_validate_wrappers(
@@ -2673,19 +2731,13 @@ fn generate_and_validate_wrappers(
             continue;
         }
 
-        let include_path = target
-            .source_path
-            .to_string_lossy()
-            .replace('\\', "/")
-            .replace('"', "\\\"");
-        let parameters = target
-            .wrapper_arguments
-            .as_ref()
-            .unwrap_or(&target.concrete_parameters)
-            .join(", ");
-        let wrapper = format!(
-            "pragma circom 2.1.6;\n\ninclude \"{include_path}\";\n\ncomponent main = {}({parameters});\n",
-            target.template_name
+        let wrapper = render_fragment_wrapper(
+            &target.source_path,
+            &target.template_name,
+            target
+                .wrapper_arguments
+                .as_ref()
+                .unwrap_or(&target.concrete_parameters),
         );
         let mut dependencies = Vec::new();
         let mut unresolved_includes = Vec::new();

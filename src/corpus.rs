@@ -18,7 +18,10 @@ use crate::{
     semantic::{self, AnalysisOptions, SemanticAnalysis, SourceScope},
     static_rank::{RankingInput, RankingStrategy},
     structure::{profile_target_with_ast, StructureProfile},
-    targets::{inspect_entrypoint_with_libraries, EntrypointInspection},
+    targets::{
+        inspect_entrypoint_with_libraries, inspect_entrypoint_with_libraries_and_prime,
+        EntrypointInspection,
+    },
 };
 
 fn schema_version() -> u32 {
@@ -562,11 +565,21 @@ fn prepare_target(
         );
     }
     let start = Instant::now();
-    let mut inspection = inspect_entrypoint_with_libraries(
-        &target.definition.entrypoint,
-        &target.definition.project_root,
-        &compile_library_paths(&target.definition),
-    )?;
+    let mut inspection = if target.definition.instance_capture.is_some() {
+        // F-01 already supplies these values. Preserve its original comparison metadata.
+        inspect_entrypoint_with_libraries(
+            &target.definition.entrypoint,
+            &target.definition.project_root,
+            &compile_library_paths(&target.definition),
+        )?
+    } else {
+        inspect_entrypoint_with_libraries_and_prime(
+            &target.definition.entrypoint,
+            &target.definition.project_root,
+            &compile_library_paths(&target.definition),
+            &target.definition.prime,
+        )?
+    };
     if let Some(capture_path) = target.definition.instance_capture.clone() {
         if !captures.contains_key(&capture_path) {
             let bytes = fs::read(&capture_path)
