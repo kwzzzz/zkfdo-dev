@@ -1,0 +1,15 @@
+{
+  "schema": "n6-b6-generator-package-lock-v1",
+  "runtime_image": "node:22-bookworm-slim",
+  "network": "none",
+  "recorded_repo_package_lock_sha256": "6ef6186e9c0a96884bfa5bd47b495858b1d8215e868b24e18f04bce31224e427",
+  "packages": [
+    {
+      "name": "circomlibjs",
+      "version": "0.1.7",
+      "integrity": "sha512-GRAUoAlKAsiiTa+PA725G9RmEmJJRc8tRFxw/zKktUxlQISGznT4hH4ESvW8FNTsrGg/nNd06sGP/Wlx0LUHVg==",
+      "installed_package_json_sha256": "9c7e866ba70ada882020b7fd1d644a761149c50f59817f981d7bc347af1d30d7"
+    }
+  ],
+  "install_performed": false
+}

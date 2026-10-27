@@ -1,0 +1,27 @@
+{
+  "schema": "n6-b6-generator-package-lock-v1",
+  "runtime_image": "node:22-bookworm-slim",
+  "network": "none",
+  "recorded_repo_pnpm_lock_sha256": "3719e4dd7c2c2796bfca99e395e3040c7fe2dc12767c91df564aa975c3753830",
+  "packages": [
+    {
+      "name": "poseidon-lite",
+      "version": "0.3.0",
+      "integrity": "sha512-ilJj4MIve4uBEG7SrtPqUUNkvpJ/pLVbndxa0WvebcQqeIhe+h72JR4g0EvwchUzm9sOQDlOjiDNmRAgxNZl4A==",
+      "installed_package_json_sha256": "0602820538c1b306b98ff37c2a2c8aaf2df5dd41da9b7d272279e66faa7bba23"
+    },
+    {
+      "name": "@openpassport/zk-kit-smt",
+      "version": "0.0.1",
+      "integrity": "sha512-P7Hkd5fD8JxGbqJ48lUq6gGKmZTaVzCB5I8FsOSUmljqf7VMeZmbyqo2ZmXt/lk6ltPXrmcrQ+QNhHXKZNcWhg==",
+      "installed_package_json_sha256": "ccc5f31137d772f969009291d42d562ed416007b1ff4a3f02a1ee6c8cdd35442"
+    },
+    {
+      "name": "@openpassport/zk-kit-lean-imt",
+      "version": "0.0.6",
+      "integrity": "sha512-KUQ4b5ILubO79vscrOnSnOCyr1AJ3dSKQOJ1PBklIRyFG9CeRTUspnVblSFqrolf8F3dvXX9QDbrkJxK38Gsyg==",
+      "installed_package_json_sha256": "a698618d0adca16ecda322980c19b884a6ac31e0a7159af75f598f7dd83c6868"
+    }
+  ],
+  "install_performed": false
+}

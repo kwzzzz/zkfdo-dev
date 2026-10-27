@@ -1,0 +1,12 @@
+{
+  "schema": "n6-b6-generator-package-lock-v1",
+  "runtime_image": "node@sha256:c3de60bf2f9dd0ac6370e6117950ff62d6e339527e7472301c9c78a017978392",
+  "network": "none",
+  "package": "circomlibjs",
+  "version": "0.0.8",
+  "npm_integrity": "sha512-oZFYapLO0mfiA+i2GU/V7bRNEEPjVcwV4M444nU5lNsdSJpqLwD57m9zxTD5m/KeY7WQ3lEAC9NNKEPQHu7s1w==",
+  "recorded_repo_yarn_lock_sha256": "fa727848e3960776f8bf5660557bbd14b536b39436e628f2fa80b48f3793b8ae",
+  "installed_package_json_sha256": "cac45772a3e88237a560df97a5d2c367b7eca94ea70c0345ff2b1f66bcd01bcc",
+  "installed_entrypoint_sha256": "2fc3000ee024d3f5bd7206c96c3b3d149b1989ebaa8d5fb41b7c7320b551ca24",
+  "install_performed": false
+}

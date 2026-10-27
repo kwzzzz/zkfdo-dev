@@ -1,0 +1,6 @@
+{
+  "package_json_path": "runs/c03-corpus-2026-10-02/recovery-v3/repositories/iden3__circuits/clone/node_modules/circomlibjs/package.json",
+  "package_version": "0.1.7",
+  "poseidon_constants_path": "runs/c03-corpus-2026-10-02/recovery-v3/repositories/iden3__circuits/clone/node_modules/circomlibjs/src/poseidon_constants.json",
+  "poseidon_constants_sha256": "354f31bbed9d9a8b884d8f2181e339cb425b6e3e4cc7240bd3dd22f0070f3f2c"
+}

@@ -1,0 +1,8 @@
+{
+  "poseidon_constants_path": "runs/c03-corpus-2026-10-02/recovery-v3/repositories/iden3__circuits/clone/node_modules/circomlibjs/src/poseidon_constants.json",
+  "poseidon_constants_sha256": "354f31bbed9d9a8b884d8f2181e339cb425b6e3e4cc7240bd3dd22f0070f3f2c",
+  "vota_circom_constants_path": "runs/c03-corpus-2026-10-02/recovery-v3/repositories/DoraFactory__Vota-Circuits/clone/node_modules/circomlib/circuits/poseidon_constants.circom",
+  "vota_circom_constants_sha256": "94c9e4b5ea891ab4d1ba626f1d719f8c661014d9b628f6096c803f75f39e3eee",
+  "vota_circomlib_package_path": "runs/c03-corpus-2026-10-02/recovery-v3/repositories/DoraFactory__Vota-Circuits/clone/node_modules/circomlib/package.json",
+  "vota_circomlib_version": "2.0.5"
+}

@@ -1,0 +1,14 @@
+{
+  "test_source_path": "runs/c03-corpus-2026-10-02/recovery-v3/repositories/pantherfoundation__panther-core/clone/circuits/test/ZAccountRenewalNonZeroInputWitnessGeneration.test.ts",
+  "test_source_sha256": "731ee0cf4e82a3b6dd52d7ad82bdbc818293b8cd973bf9982a3175963c0cc300",
+  "poseidon_constants_path": "runs/c03-corpus-2026-10-02/recovery-v3/repositories/pantherfoundation__panther-core/clone/node_modules/circomlibjs/src/poseidon_constants.json",
+  "poseidon_constants_sha256": "354f31bbed9d9a8b884d8f2181e339cb425b6e3e4cc7240bd3dd22f0070f3f2c",
+  "eddsa_source_path": "runs/c03-corpus-2026-10-02/recovery-v3/repositories/pantherfoundation__panther-core/clone/node_modules/circomlibjs/src/eddsa.js",
+  "eddsa_source_sha256": "f7c1a1f62d0d849b46a388ea67526e3f65bd0348e245abfe6c0ecfd12f0bbfe5",
+  "eddsa_package_path": "runs/c03-corpus-2026-10-02/recovery-v3/repositories/pantherfoundation__panther-core/clone/node_modules/circomlibjs/package.json",
+  "eddsa_package_version": "0.0.8",
+  "panther_circom_constants_path": "runs/c03-corpus-2026-10-02/recovery-v3/repositories/pantherfoundation__panther-core/clone/circuits/node_modules/circomlib/circuits/poseidon_constants.circom",
+  "panther_circom_constants_sha256": "94c9e4b5ea891ab4d1ba626f1d719f8c661014d9b628f6096c803f75f39e3eee",
+  "panther_circomlib_package_path": "runs/c03-corpus-2026-10-02/recovery-v3/repositories/pantherfoundation__panther-core/clone/circuits/node_modules/circomlib/package.json",
+  "panther_circomlib_version": "2.0.5"
+}

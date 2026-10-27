@@ -11,6 +11,7 @@ import argparse
 import hashlib
 import json
 import os
+import shutil
 from collections import Counter
 from pathlib import Path
 
@@ -24,6 +25,92 @@ J_ROOT = ROOT / "runs/n6-j3-2026-10-14.noindex"
 QUEUE = ROOT / "runs/n6-b2-2026-10-09.noindex/pragma-77e0f2db173d0c1812de503a/queue-b-pragma.json"
 MEM20_QUEUE = ROOT / "runs/n6-b3-2026-10-12.noindex/mem20-prep/queue-b-mem20.json"
 MEM20_STATE = ROOT / "runs/n6-b3-2026-10-12.noindex/mem20-execute.noindex/state.json"
+
+
+def circom_files(source: Path) -> list[Path]:
+    """List regular .circom sources below one pinned snapshot, without following links."""
+    files = []
+    for directory, names, filenames in os.walk(source, followlinks=False):
+        names[:] = sorted(name for name in names
+                          if not (Path(directory) / name).is_symlink())
+        for name in sorted(filenames):
+            path = Path(directory) / name
+            if path.suffix == ".circom":
+                require(path.is_file(), f"unreadable Circom source: {path}")
+                files.append(path)
+    return files
+
+
+def staged_source_pair(revision: str, project_root: Path, wrapper_root: Path,
+                       entrypoint: Path, wrapper: Path, staging_root: Path,
+                       request_root: Path, verified: set[Path]) -> tuple[Path, Path, Path]:
+    """Copy one W/S snapshot pair into a bounded, immutable B-only source tree.
+
+    The lifting engine requires both request sources inside source_root. Its
+    library_paths may remain outside that root, so their original order and
+    paths are retained. Each pair has its own root to avoid copying unrelated
+    S wrappers when the engine writes a hint workspace.
+    """
+    project_root = project_root.resolve()
+    wrapper_root = wrapper_root.resolve()
+    staging_root = staging_root.resolve()
+    cache_volume = Path("/Volumes/zkfdo-jcache")
+    if staging_root.is_relative_to(cache_volume):
+        require(os.path.ismount(cache_volume), "B source staging volume is not mounted")
+    require(entrypoint.is_relative_to(project_root) and
+            wrapper.is_relative_to(wrapper_root), "source outside pinned snapshot")
+    key = hashlib.sha256((str(project_root) + "\0" + str(wrapper_root))
+                         .encode("utf-8")).hexdigest()[:16]
+    source_root = staging_root / revision / key
+    require(not source_root.is_relative_to(project_root) and
+            not source_root.is_relative_to(wrapper_root) and
+            not source_root.is_relative_to(request_root.resolve()) and
+            not request_root.is_relative_to(source_root),
+            "source staging overlaps a source snapshot or request output")
+    staged_entrypoint = source_root / "project" / entrypoint.relative_to(project_root)
+    staged_wrapper = source_root / "wrapper" / wrapper.relative_to(wrapper_root)
+    if source_root in verified:
+        return source_root, staged_entrypoint, staged_wrapper
+
+    copies = []
+    for label, original in (("project", project_root), ("wrapper", wrapper_root)):
+        require(original.is_dir(), f"source snapshot missing: {original}")
+        for source in circom_files(original):
+            relative = Path(label) / source.relative_to(original)
+            copies.append({"path": str(relative), "source": str(source),
+                           "sha256": sha256_file(source)})
+    manifest = {"schema_version": 1, "revision_id": revision,
+                "project_root": str(project_root), "wrapper_root": str(wrapper_root),
+                "files": copies}
+    require(any(item["path"] == str(staged_entrypoint.relative_to(source_root))
+                for item in copies) and
+            any(item["path"] == str(staged_wrapper.relative_to(source_root))
+                for item in copies), "entrypoint or wrapper absent from staged sources")
+    manifest_path = source_root / "source-staging.json"
+    if source_root.exists():
+        require(manifest_path.is_file() and read_json(manifest_path) == manifest,
+                f"source staging differs or is incomplete: {source_root}")
+        actual = {str(path.relative_to(source_root)) for path in circom_files(source_root)}
+        require(actual == {item["path"] for item in copies},
+                f"source staging has extra or missing Circom files: {source_root}")
+        for item in copies:
+            staged = source_root / item["path"]
+            require(staged.is_file() and sha256_file(staged) == item["sha256"],
+                    f"staged source SHA-256 differs: {staged}")
+    else:
+        source_root.mkdir(parents=True, exist_ok=False)
+        for item in copies:
+            staged = source_root / item["path"]
+            staged.parent.mkdir(parents=True, exist_ok=True)
+            with Path(item["source"]).open("rb") as original, staged.open("xb") as target:
+                shutil.copyfileobj(original, target)
+            require(sha256_file(staged) == item["sha256"],
+                    f"staged source SHA-256 differs: {staged}")
+        with manifest_path.open("x", encoding="utf-8") as stream:
+            json.dump(manifest, stream, ensure_ascii=False, indent=2, sort_keys=True)
+            stream.write("\n")
+    verified.add(source_root)
+    return source_root, staged_entrypoint, staged_wrapper
 
 
 def available_libraries(target: dict, snapshot_root: Path) -> tuple[list[str], list[str]]:
@@ -53,7 +140,8 @@ def available_libraries(target: dict, snapshot_root: Path) -> tuple[list[str], l
 
 
 def planned_rows(root: Path, inventory: dict, queue: dict,
-                 request_root: Path, scope: str) -> list[dict]:
+                 request_root: Path, scope: str,
+                 source_staging_root: Path | None = None) -> list[dict]:
     count = inventory.get("candidate_count")
     require(inventory.get("status") == "verified" and
             isinstance(count, int) and count >= 0,
@@ -76,6 +164,7 @@ def planned_rows(root: Path, inventory: dict, queue: dict,
     require(all(known_units.get(row["unit_id"]) == row["identifier"] for row in rows),
             "candidate unit differs from B queue")
     spec_cache = {}
+    verified_staging: set[Path] = set()
     result = []
     for sequence, row in enumerate(rows):
         revision = row["identifier"]
@@ -88,14 +177,23 @@ def planned_rows(root: Path, inventory: dict, queue: dict,
         snapshots = {snapshot["id"]: snapshot for snapshot in method_spec["source_snapshots"]}
         snapshot_root = Path(snapshots[target["source_snapshot_id"]]["path"])
         libraries, missing_libraries = available_libraries(target, snapshot_root)
-        source_root = Path(os.path.commonpath((entrypoint.parent, wrapper.parent))).resolve()
+        candidate = checked_file(Path(row["candidate_path"]), row["candidate_sha256"])
+        original_entrypoint, original_wrapper = entrypoint, wrapper
+        if source_staging_root is None:
+            source_root = Path(os.path.commonpath((entrypoint.parent, wrapper.parent))).resolve()
+        else:
+            w_snapshots = {snapshot["id"]: snapshot
+                           for snapshot in w_spec["source_snapshots"]}
+            project_root = Path(w_snapshots[entrypoint_target["source_snapshot_id"]]["path"])
+            source_root, entrypoint, wrapper = staged_source_pair(
+                revision, project_root, snapshot_root, entrypoint, wrapper,
+                source_staging_root, request_root, verified_staging)
         require(entrypoint.is_relative_to(source_root) and wrapper.is_relative_to(source_root),
                 "wrapper or entrypoint outside source root")
-        candidate = checked_file(Path(row["candidate_path"]), row["candidate_sha256"])
         request_id = (f"j3-{scope}-{row['unit_id']}-{row['method']}"
                       f"-a{row['attempt_index'] + 1:04d}-c{row['candidate_index'] + 1:03d}")
         request_path = request_root / scope / revision / f"{request_id}.json"
-        result.append({
+        planned = {
             "scope": scope, "revision_id": revision, "unit_id": row["unit_id"],
             "queue_order": sequence, "seed": row["seed"], "method": row["method"],
             "attempt_number": row["attempt_index"] + 1,
@@ -112,7 +210,11 @@ def planned_rows(root: Path, inventory: dict, queue: dict,
             "entrypoint": str(entrypoint),
             "entrypoint_sha256": entrypoint_target["entrypoint_sha256"],
             "candidate_path": str(candidate), "candidate_sha256": row["candidate_sha256"],
-        })
+        }
+        if source_staging_root is not None:
+            planned["original_entrypoint"] = str(original_entrypoint)
+            planned["original_component_wrapper"] = str(original_wrapper)
+        result.append(planned)
     return result
 
 
@@ -132,6 +234,9 @@ def main() -> None:
     parser.add_argument("--plan-index", type=Path)
     parser.add_argument("--base-index", type=Path)
     parser.add_argument("--index", type=Path)
+    parser.add_argument("--staging-root", "--source-staging-root",
+                        dest="source_staging_root", type=Path,
+                        help="B6b only: copy pinned W/S Circom sources into this new root")
     args = parser.parse_args()
     root = args.repo_root.resolve()
     inventory_path = (args.inventory or J_ROOT /
@@ -152,7 +257,14 @@ def main() -> None:
             "inventory B queue hash mismatch")
     checked_file(ENGINE, ENGINE_SHA)
     checked_file(CIRCOM, CIRCOM_SHA)
-    rows = planned_rows(root, inventory, queue, request_root, args.scope)
+    if args.source_staging_root is not None:
+        if args.base_index is None:
+            require(not plan_path.exists(), "refuse to overwrite B request plan")
+        else:
+            require(not index_path.exists() and not request_root.exists(),
+                    "refuse to overwrite B request output")
+    rows = planned_rows(root, inventory, queue, request_root, args.scope,
+                        args.source_staging_root)
     if args.base_index is None:
         plan = {"schema_version": 1, "status": "awaiting_base_input",
                 "scope": args.scope, "request_count": len(rows),
