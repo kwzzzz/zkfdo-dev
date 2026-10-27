@@ -1,0 +1,118 @@
+{
+ "classes": [
+  {
+   "revision": "inference-original",
+   "kind": "TCCT",
+   "location": "main.int_div[]",
+   "item": "outside both items",
+   "count": 4
+  },
+  {
+   "revision": "inference-original",
+   "kind": "TCCT",
+   "location": "main.int_div_2[]",
+   "item": "outside both items",
+   "count": 4
+  },
+  {
+   "revision": "inference-original",
+   "kind": "TCCT",
+   "location": "main.int_div_3[]",
+   "item": "outside both items",
+   "count": 2
+  },
+  {
+   "revision": "inference-original",
+   "kind": "TCCT",
+   "location": "main.response_time_normalized_fn[].division",
+   "item": "outside both items",
+   "count": 3
+  },
+  {
+   "revision": "inference-original",
+   "kind": "TCCT",
+   "location": "main.response_time_normalized_fn[].subtract1",
+   "item": "Subtract item (TCCT at a Subtract instance)",
+   "count": 2
+  },
+  {
+   "revision": "inference-original",
+   "kind": "TCCT",
+   "location": "main.response_time_normalized_fn[].subtract2",
+   "item": "Subtract item (TCCT at a Subtract instance)",
+   "count": 2
+  },
+  {
+   "revision": "inference-original",
+   "kind": "predicate",
+   "location": "main.calculated_score_fraction_comp[].clamp.LessThan[]",
+   "item": "Clamp item (assumption predicate at the Clamp LessThan)",
+   "count": 9
+  },
+  {
+   "revision": "inference-original",
+   "kind": "predicate",
+   "location": "main.distance_from_score_fn[].positive",
+   "item": "outside both items",
+   "count": 9
+  },
+  {
+   "revision": "inference-original",
+   "kind": "predicate",
+   "location": "main.response_time_normalized_fn[].LessThan",
+   "item": "outside both items",
+   "count": 6
+  },
+  {
+   "revision": "inference-original",
+   "kind": "predicate",
+   "location": "main.response_time_reward_metric_fn[].scoring_function.lt",
+   "item": "outside both items",
+   "count": 12
+  },
+  {
+   "revision": "inference-r-intdiv",
+   "kind": "TCCT",
+   "location": "main.response_time_normalized_fn[].subtract1",
+   "item": "Subtract item (TCCT at a Subtract instance)",
+   "count": 1
+  },
+  {
+   "revision": "inference-r-intdiv",
+   "kind": "TCCT",
+   "location": "main.response_time_normalized_fn[].subtract2",
+   "item": "Subtract item (TCCT at a Subtract instance)",
+   "count": 1
+  },
+  {
+   "revision": "inference-r-intdiv",
+   "kind": "TCCT",
+   "location": "main.response_time_reward_metric_fn[].scoring_function",
+   "item": "outside both items",
+   "count": 2
+  }
+ ],
+ "per_seed_items": {
+  "inference-original seed 2026100601": [
+   "Clamp item (assumption predicate at the Clamp LessThan)",
+   "outside both items"
+  ],
+  "inference-original seed 2026100602": [
+   "Clamp item (assumption predicate at the Clamp LessThan)",
+   "Subtract item (TCCT at a Subtract instance)",
+   "outside both items"
+  ],
+  "inference-original seed 2026100603": [
+   "Clamp item (assumption predicate at the Clamp LessThan)",
+   "Subtract item (TCCT at a Subtract instance)",
+   "outside both items"
+  ],
+  "inference-r-intdiv seed 2026100601": [
+   "outside both items"
+  ],
+  "inference-r-intdiv seed 2026100603": [
+   "Subtract item (TCCT at a Subtract instance)",
+   "outside both items"
+  ]
+ }
+}
