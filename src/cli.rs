@@ -508,8 +508,8 @@ pub fn handle(cli: Cli) -> Result<()> {
             }
         }
         Commands::Report(args) => {
-            println!(
-                "report placeholder: input={}, output={}",
+            anyhow::bail!(
+                "report is not implemented: input={}, output={}",
                 args.input.display(),
                 args.output.display()
             );

@@ -30,6 +30,22 @@ fn subcommand_help_is_available() {
 }
 
 #[test]
+fn unimplemented_report_fails_without_creating_output() {
+    let temp = tempdir().expect("tempdir");
+    let output = temp.path().join("report");
+    let mut cmd = Command::cargo_bin("zkfDO").expect("binary exists");
+    cmd.arg("report")
+        .arg("--input")
+        .arg(temp.path())
+        .arg("--output")
+        .arg(&output)
+        .assert()
+        .failure()
+        .stderr(predicate::str::contains("report is not implemented"));
+    assert!(!output.exists());
+}
+
+#[test]
 fn targets_discovers_concrete_instantiations_without_compiling() {
     let temp = tempdir().expect("tempdir");
     let fixture =

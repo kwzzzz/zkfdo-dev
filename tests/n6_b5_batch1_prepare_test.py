@@ -32,9 +32,9 @@ class B5Batch1PreparationTest(unittest.TestCase):
         self.assertEqual(batch.TOOLS_SHA, batch.sha256(batch.TOOLS))
 
     def setUp(self) -> None:
-        self.temporary = tempfile.TemporaryDirectory(dir=ROOT / "runs")
+        self.temporary = tempfile.TemporaryDirectory(prefix="zkfdo-b5-batch-test-")
         self.addCleanup(self.temporary.cleanup)
-        self.root = Path(self.temporary.name)
+        self.root = Path(self.temporary.name).resolve()
 
     def test_retry_gate_preserves_original_state(self) -> None:
         original = self.root / "original.json"

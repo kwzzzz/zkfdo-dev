@@ -16,6 +16,15 @@ SPEC.loader.exec_module(c02)
 
 
 class PreparationTests(unittest.TestCase):
+    def setUp(self):
+        temporary = tempfile.TemporaryDirectory(prefix="zkfdo-c02-test-")
+        self.addCleanup(temporary.cleanup)
+        root = Path(temporary.name).resolve()
+        (root / "runs").mkdir()
+        context = patch.object(c02, "ROOT", root)
+        context.start()
+        self.addCleanup(context.stop)
+
     def test_nested_prepare_report_uses_compile_only_contract(self):
         with tempfile.TemporaryDirectory(dir=c02.ROOT / "runs") as temp:
             directory = Path(temp)

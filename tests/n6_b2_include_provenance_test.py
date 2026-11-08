@@ -3,11 +3,21 @@
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 from scripts import n6_b2_include_provenance as provenance
 
 
 class N6B2IncludeProvenanceTest(unittest.TestCase):
+    def setUp(self):
+        temporary = tempfile.TemporaryDirectory(prefix="zkfdo-include-provenance-test-")
+        self.addCleanup(temporary.cleanup)
+        root = Path(temporary.name).resolve()
+        (root / "runs").mkdir()
+        context = patch.object(provenance, "ROOT", root)
+        context.start()
+        self.addCleanup(context.stop)
+
     def test_absolute_include_compares_mirrored_snapshot_copy(self):
         with tempfile.TemporaryDirectory(dir=provenance.ROOT / "runs") as raw:
             base = Path(raw)
