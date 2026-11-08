@@ -31,7 +31,7 @@ def sha(data):
 
 
 def select_state(directory):
-    choices = [directory / name for name in ("state.json", "state-v2.json", "state-v3.json", "state-v3_1.json")]
+    choices = [directory / name for name in ("state.json", "state-v2.json", "state-v3.json", "state-v3_1.json", "state-v3_2.json")]
     available = [path for path in choices if path.is_file() and not path.is_symlink()]
     require(bool(available), "no known state file")
     return max(available, key=lambda p: (p.stat().st_mtime_ns, choices.index(p)))
@@ -71,7 +71,7 @@ def main():
             stream.write(data)
         return path, sha(data)
     state_path = select_state(AQ) if args.state == "auto" else Path(args.state).resolve()
-    require(state_path in {AQ / x for x in ("state.json", "state-v2.json", "state-v3.json", "state-v3_1.json")}, "unexpected state path")
+    require(state_path in {AQ / x for x in ("state.json", "state-v2.json", "state-v3.json", "state-v3_1.json", "state-v3_2.json")}, "unexpected state path")
     raw = read(state_path)
     require(raw.get("schema") in {"n6-a-remeasure-aq-execute-v1", "n6-a-remeasure-aq-execute-v2", "n6-a-remeasure-aq-execute-v3"}, "unknown state schema")
     compatible = copy.deepcopy(raw)
