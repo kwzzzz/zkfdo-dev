@@ -1,0 +1,72 @@
+{
+  "schema": "zkfdo-tools-v1",
+  "platform": "linux",
+  "architecture": "aarch64",
+  "status": "template",
+  "scope": "Non-executable platform-profile wiring template. Fill a new measured manifest after native tool and paired-probe validation. N5 adoption is separate.",
+  "requirements": [
+    "Fill every required native tool path, SHA256, version and provenance from actual measurements.",
+    "Create a new ready Linux defaults profile with v2 paired-probe evidence; do not copy Mac attestation.",
+    "Point tools.zkfuzz.defaults_profile_path at the new file and pin its SHA256."
+  ],
+  "tools": {
+    "prepare": {
+      "path": null,
+      "sha256": null,
+      "version": null,
+      "source_commit": null,
+      "build_command": null
+    },
+    "J": {
+      "path": null,
+      "sha256": null,
+      "version": null,
+      "source_commit": null,
+      "build_command": null
+    },
+    "circom": {
+      "path": null,
+      "sha256": null,
+      "version": null,
+      "source_commit": null,
+      "build_command": null
+    },
+    "zkfuzz": {
+      "path": null,
+      "sha256": null,
+      "version": null,
+      "source_commit": null,
+      "build_command": null,
+      "defaults_profile_path": "configs/zkfuzz_defaults_2.2.1_linux-aarch64_v1.json",
+      "defaults_profile_sha256": null
+    },
+    "node": {
+      "path": null,
+      "sha256": null,
+      "version": null,
+      "source_commit": null,
+      "build_command": null
+    },
+    "snarkjs": {
+      "path": null,
+      "sha256": null,
+      "version": null,
+      "source_commit": null,
+      "build_command": null
+    },
+    "z3": {
+      "path": null,
+      "sha256": null,
+      "version": null,
+      "source_commit": null,
+      "build_command": null
+    },
+    "python": {
+      "path": null,
+      "sha256": null,
+      "version": null,
+      "source_commit": null,
+      "build_command": null
+    }
+  }
+}

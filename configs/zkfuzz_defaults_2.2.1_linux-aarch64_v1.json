@@ -1,0 +1,24 @@
+{
+  "schema": "zkfuzz-defaults-v2",
+  "status": "awaiting_linux_paired_probe",
+  "platform": "linux",
+  "architecture": "aarch64",
+  "version": "2.2.1",
+  "binary_sha256": null,
+  "source_files": [],
+  "mutation_config": null,
+  "default_whitelist": null,
+  "semantic_defaults": null,
+  "attestation": {
+    "status": "pending",
+    "binary_sha256": null,
+    "paired_probe": null
+  },
+  "provenance": {
+    "scope": "Empty Linux profile template; no Linux paired probe is claimed.",
+    "pending": "Docker desktop-linux socket unavailable on 2026-11-08. Re-run paired probe inside Linux before filling a new version.",
+    "historical_tools_manifest": "runs/docker-linux-2026-11-05/out/tools.linux.aarch64.json",
+    "historical_temporary_profile": "runs/docker-linux-2026-11-05/out/zkfuzz_defaults_2.2.1_linux_aarch64.json",
+    "historical_profile_limit": "The historical copy retained Mac paired-probe attestation; it is not Linux validation."
+  }
+}

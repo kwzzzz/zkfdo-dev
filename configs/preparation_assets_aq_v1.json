@@ -1,0 +1,788 @@
+{
+  "schema": "zkfdo-preparation-assets-v1",
+  "scope": "A-Q development; declared original input-tool route only; no input creation or historical result replacement",
+  "sources": [
+    {
+      "path": "runs/n6-j1-2026-10-09.noindex/revision-manifest-v2.json",
+      "sha256": "f059fe7d6aa21234168b7867537f069ec980c45c2c025184cbc12e169f687441"
+    },
+    {
+      "path": "runs/n6-j1-2026-10-09.noindex/base-inputs-v3/index.json",
+      "sha256": "18ad0bee4278fd77f94b11c354e531a31a4a5d2c0f96c9bd87d7e17c850d1508"
+    }
+  ],
+  "revisions": {
+    "aq-006-1680f955c185": {
+      "revision_id": "aq-006-1680f955c185",
+      "revision_commit": "0548942278a414d85e2f3d406e171eeac325349e",
+      "group": "JWT",
+      "entrypoint_relative": "jwt-tx-validation.circom",
+      "requirements": [
+        {
+          "id": "original-entrypoint",
+          "kind": "file",
+          "path": "jwt-tx-validation.circom",
+          "sha256": "3b277ce02a15b88ae5fca1994b5290dcaa7a09cd120d86706e287c45816e587f"
+        },
+        {
+          "id": "input-tool",
+          "kind": "file",
+          "path": "tooling/generate-input.ts",
+          "sha256": "7eacf46e0d1856d33d9a0f25c75816c93ea58d070d1822e15c40c2e682878edb"
+        },
+        {
+          "id": "cli",
+          "kind": "file",
+          "path": "tooling/cli.ts",
+          "sha256": "f14f02d0b025ad17868e32864b6561492120e5b0a7f4f4d6e66d5f01a781ee3d"
+        },
+        {
+          "id": "tool-tsx",
+          "kind": "executable",
+          "name": "tsx",
+          "search_dirs": [
+            "node_modules/.bin"
+          ]
+        },
+        {
+          "id": "env-RAW_JWT",
+          "kind": "environment",
+          "name": "RAW_JWT"
+        },
+        {
+          "id": "env-JWK_MODULOUS",
+          "kind": "environment",
+          "name": "JWK_MODULOUS"
+        },
+        {
+          "id": "env-SALT",
+          "kind": "environment",
+          "name": "SALT"
+        },
+        {
+          "id": "env-NONCE_CONTENT",
+          "kind": "environment",
+          "name": "NONCE_CONTENT"
+        },
+        {
+          "id": "env-BLINDING_FACTOR",
+          "kind": "environment",
+          "name": "BLINDING_FACTOR"
+        }
+      ]
+    },
+    "aq-007-0bb83f9eab0f": {
+      "revision_id": "aq-007-0bb83f9eab0f",
+      "revision_commit": "5d02de9e550b6e671b732a432c590c02cb8bab3d",
+      "group": "JWT",
+      "entrypoint_relative": "jwt-tx-validation.circom",
+      "requirements": [
+        {
+          "id": "original-entrypoint",
+          "kind": "file",
+          "path": "jwt-tx-validation.circom",
+          "sha256": "3b277ce02a15b88ae5fca1994b5290dcaa7a09cd120d86706e287c45816e587f"
+        },
+        {
+          "id": "input-tool",
+          "kind": "file",
+          "path": "tooling/generate-input.ts",
+          "sha256": "7eacf46e0d1856d33d9a0f25c75816c93ea58d070d1822e15c40c2e682878edb"
+        },
+        {
+          "id": "cli",
+          "kind": "file",
+          "path": "tooling/cli.ts",
+          "sha256": "f14f02d0b025ad17868e32864b6561492120e5b0a7f4f4d6e66d5f01a781ee3d"
+        },
+        {
+          "id": "tool-tsx",
+          "kind": "executable",
+          "name": "tsx",
+          "search_dirs": [
+            "node_modules/.bin"
+          ]
+        },
+        {
+          "id": "env-RAW_JWT",
+          "kind": "environment",
+          "name": "RAW_JWT"
+        },
+        {
+          "id": "env-JWK_MODULOUS",
+          "kind": "environment",
+          "name": "JWK_MODULOUS"
+        },
+        {
+          "id": "env-SALT",
+          "kind": "environment",
+          "name": "SALT"
+        },
+        {
+          "id": "env-NONCE_CONTENT",
+          "kind": "environment",
+          "name": "NONCE_CONTENT"
+        },
+        {
+          "id": "env-BLINDING_FACTOR",
+          "kind": "environment",
+          "name": "BLINDING_FACTOR"
+        }
+      ]
+    },
+    "aq-008-9c9e702d061d": {
+      "revision_id": "aq-008-9c9e702d061d",
+      "revision_commit": "27cda6e74492fbad4aa3ca37ff5084ed391b534b",
+      "group": "JWT",
+      "entrypoint_relative": "jwt-tx-validation.circom",
+      "requirements": [
+        {
+          "id": "original-entrypoint",
+          "kind": "file",
+          "path": "jwt-tx-validation.circom",
+          "sha256": "c89aca0adfadc2cf36eef658ebe619210d08181066157c3529515adc4fd162a9"
+        },
+        {
+          "id": "input-tool",
+          "kind": "file",
+          "path": "tooling/generate-input.ts",
+          "sha256": "7eacf46e0d1856d33d9a0f25c75816c93ea58d070d1822e15c40c2e682878edb"
+        },
+        {
+          "id": "cli",
+          "kind": "file",
+          "path": "tooling/cli.ts",
+          "sha256": "e3d236dad6ab569217473d875d30d3b6ffd53747c79df8dc9d8c273680a8f2b9"
+        },
+        {
+          "id": "tool-tsx",
+          "kind": "executable",
+          "name": "tsx",
+          "search_dirs": [
+            "node_modules/.bin"
+          ]
+        },
+        {
+          "id": "env-RAW_JWT",
+          "kind": "environment",
+          "name": "RAW_JWT"
+        },
+        {
+          "id": "env-JWK_MODULOUS",
+          "kind": "environment",
+          "name": "JWK_MODULOUS"
+        },
+        {
+          "id": "env-SALT",
+          "kind": "environment",
+          "name": "SALT"
+        },
+        {
+          "id": "env-NONCE_CONTENT",
+          "kind": "environment",
+          "name": "NONCE_CONTENT"
+        },
+        {
+          "id": "env-BLINDING_FACTOR",
+          "kind": "environment",
+          "name": "BLINDING_FACTOR"
+        }
+      ]
+    },
+    "aq-011-93343c3cd34c": {
+      "revision_id": "aq-011-93343c3cd34c",
+      "revision_commit": "b464348b33155a5877f67c085c7206dc29ad7cb7",
+      "group": "Panther",
+      "entrypoint_relative": "circuits/circuits/mainZAccountRenewalV1.circom",
+      "requirements": [
+        {
+          "id": "original-entrypoint",
+          "kind": "file",
+          "path": "circuits/circuits/mainZAccountRenewalV1.circom",
+          "sha256": "53c50d34c96c3ed320a32c039562f1b0c5cec1f0eefbca2c544b8c3fd15af6c0"
+        },
+        {
+          "id": "build-package",
+          "kind": "file",
+          "path": "crypto/package.json",
+          "sha256": "86f4785896195b8fa9eb7db5519baca912bdab07c88f693f08eed62883e48918"
+        },
+        {
+          "id": "test-package",
+          "kind": "file",
+          "path": "circuits/package.json",
+          "sha256": "5cac7bf2aec97dbaaa11c1cc71261084b806c6403ec3dd531a4464a50cc03c78"
+        },
+        {
+          "id": "tool-npm",
+          "kind": "executable",
+          "name": "npm",
+          "search_dirs": []
+        },
+        {
+          "id": "tool-yarn",
+          "kind": "executable",
+          "name": "yarn",
+          "search_dirs": [
+            "node_modules/.bin",
+            "crypto/node_modules/.bin",
+            "circuits/node_modules/.bin"
+          ]
+        },
+        {
+          "id": "tool-mocha",
+          "kind": "executable",
+          "name": "mocha",
+          "search_dirs": [
+            "circuits/node_modules/.bin",
+            "node_modules/.bin"
+          ]
+        },
+        {
+          "id": "original-wasm",
+          "kind": "wasm",
+          "path": "circuits/compiled/zAccountRenewal/circuits.wasm"
+        },
+        {
+          "id": "original-witness-generator",
+          "kind": "file",
+          "path": "circuits/compiled/generate_witness.js"
+        },
+        {
+          "id": "original-test",
+          "kind": "file",
+          "path": "circuits/test/ZAccountRenewalZeroInputWitnessGeneration.test.ts",
+          "sha256": "a784786ce95169674c16c220b69d8b21b6dbb61915aaece6f8d138d795d5be31"
+        }
+      ]
+    },
+    "aq-012-44d0df2ab46e": {
+      "revision_id": "aq-012-44d0df2ab46e",
+      "revision_commit": "39b770de49db47fcea361cf515b61e43dff36b65",
+      "group": "Panther",
+      "entrypoint_relative": "circuits/circuits/mainZSwapV1.circom",
+      "requirements": [
+        {
+          "id": "original-entrypoint",
+          "kind": "file",
+          "path": "circuits/circuits/mainZSwapV1.circom",
+          "sha256": "56eb5473102b9a5c8d471f6fd0649c37ad0d9e3ec0c63908fa10e1bf293b4a05"
+        },
+        {
+          "id": "build-package",
+          "kind": "file",
+          "path": "crypto/package.json",
+          "sha256": "86f4785896195b8fa9eb7db5519baca912bdab07c88f693f08eed62883e48918"
+        },
+        {
+          "id": "test-package",
+          "kind": "file",
+          "path": "circuits/package.json",
+          "sha256": "d9621c814eb80369c97af0ac80a445ea730c078d3d08934fa106997a4e65851c"
+        },
+        {
+          "id": "tool-npm",
+          "kind": "executable",
+          "name": "npm",
+          "search_dirs": []
+        },
+        {
+          "id": "tool-yarn",
+          "kind": "executable",
+          "name": "yarn",
+          "search_dirs": [
+            "node_modules/.bin",
+            "crypto/node_modules/.bin",
+            "circuits/node_modules/.bin"
+          ]
+        },
+        {
+          "id": "tool-mocha",
+          "kind": "executable",
+          "name": "mocha",
+          "search_dirs": [
+            "circuits/node_modules/.bin",
+            "node_modules/.bin"
+          ]
+        },
+        {
+          "id": "original-wasm",
+          "kind": "wasm",
+          "path": "circuits/compiled/zSwap/circuits.wasm"
+        },
+        {
+          "id": "original-witness-generator",
+          "kind": "file",
+          "path": "circuits/compiled/generateWitness.js"
+        },
+        {
+          "id": "original-test",
+          "kind": "file",
+          "path": "circuits/test/ZSwapZeroInputWitnessGeneration.test.ts",
+          "sha256": "4c140cf196b1c9932c2e8e213b6970698a403396add68b0797a829ca204b906b"
+        }
+      ]
+    },
+    "aq-016-0a7d49b1c135": {
+      "revision_id": "aq-016-0a7d49b1c135",
+      "revision_commit": "06a818632053719b56ace37ef12c9b31904af1e2",
+      "group": "Panther",
+      "entrypoint_relative": "circuits/circuits/mainZSwapV1.circom",
+      "requirements": [
+        {
+          "id": "original-entrypoint",
+          "kind": "file",
+          "path": "circuits/circuits/mainZSwapV1.circom",
+          "sha256": "56eb5473102b9a5c8d471f6fd0649c37ad0d9e3ec0c63908fa10e1bf293b4a05"
+        },
+        {
+          "id": "build-package",
+          "kind": "file",
+          "path": "crypto/package.json",
+          "sha256": "86f4785896195b8fa9eb7db5519baca912bdab07c88f693f08eed62883e48918"
+        },
+        {
+          "id": "test-package",
+          "kind": "file",
+          "path": "circuits/package.json",
+          "sha256": "d9621c814eb80369c97af0ac80a445ea730c078d3d08934fa106997a4e65851c"
+        },
+        {
+          "id": "tool-npm",
+          "kind": "executable",
+          "name": "npm",
+          "search_dirs": []
+        },
+        {
+          "id": "tool-yarn",
+          "kind": "executable",
+          "name": "yarn",
+          "search_dirs": [
+            "node_modules/.bin",
+            "crypto/node_modules/.bin",
+            "circuits/node_modules/.bin"
+          ]
+        },
+        {
+          "id": "tool-mocha",
+          "kind": "executable",
+          "name": "mocha",
+          "search_dirs": [
+            "circuits/node_modules/.bin",
+            "node_modules/.bin"
+          ]
+        },
+        {
+          "id": "original-wasm",
+          "kind": "wasm",
+          "path": "circuits/compiled/zSwap/circuits.wasm"
+        },
+        {
+          "id": "original-witness-generator",
+          "kind": "file",
+          "path": "circuits/compiled/generateWitness.js"
+        },
+        {
+          "id": "original-test",
+          "kind": "file",
+          "path": "circuits/test/ZSwapZeroInputWitnessGeneration.test.ts",
+          "sha256": "4c140cf196b1c9932c2e8e213b6970698a403396add68b0797a829ca204b906b"
+        }
+      ]
+    },
+    "aq-017-9703bbce0c43": {
+      "revision_id": "aq-017-9703bbce0c43",
+      "revision_commit": "b464348b33155a5877f67c085c7206dc29ad7cb7",
+      "group": "Panther",
+      "entrypoint_relative": "circuits/circuits/mainZSwapV1.circom",
+      "requirements": [
+        {
+          "id": "original-entrypoint",
+          "kind": "file",
+          "path": "circuits/circuits/mainZSwapV1.circom",
+          "sha256": "e9481007485d29e744f25ae854c111f7ac5b18ac0706eed46fe71be3134e48f8"
+        },
+        {
+          "id": "build-package",
+          "kind": "file",
+          "path": "crypto/package.json",
+          "sha256": "86f4785896195b8fa9eb7db5519baca912bdab07c88f693f08eed62883e48918"
+        },
+        {
+          "id": "test-package",
+          "kind": "file",
+          "path": "circuits/package.json",
+          "sha256": "5cac7bf2aec97dbaaa11c1cc71261084b806c6403ec3dd531a4464a50cc03c78"
+        },
+        {
+          "id": "tool-npm",
+          "kind": "executable",
+          "name": "npm",
+          "search_dirs": []
+        },
+        {
+          "id": "tool-yarn",
+          "kind": "executable",
+          "name": "yarn",
+          "search_dirs": [
+            "node_modules/.bin",
+            "crypto/node_modules/.bin",
+            "circuits/node_modules/.bin"
+          ]
+        },
+        {
+          "id": "tool-mocha",
+          "kind": "executable",
+          "name": "mocha",
+          "search_dirs": [
+            "circuits/node_modules/.bin",
+            "node_modules/.bin"
+          ]
+        },
+        {
+          "id": "original-wasm",
+          "kind": "wasm",
+          "path": "circuits/compiled/zSwap/circuits.wasm"
+        },
+        {
+          "id": "original-witness-generator",
+          "kind": "file",
+          "path": "circuits/compiled/generateWitness.js"
+        },
+        {
+          "id": "original-test",
+          "kind": "file",
+          "path": "circuits/test/ZSwapZeroInputWitnessGeneration.test.ts",
+          "sha256": "d982be59989926029f3b74c54a43aa280de7d2ed95d7eb7e79337c91073d54db"
+        }
+      ]
+    },
+    "aq-024-6f6781246415": {
+      "revision_id": "aq-024-6f6781246415",
+      "revision_commit": "b464348b33155a5877f67c085c7206dc29ad7cb7",
+      "group": "Panther",
+      "entrypoint_relative": "circuits/circuits/mainZTransactionV1.circom",
+      "requirements": [
+        {
+          "id": "original-entrypoint",
+          "kind": "file",
+          "path": "circuits/circuits/mainZTransactionV1.circom",
+          "sha256": "c30d2baf5dd6658f7bd4581b35bc2c1c3c3947d1c6211b8e73f10d40c95e01ad"
+        },
+        {
+          "id": "build-package",
+          "kind": "file",
+          "path": "crypto/package.json",
+          "sha256": "86f4785896195b8fa9eb7db5519baca912bdab07c88f693f08eed62883e48918"
+        },
+        {
+          "id": "test-package",
+          "kind": "file",
+          "path": "circuits/package.json",
+          "sha256": "5cac7bf2aec97dbaaa11c1cc71261084b806c6403ec3dd531a4464a50cc03c78"
+        },
+        {
+          "id": "tool-npm",
+          "kind": "executable",
+          "name": "npm",
+          "search_dirs": []
+        },
+        {
+          "id": "tool-yarn",
+          "kind": "executable",
+          "name": "yarn",
+          "search_dirs": [
+            "node_modules/.bin",
+            "crypto/node_modules/.bin",
+            "circuits/node_modules/.bin"
+          ]
+        },
+        {
+          "id": "tool-mocha",
+          "kind": "executable",
+          "name": "mocha",
+          "search_dirs": [
+            "circuits/node_modules/.bin",
+            "node_modules/.bin"
+          ]
+        },
+        {
+          "id": "original-wasm",
+          "kind": "wasm",
+          "path": "circuits/compiled/zTransaction/circuits.wasm"
+        },
+        {
+          "id": "original-witness-generator",
+          "kind": "file",
+          "path": "circuits/compiled/generate_witness.js"
+        },
+        {
+          "id": "original-test",
+          "kind": "file",
+          "path": "circuits/test/DepositOnlyNonZeroInputWithZZoneSealingWitnessGeneration.test.ts",
+          "sha256": "9e2daf7e47f4497c7620256706a416ad69ad179caa58e9d5b699b17840fe9a35"
+        }
+      ]
+    },
+    "aq-025-70328d3fd35e": {
+      "revision_id": "aq-025-70328d3fd35e",
+      "revision_commit": "bbbe14c71c08be20a55f29bb2159261f0b32be0f",
+      "group": "Query",
+      "entrypoint_relative": "circuits/identityManagement/queryIdentity.circom",
+      "requirements": [
+        {
+          "id": "original-entrypoint",
+          "kind": "file",
+          "path": "circuits/identityManagement/queryIdentity.circom",
+          "sha256": "4096c6025f6f65fd8b90dd05344c2bcbed4944a9c1e4f191e06d33e5c5adfde0"
+        },
+        {
+          "id": "original-test",
+          "kind": "file",
+          "path": "tests/tests/queryIdentityTests.js",
+          "sha256": "c63d4c90c968f268853d42357d4f1e596a346a1467b8312eabbe71f4cebb454a"
+        },
+        {
+          "id": "tool-mocha",
+          "kind": "executable",
+          "name": "mocha",
+          "search_dirs": [
+            "node_modules/.bin"
+          ]
+        },
+        {
+          "id": "tester-module",
+          "kind": "file",
+          "path": "tests/tests/tester.js"
+        },
+        {
+          "id": "fixture-inputQueryValid23073.json",
+          "kind": "file",
+          "path": "tests/tests/queryIdentityInputs/inputQueryValid23073.json"
+        },
+        {
+          "id": "fixture-inputQueryInvalid23073BirthLower19.json",
+          "kind": "file",
+          "path": "tests/tests/queryIdentityInputs/inputQueryInvalid23073BirthLower19.json"
+        },
+        {
+          "id": "test-circuit-main",
+          "kind": "same_main",
+          "path": "tests/identityManagement/queryIdentity.circom",
+          "entrypoint": "circuits/identityManagement/queryIdentity.circom"
+        }
+      ]
+    },
+    "aq-026-2bcd7ed6110f": {
+      "revision_id": "aq-026-2bcd7ed6110f",
+      "revision_commit": "9143bc77eb2bdbd174eaa61b25b11adb5ee99f61",
+      "group": "Query",
+      "entrypoint_relative": "circuits/identityManagement/queryIdentity.circom",
+      "requirements": [
+        {
+          "id": "original-entrypoint",
+          "kind": "file",
+          "path": "circuits/identityManagement/queryIdentity.circom",
+          "sha256": "4096c6025f6f65fd8b90dd05344c2bcbed4944a9c1e4f191e06d33e5c5adfde0"
+        },
+        {
+          "id": "original-test",
+          "kind": "file",
+          "path": "tests/tests/queryIdentityTests.js",
+          "sha256": "c63d4c90c968f268853d42357d4f1e596a346a1467b8312eabbe71f4cebb454a"
+        },
+        {
+          "id": "tool-mocha",
+          "kind": "executable",
+          "name": "mocha",
+          "search_dirs": [
+            "node_modules/.bin"
+          ]
+        },
+        {
+          "id": "tester-module",
+          "kind": "file",
+          "path": "tests/tests/tester.js"
+        },
+        {
+          "id": "fixture-inputQueryValid23073.json",
+          "kind": "file",
+          "path": "tests/tests/queryIdentityInputs/inputQueryValid23073.json"
+        },
+        {
+          "id": "fixture-inputQueryInvalid23073BirthLower19.json",
+          "kind": "file",
+          "path": "tests/tests/queryIdentityInputs/inputQueryInvalid23073BirthLower19.json"
+        },
+        {
+          "id": "test-circuit-main",
+          "kind": "same_main",
+          "path": "tests/identityManagement/queryIdentity.circom",
+          "entrypoint": "circuits/identityManagement/queryIdentity.circom"
+        }
+      ]
+    },
+    "aq-037-94fe3080fc18": {
+      "revision_id": "aq-037-94fe3080fc18",
+      "revision_commit": "7002a2179e076449b84e3e7e8ba94e88d0a2dc2f",
+      "group": "FromAddr",
+      "entrypoint_relative": "packages/circom/tests/circuits/test_from_addr_regex.circom",
+      "requirements": [
+        {
+          "id": "original-entrypoint",
+          "kind": "file",
+          "path": "packages/circom/tests/circuits/test_from_addr_regex.circom",
+          "sha256": "48690e551e0eda83b948ad80c17aca948d573c3a19c8334fd151a73792ac3815"
+        },
+        {
+          "id": "original-test",
+          "kind": "file",
+          "path": "packages/circom/tests/from_addr.test.js",
+          "sha256": "d27cc26bb2dd2261f2520dd9130d6db8b584df9037b2e0832665ef37695a01b5"
+        },
+        {
+          "id": "tool-jest",
+          "kind": "executable",
+          "name": "jest",
+          "search_dirs": [
+            "node_modules/.bin",
+            "packages/circom/node_modules/.bin"
+          ]
+        },
+        {
+          "id": "generated-apis",
+          "kind": "directory",
+          "path": "packages/apis/pkg"
+        },
+        {
+          "id": "generated-compiler",
+          "kind": "directory",
+          "path": "packages/compiler/pkg"
+        },
+        {
+          "id": "fixture-from_all.json",
+          "kind": "file",
+          "path": "packages/circom/circuits/common/from_all.json"
+        },
+        {
+          "id": "fixture-reversed_bracket.json",
+          "kind": "file",
+          "path": "packages/circom/circuits/common/reversed_bracket.json"
+        },
+        {
+          "id": "fixture-email_addr.json",
+          "kind": "file",
+          "path": "packages/circom/circuits/common/email_addr.json"
+        }
+      ]
+    },
+    "aq-039-0ad3923f2f5b": {
+      "revision_id": "aq-039-0ad3923f2f5b",
+      "revision_commit": "7002a2179e076449b84e3e7e8ba94e88d0a2dc2f",
+      "group": "FromAddr",
+      "entrypoint_relative": "packages/circom/tests/circuits/test_from_addr_regex.circom",
+      "requirements": [
+        {
+          "id": "original-entrypoint",
+          "kind": "file",
+          "path": "packages/circom/tests/circuits/test_from_addr_regex.circom",
+          "sha256": "48690e551e0eda83b948ad80c17aca948d573c3a19c8334fd151a73792ac3815"
+        },
+        {
+          "id": "original-test",
+          "kind": "file",
+          "path": "packages/circom/tests/from_addr.test.js",
+          "sha256": "d27cc26bb2dd2261f2520dd9130d6db8b584df9037b2e0832665ef37695a01b5"
+        },
+        {
+          "id": "tool-jest",
+          "kind": "executable",
+          "name": "jest",
+          "search_dirs": [
+            "node_modules/.bin",
+            "packages/circom/node_modules/.bin"
+          ]
+        },
+        {
+          "id": "generated-apis",
+          "kind": "directory",
+          "path": "packages/apis/pkg"
+        },
+        {
+          "id": "generated-compiler",
+          "kind": "directory",
+          "path": "packages/compiler/pkg"
+        },
+        {
+          "id": "fixture-from_all.json",
+          "kind": "file",
+          "path": "packages/circom/circuits/common/from_all.json"
+        },
+        {
+          "id": "fixture-reversed_bracket.json",
+          "kind": "file",
+          "path": "packages/circom/circuits/common/reversed_bracket.json"
+        },
+        {
+          "id": "fixture-email_addr.json",
+          "kind": "file",
+          "path": "packages/circom/circuits/common/email_addr.json"
+        }
+      ]
+    },
+    "aq-040-da54d3e7bc8a": {
+      "revision_id": "aq-040-da54d3e7bc8a",
+      "revision_commit": "531575345558ba938675d725bd54df45c866ef74",
+      "group": "FromAddr",
+      "entrypoint_relative": "packages/circom/tests/circuits/test_from_addr_regex.circom",
+      "requirements": [
+        {
+          "id": "original-entrypoint",
+          "kind": "file",
+          "path": "packages/circom/tests/circuits/test_from_addr_regex.circom",
+          "sha256": "f5e6379e1fcf2125b83a40334b873b40559069044a3485bfd0c6da1c9f0c391f"
+        },
+        {
+          "id": "original-test",
+          "kind": "file",
+          "path": "packages/circom/tests/from_addr.test.js",
+          "sha256": "951c5a1f80d76113c460d51d1c81d2448cdb182793fbaeebf55a60cf02a6edc2"
+        },
+        {
+          "id": "tool-jest",
+          "kind": "executable",
+          "name": "jest",
+          "search_dirs": [
+            "node_modules/.bin",
+            "packages/circom/node_modules/.bin"
+          ]
+        },
+        {
+          "id": "generated-apis",
+          "kind": "directory",
+          "path": "packages/apis/pkg"
+        },
+        {
+          "id": "generated-compiler",
+          "kind": "directory",
+          "path": "packages/compiler/pkg"
+        },
+        {
+          "id": "fixture-from_all.json",
+          "kind": "file",
+          "path": "packages/circom/circuits/common/from_all.json"
+        },
+        {
+          "id": "fixture-reversed_bracket.json",
+          "kind": "file",
+          "path": "packages/circom/circuits/common/reversed_bracket.json"
+        },
+        {
+          "id": "fixture-email_addr.json",
+          "kind": "file",
+          "path": "packages/circom/circuits/common/email_addr.json"
+        }
+      ]
+    }
+  }
+}

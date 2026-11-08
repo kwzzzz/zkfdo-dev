@@ -1,0 +1,566 @@
+{
+  "schema": "zkfdo-tools-v1",
+  "platform": "darwin",
+  "architecture": "arm64",
+  "status": "measured",
+  "observed_utc": "2026-11-05T03:54:26.625712+00:00",
+  "scope": "A development and execution infrastructure. This manifest does not adopt a N5 platform or engine change.",
+  "observation": {
+    "path": "runs/robustness-aws-prep-2026-11-05/tool-environment-observation-v1.json",
+    "sha256": "adda78b35cfff429a58285006f900ac983e946278e1c52925e9a8940e955090d"
+  },
+  "host": {
+    "os": "macOS",
+    "version": "26.2",
+    "build": "25C56",
+    "kernel_release": "25.2.0"
+  },
+  "tools": {
+    "prepare": {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/f01-2026-10-03/supplement-var-scope/tools/zkfDO",
+      "sha256": "f8c9f64defd3993ebd845279bc0a245857e23a1ae759ce175e94f369cdd9f4c1",
+      "version": "0.1.0",
+      "source_commit": null,
+      "build_command": null,
+      "optional": false,
+      "role": "F-01 supplement-var-scope preparation/discovery",
+      "provenance": {
+        "observation_tool_key": "prepare",
+        "observation_path": "runs/robustness-aws-prep-2026-11-05/tool-environment-observation-v1.json",
+        "observation_sha256": "adda78b35cfff429a58285006f900ac983e946278e1c52925e9a8940e955090d",
+        "invocation_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/f01-2026-10-03/supplement-var-scope/tools/zkfDO",
+        "resolved_invocation_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/f01-2026-10-03/supplement-var-scope/tools/zkfDO",
+        "version_command": [
+          "/Users/miiz/Desktop/kwzzzz_zkfr/runs/f01-2026-10-03/supplement-var-scope/tools/zkfDO",
+          "--version"
+        ],
+        "version_exit_code": 0,
+        "version_stdout_first_line": "zkfDO 0.1.0",
+        "file_type": "Mach-O 64-bit executable arm64",
+        "historical_expected_sha256": "f8c9f64defd3993ebd845279bc0a245857e23a1ae759ce175e94f369cdd9f4c1",
+        "matches_historical_pin": true,
+        "source_commit_reason": "The preserved F-01 tool lock binds the executable hash and original target/release path, but records no source commit or source snapshot.",
+        "build_command_reason": "F-01 evidence states the release profile, but does not preserve the exact build argv for this supplement executable.",
+        "build_profile": "release",
+        "build_profile_reason": null,
+        "build_rustc": null,
+        "build_rustc_reason": "The compiler used at build time is not established by a receipt bound to this executable.",
+        "version_scope": "Cargo package CLI version; the algorithm variant is identified separately by role, path and SHA256.",
+        "provenance_refs": [
+          "docs/f01_discovery_evidence_2026-10-03.json:binaries.supplement_var_scope",
+          "runs/f01-2026-10-03/supplement-var-scope/tools/tool-lock.json"
+        ]
+      }
+    },
+    "J": {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/s-round4-2026-10-27/round4b/bin/zkfDO-v2.3-development",
+      "sha256": "05649971dc0fb9ece435324d3c779e2c6f148f4dc6efd74ff9fecf5a9690e700",
+      "version": "0.1.0",
+      "source_commit": null,
+      "build_command": {
+        "argv": [
+          "cargo",
+          "build",
+          "--offline",
+          "--locked",
+          "-j",
+          "1",
+          "--bin",
+          "zkfdo-j-v23",
+          "--example",
+          "s_inspection_audit"
+        ],
+        "cwd": "/Users/miiz/Desktop/kwzzzz_zkfr",
+        "explicit_nonsecret_environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "RAYON_NUM_THREADS": "1",
+          "OMP_NUM_THREADS": "1",
+          "CARGO_BUILD_JOBS": "1",
+          "CARGO_TARGET_DIR": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/s-round4-2026-10-27/cargo-target",
+          "CARGO_INCREMENTAL": "0"
+        }
+      },
+      "optional": false,
+      "role": "J v2.3 development comparison baseline",
+      "provenance": {
+        "observation_tool_key": "j_v23",
+        "observation_path": "runs/robustness-aws-prep-2026-11-05/tool-environment-observation-v1.json",
+        "observation_sha256": "adda78b35cfff429a58285006f900ac983e946278e1c52925e9a8940e955090d",
+        "invocation_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/s-round4-2026-10-27/round4b/bin/zkfDO-v2.3-development",
+        "resolved_invocation_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/s-round4-2026-10-27/round4b/bin/zkfDO-v2.3-development",
+        "version_command": [
+          "/Users/miiz/Desktop/kwzzzz_zkfr/runs/s-round4-2026-10-27/round4b/bin/zkfDO-v2.3-development",
+          "--version"
+        ],
+        "version_exit_code": 0,
+        "version_stdout_first_line": "zkfdo-j-v23 0.1.0",
+        "file_type": "Mach-O 64-bit executable arm64",
+        "historical_expected_sha256": "05649971dc0fb9ece435324d3c779e2c6f148f4dc6efd74ff9fecf5a9690e700",
+        "matches_historical_pin": true,
+        "source_commit_reason": "This was a working-tree development build. The inspected final command/binary records do not bind the complete source tree to a commit.",
+        "build_command_reason": null,
+        "build_profile": "dev / unoptimized + debuginfo",
+        "build_profile_reason": null,
+        "build_rustc": null,
+        "build_rustc_reason": "The preserved v2.3 build log does not record rustc. Current rustc or target cache metadata cannot establish this historical build's compiler.",
+        "version_scope": "Cargo package CLI version; the algorithm variant is identified separately by role, path and SHA256.",
+        "provenance_refs": [
+          "runs/j-speed-2026-11-03/baseline-build-profile.json",
+          "runs/s-round4-2026-10-27/round4b/monitor/b-build-final-1/command.json"
+        ]
+      }
+    },
+    "J_v24": {
+      "path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/j-speed-2026-11-03/bin/zkfdo-j-v24-v1",
+      "sha256": "b40e5439faf1db13e07d2ee35647c8cbb95787864db18a5586991b7986e7a524",
+      "version": "0.1.0",
+      "source_commit": null,
+      "build_command": null,
+      "optional": true,
+      "role": "Optional J v2.4 development speed variant",
+      "provenance": {
+        "observation_tool_key": "j_v24",
+        "observation_path": "runs/robustness-aws-prep-2026-11-05/tool-environment-observation-v1.json",
+        "observation_sha256": "adda78b35cfff429a58285006f900ac983e946278e1c52925e9a8940e955090d",
+        "invocation_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/j-speed-2026-11-03/bin/zkfdo-j-v24-v1",
+        "resolved_invocation_path": "/Users/miiz/Desktop/kwzzzz_zkfr/runs/j-speed-2026-11-03/bin/zkfdo-j-v24-v1",
+        "version_command": [
+          "/Users/miiz/Desktop/kwzzzz_zkfr/runs/j-speed-2026-11-03/bin/zkfdo-j-v24-v1",
+          "--version"
+        ],
+        "version_exit_code": 0,
+        "version_stdout_first_line": "zkfdo-j-v24 0.1.0",
+        "file_type": "Mach-O 64-bit executable arm64",
+        "historical_expected_sha256": "b40e5439faf1db13e07d2ee35647c8cbb95787864db18a5586991b7986e7a524",
+        "matches_historical_pin": true,
+        "source_commit_reason": "The final receipt binds a source-file manifest and the binary, not a clean source commit.",
+        "build_command_reason": "The final binary receipt/log preserves the profile and rustc but no exact argv. Earlier build-v1.json records a command for a different executable hash and is not treated as the exact final build command.",
+        "build_profile": "dev / unoptimized + debuginfo; CARGO_INCREMENTAL=0",
+        "build_profile_reason": null,
+        "build_rustc": "1.94.1 (e408947bf 2026-03-25)",
+        "build_rustc_reason": null,
+        "version_scope": "Cargo package CLI version; the algorithm variant is identified separately by role, path and SHA256.",
+        "provenance_refs": [
+          "runs/j-speed-2026-11-03/build-final-v1.json",
+          "runs/j-speed-2026-11-03/build-dev-final.log",
+          "runs/j-speed-2026-11-03/build-dev-v4.log"
+        ],
+        "source_manifest": "runs/j-speed-2026-11-03/build-final-v1.json:sources",
+        "source_snapshot_path": "runs/j-speed-2026-11-03/source-final-v1",
+        "related_earlier_build": {
+          "provenance_ref": "runs/j-speed-2026-11-03/build-v1.json",
+          "binary_sha256": "05ba876852df61d0be2356335ef1d05d8f93c7a49a91cee2dd68b0b6c85e9cf5",
+          "command": "CARGO_INCREMENTAL=0 CARGO_BUILD_JOBS=1 CARGO_TARGET_DIR=runs/j-speed-2026-11-03/target cargo build --offline --locked -j 1 --bin zkfdo-j-v24",
+          "is_this_binary": false
+        }
+      }
+    },
+    "circom": {
+      "path": "/Users/miiz/.cargo/bin/circom",
+      "sha256": "8991887889c2a74d6fc704d5689ada4cc76fba004e866c987de6cbf3b3db6227",
+      "version": "2.2.3",
+      "source_commit": null,
+      "build_command": null,
+      "optional": false,
+      "role": "Circuit compiler",
+      "provenance": {
+        "observation_tool_key": "circom",
+        "observation_path": "runs/robustness-aws-prep-2026-11-05/tool-environment-observation-v1.json",
+        "observation_sha256": "adda78b35cfff429a58285006f900ac983e946278e1c52925e9a8940e955090d",
+        "invocation_path": "/Users/miiz/.cargo/bin/circom",
+        "resolved_invocation_path": "/Users/miiz/.cargo/bin/circom",
+        "version_command": [
+          "/Users/miiz/.cargo/bin/circom",
+          "--version"
+        ],
+        "version_exit_code": 0,
+        "version_stdout_first_line": "circom compiler 2.2.3",
+        "file_type": "Mach-O 64-bit executable arm64",
+        "historical_expected_sha256": "8991887889c2a74d6fc704d5689ada4cc76fba004e866c987de6cbf3b3db6227",
+        "matches_historical_pin": true,
+        "source_commit_reason": "The path-based Cargo install record has no commit, and the recorded source path no longer exists.",
+        "build_command_reason": "The exact command used to produce or install this executable is not recorded in the inspected receipts.",
+        "build_profile": "release",
+        "build_profile_reason": "Reported by current Cargo installation metadata; not independently bound by an executable-specific build receipt.",
+        "build_rustc": null,
+        "build_rustc_reason": "Cargo install metadata reports rustc 1.94.1, retained under installation_metadata, but does not bind its record to this executable hash.",
+        "installation_metadata": {
+          "path": "/Users/miiz/.cargo/.crates2.json",
+          "file_sha256": "a7563f2fa0d24a25f496740dc854dd63064f6aff9b8fa06db964bd280a3c4524",
+          "package_key": "circom 2.2.3 (path+file:///Users/miiz/Downloads/lift-me-twice/circom/circom)",
+          "fields": {
+            "version_req": null,
+            "bins": [
+              "circom"
+            ],
+            "features": [],
+            "all_features": false,
+            "no_default_features": false,
+            "profile": "release",
+            "target": "aarch64-apple-darwin",
+            "rustc": "rustc 1.94.1 (e408947bf 2026-03-25)\nbinary: rustc\ncommit-hash: e408947bfd200af42db322daf0fadfe7e26d3bd1\ncommit-date: 2026-03-25\nhost: aarch64-apple-darwin\nrelease: 1.94.1\nLLVM version: 21.1.8\n"
+          },
+          "binding_limit": "Mutable Cargo install metadata records a local package build, but contains no executable hash or exact install argv."
+        },
+        "source_path_recorded_by_cargo": "/Users/miiz/Downloads/lift-me-twice/circom/circom",
+        "recorded_source_path_exists": false
+      }
+    },
+    "zkfuzz": {
+      "path": "/Users/miiz/.cargo/bin/zkfuzz",
+      "sha256": "ac2d9d16fd97ff803b121b7994aef804b4e191636f3f78660ff6ecd6c9ae4edd",
+      "version": "2.2.1",
+      "source_commit": "072bf1fbbd1c9ecad58d4f6d2204c3b96e7fec17",
+      "build_command": null,
+      "optional": false,
+      "role": "Pinned W/S fuzzing executable",
+      "provenance": {
+        "observation_tool_key": "zkfuzz",
+        "observation_path": "runs/robustness-aws-prep-2026-11-05/tool-environment-observation-v1.json",
+        "observation_sha256": "adda78b35cfff429a58285006f900ac983e946278e1c52925e9a8940e955090d",
+        "invocation_path": "/Users/miiz/.cargo/bin/zkfuzz",
+        "resolved_invocation_path": "/Users/miiz/.cargo/bin/zkfuzz",
+        "version_command": [
+          "/Users/miiz/.cargo/bin/zkfuzz",
+          "--version"
+        ],
+        "version_exit_code": 0,
+        "version_stdout_first_line": "ZK Circuit Fuzzer 2.2.1",
+        "file_type": "Mach-O 64-bit executable arm64",
+        "historical_expected_sha256": "ac2d9d16fd97ff803b121b7994aef804b4e191636f3f78660ff6ecd6c9ae4edd",
+        "matches_historical_pin": true,
+        "source_commit_reason": null,
+        "build_command_reason": "Cargo install metadata records a local path/release build, but the exact historical argv is absent. Do not infer an install command from this metadata.",
+        "build_profile": "release",
+        "build_profile_reason": "Reported by current Cargo installation metadata; not independently bound by an executable-specific build receipt.",
+        "build_rustc": null,
+        "build_rustc_reason": "Cargo install metadata reports rustc 1.94.1, retained under installation_metadata, but does not bind its record to this executable hash.",
+        "source_commit_evidence": "N5 §5 declares source 072bf1f for the ac2d9d16... binary. The installed binary matches that pinned hash; the abbreviated commit resolves to this current checkout HEAD.",
+        "installation_metadata": {
+          "path": "/Users/miiz/.cargo/.crates2.json",
+          "file_sha256": "a7563f2fa0d24a25f496740dc854dd63064f6aff9b8fa06db964bd280a3c4524",
+          "package_key": "zkfuzz 2.2.1 (path+file:///Users/miiz/Desktop/kwzzzz_zkfr/.external/zkFuzz)",
+          "fields": {
+            "version_req": null,
+            "bins": [
+              "zkfuzz"
+            ],
+            "features": [],
+            "all_features": false,
+            "no_default_features": false,
+            "profile": "release",
+            "target": "aarch64-apple-darwin",
+            "rustc": "rustc 1.94.1 (e408947bf 2026-03-25)\nbinary: rustc\ncommit-hash: e408947bfd200af42db322daf0fadfe7e26d3bd1\ncommit-date: 2026-03-25\nhost: aarch64-apple-darwin\nrelease: 1.94.1\nLLVM version: 21.1.8\n"
+          },
+          "binding_limit": "Mutable Cargo install metadata records a local package build, but contains no executable hash or exact install argv."
+        },
+        "current_source_checkout": {
+          "path": "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkFuzz",
+          "head": "072bf1fbbd1c9ecad58d4f6d2204c3b96e7fec17",
+          "tracked_status": [
+            " M src/mutator/utils.rs"
+          ],
+          "modified_file": "/Users/miiz/Desktop/kwzzzz_zkfr/.external/zkFuzz/src/mutator/utils.rs",
+          "modified_file_sha256": "51bf9284a2a96a4fcc460b54db92ac289e5da511e71f0ea8bb6d795172db5ed0",
+          "tracked_diff_sha256": "cade02d4353d18cf141f90cd31ce5822c4a7bfa00eabd706e1e054691aa74e2f"
+        },
+        "current_checkout_matches_declared_commit": false
+      }
+    },
+    "node": {
+      "path": "/opt/homebrew/Cellar/node/26.0.0/bin/node",
+      "sha256": "08dad0581f00a0cabf4d49ec92ca1f25fdfd01c2c18fa8e92b35f04d4c24c164",
+      "version": "26.0.0",
+      "source_commit": null,
+      "build_command": null,
+      "optional": false,
+      "role": "J witness runtime",
+      "provenance": {
+        "observation_tool_key": "node",
+        "observation_path": "runs/robustness-aws-prep-2026-11-05/tool-environment-observation-v1.json",
+        "observation_sha256": "adda78b35cfff429a58285006f900ac983e946278e1c52925e9a8940e955090d",
+        "invocation_path": "/opt/homebrew/bin/node",
+        "resolved_invocation_path": "/opt/homebrew/Cellar/node/26.0.0/bin/node",
+        "version_command": [
+          "/opt/homebrew/bin/node",
+          "--version"
+        ],
+        "version_exit_code": 0,
+        "version_stdout_first_line": "v26.0.0",
+        "file_type": "Mach-O 64-bit executable arm64",
+        "historical_expected_sha256": "08dad0581f00a0cabf4d49ec92ca1f25fdfd01c2c18fa8e92b35f04d4c24c164",
+        "matches_historical_pin": true,
+        "source_commit_reason": "The Homebrew receipt records a release version but no upstream source commit (tap_git_head is also null).",
+        "build_command_reason": "Installed Homebrew bottle receipt exists; it does not contain the upstream build argv or the user's exact install argv.",
+        "build_profile": null,
+        "build_profile_reason": "No executable-bound profile receipt was found.",
+        "build_rustc": null,
+        "build_rustc_reason": "The compiler used at build time is not established by a receipt bound to this executable.",
+        "installation_metadata": {
+          "path": "/opt/homebrew/Cellar/node/26.0.0/INSTALL_RECEIPT.json",
+          "sha256": "fd2ec4596faf0b7ae407d928a9c264c4043ace5d90e105cfa5fba202d05c68ac",
+          "fields": {
+            "built_as_bottle": true,
+            "poured_from_bottle": true,
+            "compiler": "clang",
+            "arch": "arm64",
+            "built_on": {
+              "os": "Macintosh",
+              "os_version": "macOS 26",
+              "cpu_family": "dunno",
+              "xcode": "26.4",
+              "clt": "26.4.0.0.1774242506",
+              "preferred_perl": "5.34"
+            },
+            "source": {
+              "spec": "stable",
+              "versions": {
+                "stable": "26.0.0",
+                "head": null,
+                "version_scheme": 0,
+                "compatibility_version": null
+              },
+              "path": "/Users/miiz/Library/Caches/Homebrew/api/formula.jws.json",
+              "tap_git_head": null,
+              "tap": "homebrew/core"
+            },
+            "time": 1780500410
+          }
+        }
+      }
+    },
+    "snarkjs": {
+      "path": "/opt/homebrew/lib/node_modules/snarkjs/build/cli.cjs",
+      "sha256": "6d787e37a4d1a2c6dd6032dadca09c0b3b007d4d4578bb6232a98136555d051a",
+      "version": "0.7.6",
+      "source_commit": null,
+      "build_command": null,
+      "optional": false,
+      "role": "Independent R1CS/witness checker",
+      "provenance": {
+        "observation_tool_key": "snarkjs",
+        "observation_path": "runs/robustness-aws-prep-2026-11-05/tool-environment-observation-v1.json",
+        "observation_sha256": "adda78b35cfff429a58285006f900ac983e946278e1c52925e9a8940e955090d",
+        "invocation_path": "/opt/homebrew/bin/snarkjs",
+        "resolved_invocation_path": "/opt/homebrew/lib/node_modules/snarkjs/build/cli.cjs",
+        "version_command": [
+          "/opt/homebrew/bin/snarkjs",
+          "--version"
+        ],
+        "version_exit_code": 99,
+        "version_stdout_first_line": "snarkjs@0.7.6",
+        "file_type": "a  /usr/bin/env node script text executable, ASCII text, with very long lines (349)",
+        "historical_expected_sha256": "6d787e37a4d1a2c6dd6032dadca09c0b3b007d4d4578bb6232a98136555d051a",
+        "matches_historical_pin": true,
+        "source_commit_reason": "No source commit bound to this exact executable was found in the inspected local receipts.",
+        "build_command_reason": "The exact command used to produce or install this executable is not recorded in the inspected receipts.",
+        "build_profile": null,
+        "build_profile_reason": "No executable-bound profile receipt was found.",
+        "build_rustc": null,
+        "build_rustc_reason": "The compiler used at build time is not established by a receipt bound to this executable.",
+        "package_metadata": {
+          "path": "/opt/homebrew/lib/node_modules/snarkjs/package.json",
+          "sha256": "c13e8b41f857ec6f78d7476d44eb3132ae19a2a75ddaee893ea7c88610a58ec8",
+          "fields": {
+            "name": "snarkjs",
+            "version": "0.7.6",
+            "repository": {
+              "type": "git",
+              "url": "https://github.com/iden3/snarkjs.git"
+            }
+          }
+        },
+        "version_observation_interpretation": "--version prints snarkjs@0.7.6 and help, returning exit code 99. Version is independently confirmed by installed package.json; no proof/witness operation was invoked.",
+        "fingerprint_scope": "SHA256 covers the cli.cjs executable file; it is not a hash of the complete npm dependency tree. Node is recorded separately."
+      }
+    },
+    "z3": {
+      "path": "/opt/homebrew/Cellar/z3/5.1.0/bin/z3",
+      "sha256": "8b61a8bc0b7a4e14dfb119910502ef808b055df636b25c8b67b96ae630fbc29c",
+      "version": "5.1.0",
+      "source_commit": null,
+      "build_command": null,
+      "optional": false,
+      "role": "Solver",
+      "provenance": {
+        "observation_tool_key": "z3",
+        "observation_path": "runs/robustness-aws-prep-2026-11-05/tool-environment-observation-v1.json",
+        "observation_sha256": "adda78b35cfff429a58285006f900ac983e946278e1c52925e9a8940e955090d",
+        "invocation_path": "/opt/homebrew/bin/z3",
+        "resolved_invocation_path": "/opt/homebrew/Cellar/z3/5.1.0/bin/z3",
+        "version_command": [
+          "/opt/homebrew/bin/z3",
+          "--version"
+        ],
+        "version_exit_code": 0,
+        "version_stdout_first_line": "Z3 version 5.1.0 - 64 bit",
+        "file_type": "Mach-O 64-bit executable arm64",
+        "historical_expected_sha256": "8b61a8bc0b7a4e14dfb119910502ef808b055df636b25c8b67b96ae630fbc29c",
+        "matches_historical_pin": true,
+        "source_commit_reason": "The Homebrew receipt records a release version but no upstream source commit (tap_git_head is also null).",
+        "build_command_reason": "Installed Homebrew bottle receipt exists; it does not contain the upstream build argv or the user's exact install argv.",
+        "build_profile": null,
+        "build_profile_reason": "No executable-bound profile receipt was found.",
+        "build_rustc": null,
+        "build_rustc_reason": "The compiler used at build time is not established by a receipt bound to this executable.",
+        "installation_metadata": {
+          "path": "/opt/homebrew/Cellar/z3/5.1.0/INSTALL_RECEIPT.json",
+          "sha256": "bee9a492a47f93f06b200719dce4c83762673a0c7702fd69d5322943c2199035",
+          "fields": {
+            "built_as_bottle": true,
+            "poured_from_bottle": true,
+            "compiler": "clang",
+            "arch": "arm64",
+            "built_on": {
+              "os": "Macintosh",
+              "os_version": "macOS 26",
+              "cpu_family": "dunno",
+              "xcode": "26.6",
+              "clt": "26.6.0.0.1781586589",
+              "preferred_perl": "5.34"
+            },
+            "source": {
+              "spec": "stable",
+              "versions": {
+                "stable": "5.1.0",
+                "head": null,
+                "version_scheme": 0,
+                "compatibility_version": null
+              },
+              "path": "/Users/miiz/Library/Caches/Homebrew/api/internal/packages.arm64_tahoe.jws.json",
+              "tap_git_head": null,
+              "tap": "homebrew/core"
+            },
+            "time": 1790919173
+          }
+        }
+      }
+    },
+    "python": {
+      "path": "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15",
+      "sha256": "1955899cb535256cfa477d926d016819e52e747984722c44f76e39a4950fee0e",
+      "version": "3.15.0",
+      "source_commit": null,
+      "build_command": null,
+      "optional": false,
+      "role": "Execution and monitoring scripts",
+      "provenance": {
+        "observation_tool_key": "python",
+        "observation_path": "runs/robustness-aws-prep-2026-11-05/tool-environment-observation-v1.json",
+        "observation_sha256": "adda78b35cfff429a58285006f900ac983e946278e1c52925e9a8940e955090d",
+        "invocation_path": "/opt/homebrew/bin/python3",
+        "resolved_invocation_path": "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/bin/python3.15",
+        "version_command": [
+          "/opt/homebrew/bin/python3",
+          "--version"
+        ],
+        "version_exit_code": 0,
+        "version_stdout_first_line": "Python 3.15.0",
+        "file_type": "Mach-O 64-bit executable arm64",
+        "historical_expected_sha256": null,
+        "matches_historical_pin": null,
+        "source_commit_reason": "The Homebrew receipt records a release version but no upstream source commit (tap_git_head is also null).",
+        "build_command_reason": "Installed Homebrew bottle receipt exists; it does not contain the upstream build argv or the user's exact install argv.",
+        "build_profile": null,
+        "build_profile_reason": "No executable-bound profile receipt was found.",
+        "build_rustc": null,
+        "build_rustc_reason": "The compiler used at build time is not established by a receipt bound to this executable.",
+        "installation_metadata": {
+          "path": "/opt/homebrew/Cellar/python@3.15/3.15.0/INSTALL_RECEIPT.json",
+          "sha256": "e0df1300dd57043547ced60b8c74f70f7745466d32facec3a2632b406904010d",
+          "fields": {
+            "built_as_bottle": true,
+            "poured_from_bottle": true,
+            "compiler": "clang",
+            "arch": "arm64",
+            "built_on": {
+              "os": "Macintosh",
+              "os_version": "macOS 26.6",
+              "cpu_family": "dunno",
+              "xcode": "27.0",
+              "clt": "27.0.0.0.1788430756",
+              "preferred_perl": "5.34"
+            },
+            "source": {
+              "spec": "stable",
+              "versions": {
+                "stable": "3.15.0",
+                "head": null,
+                "version_scheme": 0,
+                "compatibility_version": null
+              },
+              "path": "/Users/miiz/Library/Caches/Homebrew/api/internal/packages.arm64_tahoe.jws.json",
+              "tap_git_head": null,
+              "tap": "homebrew/core"
+            },
+            "time": 1792428964
+          }
+        }
+      }
+    },
+    "rustc": {
+      "path": "/Users/miiz/.rustup/toolchains/stable-aarch64-apple-darwin/bin/rustc",
+      "sha256": "b69cbcffa5e990057035d53ccc8163e8392ce784f6abb114c19ceb61528ba9f6",
+      "version": "1.94.1",
+      "source_commit": "e408947bfd200af42db322daf0fadfe7e26d3bd1",
+      "build_command": null,
+      "optional": false,
+      "role": "Current host Rust compiler",
+      "provenance": {
+        "observation_tool_key": "rustc",
+        "observation_path": "runs/robustness-aws-prep-2026-11-05/tool-environment-observation-v1.json",
+        "observation_sha256": "adda78b35cfff429a58285006f900ac983e946278e1c52925e9a8940e955090d",
+        "invocation_path": "/Users/miiz/.cargo/bin/rustc",
+        "resolved_invocation_path": "/Users/miiz/.cargo/bin/rustup",
+        "version_command": [
+          "/Users/miiz/.cargo/bin/rustc",
+          "--version"
+        ],
+        "version_exit_code": 0,
+        "version_stdout_first_line": "rustc 1.94.1 (e408947bf 2026-03-25)",
+        "file_type": "Mach-O 64-bit executable arm64",
+        "historical_expected_sha256": null,
+        "matches_historical_pin": null,
+        "source_commit_reason": null,
+        "build_command_reason": "Rustup toolchain payload; no upstream Rust distribution build command was found.",
+        "build_profile": null,
+        "build_profile_reason": "No executable-bound profile receipt was found.",
+        "build_rustc": null,
+        "build_rustc_reason": "The compiler used at build time is not established by a receipt bound to this executable.",
+        "source_commit_evidence": "Embedded rustc -vV output"
+      }
+    },
+    "cargo": {
+      "path": "/Users/miiz/.rustup/toolchains/stable-aarch64-apple-darwin/bin/cargo",
+      "sha256": "532141271ce821135f63822c21fcd76c7972cbf69c19bc35e6ca8b00fcd5c40e",
+      "version": "1.94.1",
+      "source_commit": "29ea6fb6a5db279426f4cc4e17aa385f05a0cfbc",
+      "build_command": null,
+      "optional": false,
+      "role": "Current host Cargo build driver",
+      "provenance": {
+        "observation_tool_key": "cargo",
+        "observation_path": "runs/robustness-aws-prep-2026-11-05/tool-environment-observation-v1.json",
+        "observation_sha256": "adda78b35cfff429a58285006f900ac983e946278e1c52925e9a8940e955090d",
+        "invocation_path": "/Users/miiz/.cargo/bin/cargo",
+        "resolved_invocation_path": "/Users/miiz/.cargo/bin/rustup",
+        "version_command": [
+          "/Users/miiz/.cargo/bin/cargo",
+          "--version"
+        ],
+        "version_exit_code": 0,
+        "version_stdout_first_line": "cargo 1.94.1 (29ea6fb6a 2026-03-24)",
+        "file_type": "Mach-O 64-bit executable arm64",
+        "historical_expected_sha256": null,
+        "matches_historical_pin": null,
+        "source_commit_reason": null,
+        "build_command_reason": "Rustup toolchain payload; no upstream Cargo distribution build command was found.",
+        "build_profile": null,
+        "build_profile_reason": "No executable-bound profile receipt was found.",
+        "build_rustc": null,
+        "build_rustc_reason": "The compiler used at build time is not established by a receipt bound to this executable.",
+        "source_commit_evidence": "Embedded cargo -vV output"
+      }
+    }
+  }
+}

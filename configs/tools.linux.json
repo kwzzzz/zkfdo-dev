@@ -1,0 +1,280 @@
+{
+  "schema": "zkfdo-tools-v1",
+  "platform": "linux",
+  "architecture": null,
+  "status": "template",
+  "scope": "Non-executable preparation template. No Linux installation, build or runtime measurement is represented. This is not a N5 amendment adoption.",
+  "reference_observation": {
+    "path": "runs/robustness-aws-prep-2026-11-05/tool-environment-observation-v1.json",
+    "sha256": "adda78b35cfff429a58285006f900ac983e946278e1c52925e9a8940e955090d"
+  },
+  "requirements": [
+    "Select and record the Ubuntu release and native CPU architecture; architecture remains null until selected.",
+    "Every required tool needs a measured absolute or repository-relative Linux path, SHA256, version and provenance. Do not copy macOS Mach-O hashes into Linux entries.",
+    "Unknown source commits or historical build commands must remain null with explicit reasons; do not replace missing provenance with the current repository HEAD.",
+    "Capture complete source snapshots, dependency locks, compiler/target/profile, exact nonsecret build argv and measured native binary hashes before marking a new manifest measured.",
+    "The loader must reject status=template. Fill and validate a separately recorded Linux manifest only after actual native preparation and allowed fixture verification."
+  ],
+  "tools": {
+    "prepare": {
+      "path": null,
+      "sha256": null,
+      "version": null,
+      "source_commit": null,
+      "build_command": null,
+      "optional": false,
+      "role": "F-01 supplement-var-scope preparation/discovery",
+      "requirements": [
+        "Resolve the complete source provenance of the F-01 supplement preparation executable; its macOS tool lock does not identify a source commit or exact build argv.",
+        "Record the Ubuntu-native executable hash, compiler, Cargo.lock hash, release profile and exact build command."
+      ],
+      "provenance": {
+        "status": "not_observed_on_linux",
+        "reason": "Linux tool installation, executable hashing, version probing and build provenance have not been measured.",
+        "reference_observation_path": "runs/robustness-aws-prep-2026-11-05/tool-environment-observation-v1.json",
+        "reference_observation_tool_key": "prepare",
+        "reference_darwin_version": "0.1.0",
+        "reference_darwin_sha256": "f8c9f64defd3993ebd845279bc0a245857e23a1ae759ce175e94f369cdd9f4c1",
+        "reference_source_commit": null,
+        "reference_source_commit_reason": "The preserved F-01 tool lock binds the executable hash and original target/release path, but records no source commit or source snapshot.",
+        "reference_exact_build_command_available": false
+      }
+    },
+    "J": {
+      "path": null,
+      "sha256": null,
+      "version": null,
+      "source_commit": null,
+      "build_command": null,
+      "optional": false,
+      "role": "J v2.3 development comparison baseline",
+      "requirements": [
+        "Resolve and pin the complete source snapshot for J v2.3; the historical working-tree build is not bound to a clean commit.",
+        "Retain the intended dev/unoptimized+debuginfo comparison profile unless a separately documented comparison defines a different profile. Record exact compiler and build argv."
+      ],
+      "provenance": {
+        "status": "not_observed_on_linux",
+        "reason": "Linux tool installation, executable hashing, version probing and build provenance have not been measured.",
+        "reference_observation_path": "runs/robustness-aws-prep-2026-11-05/tool-environment-observation-v1.json",
+        "reference_observation_tool_key": "j_v23",
+        "reference_darwin_version": "0.1.0",
+        "reference_darwin_sha256": "05649971dc0fb9ece435324d3c779e2c6f148f4dc6efd74ff9fecf5a9690e700",
+        "reference_source_commit": null,
+        "reference_source_commit_reason": "This was a working-tree development build. The inspected final command/binary records do not bind the complete source tree to a commit.",
+        "reference_exact_build_command_available": true
+      }
+    },
+    "J_v24": {
+      "path": null,
+      "sha256": null,
+      "version": null,
+      "source_commit": null,
+      "build_command": null,
+      "optional": true,
+      "role": "Optional J v2.4 development speed variant",
+      "requirements": [
+        "Optional development variant only; keep J v2.3 as the explicitly selected baseline.",
+        "Resolve a complete source snapshot from preserved evidence and record the exact native build command. The macOS final receipt contains selected source-file hashes and rustc, but no exact final argv."
+      ],
+      "provenance": {
+        "status": "not_observed_on_linux",
+        "reason": "Linux tool installation, executable hashing, version probing and build provenance have not been measured.",
+        "reference_observation_path": "runs/robustness-aws-prep-2026-11-05/tool-environment-observation-v1.json",
+        "reference_observation_tool_key": "j_v24",
+        "reference_darwin_version": "0.1.0",
+        "reference_darwin_sha256": "b40e5439faf1db13e07d2ee35647c8cbb95787864db18a5586991b7986e7a524",
+        "reference_source_commit": null,
+        "reference_source_commit_reason": "The final receipt binds a source-file manifest and the binary, not a clean source commit.",
+        "reference_exact_build_command_available": false
+      }
+    },
+    "circom": {
+      "path": null,
+      "sha256": null,
+      "version": null,
+      "source_commit": null,
+      "build_command": null,
+      "optional": false,
+      "role": "Circuit compiler",
+      "requirements": [
+        "Verify and pin the intended circom source or release archive. The macOS path-based installation source no longer exists.",
+        "Record native compiler build provenance and validate circuit compilation on allowed development fixtures."
+      ],
+      "provenance": {
+        "status": "not_observed_on_linux",
+        "reason": "Linux tool installation, executable hashing, version probing and build provenance have not been measured.",
+        "reference_observation_path": "runs/robustness-aws-prep-2026-11-05/tool-environment-observation-v1.json",
+        "reference_observation_tool_key": "circom",
+        "reference_darwin_version": "2.2.3",
+        "reference_darwin_sha256": "8991887889c2a74d6fc704d5689ada4cc76fba004e866c987de6cbf3b3db6227",
+        "reference_source_commit": null,
+        "reference_source_commit_reason": "The path-based Cargo install record has no commit, and the recorded source path no longer exists.",
+        "reference_exact_build_command_available": false
+      }
+    },
+    "zkfuzz": {
+      "path": null,
+      "sha256": null,
+      "version": null,
+      "source_commit": null,
+      "build_command": null,
+      "optional": false,
+      "role": "Pinned W/S fuzzing executable",
+      "requirements": [
+        "The macOS pinned baseline declares source 072bf1fbbd1c9ecad58d4f6d2204c3b96e7fec17. The current local checkout has a tracked mutator modification; do not silently include it in a baseline rebuild.",
+        "Record the selected source revision or complete source snapshot, any deliberate patch hash, native build argv and binary hash."
+      ],
+      "provenance": {
+        "status": "not_observed_on_linux",
+        "reason": "Linux tool installation, executable hashing, version probing and build provenance have not been measured.",
+        "reference_observation_path": "runs/robustness-aws-prep-2026-11-05/tool-environment-observation-v1.json",
+        "reference_observation_tool_key": "zkfuzz",
+        "reference_darwin_version": "2.2.1",
+        "reference_darwin_sha256": "ac2d9d16fd97ff803b121b7994aef804b4e191636f3f78660ff6ecd6c9ae4edd",
+        "reference_source_commit": "072bf1fbbd1c9ecad58d4f6d2204c3b96e7fec17",
+        "reference_source_commit_reason": null,
+        "reference_exact_build_command_available": false
+      }
+    },
+    "node": {
+      "path": null,
+      "sha256": null,
+      "version": null,
+      "source_commit": null,
+      "build_command": null,
+      "optional": false,
+      "role": "J witness runtime",
+      "requirements": [
+        "Select and pin the intended Linux runtime version and package or source provenance; do not silently use the distribution latest version."
+      ],
+      "provenance": {
+        "status": "not_observed_on_linux",
+        "reason": "Linux tool installation, executable hashing, version probing and build provenance have not been measured.",
+        "reference_observation_path": "runs/robustness-aws-prep-2026-11-05/tool-environment-observation-v1.json",
+        "reference_observation_tool_key": "node",
+        "reference_darwin_version": "26.0.0",
+        "reference_darwin_sha256": "08dad0581f00a0cabf4d49ec92ca1f25fdfd01c2c18fa8e92b35f04d4c24c164",
+        "reference_source_commit": null,
+        "reference_source_commit_reason": "The Homebrew receipt records a release version but no upstream source commit (tap_git_head is also null).",
+        "reference_exact_build_command_available": false
+      }
+    },
+    "snarkjs": {
+      "path": null,
+      "sha256": null,
+      "version": null,
+      "source_commit": null,
+      "build_command": null,
+      "optional": false,
+      "role": "Independent R1CS/witness checker",
+      "requirements": [
+        "Pin the package version and package integrity or lock data, together with the selected Node runtime.",
+        "Measure the version command and exit status on Linux. The observed macOS --version prints version/help and exits 99; this alone is not a witness-check failure.",
+        "Hash the executable and record that this does not identify the entire npm dependency tree."
+      ],
+      "provenance": {
+        "status": "not_observed_on_linux",
+        "reason": "Linux tool installation, executable hashing, version probing and build provenance have not been measured.",
+        "reference_observation_path": "runs/robustness-aws-prep-2026-11-05/tool-environment-observation-v1.json",
+        "reference_observation_tool_key": "snarkjs",
+        "reference_darwin_version": "0.7.6",
+        "reference_darwin_sha256": "6d787e37a4d1a2c6dd6032dadca09c0b3b007d4d4578bb6232a98136555d051a",
+        "reference_source_commit": null,
+        "reference_source_commit_reason": "No source commit bound to this exact executable was found in the inspected local receipts.",
+        "reference_exact_build_command_available": false
+      }
+    },
+    "z3": {
+      "path": null,
+      "sha256": null,
+      "version": null,
+      "source_commit": null,
+      "build_command": null,
+      "optional": false,
+      "role": "Solver",
+      "requirements": [
+        "Select and pin the intended solver release/source and record the Ubuntu-native executable hash and build/package provenance."
+      ],
+      "provenance": {
+        "status": "not_observed_on_linux",
+        "reason": "Linux tool installation, executable hashing, version probing and build provenance have not been measured.",
+        "reference_observation_path": "runs/robustness-aws-prep-2026-11-05/tool-environment-observation-v1.json",
+        "reference_observation_tool_key": "z3",
+        "reference_darwin_version": "5.1.0",
+        "reference_darwin_sha256": "8b61a8bc0b7a4e14dfb119910502ef808b055df636b25c8b67b96ae630fbc29c",
+        "reference_source_commit": null,
+        "reference_source_commit_reason": "The Homebrew receipt records a release version but no upstream source commit (tap_git_head is also null).",
+        "reference_exact_build_command_available": false
+      }
+    },
+    "python": {
+      "path": null,
+      "sha256": null,
+      "version": null,
+      "source_commit": null,
+      "build_command": null,
+      "optional": false,
+      "role": "Execution and monitoring scripts",
+      "requirements": [
+        "Select and record the supported Linux Python interpreter version and package provenance before validating the monitoring scripts."
+      ],
+      "provenance": {
+        "status": "not_observed_on_linux",
+        "reason": "Linux tool installation, executable hashing, version probing and build provenance have not been measured.",
+        "reference_observation_path": "runs/robustness-aws-prep-2026-11-05/tool-environment-observation-v1.json",
+        "reference_observation_tool_key": "python",
+        "reference_darwin_version": "3.15.0",
+        "reference_darwin_sha256": "1955899cb535256cfa477d926d016819e52e747984722c44f76e39a4950fee0e",
+        "reference_source_commit": null,
+        "reference_source_commit_reason": "The Homebrew receipt records a release version but no upstream source commit (tap_git_head is also null).",
+        "reference_exact_build_command_available": false
+      }
+    },
+    "rustc": {
+      "path": null,
+      "sha256": null,
+      "version": null,
+      "source_commit": null,
+      "build_command": null,
+      "optional": false,
+      "role": "Current host Rust compiler",
+      "requirements": [
+        "Select and pin an exact Rust toolchain for the native builds; record rustc -vV, the actual toolchain payload hash and target triple."
+      ],
+      "provenance": {
+        "status": "not_observed_on_linux",
+        "reason": "Linux tool installation, executable hashing, version probing and build provenance have not been measured.",
+        "reference_observation_path": "runs/robustness-aws-prep-2026-11-05/tool-environment-observation-v1.json",
+        "reference_observation_tool_key": "rustc",
+        "reference_darwin_version": "1.94.1",
+        "reference_darwin_sha256": "b69cbcffa5e990057035d53ccc8163e8392ce784f6abb114c19ceb61528ba9f6",
+        "reference_source_commit": "e408947bfd200af42db322daf0fadfe7e26d3bd1",
+        "reference_source_commit_reason": null,
+        "reference_exact_build_command_available": false
+      }
+    },
+    "cargo": {
+      "path": null,
+      "sha256": null,
+      "version": null,
+      "source_commit": null,
+      "build_command": null,
+      "optional": false,
+      "role": "Current host Cargo build driver",
+      "requirements": [
+        "Record the Cargo version/commit and actual toolchain payload hash, and use the pinned Cargo.lock for reproducible dependency resolution."
+      ],
+      "provenance": {
+        "status": "not_observed_on_linux",
+        "reason": "Linux tool installation, executable hashing, version probing and build provenance have not been measured.",
+        "reference_observation_path": "runs/robustness-aws-prep-2026-11-05/tool-environment-observation-v1.json",
+        "reference_observation_tool_key": "cargo",
+        "reference_darwin_version": "1.94.1",
+        "reference_darwin_sha256": "532141271ce821135f63822c21fcd76c7972cbf69c19bc35e6ca8b00fcd5c40e",
+        "reference_source_commit": "29ea6fb6a5db279426f4cc4e17aa385f05a0cfbc",
+        "reference_source_commit_reason": null,
+        "reference_exact_build_command_available": false
+      }
+    }
+  }
+}
