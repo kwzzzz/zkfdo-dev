@@ -1,5 +1,16 @@
 {
   "editor.formatOnSave": true,
   "rust-analyzer.check.command": "clippy",
-  "rust-analyzer.check.extraArgs": ["--all-targets", "--all-features"]
+  "rust-analyzer.check.extraArgs": ["--all-targets", "--all-features"],
+  "files.watcherExclude": {
+    "**/runs/**": true,
+    "**/target/**": true,
+    "**/.external/**": true
+  },
+  "search.exclude": {
+    "**/runs": true,
+    "**/target": true,
+    "**/.external": true
+  },
+  "git.repositoryScanIgnoredFolders": ["node_modules", "runs", "target", ".external"]
 }

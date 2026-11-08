@@ -40,3 +40,12 @@ __pycache__/
 /datasets/controlled-v3/rarimo-date-encoder/
 /datasets/controlled-v3/unirep-epoch-key-lite/
 /datasets/controlled-v3/zkemail-fpmul/
+
+# Local symlink to the external build volume (the /target/ rule does not match a symlink)
+/target
+
+# Personal submissions unrelated to the repository
+/kucis_report/
+
+# Large corpus result dumps; keep them under runs/ and commit paths and SHA-256 only
+/docs/*_corpus_results_*.json
