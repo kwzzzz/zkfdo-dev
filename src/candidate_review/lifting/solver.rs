@@ -104,6 +104,7 @@ pub(crate) fn run(
     scratch: &Path,
     timeout: Duration,
 ) -> Result<String> {
+    let _profile = super::profile_v24::span("solver.run");
     // z3 reports the reason for the preceding check; querying it does not launch a new solve.
     text.push_str("(get-info :reason-unknown)\n");
     let started = Instant::now();
@@ -124,8 +125,9 @@ pub(crate) fn run(
         let log = scratch.with_extension("z3.log");
         let mut command = Command::new(z3);
         command.arg(&query);
-        let (status, timed_out) =
-            run_bounded_logged(&mut command, timeout + Duration::from_secs(10), &log)?;
+        let (status, timed_out) = super::profile_v24::measure("solver.subprocess", || {
+            run_bounded_logged(&mut command, timeout + Duration::from_secs(10), &log)
+        })?;
         call.exit_code = status.code();
         let output = std::fs::read_to_string(log)?;
         if timed_out {

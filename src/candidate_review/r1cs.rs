@@ -187,6 +187,58 @@ impl R1cs {
         }
         Ok(failed)
     }
+
+    /// v2.4-only checker: the same field arithmetic and index order, with one reduction
+    /// per linear combination and independent contiguous chunks when jobs permit it.
+    pub(crate) fn failed_constraint_indices_with_jobs(
+        &self,
+        assignment: &[BigUint],
+        jobs: usize,
+    ) -> Result<Vec<usize>> {
+        ensure!(jobs > 0, "the constraint checker requires at least one job");
+        self.validate_assignment(assignment)?;
+        // Avoid spawning workers for tiny chunks or an unbounded caller-supplied count.
+        let workers = jobs.min(64).min((self.constraints.len() / 1024).max(1));
+        let check = |offset: usize, constraints: &[Constraint]| {
+            let mut failed = Vec::new();
+            for (index, constraint) in constraints.iter().enumerate() {
+                let a = evaluate_linear_combination_once(&constraint.a, assignment, &self.prime);
+                let b = evaluate_linear_combination_once(&constraint.b, assignment, &self.prime);
+                let c = evaluate_linear_combination_once(&constraint.c, assignment, &self.prime);
+                if (a * b) % &self.prime != c {
+                    failed.push(offset + index);
+                }
+            }
+            failed
+        };
+        if workers == 1 {
+            return Ok(check(0, &self.constraints));
+        }
+        std::thread::scope(|scope| {
+            let mut handles = Vec::new();
+            for worker in 0..workers {
+                let start = worker * self.constraints.len() / workers;
+                let end = (worker + 1) * self.constraints.len() / workers;
+                let constraints = &self.constraints[start..end];
+                let check = &check;
+                handles.push(
+                    std::thread::Builder::new()
+                        .spawn_scoped(scope, move || check(start, constraints))
+                        .context("start constraint-check worker")?,
+                );
+            }
+            let mut failed = Vec::new();
+            // Joining in chunk order preserves the original checker's ascending indices.
+            for handle in handles {
+                failed.extend(
+                    handle
+                        .join()
+                        .map_err(|_| anyhow::anyhow!("constraint-check worker panicked"))?,
+                );
+            }
+            Ok(failed)
+        })
+    }
 }
 
 #[derive(Clone, Debug, Eq, PartialEq)]
@@ -335,6 +387,28 @@ fn evaluate_linear_combination(
         })
 }
 
+fn evaluate_linear_combination_once(
+    terms: &LinearCombination,
+    assignment: &[BigUint],
+    prime: &BigUint,
+) -> BigUint {
+    let mut sum = BigUint::zero();
+    for (wire, coefficient) in terms {
+        let value = &assignment[*wire as usize];
+        if coefficient.is_zero() || value.is_zero() {
+            continue;
+        }
+        if coefficient.is_one() {
+            sum += value;
+        } else {
+            sum += coefficient * value;
+        }
+    }
+    // BigUint cannot overflow: reducing this exact sum once equals reducing each term
+    // and intermediate sum, including when the sum grows beyond the field bit width.
+    sum % prime
+}
+
 fn parse_unsigned_decimal(text: &str, field: &str, line: usize) -> Result<u64> {
     ensure!(
         !text.is_empty() && text.bytes().all(|byte| byte.is_ascii_digit()),
@@ -450,6 +524,113 @@ mod tests {
         let mut wrong = fixture_shape();
         wrong.constraints += 1;
         assert!(r1cs.validate_shape(&wrong).is_err());
+    }
+
+    #[test]
+    fn v24_checker_matches_reference_across_sparse_dense_and_high_values() {
+        let prime = (BigUint::one() << 255usize) - BigUint::from(19u32);
+        let assignment = (0..64)
+            .map(|wire| match wire {
+                0 => BigUint::one(),
+                wire if wire % 3 == 0 => BigUint::zero(),
+                wire if wire % 3 == 1 => &prime - BigUint::from(wire as u32),
+                wire => BigUint::from((wire * wire) as u32),
+            })
+            .collect::<Vec<_>>();
+        let mut constraints = Vec::new();
+        for index in 0..4099usize {
+            let terms = if index % 2 == 0 { 64 } else { 3 };
+            let a = (0..terms)
+                .map(|term| {
+                    let wire = (term + index) % assignment.len();
+                    let coefficient = match term % 3 {
+                        0 => BigUint::one(),
+                        1 => &prime - BigUint::from((term + 1) as u32),
+                        _ => BigUint::from((term + 2) as u32),
+                    };
+                    (wire as u32, coefficient)
+                })
+                .collect::<LinearCombination>();
+            let b = BTreeMap::from([((index % 64) as u32, BigUint::one())]);
+            let expected = (evaluate_linear_combination(&a, &assignment, &prime)
+                * evaluate_linear_combination(&b, &assignment, &prime))
+                % &prime;
+            let value = if index % 7 == 0 || [1023, 1024, 2047, 2048, 4098].contains(&index) {
+                (expected + BigUint::one()) % &prime
+            } else {
+                expected
+            };
+            let c = if value.is_zero() {
+                BTreeMap::new()
+            } else {
+                BTreeMap::from([(0, value)])
+            };
+            constraints.push(Constraint { a, b, c });
+        }
+        let r1cs = R1cs {
+            prime,
+            shape: R1csShape {
+                wires: assignment.len(),
+                labels: assignment.len() as u64,
+                public_outputs: 0,
+                public_inputs: 0,
+                private_inputs: assignment.len() - 1,
+                constraints: constraints.len(),
+            },
+            constraints,
+            wire_labels: (0..assignment.len() as u64).collect(),
+        };
+        let reference = r1cs.failed_constraint_indices(&assignment).unwrap();
+        let expected = (0..4099)
+            .filter(|index| index % 7 == 0 || [1023, 1024, 2047, 2048, 4098].contains(index))
+            .collect::<Vec<_>>();
+        assert_eq!(reference, expected);
+        for jobs in [1, 4, usize::MAX] {
+            assert_eq!(
+                r1cs.failed_constraint_indices_with_jobs(&assignment, jobs)
+                    .unwrap(),
+                reference,
+                "jobs={jobs}"
+            );
+        }
+    }
+
+    #[test]
+    fn v24_checker_preserves_assignment_validation_and_empty_results() {
+        let mut r1cs = R1cs::parse(&fixture_r1cs(None)).unwrap();
+        for assignment in [
+            biguints(&[1, 2]),
+            biguints(&[0, 2, 2]),
+            biguints(&[1, PRIME, 0]),
+        ] {
+            let reference = r1cs
+                .failed_constraint_indices(&assignment)
+                .unwrap_err()
+                .to_string();
+            for jobs in [1, 4] {
+                assert_eq!(
+                    r1cs.failed_constraint_indices_with_jobs(&assignment, jobs)
+                        .unwrap_err()
+                        .to_string(),
+                    reference
+                );
+            }
+        }
+        assert!(r1cs
+            .failed_constraint_indices_with_jobs(&biguints(&[1, 7, 7]), 0)
+            .is_err());
+        for assignment in [biguints(&[1, 0, 0]), biguints(&[1, 256, 256])] {
+            assert!(r1cs
+                .failed_constraint_indices_with_jobs(&assignment, 4)
+                .unwrap()
+                .is_empty());
+        }
+        r1cs.constraints.clear();
+        r1cs.shape.constraints = 0;
+        assert!(r1cs
+            .failed_constraint_indices_with_jobs(&biguints(&[1, 0, 0]), usize::MAX)
+            .unwrap()
+            .is_empty());
     }
 
     #[test]

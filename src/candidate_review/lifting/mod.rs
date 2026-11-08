@@ -6,14 +6,20 @@
 //! `<--` statements); nothing branches on candidate, template, or signal names.
 
 mod bitrange;
+mod boost;
+pub use boost::BoostOptions;
 mod condition;
 pub mod instances;
 mod predicate;
+mod profile_v24;
 mod refute;
 mod repair;
+mod reuse_v25;
 mod solver;
 mod source;
+mod speed_v24;
 mod synth;
+mod view_v23;
 mod wtns;
 
 use std::{
@@ -308,6 +314,23 @@ struct Tools {
     circom: PathBuf,
     node: PathBuf,
     snarkjs: PathBuf,
+    verified_digests: Option<reuse_v25::ToolDigests>,
+}
+
+impl Tools {
+    fn key_digest(&self, path: &Path) -> Result<String> {
+        match &self.verified_digests {
+            Some(digests) => digests.digest(path),
+            None => sha256_file(path),
+        }
+    }
+
+    fn check_tool_identity(&self, path: &Path) -> Result<()> {
+        if let Some(digests) = &self.verified_digests {
+            digests.check_identity(path)?;
+        }
+        Ok(())
+    }
 }
 
 struct Ledger {
@@ -317,6 +340,7 @@ struct Ledger {
 
 impl Ledger {
     fn record(&mut self, stage: &str, label: &str, seconds: f64, status: &str, cached: bool) {
+        profile_v24::record_ledger_coverage(seconds);
         self.steps.push(Step {
             stage: stage.to_owned(),
             label: label.to_owned(),
@@ -337,11 +361,15 @@ impl Ledger {
         status: &str,
         cached: bool,
     ) {
+        // The full enclosing interval covers its nested steps and its remainder.
+        // The sidecar takes the union, so nested coverage is counted only once.
+        profile_v24::record_ledger_coverage(elapsed);
         let nested: f64 = self.steps[from..].iter().map(|step| step.seconds).sum();
         self.record(stage, label, (elapsed - nested).max(0.0), status, cached);
     }
 
     fn timed<T>(&mut self, stage: &str, label: &str, work: impl FnOnce() -> T) -> T {
+        let _profile_span = profile_v24::span(label);
         let started = Instant::now();
         let value = work();
         self.record(stage, label, started.elapsed().as_secs_f64(), "ok", false);
@@ -358,6 +386,161 @@ struct Compiled {
 }
 
 pub fn lift(options: &LiftOptions) -> Result<LiftResult> {
+    lift_impl(options, None, &BoostOptions::default())
+}
+
+/// Separate v2.3 entry point. Requests without the new view take lift unchanged.
+pub fn lift_v23(options: &LiftOptions) -> Result<LiftResult> {
+    lift_v23_with_boost(options, &BoostOptions::default())
+}
+
+/// Optional diagnostics and completion, reported separately from the legacy verdicts.
+pub fn lift_v23_with_boost(options: &LiftOptions, boost: &BoostOptions) -> Result<LiftResult> {
+    let bytes = fs::read(&options.request)?;
+    let Some((normalized, reference)) = view_v23::decode(&bytes)? else {
+        return lift_impl(options, None, boost);
+    };
+    let base = options.request.parent().context("request has no parent")?;
+    let view = view_v23::load(&reference, base)?;
+    lift_impl(options, Some((normalized, view, reference.sha256)), boost)
+}
+
+/// Development-only speed path. Strategy order and all search budgets remain unchanged.
+/// `jobs` controls independent full-R1CS checks, not speculative synthesis strategies.
+pub fn lift_v24_with_boost(
+    options: &LiftOptions,
+    boost: &BoostOptions,
+    jobs: usize,
+) -> Result<LiftResult> {
+    let _profiler = profile_v24::activate()?;
+    let _guard = speed_v24::activate(jobs)?;
+    let started = Instant::now();
+    let cpu_before = speed_cpu_usage()?;
+    let result = lift_v23_with_boost(options, boost)?;
+    let cpu_after = speed_cpu_usage()?;
+    let partition = profile_v24::finish()?;
+    write_json(
+        &options.output.join("j-speed.json"),
+        &serde_json::json!({
+            "schema": "zkfdo-j-speed-v2.4",
+            "j_jobs": jobs,
+            "parallel_scope": "independent_r1cs_constraints",
+            "strategy_order": "v2.3_sequential",
+            "wall_seconds": started.elapsed().as_secs_f64(),
+            "cpu_self_seconds": cpu_after.0 - cpu_before.0,
+            "cpu_children_seconds": cpu_after.1 - cpu_before.1,
+            "cpu_total_seconds": cpu_after.0 + cpu_after.1 - cpu_before.0 - cpu_before.1,
+            "measurement_scope": "lift including artifact release; excludes sidecar write; use external wait4 for total cost",
+            "runtime": speed_v24::telemetry(),
+            "partition": partition,
+        }),
+    )?;
+    Ok(result)
+}
+
+/// Development-only v2.5: request-local verified key digests and lazy rewrite structure.
+/// Existing v2.3/v2.4 entrypoints never activate this state.
+pub fn lift_v25_with_boost(
+    options: &LiftOptions,
+    boost: &BoostOptions,
+    jobs: usize,
+) -> Result<LiftResult> {
+    let _profiler = profile_v24::activate()?;
+    let _speed = speed_v24::activate(jobs)?;
+    let _reuse = reuse_v25::activate()?;
+    let started = Instant::now();
+    let before = speed_cpu_usage()?;
+    let result = lift_v23_with_boost(options, boost)?;
+    let after = speed_cpu_usage()?;
+    let partition = profile_v24::finish()?;
+    write_json(
+        &options.output.join("j-speed.json"),
+        &serde_json::json!({
+            "schema": "zkfdo-j-speed-v2.5",
+            "j_jobs": jobs,
+            "parallel_scope": "independent_r1cs_constraints",
+            "strategy_order": "v2.3_sequential",
+            "wall_seconds": started.elapsed().as_secs_f64(),
+            "cpu_self_seconds": after.0 - before.0,
+            "cpu_children_seconds": after.1 - before.1,
+            "cpu_total_seconds": after.0 + after.1 - before.0 - before.1,
+            "measurement_scope": "lift including artifact release; excludes sidecar write; use external wait4 for total cost",
+            "runtime": speed_v24::telemetry(),
+            "reuse": reuse_v25::telemetry(),
+            "partition": partition,
+        }),
+    )?;
+    Ok(result)
+}
+
+/// Measurement-only development mode: legacy arithmetic, no reuse, unchanged strategies.
+/// The frozen v2.3 executable and its output directories are never modified.
+pub fn profile_v23_with_boost(options: &LiftOptions, boost: &BoostOptions) -> Result<LiftResult> {
+    let _profiler = profile_v24::activate()?;
+    let started = Instant::now();
+    let before = speed_cpu_usage()?;
+    let result = lift_v23_with_boost(options, boost)?;
+    let after = speed_cpu_usage()?;
+    let partition = profile_v24::finish()?;
+    write_json(
+        &options.output.join("j-profile.json"),
+        &serde_json::json!({
+            "schema": "zkfdo-j-profile-v1", "mode": "legacy_measurement_only",
+            "wall_seconds": started.elapsed().as_secs_f64(),
+            "cpu_self_seconds": after.0 - before.0,
+            "cpu_children_seconds": after.1 - before.1,
+            "cpu_total_seconds": after.0 + after.1 - before.0 - before.1,
+            "partition": partition,
+        }),
+    )?;
+    Ok(result)
+}
+
+#[cfg(unix)]
+fn speed_cpu_usage() -> Result<(f64, f64)> {
+    let usage = |who| -> Result<f64> {
+        let mut usage = std::mem::MaybeUninit::<libc::rusage>::uninit();
+        // getrusage initializes the provided rusage on success. Children include
+        // reaped compiler/solver/witness processes; self includes worker threads.
+        let status = unsafe { libc::getrusage(who, usage.as_mut_ptr()) };
+        ensure!(
+            status == 0,
+            "getrusage: {}",
+            std::io::Error::last_os_error()
+        );
+        let usage = unsafe { usage.assume_init() };
+        Ok(usage.ru_utime.tv_sec as f64
+            + usage.ru_utime.tv_usec as f64 / 1_000_000.0
+            + usage.ru_stime.tv_sec as f64
+            + usage.ru_stime.tv_usec as f64 / 1_000_000.0)
+    };
+    Ok((usage(libc::RUSAGE_SELF)?, usage(libc::RUSAGE_CHILDREN)?))
+}
+
+#[cfg(not(unix))]
+fn speed_cpu_usage() -> Result<(f64, f64)> {
+    bail!("J v2.4 requires Unix process CPU accounting")
+}
+
+fn check_constraints(r1cs: &R1cs, assignment: &[BigUint]) -> Result<Vec<usize>> {
+    let _profile_span = profile_v24::span("r1cs_check");
+    if speed_v24::enabled() {
+        let started = Instant::now();
+        let result = r1cs.failed_constraint_indices_with_jobs(assignment, speed_v24::jobs());
+        speed_v24::record_check(started.elapsed().as_secs_f64());
+        result
+    } else {
+        r1cs.failed_constraint_indices(assignment)
+    }
+}
+
+fn lift_impl(
+    options: &LiftOptions,
+    view: Option<(Vec<u8>, view_v23::View, String)>,
+    boost_options: &BoostOptions,
+) -> Result<LiftResult> {
+    let _profile_span = profile_v24::span("lift_impl");
+    let boost = boost::State::new(boost_options.clone());
     solver::reset();
     ensure!(
         !options.output.exists(),
@@ -368,7 +551,11 @@ pub fn lift(options: &LiftOptions) -> Result<LiftResult> {
     let started = Instant::now();
     let request_bytes = fs::read(&options.request)
         .with_context(|| format!("read request {}", options.request.display()))?;
-    let request: LiftRequest = serde_json::from_slice(&request_bytes).context("parse request")?;
+    let parse_bytes = view
+        .as_ref()
+        .map(|(bytes, _, _)| bytes.as_slice())
+        .unwrap_or(&request_bytes);
+    let request: LiftRequest = serde_json::from_slice(parse_bytes).context("parse request")?;
     ensure!(
         request.schema == LIFTING_REQUEST_SCHEMA,
         "unsupported request schema {}",
@@ -383,6 +570,7 @@ pub fn lift(options: &LiftOptions) -> Result<LiftResult> {
         circom: resolve_executable(&options.circom_bin)?,
         node: resolve_executable(&options.node_bin)?,
         snarkjs: resolve_executable(&options.snarkjs_bin)?,
+        verified_digests: reuse_v25::enabled().then(reuse_v25::ToolDigests::default),
     };
     let mut tool_hashes = BTreeMap::new();
     for (name, path) in [
@@ -390,11 +578,19 @@ pub fn lift(options: &LiftOptions) -> Result<LiftResult> {
         ("node", &tools.node),
         ("snarkjs", &tools.snarkjs),
     ] {
-        tool_hashes.insert(format!("{name}_sha256"), sha256_file(path)?);
+        tool_hashes.insert(format!("{name}_sha256"), tools.key_digest(path)?);
     }
     let candidate_path = base.join(&request.candidate.path);
     let mut result = LiftResult {
-        schema: LIFTING_RESULT_SCHEMA,
+        schema: if reuse_v25::enabled() {
+            "zkfdo-lifting-result-v2.5"
+        } else if speed_v24::enabled() {
+            "zkfdo-lifting-result-v2.4"
+        } else if view.is_some() {
+            "zkfdo-lifting-result-v2.3"
+        } else {
+            LIFTING_RESULT_SCHEMA
+        },
         request_id: request.id.clone(),
         request_sha256: sha256_bytes(&request_bytes),
         candidate_sha256: sha256_file(&candidate_path)?,
@@ -414,6 +610,11 @@ pub fn lift(options: &LiftOptions) -> Result<LiftResult> {
         verdict_counts: BTreeMap::new(),
         costs: CostSummary::default(),
     };
+    if let Some((_, _, hash)) = &view {
+        result
+            .tools
+            .insert("component_view_spec_sha256".into(), hash.clone());
+    }
     let mut ledger = Ledger {
         steps: Vec::new(),
         site: None,
@@ -426,6 +627,8 @@ pub fn lift(options: &LiftOptions) -> Result<LiftResult> {
         options,
         &mut ledger,
         &mut result,
+        view.as_ref().map(|(_, spec, _)| spec),
+        &boost,
     );
     if let Err(failure) = outcome {
         result.preparation.status = failure.status.to_owned();
@@ -458,20 +661,24 @@ pub fn lift(options: &LiftOptions) -> Result<LiftResult> {
                 .or_insert(0.0) += step.seconds;
         }
     }
+    let wall_ended = Instant::now();
+    profile_v24::record_legacy_window(started, wall_ended);
     result.costs = CostSummary {
         total_seconds: by_stage.values().sum(),
         failed_attempt_seconds: failed_attempt_by_stage.values().sum(),
         failed_attempt_by_stage,
         by_stage,
-        wall_seconds: started.elapsed().as_secs_f64(),
+        wall_seconds: wall_ended.duration_since(started).as_secs_f64(),
         steps: ledger.steps,
         solver_calls: solver::take(),
     };
     let text = serde_json::to_string_pretty(&result)?;
     fs::write(options.output.join("result.json"), format!("{text}\n"))?;
+    boost.write(&options.output)?;
     Ok(result)
 }
 
+#[allow(clippy::too_many_arguments)]
 fn run_lift(
     request: &LiftRequest,
     base: &Path,
@@ -480,7 +687,10 @@ fn run_lift(
     options: &LiftOptions,
     ledger: &mut Ledger,
     result: &mut LiftResult,
+    view: Option<&view_v23::View>,
+    boost: &boost::State,
 ) -> std::result::Result<(), Failure> {
+    let _profile_span = profile_v24::span("preparation_and_unassigned");
     let raw = options.output.join("raw");
     let source_root = fs::canonicalize(base.join(&request.source_root))
         .context("resolve source root")
@@ -505,6 +715,10 @@ fn run_lift(
                 detail: format!("{} is outside the source root", path.display()),
             });
         }
+    }
+    if let Some(view) = view {
+        view.validate_wrapper(&wrapper, base)
+            .map_err(prep("component_view_invalid"))?;
     }
     let base_input: Value = serde_json::from_slice(
         &fs::read(base.join(&request.base_input))
@@ -574,7 +788,31 @@ fn run_lift(
     )
     .map_err(prep("component_witness_failed"))?;
 
-    let (deviated, unmatched, satisfies) =
+    // The complete raw assignment and all forwarding constraints are checked before
+    // dropping wrapper-only names. Projection keeps the original O0 wire positions.
+    let projected = view
+        .map(|view| {
+            view_v23::project(
+                &view.target_prefix,
+                &component_r1cs,
+                &component_sym,
+                &candidate,
+                &component_inputs,
+                &component_outputs,
+            )
+        })
+        .transpose()
+        .map_err(prep("component_view_projection_failed"))?;
+    let (candidate, component_sym) = if let Some(projected) = projected {
+        result.tools.insert(
+            "component_view_forwarding_equalities".into(),
+            projected.forwarding_equalities.to_string(),
+        );
+        (projected.candidate, projected.symbols)
+    } else {
+        (candidate, component_sym)
+    };
+    let (deviated, unmatched, mut satisfies) =
         ledger.timed("site_discovery", "component deviation", || {
             component_deviation(
                 &candidate,
@@ -583,6 +821,9 @@ fn run_lift(
                 honest_component.as_ref(),
             )
         });
+    if view.is_some() {
+        satisfies = Some(true);
+    } // Entire raw wrapper was validated above.
     let mut summary = ComponentSummary {
         o0_r1cs_sha256: sha256_file(&component.r1cs).map_err(prep("io"))?,
         signals: component_sym.by_name.len(),
@@ -642,7 +883,13 @@ fn run_lift(
         templates.extend(parse_templates(file, &text).map_err(prep("source_parse_failed"))?);
         sources.insert(file.clone(), text);
     }
-    let main_template = main_template_name(&sources[&wrapper]);
+    if let Some(view) = view {
+        view.validate_definition(base, &templates)
+            .map_err(prep("component_view_definition_invalid"))?;
+    }
+    let main_template = view
+        .map(|view| view.target_template.clone())
+        .or_else(|| main_template_name(&sources[&wrapper]));
     let honest_aborted = honest_component.is_none();
 
     // L-05 step 1: which zkFuzz condition does an honest-equal candidate break? L-07: the
@@ -686,6 +933,8 @@ fn run_lift(
         );
     }
     let started = Instant::now();
+    let component_rewrite_structure = reuse_v25::enabled()
+        .then(|| reuse_v25::RewriteStructure::new(&component_sym, &templates, &sources));
     let plan = plan_rewrites(
         &candidate,
         &component_sym,
@@ -694,6 +943,7 @@ fn run_lift(
         &templates,
         &sources,
         main_template.as_deref(),
+        component_rewrite_structure.as_ref(),
     );
     ledger.record(
         "site_discovery",
@@ -702,6 +952,7 @@ fn run_lift(
         if plan.is_ok() { "ok" } else { "failed" },
         false,
     );
+    drop(component_rewrite_structure);
     let plan = plan?;
     summary.deviated_hint_signals = plan.hint_suffixes.len();
     summary.propagated_deviations = plan.propagated;
@@ -849,10 +1100,12 @@ fn run_lift(
             "compile hinted entrypoint",
         )
         .map_err(prep("hinted_compile_failed"))?;
-        let same_r1cs = fs::read(&compiled.r1cs).map_err(|e| prep("io")(e.into()))?
-            == fs::read(&original.r1cs).map_err(|e| prep("io")(e.into()))?;
-        let same_sym = fs::read(&compiled.sym).map_err(|e| prep("io")(e.into()))?
-            == fs::read(&original.sym).map_err(|e| prep("io")(e.into()))?;
+        let invariant_span = profile_v24::span("initial_artifact_invariants");
+        let same_r1cs =
+            artifact_bytes_equal("r1cs_bytes_read_compare", &compiled.r1cs, &original.r1cs)
+                .map_err(prep("io"))?;
+        let same_sym = artifact_bytes_equal("sym_bytes_read_compare", &compiled.sym, &original.sym)
+            .map_err(prep("io"))?;
         entry_summary.hinted_r1cs_identical = Some(same_r1cs);
         entry_summary.hinted_sym_identical = Some(same_sym);
         // circom names anonymous components by source byte offset, so a longer rewritten
@@ -871,12 +1124,15 @@ fn run_lift(
                     .to_owned(),
             });
         }
+        drop(invariant_span);
         hinted = Some(compiled);
         hint_tree = Some((hint_entry, hint_root, hint_libraries));
     }
     result.entrypoint = Some(entry_summary);
 
     let mut context = EvalContext {
+        boost,
+        component_main_template: main_template.clone(),
         sites: &sites,
         component_inputs: &component_inputs,
         component_outputs: &component_outputs,
@@ -887,6 +1143,8 @@ fn run_lift(
         bindings: &bindings,
         original_bindings: &original_bindings,
         entry_o0_sym: &entry_o0_sym,
+        rewrite_structure: reuse_v25::enabled()
+            .then(|| reuse_v25::RewriteStructure::new(&entry_o0_sym, &templates, &sources)),
         entry_o0_r1cs: &entry_o0_r1cs,
         o0_constraint_index: None,
         entry_r1cs: &entry_r1cs,
@@ -916,9 +1174,9 @@ fn run_lift(
             sha256_bytes(
                 &serde_json::to_vec(&base_input).map_err(|error| prep("io")(error.into()))?
             ),
-            sha256_file(&tools.circom).map_err(prep("io"))?,
-            sha256_file(&tools.node).map_err(prep("io"))?,
-            sha256_file(&tools.snarkjs).map_err(prep("io"))?,
+            tools.key_digest(&tools.circom).map_err(prep("io"))?,
+            tools.key_digest(&tools.node).map_err(prep("io"))?,
+            tools.key_digest(&tools.snarkjs).map_err(prep("io"))?,
             z3.as_ref()
                 .map(|path| sha256_file(path))
                 .transpose()
@@ -951,6 +1209,12 @@ fn run_lift(
         structure: None,
         class_witness: None,
     };
+    if boost.options.active() {
+        context.entry_key.push_str(&format!(
+            ":boost:{}",
+            sha256_bytes(&serde_json::to_vec(&boost.options).map_err(|e| prep("io")(e.into()))?)
+        ));
+    }
     result.property = Some(
         match property {
             Property::Tcct => "tcct",
@@ -974,6 +1238,10 @@ fn run_lift(
     for (index, class) in classes.iter().enumerate() {
         ledger.site = Some(class.representative.clone());
         context.class_witness = None;
+        if let Some(seconds) = boost.options.class_sweep_budget_seconds {
+            context.sweep_remaining = Duration::from_secs(seconds);
+        }
+        let sweep_before = context.sweep_remaining;
         let mut class_result = evaluate_class(index, class, &mut context, ledger);
         if targets.is_empty() {
             if result.violated_condition.is_some() {
@@ -992,9 +1260,34 @@ fn run_lift(
                 ledger,
             );
         }
+        if boost.options.active() {
+            boost.push(serde_json::json!({"kind":"class_budget", "site":class.representative,
+                "assigned_seconds":sweep_before.as_secs_f64(),
+                "remaining_seconds":context.sweep_remaining.as_secs_f64(),
+                "mode":if boost.options.class_sweep_budget_seconds.is_some() {"per_class"} else {"shared"}}));
+        }
+        boost::class_diagnostic(boost, &class_result);
         result.classes.push(class_result);
     }
     ledger.site = None;
+    if boost.options.post_limit_probe_site.is_some() {
+        // Diagnostic work runs only after every legacy class verdict has been computed.
+        // It owns a separate ledger and cannot change result.classes.
+        repair::run_post_limit_probes(&context);
+    }
+    if profile_v24::enabled() {
+        profile_v24::measure("context_cleanup", || drop(context));
+        profile_v24::measure("artifact_handle_release", || {
+            drop((
+                component_r1cs,
+                component_sym,
+                entry_r1cs,
+                entry_sym,
+                entry_o0_r1cs,
+                entry_o0_sym,
+            ));
+        });
+    }
     Ok(())
 }
 
@@ -1034,9 +1327,14 @@ fn load_candidate(path: &Path, format: CandidateFormat) -> Result<BTreeMap<Strin
 }
 
 fn load_artifacts(compiled: &Compiled) -> Result<(R1cs, SymbolTable)> {
+    let _profile_span = profile_v24::span("artifact_read_parse");
     let r1cs = R1cs::parse(&fs::read(&compiled.r1cs)?)?;
     let sym = SymbolTable::parse(&fs::read(&compiled.sym)?, &r1cs)?;
     Ok((r1cs, sym))
+}
+
+fn artifact_bytes_equal(label: &str, left: &Path, right: &Path) -> Result<bool> {
+    profile_v24::measure(label, || Ok(fs::read(left)? == fs::read(right)?))
 }
 
 /// Names of the `main` signals stored in wires `[first, first + count)`.
@@ -1091,7 +1389,7 @@ fn component_deviation(
         }
     }
     let satisfies = if complete {
-        r1cs.failed_constraint_indices(&vector)
+        check_constraints(r1cs, &vector)
             .ok()
             .map(|failed| failed.is_empty())
     } else {
@@ -1100,6 +1398,7 @@ fn component_deviation(
     (deviated, unmatched, satisfies)
 }
 
+#[derive(Debug, PartialEq, Eq)]
 struct RewritePlan {
     /// Per source file: (rhs_start, rhs_end, replacement).
     edits: BTreeMap<PathBuf, Vec<(usize, usize, String)>>,
@@ -1109,6 +1408,7 @@ struct RewritePlan {
     propagated: usize,
 }
 
+#[derive(Debug, PartialEq, Eq)]
 struct PlannedRecord {
     template: String,
     file: PathBuf,
@@ -1117,6 +1417,7 @@ struct PlannedRecord {
     clauses: usize,
 }
 
+#[allow(clippy::too_many_arguments)]
 fn plan_rewrites(
     candidate: &BTreeMap<String, BigUint>,
     component_sym: &SymbolTable,
@@ -1125,16 +1426,18 @@ fn plan_rewrites(
     templates: &[TemplateDef],
     sources: &BTreeMap<PathBuf, String>,
     main_template: Option<&str>,
+    structure: Option<&reuse_v25::RewriteStructure<'_>>,
 ) -> std::result::Result<RewritePlan, Failure> {
-    // Instances and their direct signal base names, from the component symbol table.
-    let mut instance_signals: BTreeMap<String, BTreeSet<String>> = BTreeMap::new();
-    for name in component_sym.by_name.keys() {
-        let (instance, leaf) = split_instance(name);
-        instance_signals
-            .entry(instance.to_owned())
-            .or_default()
-            .insert(leaf_base(leaf).to_owned());
-    }
+    // A cache owns immutable borrows of exactly these source/symbol objects. It cannot
+    // outlive or alias a mutated table; a different table falls back to the legacy path.
+    let structure = structure.filter(|cache| cache.matches(component_sym, templates, sources));
+    let uncached_signals;
+    let instance_signals = if let Some(cache) = structure {
+        cache.instance_signals()
+    } else {
+        uncached_signals = reuse_v25::build_instance_signals(component_sym);
+        &uncached_signals
+    };
     // When the honest component computation aborts, every hint-assigned signal is a
     // potential deviation; otherwise only the signals where the candidate differs.
     let targets: BTreeSet<String> = if honest_aborted {
@@ -1152,15 +1455,22 @@ fn plan_rewrites(
         let (instance, leaf) = split_instance(name);
         let template = resolve_instance(
             instance,
-            &instance_signals,
+            instance_signals,
             templates,
             sources,
             main_template,
             &mut resolved,
         )?;
         let source = &sources[&template.file];
-        let (hints, reverse) =
-            hint_statements(source, template).map_err(prep("hint_unsupported"))?;
+        let cached_hints;
+        let parsed_hints;
+        let (hints, reverse) = if let Some(cache) = structure {
+            cached_hints = cache.hints(template).map_err(prep("hint_unsupported"))?;
+            cached_hints.as_ref()
+        } else {
+            parsed_hints = hint_statements(source, template).map_err(prep("hint_unsupported"))?;
+            &parsed_hints
+        };
         let base = leaf_base(leaf);
         if reverse.contains(base) {
             return Err(Failure {
@@ -1765,6 +2075,8 @@ fn constant_basis(
 }
 
 struct EvalContext<'a> {
+    boost: &'a boost::State,
+    component_main_template: Option<String>,
     sites: &'a [String],
     component_inputs: &'a [String],
     /// Component main outputs; with the inputs they form the candidate's boundary.
@@ -1776,6 +2088,7 @@ struct EvalContext<'a> {
     bindings: &'a EqualityIndex,
     original_bindings: &'a EqualityIndex,
     entry_o0_sym: &'a SymbolTable,
+    rewrite_structure: Option<reuse_v25::RewriteStructure<'a>>,
     entry_o0_r1cs: &'a R1cs,
     o0_constraint_index: Option<std::rc::Rc<Vec<Vec<usize>>>>,
     entry_r1cs: &'a R1cs,
@@ -1827,6 +2140,7 @@ fn evaluate_class(
     context: &mut EvalContext,
     ledger: &mut Ledger,
 ) -> ClassResult {
+    let _profile_span = profile_v24::span("class_control");
     context.repair_remaining = 6;
     let site = &class.representative;
     let mut result = ClassResult {
@@ -2177,9 +2491,7 @@ fn evaluate_class(
 
     // Two independent checks of the deviated witness against the original R1CS.
     let started = Instant::now();
-    let rust = entry_r1cs
-        .failed_constraint_indices(&deviated)
-        .map(|failed| failed.len());
+    let rust = check_constraints(entry_r1cs, &deviated).map(|failed| failed.len());
     ledger.record(
         "check",
         "rust r1cs evaluation",
@@ -2247,6 +2559,21 @@ fn evaluate_class(
         context.entry_sym,
         &deviated,
     );
+    if context.boost.options.injection_diagnostics {
+        boost::diagnose(context, site, "O1", context.entry_sym, &deviated);
+        if injection.as_ref().is_some_and(|found| !found.carried) {
+            if let Err(error) = o0_injection(
+                context,
+                site,
+                &input_path,
+                &folder,
+                ledger,
+                override_o0.as_ref(),
+            ) {
+                context.boost.push(serde_json::json!({"kind":"injection_diagnostic", "space":"O0", "site":site, "error":format!("{error:#}")}));
+            }
+        }
+    }
     if injection.is_none() {
         match o0_injection(
             context,
@@ -2298,6 +2625,7 @@ fn evaluate_reachability(
     ledger: &mut Ledger,
     generator: Option<&Compiled>,
 ) -> ClassResult {
+    let _profile_span = profile_v24::span("reachability_control");
     let conclude = |mut result: ClassResult, verdict: Verdict, reason: &str| {
         result.verdict = verdict;
         result.reason = reason.to_owned();
@@ -2341,9 +2669,7 @@ fn evaluate_reachability(
         }
     };
     let started = Instant::now();
-    let rust = entry_r1cs
-        .failed_constraint_indices(&honest)
-        .map(|failed| failed.len());
+    let rust = check_constraints(entry_r1cs, &honest).map(|failed| failed.len());
     ledger.record(
         "check",
         "rust r1cs evaluation",
@@ -2407,6 +2733,7 @@ fn check_injection(
     sym: &SymbolTable,
     deviated: &[BigUint],
 ) -> Option<Injection> {
+    let _profile_span = profile_v24::span("injection_validation");
     let wire = |name: &str| {
         sym.by_name
             .get(name)
@@ -2455,6 +2782,7 @@ fn o0_injection(
     ledger: &mut Ledger,
     injected: Option<&Compiled>,
 ) -> Result<Option<Injection>> {
+    let _profile_span = profile_v24::span("o0_injection");
     let hinted_o0 = match injected {
         Some(compiled) => compiled,
         None => {
@@ -2477,6 +2805,9 @@ fn o0_injection(
         "entrypoint deviated O0 witness",
     )?
     .context("deviated O0 generation aborted")?;
+    if context.boost.options.injection_diagnostics {
+        boost::diagnose(context, site, "O0", context.entry_o0_sym, &deviated);
+    }
     Ok(check_injection(
         site,
         context.sites,
@@ -2490,6 +2821,7 @@ fn o0_injection(
 
 /// Compiles the hinted entrypoint at O0 once per request; it must keep the O0 R1CS.
 fn ensure_hinted_o0(context: &mut EvalContext, ledger: &mut Ledger) -> Result<()> {
+    let _profile_span = profile_v24::span("hinted_o0_setup");
     if context.hinted_o0.is_none() {
         let (entry, root, libraries) =
             context.hint_tree.clone().context("no hinted source tree")?;
@@ -2565,6 +2897,7 @@ fn synthesize_inputs(
     ledger: &mut Ledger,
     record: &mut SynthesisRecord,
 ) -> Synthesis {
+    let _profile_span = profile_v24::span("synthesis_control");
     let r1cs = context.entry_o0_r1cs;
     if context.o0_constraint_index.is_none() {
         let index = ledger.timed("synthesis_a", "index O0 constraints", || {
@@ -3033,6 +3366,28 @@ fn synthesize_inputs(
                 }
                 synth::ConeOutcome::Model(values) => {
                     label = "model_not_reproduced";
+                    if context.boost.options.constraint_witness {
+                        if let Some((start, _)) = &reference_witness {
+                            let mut query = fixed_values.clone();
+                            query.extend(values.clone());
+                            boost::capture(
+                                context,
+                                site,
+                                &boost::Snapshot {
+                                    start: start.clone(),
+                                    query,
+                                    scope: pinned.clone(),
+                                    origin: "closed_cone".into(),
+                                },
+                                ledger,
+                            );
+                        } else {
+                            context.boost.push(
+                                serde_json::json!({"method":"constraint_witness", "site":site,
+                                "status":"unknown", "reason":"starting_witness_missing"}),
+                            );
+                        }
+                    }
                     let mut trial = reference_input.clone();
                     let mut changed = BTreeSet::new();
                     let mut applicable = true;
@@ -3264,6 +3619,7 @@ fn model_overrides(
     model: &BTreeMap<usize, BigUint>,
     witness: &[BigUint],
 ) -> repair::Overrides {
+    let _profile_span = profile_v24::span("model_overrides");
     let sym = context.entry_o0_sym;
     let inside_prefix = format!("{site}.");
     let mut overrides = repair::Overrides::default();
@@ -3375,6 +3731,7 @@ fn try_refutation(
     ledger: &mut Ledger,
     fallback: &str,
 ) -> ClassResult {
+    let _profile_span = profile_v24::span("refutation");
     let started = Instant::now();
     let site = result.representative.clone();
     let start_inputs = result
@@ -3550,7 +3907,9 @@ fn compile(
     ledger: &mut Ledger,
     label: Option<&str>,
 ) -> Result<Compiled> {
+    let _profile_span = profile_v24::span("compile_setup");
     fs::create_dir_all(output)?;
+    tools.check_tool_identity(&tools.circom)?;
     let mut command = Command::new(&tools.circom);
     command
         .arg(source)
@@ -3568,8 +3927,9 @@ fn compile(
         command.arg("--O0");
     }
     let started = Instant::now();
-    let (status, timed_out) =
-        run_bounded_logged(&mut command, TOOL_TIMEOUT, &output.join("compile.log"))?;
+    let (status, timed_out) = profile_v24::measure("compile_process", || {
+        run_bounded_logged(&mut command, TOOL_TIMEOUT, &output.join("compile.log"))
+    })?;
     let label = label.map(str::to_owned).unwrap_or_else(|| {
         format!(
             "compile {}{}",
@@ -3621,9 +3981,10 @@ fn edits_key(
     edits: &repair::Edits,
     o0: bool,
 ) -> Result<String> {
+    let _profile_span = profile_v24::span("compile_key");
     let mut hasher = Sha256::new();
     hasher.update(format!("edits-v1\0o0={o0}\0wasm=true\0"));
-    hasher.update(sha256_file(&tools.circom)?);
+    hasher.update(tools.key_digest(&tools.circom)?);
     hasher.update(entry_relative.to_string_lossy().as_bytes());
     for location in std::iter::once(source_root).chain(libraries.iter().map(PathBuf::as_path)) {
         hasher.update(b"\0");
@@ -3661,6 +4022,7 @@ fn compile_edited(
     ledger: &mut Ledger,
     label: &str,
 ) -> Result<Compiled> {
+    let _profile_span = profile_v24::span("compile_cache_setup");
     let Some((cache, key)) = cache else {
         return compile(
             tools,
@@ -3719,6 +4081,7 @@ fn compile_cached(
     fallback: &Path,
     ledger: &mut Ledger,
 ) -> Result<Compiled> {
+    let _profile_span = profile_v24::span("compile_cache_setup");
     let Some(cache) = cache else {
         return compile(
             tools, entrypoint, fallback, root, libraries, o0, true, ledger, None,
@@ -3726,7 +4089,7 @@ fn compile_cached(
     };
     let mut hasher = Sha256::new();
     hasher.update(format!("o0={o0}\0wasm=true\0"));
-    hasher.update(sha256_file(&tools.circom)?);
+    hasher.update(tools.key_digest(&tools.circom)?);
     hasher.update(entrypoint.to_string_lossy().as_bytes());
     for library in std::iter::once(&root.to_path_buf()).chain(libraries) {
         hasher.update(library.to_string_lossy().as_bytes());
@@ -3783,10 +4146,12 @@ fn generate_witness(
     stage: &str,
     label: &str,
 ) -> Result<Option<Vec<BigUint>>> {
+    let _profile_span = profile_v24::span("witness_generation");
     let js_dir = compiled
         .js_dir
         .as_ref()
         .context("artifact has no generator")?;
+    tools.check_tool_identity(&tools.node)?;
     let mut command = Command::new(&tools.node);
     command
         .arg(js_dir.join("generate_witness.js"))
@@ -3795,7 +4160,9 @@ fn generate_witness(
         .arg(output);
     let log = output.with_extension("log");
     let started = Instant::now();
-    let (status, timed_out) = run_bounded_logged(&mut command, TOOL_TIMEOUT, &log)?;
+    let (status, timed_out) = profile_v24::measure("witness_process", || {
+        run_bounded_logged(&mut command, TOOL_TIMEOUT, &log)
+    })?;
     let outcome = if timed_out {
         "timeout"
     } else if status.success() && output.exists() {
@@ -3813,7 +4180,7 @@ fn generate_witness(
     match outcome {
         "timeout" => bail!("witness generation timed out"),
         "aborted" => Ok(None),
-        _ => wtns::read_wtns(output, prime).map(Some),
+        _ => profile_v24::measure("wtns_read_parse", || wtns::read_wtns(output, prime)).map(Some),
     }
 }
 
@@ -3823,6 +4190,8 @@ fn snarkjs_check(
     witness: &Path,
     ledger: &mut Ledger,
 ) -> Result<String> {
+    let _profile_span = profile_v24::span("snarkjs_process");
+    tools.check_tool_identity(&tools.snarkjs)?;
     let mut command = Command::new(&tools.snarkjs);
     command.args(["wtns", "check"]).arg(r1cs).arg(witness);
     let log = witness.with_extension("snarkjs.log");
@@ -3867,6 +4236,7 @@ fn write_edits_workspace(
     sources: &BTreeMap<PathBuf, String>,
     edits: &repair::Edits,
 ) -> Result<(PathBuf, Vec<PathBuf>)> {
+    let _profile_span = profile_v24::span("workspace_copy");
     let root_copy = workspace.join("root");
     copy_circom_tree(source_root, &root_copy)?;
     let mut library_copies = Vec::new();
@@ -4040,6 +4410,7 @@ fn parse_leaf_path(path: &str) -> Result<(String, Vec<usize>)> {
 }
 
 fn write_json(path: &Path, value: &Value) -> Result<()> {
+    let _profile_span = profile_v24::span("json_write");
     fs::write(path, serde_json::to_vec_pretty(value)?)?;
     Ok(())
 }
@@ -4076,6 +4447,7 @@ fn sha256_bytes(bytes: &[u8]) -> String {
 }
 
 fn sha256_file(path: &Path) -> Result<String> {
+    let _profile_span = profile_v24::span("file_hash");
     Ok(sha256_bytes(
         &fs::read(path).with_context(|| format!("read {}", path.display()))?,
     ))

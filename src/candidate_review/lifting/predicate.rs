@@ -918,9 +918,7 @@ fn verify_reached(
         return verified;
     };
     let started = Instant::now();
-    verified.rust = context
-        .entry_r1cs
-        .failed_constraint_indices(&o1)
+    verified.rust = super::check_constraints(context.entry_r1cs, &o1)
         .ok()
         .map(|failed| failed.len());
     ledger.record(

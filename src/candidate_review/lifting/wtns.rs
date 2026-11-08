@@ -58,7 +58,6 @@ pub(crate) fn parse_wtns(bytes: &[u8], prime: &BigUint) -> Result<Vec<BigUint>> 
     Ok(values)
 }
 
-#[cfg(test)]
 pub(crate) fn write_wtns(path: &Path, prime: &BigUint, values: &[BigUint]) -> Result<()> {
     let field_bytes = prime.to_bytes_le().len().div_ceil(8) * 8;
     let mut header = Vec::new();
@@ -83,7 +82,6 @@ pub(crate) fn write_wtns(path: &Path, prime: &BigUint, values: &[BigUint]) -> Re
     fs::write(path, bytes).with_context(|| format!("write witness {}", path.display()))
 }
 
-#[cfg(test)]
 fn padded(value: &BigUint, width: usize) -> Result<Vec<u8>> {
     let mut bytes = value.to_bytes_le();
     ensure!(bytes.len() <= width, "field element exceeds wtns width");

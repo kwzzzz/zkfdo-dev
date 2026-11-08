@@ -74,6 +74,7 @@ pub(crate) type ConstraintPath = Vec<(usize, usize)>;
 /// Shortest constraint paths from `start` to free public inputs, several per input when
 /// the layered (breadth-first) graph branches, shortest first.
 pub(crate) fn find_paths(graph: &Graph, start: usize, limit: usize) -> Vec<ConstraintPath> {
+    let _profile = super::profile_v24::span("synthesis.find_paths");
     // Layer the graph by breadth-first distance from `start`; inputs end a path.
     let mut distance = BTreeMap::from([(start, 0usize)]);
     let mut queue = VecDeque::from([start]);
@@ -154,6 +155,7 @@ pub(crate) fn solve_path(
     value: &BigUint,
     path: &ConstraintPath,
 ) -> Option<(usize, BigUint)> {
+    let _profile = super::profile_v24::span("synthesis.solve_path");
     let prime = &r1cs.prime;
     let mut overlay = BTreeMap::from([(target, value.clone())]);
     for &(position, wire) in path {
@@ -276,6 +278,7 @@ pub(crate) fn largest_cone(
     starts: &[usize],
     first: Option<usize>,
 ) -> Option<Cone> {
+    let _profile = super::profile_v24::span("synthesis.largest_cone");
     let mut best = None;
     for depth in 1..=CONE_DEPTH {
         match build_cone(graph, fixed, starts, first, depth) {
@@ -304,6 +307,7 @@ pub(crate) fn solve_cone(
     z3: &Path,
     scratch: &Path,
 ) -> Result<ConeResult> {
+    let _profile = super::profile_v24::span("synthesis.solve_cone");
     let prime = &graph.r1cs.prime;
     let subset = cone
         .constraints
@@ -401,6 +405,7 @@ pub(crate) fn small_proposal(
     directory: &Path,
     budget: Duration,
 ) -> Result<Option<ConeResult>> {
+    let _profile = super::profile_v24::span("synthesis.small_proposal");
     let started = std::time::Instant::now();
     let mut visited = BTreeSet::new();
     for &start in starts {
@@ -458,6 +463,7 @@ pub(crate) fn exclusion_sweep(
     directory: &Path,
     budget: Duration,
 ) -> Result<Sweep> {
+    let _profile = super::profile_v24::span("synthesis.exclusion_sweep");
     let started = std::time::Instant::now();
     let mut sweep = Sweep {
         proof: None,

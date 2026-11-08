@@ -40,8 +40,8 @@ use super::source::{check_statement_at_line, hint_statements, TemplateDef};
 use super::synth::{constraint_wires, parse_values, residual};
 use super::{
     class_pattern, classify_abort, compile, display_relative, generate_witness, leaf_base,
-    plan_rewrites, set_input_leaf, split_instance, write_edits_workspace, write_json, Compiled,
-    EvalContext, Ledger, RewriteRecord,
+    plan_rewrites, set_input_leaf, sha256_file, split_instance, write_edits_workspace, write_json,
+    Compiled, EvalContext, Ledger, RewriteRecord,
 };
 
 /// Source edits in original byte coordinates: (start, end, replacement) per file.
@@ -83,7 +83,7 @@ impl Predicate {
 }
 
 /// What a witness must show: the candidate's site values, and/or a broken `LessThan`.
-#[derive(Default)]
+#[derive(Clone, Default)]
 pub(crate) struct Requirement {
     pub(crate) targets: Vec<(usize, BigUint)>,
     pub(crate) predicate: Option<Predicate>,
@@ -101,6 +101,7 @@ impl Requirement {
     }
 }
 
+#[derive(Clone)]
 pub(crate) struct Start {
     pub(crate) label: &'static str,
     /// Ledger stage for this search's steps.
@@ -528,6 +529,7 @@ pub(crate) fn encode(
     value: &dyn Fn(usize) -> BigUint,
     timeout: Duration,
 ) -> String {
+    let _profile = super::profile_v24::span("repair.encode_query");
     let prime = &r1cs.prime;
     let mut text = String::new();
     let _ = writeln!(text, "(set-option :timeout {})", timeout.as_millis());
@@ -631,6 +633,7 @@ pub(crate) fn run_z3(
     scratch: &Path,
     timeout: Duration,
 ) -> Result<(String, BTreeMap<usize, BigUint>)> {
+    let _profile = super::profile_v24::span("repair.solve_and_parse_model");
     text.push_str("(check-sat)\n");
     if !unknowns.is_empty() {
         let names = unknowns
@@ -706,6 +709,32 @@ struct Search<'s, 'c> {
     iterations_allowed: usize,
     failed_constraints: BTreeSet<usize>,
     attempted_controls: Vec<BTreeMap<usize, BigUint>>,
+    snapshots: Vec<super::boost::Snapshot>,
+    post_queries: Vec<PostQuery>,
+}
+
+struct PostQuery {
+    iteration: usize,
+    path: PathBuf,
+    constraints: BTreeSet<usize>,
+    unknowns: BTreeSet<usize>,
+    boundary: BTreeMap<usize, BigUint>,
+    assigned: BTreeMap<usize, BigUint>,
+    model: BTreeMap<usize, BigUint>,
+    applied: BTreeMap<usize, BigUint>,
+}
+
+pub(super) struct PostLimitProbe {
+    site: String,
+    start: Start,
+    requirement: Requirement,
+    input: Value,
+    overrides: Overrides,
+    failed_constraints: BTreeSet<usize>,
+    queries: Vec<PostQuery>,
+    directory: PathBuf,
+    iteration: usize,
+    state_sha256: String,
 }
 
 /// Finds an entrypoint input and hint injections whose generator meets `requirement`.
@@ -716,6 +745,7 @@ pub(crate) fn search(
     directory: &Path,
     ledger: &mut Ledger,
 ) -> (Option<Reached>, RepairRecord) {
+    let _profile = super::profile_v24::span("repair.search");
     let mut record = RepairRecord {
         start: start.label.to_owned(),
         ..RepairRecord::default()
@@ -766,8 +796,16 @@ pub(crate) fn search(
         iterations_allowed: context.repair_remaining.min(MAX_ITERATIONS),
         failed_constraints: BTreeSet::new(),
         attempted_controls: Vec::new(),
+        snapshots: Vec::new(),
+        post_queries: Vec::new(),
     };
     let outcome = state.run(&mut structure, directory, ledger);
+    let snapshots = std::mem::take(&mut state.snapshots);
+    for snapshot in snapshots {
+        if let Some(site) = ledger.site.clone() {
+            super::boost::capture(state.context, &site, &snapshot, ledger);
+        }
+    }
     let mut record = std::mem::take(&mut state.record);
     record.changed_inputs = state.changed_inputs.iter().cloned().collect();
     let reached = match outcome {
@@ -805,6 +843,282 @@ pub(crate) fn search(
     (reached, record)
 }
 
+fn post_values(values: &BTreeMap<usize, BigUint>) -> BTreeMap<String, String> {
+    values
+        .iter()
+        .map(|(wire, value)| (wire.to_string(), value.to_string()))
+        .collect()
+}
+
+fn post_constraint(view: &View, witness: &[BigUint], position: usize) -> Value {
+    let constraint = &view.r1cs.constraints[position];
+    let part = |terms: &BTreeMap<u32, BigUint>| {
+        terms
+            .iter()
+            .map(|(wire, coefficient)| {
+                serde_json::json!({"wire":wire,"name":view.name(*wire as usize),
+                    "coefficient":coefficient.to_string(),"value":witness[*wire as usize].to_string()})
+            })
+            .collect::<Vec<_>>()
+    };
+    serde_json::json!({"index":position,"index_base":0,
+        "component_path":constraint_instance(view, position),
+        "residual":residual(constraint,&view.r1cs.prime,|wire:usize|witness[wire].clone()).to_string(),
+        "A":part(&constraint.a),"B":part(&constraint.b),"C":part(&constraint.c)})
+}
+
+fn post_failures(view: &View, witness: &[BigUint], queries: &[PostQuery]) -> Result<Value> {
+    let failed = super::check_constraints(view.r1cs, witness)?;
+    let covered = queries
+        .iter()
+        .flat_map(|query| query.constraints.iter().copied())
+        .collect::<BTreeSet<_>>();
+    let inside = failed
+        .iter()
+        .copied()
+        .filter(|position| covered.contains(position))
+        .collect::<Vec<_>>();
+    let outside = failed
+        .iter()
+        .copied()
+        .filter(|position| !covered.contains(position))
+        .collect::<Vec<_>>();
+    let per_query = queries
+        .iter()
+        .map(|query| {
+            serde_json::json!({"smt2":query.path,"inside_failed":failed.iter()
+                .filter(|position|query.constraints.contains(position)).count()})
+        })
+        .collect::<Vec<_>>();
+    Ok(
+        serde_json::json!({"total":failed.len(),"inside_any_query":inside.len(),
+        "outside_all_queries":outside.len(),"per_query":per_query,
+        "first_index":failed.first(),
+        "inside_examples":inside.iter().take(4).map(|&i|post_constraint(view,witness,i)).collect::<Vec<_>>(),
+        "outside_examples":outside.iter().take(4).map(|&i|post_constraint(view,witness,i)).collect::<Vec<_>>() }),
+    )
+}
+
+fn inspect_post_limit(context: &EvalContext, job: &PostLimitProbe, folder: &Path) -> Result<Value> {
+    fs::create_dir_all(folder)?;
+    let state = format!(
+        "{:?}{:?}{}",
+        job.overrides.rewrite, job.overrides.keys, job.input
+    );
+    ensure!(
+        sha256_text(&state) == job.state_sha256,
+        "captured_state_hash_mismatch"
+    );
+    let raw_queries = job
+        .queries
+        .iter()
+        .map(|query| {
+            serde_json::json!({"iteration":query.iteration,"smt2":query.path,
+                "smt2_sha256":sha256_file(&query.path).ok(),
+                "constraints":query.constraints,"unknowns":query.unknowns,
+                "boundary":post_values(&query.boundary),"assigned":post_values(&query.assigned),
+                "model":post_values(&query.model),"applied":post_values(&query.applied)})
+        })
+        .collect::<Vec<_>>();
+    write_json(
+        &folder.join("post-limit-state.json"),
+        &serde_json::json!({"site":job.site,"iteration":job.iteration,
+            "state_sha256":job.state_sha256,"input":job.input,
+            "rewrite":job.overrides.rewrite.iter().map(|(k,v)|(k,v.to_string())).collect::<BTreeMap<_,_>>(),
+            "keys":job.overrides.keys.iter().map(|(k,v)|(k,v.to_string())).collect::<BTreeMap<_,_>>(),
+            "candidate_hints":job.start.candidate_hints,"protected_site":job.start.protected_site,
+            "inputs_free":job.start.inputs_free,"pinned":job.start.pinned,
+            "targets":job.requirement.targets.iter().map(|(w,v)|serde_json::json!([w,v.to_string()])).collect::<Vec<_>>(),
+            "queries":raw_queries,"previous_failed_constraints":job.failed_constraints}),
+    )?;
+    let index = context
+        .o0_constraint_index
+        .as_ref()
+        .context("post_limit_constraint_index_missing")?;
+    let r1cs = context.entry_o0_r1cs;
+    let view = View {
+        r1cs,
+        sym: context.entry_o0_sym,
+        index,
+        first_input: 1 + r1cs.shape.public_outputs,
+        inputs: r1cs.shape.public_inputs + r1cs.shape.private_inputs,
+    };
+    let z3 = context.z3.context("post_limit_z3_missing")?;
+    let mut search = Search {
+        context,
+        start: &job.start,
+        requirement: &job.requirement,
+        view,
+        z3,
+        record: RepairRecord::default(),
+        overrides: job.overrides.clone(),
+        input: job.input.clone(),
+        changed_inputs: BTreeSet::new(),
+        iterations_allowed: 0,
+        failed_constraints: job.failed_constraints.clone(),
+        attempted_controls: Vec::new(),
+        snapshots: Vec::new(),
+        post_queries: Vec::new(),
+    };
+    let mut ledger = Ledger {
+        steps: Vec::new(),
+        site: Some(job.site.clone()),
+    };
+    let edits = search.plan(true)?;
+    let generator = search.variant(&edits, folder, true, &mut ledger)?;
+    let input_path = folder.join("input.json");
+    write_json(&input_path, &search.input)?;
+    let output = folder.join("o0.wtns");
+    let witness = generate_witness(
+        context.tools,
+        generator.as_ref().unwrap_or(context.original_o0),
+        &input_path,
+        &output,
+        &r1cs.prime,
+        &mut ledger,
+        "post_limit_probe",
+        "regenerate final applied state",
+    )?;
+    let contract_input_equal = search.input == *context.base_input;
+    let result = if let Some(witness) = witness {
+        let failures = post_failures(&search.view, &witness, &job.queries)?;
+        let goal_met = search.requirement.met(&witness);
+        let status = if failures["total"].as_u64().unwrap_or(0) > 0 {
+            "o0_constraints_violated"
+        } else if !goal_met {
+            "target_not_met"
+        } else {
+            "o0_and_target_met"
+        };
+        let mut result = serde_json::json!({"status":status,"witness_kind":"original_o0_generator",
+            "o0_witness":output,"o0_witness_sha256":sha256_file(&output)?,
+            "o0_constraint_count":r1cs.constraints.len(),"failures":failures,
+            "goal_met":goal_met,"contract_input_equal":contract_input_equal,
+            "input_sha256":sha256_file(&input_path)?,"state_sha256":job.state_sha256});
+        if status == "o0_and_target_met" {
+            super::boost::capture(
+                context,
+                &job.site,
+                &super::boost::Snapshot {
+                    start: witness,
+                    query: BTreeMap::new(),
+                    scope: BTreeMap::new(),
+                    origin: "post_limit_probe".to_owned(),
+                },
+                &mut ledger,
+            );
+            result["full_completion"] = context.boost.latest_record().unwrap_or(Value::Null);
+        }
+        result
+    } else {
+        let abort = classify_abort(
+            &output.with_extension("log"),
+            context.templates,
+            context.sources,
+        );
+        let confirmed_abort = matches!(abort.kind.as_str(), "constraint" | "assert");
+        let mut result = serde_json::json!({"status":if confirmed_abort {"generator_aborted"} else {"tool_error"},
+            "abort_kind":abort.kind,"abort_template":abort.template,"abort_line":abort.line,
+            "contract_input_equal":contract_input_equal,"input_sha256":sha256_file(&input_path)?,
+            "state_sha256":job.state_sha256});
+        if confirmed_abort {
+            match search.locate(
+                &edits,
+                &input_path,
+                &folder.join("abort-localize"),
+                job.iteration + 1,
+                &mut ledger,
+            ) {
+                Ok((localization, vector, _)) => {
+                    result["diagnostic_vector_kind"] =
+                        "blanked_check_copy_not_original_witness".into();
+                    result["localization"] = serde_json::to_value(localization)?;
+                    result["diagnostic_failures"] =
+                        post_failures(&search.view, &vector, &job.queries)?;
+                }
+                Err(error) => result["localization_error"] = format!("{error:#}").into(),
+            }
+        }
+        result
+    };
+    Ok(result)
+}
+
+/// Separate, opt-in evidence after all legacy class decisions. Errors stay in the sidecar.
+pub(super) fn run_post_limit_probes(context: &EvalContext) {
+    let jobs = context.boost.take_probe_jobs();
+    let selected = context.boost.options.post_limit_probe_site.as_deref();
+    let root = context.raw.join("post-limit-probe.json");
+    if jobs.len() != 1 {
+        let _ = write_json(
+            &root,
+            &serde_json::json!({"schema":"j-post-limit-probe-v1",
+            "site":selected,"status":if jobs.is_empty() {"not_captured"} else {"ambiguous_capture"},
+            "captured_jobs":jobs.len(),"legacy_verdicts_unchanged":true}),
+        );
+        return;
+    }
+    let job = &jobs[0];
+    let folder = job.directory.join("post-limit-probe");
+    let started = std::time::Instant::now();
+    let mut report = match inspect_post_limit(context, job, &folder) {
+        Ok(value) => value,
+        Err(error) => serde_json::json!({"status":"tool_error","detail":format!("{error:#}")}),
+    };
+    report["schema"] = "j-post-limit-probe-v1".into();
+    report["site"] = job.site.clone().into();
+    report["iteration"] = job.iteration.into();
+    report["seconds"] = started.elapsed().as_secs_f64().into();
+    report["legacy_verdicts_unchanged"] = true.into();
+    let _ = write_json(&folder.join("post-limit-probe.json"), &report);
+    let _ = write_json(
+        &root,
+        &serde_json::json!({"schema":"j-post-limit-probe-v1",
+        "site":job.site,"status":report["status"],"detail":folder.join("post-limit-probe.json"),
+        "seconds":report["seconds"],"legacy_verdicts_unchanged":true}),
+    );
+}
+
+#[cfg(test)]
+pub(super) fn boost_test_post_limit_probe(
+    context: &EvalContext,
+    directory: &Path,
+    site: &str,
+    input: Value,
+    targets: Vec<(usize, BigUint)>,
+) {
+    let overrides = Overrides::default();
+    let state_sha256 = sha256_text(&format!(
+        "{:?}{:?}{}",
+        overrides.rewrite, overrides.keys, input
+    ));
+    context.boost.queue_probe(PostLimitProbe {
+        site: site.to_owned(),
+        start: Start {
+            label: "model",
+            stage: "test",
+            input: input.clone(),
+            overrides: overrides.clone(),
+            candidate_hints: false,
+            protected_site: Some(site.to_owned()),
+            inputs_free: false,
+            pinned: BTreeSet::new(),
+        },
+        requirement: Requirement {
+            targets,
+            predicate: None,
+        },
+        input,
+        overrides,
+        failed_constraints: BTreeSet::new(),
+        queries: Vec::new(),
+        directory: directory.to_path_buf(),
+        iteration: MAX_ITERATIONS - 1,
+        state_sha256,
+    });
+    run_post_limit_probes(context);
+}
+
 impl Search<'_, '_> {
     fn run(
         &mut self,
@@ -812,6 +1126,7 @@ impl Search<'_, '_> {
         directory: &Path,
         ledger: &mut Ledger,
     ) -> Result<Option<Reached>> {
+        let _profile = super::profile_v24::span("repair.iterations");
         fs::create_dir_all(directory)?;
         let prime = &self.view.r1cs.prime;
         let mut history = SearchHistory::new(
@@ -875,7 +1190,31 @@ impl Search<'_, '_> {
             }
         }
         self.record.outcome = "iteration_limit".to_owned();
+        if self.post_selected() && !self.post_queries.is_empty() {
+            let state_sha256 = sha256_text(&format!(
+                "{:?}{:?}{}",
+                self.overrides.rewrite, self.overrides.keys, self.input
+            ));
+            self.context.boost.queue_probe(PostLimitProbe {
+                site: self.start.protected_site.clone().unwrap_or_default(),
+                start: self.start.clone(),
+                requirement: self.requirement.clone(),
+                input: self.input.clone(),
+                overrides: self.overrides.clone(),
+                failed_constraints: self.failed_constraints.clone(),
+                queries: std::mem::take(&mut self.post_queries),
+                directory: directory.to_path_buf(),
+                iteration: self.record.iterations.saturating_sub(1),
+                state_sha256,
+            });
+        }
         Ok(None)
+    }
+
+    fn post_selected(&self) -> bool {
+        self.start.label == "model"
+            && self.context.boost.options.post_limit_probe_site.as_deref()
+                == self.start.protected_site.as_deref()
     }
 
     /// Source edits for the current overrides, with the candidate's site hints when the
@@ -886,6 +1225,7 @@ impl Search<'_, '_> {
 
     /// [`Self::plan`] with the rewritten statements (value-free).
     fn plan_records(&self, candidate: bool) -> Result<(Edits, Vec<RewriteRecord>)> {
+        let _profile = super::profile_v24::span("repair.plan_rewrites");
         let context = self.context;
         let mut pseudo = self.overrides.keys.clone();
         pseudo.extend(self.overrides.rewrite.clone());
@@ -918,6 +1258,7 @@ impl Search<'_, '_> {
             context.templates,
             context.sources,
             context.entry_main_template.as_deref(),
+            context.rewrite_structure.as_ref(),
         )
         .map_err(|failure| anyhow::anyhow!("{}: {}", failure.reason, failure.detail))?;
         let records = plan
@@ -943,6 +1284,7 @@ impl Search<'_, '_> {
         o0: bool,
         ledger: &mut Ledger,
     ) -> Result<Option<Compiled>> {
+        let _profile = super::profile_v24::span("repair.variant");
         if edits.is_empty() {
             return Ok(None);
         }
@@ -959,24 +1301,37 @@ impl Search<'_, '_> {
                 "compile injected generator"
             },
         )?;
+        let _invariants = super::profile_v24::span("repair.variant_invariants");
         if o0 {
             sym_equivalence(
-                &fs::read_to_string(&context.original_o0.sym)?,
-                &fs::read_to_string(&compiled.sym)?,
+                &super::profile_v24::measure("sym_read", || {
+                    fs::read_to_string(&context.original_o0.sym)
+                })?,
+                &super::profile_v24::measure("sym_read", || fs::read_to_string(&compiled.sym))?,
             )
             .context("the injected O0 generator changes the original SYM")?;
             ensure!(
-                fs::read(&compiled.r1cs)? == fs::read(&context.original_o0.r1cs)?,
+                super::artifact_bytes_equal(
+                    "r1cs_bytes_read_compare",
+                    &compiled.r1cs,
+                    &context.original_o0.r1cs,
+                )?,
                 "the injected O0 generator changes the O0 R1CS"
             );
         } else {
             ensure!(
-                fs::read(&compiled.r1cs)? == fs::read(&context.original.r1cs)?,
+                super::artifact_bytes_equal(
+                    "r1cs_bytes_read_compare",
+                    &compiled.r1cs,
+                    &context.original.r1cs,
+                )?,
                 "the injected generator changes the original R1CS"
             );
             sym_equivalence(
-                &fs::read_to_string(&context.original.sym)?,
-                &fs::read_to_string(&compiled.sym)?,
+                &super::profile_v24::measure("sym_read", || {
+                    fs::read_to_string(&context.original.sym)
+                })?,
+                &super::profile_v24::measure("sym_read", || fs::read_to_string(&compiled.sym))?,
             )
             .context("the injected generator changes the original SYM")?;
         }
@@ -990,6 +1345,7 @@ impl Search<'_, '_> {
         folder: &Path,
         ledger: &mut Ledger,
     ) -> Result<Reached> {
+        let _profile = super::profile_v24::span("repair.finish");
         let context = self.context;
         let o1 = self.variant(&self.plan(true)?, folder, false, ledger)?;
         let comparator = if self.start.candidate_hints {
@@ -1005,13 +1361,20 @@ impl Search<'_, '_> {
                     ledger,
                     "compile comparator generator",
                 )?;
+                let _invariants = super::profile_v24::span("repair.comparator_invariants");
                 ensure!(
-                    fs::read(&compiled.r1cs)? == fs::read(&context.original.r1cs)?,
+                    super::artifact_bytes_equal(
+                        "r1cs_bytes_read_compare",
+                        &compiled.r1cs,
+                        &context.original.r1cs,
+                    )?,
                     "the comparator generator changes the original R1CS"
                 );
                 sym_equivalence(
-                    &fs::read_to_string(&context.original.sym)?,
-                    &fs::read_to_string(&compiled.sym)?,
+                    &super::profile_v24::measure("sym_read", || {
+                        fs::read_to_string(&context.original.sym)
+                    })?,
+                    &super::profile_v24::measure("sym_read", || fs::read_to_string(&compiled.sym))?,
                 )
                 .context("the comparator generator changes the original SYM")?;
                 Some(compiled)
@@ -1051,6 +1414,7 @@ impl Search<'_, '_> {
         iteration: usize,
         ledger: &mut Ledger,
     ) -> Result<(Localization, Vec<BigUint>, Vec<usize>)> {
+        let _profile = super::profile_v24::span("repair.localize");
         let context = self.context;
         let mut blanked: Vec<(PathBuf, usize, usize)> = Vec::new();
         let mut checks = Vec::new();
@@ -1087,18 +1451,29 @@ impl Search<'_, '_> {
                 // Blanking keeps every signal: the copy's O0 wires are the original's, which
                 // the symbol files confirm line by line (up to anonymous-component offsets).
                 let started = Instant::now();
-                sym_equivalence(
-                    &fs::read_to_string(&context.original_o0.sym)?,
-                    &fs::read_to_string(&compiled.sym)?,
-                )
-                .context("the diagnostic copy's signals differ from the original O0 signals")?;
+                let _mapping = super::profile_v24::span("mapping.other");
+                {
+                    let original = super::profile_v24::measure("mapping.sym_read", || {
+                        fs::read_to_string(&context.original_o0.sym)
+                    })?;
+                    let diagnostic = super::profile_v24::measure("mapping.sym_read", || {
+                        fs::read_to_string(&compiled.sym)
+                    })?;
+                    super::profile_v24::measure("mapping.full_sym_equivalence", || {
+                        sym_equivalence(&original, &diagnostic)
+                    })
+                    .context("the diagnostic copy's signals differ from the original O0 signals")?;
+                }
                 ensure!(
                     values.len() == self.view.r1cs.shape.wires,
                     "the diagnostic witness has a different wire count"
                 );
                 let vector = values;
-                let failed = self.view.r1cs.failed_constraint_indices(&vector)?;
-                let failing_instances = self.group(&failed);
+                let failed = super::profile_v24::measure("mapping.full_constraint_check", || {
+                    super::check_constraints(self.view.r1cs, &vector)
+                })?;
+                let failing_instances =
+                    super::profile_v24::measure("mapping.group_failures", || self.group(&failed));
                 ledger.record(
                     self.start.stage,
                     "map diagnostic witness onto the original O0 R1CS",
@@ -1208,6 +1583,7 @@ impl Search<'_, '_> {
         iteration: usize,
         folder: &Path,
     ) -> Result<bool> {
+        let _profile = super::profile_v24::span("repair.abort_regions");
         let mut by_instance: BTreeMap<String, Vec<usize>> = BTreeMap::new();
         for position in failed {
             by_instance
@@ -1327,6 +1703,7 @@ impl Search<'_, '_> {
         structure: &mut Structure,
         witness: &[BigUint],
     ) -> Option<(Region, BTreeMap<usize, BigUint>, Option<Predicate>)> {
+        let _profile = super::profile_v24::span("repair.requirement_region");
         let mut region = Region {
             wires: BTreeSet::new(),
             constraints: BTreeSet::new(),
@@ -1366,6 +1743,7 @@ impl Search<'_, '_> {
         iteration: usize,
         folder: &Path,
     ) -> Result<bool> {
+        let _profile = super::profile_v24::span("repair.requirement_search");
         let mut progressed = false;
         if let Some(predicate) = self.requirement.predicate.clone() {
             if !predicate.holds(witness) {
@@ -1440,6 +1818,7 @@ impl Search<'_, '_> {
         iteration: usize,
         scratch: &Path,
     ) -> Result<bool> {
+        let _profile = super::profile_v24::span("repair.solve_region");
         let protected = self.start.protected_site.clone();
         let pinned = self.start.pinned.clone();
         let value = |wire: usize| {
@@ -1591,18 +1970,14 @@ impl Search<'_, '_> {
                         let _ = writeln!(text, "(assert (not (and {terms})))");
                     }
                 }
-                let (verdict, model) = run_z3(
-                    self.z3,
-                    text,
-                    &unknowns,
-                    &scratch.with_file_name(format!(
-                        "{}-{}-{}",
-                        scratch.file_name().unwrap_or_default().to_string_lossy(),
-                        if with_paths { "paths" } else { "alone" },
-                        if carry.is_empty() { "without" } else { "with" }
-                    )),
-                    SOLVE_TIMEOUT,
-                )?;
+                let query_path = scratch.with_file_name(format!(
+                    "{}-{}-{}",
+                    scratch.file_name().unwrap_or_default().to_string_lossy(),
+                    if with_paths { "paths" } else { "alone" },
+                    if carry.is_empty() { "without" } else { "with" }
+                ));
+                let (verdict, model) =
+                    run_z3(self.z3, text, &unknowns, &query_path, SOLVE_TIMEOUT)?;
                 let mut solve = SolveRecord {
                     carry: if carry.is_empty() { "without" } else { "with" }.to_owned(),
                     carried_constraints: carry.len(),
@@ -1618,8 +1993,71 @@ impl Search<'_, '_> {
                     inputs_changed: 0,
                 };
                 if verdict == "sat" {
+                    let post_query =
+                        if self.post_selected() && iteration + 1 == self.iterations_allowed {
+                            let mut boundary = BTreeMap::new();
+                            for &position in &query_constraints {
+                                for wire in constraint_wires(&view.r1cs.constraints[position]) {
+                                    if !unknowns.contains(&wire) {
+                                        boundary.insert(wire, value(wire));
+                                    }
+                                }
+                            }
+                            Some(PostQuery {
+                                iteration,
+                                path: query_path.with_extension("smt2"),
+                                constraints: query_constraints.clone(),
+                                unknowns: unknowns.clone(),
+                                boundary,
+                                assigned: (*assigned).clone(),
+                                model: model.clone(),
+                                applied: BTreeMap::new(),
+                            })
+                        } else {
+                            None
+                        };
+                    if self.context.boost.options.constraint_witness
+                        && self.requirement.predicate.is_none()
+                    {
+                        let mut query = BTreeMap::new();
+                        for &position in &query_constraints {
+                            for wire in constraint_wires(&view.r1cs.constraints[position]) {
+                                query.insert(wire, value(wire));
+                            }
+                        }
+                        query.extend(assigned.clone());
+                        query.extend(model.clone());
+                        let mut scope = self
+                            .start
+                            .pinned
+                            .iter()
+                            .map(|&wire| (wire, current[wire].clone()))
+                            .collect::<BTreeMap<_, _>>();
+                        if !inputs_free {
+                            for (wire, value) in current
+                                .iter()
+                                .enumerate()
+                                .skip(view.first_input)
+                                .take(view.inputs)
+                            {
+                                scope.insert(wire, value.clone());
+                            }
+                        }
+                        self.snapshots.push(super::boost::Snapshot {
+                            start: current.to_vec(),
+                            query,
+                            scope,
+                            origin: "repair_region".into(),
+                        });
+                    }
                     let (hints, inputs, changed, controls) =
                         self.apply(structure, current, &model, inputs_free);
+                    if changed {
+                        if let Some(mut query) = post_query {
+                            query.applied = controls.clone();
+                            self.post_queries.push(query);
+                        }
+                    }
                     if !controls.is_empty() {
                         self.attempted_controls.push(controls);
                     }
@@ -1654,6 +2092,7 @@ impl Search<'_, '_> {
         model: &BTreeMap<usize, BigUint>,
         inputs_free: bool,
     ) -> (usize, usize, bool, BTreeMap<usize, BigUint>) {
+        let _profile = super::profile_v24::span("repair.apply_model");
         ModelApplication {
             view: &self.view,
             start: self.start,
@@ -1780,6 +2219,7 @@ fn compile_edits(
     ledger: &mut Ledger,
     label: &str,
 ) -> Result<Compiled> {
+    let _profile = super::profile_v24::span("repair.compile_edits");
     if directory.exists() {
         fs::remove_dir_all(directory)?;
     }
@@ -1813,13 +2253,15 @@ fn compile_edits(
         }
     };
     let workspace = directory.join("workspace");
-    let (root, libraries) = write_edits_workspace(
-        &workspace,
-        context.source_root,
-        context.libraries,
-        context.sources,
-        edits,
-    )?;
+    let (root, libraries) = super::profile_v24::measure("repair.workspace_prepare", || {
+        write_edits_workspace(
+            &workspace,
+            context.source_root,
+            context.libraries,
+            context.sources,
+            edits,
+        )
+    })?;
     let entry = root.join(&context.entry_relative);
     let compiled = compile(
         context.tools,
@@ -1869,6 +2311,20 @@ fn blank(text: &str) -> String {
 /// earlier in the same file moves it without changing any signal, wire, or constraint.
 /// Returns the number of renamed anonymous components.
 pub(crate) fn sym_equivalence(original: &str, other: &str) -> Result<usize> {
+    super::speed_v24::sym_equivalence(original, other)
+}
+
+pub(crate) fn sym_equivalence_uncached(original: &str, other: &str) -> Result<usize> {
+    sym_equivalence_lines(original, other, false)
+}
+
+/// Checks every row on every call. Exact row equality proves equal metadata and
+/// signal paths, so only redundant tokenization is avoided; no earlier result is reused.
+pub(crate) fn sym_equivalence_fast(original: &str, other: &str) -> Result<usize> {
+    sym_equivalence_lines(original, other, true)
+}
+
+fn sym_equivalence_lines(original: &str, other: &str, exact_rows: bool) -> Result<usize> {
     let left = original.lines().collect::<Vec<_>>();
     let right = other.lines().collect::<Vec<_>>();
     ensure!(
@@ -1881,6 +2337,16 @@ pub(crate) fn sym_equivalence(original: &str, other: &str) -> Result<usize> {
     let mut backward: BTreeMap<String, String> = BTreeMap::new();
     let mut count = 0usize;
     for (number, (a, b)) in left.iter().zip(&right).enumerate() {
+        if exact_rows && a == b {
+            // Even equal malformed rows must fail at the same line as the old checker.
+            ensure!(
+                a.splitn(4, ',').count() == 4,
+                ".sym line {} differs in label, wire, or component",
+                number + 1
+            );
+            // Equal segments never update either renaming map in the legacy algorithm.
+            continue;
+        }
         let fields_a = a.splitn(4, ',').collect::<Vec<_>>();
         let fields_b = b.splitn(4, ',').collect::<Vec<_>>();
         ensure!(
@@ -1957,6 +2423,77 @@ fn carried_constraints(
         .collect();
     let dropped = history.len() - kept.len();
     (kept, dropped)
+}
+
+#[cfg(test)]
+pub(super) fn boost_test_model(
+    r: &R1cs,
+    targets: &BTreeMap<usize, BigUint>,
+    folder: &Path,
+) -> Result<BTreeMap<usize, BigUint>> {
+    let wires = (1..r.shape.wires).collect();
+    let constraints = (0..r.constraints.len()).collect();
+    let value = |_: usize| BigUint::one();
+    let mut query = encode(r, &constraints, &wires, &value, SOLVE_TIMEOUT);
+    for (wire, value) in targets {
+        writeln!(query, "(assert (= w{wire} {value}))")?;
+    }
+    let first = 1 + r.shape.public_outputs;
+    for wire in first..first + r.shape.public_inputs + r.shape.private_inputs {
+        if !targets.contains_key(&wire) {
+            writeln!(query, "(assert (= w{wire} 0))")?;
+        }
+    }
+    let z3 = super::resolve_executable(Path::new("z3"))?;
+    let (verdict, model) = run_z3(&z3, query, &wires, &folder.join("model"), SOLVE_TIMEOUT)?;
+    ensure!(verdict == "sat", "synthetic solver: {verdict}");
+    Ok(model)
+}
+
+#[cfg(test)]
+#[allow(clippy::too_many_arguments)]
+pub(super) fn boost_test_projection(
+    r: &R1cs,
+    sym: &SymbolTable,
+    source: &str,
+    file: &Path,
+    input: &Value,
+    current: &[BigUint],
+    model: &BTreeMap<usize, BigUint>,
+) -> Result<bool> {
+    let templates = super::parse_templates(file, source)?;
+    let sources = BTreeMap::from([(file.to_path_buf(), source.to_owned())]);
+    let mut structure = Structure::new(sym, &templates, &sources, Some("Main".into()));
+    let index = super::refute::constraint_index(r);
+    let view = View {
+        r1cs: r,
+        sym,
+        index: &index,
+        first_input: 1 + r.shape.public_outputs,
+        inputs: r.shape.public_inputs + r.shape.private_inputs,
+    };
+    let start = Start {
+        label: "test",
+        stage: "test",
+        input: input.clone(),
+        overrides: Overrides::default(),
+        candidate_hints: false,
+        protected_site: Some("main".into()),
+        inputs_free: true,
+        pinned: BTreeSet::new(),
+    };
+    let mut overrides = Overrides::default();
+    let mut input = input.clone();
+    let mut changes = BTreeSet::new();
+    Ok(ModelApplication {
+        view: &view,
+        start: &start,
+        overrides: &mut overrides,
+        input: &mut input,
+        changed_inputs: &mut changes,
+    }
+    .apply(&mut structure, current, model, true)
+    .2)
 }
 
 #[cfg(test)]
@@ -2156,5 +2693,172 @@ mod tests {
         assert!(sym_equivalence(original, split).is_err());
         assert!(sym_equivalence(original, &original.replace("main.a", "main.b")).is_err());
         assert!(sym_equivalence(original, "1,1,0,main.a\n").is_err());
+    }
+
+    fn compare_sym_checkers(original: &str, other: &str) -> std::result::Result<usize, String> {
+        let legacy =
+            sym_equivalence_uncached(original, other).map_err(|error| format!("{error:#}"));
+        let fast = sym_equivalence_fast(original, other).map_err(|error| format!("{error:#}"));
+        assert_eq!(fast, legacy, "original={original:?}, other={other:?}");
+        legacy
+    }
+
+    fn sym_differential_rows() -> (Vec<String>, Vec<String>) {
+        let original = [
+            "1,1,0,main.x",
+            "2,2,1,main.Foo_7_10.y",
+            // An equal row does not consult or alter the previous renaming maps.
+            "3,3,1,main.Foo_7_10.z",
+            "4,4,1,main.Foo_7_10[1].x",
+            "5,5,2,main.Foo_7_10.Bar_8_20[2].x",
+            "6,6,3,main.Foo_7_11.other",
+            "7,7,4,main.한글[a.b].δ",
+        ]
+        .map(str::to_owned)
+        .to_vec();
+        let other = [
+            "1,1,0,main.x",
+            "2,2,1,main.Foo_7_12.y",
+            "3,3,1,main.Foo_7_10.z",
+            "4,4,1,main.Foo_7_12[1].x",
+            "5,5,2,main.Foo_7_12.Bar_8_22[2].x",
+            "6,6,3,main.Foo_7_13.other",
+            "7,7,4,main.한글[a.b].δ",
+        ]
+        .map(str::to_owned)
+        .to_vec();
+        (original, other)
+    }
+
+    #[test]
+    fn fast_sym_rows_preserve_equal_malformed_and_unusual_rows() {
+        for row in [
+            "",
+            "\n",
+            "1",
+            "1,1",
+            "1,1,0",
+            "1,1,0,",
+            ",,,",
+            "1,1,0,main.x,extra",
+            "x,+y,,main.한글[a.b].δ",
+            "1,1,0,main.x.",
+            "1,1,0,main..x",
+            "1,1,0,main.x[",
+            "1,1,0,main.x]",
+            "1,1,0,main.x\r\n2,2,0,main.y\r\n",
+        ] {
+            let _ = compare_sym_checkers(row, row);
+            let text = format!("0,0,0,main.prefix\n{row}");
+            let _ = compare_sym_checkers(&text, &text);
+        }
+        assert_eq!(compare_sym_checkers("", ""), Ok(0));
+        assert_eq!(compare_sym_checkers("1,1,0,", "1,1,0,"), Ok(0));
+        assert!(compare_sym_checkers("invalid", "invalid").is_err());
+        assert_eq!(
+            compare_sym_checkers("1,1,0,main.x\r\n", "1,1,0,main.x\n"),
+            Ok(0)
+        );
+        assert_eq!(
+            compare_sym_checkers("1,1,0,main.x.", "1,1,0,main.x"),
+            Ok(0),
+            "preserve the legacy segment parser's treatment of trailing dots"
+        );
+    }
+
+    #[test]
+    fn fast_sym_rows_preserve_cross_line_renaming_and_conflicts() {
+        let (original, other) = sym_differential_rows();
+        let left = original.join("\n");
+        assert_eq!(compare_sym_checkers(&left, &other.join("\n")), Ok(3));
+        for (index, replacement) in [
+            (0, "1,2,0,main.x"),
+            (0, "1,1,1,main.x"),
+            (0, "1,1,0,main.x.child"),
+            (0, "1,1,0,main.nonanonymous"),
+            (3, "4,4,1,main.Foo_7_14[1].x"),
+            (3, "4,4,1,main.Foo_7_12[2].x"),
+            (3, "4,4,1,main.Foo_8_12[1].x"),
+            (4, "5,5,2,main.Foo_7_12.Bar_8_23[3].x"),
+            (5, "6,6,3,main.Foo_7_12.other"),
+        ] {
+            let mut changed = other.clone();
+            changed[index] = replacement.to_owned();
+            assert!(compare_sym_checkers(&left, &changed.join("\n")).is_err());
+        }
+    }
+
+    #[test]
+    fn fast_sym_rows_match_legacy_for_1000_deterministic_mutations() {
+        let mut state = 0x9e37_79b9_7f4a_7c15u64;
+        let mut next = || {
+            state = state
+                .wrapping_mul(6_364_136_223_846_793_005)
+                .wrapping_add(1_442_695_040_888_963_407);
+            (state >> 32) as usize
+        };
+        let mut successes = 0;
+        let mut failures = 0;
+        for case in 0..1000 {
+            let (mut original, mut other) = sym_differential_rows();
+            let index = next() % original.len();
+            match case % 16 {
+                0 => {}
+                1 => other[index] = original[index].clone(),
+                2 => {
+                    original[index] = "invalid".to_owned();
+                    other[index] = original[index].clone();
+                }
+                3 => other[index] = format!("{},999,0,main.x", next()),
+                4 => other[index].push_str(".extra"),
+                5 => {
+                    other.remove(index);
+                }
+                6 => other[index] = original[index].replace("main", "changed"),
+                7 => other[3] = "4,4,1,main.Foo_7_14[1].x".to_owned(),
+                8 => other[5] = "6,6,3,main.Foo_7_12.other".to_owned(),
+                9 => {
+                    let equal = format!("{},1,0,main.equal[{}]", next(), next());
+                    original.insert(index, equal.clone());
+                    other.insert(index, equal);
+                }
+                10 => {
+                    let swap = next() % original.len();
+                    original.swap(index, swap);
+                    other.swap(index, swap);
+                }
+                11 => {
+                    original[index] = "x,+y,,main.한글[a.b].δ".to_owned();
+                    other[index] = original[index].clone();
+                }
+                12 => {
+                    original[index] = "1,1,0,main.same,extra".to_owned();
+                    other[index] = original[index].clone();
+                }
+                13 => other[index].push('['),
+                14 => {
+                    original[index] = "1,1,0,".to_owned();
+                    other[index] = original[index].clone();
+                }
+                _ => {
+                    original[index] = "1,1".to_owned();
+                    other[index] = original[index].clone();
+                }
+            }
+            let mut left = original.join(if next() % 2 == 0 { "\n" } else { "\r\n" });
+            let mut right = other.join(if next() % 2 == 0 { "\n" } else { "\r\n" });
+            if next() % 2 == 0 {
+                left.push('\n');
+            }
+            if next() % 2 == 0 {
+                right.push('\n');
+            }
+            if compare_sym_checkers(&left, &right).is_ok() {
+                successes += 1;
+            } else {
+                failures += 1;
+            }
+        }
+        assert!(successes >= 100 && failures >= 100);
     }
 }

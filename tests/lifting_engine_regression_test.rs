@@ -609,9 +609,7 @@ fn changed_repair_r1cs_and_sym_are_rejected() {
 fn simultaneous_range_failures_repair_locally() {
     let root = Path::new(env!("CARGO_MANIFEST_DIR"));
     let original = root.join("tests/fixtures/lifting_engine/abort_repair");
-    let base = root.join("runs/n6-j4c-2026-10-17.noindex");
-    fs::create_dir_all(&base).unwrap();
-    let temp = tempfile::tempdir_in(base).unwrap();
+    let temp = tempfile::tempdir().unwrap();
     let fixture = temp.path();
     fs::create_dir(fixture.join("src")).unwrap();
     for name in ["component.circom", "standalone.circom", "entrypoint.circom"] {
