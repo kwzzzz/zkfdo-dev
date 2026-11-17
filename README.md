@@ -31,9 +31,6 @@ Implemented in this branch:
 - Target preparation and instance capture (`src/targets.rs`, `src/instance_capture.rs`)
 - Staged pipeline driver, dry-run mode, and its unit tests (`scripts/run_sj_pipeline_v1.py`)
 
-Build and checks:
-
-- `cargo build` succeeds on the branch (debug profile). The test targets compile with `cargo test --no-run`.
 - The staged pipeline has been run in dry-run mode so far.
 - Timings recorded during development are functional checks, not performance results.
 
