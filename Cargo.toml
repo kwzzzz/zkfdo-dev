@@ -1,0 +1,47 @@
+[package]
+name = "zkfdo"
+version = "0.1.0"
+edition = "2021"
+description = "Budget-aware target ranker CLI for zkFuzz on large Circom projects"
+license = "MIT"
+repository = "https://github.com/kwzzzz/zkfdo-dev"
+
+[lib]
+name = "zkfdo"
+path = "src/lib.rs"
+
+[[bin]]
+name = "zkfDO"
+path = "src/main.rs"
+
+[[bin]]
+name = "zkfdo-relation-verifier"
+path = "src/bin/relation_verifier.rs"
+
+[dependencies]
+anyhow = "1.0"
+chrono = { version = "0.4", features = ["serde"] }
+clap = { version = "4.5", features = ["derive"] }
+csv = "1.3"
+indicatif = "0.17"
+num-bigint = "0.4"
+num-traits = "0.2"
+regex = "1.11"
+rusqlite = { version = "0.32", features = ["bundled"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+sha2 = "0.10"
+thiserror = "2.0"
+tempfile = "3.12"
+toml = "0.8"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+uuid = { version = "1.10", features = ["v4", "serde"] }
+walkdir = "2.5"
+
+[target.'cfg(unix)'.dependencies]
+libc = "0.2"
+
+[dev-dependencies]
+assert_cmd = "2.0"
+predicates = "3.1"
