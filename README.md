@@ -35,6 +35,7 @@ Notes:
 
 - The staged pipeline has only been run in dry-run mode so far.
 - Timings recorded during development are functional checks. They are not performance results.
+- zkFDO is not a complete Circom analyzer. Unsupported constructs are reported as unsupported.
 
 This is a research prototype. Interfaces and output formats may change.
 
@@ -120,13 +121,6 @@ python3 -B -m unittest scripts/run_sj_pipeline_v1_test.py
 ```
 
 The Python tests use fixtures and stubs. They do not run circom, zkFuzz, or the judge.
-
-## Limits
-
-- zkFDO is not a complete Circom analyzer. Unsupported constructs are reported as unsupported and are not analyzed.
-- A candidate with verdict unknown, excluded, or output identical is not proof that the circuit is safe.
-- Budgets apply per run. A result that is unknown because the budget ran out says nothing about the circuit.
-- The pipeline needs external tools whose hashes are known. It does not download them.
 
 ## Reporting findings
 
