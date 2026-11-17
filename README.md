@@ -1,38 +1,40 @@
 # zkFDO
 
-`zkFDO` is a Rust tool by team `kwzzzz` for finding bugs in Circom circuits. It splits a large circuit into fragments, runs zkFuzz on each fragment, and then judges each resulting candidate against the original circuit, so that a finding is checked in its full context rather than in isolation.
+zkFDO is a Rust tool for finding bugs in Circom circuits. It cuts a large circuit into fragments and runs zkFuzz on each one. Each candidate it finds is then checked against the original circuit, so the check uses the full context and not just the fragment.
 
 Repository: <https://github.com/kwzzzz/zkfdo-dev>
 
-This branch contains the source only: the judging engine, the fragment preparation code, the command-line entry point, and the staged pipeline driver. Reports, experiment records, evaluation corpora, and documentation are not included.
+This branch has the source code only: the judging engine, the fragment preparation code, the command-line entry point, and the pipeline driver. Reports, experiment records, evaluation data, and documentation are left out.
 
 ## How it works
 
-1. **Fragment fuzzing (S).** A large circuit is cut into components. zkFuzz runs on each fragment with a per-target time budget.
-2. **Judging in context (J).** Each candidate from S is re-checked against the original circuit's constraints. The judge returns one verdict, with the reason recorded (see [Terms](#terms)).
-3. **Site probe (v2.8).** For unresolved candidates, the probe changes one hint at a time on a given input and looks for a second witness with the same full input and a different top-level output. Every such pair is checked again against the original constraints by external Rust and snarkjs checkers before it is reported. Probe results are kept apart from the judge's verdicts and never overwrite them.
+1. **Fragment fuzzing (S).** The circuit is split into components. zkFuzz runs on each fragment within a time budget.
+2. **Judging in context (J).** Each candidate from S is checked against the constraints of the original circuit. The judge gives one verdict and records the reason. See [Terms](#terms).
+3. **Site probe (v2.8).** For candidates the judge could not decide, the probe changes one hint at a time on a fixed input. It looks for a second witness with the same input and a different top-level output. External Rust and snarkjs checkers verify each pair against the original constraints before it is reported. Probe results are stored separately and do not change the judge's verdicts.
 
 ## Terms
 
 - **Violation**: the judge found a witness pair that satisfies the original constraints and gives different outputs.
-- **Compatible**: no violation was observed for this candidate in context.
-- **Excluded**: the candidate was ruled out in context, with the reason recorded (for example, a constant input mismatch).
-- **Unknown**: the judge could not decide, with the reason recorded (for example, budget exhausted). Unknown is not a safe result.
-- **Validated counterexample**: a probe pair that passed the external checks. It is a circuit-level witness pair, not a verdict on the original candidate.
-- **Output identical**: the probe observed no output change for the values it tried. It is not a proof that the hint is safe.
+- **Compatible**: no violation was seen for this candidate in context.
+- **Excluded**: the candidate was ruled out in context. The reason is recorded, for example a constant input mismatch.
+- **Unknown**: the judge could not decide. The reason is recorded, for example the budget ran out. Unknown does not mean safe.
+- **Validated counterexample**: a probe pair that passed the external checks. It is a witness pair for the circuit, not a verdict on the original candidate.
+- **Output identical**: the probe saw no change in output for the values it tried. This does not show the hint is safe.
 
 ## Status
 
-Implemented in this branch:
+This branch includes:
 
-- `zkFDO` command-line entry point (`src/main.rs`)
-- Judging engine, versions v2.5 through v2.8 (`src/candidate_review/lifting/`, `src/bin/zkfdo-j-v27.rs`, `src/bin/zkfdo-j-v28.rs`)
-- Site probe for v2.8 (`site_signal_probe.rs`, `site_probe_identity.rs`, `site_probe_workspace.rs`)
+- The `zkFDO` command-line entry point (`src/main.rs`)
+- The judging engine, versions v2.5 to v2.8 (`src/candidate_review/lifting/`, `src/bin/zkfdo-j-v27.rs`, `src/bin/zkfdo-j-v28.rs`)
+- The v2.8 site probe (`site_signal_probe.rs`, `site_probe_identity.rs`, `site_probe_workspace.rs`)
 - Target preparation and instance capture (`src/targets.rs`, `src/instance_capture.rs`)
-- Staged pipeline driver, dry-run mode, and its unit tests (`scripts/run_sj_pipeline_v1.py`)
+- The staged pipeline driver, its dry-run mode, and its unit tests (`scripts/run_sj_pipeline_v1.py`)
 
-- The staged pipeline has been run in dry-run mode so far.
-- Timings recorded during development are functional checks, not performance results.
+Notes:
+
+- The staged pipeline has only been run in dry-run mode so far.
+- Timings recorded during development are functional checks. They are not performance results.
 
 This is a research prototype. Interfaces and output formats may change.
 
@@ -45,7 +47,7 @@ src/candidate_review/        candidate review and judging
   lifting/                   judging engine (v2.5 to v2.8), site probe, repair and solver
 src/bin/                     judge executables and relation verifier
 src/targets.rs               target preparation and Circom discovery
-src/instance_capture.rs      compiler instance capture reader
+src/instance_capture.rs      reader for compiler instance captures
 scripts/run_sj_pipeline_v1.py        staged S-to-J pipeline driver
 scripts/run_sj_pipeline_v1_test.py   unit tests for the driver
 LICENSE                      MIT
@@ -53,16 +55,16 @@ LICENSE                      MIT
 
 ## Dependencies
 
-The following tools are not included and must be installed separately:
+These tools are not included. Install them separately:
 
 - Rust toolchain
 - circom 2.x
 - snarkjs 0.7.x
 - Node.js
 - z3
-- zkFuzz (upstream project; this tool does not reimplement it)
+- zkFuzz (an upstream project; zkFDO does not reimplement it)
 
-The pipeline reads a tools manifest that gives the path and SHA-256 of each tool:
+The pipeline reads a tools manifest with the path and SHA-256 of each tool:
 
 ```json
 {
@@ -76,14 +78,14 @@ The pipeline reads a tools manifest that gives the path and SHA-256 of each tool
 }
 ```
 
-## Quick Start
+## Quick start
 
 ```sh
 cargo build --release
 cargo run --bin zkFDO -- --help
 ```
 
-Dry-run of the staged pipeline. It records the plan only; the engine is not started:
+To check a pipeline plan without starting the engine, run a dry run:
 
 ```sh
 python3 scripts/run_sj_pipeline_v1.py \
@@ -97,18 +99,18 @@ python3 scripts/run_sj_pipeline_v1.py \
   --dry-run
 ```
 
-`--corpus-layer` is required and takes `development`, `regression`, or `hunt`. The evaluation layer is outside this pipeline.
+`--corpus-layer` is required. It takes `development`, `regression`, or `hunt`. Evaluation runs are outside this pipeline.
 
 ## Output of a pipeline run
 
 Each run writes to its own output directory:
 
 - `identity.json`: the identity of the run (inputs, tool hashes, settings)
-- `ledger.json`: stage status and budgets; `immutable-ledger/` keeps the history of allocations
+- `ledger.json`: stage status and budgets. `immutable-ledger/` keeps the allocation history.
 - `stage-records/`: one folder per stage, with attempt receipts
 - `work/`: the source snapshot and intermediate files
 
-A finished output directory is never overwritten. An interrupted run can resume in the same directory only while its status is partial. Otherwise start a new directory.
+A finished output directory is never overwritten. An interrupted run can resume in the same directory only while its status is partial. Otherwise, start a new directory.
 
 ## Testing
 
@@ -117,18 +119,18 @@ cargo test
 python3 -B -m unittest scripts/run_sj_pipeline_v1_test.py
 ```
 
-The Python tests use fixtures and stubs; they do not run circom, zkFuzz, or the judge.
+The Python tests use fixtures and stubs. They do not run circom, zkFuzz, or the judge.
 
-## Scope and limitations
+## Limits
 
-- Not a complete Circom analyzer. Unsupported constructs are reported as unsupported, not analyzed.
-- A candidate with verdict unknown, excluded, or output identical is not a proof of safety.
-- Budgets are per run. A result that is unknown because of a budget is not evidence about the circuit.
-- The pipeline needs external tools with known hashes. It does not download them.
+- zkFDO is not a complete Circom analyzer. Unsupported constructs are reported as unsupported and are not analyzed.
+- A candidate with verdict unknown, excluded, or output identical is not proof that the circuit is safe.
+- Budgets apply per run. A result that is unknown because the budget ran out says nothing about the circuit.
+- The pipeline needs external tools whose hashes are known. It does not download them.
 
 ## Reporting findings
 
-No finding has been reported from this code yet. Any finding will be checked against the original circuit and its current version before it is described publicly. Please contact the maintainers privately before posting details of a vulnerability in a third-party circuit.
+No finding has been reported from this code yet. Any finding will be checked against the original circuit and its current version before it is described publicly. For a vulnerability in a third-party circuit, contact the maintainers privately before posting any details.
 
 ## License
 
